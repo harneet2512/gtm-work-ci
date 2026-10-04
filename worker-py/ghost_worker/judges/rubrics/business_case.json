@@ -1,0 +1,126 @@
+{
+  "eval_type": "business_case",
+  "version": 1,
+  "title": "Business-case / value strength",
+  "har97_refs": [
+    {
+      "line": 2326,
+      "text": "## 15.7 Business-case / value strength"
+    },
+    {
+      "line": 608,
+      "text": "business-case strength"
+    },
+    {
+      "line": 2959,
+      "text": "* business-case / value strength"
+    }
+  ],
+  "l2_dimension": "business-case / value strength",
+  "questions": [
+    {
+      "section": "§15(GTM).7",
+      "text": "Is there a concrete reason the buyer should care enough to move?"
+    }
+  ],
+  "inputs": [
+    "the customer's stated pain and goals",
+    "metrics the customer gave",
+    "value claims in the candidate"
+  ],
+  "criteria": [
+    {
+      "id": "pain_explicit",
+      "kind": "check",
+      "text": "customer pain is explicit",
+      "guide": "Is the pain stated by the customer, not assumed?",
+      "har97": {
+        "line": 2334,
+        "text": "* customer pain is explicit"
+      },
+      "output": "finding",
+      "before": null,
+      "after": null
+    },
+    {
+      "id": "outcome_clear",
+      "kind": "check",
+      "text": "desired outcome is clear",
+      "guide": "Is the outcome the customer wants stated?",
+      "har97": {
+        "line": 2335,
+        "text": "* desired outcome is clear"
+      },
+      "output": "finding",
+      "before": null,
+      "after": null
+    },
+    {
+      "id": "metrics_present",
+      "kind": "check",
+      "text": "metrics / value are present where possible",
+      "guide": "Are value figures the customer's own numbers, not inflated or invented?",
+      "har97": {
+        "line": 2336,
+        "text": "* metrics / value are present where possible"
+      },
+      "output": "finding",
+      "before": null,
+      "after": null
+    },
+    {
+      "id": "connects_to_problem",
+      "kind": "evaluate",
+      "text": "action connects to the customer’s stated problem",
+      "guide": "Does the action address the problem the customer stated?",
+      "har97": {
+        "line": 2337,
+        "text": "* action connects to the customer’s stated problem"
+      },
+      "output": "finding",
+      "before": null,
+      "after": null
+    },
+    {
+      "id": "not_generic",
+      "kind": "evaluate",
+      "text": "agent is not advancing the process on generic best practice alone",
+      "guide": "Is the push justified by this customer's case, not by a generic playbook step?",
+      "har97": {
+        "line": 2338,
+        "text": "* agent is not advancing the process on generic best practice alone"
+      },
+      "output": "finding",
+      "before": null,
+      "after": null
+    }
+  ],
+  "failure_examples": [],
+  "counter_failures": [],
+  "known_exceptions": [],
+  "candidate_choices": [],
+  "principles": [],
+  "labels": [],
+  "pass_label": null,
+  "diagnostics": [
+    {
+      "name": "weak_business_case",
+      "when": "pain, outcome or value is missing, generic or inflated"
+    }
+  ],
+  "routing": {
+    "actions": [
+      "send_email",
+      "schedule_meeting",
+      "share_document"
+    ],
+    "when_all": [
+      "commercial_ask"
+    ],
+    "when_any": [
+      "early_stage",
+      "value_claim"
+    ]
+  },
+  "uses_rep_profile": false
+}

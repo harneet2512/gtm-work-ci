@@ -1,0 +1,87 @@
+{
+  "eval_type": "commitment_consistency",
+  "version": 1,
+  "title": "Commitment consistency",
+  "har97_refs": [
+    {
+      "line": 1266,
+      "text": "## 5.10 Commitment consistency"
+    }
+  ],
+  "l2_dimension": null,
+  "questions": [
+    {
+      "section": "§5.10",
+      "text": "Does the action respect what both sides already promised?"
+    }
+  ],
+  "inputs": [
+    "commitments by both sides with owners, due dates and status",
+    "proposed vs accepted meetings",
+    "the candidate's promises"
+  ],
+  "criteria": [
+    {
+      "id": "ours_honoured",
+      "kind": "check",
+      "text": "open commitments our side owes are honoured",
+      "guide": "The action delivers or advances what we promised, on time.",
+      "har97": null,
+      "output": "finding",
+      "before": null,
+      "after": null
+    },
+    {
+      "id": "theirs_respected",
+      "kind": "check",
+      "text": "the buyer's promised actions are not jumped ahead of",
+      "guide": "If the buyer promised an internal review, do not act as if it were done.",
+      "har97": null,
+      "output": "finding",
+      "before": null,
+      "after": null
+    },
+    {
+      "id": "no_phantom",
+      "kind": "check",
+      "text": "proposals are not treated as agreed, fulfilled ones not re-promised",
+      "guide": "A meeting only we proposed is not booked; a fulfilled commitment is not promised again.",
+      "har97": null,
+      "output": "finding",
+      "before": null,
+      "after": null
+    }
+  ],
+  "failure_examples": [],
+  "counter_failures": [],
+  "known_exceptions": [],
+  "candidate_choices": [],
+  "principles": [
+    "Examples of commitments to respect: customer asked for SOC2 doc before next meeting; rep promised pricing Friday; buyer promised internal review next week.",
+    "Catch actions that jump ahead of these commitments."
+  ],
+  "labels": [],
+  "pass_label": null,
+  "diagnostics": [
+    {
+      "name": "no_mutual_next_step",
+      "when": "the action breaks the agreed sequence of commitments"
+    }
+  ],
+  "routing": {
+    "actions": [
+      "send_email",
+      "schedule_meeting",
+      "share_document",
+      "internal_note",
+      "wait",
+      "no_action"
+    ],
+    "when_all": [],
+    "when_any": [
+      "commitment_pending",
+      "commitment_in_play"
+    ]
+  },
+  "uses_rep_profile": false
+}

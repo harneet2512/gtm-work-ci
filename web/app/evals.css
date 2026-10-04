@@ -1,0 +1,189 @@
+/* Eval surfaces (eval design spec 4b-3): one tone per verdict, words before color, the judgment first.
+   Tones meet WCAG AA on white and on their own tint (fail 7.4:1, warn 6.6:1, pass 5.5:1, muted 4.9:1). */
+:root {
+  --fail: #b42318;
+  --fail-bg: #fef3f2;
+  --fail-line: #fda29b;
+  --warn: #b54708;
+  --warn-bg: #fffaeb;
+  --warn-line: #fec84b;
+  --pass: #067647;
+  --pass-bg: #ecfdf3;
+  --pass-line: #75e0a7;
+  --unsure: #475467;
+  --unsure-bg: #f2f4f7;
+  --muted: #667085;
+  --reason: #344054;
+}
+
+.sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; border: 0; }
+
+/* Verdict mark: icon + word, the same everywhere */
+.verdict { display: inline-flex; align-items: center; gap: 5px; font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.06em; white-space: nowrap; }
+.verdict-icon { flex: none; }
+.verdict-icon .disc { fill: currentColor; fill-opacity: 0.12; }
+.v-fail { color: var(--fail); }
+.v-warn { color: var(--warn); }
+.v-abstain { color: var(--unsure); }
+.v-pass { color: var(--pass); }
+.v-not_relevant, .v-not_checked { color: var(--muted); }
+.verdict-counts { display: flex; flex-wrap: wrap; gap: 4px 14px; margin: 0 0 8px; font-weight: 600; font-variant-numeric: tabular-nums; }
+.verdict-counts .count { display: inline-flex; align-items: center; gap: 5px; }
+.blocks { font-size: 10px; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; color: #fff; background: var(--fail); border-radius: 3px; padding: 1px 6px; }
+.evidence-tag { font-size: 11px; color: var(--muted); border: 1px solid var(--line); background: #f8fafc; border-radius: 4px; padding: 0 6px; white-space: nowrap; }
+
+/* Page head */
+.eval-page .head { align-items: flex-start; }
+.eyebrow { margin: 0 0 4px; font-size: 11px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); }
+.eval-page h1 { font-size: 22px; line-height: 1.25; text-wrap: balance; }
+.eval-page .panel { margin-bottom: 14px; }
+
+/* The judgment first */
+.verdict-banner { display: grid; grid-template-columns: auto 1fr; gap: 14px; align-items: start; padding: 16px 20px; margin-bottom: 14px; border: 1px solid var(--line); border-left-width: 4px; border-radius: 8px; background: var(--panel); }
+.verdict-banner.v-fail { border-left-color: var(--fail); background: var(--fail-bg); }
+.verdict-banner.v-warn { border-left-color: var(--warn); background: var(--warn-bg); }
+.verdict-banner.v-pass { border-left-color: var(--pass); background: var(--pass-bg); }
+.verdict-banner.v-abstain { border-left-color: var(--unsure); background: var(--unsure-bg); }
+.banner-icon .verdict-icon { width: 28px; height: 28px; }
+.verdict-banner h2 { margin: 0 0 4px; font-size: 19px; line-height: 1.3; color: var(--ink); text-transform: none; letter-spacing: normal; text-wrap: balance; }
+.banner-detail { margin: 0 0 6px; max-width: 72ch; font-size: 15px; line-height: 1.55; color: var(--ink); }
+.banner-context { margin: 0; font-size: 13px; color: var(--reason); }
+
+/* Comparison: eval x option */
+.matrix-scroll { overflow-x: auto; border-radius: 6px; }
+.matrix-scroll:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+.eval-matrix { width: 100%; min-width: 720px; border-collapse: separate; border-spacing: 0; table-layout: fixed; }
+.eval-matrix caption { caption-side: top; text-align: left; font-size: 12px; color: var(--muted); padding: 0 0 10px; }
+.eval-matrix th, .eval-matrix td { padding: 12px; border-bottom: 1px solid var(--line); vertical-align: top; text-align: left; }
+.eval-matrix thead th { border-bottom: 2px solid var(--line); font-weight: 400; }
+.eval-matrix .eval-col { width: 22%; }
+.eval-matrix th[scope="row"] { font-weight: 400; }
+.eval-matrix th[scope="row"] .eval-name { display: block; font-size: 14px; font-weight: 600; color: var(--ink); margin-bottom: 4px; }
+.option-col.selected, .eval-matrix td.selected { background: #f8faff; }
+.option-col.selected { box-shadow: inset 0 3px 0 var(--accent); }
+.option-link { display: flex; gap: 8px; align-items: baseline; text-decoration: none; color: var(--ink); }
+.option-link:hover .option-title, .option-link:focus-visible .option-title { color: var(--accent); text-decoration: underline; }
+.option-letter { flex: none; display: inline-grid; place-items: center; width: 22px; height: 22px; border-radius: 50%; background: var(--ink); color: #fff; font-size: 12px; font-weight: 700; }
+.option-title { font-weight: 600; line-height: 1.3; }
+.option-marks { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 6px; }
+.mark { display: inline-flex; align-items: center; gap: 4px; font-size: 11px; font-weight: 600; border-radius: 999px; padding: 1px 8px; }
+.mark.ghost-pick { color: #6941c6; background: #f4f3ff; }
+.mark.chosen { color: var(--accent); background: #eff6ff; }
+.option-held { display: block; margin-top: 6px; font-size: 12px; color: var(--warn); }
+.cell-reason { margin: 6px 0 0; font-size: 13px; line-height: 1.45; color: var(--reason); display: -webkit-box; -webkit-line-clamp: 4; -webkit-box-orient: vertical; overflow: hidden; }
+.eval-matrix td.v-not_checked { background-image: repeating-linear-gradient(135deg, transparent 0 6px, #f2f4f7 6px 7px); }
+.eval-matrix td.v-not_relevant .cell-reason, .eval-matrix td.v-not_checked .cell-reason { color: var(--muted); }
+
+/* One option's evals, one line each */
+.selected-evals h2 { font-size: 15px; text-transform: none; letter-spacing: normal; color: var(--ink); scroll-margin-top: 16px; }
+.held { color: var(--warn); font-weight: 600; }
+.eval-lines { list-style: none; margin: 12px 0 0; padding: 0; }
+.eval-line { border: 1px solid var(--line); border-left: 3px solid var(--line); border-radius: 6px; padding: 12px 16px; margin-bottom: 8px; background: var(--panel); scroll-margin-top: 16px; }
+.eval-line.v-fail { border-left-color: var(--fail); }
+.eval-line.v-warn { border-left-color: var(--warn); }
+.eval-line.v-abstain { border-left-color: var(--unsure); }
+.eval-line.v-pass { border-left-color: var(--pass); }
+.eval-line:target { outline: 2px solid var(--accent); outline-offset: 2px; animation: target-flash 1.2s ease-out; }
+@keyframes target-flash { from { background: #eff6ff; } to { background: var(--panel); } }
+.eval-line-head { display: flex; flex-wrap: wrap; align-items: center; gap: 6px 12px; }
+.eval-line-head .verdict { min-width: 64px; }
+.eval-name { margin: 0; font-size: 15px; color: var(--ink); }
+.eval-reason { margin: 6px 0 8px; max-width: 72ch; font-size: 15px; line-height: 1.55; color: var(--ink); }
+.eval-line-actions { display: flex; flex-wrap: wrap; align-items: flex-start; gap: 4px 18px; }
+.eval-line-actions details { flex-basis: auto; }
+.eval-line-actions details[open] { flex-basis: 100%; }
+.eval-line-actions summary, .not-relevant summary { cursor: pointer; font-size: 13px; color: var(--accent); padding: 6px 0; min-height: 32px; }
+.link-button { all: unset; cursor: pointer; font-size: 13px; color: var(--muted); padding: 6px 0; text-decoration: underline; text-decoration-color: var(--line); text-underline-offset: 3px; }
+.link-button:hover { color: var(--fail); text-decoration-color: currentColor; }
+.eval-page summary:focus-visible, .link-button:focus-visible, .eval-page a:focus-visible, .dispute-form button:focus-visible, .dispute-form textarea:focus-visible, .dispute-form select:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; border-radius: 3px; }
+.evidence-snippets { list-style: none; margin: 4px 0 8px; padding: 0; max-width: 72ch; }
+.evidence-snippets li { padding: 8px 0 8px 12px; border-left: 2px solid var(--line); margin-bottom: 6px; }
+.evidence-snippets blockquote { margin: 0 0 4px; padding: 0; border: 0; font-size: 15px; line-height: 1.5; color: var(--ink); }
+.attribution { margin: 0; font-size: 13px; color: var(--reason); }
+.evidence-link { font-size: 13px; }
+.eval-detail-list { display: grid; grid-template-columns: minmax(130px, max-content) 1fr; gap: 6px 14px; margin: 4px 0 8px; font-size: 13px; max-width: 80ch; }
+.eval-detail-list dt { color: var(--muted); }
+.eval-detail-list dd { margin: 0; color: var(--reason); }
+.not-relevant { margin-top: 8px; }
+.not-relevant ul { margin: 4px 0; padding-left: 18px; color: var(--reason); font-size: 13px; }
+
+/* After the edit */
+.after-edit { border: 1px solid var(--line); border-radius: 6px; padding: 10px 14px; margin: 10px 0 4px; background: #fcfcfd; font-size: 14px; }
+.after-edit.after-not_reevaluated { border-style: dashed; border-color: #98a2b3; }
+.after-edit h3 { display: flex; align-items: center; gap: 6px; margin: 0 0 4px; font-size: 13px; color: var(--ink); }
+.after-edit p { margin: 4px 0; max-width: 72ch; }
+.deltas { list-style: none; margin: 4px 0; padding: 0; font-weight: 600; }
+.deltas li { display: flex; align-items: center; gap: 6px; }
+.send-blocked { margin-top: 10px; padding: 10px 12px; border-radius: 6px; border: 1px solid var(--fail-line); background: var(--fail-bg); }
+.send-blocked-title { display: flex; align-items: center; gap: 6px; margin: 0; font-weight: 700; color: var(--fail); }
+.send-blocked ul { margin: 6px 0; padding-left: 18px; }
+
+/* This eval is wrong */
+.dispute-form { display: grid; gap: 6px; max-width: 60ch; margin: 6px 0 4px; padding: 10px 12px; border: 1px solid var(--line); border-radius: 6px; background: #fcfcfd; font-size: 13px; }
+.dispute-form label { font-weight: 600; color: var(--ink); }
+.dispute-form textarea, .dispute-form select { font: inherit; font-size: 14px; padding: 6px 8px; border: 1px solid #98a2b3; border-radius: 6px; background: #fff; color: var(--ink); }
+.dispute-form textarea { resize: vertical; min-height: 72px; }
+.dispute-actions { display: flex; gap: 8px; margin-top: 4px; }
+.dispute-actions button { min-height: 36px; padding: 6px 14px; border-radius: 6px; border: 1px solid var(--ink); background: var(--ink); color: #fff; cursor: pointer; font: inherit; }
+.dispute-actions button.secondary { background: var(--panel); color: var(--ink); border-color: var(--line); }
+.dispute-actions button[disabled] { opacity: 0.6; cursor: progress; }
+.dispute-message { margin: 0; min-height: 1em; color: var(--fail); }
+.dispute-saved { margin: 6px 0; font-size: 13px; color: var(--pass); max-width: 72ch; }
+
+/* Run page: the same lines, compact */
+.eval-bundle .evals .eval-item summary { display: flex; flex-wrap: wrap; align-items: baseline; gap: 2px 8px; padding: 4px 0; }
+.eval-bundle .eval-item .eval-name { font-weight: 600; }
+.eval-summary-reason { flex-basis: 100%; font-size: 13px; line-height: 1.45; color: var(--reason); }
+.eval-bundle .held { font-size: 13px; }
+.eval-page-link { margin: 8px 0 0; font-size: 13px; }
+.eval-bundle summary:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+
+/* Evidence deep links land on the run trace's activity */
+.trace-activity { scroll-margin-top: 16px; border-radius: 4px; }
+.trace-activity:target { outline: 2px solid var(--accent); outline-offset: 2px; background: #eff6ff; }
+
+/* Overview: /evals */
+.lead { max-width: 72ch; font-size: 14px; line-height: 1.55; color: var(--reason); margin: 0 0 12px; }
+.quality-callout { margin-bottom: 14px; padding: 14px 18px; border: 1px dashed #98a2b3; border-radius: 8px; background: #fcfcfd; }
+.quality-callout.measured { border-style: solid; }
+.quality-callout h2 { margin: 0 0 6px; }
+.quality-callout p { margin: 0; max-width: 80ch; line-height: 1.55; color: var(--reason); }
+.check-table, .strategy-table { width: 100%; border-collapse: collapse; margin: 0 0 18px; table-layout: fixed; }
+.check-table caption { caption-side: top; text-align: left; padding: 6px 0 8px; font-size: 13px; color: var(--reason); }
+.check-table th, .check-table td, .strategy-table th, .strategy-table td { padding: 10px 12px 10px 0; border-bottom: 1px solid var(--line); vertical-align: top; text-align: left; font-size: 13px; }
+.check-table thead th, .strategy-table thead th { font-size: 11px; font-weight: 700; color: var(--muted); text-transform: uppercase; letter-spacing: 0.06em; }
+.check-table thead th:first-child { width: 40%; }
+.check-table tbody th { font-weight: 400; }
+.check-table .eval-name { display: block; font-size: 14px; font-weight: 600; color: var(--ink); }
+.check-table .question { display: block; color: var(--reason); margin-top: 2px; }
+.check-table tr:target { background: #eff6ff; }
+.definition summary { cursor: pointer; color: var(--accent); font-size: 12px; margin-top: 4px; }
+.definition p { margin: 4px 0; color: var(--reason); max-width: 70ch; }
+.not-measured { color: var(--muted); font-style: italic; }
+.measured { font-variant-numeric: tabular-nums; }
+.family { border-top: 1px solid var(--line); padding: 2px 0; }
+.family summary { display: flex; flex-wrap: wrap; align-items: baseline; gap: 4px 14px; cursor: pointer; padding: 10px 0; min-height: 32px; }
+.family summary:focus-visible, .definition summary:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+.family-name { font-weight: 600; font-size: 14px; color: var(--ink); }
+.family-kind { font-size: 11px; color: var(--muted); text-transform: uppercase; letter-spacing: 0.06em; }
+.family-counts { font-size: 13px; color: var(--reason); font-variant-numeric: tabular-nums; }
+.ref { font-size: 11px; color: var(--muted); font-variant-numeric: tabular-nums; }
+.family .ref:last-child { margin-left: auto; }
+.invariant { margin: 0 0 8px; color: var(--reason); font-style: italic; max-width: 80ch; }
+.strategy-table thead th:first-child { width: 34%; }
+.strategy-table tbody th { font-weight: 400; color: var(--ink); }
+.status { font-size: 11px; font-weight: 700; border-radius: 999px; padding: 1px 8px; }
+.status-live { color: var(--pass); background: var(--pass-bg); }
+.status-partial { color: var(--warn); background: var(--warn-bg); }
+.status-planned { color: var(--muted); background: var(--unsure-bg); }
+
+@media (max-width: 900px) {
+  /* The comparison scrolls sideways on a phone; the eval names stay put. */
+  .eval-matrix .eval-col { position: sticky; left: 0; z-index: 1; background: var(--panel); box-shadow: 1px 0 0 var(--line); }
+  .check-table, .strategy-table { table-layout: auto; }
+  .check-table thead th:first-child, .strategy-table thead th:first-child { width: auto; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .eval-line:target { animation: none; }
+}

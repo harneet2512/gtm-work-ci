@@ -1,0 +1,32 @@
+{
+  "version": "har129-requirements.v1",
+  "source": "HAR-129",
+  "quoted_from": "HAR-129 Linear description (example: two sections, three requirements)",
+  "sections": [
+    { "id": "G", "title": "Required live proof suite", "reference": "HAR-129 §G" },
+    { "id": "S13", "title": "The complete visible demo", "reference": "HAR-129 §13" }
+  ],
+  "requirements": [
+    {
+      "id": "HAR129-G-01",
+      "section": "G",
+      "reference": "HAR-129 §G",
+      "requirement": "replay reset is deterministic",
+      "required_behavior": "Reset the replay world twice and observe the same event set, state snapshots and digests both times."
+    },
+    {
+      "id": "HAR129-G-02",
+      "section": "G",
+      "reference": "HAR-129 §G",
+      "requirement": "no future leakage across the historical/live boundary",
+      "required_behavior": "At episode k, no query returns information whose event or knowledge time is after k."
+    },
+    {
+      "id": "HAR129-S13-01",
+      "section": "S13",
+      "reference": "HAR-129 §13 A",
+      "requirement": "A. WEB — current company/account world \"Here is what Ghost knows before the next event.\"",
+      "required_behavior": "Before Play, the web surface shows the account world built from history through N-1."
+    }
+  ]
+}

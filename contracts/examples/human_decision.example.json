@@ -1,0 +1,19 @@
+{
+  "id": "0dec0000-0000-4000-8000-000000000701",
+  "agent_run_id": "0f0a0000-0000-4000-8000-000000000601",
+  "decision": "edit",
+  "surface": "web",
+  "actor_person_id": "0b0e0000-0000-4000-8000-000000000001",
+  "actor_label": "Dana Kim",
+  "edited_artifact": {
+    "channel": "email",
+    "subject": "Re: Expansion to EU teams",
+    "body": "Hi Marco,\n\nAttached are our SOC2 Type II report and pen-test summary. Once you and Priya have reviewed, let us know what timing suits you.\n\nBest,\nDana",
+    "attachments": [
+      "soc2-type2-2026.pdf",
+      "pentest-summary-2026Q3.pdf"
+    ]
+  },
+  "reason": "Softened the meeting ask until the docs are reviewed.",
+  "created_at": "2026-09-29T16:05:00Z"
+}

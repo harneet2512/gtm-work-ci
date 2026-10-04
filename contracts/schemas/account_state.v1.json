@@ -1,0 +1,341 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://ghost.local/contracts/account_state.v1.json",
+  "title": "AccountState",
+  "description": "Compact current projection of an account: the account-level roll-up (ADR-0016). Pure fold over adjudicated claims. Every field points back to evidence; 'unknown' is a legal value. Deal-scoped fields (stage, owner, blockers, ...) are the headline of the primary opportunity (opportunity_id), falling back to claims without an opportunity_id; per-deal state lives in opportunity_state.v1.json.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["account_id", "version", "as_of", "computed_at", "fields", "buying_group"],
+  "properties": {
+    "account_id": { "$ref": "common.v1.json#/$defs/uuid" },
+    "account_name": { "type": "string" },
+    "opportunity_id": {
+      "description": "The primary opportunity: the open opportunity with the latest activity (ties: lowest id). Null when the account has no open opportunity.",
+      "oneOf": [{ "$ref": "common.v1.json#/$defs/uuid" }, { "type": "null" }]
+    },
+    "opportunities": {
+      "description": "Optional so that states and fixtures written before ADR-0016 stay valid; the reducer always emits it. One summary per opportunity of the account that has activity or claims, primary first, then open before closed, then by latest activity (newest first), then id.",
+      "type": "array",
+      "items": { "$ref": "#/$defs/opportunitySummary" }
+    },
+    "version": { "type": "integer", "minimum": 0 },
+    "as_of": { "$ref": "common.v1.json#/$defs/timestamp", "description": "Latest occurred_at of activities folded into this state." },
+    "computed_at": { "$ref": "common.v1.json#/$defs/timestamp" },
+    "last_activity_id": { "oneOf": [{ "$ref": "common.v1.json#/$defs/uuid" }, { "type": "null" }] },
+    "fields": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "stage", "health", "owner", "motion", "champion", "champion_status", "economic_buyer",
+        "blockers", "objections", "decision_criteria", "decision_process", "current_commitments",
+        "next_milestone", "next_meeting", "relationship_risk", "product_use_case", "commercial_issue",
+        "last_customer_interaction", "last_meaningful_change", "summary"
+      ],
+      "properties": {
+        "stage": { "$ref": "#/$defs/scalarField" },
+        "health": { "$ref": "#/$defs/scalarField" },
+        "owner": { "$ref": "#/$defs/scalarField" },
+        "motion": {
+          "$ref": "#/$defs/scalarField",
+          "description": "Commercial motion of the opportunity as reported by CRM or claims (new_business, expansion, renewal). Since ADR-0012 it is a supporting fact for state transitions (rule fact crm_motion_expansion), never the relationship state: see relationship_state."
+        },
+        "champion": { "$ref": "#/$defs/scalarField" },
+        "champion_status": { "allOf": [{ "$ref": "#/$defs/scalarField" }, { "properties": { "value": { "$ref": "#/$defs/championStatus" } } }] },
+        "economic_buyer": { "$ref": "#/$defs/scalarField" },
+        "blockers": { "$ref": "#/$defs/listField" },
+        "objections": { "$ref": "#/$defs/listField" },
+        "decision_criteria": { "$ref": "#/$defs/listField" },
+        "decision_process": { "$ref": "#/$defs/scalarField" },
+        "current_commitments": { "$ref": "#/$defs/listField" },
+        "next_milestone": { "$ref": "#/$defs/scalarField" },
+        "next_meeting": { "$ref": "#/$defs/scalarField" },
+        "relationship_risk": { "allOf": [{ "$ref": "#/$defs/scalarField" }, { "properties": { "value": { "$ref": "#/$defs/relationshipRisk" } } }] },
+        "product_use_case": { "$ref": "#/$defs/scalarField" },
+        "commercial_issue": { "$ref": "#/$defs/scalarField" },
+        "last_customer_interaction": { "$ref": "#/$defs/derivedField" },
+        "last_meaningful_change": { "$ref": "#/$defs/derivedField" },
+        "summary": { "$ref": "#/$defs/scalarField" },
+        "org_changes": {
+          "description": "Optional (ADR-0012): reorganisations and changes of role, remit or ownership the customer stated (claims with field_path org_change); item subject_person_id is whose responsibility changed.",
+          "$ref": "#/$defs/listField"
+        },
+        "expansion_needs": {
+          "description": "Optional (ADR-0012): broader rollouts, teams, business units, seats or geographies the customer explicitly asked for (field_path expansion_need).",
+          "$ref": "#/$defs/listField"
+        },
+        "business_value": {
+          "description": "Optional (ADR-0012): achieved or expected value or metrics the customer stated (field_path business_value).",
+          "$ref": "#/$defs/listField"
+        },
+        "champion_since": {
+          "description": "Optional (ADR-0012, owner stability): occurred_at of the earliest claim in the current unbroken run of claims naming the current champion (also its as_of); cites that claim's activity. Derived by the reducer; the transition detector PR makes the reducer emit it.",
+          "allOf": [
+            { "$ref": "#/$defs/derivedField" },
+            { "properties": { "value": { "anyOf": [{ "$ref": "common.v1.json#/$defs/timestamp" }, { "const": "unknown" }] } } }
+          ]
+        }
+      }
+    },
+    "buying_group": {
+      "description": "People of the account with their roles. Account-wide: the union of the groups of the account's OPEN deals plus account-scoped people facts (a person known only from a closed deal drops out, so an old economic buyer cannot hide the current deal's gap). A deal's own view is OpportunityState.buying_group.",
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["person_id", "display_name", "roles", "status", "evidence_refs"],
+        "allOf": [{
+          "description": "Role provenance is optional so that states and fixtures written before ADR-0016 stay valid, but never contradictory: a member whose only role is unknown has none, and a member with a role cannot say null.",
+          "if": { "properties": { "roles": { "const": ["unknown"] } } },
+          "then": { "properties": { "role_source": { "type": "null" }, "role_basis": { "type": "null" }, "role_provenance": { "maxItems": 0 } } },
+          "else": { "properties": { "role_source": { "type": "string" }, "role_basis": { "type": "string" } } }
+        }],
+        "properties": {
+          "person_id": { "$ref": "common.v1.json#/$defs/uuid" },
+          "display_name": { "type": "string" },
+          "title": { "type": ["string", "null"] },
+          "roles": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "enum": [
+                "champion", "economic_buyer", "technical_evaluator", "security", "legal",
+                "executive_sponsor", "user", "influencer", "blocker", "procurement", "unknown"
+              ]
+            }
+          },
+          "role_source": {
+            "description": "Summary only: the provenance of the member's STRONGEST role claim, not of every role. A member can hold a CRM-recorded economic_buyer and a model-inferred champion; read role_provenance for each role. recorded = a human or a system of record said so (human_approved, crm_explicit, first_party_record); inferred = a model read it from text. Null when the only role is unknown. The title stays the person's title; provenance lives here.",
+            "enum": ["recorded", "inferred", null]
+          },
+          "role_basis": {
+            "description": "A short, deterministic note on the strongest claim behind the roles: its standing, path and, for inferred roles, a clipped quote. Null when role_source is null. Per-role notes are in role_provenance.",
+            "type": ["string", "null"], "maxLength": 200
+          },
+          "role_provenance": {
+            "description": "Provenance per role: one entry for each role in roles other than unknown, in the order of roles. Optional so that states written before this field stay valid; the reducer always emits it.",
+            "type": "array",
+            "items": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": ["role", "source", "basis"],
+              "properties": {
+                "role": { "type": "string", "minLength": 1 },
+                "source": { "enum": ["recorded", "inferred"] },
+                "basis": { "type": "string", "maxLength": 200 }
+              }
+            }
+          },
+          "status": { "type": "string", "enum": ["active", "new", "weakening", "inactive", "disengaged", "departed", "unknown"] },
+          "delegated_to_person_id": { "oneOf": [{ "$ref": "common.v1.json#/$defs/uuid" }, { "type": "null" }] },
+          "tenure": {
+            "description": "Optional (ADR-0012): whether the member holds the role permanently or as an interim/acting holder, derived from stakeholder_role and title claims ('acting', 'interim', 'until a permanent ... is hired'). The reducer fills it from the detector PR; absent means unknown.",
+            "$ref": "#/$defs/tenure"
+          },
+          "last_engaged_at": { "oneOf": [{ "$ref": "common.v1.json#/$defs/timestamp" }, { "type": "null" }] },
+          "evidence_refs": { "type": "array", "items": { "$ref": "common.v1.json#/$defs/evidenceRef" } }
+        }
+      }
+    },
+    "relationship_state": {
+      "description": "The account's current relationship state, earned by the newest CONFIRMED StateTransition (ADR-0012), or 'unknown'. Not the CRM motion. Optional until the transition detector (HAR-126) writes it.",
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["value", "transition_id", "confirmed_at"],
+      "properties": {
+        "value": { "$ref": "common.v1.json#/$defs/relationshipStateOrUnknown" },
+        "transition_id": { "oneOf": [{ "$ref": "common.v1.json#/$defs/uuid" }, { "type": "null" }] },
+        "confirmed_at": { "oneOf": [{ "$ref": "common.v1.json#/$defs/timestamp" }, { "type": "null" }] }
+      },
+      "if": { "properties": { "value": { "const": "unknown" } } },
+      "then": { "properties": { "transition_id": { "type": "null" }, "confirmed_at": { "type": "null" } } },
+      "else": {
+        "properties": {
+          "transition_id": { "$ref": "common.v1.json#/$defs/uuid" },
+          "confirmed_at": { "$ref": "common.v1.json#/$defs/timestamp" }
+        }
+      }
+    },
+    "open_transition": {
+      "description": "Summary of the account's one open (CANDIDATE, or UNRESOLVED and not closed) StateTransition, or null. The full object (facts and evidence) is GET /accounts/{id}/transitions; the agent reads both and writes neither (ADR-0012).",
+      "oneOf": [
+        { "type": "null" },
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["transition_id", "from_state", "to_state_candidate", "status", "confidence", "missing_facts", "last_updated_at"],
+          "properties": {
+            "transition_id": { "$ref": "common.v1.json#/$defs/uuid" },
+            "from_state": { "$ref": "common.v1.json#/$defs/relationshipStateOrUnknown" },
+            "to_state_candidate": { "oneOf": [{ "$ref": "common.v1.json#/$defs/relationshipState" }, { "type": "null" }] },
+            "status": { "allOf": [{ "$ref": "common.v1.json#/$defs/transitionStatus" }, { "enum": ["CANDIDATE", "UNRESOLVED"] }] },
+            "confidence": { "type": "number", "minimum": 0, "maximum": 1, "multipleOf": 0.001 },
+            "missing_facts": {
+              "description": "Every unmet fact with its required flag: required ones explain why the transition is not confirmed, optional ones (e.g. economic buyer unknown) still inform the decision (HAR-97 pitch §8).",
+              "type": "array",
+              "items": {
+                "type": "object",
+                "additionalProperties": false,
+                "required": ["key", "required"],
+                "properties": { "key": { "$ref": "common.v1.json#/$defs/factKey" }, "required": { "type": "boolean" } }
+              }
+            },
+            "last_updated_at": { "$ref": "common.v1.json#/$defs/timestamp" }
+          }
+        }
+      ]
+    },
+    "coverage_gaps": {
+      "type": "array",
+      "items": { "type": "string", "enum": ["economic_buyer", "technical_evaluator", "security", "legal", "executive_sponsor", "procurement"] }
+    }
+  },
+  "$defs": {
+    "opportunitySummary": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["opportunity_id", "is_open", "is_primary", "stage", "owner", "amount", "health", "as_of", "last_activity_id"],
+      "properties": {
+        "opportunity_id": { "$ref": "common.v1.json#/$defs/uuid" },
+        "is_open": { "type": "boolean", "description": "False when the stage starts with 'closed' (case-insensitive)." },
+        "is_primary": { "type": "boolean" },
+        "stage": { "type": "string", "description": "Stage text or 'unknown'." },
+        "owner": { "type": "string", "description": "Owner person id or 'unknown'." },
+        "amount": { "type": ["number", "null"] },
+        "health": { "type": "string", "description": "Health text or 'unknown'." },
+        "as_of": { "$ref": "common.v1.json#/$defs/timestamp" },
+        "last_activity_id": { "oneOf": [{ "$ref": "common.v1.json#/$defs/uuid" }, { "type": "null" }] }
+      }
+    },
+    "fieldMeta": {
+      "type": "object",
+      "properties": {
+        "opportunity_id": {
+          "description": "The deal the value belongs to. Absent or null: the value is account-scoped (it came from claims without an opportunity_id).",
+          "oneOf": [{ "$ref": "common.v1.json#/$defs/uuid" }, { "type": "null" }]
+        },
+        "known": { "type": "boolean" },
+        "winning_claim_id": { "oneOf": [{ "$ref": "common.v1.json#/$defs/uuid" }, { "type": "null" }] },
+        "standing": { "oneOf": [{ "$ref": "common.v1.json#/$defs/standing" }, { "type": "null" }] },
+        "confidence": { "type": ["number", "null"], "minimum": 0, "maximum": 1 },
+        "as_of": { "oneOf": [{ "$ref": "common.v1.json#/$defs/timestamp" }, { "type": "null" }] },
+        "evidence_refs": { "type": "array", "items": { "$ref": "common.v1.json#/$defs/evidenceRef" } },
+        "competing_claim_ids": { "type": "array", "items": { "$ref": "common.v1.json#/$defs/uuid" } },
+        "suggested_claim_ids": {
+          "description": "Low-confidence AI claims that may not win the field but are shown as suggestions.",
+          "type": "array", "items": { "$ref": "common.v1.json#/$defs/uuid" }
+        },
+        "conflicts": {
+          "description": "Lower-standing claims that are NEWER than the winner and contradict it (ADR-0008). The winner stands; each conflict is also listed in competing_claim_ids and raises signal field_contradicted so the rep can confirm.",
+          "type": "array",
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": ["claim_id", "standing", "reason"],
+            "properties": {
+              "claim_id": { "$ref": "common.v1.json#/$defs/uuid" },
+              "standing": { "$ref": "common.v1.json#/$defs/standing" },
+              "reason": { "type": "string", "maxLength": 500 }
+            }
+          }
+        }
+      },
+      "required": ["known", "winning_claim_id", "evidence_refs"],
+      "allOf": [
+        {
+          "description": "HAR-96 §7: every known field points back to evidence.",
+          "if": { "properties": { "known": { "const": true } } },
+          "then": { "properties": { "evidence_refs": { "minItems": 1 } } }
+        },
+        {
+          "description": "An unknown field carries no winner and no evidence.",
+          "if": { "properties": { "known": { "const": false } } },
+          "then": {
+            "properties": {
+              "winning_claim_id": { "type": "null" },
+              "evidence_refs": { "maxItems": 0 }
+            }
+          }
+        }
+      ]
+    },
+    "championStatus": {
+      "description": "Engagement of the champion (HAR-97 §15(GTM).5); 'unknown' when not known. Knowledge conditions and slices use these values (ADR-0011).",
+      "enum": ["active", "weakening", "delegated", "departed", "inactive", "unknown"]
+    },
+    "tenure": { "enum": ["permanent", "interim", "unknown"] },
+    "itemKind": {
+      "description": "Kind of a list item (commitment, blocker, milestone): commercial = pricing, budget, contract, order form or procurement step.",
+      "enum": ["commercial", "technical", "security", "legal", "relationship", "other"]
+    },
+    "relationshipRisk": {
+      "description": "Level of relationship risk; the reasons live in the field's evidence.",
+      "enum": ["low", "medium", "high", "unknown"]
+    },
+    "scalarField": {
+      "allOf": [{ "$ref": "#/$defs/fieldMeta" }],
+      "type": "object",
+      "required": ["value"],
+      "properties": {
+        "value": {
+          "description": "Scalar value or the literal 'unknown'.",
+          "type": ["string", "number", "boolean", "object", "null"]
+        }
+      },
+      "if": { "properties": { "known": { "const": false } } },
+      "then": { "properties": { "value": { "const": "unknown" } } },
+      "else": {
+        "properties": {
+          "value": { "not": { "const": "unknown" } },
+          "winning_claim_id": { "$ref": "common.v1.json#/$defs/uuid" }
+        }
+      }
+    },
+    "derivedField": {
+      "description": "Computed by the reducer from activities or claim history rather than won by a claim; used only by last_customer_interaction, last_meaningful_change and champion_since. A known derived field cites the activity as evidence and has no winning claim.",
+      "allOf": [{ "$ref": "#/$defs/fieldMeta" }],
+      "type": "object",
+      "required": ["value", "derived"],
+      "properties": {
+        "value": { "type": ["string", "number", "boolean", "object", "null"] },
+        "derived": { "const": true },
+        "winning_claim_id": { "type": "null" }
+      },
+      "if": { "properties": { "known": { "const": false } } },
+      "then": { "properties": { "value": { "const": "unknown" } } },
+      "else": { "properties": { "value": { "not": { "const": "unknown" } } } }
+    },
+    "listField": {
+      "allOf": [{ "$ref": "#/$defs/fieldMeta" }],
+      "type": "object",
+      "required": ["value"],
+      "properties": {
+        "value": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": ["text", "claim_id"],
+            "properties": {
+              "text": { "type": "string" },
+              "claim_id": { "$ref": "common.v1.json#/$defs/uuid" },
+              "status": { "type": "string", "enum": ["open", "resolved", "overdue", "fulfilled"] },
+              "kind": {
+                "description": "Optional item kind (ADR-0012): lets transition rules tell a commercial commitment or blocker from a technical one. Not yet emitted by the extractor.",
+                "$ref": "#/$defs/itemKind"
+              },
+              "due_at": { "oneOf": [{ "$ref": "common.v1.json#/$defs/timestamp" }, { "type": "null" }] },
+              "owner_person_id": { "oneOf": [{ "$ref": "common.v1.json#/$defs/uuid" }, { "type": "null" }] },
+              "subject_person_id": {
+                "description": "The person the item is about (an org_changes item: whose role, remit or ownership changed).",
+                "oneOf": [{ "$ref": "common.v1.json#/$defs/uuid" }, { "type": "null" }]
+              },
+              "evidence_refs": { "type": "array", "items": { "$ref": "common.v1.json#/$defs/evidenceRef" } }
+            }
+          }
+        }
+      },
+      "if": { "properties": { "known": { "const": false } } },
+      "then": { "properties": { "value": { "maxItems": 0 } } },
+      "else": { "properties": { "value": { "minItems": 1 } } }
+    }
+  }
+}
