@@ -1,0 +1,22 @@
+{
+  "source_system": "email",
+  "source_object_id": "<NSH-ev-2026-08-20@mail.northstar.health>",
+  "source_event_key": "received",
+  "occurred_at": "2026-08-20T13:30:00Z",
+  "connector": "gmail",
+  "connector_version": "0.1.0",
+  "payload": {
+    "kind": "email",
+    "direction": "inbound",
+    "message_id": "<NSH-ev-2026-08-20@mail.northstar.health>",
+    "thread_id": "thr-northstar-intake",
+    "in_reply_to": null,
+    "from": {"email": "elena.vasquez@northstar.health", "name": "Elena Vasquez"},
+    "to": [{"email": "dana@ghostvendor.com", "name": "Dana Kim"}],
+    "cc": [],
+    "date": "2026-08-20T13:30:00Z",
+    "subject": "Rolling Relay out to all clinics",
+    "body_text": "Hi Dana - the patient intake pilot at our Lakeside clinic went well, and we'd like to roll Relay out to all four clinics before open enrollment in November. Could we talk next week?\nElena",
+    "crm_opportunity_ref": "opp:NS-2-EXP"
+  }
+}

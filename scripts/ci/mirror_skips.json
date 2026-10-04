@@ -1,0 +1,21 @@
+{
+  "go": [
+    "TestEveryAcknowledgedHAR97LineIsCovered",
+    "TestTraceabilityDocListsEveryLine"
+  ],
+  "python_ignore": [
+    "tests/test_metrics_registry.py",
+    "tests/test_synthetic_caveats.py",
+    "tests/test_wp20_traceability.py",
+    "tests/test_judges_traceability.py"
+  ],
+  "python": [
+    "tests/test_bench_crmarena_recompute.py::test_the_committed_report_is_exactly_what_the_committed_bundle_recomputes",
+    "tests/test_crmarena_gold.py::test_readme_carries_the_licence_and_attribution",
+    "tests/test_metric_registry_split.py::test_blocker_and_note_paths_exist_in_the_repo",
+    "tests/test_metrics_harness.py::test_docs_metrics_md_is_generated_from_the_registry",
+    "tests/test_metrics_harness.py::test_rerun_reproduces_the_committed_report_byte_for_byte",
+    "tests/test_metrics_harness.py::test_wp5_doc_table_agrees_with_the_go_run",
+    "tests/test_synthetic_leakage.py::test_scanned_locations_exist_and_contain_text"
+  ]
+}

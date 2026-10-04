@@ -1,0 +1,206 @@
+{
+  "id": "05e70000-0000-4000-8000-000000000b01",
+  "decision_episode_id": "0e9e0000-0000-4000-8000-000000000a01",
+  "agent_run_id": "0f0a0000-0000-4000-8000-000000000601",
+  "account_id": "0a0c0000-0000-4000-8000-000000000001",
+  "opportunity_id": "0c0f0000-0000-4000-8000-000000000004",
+  "generated_at": "2026-09-29T15:43:30Z",
+  "state_ref": {
+    "account_id": "0a0c0000-0000-4000-8000-000000000001",
+    "opportunity_id": "0c0f0000-0000-4000-8000-000000000004",
+    "version": 7
+  },
+  "state_diff_id": "0d1f0000-0000-4000-8000-000000000301",
+  "trigger_activity_ids": [
+    "0ac70000-0000-4000-8000-000000000101"
+  ],
+  "decision_guidance_id": "06d1de00-0000-4000-8000-000000000c01",
+  "no_acceptable_candidate": false,
+  "candidates": [
+    {
+      "candidate_id": "0ca00000-0000-4000-8000-0000000000a1",
+      "strategy_type": "propose_review_call",
+      "title": "Propose a security call",
+      "description": "Send the package and ask for a Tuesday call with Acme security.",
+      "ranking": 1,
+      "preferred_by_agent": true,
+      "rationale": "Marco is a new decision-relevant stakeholder and the EU sign-off is gated on his review; a dated call keeps momentum.",
+      "state_refs": [
+        "blockers",
+        "buying_group",
+        "next_meeting",
+        "champion_status"
+      ],
+      "evidence_refs": [
+        {
+          "activity_id": "0ac70000-0000-4000-8000-000000000101",
+          "quote": "Before we can sign off on the EU rollout we'll need your SOC2 Type II report and the pen-test summary.",
+          "speaker_person_id": "0b0e0000-0000-4000-8000-000000000018",
+          "occurred_at": "2026-09-29T15:42:00Z"
+        },
+        {
+          "activity_id": "0ac70000-0000-4000-8000-000000000101",
+          "quote": "I can't commit to a review date until our team has read them.",
+          "speaker_person_id": "0b0e0000-0000-4000-8000-000000000018",
+          "occurred_at": "2026-09-29T15:42:00Z"
+        }
+      ],
+      "knowledge_refs": [],
+      "action_type": "send_email",
+      "action_class": "REPLY",
+      "to": [
+        {
+          "person_id": "0b0e0000-0000-4000-8000-000000000018",
+          "role": "to",
+          "why": "Requested the security documents"
+        }
+      ],
+      "cc": [],
+      "subject": "Re: Expansion to EU teams",
+      "full_action_artifact": {
+        "channel": "email",
+        "subject": "Re: Expansion to EU teams",
+        "body": "Hi Marco,\n\nThanks for jumping in. Attached are our SOC2 Type II report and the latest pen-test summary. Could we hold 30 minutes with our security team on Tuesday at 10:00 to walk through them, so the EU rollout sign-off stays on schedule?\n\nBest,\nDana",
+        "attachments": [
+          "soc2-type2-2026.pdf",
+          "pentest-summary-2026Q3.pdf"
+        ]
+      },
+      "five_questions": {
+        "what_changed": "Marco Silva, Head of Security, joined the thread and asked for the SOC2 Type II report and the pen-test summary.",
+        "why_state_changed": "Marco wrote to us first-party in the email of 2026-09-29, and the buying group had no security member before.",
+        "what_remains_unknown": "When Marco's team can review, and whether the security review gates the whole EU rollout.",
+        "prior_knowledge_applies": "K17: keep the active champion involved when a new stakeholder enters during an expansion.",
+        "why_next_action": "A call turns the documents into a dated review and keeps Priya informed."
+      },
+      "preview": "Attached are our SOC2 Type II report and the latest pen-test summary. Could we hold 30 minutes with our security team on Tuesday at 10:00...",
+      "draft_index": 1,
+      "eval_bundle_ref": "0eb00000-0000-4000-8000-0000000000b1"
+    },
+    {
+      "candidate_id": "0ca00000-0000-4000-8000-0000000000a2",
+      "strategy_type": "package_then_buyer_timing",
+      "title": "Send package, buyer sets timing",
+      "description": "Send the package, keep Priya involved and leave the review timing to Marco.",
+      "ranking": 2,
+      "preferred_by_agent": false,
+      "rationale": "Marco said he cannot commit to a date before his team reads the documents, and Priya remains the commercial point of contact.",
+      "state_refs": [
+        "blockers",
+        "buying_group",
+        "next_meeting",
+        "champion_status"
+      ],
+      "evidence_refs": [
+        {
+          "activity_id": "0ac70000-0000-4000-8000-000000000101",
+          "quote": "Before we can sign off on the EU rollout we'll need your SOC2 Type II report and the pen-test summary.",
+          "speaker_person_id": "0b0e0000-0000-4000-8000-000000000018",
+          "occurred_at": "2026-09-29T15:42:00Z"
+        },
+        {
+          "activity_id": "0ac70000-0000-4000-8000-000000000101",
+          "quote": "I can't commit to a review date until our team has read them.",
+          "speaker_person_id": "0b0e0000-0000-4000-8000-000000000018",
+          "occurred_at": "2026-09-29T15:42:00Z"
+        }
+      ],
+      "knowledge_refs": [
+        "0c17c000-0000-4000-8000-000000000017"
+      ],
+      "action_type": "send_email",
+      "action_class": "REPLY",
+      "to": [
+        {
+          "person_id": "0b0e0000-0000-4000-8000-000000000018",
+          "role": "to",
+          "why": "Requested the security documents"
+        }
+      ],
+      "cc": [
+        {
+          "person_id": "0b0e0000-0000-4000-8000-000000000017",
+          "role": "cc",
+          "why": "Active champion; keep commercial continuity"
+        }
+      ],
+      "subject": "Re: Expansion to EU teams",
+      "full_action_artifact": {
+        "channel": "email",
+        "subject": "Re: Expansion to EU teams",
+        "body": "Hi Marco,\n\nThanks for jumping in. Attached are our SOC2 Type II report and the latest pen-test summary. Happy to set up time with our security team once you've reviewed - whatever timing works for you and Priya.\n\nBest,\nDana",
+        "attachments": [
+          "soc2-type2-2026.pdf",
+          "pentest-summary-2026Q3.pdf"
+        ]
+      },
+      "five_questions": {
+        "what_changed": "Marco Silva, Head of Security, joined the thread and asked for the SOC2 Type II report and the pen-test summary.",
+        "why_state_changed": "Marco wrote to us first-party in the email of 2026-09-29, and the buying group had no security member before.",
+        "what_remains_unknown": "When Marco's team can review; he said he cannot commit to a date until they have read the documents.",
+        "prior_knowledge_applies": "K17: keep the active champion involved when a new stakeholder enters during an expansion.",
+        "why_next_action": "Sending the package and leaving the timing to Marco respects his stated constraint and moves the review forward."
+      },
+      "preview": "Attached are our SOC2 Type II report and the latest pen-test summary. Happy to set up time with our security team once you've reviewed...",
+      "draft_index": 2,
+      "eval_bundle_ref": "0eb00000-0000-4000-8000-0000000000b2"
+    },
+    {
+      "candidate_id": "0ca00000-0000-4000-8000-0000000000a3",
+      "strategy_type": "clarify_with_champion",
+      "title": "Check the gate with Priya",
+      "description": "Ask Priya whether Marco's review gates the rollout before sending anything.",
+      "ranking": 3,
+      "preferred_by_agent": false,
+      "rationale": "The state does not say whether security review is the only gate; asking the champion avoids sending the wrong ask.",
+      "state_refs": [
+        "blockers",
+        "buying_group",
+        "next_meeting",
+        "champion_status"
+      ],
+      "evidence_refs": [
+        {
+          "activity_id": "0ac70000-0000-4000-8000-000000000101",
+          "quote": "Before we can sign off on the EU rollout we'll need your SOC2 Type II report and the pen-test summary.",
+          "speaker_person_id": "0b0e0000-0000-4000-8000-000000000018",
+          "occurred_at": "2026-09-29T15:42:00Z"
+        },
+        {
+          "activity_id": "0ac70000-0000-4000-8000-000000000101",
+          "quote": "I can't commit to a review date until our team has read them.",
+          "speaker_person_id": "0b0e0000-0000-4000-8000-000000000018",
+          "occurred_at": "2026-09-29T15:42:00Z"
+        }
+      ],
+      "knowledge_refs": [],
+      "action_type": "send_email",
+      "action_class": "REPLY",
+      "to": [
+        {
+          "person_id": "0b0e0000-0000-4000-8000-000000000017",
+          "role": "to",
+          "why": "Champion and commercial point of contact"
+        }
+      ],
+      "cc": [],
+      "subject": "Quick check on the EU security review",
+      "full_action_artifact": {
+        "channel": "email",
+        "subject": "Quick check on the EU security review",
+        "body": "Hi Priya,\n\nMarco has asked for our SOC2 report and pen-test summary before he can sign off on the EU rollout. Before I send anything, is his review the gate for the whole rollout, or is there a separate commercial approval we should line up in parallel?\n\nThanks,\nDana",
+        "attachments": []
+      },
+      "five_questions": {
+        "what_changed": "Marco Silva, Head of Security, joined the thread and asked for the SOC2 Type II report and the pen-test summary.",
+        "why_state_changed": "Marco wrote to us first-party in the email of 2026-09-29, and the buying group had no security member before.",
+        "what_remains_unknown": "Whether Marco's review is the gate for the whole rollout and who else must approve.",
+        "prior_knowledge_applies": "K17 applies, so the champion Priya is asked rather than bypassed.",
+        "why_next_action": "Asking Priya first settles who gates the rollout before more material goes to Marco."
+      },
+      "preview": "Marco has asked for our SOC2 report and pen-test summary before he can sign off. Is his review the gate for the whole rollout...",
+      "draft_index": 3,
+      "eval_bundle_ref": "0eb00000-0000-4000-8000-0000000000b3"
+    }
+  ]
+}

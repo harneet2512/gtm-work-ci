@@ -1,0 +1,47 @@
+{
+ "Sfc11": {
+  "timing_cadence": ["pass", "LATE_OR_MISSED_WINDOW", false],
+  "next_action_quality": ["pass", "GOOD", false],
+  "commitment_consistency": ["pass", null, false]
+ },
+ "Sc15d": {
+  "next_action_quality": ["fail", "NEEDS_REVISION", false],
+  "commitment_consistency": ["fail", null, true],
+  "momentum": ["fail", "COOLING", false],
+  "timing_cadence": ["fail", "LATE_OR_MISSED_WINDOW", false]
+ },
+ "S49c9": {
+  "next_step_quality": ["pass", null, false],
+  "next_action_quality": ["pass", "GOOD", false],
+  "commitment_consistency": ["pass", null, false]
+ },
+ "S4d5b": {
+  "next_action_quality": ["fail", "WAIT", false],
+  "knowledge_applicability": ["fail", "EXCEPTION_TRIGGERED", false],
+  "timing_cadence": ["fail", "TOO_EARLY", false],
+  "exception_awareness": ["fail", "EXCEPTION_MISSED", false]
+ },
+ "Sf8b2": {
+  "momentum": ["fail", "COOLING", false],
+  "commitment_consistency": ["fail", null, true],
+  "timing_cadence": ["fail", "LATE_OR_MISSED_WINDOW", false],
+  "next_action_quality": ["fail", "NEEDS_REVISION", false]
+ },
+ "Sef7a": {
+  "timing_cadence": ["pass", "READY", false],
+  "buyer_readiness": ["pass", "READY", false],
+  "cta_calibration": ["pass", "APPROPRIATE", false],
+  "grounding": ["pass", null, false]
+ },
+ "S9cfe": {
+  "timing_cadence": ["pass", "READY", false],
+  "next_step_quality": ["pass", null, false],
+  "cta_calibration": ["pass", "APPROPRIATE", false],
+  "buyer_readiness": ["pass", "READY", false]
+ },
+ "Sc9ef": {
+  "next_step_quality": ["pass", null, false],
+  "commitment_consistency": ["fail", null, true],
+  "next_action_quality": ["fail", "NEEDS_REVISION", false]
+ }
+}

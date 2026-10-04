@@ -1,0 +1,28 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://ghost.local/contracts/context_packet.v1.json",
+  "title": "ContextPacket",
+  "description": "Bounded response of an /internal/ctx/* pull tool. Every packet is logged server-side in context_access_log under the caller's run id.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["access_id", "tool", "items", "truncated", "bytes"],
+  "properties": {
+    "access_id": { "type": "integer", "description": "context_access_log row id; the agent cites it to prove what it read." },
+    "tool": {
+      "type": "string",
+      "enum": ["state", "recent_diffs", "evidence", "activities", "people", "commitments", "graph_neighborhood"]
+    },
+    "items": { "type": "array", "items": { "type": "object" } },
+    "truncated": { "type": "boolean" },
+    "bytes": { "type": "integer", "minimum": 0 },
+    "world_as_of": {
+      "type": ["string", "null"],
+      "format": "date-time",
+      "description": "World-time cutoff the pull was served at (ADR-0019): the run's newest trigger activity occurred_at plus one microsecond, so activities up to and including the trigger are visible and none after it. Always set by this core (every run has a trigger activity); a client must treat null as unknown. Derived by the core from the run; the caller cannot set it."
+    },
+    "limits": {
+      "type": "object",
+      "properties": { "max_items": { "type": "integer" }, "max_bytes": { "type": "integer" } }
+    }
+  }
+}

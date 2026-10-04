@@ -1,0 +1,49 @@
+{
+  "id": "01f00000-0000-4000-8000-000000000d01",
+  "decision_episode_id": "0e9e0000-0000-4000-8000-000000000a01",
+  "human_strategy_decision_id": "0d5d0000-0000-4000-8000-000000000c01",
+  "agent_preference": "0ca00000-0000-4000-8000-0000000000a1",
+  "human_choice": "0ca00000-0000-4000-8000-0000000000a2",
+  "agreement": "overrode",
+  "inferred_semantic_delta": {
+    "statement": "The human preferred to deliver the documents and keep the review timing in the buyer's hands rather than propose a dated call, because Marco said he cannot commit to a date before his team reads them.",
+    "semantic_labels": [
+      "reduced_pressure",
+      "deferred_to_buyer_timing",
+      "smaller_ask"
+    ]
+  },
+  "evidence": {
+    "candidate_differences": [
+      "The preferred candidate proposes Tuesday 10:00; the chosen one leaves timing to Marco and keeps Priya on cc."
+    ],
+    "evidence_refs": [
+      {
+        "activity_id": "0ac70000-0000-4000-8000-000000000101",
+        "quote": "I can't commit to a review date until our team has read them.",
+        "speaker_person_id": "0b0e0000-0000-4000-8000-000000000018",
+        "occurred_at": "2026-09-29T15:42:00Z"
+      }
+    ],
+    "eval_differences": [
+      {
+        "eval_type": "cta_calibration",
+        "agent_preference_verdict": "fail",
+        "human_choice_verdict": "warn",
+        "note": "The dated call scored worse on CTA calibration."
+      }
+    ],
+    "knowledge_refs": [
+      "0c17c000-0000-4000-8000-000000000017"
+    ],
+    "no_applicable_knowledge": false
+  },
+  "human_verdict": "corrected",
+  "corrected_statement": "Not about timing alone: Marco's team is new to us, so Dana wants the documents read before any security call is proposed.",
+  "human_note": "Applies to security-led reviews where the reviewer has not met us before.",
+  "verdict_surface": "web",
+  "verdict_actor_label": "Dana Kim",
+  "verdict_at": "2026-09-29T16:20:00Z",
+  "model": "deepseek/deepseek-v4-flash",
+  "generated_at": "2026-09-29T16:06:00Z"
+}

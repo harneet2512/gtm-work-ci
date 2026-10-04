@@ -1,0 +1,57 @@
+{
+  "source_system": "call",
+  "source_object_id": "call-ns-0911",
+  "source_event_key": "transcript_ready",
+  "occurred_at": "2026-09-11T15:46:00Z",
+  "connector": "recorder",
+  "connector_version": "0.1.0",
+  "payload": {
+    "kind": "call",
+    "call_id": "call-ns-0911",
+    "calendar_event_id": "gcal:ns-plan-0911",
+    "started_at": "2026-09-11T15:01:00Z",
+    "ended_at": "2026-09-11T15:46:00Z",
+    "speakers": [
+      {"label": "speaker_01", "email": "dana@ghostvendor.com", "name": "Dana Kim"},
+      {"label": "speaker_02", "email": "elena.vasquez@northstar.health", "name": "Elena Vasquez"},
+      {"label": "speaker_03", "email": "leo@ghostvendor.com", "name": "Leo Park"}
+    ],
+    "transcript": [
+      {
+        "speaker": "speaker_01",
+        "offset_s": 0,
+        "text": "Thanks Elena. Shall we start with the rollout order for the three new clinics?"
+      },
+      {
+        "speaker": "speaker_02",
+        "offset_s": 5,
+        "text": "Riverside first, then Northgate and Cedar Hills two weeks apart."
+      },
+      {
+        "speaker": "speaker_03",
+        "offset_s": 12,
+        "text": "That works. Each clinic needs about a week for template setup and front-desk training."
+      },
+      {
+        "speaker": "speaker_02",
+        "offset_s": 21,
+        "text": "The open question is security. Sam's team has to sign off before any clinic goes live, because the intake forms carry PHI."
+      },
+      {
+        "speaker": "speaker_01",
+        "offset_s": 32,
+        "text": "We'll need a BAA signed as part of that review. Should we reach out to Sam directly?"
+      },
+      {
+        "speaker": "speaker_02",
+        "offset_s": 39,
+        "text": "Let me introduce you to Sam - he'll want to set the agenda himself."
+      },
+      {
+        "speaker": "speaker_01",
+        "offset_s": 46,
+        "text": "Sounds good. We'll have the BAA template and HIPAA controls summary ready."
+      }
+    ]
+  }
+}

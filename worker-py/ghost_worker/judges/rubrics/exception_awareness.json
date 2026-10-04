@@ -1,0 +1,80 @@
+{
+  "eval_type": "exception_awareness",
+  "version": 1,
+  "title": "Exception-awareness",
+  "har97_refs": [
+    {
+      "line": 1316,
+      "text": "## 5.15 Exception-awareness"
+    }
+  ],
+  "l2_dimension": null,
+  "questions": [
+    {
+      "section": "§5.15",
+      "text": "Is there an exception in current state that overrides the learned default?"
+    }
+  ],
+  "inputs": [
+    "exceptions of offered knowledge",
+    "delegations, departures and explicit customer instructions in state and activities",
+    "the candidate action"
+  ],
+  "criteria": [
+    {
+      "id": "exception_present",
+      "kind": "check",
+      "text": "an exception holds in the current state",
+      "guide": "Delegation, departure, or the customer's own explicit request that overrides a default.",
+      "har97": null,
+      "output": "finding",
+      "before": null,
+      "after": null
+    },
+    {
+      "id": "exception_honoured",
+      "kind": "check",
+      "text": "the candidate honours the exception",
+      "guide": "The action does not force the learned default back in when an exception holds.",
+      "har97": null,
+      "output": "finding",
+      "before": null,
+      "after": null
+    }
+  ],
+  "failure_examples": [
+    "“Keep champion involved” should not apply when the champion explicitly delegated the process."
+  ],
+  "counter_failures": [],
+  "known_exceptions": [],
+  "candidate_choices": [],
+  "principles": [],
+  "labels": [
+    {
+      "label": "EXCEPTION_HONORED",
+      "when": "An exception holds and the candidate respects it (or no default is wrongly applied)."
+    },
+    {
+      "label": "EXCEPTION_MISSED",
+      "when": "An exception holds and the candidate applies the overridden default anyway."
+    }
+  ],
+  "pass_label": "EXCEPTION_HONORED",
+  "diagnostics": [],
+  "routing": {
+    "actions": [
+      "send_email",
+      "schedule_meeting",
+      "share_document",
+      "internal_note",
+      "wait",
+      "no_action"
+    ],
+    "when_all": [],
+    "when_any": [
+      "has_offered_knowledge",
+      "exception_in_state"
+    ]
+  },
+  "uses_rep_profile": false
+}

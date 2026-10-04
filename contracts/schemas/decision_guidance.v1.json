@@ -1,0 +1,90 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://ghost.local/contracts/decision_guidance.v1.json",
+  "title": "DecisionGuidance",
+  "description": "Company knowledge converted into an operational recommendation for one account NOW (HAR-97 §14, §16). Produced before the account agent drafts; it is the causal link from previous decisions to this action.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "id", "account_id", "state_version", "recommended_action", "why_now", "who_to_involve",
+    "who_not_to_involve", "supporting_knowledge", "created_at"
+  ],
+  "properties": {
+    "id": { "$ref": "common.v1.json#/$defs/uuid" },
+    "account_id": { "$ref": "common.v1.json#/$defs/uuid" },
+    "agent_run_id": { "oneOf": [{ "$ref": "common.v1.json#/$defs/uuid" }, { "type": "null" }] },
+    "state_version": { "type": "integer", "minimum": 0 },
+    "recommended_action": { "$ref": "agent_run_output.v1.json#/properties/proposed_action_type" },
+    "not_recommended": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["action", "why"],
+        "properties": {
+          "action": { "type": "string", "maxLength": 300 },
+          "why": { "type": "string", "maxLength": 500 }
+        }
+      }
+    },
+    "why_now": { "type": "string", "minLength": 1, "maxLength": 1000 },
+    "who_to_involve": { "$ref": "#/$defs/people" },
+    "who_not_to_involve": { "$ref": "#/$defs/people" },
+    "recommended_channel": { "type": ["string", "null"], "enum": ["email", "meeting", "slack_internal", "crm_only", "none", null] },
+    "ask_strength": { "type": ["string", "null"], "enum": ["none", "light", "moderate", "strong", null] },
+    "wait_until": { "oneOf": [{ "$ref": "common.v1.json#/$defs/timestamp" }, { "type": "null" }] },
+    "supporting_knowledge": {
+      "description": "Every knowledge object considered, applied or not, with the conditions and exceptions checked.",
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["knowledge_id", "applies", "matched_conditions", "exceptions_checked"],
+        "if": {
+          "description": "Knowledge does not apply while one of its exceptions is triggered (HAR-97 §5.15, ADR-0011).",
+          "properties": { "exceptions_checked": { "contains": { "properties": { "triggered": { "const": true } }, "required": ["triggered"] } } },
+          "required": ["exceptions_checked"]
+        },
+        "then": { "properties": { "applies": { "const": false } } },
+        "properties": {
+          "knowledge_id": { "$ref": "common.v1.json#/$defs/uuid" },
+          "applies": { "type": "boolean" },
+          "matched_conditions": { "type": "array", "items": { "type": "string" } },
+          "unmatched_conditions": { "type": "array", "items": { "type": "string" } },
+          "current_evidence_refs": {
+            "description": "Optional (ADR-0013): the evidence in the current account state behind the matched conditions, i.e. the state fields and open signals that make the knowledge apply now (HAR-97 §16 'Why does that learning apply to this account now?'). Deduplicated; only refs with an activity.",
+            "type": "array", "items": { "$ref": "common.v1.json#/$defs/evidenceRef" }
+          },
+          "exceptions_checked": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": ["exception", "triggered"],
+              "properties": {
+                "exception": { "type": "string" },
+                "triggered": { "type": "boolean" },
+                "evidence_refs": { "type": "array", "items": { "$ref": "common.v1.json#/$defs/evidenceRef" } }
+              }
+            }
+          }
+        }
+      }
+    },
+    "created_at": { "$ref": "common.v1.json#/$defs/timestamp" }
+  },
+  "$defs": {
+    "people": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["person_id", "why"],
+        "properties": {
+          "person_id": { "$ref": "common.v1.json#/$defs/uuid" },
+          "why": { "type": "string", "maxLength": 500 }
+        }
+      }
+    }
+  }
+}
