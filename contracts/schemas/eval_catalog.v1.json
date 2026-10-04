@@ -1,0 +1,108 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://ghost.local/contracts/eval_catalog.v1.json",
+  "title": "EvalCatalog",
+  "description": "Vocabulary of the per-draft EvalResult evals (HAR-97 §3-§6, §9, §15(GTM)) and of the offline-benchmark situations (§20): per eval type its kind, single evidence class, labels, blocking rule and HAR-97 sections; HAR-97 evals that produce no EvalResult on a draft are listed in out_of_scope. The instance is contracts/evals/eval_catalog.json; completeness (every evalType present) is tested.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["catalog_version", "description", "evidence_classes", "eval_types", "out_of_scope", "case_types"],
+  "properties": {
+    "catalog_version": { "type": "integer", "minimum": 1 },
+    "description": { "type": "string", "minLength": 1, "maxLength": 2000 },
+    "evidence_classes": {
+      "description": "Definition of each evidence class (HAR-97 §15(GTM)).",
+      "type": "object",
+      "minProperties": 1,
+      "propertyNames": { "$ref": "eval_result.v1.json#/properties/evidence_class" },
+      "additionalProperties": { "type": "string", "minLength": 1, "maxLength": 500 }
+    },
+    "eval_types": {
+      "type": "object",
+      "minProperties": 1,
+      "propertyNames": { "$ref": "eval_result.v1.json#/$defs/evalType" },
+      "additionalProperties": { "$ref": "#/$defs/evalTypeEntry" }
+    },
+    "out_of_scope": {
+      "description": "HAR-97 evals deliberately not modelled as an EvalResult on a draft, with the reason and where they are measured instead.",
+      "type": "object",
+      "propertyNames": { "type": "string", "pattern": "^[a-z][a-z0-9_]*$" },
+      "additionalProperties": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["har97_sections", "labels", "reason", "measured_by"],
+        "properties": {
+          "har97_sections": { "$ref": "#/$defs/sections" },
+          "labels": { "$ref": "#/$defs/labels" },
+          "reason": { "type": "string", "minLength": 1, "maxLength": 500 },
+          "measured_by": { "type": "string", "minLength": 1, "maxLength": 300 },
+          "contract": {
+            "description": "The contract schema that records this eval's outcome instead of an EvalResult.",
+            "type": "string", "pattern": "^[a-z_]+\\.v1\\.json$"
+          }
+        }
+      }
+    },
+    "case_types": {
+      "description": "Situations the offline benchmark must deliberately test (HAR-97 §20), with a one-line description.",
+      "type": "object",
+      "minProperties": 1,
+      "propertyNames": { "type": "string", "pattern": "^[a-z][a-z0-9_]*$" },
+      "additionalProperties": { "type": "string", "minLength": 1, "maxLength": 300 }
+    }
+  },
+  "$defs": {
+    "labels": {
+      "description": "Allowed categorical labels; [] means the eval's label is always null.",
+      "type": "array",
+      "uniqueItems": true,
+      "items": { "type": "string", "pattern": "^[A-Z][A-Z_]*$" }
+    },
+    "sections": {
+      "description": "HAR-97 sections: '§4', '§5.14', '§15(GTM).3' (the GTM-grounded '# 15.', not '# 15. Demo story'), '§16(DEMO)' (not '# 16. Runs UI'), '§5(PITCH)' (the '# 5.' of the 'Core demo pitch' at the top of HAR-97, whose §1-§11 collide with the later headings), an eval layer L1-L5, or a named unnumbered heading.",
+      "type": "array",
+      "minItems": 1,
+      "uniqueItems": true,
+      "items": { "type": "string", "pattern": "^(§[0-9]+(\\((GTM|DEMO|PITCH)\\))?(\\.[0-9]+)?|L[1-5]|Trigger eval|Decision-ranking eval)$" }
+    },
+    "gtmEvidenceClass": {
+      "description": "The evidence classes HAR-97 §15(GTM) names for GTM practice; semantic evals use one of them.",
+      "enum": ["deal_data", "methodology", "cs_ops"]
+    },
+    "evalTypeEntry": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["kind", "evidence_class", "labels", "can_block", "har97_sections", "description"],
+      "properties": {
+        "kind": { "$ref": "eval_result.v1.json#/properties/kind" },
+        "evidence_class": {
+          "description": "The ONE class that supports this eval as GTM practice; every judgment of this type carries it.",
+          "$ref": "eval_result.v1.json#/properties/evidence_class"
+        },
+        "labels": { "$ref": "#/$defs/labels" },
+        "can_block": { "type": "boolean", "description": "false: a judgment of this type is never blocking." },
+        "blocking_rule": { "type": "string", "minLength": 1, "maxLength": 500 },
+        "label_rule": { "type": "string", "minLength": 1, "maxLength": 600, "description": "How to choose between labels where more than one could fit." },
+        "har97_sections": { "$ref": "#/$defs/sections" },
+        "description": { "type": "string", "minLength": 1, "maxLength": 400 }
+      },
+      "allOf": [
+        { "if": { "properties": { "can_block": { "const": false } } }, "then": { "required": ["blocking_rule"] } },
+        {
+          "description": "A semantic eval always states its blocking rule (never-blocks or when-it-blocks); the judges read blocking from the catalog only (HAR-116).",
+          "if": { "properties": { "kind": { "const": "semantic" } }, "required": ["kind"] },
+          "then": { "required": ["blocking_rule"] }
+        },
+        {
+          "description": "Semantic evals carry a GTM evidence class (HAR-114, HAR-97 §15(GTM)); product_rule is for deterministic, trace and human-delta evals.",
+          "if": { "properties": { "kind": { "const": "semantic" } } },
+          "then": { "properties": { "evidence_class": { "$ref": "#/$defs/gtmEvidenceClass" } } }
+        },
+        {
+          "description": "A type that may block cannot state a never-blocks rule.",
+          "if": { "properties": { "can_block": { "const": true } }, "required": ["can_block"] },
+          "then": { "properties": { "blocking_rule": { "not": { "pattern": "^Never blocks" } } } }
+        }
+      ]
+    }
+  }
+}

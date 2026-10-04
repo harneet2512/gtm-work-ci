@@ -1,0 +1,22 @@
+{
+  "source_system": "email",
+  "source_object_id": "<ghost-dana-2026-09-18@ghostvendor.com>",
+  "source_event_key": "sent",
+  "occurred_at": "2026-09-18T15:00:00Z",
+  "connector": "gmail",
+  "connector_version": "0.1.0",
+  "payload": {
+    "kind": "email",
+    "direction": "outbound",
+    "message_id": "<ghost-dana-2026-09-18@ghostvendor.com>",
+    "thread_id": "thr-acme-eu-expansion",
+    "in_reply_to": "<CAMx9-acme-2026-08-19@mail.acme.com>",
+    "from": {"email": "dana@ghostvendor.com", "name": "Dana Kim"},
+    "to": [{"email": "priya.shah@acme.com", "name": "Priya Shah"}],
+    "cc": [],
+    "date": "2026-09-18T15:00:00Z",
+    "subject": "Re: Expansion to EU teams",
+    "body_text": "Hi Priya,\nChecking in on the revised order form - is there anything else your side needs before signature? Looking forward to Thursday's call.\nDana",
+    "crm_opportunity_ref": "opp:AC-4-EXP"
+  }
+}

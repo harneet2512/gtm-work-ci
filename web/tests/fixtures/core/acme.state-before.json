@@ -1,0 +1,369 @@
+{
+  "account_id": "0a0c0000-0000-4000-8000-000000000001",
+  "account_name": "Acme Corp",
+  "opportunity_id": "0c0f0000-0000-4000-8000-000000000004",
+  "opportunities": [
+    {
+      "opportunity_id": "0c0f0000-0000-4000-8000-000000000004",
+      "is_open": true,
+      "is_primary": true,
+      "stage": "Technical evaluation",
+      "owner": "0b0e0000-0000-4000-8000-000000000001",
+      "amount": 120000,
+      "health": "unknown",
+      "as_of": "2026-09-20T10:00:00Z",
+      "last_activity_id": "0ac70000-0000-4000-8000-000000000100"
+    },
+    {
+      "opportunity_id": "0c0f0000-0000-4000-8000-000000000005",
+      "is_open": false,
+      "is_primary": false,
+      "stage": "Closed Won",
+      "owner": "0b0e0000-0000-4000-8000-000000000002",
+      "amount": 45000,
+      "health": "unknown",
+      "as_of": "2025-11-14T09:00:00Z",
+      "last_activity_id": "0ac70000-0000-4000-8000-000000000050"
+    }
+  ],
+  "version": 6,
+  "as_of": "2026-09-20T10:00:00Z",
+  "computed_at": "2026-09-20T10:00:05Z",
+  "last_activity_id": "0ac70000-0000-4000-8000-000000000100",
+  "fields": {
+    "stage": {
+      "value": "Technical evaluation",
+      "known": true,
+      "winning_claim_id": "0c1a0000-0000-4000-8000-000000000200",
+      "standing": "crm_explicit",
+      "confidence": 1,
+      "as_of": "2026-09-20T10:00:00Z",
+      "evidence_refs": [
+        {
+          "activity_id": "0ac70000-0000-4000-8000-000000000100",
+          "claim_id": "0c1a0000-0000-4000-8000-000000000200",
+          "occurred_at": "2026-09-20T10:00:00Z"
+        }
+      ],
+      "competing_claim_ids": [],
+      "suggested_claim_ids": [],
+      "opportunity_id": "0c0f0000-0000-4000-8000-000000000004"
+    },
+    "health": {
+      "value": "unknown",
+      "known": false,
+      "confidence": 0,
+      "as_of": null,
+      "evidence_refs": [],
+      "competing_claim_ids": [],
+      "suggested_claim_ids": [],
+      "winning_claim_id": null
+    },
+    "owner": {
+      "value": "0b0e0000-0000-4000-8000-000000000001",
+      "known": true,
+      "winning_claim_id": "0c1a0000-0000-4000-8000-000000000200",
+      "standing": "crm_explicit",
+      "confidence": 1,
+      "as_of": "2026-09-20T10:00:00Z",
+      "evidence_refs": [
+        {
+          "activity_id": "0ac70000-0000-4000-8000-000000000100",
+          "claim_id": "0c1a0000-0000-4000-8000-000000000200",
+          "occurred_at": "2026-09-20T10:00:00Z"
+        }
+      ],
+      "competing_claim_ids": [],
+      "suggested_claim_ids": [],
+      "opportunity_id": "0c0f0000-0000-4000-8000-000000000004"
+    },
+    "motion": {
+      "value": "expansion",
+      "known": true,
+      "winning_claim_id": "0c1a0000-0000-4000-8000-000000000200",
+      "standing": "crm_explicit",
+      "confidence": 1,
+      "as_of": "2026-09-20T10:00:00Z",
+      "evidence_refs": [
+        {
+          "activity_id": "0ac70000-0000-4000-8000-000000000100",
+          "claim_id": "0c1a0000-0000-4000-8000-000000000200",
+          "occurred_at": "2026-09-20T10:00:00Z"
+        }
+      ],
+      "competing_claim_ids": [],
+      "suggested_claim_ids": [],
+      "opportunity_id": "0c0f0000-0000-4000-8000-000000000004"
+    },
+    "champion": {
+      "value": "0b0e0000-0000-4000-8000-000000000017",
+      "known": true,
+      "winning_claim_id": "0c1a0000-0000-4000-8000-000000000200",
+      "standing": "crm_explicit",
+      "confidence": 1,
+      "as_of": "2026-09-20T10:00:00Z",
+      "evidence_refs": [
+        {
+          "activity_id": "0ac70000-0000-4000-8000-000000000100",
+          "claim_id": "0c1a0000-0000-4000-8000-000000000200",
+          "occurred_at": "2026-09-20T10:00:00Z"
+        }
+      ],
+      "competing_claim_ids": [],
+      "suggested_claim_ids": []
+    },
+    "champion_status": {
+      "value": "unknown",
+      "known": false,
+      "confidence": 0,
+      "as_of": null,
+      "evidence_refs": [],
+      "competing_claim_ids": [],
+      "suggested_claim_ids": [],
+      "winning_claim_id": null
+    },
+    "economic_buyer": {
+      "value": "unknown",
+      "known": false,
+      "winning_claim_id": null,
+      "standing": null,
+      "confidence": null,
+      "as_of": null,
+      "evidence_refs": [],
+      "competing_claim_ids": [],
+      "suggested_claim_ids": []
+    },
+    "blockers": {
+      "value": [],
+      "known": false,
+      "confidence": 0,
+      "as_of": null,
+      "evidence_refs": [],
+      "competing_claim_ids": [],
+      "suggested_claim_ids": [],
+      "winning_claim_id": null
+    },
+    "objections": {
+      "value": [],
+      "known": false,
+      "winning_claim_id": null,
+      "standing": null,
+      "confidence": null,
+      "as_of": null,
+      "evidence_refs": [],
+      "competing_claim_ids": [],
+      "suggested_claim_ids": []
+    },
+    "decision_criteria": {
+      "value": [],
+      "known": false,
+      "confidence": 0,
+      "as_of": null,
+      "evidence_refs": [],
+      "competing_claim_ids": [],
+      "suggested_claim_ids": [],
+      "winning_claim_id": null
+    },
+    "decision_process": {
+      "value": "unknown",
+      "known": false,
+      "confidence": 0,
+      "as_of": null,
+      "evidence_refs": [],
+      "competing_claim_ids": [],
+      "suggested_claim_ids": [],
+      "winning_claim_id": null
+    },
+    "current_commitments": {
+      "value": [],
+      "known": false,
+      "winning_claim_id": null,
+      "standing": null,
+      "confidence": null,
+      "as_of": null,
+      "evidence_refs": [],
+      "competing_claim_ids": [],
+      "suggested_claim_ids": []
+    },
+    "next_milestone": {
+      "value": "unknown",
+      "known": false,
+      "confidence": 0,
+      "as_of": null,
+      "evidence_refs": [],
+      "competing_claim_ids": [],
+      "suggested_claim_ids": [],
+      "winning_claim_id": null
+    },
+    "next_meeting": {
+      "value": "unknown",
+      "known": false,
+      "winning_claim_id": null,
+      "standing": null,
+      "confidence": null,
+      "as_of": null,
+      "evidence_refs": [],
+      "competing_claim_ids": [],
+      "suggested_claim_ids": []
+    },
+    "relationship_risk": {
+      "value": "unknown",
+      "known": false,
+      "confidence": 0,
+      "as_of": null,
+      "evidence_refs": [],
+      "competing_claim_ids": [],
+      "suggested_claim_ids": [],
+      "winning_claim_id": null
+    },
+    "product_use_case": {
+      "value": "EU team rollout",
+      "known": true,
+      "winning_claim_id": "0c1a0000-0000-4000-8000-000000000200",
+      "standing": "crm_explicit",
+      "confidence": 1,
+      "as_of": "2026-09-20T10:00:00Z",
+      "evidence_refs": [
+        {
+          "activity_id": "0ac70000-0000-4000-8000-000000000100",
+          "claim_id": "0c1a0000-0000-4000-8000-000000000200",
+          "occurred_at": "2026-09-20T10:00:00Z"
+        }
+      ],
+      "competing_claim_ids": [],
+      "suggested_claim_ids": []
+    },
+    "commercial_issue": {
+      "value": "unknown",
+      "known": false,
+      "winning_claim_id": null,
+      "standing": null,
+      "confidence": null,
+      "as_of": null,
+      "evidence_refs": [],
+      "competing_claim_ids": [],
+      "suggested_claim_ids": []
+    },
+    "last_customer_interaction": {
+      "value": "unknown",
+      "known": false,
+      "confidence": 0,
+      "as_of": null,
+      "evidence_refs": [],
+      "competing_claim_ids": [],
+      "suggested_claim_ids": [],
+      "derived": true,
+      "winning_claim_id": null
+    },
+    "last_meaningful_change": {
+      "value": "unknown",
+      "known": false,
+      "confidence": 0,
+      "as_of": null,
+      "evidence_refs": [],
+      "competing_claim_ids": [],
+      "suggested_claim_ids": [],
+      "derived": true,
+      "winning_claim_id": null
+    },
+    "summary": {
+      "value": "unknown",
+      "known": false,
+      "confidence": 0,
+      "as_of": null,
+      "evidence_refs": [],
+      "competing_claim_ids": [],
+      "suggested_claim_ids": [],
+      "winning_claim_id": null
+    },
+    "champion_since": {
+      "value": "2026-09-20T10:00:00Z",
+      "known": true,
+      "winning_claim_id": null,
+      "standing": null,
+      "confidence": null,
+      "as_of": "2026-09-20T10:00:00Z",
+      "evidence_refs": [
+        {
+          "activity_id": "0ac70000-0000-4000-8000-000000000100",
+          "claim_id": "0c1a0000-0000-4000-8000-000000000200",
+          "occurred_at": "2026-09-20T10:00:00Z"
+        }
+      ],
+      "competing_claim_ids": [],
+      "suggested_claim_ids": [],
+      "derived": true
+    }
+  },
+  "buying_group": [
+    {
+      "person_id": "0b0e0000-0000-4000-8000-000000000017",
+      "display_name": "Priya Shah",
+      "title": "Director of Operations",
+      "roles": [
+        "champion"
+      ],
+      "role_source": "recorded",
+      "role_basis": "crm_explicit buying_group.member",
+      "role_provenance": [
+        {
+          "role": "champion",
+          "source": "recorded",
+          "basis": "crm_explicit buying_group.member"
+        }
+      ],
+      "status": "active",
+      "delegated_to_person_id": null,
+      "last_engaged_at": "2026-09-20T10:00:00Z",
+      "evidence_refs": [
+        {
+          "activity_id": "0ac70000-0000-4000-8000-000000000100",
+          "claim_id": "0c1a0000-0000-4000-8000-000000000200",
+          "occurred_at": "2026-09-20T10:00:00Z"
+        }
+      ]
+    },
+    {
+      "person_id": "0b0e0000-0000-4000-8000-000000000018",
+      "display_name": "Marco Ruiz",
+      "title": "Head of Security",
+      "roles": [
+        "security",
+        "technical_evaluator"
+      ],
+      "role_source": "inferred",
+      "role_basis": "first_party_ai stakeholder_role: \"we need your SOC2 report\"",
+      "role_provenance": [
+        {
+          "role": "security",
+          "source": "recorded",
+          "basis": "crm_explicit stakeholder_role"
+        },
+        {
+          "role": "technical_evaluator",
+          "source": "inferred",
+          "basis": "first_party_ai stakeholder_role: \"we need your SOC2 report\""
+        }
+      ],
+      "status": "new",
+      "delegated_to_person_id": null,
+      "last_engaged_at": "2026-09-20T10:00:00Z",
+      "evidence_refs": [
+        {
+          "activity_id": "0ac70000-0000-4000-8000-000000000100",
+          "claim_id": "0c1a0000-0000-4000-8000-000000000200",
+          "occurred_at": "2026-09-20T10:00:00Z"
+        }
+      ]
+    }
+  ],
+  "relationship_state": {
+    "value": "REORG",
+    "transition_id": "0e5a0000-0000-4000-8000-000000000001",
+    "confirmed_at": "2026-09-15T09:00:00Z"
+  },
+  "open_transition": null,
+  "coverage_gaps": [
+    "economic_buyer"
+  ]
+}

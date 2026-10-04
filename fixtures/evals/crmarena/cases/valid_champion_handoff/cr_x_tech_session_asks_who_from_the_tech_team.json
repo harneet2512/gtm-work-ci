@@ -1,0 +1,251 @@
+{
+ "id": "cr_x_tech_session_asks_who_from_the_tech_team",
+ "origin": "crmarena",
+ "case_type": "valid_champion_handoff",
+ "title": "Zara asks for a session with 'our tech team and yours'; the draft asks who should join and offers two slots (analogue)",
+ "should_pass": true,
+ "difficulty": "medium",
+ "slice_tags": {
+  "account": "001Wt00000PHViZIAX",
+  "origin": "crmarena",
+  "motion": "unknown",
+  "stage": "unknown",
+  "champion_status": "active",
+  "economic_buyer": "unknown",
+  "risk": "unknown",
+  "candidate": "good",
+  "expected_action": "send_email",
+  "extra": [
+   "good_draft",
+   "handoff_analogue",
+   "inbound_email",
+   "tech_team_requested"
+  ]
+ },
+ "based_on": {
+  "kind": "crmarena_moment",
+  "account_id": "001Wt00000PHViZIAX",
+  "deal_id": "006Wt000007BCl0IAG",
+  "trigger_kind": "inbound_email",
+  "decision_at": "2023-12-02T11:30:00Z",
+  "cutoff": "2023-11-01",
+  "deal_group": "current",
+  "events_before_decision": 4
+ },
+ "source": {
+  "dataset": "CRMArena-Pro B2B Salesforce org (Salesforce AI Research)",
+  "licence": "CC BY-NC 4.0 (non-commercial use only)",
+  "attribution": "Salesforce AI Research, CRMArena-Pro (https://github.com/SalesforceAIResearch/CRMArena, LICENSE.txt); records selected and excerpted, nothing edited",
+  "snapshot_manifest_sha256": "8fbda45c15d1806dc4c37d5230a20ac24d6619ef36a88c0efddb344792c89f03",
+  "generator": "bench/evals/crmarena_gold v1"
+ },
+ "context": {
+  "now": "2023-12-02T11:30:00Z",
+  "state": {
+   "account_id": "0fbdbc87-6a3e-527b-833d-85e0e791c592",
+   "account_name": "OmegaDesign Labs",
+   "opportunity_id": "4178e6a5-1c3c-5d10-ad5a-037ffdde36b0",
+   "fields": {
+    "stage": "unknown",
+    "health": "unknown",
+    "motion": "unknown",
+    "champion": "cd500ac0-3937-5601-8857-9114997c50d1",
+    "champion_status": "active",
+    "economic_buyer": "unknown",
+    "relationship_risk": "unknown",
+    "decision_process": "Zara will answer on pricing and discounts by mid-week after checking with her team; she asked for a session where the customer's tech team and ours go through OptiPower Manager and SecureFlow Suite customization next week",
+    "current_commitments": [
+     {
+      "text": "Us: set up the tech session next week (asked 2023-12-02)",
+      "status": "open"
+     },
+     {
+      "text": "Customer: a comprehensive response on pricing by mid-week",
+      "status": "open"
+     }
+    ],
+    "next_milestone": "Technical session next week"
+   },
+   "buying_group": [
+    {
+     "person_id": "cd500ac0-3937-5601-8857-9114997c50d1",
+     "display_name": "Zara Ahmed",
+     "title": "Product Strategist (champion role inferred, not recorded)",
+     "roles": [
+      "champion"
+     ],
+     "status": "active",
+     "delegated_to_person_id": null,
+     "last_engaged_at": "2023-12-02T11:30:00Z",
+     "evidence_refs": [
+      {
+       "activity_id": "ce3c6deb-02ce-5a75-8563-b3a7eaa791d9",
+       "occurred_at": "2023-12-02T11:30:00Z"
+      }
+     ]
+    }
+   ],
+   "coverage_gaps": [
+    "economic_buyer"
+   ]
+  },
+  "recent_changes": {
+   "summary": "Zara thanks the rep for addressing customization, asks for a session where the two tech teams go through the specifics next week, and will answer on pricing by mid-week.",
+   "material_diff_fields": [
+    "decision_process",
+    "current_commitments"
+   ],
+   "signals": [
+    "customer_replied",
+    "pricing_interest"
+   ]
+  },
+  "trigger": {
+   "activity_id": "ce3c6deb-02ce-5a75-8563-b3a7eaa791d9",
+   "activity_type": "EmailReceived",
+   "occurred_at": "2023-12-02T11:30:00Z",
+   "actor_person_id": "cd500ac0-3937-5601-8857-9114997c50d1",
+   "event_file": "crmarena:EmailMessage:02sWt000001zpeeIAA",
+   "synthetic": false,
+   "text": "Hello Jaemin,\n\nThank you for the detailed follow-up and for addressing our customization needs. I appreciate how TechPulse Solutions is willing to adjust the implementation to better fit OmegaDesign Labs' demands. It’s encouraging to see a partner that understands the importance of both robust technology and adaptability.\n\nI am definitely interested in how the OptiPower Manager and SecureFlow Suite will be tailored for us. Could we perhaps set up a session where our tech team and yours can delve into these specifics next week? I'd like to ensure all technical angles are covered before moving forward.\n\nYour point about maintaining a strong user experience while keeping pace with EDA trends resonates with us. We’re always looking to leverage the latest advancements without losing sight of practicality.\n\nLet me check with my team regarding the proposed pricing and discounts. I will get back to you by mid-week with a comprehensive response, hopefully paving the way for a finalized agreement.\n\nThank you again for your proactive approach.\n\nBest,\n\nZara Ahmed\nOmegaDesign Labs",
+   "subject": "Negotiation meeting to finalize terms",
+   "date_semantics": "sent"
+  },
+  "supporting_activities": [
+   {
+    "activity_id": "35667703-d5cb-5101-ab7e-7cd05094a5fe",
+    "activity_type": "CRMTaskLogged",
+    "occurred_at": "2023-12-01T00:00:00Z",
+    "actor_person_id": null,
+    "event_file": "crmarena:Task:00TWt000002z60zMAA",
+    "synthetic": false,
+    "text": "Hold negotiations to finalize terms and pricing for our solution offerings.",
+    "subject": "Negotiate terms with OmegaDesign Labs",
+    "date_semantics": "task due date"
+   },
+   {
+    "activity_id": "a357e395-1f43-5519-ba7a-7281f1cb1c35",
+    "activity_type": "EmailSent",
+    "occurred_at": "2023-12-02T09:15:00Z",
+    "actor_person_id": "43c3a1c5-2e65-5b6c-b50c-acc02bbfed1f",
+    "event_file": "crmarena:EmailMessage:02sWt000002034nIAA",
+    "synthetic": false,
+    "text": "Hi Zara,\n\nI hope this message finds you well. Following our recent virtual negotiation meeting on December 1st, I wanted to touch base and review our discussion. Thank you for your time; you provided valuable insights on how we can better align our solutions to meet OmegaDesign Labs' unique requirements.\n\nDuring our call, you expressed a need for more customization in our implementation processes. Our team at TechPulse Solutions is committed to ensuring that the OptiPower Manager and SecureFlow Suite can be tailored to fit seamlessly with your current systems, without compromising on efficiency or user experience.",
+    "subject": "Negotiation meeting to finalize terms",
+    "date_semantics": "sent"
+   }
+  ],
+  "commitments": [
+   {
+    "text": "Set up the tech session next week",
+    "owner_person_id": "43c3a1c5-2e65-5b6c-b50c-acc02bbfed1f",
+    "due_at": null,
+    "status": "open"
+   },
+   {
+    "text": "Zara's pricing response by mid-week",
+    "owner_person_id": "cd500ac0-3937-5601-8857-9114997c50d1",
+    "due_at": null,
+    "status": "open"
+   }
+  ],
+  "timeline_facts": {
+   "last_inbound_at": "2023-12-02T11:30:00Z",
+   "last_inbound_from_person_id": "cd500ac0-3937-5601-8857-9114997c50d1",
+   "last_outbound_at": "2023-12-02T09:15:00Z",
+   "stated_timing": null
+  },
+  "offered_knowledge": [],
+  "state_provenance": {
+   "champion": "inferred, not recorded: the only customer correspondent (1 inbound emails); CRMArena has no roles",
+   "stage": "unknown unless a field below says otherwise: the loader dates the stage at the deal's last event",
+   "decision_process": "02sWt000001zpeeIAA",
+   "buying_group roles": "inferred from each Contact's Title/Department; the record has no roles"
+  }
+ },
+ "candidate_action": {
+  "proposed_action_type": "send_email",
+  "recipients": [
+   {
+    "person_id": "cd500ac0-3937-5601-8857-9114997c50d1",
+    "role": "to"
+   }
+  ],
+  "finished_artifact": {
+   "channel": "email",
+   "subject": "Re: Negotiation meeting to finalize terms",
+   "body": "Hi Zara,\n\nHappy to set up the session with your tech team. Which colleagues should join? I can offer Tuesday, December 5 at 11:00 or Wednesday, December 6 at 15:00.\n\nBest regards,\nJaemin"
+  },
+  "crm_next_step_intent": {
+   "next_step": "Zara names the attendees and picks a slot",
+   "due_at": null,
+   "stage_change": null
+  },
+  "reason": "She asked for a session with her tech team; ask who, so the right people are added while she stays the owner.",
+  "evidence_refs": [
+   {
+    "activity_id": "ce3c6deb-02ce-5a75-8563-b3a7eaa791d9",
+    "quote": "Could we perhaps set up a session where our tech team and yours can delve into these specifics next week?",
+    "occurred_at": "2023-12-02T11:30:00Z",
+    "speaker_person_id": "cd500ac0-3937-5601-8857-9114997c50d1"
+   }
+  ],
+  "knowledge_refs_used": [],
+  "wait_until": null
+ },
+ "expected": [
+  {
+   "eval_type": "champion_continuity",
+   "verdict": "pass",
+   "label": "CHAMPION_INCLUDED",
+   "diagnostics": [],
+   "blocking": false,
+   "rationale": "Zara stays the owner; her tech colleagues are added through her.",
+   "evidence_class": "methodology"
+  },
+  {
+   "eval_type": "stakeholder_selection",
+   "verdict": "pass",
+   "label": null,
+   "diagnostics": [],
+   "blocking": false,
+   "rationale": "Asks who rather than guessing.",
+   "evidence_class": "methodology"
+  },
+  {
+   "eval_type": "stakeholder_coverage",
+   "verdict": "pass",
+   "label": "RIGHT_SIZED",
+   "diagnostics": [],
+   "blocking": false,
+   "rationale": "Zara plus the tech team she asked for.",
+   "evidence_class": "deal_data"
+  }
+ ],
+ "expected_best_action": {
+  "action": "send_email",
+  "why": "This.",
+  "recipients": [
+   {
+    "person_id": "cd500ac0-3937-5601-8857-9114997c50d1",
+    "role": "to"
+   }
+  ],
+  "channel": "email"
+ },
+ "labelling": {
+  "label_kind": "model labels, single author, not human labels",
+  "passes": [
+   "pass_1",
+   "pass_2"
+  ],
+  "agreement": {
+   "judgments": 3,
+   "verdict_agree": 3,
+   "fail_agree": 3
+  },
+  "disagreements": []
+ },
+ "evidence_gap": "CRMArena has no delegation or departure, so a true VALID_HANDOFF cannot be built from the record; this case uses the nearest real fact (the buyer asks in writing to include another person while the correspondent stays on the thread). Replace or extend it with the WP32 synthetic layer.",
+ "notes": ""
+}

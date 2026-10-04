@@ -1,0 +1,249 @@
+{
+ "id": "cr_d6_asks_before_planning_the_demo",
+ "origin": "crmarena",
+ "case_type": "insufficient_evidence",
+ "title": "Same moment, good draft: asks who should attend and what matters before planning the demo",
+ "should_pass": true,
+ "difficulty": "medium",
+ "slice_tags": {
+  "account": "001Wt00000PH90cIAD",
+  "origin": "crmarena",
+  "motion": "unknown",
+  "stage": "unknown",
+  "champion_status": "active",
+  "economic_buyer": "unknown",
+  "risk": "unknown",
+  "candidate": "good",
+  "expected_action": "send_email",
+  "extra": [
+   "good_draft",
+   "task_trigger"
+  ]
+ },
+ "based_on": {
+  "kind": "crmarena_moment",
+  "account_id": "001Wt00000PH90cIAD",
+  "deal_id": "006Wt000007B1klIAC",
+  "trigger_kind": "task_due",
+  "decision_at": "2023-12-10T09:00:00Z",
+  "cutoff": "2023-11-01",
+  "deal_group": "current",
+  "events_before_decision": 5
+ },
+ "source": {
+  "dataset": "CRMArena-Pro B2B Salesforce org (Salesforce AI Research)",
+  "licence": "CC BY-NC 4.0 (non-commercial use only)",
+  "attribution": "Salesforce AI Research, CRMArena-Pro (https://github.com/SalesforceAIResearch/CRMArena, LICENSE.txt); records selected and excerpted, nothing edited",
+  "snapshot_manifest_sha256": "8fbda45c15d1806dc4c37d5230a20ac24d6619ef36a88c0efddb344792c89f03",
+  "generator": "bench/evals/crmarena_gold v1"
+ },
+ "context": {
+  "now": "2023-12-10T09:00:00Z",
+  "state": {
+   "account_id": "3494b43e-0f52-529b-bfba-ed883dec12b2",
+   "account_name": "InspireTech Consulting",
+   "opportunity_id": "d4504c70-835b-5f35-8ba6-3a79ebb87894",
+   "fields": {
+    "stage": "unknown",
+    "health": "unknown",
+    "motion": "unknown",
+    "champion": "6fdaa2f5-cdde-5190-b748-59beb81ececa",
+    "champion_status": "active",
+    "economic_buyer": "unknown",
+    "relationship_risk": "unknown",
+    "decision_process": "unknown: no approver, budget, timeline or review step is stated anywhere in the record",
+    "current_commitments": [
+     {
+      "text": "Us: another meeting including a demonstration of SecureFlow Suite's integration capabilities (asked 2023-11-20)",
+      "status": "open"
+     }
+    ],
+    "next_milestone": "unknown"
+   },
+   "buying_group": [
+    {
+     "person_id": "6fdaa2f5-cdde-5190-b748-59beb81ececa",
+     "display_name": "Hiroshi Saito",
+     "title": "Senior Data Analyst (champion role inferred, not recorded)",
+     "roles": [
+      "champion"
+     ],
+     "status": "active",
+     "delegated_to_person_id": null,
+     "last_engaged_at": "2023-11-20T15:30:00Z",
+     "evidence_refs": [
+      {
+       "activity_id": "ca713b1f-580d-5a58-964f-d8901a7cb294",
+       "occurred_at": "2023-11-20T15:30:00Z"
+      }
+     ]
+    },
+    {
+     "person_id": "6cbee924-5af2-50ce-b153-30965fe0c9fd",
+     "display_name": "Anisha Gupta",
+     "title": "Project Coordinator",
+     "roles": [
+      "unknown"
+     ],
+     "status": "unknown",
+     "delegated_to_person_id": null,
+     "last_engaged_at": null,
+     "evidence_refs": []
+    }
+   ],
+   "coverage_gaps": [
+    "economic_buyer"
+   ]
+  },
+  "recent_changes": {
+   "summary": "No email since Hiroshi's request for another meeting and a demonstration on 2023-11-20; the rep's tasks have come due.",
+   "material_diff_fields": [
+    "current_commitments"
+   ],
+   "signals": [
+    "customer_went_silent"
+   ]
+  },
+  "trigger": {
+   "activity_id": "8187d254-8a91-5b1c-90c4-125fc09b6e87",
+   "activity_type": "CRMTaskLogged",
+   "occurred_at": "2023-12-10T00:00:00Z",
+   "actor_person_id": null,
+   "event_file": "crmarena:Task:00TWt000002z7jOMAQ",
+   "synthetic": false,
+   "text": "Plan a demo to showcase DesignWave Automation features and how they benefit InspireTech",
+   "subject": "Organize a product demo",
+   "date_semantics": "task due date"
+  },
+  "supporting_activities": [
+   {
+    "activity_id": "d1caf4d6-82dc-5cb0-b82e-8feb74264ed1",
+    "activity_type": "EmailSent",
+    "occurred_at": "2023-11-20T14:00:00Z",
+    "actor_person_id": "69a161ff-be2b-5c57-8e3d-3bb0ae8f8508",
+    "event_file": "crmarena:EmailMessage:02sWt000001zurFIAQ",
+    "synthetic": false,
+    "text": "Hi Hiroshi,\n\nI hope this message finds you well. Thank you for the engaging conversation we had on the 20th regarding the alignment of TechPulse's solutions with InspireTech’s needs.\n\nDuring our discussion, we explored how our SecureFlow Suite could bolster your data security. Its advanced capabilities ensure that your sensitive data remains protected, providing peace of mind and aligning with your commitment to comprehensive security measures. Moreover, the flexibility of our platform offers seamless integration with other systems, addressing some of the limitations you've experienced with current solutions.",
+    "subject": "Detailed discussion on proposed solutions and alignment",
+    "date_semantics": "sent"
+   },
+   {
+    "activity_id": "ca713b1f-580d-5a58-964f-d8901a7cb294",
+    "activity_type": "EmailReply",
+    "occurred_at": "2023-11-20T15:30:00Z",
+    "actor_person_id": "6fdaa2f5-cdde-5190-b748-59beb81ececa",
+    "event_file": "crmarena:EmailMessage:02sWt00000204nJIAQ",
+    "synthetic": false,
+    "text": "Hi Mei,\n\nThank you for the detailed follow-up. I appreciate the insights you shared about SecureFlow Suite and CloudLink Designer.\n\nIn particular, the enhanced data security features of SecureFlow Suite are of interest to us. It’s crucial for us to partner with providers that understand our security needs and can match them with robust solutions. The discussion around your commitment to future technology trends was also reassuring, as scalability is indeed a pivotal point for our forward strategy.\n\nI’d be keen to delve deeper into the integration capabilities of SecureFlow Suite. Could we schedule another meeting to discuss this further, including perhaps a demonstration of these features in action?\n\nThanks again for your time and looking forward to our continued discussions.\n\nBest,\n\nHiroshi Saito\nInspireTech Consulting",
+    "subject": "Re: Detailed discussion on proposed solutions and alignment",
+    "date_semantics": "sent"
+   }
+  ],
+  "commitments": [
+   {
+    "text": "Another meeting including a SecureFlow Suite integration demonstration (asked 2023-11-20)",
+    "owner_person_id": "69a161ff-be2b-5c57-8e3d-3bb0ae8f8508",
+    "due_at": null,
+    "status": "open"
+   }
+  ],
+  "timeline_facts": {
+   "last_inbound_at": "2023-11-20T15:30:00Z",
+   "last_inbound_from_person_id": "6fdaa2f5-cdde-5190-b748-59beb81ececa",
+   "last_outbound_at": "2023-11-20T14:00:00Z",
+   "stated_timing": null
+  },
+  "offered_knowledge": [],
+  "state_provenance": {
+   "champion": "inferred, not recorded: the only customer correspondent (1 inbound emails); CRMArena has no roles",
+   "stage": "unknown unless a field below says otherwise: the loader dates the stage at the deal's last event",
+   "current_commitments": "02sWt00000204nJIAQ",
+   "decision_process": "absence of any statement in the two emails",
+   "buying_group roles": "inferred from each Contact's Title/Department; the record has no roles"
+  }
+ },
+ "candidate_action": {
+  "proposed_action_type": "send_email",
+  "recipients": [
+   {
+    "person_id": "6fdaa2f5-cdde-5190-b748-59beb81ececa",
+    "role": "to"
+   }
+  ],
+  "finished_artifact": {
+   "channel": "email",
+   "subject": "Planning the SecureFlow Suite demo",
+   "body": "Hi Hiroshi,\n\nI would like to plan the SecureFlow Suite demonstration you asked for. So that it covers the right ground, could you tell me who from your team should attend, which integrations matter most to you, and what timeline you are working to? I can offer Wednesday, December 13 or Friday, December 15 once I know.\n\nBest regards,\nMei"
+  },
+  "crm_next_step_intent": {
+   "next_step": "Hiroshi shares attendees, priority integrations and timeline",
+   "due_at": null,
+   "stage_change": null
+  },
+  "reason": "The record states no attendees, budget or timeline; ask before assuming.",
+  "evidence_refs": [
+   {
+    "activity_id": "ca713b1f-580d-5a58-964f-d8901a7cb294",
+    "quote": "Could we schedule another meeting to discuss this further, including perhaps a demonstration of these features in action?",
+    "occurred_at": "2023-11-20T15:30:00Z",
+    "speaker_person_id": "6fdaa2f5-cdde-5190-b748-59beb81ececa"
+   }
+  ],
+  "knowledge_refs_used": [],
+  "wait_until": null
+ },
+ "expected": [
+  {
+   "eval_type": "grounding",
+   "verdict": "pass",
+   "label": null,
+   "diagnostics": [],
+   "blocking": false,
+   "rationale": "Asserts nothing the record lacks.",
+   "evidence_class": "deal_data"
+  },
+  {
+   "eval_type": "evidence_sufficiency",
+   "verdict": "pass",
+   "label": "NEEDS_MORE_CONTEXT",
+   "diagnostics": [],
+   "blocking": false,
+   "rationale": "Recognises what is missing and asks for it.",
+   "evidence_class": "methodology"
+  },
+  {
+   "eval_type": "next_action_quality",
+   "verdict": "pass",
+   "label": "GOOD",
+   "diagnostics": [],
+   "blocking": false,
+   "rationale": "Gathers context before planning.",
+   "evidence_class": "methodology"
+  }
+ ],
+ "expected_best_action": {
+  "action": "send_email",
+  "why": "This.",
+  "recipients": [
+   {
+    "person_id": "6fdaa2f5-cdde-5190-b748-59beb81ececa",
+    "role": "to"
+   }
+  ],
+  "channel": "email"
+ },
+ "labelling": {
+  "label_kind": "model labels, single author, not human labels",
+  "passes": [
+   "pass_1",
+   "pass_2"
+  ],
+  "agreement": {
+   "judgments": 3,
+   "verdict_agree": 3,
+   "fail_agree": 3
+  },
+  "disagreements": []
+ },
+ "notes": ""
+}
