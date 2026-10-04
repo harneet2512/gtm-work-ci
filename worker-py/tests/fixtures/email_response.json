@@ -1,0 +1,88 @@
+{
+  "content": {
+    "claims": [
+      {
+        "field_path": "blockers",
+        "value": "SOC2 Type II report",
+        "confidence": 0.93,
+        "evidence_quote": "we'll need your SOC2 Type II report",
+        "speaker_identity": "marco.ruiz@acme.com",
+        "subject_identity": null,
+        "role": null,
+        "due_at": null
+      },
+      {
+        "field_path": "blockers",
+        "value": "pen-test summary",
+        "confidence": 0.93,
+        "evidence_quote": "the pen-test summary",
+        "speaker_identity": "marco.ruiz@acme.com",
+        "subject_identity": null,
+        "role": null,
+        "due_at": null
+      },
+      {
+        "field_path": "stakeholder_role",
+        "value": "security",
+        "confidence": 0.95,
+        "evidence_quote": "I lead security at Acme",
+        "speaker_identity": "marco.ruiz@acme.com",
+        "subject_identity": "marco.ruiz@acme.com",
+        "role": "security",
+        "due_at": null
+      },
+      {
+        "field_path": "buying_group.member",
+        "value": "Marco Ruiz",
+        "confidence": 0.9,
+        "evidence_quote": "Priya looped me in; I lead security at Acme",
+        "speaker_identity": "marco.ruiz@acme.com",
+        "subject_identity": "marco.ruiz@acme.com",
+        "role": "security",
+        "due_at": null
+      },
+      {
+        "field_path": "decision_criteria",
+        "value": "SOC2 Type II report and pen-test summary must be reviewed by Acme security before EU rollout sign-off",
+        "confidence": 0.88,
+        "evidence_quote": "Before we can sign off on the EU rollout we'll need your SOC2 Type II report and the pen-test summary",
+        "speaker_identity": "marco.ruiz@acme.com",
+        "subject_identity": null,
+        "role": null,
+        "due_at": null
+      },
+      {
+        "field_path": "next_meeting",
+        "value": "unknown",
+        "confidence": 0.8,
+        "evidence_quote": "I can't commit to a review date until our team has read them",
+        "speaker_identity": "marco.ruiz@acme.com",
+        "subject_identity": null,
+        "role": null,
+        "due_at": null
+      },
+      {
+        "field_path": "champion_status",
+        "value": "active",
+        "confidence": 0.75,
+        "evidence_quote": "Priya will stay the point of contact on the commercial side",
+        "speaker_identity": "marco.ruiz@acme.com",
+        "subject_identity": "priya.shah@acme.com",
+        "role": "champion",
+        "due_at": null
+      },
+      {
+        "field_path": "commitment",
+        "value": "Acme will sign the EU rollout next week",
+        "confidence": 0.7,
+        "evidence_quote": "We will sign the EU rollout next week",
+        "speaker_identity": "marco.ruiz@acme.com",
+        "subject_identity": null,
+        "role": null,
+        "due_at": null
+      }
+    ]
+  },
+  "model": "deepseek/deepseek-v4-flash",
+  "usage": {"prompt_tokens": 842, "completion_tokens": 531, "total_tokens": 1373}
+}

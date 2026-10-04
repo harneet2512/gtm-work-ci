@@ -1,0 +1,16 @@
+{
+  "source_system": "docs",
+  "source_object_id": "gdrive:acme-eu-proposal-v1",
+  "source_event_key": "shared:2026-08-28T15:01:00Z",
+  "occurred_at": "2026-08-28T15:01:00Z",
+  "connector": "google_drive",
+  "connector_version": "0.1.0",
+  "payload": {
+    "kind": "document",
+    "document_id": "gdrive:acme-eu-proposal-v1",
+    "title": "Acme EU Rollout Proposal",
+    "shared_at": "2026-08-28T15:01:00Z",
+    "shared_by": "dana@ghostvendor.com",
+    "shared_with": ["priya.shah@acme.com", "tom.becker@acme.com"]
+  }
+}

@@ -1,0 +1,22 @@
+{
+  "source_system": "email",
+  "source_object_id": "<syn-acme-002@mail.acme.com>",
+  "source_event_key": "received",
+  "occurred_at": "2026-09-30T09:00:00Z",
+  "connector": "gmail",
+  "connector_version": "0.1.0",
+  "payload": {
+    "kind": "email",
+    "direction": "inbound",
+    "message_id": "<syn-acme-002@mail.acme.com>",
+    "thread_id": "thr-acme-eu-expansion",
+    "in_reply_to": null,
+    "from": {"email": "tom.becker@acme.com", "name": "Tom Becker"},
+    "to": [{"email": "dana@ghostvendor.com", "name": "Dana Kim"}],
+    "cc": [],
+    "date": "2026-09-30T09:00:00Z",
+    "subject": "Re: Expansion to EU teams",
+    "body_text": "Hi Dana - quick update: Priya has left Acme as of this week. Marco and I are taking the EU rollout forward; please work with us directly.",
+    "crm_opportunity_ref": "opp:AC-4-EXP"
+  }
+}

@@ -1,0 +1,380 @@
+{
+  "catalog_version": 4,
+  "description": "Vocabulary of the per-draft EvalResult evals (HAR-97 §3-§6, §9, §15(GTM)) and of the offline-benchmark situations (§20): per eval type its kind, its ONE evidence class, its labels ([] = label null), whether and when it may block, and the HAR-97 sections it implements. HAR-97 evals that do not produce an EvalResult on a draft are listed in out_of_scope with the reason and where they are measured. HAR-97 has two '# 15.' and two '# 16.' headings: '§15(GTM).n' is the GTM-grounded evals, '§16(DEMO)' the primary demo objective; L1-L5 are the five eval layers; '§n(PITCH)' is a section of the 'Core demo pitch' at the top of HAR-97. Routing by StateTransition (to_state, status) is contracts/transitions/routing.v1.json (ADR-0012).",
+  "evidence_classes": {
+    "deal_data": "Observed customer or deal behaviour only: Gong/Salesloft-style won-vs-lost analyses of stakeholder coverage, next-step behaviour, engagement and timing, and the buyer's own first-party evidence.",
+    "methodology": "Established enterprise-sales methodology (MEDDPICC: economic buyer, champion, decision criteria and process, metrics/pain, compelling event; mutual action plans).",
+    "cs_ops": "Operational expansion/customer-success systems (Gainsight-style product use, stakeholder engagement, risk, support and expansion signals).",
+    "product_rule": "A hard product, policy or data rule of this platform; used only for deterministic, trace and human-delta evals."
+  },
+  "eval_types": {
+    "recipient_correctness": {
+      "kind": "deterministic",
+      "evidence_class": "product_rule",
+      "labels": [],
+      "can_block": true,
+      "har97_sections": ["§4"],
+      "description": "Recipients exist, belong to the intended account (or our org), are not duplicated, and no internal-only contact is externalized. Code answers it from identities and account state; who SHOULD receive the action is stakeholder_selection."
+    },
+    "date_commitment_consistency": {
+      "kind": "deterministic",
+      "evidence_class": "product_rule",
+      "labels": [],
+      "can_block": true,
+      "har97_sections": ["§4"],
+      "description": "Dates match current state, meeting times are not stale, the action does not contradict a commitment already made, a referenced asset exists."
+    },
+    "pricing_integrity": {
+      "kind": "deterministic",
+      "evidence_class": "product_rule",
+      "labels": [],
+      "can_block": true,
+      "har97_sections": ["§4"],
+      "description": "No unsupported price or invented discount; correct product, plan, region and quantities per source evidence."
+    },
+    "crm_writeback": {
+      "kind": "deterministic",
+      "evidence_class": "product_rule",
+      "labels": [],
+      "can_block": true,
+      "har97_sections": ["§4"],
+      "description": "Stage update is legal, owner exists, next step does not overwrite newer or higher-standing state (ADR-0008/0009), correct opportunity/account."
+    },
+    "duplicate_action": {
+      "kind": "deterministic",
+      "evidence_class": "product_rule",
+      "labels": [],
+      "can_block": true,
+      "har97_sections": ["§4"],
+      "description": "The same email, meeting or CRM action was not already sent, scheduled or completed."
+    },
+    "provenance_coverage": {
+      "kind": "deterministic",
+      "evidence_class": "product_rule",
+      "labels": [],
+      "can_block": true,
+      "har97_sections": ["§4"],
+      "description": "Critical factual statements carry supporting state or evidence references."
+    },
+    "permission_policy": {
+      "kind": "deterministic",
+      "evidence_class": "product_rule",
+      "labels": [],
+      "can_block": true,
+      "har97_sections": ["§4"],
+      "description": "Allowed tool, correct account/workspace, within the permitted autonomy level, no confidential material outside its sharing condition, dry runs cannot write."
+    },
+    "state_transition_support": {
+      "kind": "deterministic",
+      "evidence_class": "product_rule",
+      "labels": ["SUPPORTED", "UNSUPPORTED", "NO_TRANSITION"],
+      "can_block": true,
+      "har97_sections": ["L1", "§2(PITCH)", "§3(PITCH)", "§5(PITCH)"],
+      "description": "Is the transition the draft relies on supported by evidence? Code re-derives its status from the rule set at its rule_set_version and the AccountState version it cites; every satisfied fact must cite evidence. Never decides the state and uses no model (ADR-0012).",
+      "label_rule": "NO_TRANSITION (verdict abstain) when the run was given no transition; UNSUPPORTED (fail) when the re-derived status, target or fact lists differ from the transition the draft relied on, or a satisfied fact cites no evidence; otherwise SUPPORTED (pass).",
+      "blocking_rule": "Blocks every UNSUPPORTED: the decision rests on a state the evidence has not earned. NO_TRANSITION never blocks."
+    },
+    "buyer_readiness": {
+      "kind": "semantic",
+      "evidence_class": "methodology",
+      "labels": ["TOO_EARLY", "READY", "LATE_OR_MISSED_WINDOW", "NO_ACTION_NEEDED", "INSUFFICIENT_CONTEXT"],
+      "can_block": true,
+      "har97_sections": ["§15(GTM).1", "§5.1", "L2"],
+      "description": "Whether there is a real buyer-side reason to act now, given what the buyer has done and said (MEDDPICC compelling event).",
+      "blocking_rule": "Blocks only when the action asks the buyer to commit past an open technical or security gate they have not cleared (a signature or order-form push, or a review date before the requested evidence is read); any other TOO_EARLY fail revises."
+    },
+    "cta_calibration": {
+      "kind": "semantic",
+      "evidence_class": "methodology",
+      "labels": ["TOO_WEAK", "APPROPRIATE", "TOO_STRONG"],
+      "can_block": true,
+      "har97_sections": ["§5.2"],
+      "description": "Size and type of the ask relative to the state of the relationship (HAR-97 ask_strength, upper-cased).",
+      "blocking_rule": "Block only when the ask is a closing commitment (signature, order, payment or a fixed deadline) that the buyer has not signalled; any other mis-sized ask fails without blocking and goes to revision."
+    },
+    "next_step_quality": {
+      "kind": "semantic",
+      "evidence_class": "deal_data",
+      "labels": [],
+      "can_block": true,
+      "har97_sections": ["§15(GTM).2", "L2"],
+      "description": "A concrete, mutually understood next step with owners and, where agreed, a date; no invented buyer commitment.",
+      "blocking_rule": "Block when the action leaves no mutual next step at all while a customer request or an overdue commitment is open; a step that only lacks an owner or a date fails without blocking."
+    },
+    "stakeholder_selection": {
+      "kind": "semantic",
+      "evidence_class": "methodology",
+      "labels": [],
+      "can_block": true,
+      "har97_sections": ["§5.3"],
+      "description": "Whether the RIGHT people are involved: not bypassing the active champion, security material to the security stakeholder, no unrequested executive, no explicitly required stakeholder omitted, no unverified addressee for commercial material. Breadth is stakeholder_coverage.",
+      "blocking_rule": "Block when the action omits a stakeholder the customer explicitly required, or sends commercial or confidential material to an addressee not verified in the buying group; otherwise fail revises."
+    },
+    "stakeholder_coverage": {
+      "kind": "semantic",
+      "evidence_class": "deal_data",
+      "labels": ["UNDER_THREADED", "RIGHT_SIZED", "OVER_THREADED", "SINGLE_THREADED_RISK", "OVER_THREADED_TOO_EARLY"],
+      "can_block": true,
+      "har97_sections": ["§5.4", "§15(GTM).3", "L2"],
+      "description": "Breadth: whether this action involves more or fewer people than the situation requires (§5.4, 'separate from stakeholder selection'), and whether the deal's multithreading fits its stage (§15(GTM).3).",
+      "label_rule": "UNDER_THREADED / RIGHT_SIZED / OVER_THREADED judge the action's recipients (§5.4); SINGLE_THREADED_RISK and OVER_THREADED_TOO_EARLY judge the deal's coverage (§15(GTM).3) when that is the issue.",
+      "blocking_rule": "Block when executives or unrelated stakeholders are pulled in while the working-level step is still under way, or a gating role the customer named (e.g. security) is not engaged; a merely broad or narrow thread fails without blocking."
+    },
+    "economic_buyer_coverage": {
+      "kind": "semantic",
+      "evidence_class": "methodology",
+      "labels": [],
+      "can_block": false,
+      "har97_sections": ["§15(GTM).4", "L2"],
+      "description": "Who can approve the decision is understood and the action helps reach them appropriately (MEDDPICC economic buyer).",
+      "blocking_rule": "Never blocks: an unknown economic buyer with spend approved in writing is a warn; with spend not yet approved it is a fail that revises."
+    },
+    "champion_strength": {
+      "kind": "semantic",
+      "evidence_class": "methodology",
+      "labels": [],
+      "can_block": false,
+      "har97_sections": ["§15(GTM).5", "L2"],
+      "description": "Whether the champion has influence and motivation to move the deal, and whether the action strengthens or weakens them (MEDDPICC champion).",
+      "blocking_rule": "Never blocks: it explains or qualifies; the action-level evals carry the block."
+    },
+    "champion_continuity": {
+      "kind": "semantic",
+      "evidence_class": "methodology",
+      "labels": ["CHAMPION_INCLUDED", "CHAMPION_BYPASSED", "VALID_HANDOFF"],
+      "can_block": true,
+      "har97_sections": ["§5.5"],
+      "description": "The action preserves a valuable relationship path: the active champion stays involved unless ownership was explicitly delegated or the champion left (methodology, like champion_strength: both are the MEDDPICC champion).",
+      "blocking_rule": "Block when the label is CHAMPION_BYPASSED: the active champion is dropped although ownership was not explicitly delegated and the champion did not leave."
+    },
+    "decision_process": {
+      "kind": "semantic",
+      "evidence_class": "methodology",
+      "labels": [],
+      "can_block": true,
+      "har97_sections": ["§15(GTM).6", "L2"],
+      "description": "The action respects how the customer decides: criteria, approval sequence, security/legal/procurement steps, paper process (MEDDPICC decision/paper process).",
+      "blocking_rule": "Block when the action skips or contradicts a gate the customer stated (security sign-off, legal, procurement, a named approver), e.g. a signature or go-live push before that gate; an unknown process fails without blocking."
+    },
+    "business_case": {
+      "kind": "semantic",
+      "evidence_class": "methodology",
+      "labels": [],
+      "can_block": false,
+      "har97_sections": ["§15(GTM).7", "L2"],
+      "description": "Value claims connect to the customer's stated pain and metrics, without inflating them (MEDDPICC metrics/pain).",
+      "blocking_rule": "Never blocks: it explains or qualifies; the action-level evals carry the block."
+    },
+    "momentum": {
+      "kind": "semantic",
+      "evidence_class": "deal_data",
+      "labels": ["HEATING_UP", "STABLE", "COOLING", "REACTIVATED", "NOISY_WITHOUT_PROGRESS"],
+      "can_block": false,
+      "har97_sections": ["§15(GTM).8", "L2"],
+      "description": "Whether the action matches the account's engagement trajectory.",
+      "blocking_rule": "Never blocks: it explains or qualifies; the action-level evals carry the block."
+    },
+    "action_stage_fit": {
+      "kind": "semantic",
+      "evidence_class": "methodology",
+      "labels": [],
+      "can_block": true,
+      "har97_sections": ["§15(GTM).9", "L2"],
+      "description": "The kind of action fits where the account is in the buying or expansion process (no pricing push before technical validation, no commercial follow-up during recovery).",
+      "blocking_rule": "Block when the action is a commercial or closing push at a stage that has not reached it (discovery, technical validation, recovery or an at-risk renewal)."
+    },
+    "expansion_readiness": {
+      "kind": "semantic",
+      "evidence_class": "cs_ops",
+      "labels": [],
+      "can_block": false,
+      "har97_sections": ["§15(GTM).10", "L2"],
+      "description": "Whether adoption, health, support state and need support an expansion action now; one positive signal is not enough.",
+      "blocking_rule": "Never blocks: it explains or qualifies; the action-level evals carry the block."
+    },
+    "customer_risk_sensitivity": {
+      "kind": "semantic",
+      "evidence_class": "cs_ops",
+      "labels": [],
+      "can_block": true,
+      "har97_sections": ["§15(GTM).11", "L2"],
+      "description": "The commercial action fits current customer risk: severe support issues suppress upsell, deterioration changes channel and pressure.",
+      "blocking_rule": "Block when the action pushes commercial or operational steps into an open severe incident, a compliance risk, or a hold the customer asked for."
+    },
+    "relationship_pressure": {
+      "kind": "semantic",
+      "evidence_class": "cs_ops",
+      "labels": [],
+      "can_block": false,
+      "har97_sections": ["§5.6"],
+      "description": "Commercial pressure fits the relationship and state (no urgency after a concern, no repeated nudges without news, no expansion language during recovery).",
+      "blocking_rule": "Never blocks: it explains or qualifies; the action-level evals carry the block."
+    },
+    "timing_cadence": {
+      "kind": "semantic",
+      "evidence_class": "deal_data",
+      "labels": ["TOO_EARLY", "READY", "LATE_OR_MISSED_WINDOW", "NO_ACTION_NEEDED", "INSUFFICIENT_CONTEXT"],
+      "can_block": true,
+      "har97_sections": ["§5.7"],
+      "description": "Even if the action is right, whether now is the right time given last outbound/inbound, response windows and promised deadlines.",
+      "blocking_rule": "Block when the window the customer opened has passed and the action still treats it as open (a stale day, a past slot)."
+    },
+    "next_action_quality": {
+      "kind": "semantic",
+      "evidence_class": "methodology",
+      "labels": ["GOOD", "NEEDS_REVISION", "ACT_NOW", "WAIT", "NO_ACTION"],
+      "can_block": true,
+      "har97_sections": ["§5.8"],
+      "description": "Of the possible actions, whether this is the best next move, including WAIT and NO_ACTION.",
+      "blocking_rule": "Block when the candidate withholds or replaces what the customer asked for now (ACT_NOW), or acts although the right move is NO_ACTION on a trigger that needs no customer contact; NEEDS_REVISION and a premature-but-harmless move fail without blocking."
+    },
+    "grounding": {
+      "kind": "semantic",
+      "evidence_class": "deal_data",
+      "labels": [],
+      "can_block": true,
+      "har97_sections": ["§5.9", "§15(GTM).12", "L2"],
+      "description": "Claims, rationale and action follow from the account state and the buyer's own evidence, not generic best practice.",
+      "blocking_rule": "Block when the action states a fact the evidence contradicts or does not contain (an invented approver, outranked third-party data, a quote that says the opposite); unsupported emphasis fails without blocking."
+    },
+    "commitment_consistency": {
+      "kind": "semantic",
+      "evidence_class": "methodology",
+      "labels": [],
+      "can_block": true,
+      "har97_sections": ["§5.10"],
+      "description": "The action respects what both sides already promised and does not jump ahead of or re-promise commitments (mutual action plan).",
+      "blocking_rule": "Block when the action ignores an open commitment our side owes, treats an unaccepted proposal as agreed, or re-promises a fulfilled commitment."
+    },
+    "state_change_relevance": {
+      "kind": "semantic",
+      "evidence_class": "methodology",
+      "labels": [],
+      "can_block": true,
+      "har97_sections": ["§5.11"],
+      "description": "The action responds to what actually changed, not to historically salient but stale topics.",
+      "blocking_rule": "Block when the action ignores the material change and acts on a stale or non-deal topic."
+    },
+    "channel_appropriateness": {
+      "kind": "semantic",
+      "evidence_class": "methodology",
+      "labels": [],
+      "can_block": true,
+      "har97_sections": ["§5.12"],
+      "description": "Email, meeting, internal task, CRM update or nothing external at all - whichever the situation calls for.",
+      "blocking_rule": "Block when customer-facing content goes to an internal-only channel (or internal content to the customer), or the channel replaces what the customer explicitly asked to receive."
+    },
+    "rep_style": {
+      "kind": "semantic",
+      "evidence_class": "methodology",
+      "labels": [],
+      "can_block": false,
+      "har97_sections": ["§5.13", "§24"],
+      "description": "Consistent with the rep's own communication style without changing strategic content.",
+      "blocking_rule": "Never blocks: it explains or qualifies; the action-level evals carry the block."
+    },
+    "knowledge_applicability": {
+      "kind": "semantic",
+      "evidence_class": "methodology",
+      "labels": ["APPLIES", "DOES_NOT_APPLY", "EXCEPTION_TRIGGERED"],
+      "can_block": false,
+      "har97_sections": ["§5.14", "L4"],
+      "description": "Retrieved company knowledge actually applies to this account state. Methodology, not deal_data: learned knowledge is not presented as empirically proven (§15(GTM)).",
+      "blocking_rule": "Never blocks: it explains or qualifies; the action-level evals carry the block.",
+      "label_rule": "Signature first (ADR-0011): DOES_NOT_APPLY if any signature condition fails; EXCEPTION_TRIGGERED if the signature holds and an exception holds; otherwise APPLIES. 'diff.<signal_type>' conditions match open signals."
+    },
+    "exception_awareness": {
+      "kind": "semantic",
+      "evidence_class": "methodology",
+      "labels": ["EXCEPTION_HONORED", "EXCEPTION_MISSED"],
+      "can_block": true,
+      "har97_sections": ["§5.15"],
+      "description": "The draft notices an exception in current state that overrides a learned default (delegation, departure, a reviewer's own request).",
+      "blocking_rule": "Blocks only when the missed exception rests on the customer's explicit written instruction: the draft then contradicts what the customer said."
+    },
+    "evidence_sufficiency": {
+      "kind": "semantic",
+      "evidence_class": "methodology",
+      "labels": ["SUFFICIENT", "NEEDS_MORE_CONTEXT", "UNKNOWN", "HUMAN_REVIEW"],
+      "can_block": false,
+      "har97_sections": ["§5.16"],
+      "description": "Whether there is enough trusted evidence to decide at all, or the agent should gather more context or route to a human.",
+      "blocking_rule": "Never blocks: insufficient evidence routes to more context or human review instead."
+    },
+    "trajectory": {
+      "kind": "trace",
+      "evidence_class": "product_rule",
+      "labels": [],
+      "can_block": true,
+      "har97_sections": ["§6", "L3"],
+      "description": "The whole run: correct trigger, relevant context and knowledge, correct tools and arguments, no write before approval or after a blocking eval, dry runs non-writing."
+    },
+    "human_delta": {
+      "kind": "human_delta",
+      "evidence_class": "product_rule",
+      "labels": [],
+      "can_block": true,
+      "har97_sections": ["§9"],
+      "description": "What the human changed, literally and semantically, and whether an existing eval predicted it."
+    }
+  },
+  "out_of_scope": {
+    "trigger_eval": {
+      "har97_sections": ["Trigger eval"],
+      "labels": [],
+      "contract": "trigger_evaluation.v1.json",
+      "reason": "Judges whether the agent should have run at all, before any draft exists; its outcome is a TriggerEvaluation (eligible + reason_codes), not an EvalResult on a draft. HAR-97's RUN_AGENT / WAIT / NO_ACTION / COALESCE_WITH_PENDING_EVENT / HUMAN_REVIEW have no contract vocabulary yet.",
+      "measured_by": "gold checkpoint `expected.trigger` (fixtures/gold) against TriggerEvaluation records"
+    },
+    "decision_ranking": {
+      "har97_sections": ["Decision-ranking eval"],
+      "labels": [],
+      "reason": "Compares several candidate actions for one situation; EvalResult judges one draft. Needs a ranking result contract.",
+      "measured_by": "no WP17-WP27 issue names it; closest owners are WP19 (HAR-117, the account agent chooses among actions) and WP23 (HAR-121, metrics); fixtures/evals expected_best_action is the seed"
+    },
+    "l1_context_state": {
+      "har97_sections": ["L1"],
+      "labels": [],
+      "reason": "Judges the state the agent saw (identity, stage, blockers, stale facts, conflicts), not the draft.",
+      "measured_by": "gold checkpoints and the context-layer benchmark (HAR-96 §16, bench/)"
+    },
+    "l4_knowledge_learning": {
+      "har97_sections": ["L4"],
+      "labels": [],
+      "reason": "Extraction fidelity, scope/exception quality, uplift (A/B/C runs) and negative transfer judge the learner and controlled re-runs, not one draft. L4 applicability is knowledge_applicability above.",
+      "measured_by": "WP20 (HAR-118, knowledge layer) and WP23 (HAR-121)"
+    },
+    "l5_meta_evals": {
+      "har97_sections": ["L5", "§22"],
+      "labels": [],
+      "reason": "Evaluates the evaluators against human gold; it is a metric over this catalog, not an eval type.",
+      "measured_by": "agreement over fixtures/evals: WP18 (HAR-116) judge runs, WP23 (HAR-121) eval-of-evals"
+    },
+    "transition_detection": {
+      "har97_sections": ["L1", "§2(PITCH)", "§3(PITCH)"],
+      "labels": [],
+      "contract": "state_transition.v1.json",
+      "reason": "Whether we inferred the right relationship state, marked uncertain transitions CANDIDATE or UNRESOLVED and kept contradicting evidence judges the detector over gold, not one draft.",
+      "measured_by": "HAR-126 detector: status accuracy and supporting/missing fact precision and recall against WP29 gold, plus a no-premature-promotion test"
+    }
+  },
+  "case_types": {
+    "too_soon_cta": "A call to action before the buyer is ready for it.",
+    "too_late_follow_up": "A follow-up after the window the buyer opened has passed.",
+    "correct_timing": "A well-timed action (control for the timing evals).",
+    "over_threading": "More people pulled in than the step needs.",
+    "under_threading": "Too few of the people the step or the deal needs.",
+    "champion_bypass": "A new thread that drops the active champion.",
+    "valid_champion_handoff": "A direct thread that is right because ownership was delegated or the champion left.",
+    "wrong_channel": "The right content in the wrong channel or format.",
+    "stale_commitment": "An action built on a fulfilled, past or forgotten commitment.",
+    "unresolved_blocker": "An action that talks past an open blocker.",
+    "no_action": "Waiting or doing nothing is correct (and candidates that act anyway).",
+    "duplicate_action": "Repeating what was already sent or proposed.",
+    "conflicting_account_state": "Sources disagree; the action follows standing and surfaces the conflict (ADR-0008).",
+    "insufficient_evidence": "The context does not support the claim or the action.",
+    "applicable_knowledge": "Offered knowledge that applies and should be followed.",
+    "misleading_similar_knowledge": "Knowledge that looks relevant but whose signature or exception rules it out.",
+    "explicit_exception": "An explicit exception to a learned rule that the action must honour."
+  }
+}

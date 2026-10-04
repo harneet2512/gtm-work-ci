@@ -1,0 +1,70 @@
+{
+  "id": "0d3a0000-0000-4000-8000-000000000501",
+  "account_id": "0a0c0000-0000-4000-8000-000000000001",
+  "opportunity_id": "0c0f0000-0000-4000-8000-000000000004",
+  "data_cutoff": "2026-09-22T09:10:00Z",
+  "events": [
+    {
+      "event": {
+        "event_id": "0e7e0000-0000-4000-8000-000000000001",
+        "provenance": {
+          "origin": "synthetic",
+          "provenance": "synthetic:v1",
+          "source": {
+            "source_system": "crm",
+            "source_object_id": "role-0007"
+          },
+          "source_event_key": "role:champion"
+        },
+        "occurred_at": "2026-09-22T09:10:00Z",
+        "replay_position": 1
+      },
+      "state_after": {
+        "account_id": "0a0c0000-0000-4000-8000-000000000001",
+        "opportunity_id": "0c0f0000-0000-4000-8000-000000000004",
+        "version": 6
+      },
+      "state_diff_id": "0d1f0000-0000-4000-8000-000000000300",
+      "graph_diff_ref": {
+        "id": "06ad0000-0000-4000-8000-000000000900",
+        "from_projection_seq": 40,
+        "to_projection_seq": 41
+      },
+      "is_material": true,
+      "material_dimensions": [
+        "relationship_ownership"
+      ]
+    }
+  ],
+  "held_out_event": {
+    "event_id": "0e7e0000-0000-4000-8000-000000000002",
+    "provenance": {
+      "origin": "dataset",
+      "provenance": "crmarena-pro:b2b",
+      "source": {
+        "source_system": "email",
+        "source_object_id": "<marco-soc2@acme.example>"
+      },
+      "source_event_key": "received"
+    },
+    "payload_sha256": "5f0c1d7a6b8e4a39c2d1f0e7b6a59483726150f4e3d2c1b0a9f8e7d6c5b4a392",
+    "occurred_at": "2026-09-29T15:42:00Z",
+    "replay_position": 2
+  },
+  "selection_expectations": {
+    "is_material": true,
+    "material_dimensions": [
+      "stakeholder_structure",
+      "blockers_risk",
+      "next_step_commitment"
+    ]
+  },
+  "why_selected": "Of the 1,204 account timelines scanned, this deal's sequence changes ownership first, then at the last event adds an unseen security stakeholder, replaces the budget blocker with a security review and removes the next meeting: the strongest next-action decision point in the set.",
+  "mining": {
+    "accounts_scanned": 1204,
+    "sequence_score": 0.82,
+    "method": "state-diff sequence scoring"
+  },
+  "content_sha256": "a3f1c0de5b7e49d2861f0c4be9a7d35e1c2b8f0a6d4e7391b5c8a2f0e6d19b74",
+  "created_at": "2026-09-29T14:00:00Z"
+}
