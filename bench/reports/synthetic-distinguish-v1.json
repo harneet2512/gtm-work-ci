@@ -1,0 +1,34 @@
+{
+ "auc": {
+  "text": 0.998,
+  "text_timing": 0.998,
+  "text_timing_thread": 0.9981
+ },
+ "folds": "5, grouped by account",
+ "id_tell": "every synthetic id sorts after the real maximum of its prefix (records.sequential_id), so an id rank separates real from synthetic perfectly; ids are not features above",
+ "real_emails": 5177,
+ "single_feature_tells": {
+  "has_cc": {
+   "real": 0.0,
+   "synthetic": 0.1735
+  },
+  "minute_nonzero": {
+   "real": 0.5472,
+   "synthetic": 0.574
+  },
+  "outbound": {
+   "real": 0.5664,
+   "synthetic": 0.3595
+  },
+  "subject_re": {
+   "real": 0.0979,
+   "synthetic": 0.3225
+  },
+  "weekend": {
+   "real": 0.2017,
+   "synthetic": 0.2708
+  }
+ },
+ "synthetic_emails": 3113,
+ "unit": "email"
+}

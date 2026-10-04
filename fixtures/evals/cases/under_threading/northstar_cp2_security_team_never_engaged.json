@@ -1,0 +1,192 @@
+{
+  "id": "northstar_cp2_security_team_never_engaged",
+  "case_type": "under_threading",
+  "title": "Northstar cp2: candidate asks Elena to get Grace's signature without engaging the security reviewer at all",
+  "should_pass": false,
+  "difficulty": "medium",
+  "slice_tags": {
+    "account": "northstar",
+    "origin": "world_moment",
+    "motion": "expansion",
+    "stage": "commercial_review",
+    "champion_status": "active",
+    "economic_buyer": "known",
+    "risk": "low",
+    "candidate": "flawed",
+    "expected_action": "send_email",
+    "extra": ["coverage_gap_security", "phi"]
+  },
+  "based_on": {
+    "kind": "world_moment",
+    "account": "northstar",
+    "after_event_file": "world/accounts/northstar/events/024_slack_baa_prep.json",
+    "checkpoint": 2,
+    "changed_fields": [],
+    "change": null
+  },
+  "context": {
+    "now": "2026-09-14T14:00:00Z",
+    "state": {
+      "account_id": "0a0c0000-0000-4000-8000-000000000003",
+      "account_name": "Northstar Health",
+      "opportunity_id": "0c0f0000-0000-4000-8000-000000000006",
+      "fields": {
+        "stage": "Commercial review",
+        "health": "on_track",
+        "motion": "expansion",
+        "champion": "0b0e0000-0000-4000-8000-000000000041",
+        "champion_status": "active",
+        "economic_buyer": "0b0e0000-0000-4000-8000-000000000042",
+        "relationship_risk": "low",
+        "blockers": [
+          {
+            "text": "Security sign-off by Sam Okafor's team before any clinic goes live (intake forms carry PHI; BAA required)",
+            "status": "open"
+          }
+        ],
+        "decision_process": "Grace Liu (VP Finance) approves budget on Elena Vasquez's recommendation; Sam Okafor's security team must review because intake forms carry PHI (BAA required)",
+        "next_milestone": "Security review by Sam Okafor's team, including the BAA",
+        "current_commitments": [
+          {
+            "text": "Send pricing for the four clinics by next Wednesday",
+            "status": "fulfilled",
+            "owner_person_id": "0b0e0000-0000-4000-8000-000000000001",
+            "due": "2026-09-02"
+          },
+          {
+            "text": "Set up time next week to go through the rollout plan",
+            "status": "fulfilled",
+            "owner_person_id": "0b0e0000-0000-4000-8000-000000000041"
+          },
+          {
+            "text": "Introduce Dana Kim to Sam Okafor",
+            "status": "open",
+            "owner_person_id": "0b0e0000-0000-4000-8000-000000000041"
+          },
+          {
+            "text": "Have the BAA template and HIPAA controls summary ready",
+            "status": "open",
+            "owner_person_id": "0b0e0000-0000-4000-8000-000000000001"
+          }
+        ]
+      },
+      "buying_group": [
+        {
+          "person_id": "0b0e0000-0000-4000-8000-000000000041",
+          "display_name": "Elena Vasquez",
+          "title": "Director of Patient Access",
+          "roles": ["champion"],
+          "status": "active",
+          "delegated_to_person_id": null,
+          "last_engaged_at": null,
+          "evidence_refs": []
+        },
+        {
+          "person_id": "0b0e0000-0000-4000-8000-000000000042",
+          "display_name": "Grace Liu",
+          "title": "VP Finance",
+          "roles": ["economic_buyer"],
+          "status": "unknown",
+          "delegated_to_person_id": null,
+          "last_engaged_at": null,
+          "evidence_refs": []
+        }
+      ],
+      "coverage_gaps": ["security"]
+    },
+    "recent_changes": {
+      "summary": "Rollout plan agreed; security sign-off by Sam Okafor's team (PHI, BAA) is required; Elena will introduce Sam.",
+      "material_diff_fields": ["stage", "blockers", "current_commitments", "next_milestone", "product_use_case"],
+      "signals": ["meeting_accepted", "security_blocker_appeared", "stage_advanced"]
+    },
+    "trigger": {
+      "activity_id": "0ac70000-0000-4000-8000-0000000c0024",
+      "activity_type": "SlackMessage",
+      "occurred_at": "2026-09-11T16:30:00Z",
+      "actor_person_id": "0b0e0000-0000-4000-8000-000000000001",
+      "event_file": "world/accounts/northstar/events/024_slack_baa_prep.json",
+      "synthetic": false,
+      "text": "Northstar: Sam Okafor's security team has to sign off before any clinic goes live (PHI on intake forms). I'll prep our BAA template and HIPAA controls summary."
+    },
+    "supporting_activities": [],
+    "commitments": [
+      {
+        "text": "Introduce Dana Kim to Sam Okafor",
+        "owner_person_id": "0b0e0000-0000-4000-8000-000000000041",
+        "due_at": null,
+        "status": "open"
+      },
+      {
+        "text": "Have the BAA template and HIPAA controls summary ready",
+        "owner_person_id": "0b0e0000-0000-4000-8000-000000000001",
+        "due_at": null,
+        "status": "open"
+      }
+    ],
+    "timeline_facts": {
+      "last_inbound_at": "2026-09-03T11:20:00Z",
+      "last_inbound_from_person_id": "0b0e0000-0000-4000-8000-000000000041",
+      "last_outbound_at": "2026-09-02T16:00:00Z",
+      "stated_timing": "Open enrollment Nov 2 is the hard deadline"
+    },
+    "offered_knowledge": []
+  },
+  "candidate_action": {
+    "proposed_action_type": "send_email",
+    "recipients": [{"person_id": "0b0e0000-0000-4000-8000-000000000041", "role": "to", "why": "Champion"}],
+    "finished_artifact": {
+      "channel": "email",
+      "subject": "Re: Rolling Relay out to all clinics",
+      "body": "Hi Elena,\n\nThanks for a productive rollout session. To make Riverside's go-live, could we get the order form in front of Grace for signature this week?\n\nBest,\nDana"
+    },
+    "crm_next_step_intent": {"next_step": "Grace signs the order form", "due_at": null, "stage_change": null},
+    "reason": "Rollout plan agreed; deadline approaching.",
+    "evidence_refs": [
+      {
+        "activity_id": "0ac70000-0000-4000-8000-0000000c0023",
+        "quote": "Riverside first, then Northgate and Cedar Hills two weeks apart.",
+        "speaker_person_id": "0b0e0000-0000-4000-8000-000000000041",
+        "occurred_at": "2026-09-11T15:46:00Z"
+      }
+    ],
+    "knowledge_refs_used": [],
+    "wait_until": null
+  },
+  "expected": [
+    {
+      "eval_type": "stakeholder_coverage",
+      "verdict": "fail",
+      "label": "UNDER_THREADED",
+      "diagnostics": ["under_threaded", "security_or_procurement_step_missing"],
+      "blocking": true,
+      "rationale": "Security (Sam Okafor's team) must sign off before any clinic goes live and is not engaged; coverage gap = security.",
+      "evidence_class": "deal_data",
+      "state_refs": ["coverage_gaps", "blockers"]
+    },
+    {
+      "eval_type": "decision_process",
+      "verdict": "fail",
+      "label": null,
+      "diagnostics": ["security_or_procurement_step_missing"],
+      "blocking": false,
+      "rationale": "Skips the BAA/security review the customer named.",
+      "evidence_class": "methodology"
+    },
+    {
+      "eval_type": "buyer_readiness",
+      "verdict": "fail",
+      "label": "TOO_EARLY",
+      "diagnostics": ["too_early"],
+      "blocking": true,
+      "rationale": "Asks for signature before Sam's PHI security review, an open gate, has even started.",
+      "evidence_class": "methodology"
+    }
+  ],
+  "expected_best_action": {
+    "action": "send_email",
+    "why": "Send Elena the BAA template and HIPAA controls summary and ask for the introduction to Sam.",
+    "recipients": [{"person_id": "0b0e0000-0000-4000-8000-000000000041", "role": "to"}],
+    "channel": "email"
+  },
+  "notes": "Expected best action matches what Dana actually did on 09-15 (025)."
+}

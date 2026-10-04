@@ -1,0 +1,51 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://ghost.local/contracts/source_event.v1.json",
+  "title": "SourceEvent",
+  "description": "Raw connector envelope accepted by POST /ingest. The payload stays in the source system's native shape; core normalizes it into an Activity. Connectors never write account state.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["source_system", "source_object_id", "source_event_key", "payload"],
+  "properties": {
+    "source_system": { "$ref": "common.v1.json#/$defs/sourceSystem" },
+    "source_object_id": {
+      "description": "Stable id of the object in the source system (message id, call id, CRM record id).",
+      "type": "string", "minLength": 1, "maxLength": 512
+    },
+    "source_event_key": {
+      "description": "Distinguishes events about the same object (e.g. 'created', 'stage:Negotiation', 'transcript_ready'). Together with source_system and source_object_id it forms the idempotency key.",
+      "type": "string", "minLength": 1, "maxLength": 256
+    },
+    "occurred_at": {
+      "description": "When the event happened in the world, if the connector knows. Normalization may derive it from the payload instead.",
+      "$ref": "common.v1.json#/$defs/timestamp"
+    },
+    "connector": { "type": "string", "maxLength": 128 },
+    "connector_version": { "type": "string", "maxLength": 64 },
+    "origin": { "$ref": "common.v1.json#/$defs/recordOrigin" },
+    "provenance": { "$ref": "common.v1.json#/$defs/recordProvenance" },
+    "payload": { "type": "object" }
+  },
+  "dependentRequired": { "provenance": ["origin"] },
+  "allOf": [
+    {
+      "description": "dataset and synthetic events name their source; live events have none.",
+      "if": { "required": ["origin"], "properties": { "origin": { "enum": ["dataset", "synthetic"] } } },
+      "then": { "required": ["provenance"] },
+      "else": { "not": { "required": ["provenance"] } }
+    },
+    {
+      "description": "A synthetic event carries a versioned synthetic layer (WP32: synthetic:v1).",
+      "if": { "required": ["origin"], "properties": { "origin": { "const": "synthetic" } } },
+      "then": { "properties": { "provenance": { "$ref": "#/$defs/syntheticProvenance" } } }
+    },
+    {
+      "description": "A synthetic provenance is only ever carried by a synthetic event.",
+      "if": { "required": ["provenance"], "properties": { "provenance": { "pattern": "^synthetic:" } } },
+      "then": { "properties": { "origin": { "const": "synthetic" } } }
+    }
+  ],
+  "$defs": {
+    "syntheticProvenance": { "type": "string", "pattern": "^synthetic:v[1-9][0-9]*$" }
+  }
+}

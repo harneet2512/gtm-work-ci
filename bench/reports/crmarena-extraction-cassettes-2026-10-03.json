@@ -1,0 +1,12 @@
+{
+ "what": "Cassettes recorded by the worker in GHOST_LLM_MODE=record during the CRMArena-Pro extraction run (HAR-104 / HAR-130)",
+ "not_committed_because": "99 MB, over the 20 MB limit; they hold the full prompt (CRMArena email text, CC BY-NC 4.0, third-party synthetic data). They stay under the git-ignored data/crmarena_extraction/cassettes/",
+ "files": 5144,
+ "total_bytes": 99418890,
+ "aggregate_sha256": "3fac90027ffd2b51cf77bd7cfdab62874dd11262dd92bb7ec592b28e12f6032a",
+ "aggregate_definition": "sha256 over sorted lines '<file name>:<sha256 of file bytes>\\n'",
+ "model": "openrouter/deepseek/deepseek-v4-flash",
+ "extractor_version": "extract-v4",
+ "secrets_scan": "grep for 'sk-or' and 'Bearer': 0 files",
+ "attribution": "Salesforce AI Research, CRMArena-Pro (https://github.com/SalesforceAIResearch/CRMArena), CC BY-NC 4.0"
+}

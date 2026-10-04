@@ -1,0 +1,173 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://ghost.local/contracts/metric_registry.v1.json",
+  "title": "MetricRegistry",
+  "description": "Metric registry (HAR-97 CANONICAL EVAL STRATEGY section 12, HAR-140 / WP36): METRICS aggregate evals (an eval is judged in eval_registry.v1.json). Holds the metrics migrated from the legacy combined registry (ids unchanged), canonical headline-only and frontier V5/V6 entries (kind canonical), the 11-item headline set (section 9) and, as a separate class, the operational diagnostics M1-M5 (section 8), which can never mutate GTM company knowledge. Status: measured / computable / blocked. The instance is contracts/metrics/metric_registry.json; completeness against HAR-97 is tested against contracts/metrics/har97_acknowledged_lines.txt.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["registry_version", "description", "source", "layer_order", "headline_set", "operational_diagnostics", "metrics"],
+  "properties": {
+    "registry_version": {
+      "type": "integer",
+      "minimum": 1
+    },
+    "description": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 2000
+    },
+    "source": {
+      "description": "The HAR-97 version the registry and the phrase snapshot were built from.",
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["issue", "updated_at", "sha256", "acknowledged_lines", "acknowledged_lines_sha256"],
+      "properties": {
+        "issue": {"const": "HAR-97"},
+        "updated_at": {"$ref": "common.v1.json#/$defs/timestamp"},
+        "sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+        "acknowledged_lines": {"description": "Snapshot of every HAR-97 line marked acknowledged, with its owner.", "$ref": "#/$defs/repoPath"},
+        "acknowledged_lines_sha256": {"description": "sha256 of the snapshot file bytes (tested).", "type": "string", "pattern": "^[0-9a-f]{64}$"},
+        "canonical": {"description": "The canonical-strategy version of HAR-97 the headline set, operational diagnostics, V5 and V6 come from.", "type": "object", "additionalProperties": false, "required": ["issue", "section", "fetched_on"], "properties": {"issue": {"const": "HAR-97"}, "section": {"type": "string", "minLength": 1}, "fetched_on": {"type": "string", "format": "date"}}}
+      }
+    },
+    "layer_order": {
+      "description": "Reporting order of the layers, from process metrics to final state and outcome metrics.",
+      "type": "array",
+      "uniqueItems": true,
+      "minItems": 1,
+      "items": {
+        "$ref": "#/$defs/layer"
+      }
+    },
+    "metrics": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "$ref": "#/$defs/metric"
+      }
+    },
+    "headline_set": {
+      "description": "HAR-97 section 9: the 11 headline product metrics, in rank order (the count is tested). replaces names the old frontier-tier P1-P7 item the entry succeeds (null for the new ones).",
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "$ref": "#/$defs/headline"
+      }
+    },
+    "operational_diagnostics": {
+      "description": "HAR-97 section 8 M1-M5 (the count is tested): engineering measurements that do not teach GTM policy and must never mutate company knowledge.",
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "$ref": "#/$defs/operational"
+      }
+    }
+  },
+  "$defs": {
+    "repoPath": {
+      "type": "string",
+      "pattern": "^(bench|contracts|docs|fixtures)/[A-Za-z0-9_./-]+$"
+    },
+    "layer": {
+      "enum": ["trigger", "state_context_L1", "eval_routing", "deterministic_evals", "semantic_evals", "decision_L2", "decision_ranking", "abstention", "trajectory_L3", "knowledge_L4", "meta_L5", "benchmark_cases", "eval_quality", "human_feedback", "online_product", "customer_reaction", "business_outcome", "slices", "integration_gate", "edit_propagation"]
+    },
+    "kind": {
+      "description": "named_metric: in one of HAR-97's own 'Measure' lists. eval_check: HAR-97 states it as a check or question and we track it as a pass rate. supervision_signal: a §8 human outcome or a §12 customer reaction / business outcome. benchmark_case_type: a §20 required offline-benchmark situation (measured as gold-case coverage). derived: not a HAR-97 metric (premature promotion from the §11(transition) acceptance list; the HAR-129 integration gates). canonical: a headline-only or frontier (V5, V6) metric from the CANONICAL EVAL STRATEGY (HAR-140), not an acknowledged HAR-97 line.",
+      "enum": ["named_metric", "eval_check", "supervision_signal", "benchmark_case_type", "derived", "canonical"]
+    },
+    "ref": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["source", "section", "quote"],
+      "properties": {
+        "source": {"enum": ["HAR-97", "HAR-129"]},
+        "section": {"type": "string", "minLength": 1, "maxLength": 80},
+        "quote": {"description": "Verbatim phrase from the source issue.", "type": "string", "minLength": 1, "maxLength": 300}
+      }
+    },
+    "value": {
+      "anyOf": [{"type": "number"}, {"type": "boolean"}, {"type": "object", "minProperties": 1, "additionalProperties": {"type": "number"}}]
+    },
+    "currentValue": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["value", "display", "data_basis", "source", "measured_on"],
+      "properties": {
+        "value": {"$ref": "#/$defs/value"},
+        "display": {"type": "string", "minLength": 1, "maxLength": 200},
+        "data_basis": {"description": "What the value was measured on. legacy_fixture_world = the invented Acme/Beta/Northstar fixture accounts; live_model_on_legacy_situations = a live model run on situations built from them; crmarena_b2b (+synthetic_v1) = CRMArena-Pro B2B deals (HAR-130) and their labelled synthetic layer (HAR-131); spec_derived_transition_gold = hand-labelled synthetic transition scenarios written from the HAR-97 pitch (fixtures/gold/transitions, HAR-126), not real accounts.", "enum": ["legacy_fixture_world", "crmarena_b2b", "crmarena_b2b+synthetic_v1", "live_model_on_legacy_situations", "spec_derived_transition_gold"]},
+        "n": {"description": "Sample size behind the value.", "type": "integer", "minimum": 1},
+        "source": {"description": "Repo-relative path of the artifact the value is read from.", "$ref": "#/$defs/repoPath"},
+        "source_detail": {"type": "string", "maxLength": 300},
+        "measured_on": {"type": "string", "format": "date"},
+        "caveat": {"type": "string", "maxLength": 400}
+      }
+    },
+    "metric": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id", "name", "kind", "layer", "definition", "formula", "unit", "inputs", "har97_ref", "status", "blocker", "current_value", "owner_wp", "evals"],
+      "properties": {
+        "id": {"type": "string", "pattern": "^[a-z0-9_]+(\\.[a-z0-9_]+)+$"},
+        "name": {"type": "string", "minLength": 1, "maxLength": 120},
+        "kind": {"$ref": "#/$defs/kind"},
+        "repoPath": {"type": "string", "pattern": "^(bench|contracts|docs|fixtures)/[A-Za-z0-9_./-]+$"},
+        "layer": {"$ref": "#/$defs/layer"},
+        "parent": {"description": "Id of the entry this sub-entry refines (a sub-check or criterion of an eval).", "type": "string", "pattern": "^[a-z0-9_]+(\\.[a-z0-9_]+)+$"},
+        "definition": {"type": "string", "minLength": 1, "maxLength": 600},
+        "formula": {"type": "object", "additionalProperties": false, "properties": {"numerator": {"type": "string", "minLength": 1, "maxLength": 300}, "denominator": {"type": "string", "minLength": 1, "maxLength": 300}, "procedure": {"type": "string", "minLength": 1, "maxLength": 500}}, "anyOf": [{"required": ["numerator", "denominator"]}, {"required": ["procedure"]}]},
+        "unit": {"enum": ["ratio", "precision_recall", "count", "boolean", "distribution", "delta", "dimension"]},
+        "inputs": {"type": "object", "additionalProperties": false, "required": ["data", "gold"], "properties": {"data": {"type": "array", "minItems": 1, "items": {"type": "string", "minLength": 1}}, "gold": {"type": "array", "items": {"type": "string", "minLength": 1}}}},
+        "har97_ref": {"description": "Primary reference plus further verbatim phrases (also) the metric covers.", "type": "object", "additionalProperties": false, "required": ["source", "section", "quote"], "properties": {"source": {"$ref": "#/$defs/ref/properties/source"}, "section": {"$ref": "#/$defs/ref/properties/section"}, "quote": {"$ref": "#/$defs/ref/properties/quote"}, "also": {"type": "array", "items": {"$ref": "#/$defs/ref"}}}},
+        "status": {"enum": ["measured", "computable", "blocked"]},
+        "blocker": {"type": ["string", "null"], "minLength": 1, "maxLength": 500},
+        "current_value": {"anyOf": [{"$ref": "#/$defs/currentValue"}, {"type": "null"}]},
+        "owner_wp": {"type": "string", "pattern": "^HAR-[0-9]+ \\(WP[0-9]+\\)$"},
+        "tracked_by": {"description": "Linear issues that compute or unblock a computable/blocked entry.", "type": "array", "minItems": 1, "uniqueItems": true, "items": {"type": "string", "pattern": "^HAR-[0-9]+$"}},
+        "harness_evidence": {"description": "Extra evidence the harness attaches (lookup table in bench/metrics/report.py).", "type": "array", "minItems": 1, "uniqueItems": true, "items": {"enum": ["gold_case_summary", "runs_at_tool_cap"]}},
+        "eval_types": {"description": "Eval catalog types whose gold judgments feed this metric.", "type": "array", "uniqueItems": true, "items": {"$ref": "eval_result.v1.json#/$defs/evalType"}},
+        "notes": {"type": "string", "maxLength": 600},
+        "evals": {"description": "Canonical evals this metric aggregates (eval_registry.json); empty where no canonical eval applies yet.", "type": "array", "uniqueItems": true, "items": {"$ref": "#/$defs/evalId"}}
+      },
+      "allOf": [{"if": {"properties": {"status": {"const": "measured"}}}, "then": {"properties": {"current_value": {"type": "object"}, "blocker": {"type": "null"}}}}, {"if": {"properties": {"status": {"const": "blocked"}}}, "then": {"required": ["tracked_by"], "properties": {"current_value": {"type": "null"}, "blocker": {"type": "string"}}}}, {"if": {"properties": {"status": {"const": "computable"}}}, "then": {"required": ["tracked_by"], "properties": {"current_value": {"type": "null"}, "blocker": {"type": "null"}}}}]
+    },
+    "evalId": {
+      "description": "An id in contracts/evals/eval_registry.json.",
+      "type": "string",
+      "pattern": "^(E(?:[1-9]|1[0-9]|2[0-2])(?:\\.[0-9]+)?|M[1-5])$"
+    },
+    "headline": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["rank", "id", "name", "source", "metric_ids", "evals", "replaces"],
+      "properties": {
+        "rank": {"type": "integer", "minimum": 1, "maximum": 11},
+        "id": {"type": "string", "pattern": "^headline\\.[a-z0-9_]+$"},
+        "name": {"type": "string", "minLength": 1, "maxLength": 120},
+        "source": {"type": "string", "pattern": "^HAR-97 Canonical §9 item [0-9]+$"},
+        "metric_ids": {"type": "array", "minItems": 1, "uniqueItems": true, "items": {"type": "string", "pattern": "^[a-z0-9_]+(\\.[a-z0-9_]+)+$"}},
+        "evals": {"type": "array", "uniqueItems": true, "items": {"$ref": "#/$defs/evalId"}},
+        "replaces": {"enum": ["P1", "P2", "P3", "P4", "P5", "P6", "P7", null]}
+      }
+    },
+    "operational": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id", "name", "class", "eval", "section", "measures", "consumers", "knowledge_mutation_allowed", "status", "blocker", "tracked_by", "owner_wp"],
+      "properties": {
+        "id": {"type": "string", "pattern": "^ops\\.m[1-5]_[a-z_]+$"},
+        "name": {"type": "string", "minLength": 1, "maxLength": 120},
+        "class": {"const": "operational"},
+        "eval": {"type": "string", "pattern": "^M[1-5]$"},
+        "section": {"type": "string", "pattern": "^Canonical §8 M[1-5]$"},
+        "measures": {"type": "array", "minItems": 1, "items": {"type": "string", "minLength": 1}},
+        "consumers": {"description": "Where the measurement may flow. Knowledge, learning, eval criteria and decision guidance are not in the enum on purpose.", "type": "array", "uniqueItems": true, "items": {"enum": ["report", "dashboard", "budget_alert"]}},
+        "knowledge_mutation_allowed": {"const": false},
+        "status": {"enum": ["measured", "computable", "blocked"]},
+        "blocker": {"type": ["string", "null"]},
+        "tracked_by": {"type": "array", "minItems": 1, "items": {"type": "string", "pattern": "^HAR-[0-9]+$"}},
+        "owner_wp": {"type": "string", "pattern": "^HAR-[0-9]+ \\(WP[0-9]+\\)$"}
+      }
+    }
+  }
+}

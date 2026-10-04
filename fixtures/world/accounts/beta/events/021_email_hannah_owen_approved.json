@@ -1,0 +1,22 @@
+{
+  "source_system": "email",
+  "source_object_id": "<BETA-hl-2026-09-08@beta.io>",
+  "source_event_key": "received",
+  "occurred_at": "2026-09-08T09:40:00Z",
+  "connector": "gmail",
+  "connector_version": "0.1.0",
+  "payload": {
+    "kind": "email",
+    "direction": "inbound",
+    "message_id": "<BETA-hl-2026-09-08@beta.io>",
+    "thread_id": "thr-beta-support-rollout",
+    "in_reply_to": "<ghost-dana-2026-09-01@ghostvendor.com>",
+    "from": {"email": "hannah.lee@beta.io", "name": "Hannah Lee"},
+    "to": [{"email": "dana@ghostvendor.com", "name": "Dana Kim"}],
+    "cc": [],
+    "date": "2026-09-08T09:40:00Z",
+    "subject": "Re: Relay for the Beta support org",
+    "body_text": "Hi Dana - Owen approved the business case this morning, so the budget is there for the support rollout. Next step is making sure our platform team is comfortable with the integration; I'll loop in the right person this week.\nHannah",
+    "crm_opportunity_ref": "opp:BE-7-EXP"
+  }
+}

@@ -1,0 +1,198 @@
+{
+  "id": "acme_world_order_form_early_cc_tom",
+  "case_type": "over_threading",
+  "title": "Acme 09-11: the revised order form goes out early to Priya with Tom cc'd for the Rotterdam cost centre - a defensible cc",
+  "should_pass": true,
+  "difficulty": "hard",
+  "slice_tags": {
+    "account": "acme",
+    "origin": "world_moment",
+    "motion": "expansion",
+    "stage": "commercial_review",
+    "champion_status": "active",
+    "economic_buyer": "unknown",
+    "risk": "low",
+    "candidate": "good",
+    "expected_action": "send_email",
+    "extra": ["near_boundary"]
+  },
+  "based_on": {
+    "kind": "world_moment",
+    "account": "acme",
+    "after_event_file": "world/accounts/acme/events/027_crm_note_commercial.json",
+    "checkpoint": 2,
+    "changed_fields": ["current_commitments"],
+    "change": null
+  },
+  "context": {
+    "now": "2026-09-11T15:00:00Z",
+    "state": {
+      "account_id": "0a0c0000-0000-4000-8000-000000000001",
+      "account_name": "Acme Corp",
+      "opportunity_id": "0c0f0000-0000-4000-8000-000000000004",
+      "fields": {
+        "stage": "Commercial review",
+        "health": "on_track",
+        "motion": "expansion",
+        "champion": "0b0e0000-0000-4000-8000-000000000017",
+        "champion_status": "active",
+        "economic_buyer": "unknown",
+        "relationship_risk": "low",
+        "blockers": [{"text": "EU budget line needs finance approval in the Q3 planning cycle", "status": "resolved"}],
+        "commercial_issue": "Order form on the EU entity Acme Logistics B.V. with the Rotterdam site invoiced separately",
+        "current_commitments": [
+          {
+            "text": "Send proposal for 120 seats by Friday",
+            "status": "fulfilled",
+            "owner_person_id": "0b0e0000-0000-4000-8000-000000000001",
+            "due": "2026-08-28"
+          },
+          {
+            "text": "Send revised order form on the EU entity with Rotterdam invoiced separately by Monday the 14th",
+            "status": "open",
+            "owner_person_id": "0b0e0000-0000-4000-8000-000000000001",
+            "due": "2026-09-14"
+          }
+        ]
+      },
+      "buying_group": [
+        {
+          "person_id": "0b0e0000-0000-4000-8000-000000000017",
+          "display_name": "Priya Shah",
+          "title": "Director of Operations",
+          "roles": ["champion"],
+          "status": "active",
+          "delegated_to_person_id": null,
+          "last_engaged_at": null,
+          "evidence_refs": []
+        },
+        {
+          "person_id": "0b0e0000-0000-4000-8000-000000000019",
+          "display_name": "Tom Becker",
+          "title": "EU Operations Manager",
+          "roles": ["user"],
+          "status": "active",
+          "delegated_to_person_id": null,
+          "last_engaged_at": null,
+          "evidence_refs": []
+        }
+      ],
+      "coverage_gaps": ["economic_buyer"]
+    },
+    "recent_changes": {
+      "summary": "Commercial walkthrough done; the rep owes the revised order form (EU entity, Rotterdam invoiced separately) by Monday the 14th.",
+      "material_diff_fields": [],
+      "signals": []
+    },
+    "trigger": {
+      "activity_id": "0ac70000-0000-4000-8000-0000000a0027",
+      "activity_type": "CRMNoteAdded",
+      "occurred_at": "2026-09-10T09:05:00Z",
+      "actor_person_id": "0b0e0000-0000-4000-8000-000000000001",
+      "event_file": "world/accounts/acme/events/027_crm_note_commercial.json",
+      "synthetic": false,
+      "text": "Commercial walkthrough 9/9: finance approved the EU budget. Order form to be issued on Acme Logistics B.V. with Rotterdam invoiced separately. Keeping the stage at Commercial review until the signature path is confirmed."
+    },
+    "supporting_activities": [
+      {
+        "activity_id": "0ac70000-0000-4000-8000-0000000a0025",
+        "activity_type": "TranscriptReady",
+        "occurred_at": "2026-09-09T14:32:00Z",
+        "actor_person_id": "0b0e0000-0000-4000-8000-000000000017",
+        "event_file": "world/accounts/acme/events/025_call_commercial_transcript.json",
+        "synthetic": false,
+        "text": "speaker_02: We'd want the Rotterdam site invoiced separately, because it runs on its own cost centre."
+      }
+    ],
+    "commitments": [
+      {
+        "text": "Send revised order form on the EU entity with Rotterdam invoiced separately by Monday the 14th",
+        "owner_person_id": "0b0e0000-0000-4000-8000-000000000001",
+        "due_at": "2026-09-14T17:00:00Z",
+        "status": "open"
+      }
+    ],
+    "timeline_facts": {
+      "last_inbound_at": "2026-09-03T10:15:00Z",
+      "last_inbound_from_person_id": "0b0e0000-0000-4000-8000-000000000017",
+      "last_outbound_at": "2026-08-28T15:00:00Z",
+      "stated_timing": "Revised order form by Monday the 14th"
+    },
+    "offered_knowledge": []
+  },
+  "candidate_action": {
+    "proposed_action_type": "send_email",
+    "recipients": [
+      {"person_id": "0b0e0000-0000-4000-8000-000000000017", "role": "to", "why": "Champion"},
+      {"person_id": "0b0e0000-0000-4000-8000-000000000019", "role": "cc", "why": "Rotterdam is his site's cost centre"}
+    ],
+    "finished_artifact": {
+      "channel": "email",
+      "subject": "Acme EU order form (revised)",
+      "body": "Hi Priya,\n\nAttached is the revised order form on Acme Logistics B.V., with the Rotterdam site invoiced separately. Tom, copying you since Rotterdam's invoicing runs on its own cost centre.\n\nBest,\nDana",
+      "attachments": ["Acme_EU_Order_Form_v2.pdf"]
+    },
+    "crm_next_step_intent": {"next_step": "Priya routes the order form", "due_at": null, "stage_change": null},
+    "reason": "Fulfil the order-form commitment early.",
+    "evidence_refs": [
+      {
+        "activity_id": "0ac70000-0000-4000-8000-0000000a0025",
+        "quote": "We'd want the Rotterdam site invoiced separately, because it runs on its own cost centre.",
+        "speaker_person_id": "0b0e0000-0000-4000-8000-000000000017",
+        "occurred_at": "2026-09-09T14:32:00Z"
+      }
+    ],
+    "knowledge_refs_used": [],
+    "wait_until": null
+  },
+  "expected": [
+    {
+      "eval_type": "stakeholder_coverage",
+      "verdict": "pass",
+      "label": "RIGHT_SIZED",
+      "diagnostics": [],
+      "blocking": false,
+      "rationale": "Tom runs EU operations and Rotterdam's separate invoicing is his cost centre; a cc keeps him informed without making him a signer.",
+      "evidence_class": "deal_data",
+      "debatable": true,
+      "debate_note": "Tom is a user, not a signer; strict reviewers would send commercial paperwork to the champion only."
+    },
+    {
+      "eval_type": "commitment_consistency",
+      "verdict": "pass",
+      "label": null,
+      "diagnostics": [],
+      "blocking": false,
+      "rationale": "Fulfils the open commitment before its Monday due date.",
+      "evidence_class": "methodology"
+    },
+    {
+      "eval_type": "champion_continuity",
+      "verdict": "pass",
+      "label": "CHAMPION_INCLUDED",
+      "diagnostics": [],
+      "blocking": false,
+      "rationale": "Priya is the addressee.",
+      "evidence_class": "methodology"
+    },
+    {
+      "eval_type": "timing_cadence",
+      "verdict": "pass",
+      "label": "READY",
+      "diagnostics": [],
+      "blocking": false,
+      "rationale": "Early on a rep-owned deliverable is fine.",
+      "evidence_class": "deal_data"
+    }
+  ],
+  "expected_best_action": {
+    "action": "send_email",
+    "why": "Exactly this (Tom's cc is optional).",
+    "recipients": [
+      {"person_id": "0b0e0000-0000-4000-8000-000000000017", "role": "to"},
+      {"person_id": "0b0e0000-0000-4000-8000-000000000019", "role": "cc"}
+    ],
+    "channel": "email"
+  },
+  "notes": "Hard should-pass: the real 09-14 email made the same cc."
+}

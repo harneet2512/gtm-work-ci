@@ -1,0 +1,48 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://ghost.local/contracts/har129_artifact.v1.json",
+  "title": "Har129Artifact",
+  "description": "One of the eleven JSON evidence files HAR-129 section H requires inside artifacts/har129/<run_id>/. Each file is an envelope: it names the run, records the status observed live, lists the requirement ids it evidences and the evidence references, and carries the payload under data. A file that no integrated execution filled is status not_run with empty evidence; it must never carry fabricated evidence.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "run_id", "artifact", "generated_at", "status",
+    "requirement_ids", "evidence", "data"
+  ],
+  "properties": {
+    "run_id": { "type": "string", "pattern": "^har129-[A-Za-z0-9._-]+$" },
+    "artifact": {
+      "description": "The file name; manifest.json and demo-report.md are not artifacts of this shape.",
+      "enum": [
+        "environment.json",
+        "episode_timeline.json",
+        "state_snapshots.json",
+        "graph_diffs.json",
+        "decision_episodes.json",
+        "eval_bundles.json",
+        "human_judgments.json",
+        "customer_reactions.json",
+        "knowledge_history.json",
+        "abc_report.json",
+        "e2e-results.json"
+      ]
+    },
+    "generated_at": { "$ref": "common.v1.json#/$defs/timestamp" },
+    "status": { "$ref": "har129_proof.v1.json#/$defs/status" },
+    "requirement_ids": {
+      "description": "HAR-129 requirement ids this file will evidence once the run is real.",
+      "type": "array",
+      "items": { "$ref": "har129_proof.v1.json#/$defs/requirementId" },
+      "uniqueItems": true
+    },
+    "evidence": {
+      "description": "Machine-verifiable evidence references (ids, paths, digests). Empty until a real run fills them.",
+      "type": "array",
+      "items": { "type": "string", "minLength": 1 }
+    },
+    "data": {
+      "description": "The payload for this file (records, snapshots, timelines). Empty object while no integrated run has filled it.",
+      "type": "object"
+    }
+  }
+}

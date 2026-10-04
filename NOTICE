@@ -1,0 +1,30 @@
+gtm-work — data provenance notice
+
+All fixtures under fixtures/ are hand-authored synthetic data, except fixtures/crmarena_sample/ and
+fixtures/evals/crmarena/. Company and person names in the hand-authored fixtures (Acme, Beta,
+Northstar, Priya, Marco, ...) are fictional.
+
+fixtures/crmarena_sample/ is a small excerpt (three accounts) of the CRMArena-Pro B2B Salesforce org
+by Salesforce AI Research: third-party synthetic data, licensed CC BY-NC 4.0 (NON-COMMERCIAL USE
+ONLY). Attribution and changes are listed in fixtures/crmarena_sample/README.md. That licence covers
+those files only; they must not be shipped in a commercial product.
+
+fixtures/evals/crmarena/ holds the CRMArena eval gold (HAR-114 gold v2): 55 eval cases that quote
+verbatim excerpts of records from the same CRMArena-Pro org (emails, tasks, contacts, quotes and
+contracts of real current deals). The excerpts are third-party synthetic data by Salesforce AI Research,
+licensed CC BY-NC 4.0 (NON-COMMERCIAL USE ONLY). The authored candidate actions, state notes and labels
+in those files are ours; the quoted records are not. Attribution and changes: fixtures/evals/crmarena/
+README.md. bench/labels/crmarena/ holds the labelling passes and label metadata for those cases (judgments
+and our own rationales; no record text beyond short phrases) and carries the same constraint wherever it
+quotes case text. They are NOT for use in, or shipping with, a commercial product.
+
+The repository has no packaging or export step today (the worker's pyproject packages `ghost_worker`
+only, not fixtures/ or bench/); any future release, container image or export must exclude
+fixtures/crmarena_sample/, fixtures/evals/crmarena/ and bench/labels/crmarena/.
+
+No other content from the following datasets is included in this repository or its fixtures:
+- gong-io-research/call-playbook (Gong License: confidential, non-commercial, no redistribution)
+- Salesforce/CRMArenaPro (CC BY-NC 4.0) — apart from the CRMArena fixtures above
+- AST-FRI/EnterpriseBench (MIT)
+- DeepMostInnovations/saas-sales-conversations (Apache 2.0)
+Local copies, if present, live in the git-ignored data/ directory for reference only.
