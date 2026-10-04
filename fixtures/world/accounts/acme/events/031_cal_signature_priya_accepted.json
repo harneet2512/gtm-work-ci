@@ -1,0 +1,24 @@
+{
+  "source_system": "calendar",
+  "source_object_id": "gcal:acme-signature-0924",
+  "source_event_key": "response:priya.shah@acme.com:accepted",
+  "occurred_at": "2026-09-17T18:10:00Z",
+  "connector": "google_calendar",
+  "connector_version": "0.1.0",
+  "payload": {
+    "kind": "calendar_event",
+    "event_id": "gcal:acme-signature-0924",
+    "title": "Acme EU rollout - signature planning",
+    "start": "2026-09-24T14:00:00Z",
+    "end": "2026-09-24T14:45:00Z",
+    "status": "scheduled",
+    "organizer": {"email": "dana@ghostvendor.com", "name": "Dana Kim"},
+    "attendees": [
+      {"email": "dana@ghostvendor.com", "name": "Dana Kim", "response": "accepted"},
+      {"email": "leo@ghostvendor.com", "name": "Leo Park", "response": "accepted"},
+      {"email": "priya.shah@acme.com", "name": "Priya Shah", "response": "accepted"},
+      {"email": "tom.becker@acme.com", "name": "Tom Becker", "response": "needs_action"}
+    ],
+    "crm_opportunity_ref": "opp:AC-4-EXP"
+  }
+}

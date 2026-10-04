@@ -1,0 +1,68 @@
+{
+  "eval_type": "channel_appropriateness",
+  "version": 1,
+  "title": "Channel appropriateness",
+  "har97_refs": [
+    {
+      "line": 1290,
+      "text": "## 5.12 Channel appropriateness"
+    }
+  ],
+  "l2_dimension": null,
+  "questions": [
+    {
+      "section": "§5.12",
+      "text": "Should this action happen over email, Slack/internal workflow, CRM update, meeting, or not externally at all?"
+    }
+  ],
+  "inputs": [
+    "who the content is for (customer or internal)",
+    "what the customer asked to receive and how",
+    "the candidate's channel"
+  ],
+  "criteria": [
+    {
+      "id": "audience_channel",
+      "kind": "check",
+      "text": "customer-facing content uses a customer channel; internal content stays internal",
+      "guide": "Internal-only channels (our Slack, CRM notes) never carry customer-facing content and vice versa.",
+      "har97": null,
+      "output": "finding",
+      "before": null,
+      "after": null
+    },
+    {
+      "id": "form_requested",
+      "kind": "check",
+      "text": "the channel delivers what the customer asked for in the form they asked",
+      "guide": "A call does not replace documents the customer asked to read; a note does not replace a reply.",
+      "har97": null,
+      "output": "finding",
+      "before": null,
+      "after": null
+    }
+  ],
+  "failure_examples": [
+    "A rep-internal concern should create an internal task rather than an external buyer email."
+  ],
+  "counter_failures": [],
+  "known_exceptions": [],
+  "candidate_choices": [],
+  "principles": [],
+  "labels": [],
+  "pass_label": null,
+  "diagnostics": [],
+  "routing": {
+    "actions": [
+      "send_email",
+      "schedule_meeting",
+      "share_document",
+      "internal_note"
+    ],
+    "when_all": [],
+    "when_any": [
+      "channel_choice"
+    ]
+  },
+  "uses_rep_profile": false
+}

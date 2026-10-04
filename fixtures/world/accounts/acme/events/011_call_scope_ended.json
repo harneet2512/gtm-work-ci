@@ -1,0 +1,21 @@
+{
+  "source_system": "call",
+  "source_object_id": "call-acme-0825",
+  "source_event_key": "ended",
+  "occurred_at": "2026-08-25T13:46:00Z",
+  "connector": "recorder",
+  "connector_version": "0.1.0",
+  "payload": {
+    "kind": "call",
+    "call_id": "call-acme-0825",
+    "calendar_event_id": "gcal:acme-scope-0825",
+    "started_at": "2026-08-25T13:01:00Z",
+    "ended_at": "2026-08-25T13:46:00Z",
+    "speakers": [
+      {"label": "speaker_01", "email": "dana@ghostvendor.com", "name": "Dana Kim"},
+      {"label": "speaker_02", "email": null, "name": null},
+      {"label": "speaker_03", "email": "tom.becker@acme.com", "name": "Tom Becker"},
+      {"label": "speaker_04", "email": "leo@ghostvendor.com", "name": "Leo Park"}
+    ]
+  }
+}

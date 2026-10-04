@@ -1,0 +1,28 @@
+{
+  "id": "0de1a000-0000-4000-8000-000000000b01",
+  "decision_episode_id": "0e9e0000-0000-4000-8000-000000000a01",
+  "literal_changes": [
+    {
+      "kind": "cta_changed",
+      "before": "Happy to set up time with our security team once you've reviewed",
+      "after": "let us know what timing suits you"
+    },
+    {
+      "kind": "paragraph_edited"
+    }
+  ],
+  "semantic_labels": [
+    "reduced_pressure",
+    "deferred_to_buyer_timing",
+    "smaller_ask"
+  ],
+  "explained_by_eval_result_ids": [],
+  "unexplained": true,
+  "candidate_criterion": {
+    "statement": "When a technical blocker has just appeared and the buyer has not committed to a review date, do not push a meeting CTA before the requested evidence is consumed.",
+    "suggested_eval_type": "buyer_readiness",
+    "knowledge_candidate_id": null
+  },
+  "model": "deepseek/deepseek-v4-flash",
+  "created_at": "2026-09-29T16:05:05Z"
+}

@@ -1,0 +1,18 @@
+{
+  "source_system": "slack",
+  "source_object_id": "#deal-northstar:1789144200.000100",
+  "source_event_key": "posted",
+  "occurred_at": "2026-09-11T16:30:00Z",
+  "connector": "slack",
+  "connector_version": "0.1.0",
+  "payload": {
+    "kind": "slack_message",
+    "channel": "#deal-northstar",
+    "ts": "1789144200.000100",
+    "thread_ts": null,
+    "user": "U02LEO",
+    "user_email": "leo@ghostvendor.com",
+    "text": "Northstar: Sam Okafor's security team has to sign off before any clinic goes live (PHI on intake forms). I'll prep our BAA template and HIPAA controls summary.",
+    "is_decision": false
+  }
+}

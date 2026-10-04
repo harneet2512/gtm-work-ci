@@ -1,0 +1,25 @@
+{
+  "source_system": "calendar",
+  "source_object_id": "gcal:beta-platform-0915",
+  "source_event_key": "completed",
+  "occurred_at": "2026-09-15T15:45:00Z",
+  "connector": "google_calendar",
+  "connector_version": "0.1.0",
+  "payload": {
+    "kind": "calendar_event",
+    "event_id": "gcal:beta-platform-0915",
+    "title": "Beta - platform deep dive",
+    "start": "2026-09-15T15:00:00Z",
+    "end": "2026-09-15T15:45:00Z",
+    "status": "completed",
+    "organizer": {"email": "dana@ghostvendor.com", "name": "Dana Kim"},
+    "attendees": [
+      {"email": "dana@ghostvendor.com", "name": "Dana Kim", "response": "accepted"},
+      {"email": "leo@ghostvendor.com", "name": "Leo Park", "response": "accepted"},
+      {"email": "hannah.lee@beta.io", "name": "Hannah Lee", "response": "accepted"},
+      {"email": "jess.patel@beta.io", "name": "Jess Patel", "response": "needs_action"},
+      {"email": "ravi.menon@beta.io", "name": "Ravi Menon", "response": "accepted"}
+    ],
+    "crm_opportunity_ref": "opp:BE-7-EXP"
+  }
+}

@@ -1,0 +1,231 @@
+{
+  "id": "northstar_cp1_value_recap_in_elenas_numbers",
+  "case_type": "correct_timing",
+  "title": "Northstar cp1: after 'fits what Grace set aside', the candidate gives Elena a one-line value recap in her own numbers",
+  "should_pass": true,
+  "difficulty": "medium",
+  "slice_tags": {
+    "account": "northstar",
+    "origin": "checkpoint",
+    "motion": "expansion",
+    "stage": "discovery",
+    "champion_status": "active",
+    "economic_buyer": "known",
+    "risk": "low",
+    "candidate": "good",
+    "expected_action": "send_email",
+    "extra": ["business_case"]
+  },
+  "based_on": {
+    "kind": "checkpoint",
+    "account": "northstar",
+    "after_event_file": "world/accounts/northstar/events/016_email_elena_pricing_ok.json",
+    "checkpoint": 1,
+    "changed_fields": [],
+    "change": null
+  },
+  "context": {
+    "now": "2026-09-03T11:30:00Z",
+    "state": {
+      "account_id": "0a0c0000-0000-4000-8000-000000000003",
+      "account_name": "Northstar Health",
+      "opportunity_id": "0c0f0000-0000-4000-8000-000000000006",
+      "fields": {
+        "stage": "Discovery",
+        "health": "on_track",
+        "motion": "expansion",
+        "champion": "0b0e0000-0000-4000-8000-000000000041",
+        "champion_status": "active",
+        "economic_buyer": "0b0e0000-0000-4000-8000-000000000042",
+        "relationship_risk": "low",
+        "decision_process": "Grace Liu (VP Finance) approves budget on Elena Vasquez's recommendation; Sam Okafor's security team must review because intake forms carry PHI (BAA required)",
+        "current_commitments": [
+          {
+            "text": "Send pricing for the four clinics by next Wednesday",
+            "status": "fulfilled",
+            "owner_person_id": "0b0e0000-0000-4000-8000-000000000001",
+            "due": "2026-09-02"
+          },
+          {
+            "text": "Set up time next week to go through the rollout plan",
+            "status": "open",
+            "owner_person_id": "0b0e0000-0000-4000-8000-000000000041"
+          }
+        ]
+      },
+      "buying_group": [
+        {
+          "person_id": "0b0e0000-0000-4000-8000-000000000041",
+          "display_name": "Elena Vasquez",
+          "title": "Director of Patient Access",
+          "roles": ["champion"],
+          "status": "active",
+          "delegated_to_person_id": null,
+          "last_engaged_at": null,
+          "evidence_refs": []
+        },
+        {
+          "person_id": "0b0e0000-0000-4000-8000-000000000042",
+          "display_name": "Grace Liu",
+          "title": "VP Finance",
+          "roles": ["economic_buyer"],
+          "status": "unknown",
+          "delegated_to_person_id": null,
+          "last_engaged_at": null,
+          "evidence_refs": []
+        }
+      ],
+      "coverage_gaps": ["security"]
+    },
+    "recent_changes": {
+      "summary": "Elena: pricing fits what Grace set aside for intake this year; she will schedule the rollout plan session.",
+      "material_diff_fields": [
+        "stage",
+        "health",
+        "owner",
+        "motion",
+        "champion",
+        "champion_status",
+        "economic_buyer",
+        "decision_criteria",
+        "decision_process",
+        "current_commitments",
+        "next_milestone",
+        "next_meeting",
+        "relationship_risk",
+        "product_use_case",
+        "buying_group",
+        "coverage_gaps"
+      ],
+      "signals": [
+        "customer_replied",
+        "expansion_interest",
+        "meeting_accepted",
+        "new_stakeholder_entered",
+        "stakeholder_gap"
+      ]
+    },
+    "trigger": {
+      "activity_id": "0ac70000-0000-4000-8000-0000000c0016",
+      "activity_type": "EmailReply",
+      "occurred_at": "2026-09-03T11:20:00Z",
+      "actor_person_id": "0b0e0000-0000-4000-8000-000000000041",
+      "event_file": "world/accounts/northstar/events/016_email_elena_pricing_ok.json",
+      "synthetic": false,
+      "text": "Thanks Dana - this fits within what Grace set aside for intake this year. I'll set up time next week to go through the rollout plan.\nElena"
+    },
+    "supporting_activities": [
+      {
+        "activity_id": "0ac70000-0000-4000-8000-0000000c0011",
+        "activity_type": "TranscriptReady",
+        "occurred_at": "2026-08-27T17:46:00Z",
+        "actor_person_id": "0b0e0000-0000-4000-8000-000000000041",
+        "event_file": "world/accounts/northstar/events/011_call_scope_transcript.json",
+        "synthetic": false,
+        "text": "speaker_02: Front-desk staff cut intake time by about a third, and patients stopped filling in the same form twice."
+      },
+      {
+        "activity_id": "0ac70000-0000-4000-8000-0000000c0014",
+        "activity_type": "EmailSent",
+        "occurred_at": "2026-09-02T16:00:00Z",
+        "actor_person_id": "0b0e0000-0000-4000-8000-000000000001",
+        "event_file": "world/accounts/northstar/events/014_email_dana_pricing.json",
+        "synthetic": false,
+        "text": "Attached is pricing for all four clinics: $98,000 per year"
+      }
+    ],
+    "commitments": [
+      {
+        "text": "Set up time next week to go through the rollout plan",
+        "owner_person_id": "0b0e0000-0000-4000-8000-000000000041",
+        "due_at": null,
+        "status": "open"
+      }
+    ],
+    "timeline_facts": {
+      "last_inbound_at": "2026-09-03T11:20:00Z",
+      "last_inbound_from_person_id": "0b0e0000-0000-4000-8000-000000000041",
+      "last_outbound_at": "2026-09-02T16:00:00Z",
+      "stated_timing": "Elena will set up time next week for the rollout plan"
+    },
+    "offered_knowledge": []
+  },
+  "candidate_action": {
+    "proposed_action_type": "send_email",
+    "recipients": [
+      {"person_id": "0b0e0000-0000-4000-8000-000000000041", "role": "to", "why": "Champion; recommends to Grace"}
+    ],
+    "finished_artifact": {
+      "channel": "email",
+      "subject": "Re: Northstar pricing",
+      "body": "Hi Elena,\n\nThanks - glad it fits. Looking forward to the rollout plan session. If it helps with Grace, the one-line version is your Lakeside result: front-desk intake time down by about a third and no more duplicate forms, for $98,000 a year across all four clinics.\n\nBest,\nDana"
+    },
+    "crm_next_step_intent": {
+      "next_step": "Rollout plan session (Elena to schedule)",
+      "due_at": null,
+      "stage_change": null
+    },
+    "reason": "Equip the champion for the budget holder in her own numbers.",
+    "evidence_refs": [
+      {
+        "activity_id": "0ac70000-0000-4000-8000-0000000c0011",
+        "quote": "Front-desk staff cut intake time by about a third, and patients stopped filling in the same form twice.",
+        "speaker_person_id": "0b0e0000-0000-4000-8000-000000000041",
+        "occurred_at": "2026-08-27T17:46:00Z"
+      },
+      {
+        "activity_id": "0ac70000-0000-4000-8000-0000000c0014",
+        "quote": "$98,000 per year",
+        "speaker_person_id": "0b0e0000-0000-4000-8000-000000000001",
+        "occurred_at": "2026-09-02T16:00:00Z"
+      }
+    ],
+    "knowledge_refs_used": [],
+    "wait_until": null
+  },
+  "expected": [
+    {
+      "eval_type": "business_case",
+      "verdict": "pass",
+      "label": null,
+      "diagnostics": [],
+      "blocking": false,
+      "rationale": "Uses the customer's own Lakeside result ('about a third', no duplicate forms) and the quoted price; nothing inflated.",
+      "evidence_class": "methodology"
+    },
+    {
+      "eval_type": "provenance_coverage",
+      "verdict": "pass",
+      "label": null,
+      "diagnostics": [],
+      "blocking": false,
+      "rationale": "Every figure carries an evidence ref (Elena on the 08-27 call, the 09-02 pricing email).",
+      "evidence_class": "product_rule"
+    },
+    {
+      "eval_type": "stakeholder_selection",
+      "verdict": "pass",
+      "label": null,
+      "diagnostics": [],
+      "blocking": false,
+      "rationale": "Elena only; Grace follows Elena's recommendation and is reached through her.",
+      "evidence_class": "methodology"
+    },
+    {
+      "eval_type": "cta_calibration",
+      "verdict": "pass",
+      "label": "APPROPRIATE",
+      "diagnostics": [],
+      "blocking": false,
+      "rationale": "No ask beyond the session Elena already offered to schedule.",
+      "evidence_class": "methodology"
+    }
+  ],
+  "expected_best_action": {
+    "action": "send_email",
+    "why": "Exactly this (or a two-line thanks).",
+    "recipients": [{"person_id": "0b0e0000-0000-4000-8000-000000000041", "role": "to"}],
+    "channel": "email"
+  },
+  "notes": "Business-case pass in the real world; pair with the new-business variant of the same moment."
+}

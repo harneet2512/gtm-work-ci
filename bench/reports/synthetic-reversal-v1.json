@@ -1,0 +1,215 @@
+{
+ "arms": [
+  {
+   "rule": "P1",
+   "arm": "control_champion_only",
+   "takes_planted_action": false,
+   "gate": "proceed",
+   "blocking_checks": [],
+   "reverses_planted_action": false
+  },
+  {
+   "rule": "P1",
+   "arm": "ops_contact_resolved",
+   "takes_planted_action": true,
+   "gate": "proceed",
+   "blocking_checks": [],
+   "reverses_planted_action": false
+  },
+  {
+   "rule": "P1",
+   "arm": "ops_contact_unresolved_account",
+   "takes_planted_action": true,
+   "gate": "revise",
+   "blocking_checks": [
+    "recipient.belongs_to_account"
+   ],
+   "reverses_planted_action": true
+  },
+  {
+   "rule": "P1",
+   "arm": "ops_contact_without_email",
+   "takes_planted_action": true,
+   "gate": "revise",
+   "blocking_checks": [
+    "recipient.exists"
+   ],
+   "reverses_planted_action": true
+  },
+  {
+   "rule": "P1",
+   "arm": "ops_contact_resolved_to_other_account",
+   "takes_planted_action": true,
+   "gate": "revise",
+   "blocking_checks": [
+    "recipient.belongs_to_account"
+   ],
+   "reverses_planted_action": true
+  },
+  {
+   "rule": "P2",
+   "arm": "control_hold_at_quoted_price",
+   "takes_planted_action": false,
+   "gate": "proceed",
+   "blocking_checks": [],
+   "reverses_planted_action": false
+  },
+  {
+   "rule": "P2",
+   "arm": "states_new_total",
+   "takes_planted_action": true,
+   "gate": "revise",
+   "blocking_checks": [
+    "pricing.price_supported",
+    "provenance.critical_statements_supported"
+   ],
+   "reverses_planted_action": true
+  },
+  {
+   "rule": "P2",
+   "arm": "approved_discount_percent",
+   "takes_planted_action": true,
+   "gate": "proceed",
+   "blocking_checks": [],
+   "reverses_planted_action": false
+  },
+  {
+   "rule": "P2",
+   "arm": "unapproved_discount_percent",
+   "takes_planted_action": true,
+   "gate": "revise",
+   "blocking_checks": [
+    "provenance.critical_statements_supported"
+   ],
+   "reverses_planted_action": true
+  },
+  {
+   "rule": "P2",
+   "arm": "free_months_concession",
+   "takes_planted_action": true,
+   "gate": "revise",
+   "blocking_checks": [
+    "pricing.discount_not_invented"
+   ],
+   "reverses_planted_action": true
+  },
+  {
+   "rule": "P2",
+   "arm": "requote_logged_then_stated",
+   "takes_planted_action": true,
+   "gate": "proceed",
+   "blocking_checks": [],
+   "reverses_planted_action": false
+  },
+  {
+   "rule": "P2",
+   "arm": "reprice_without_a_figure",
+   "takes_planted_action": true,
+   "gate": "proceed",
+   "blocking_checks": [],
+   "reverses_planted_action": false
+  },
+  {
+   "rule": "P3",
+   "arm": "control_no_cc",
+   "takes_planted_action": false,
+   "gate": "proceed",
+   "blocking_checks": [],
+   "reverses_planted_action": false
+  },
+  {
+   "rule": "P3",
+   "arm": "colleague_cc",
+   "takes_planted_action": true,
+   "gate": "proceed",
+   "blocking_checks": [],
+   "reverses_planted_action": false
+  },
+  {
+   "rule": "P3",
+   "arm": "colleague_cc_internal_only",
+   "takes_planted_action": true,
+   "gate": "revise",
+   "blocking_checks": [
+    "recipient.internal_only_not_externalized"
+   ],
+   "reverses_planted_action": true
+  },
+  {
+   "rule": "P3",
+   "arm": "colleague_cc_not_in_directory",
+   "takes_planted_action": true,
+   "gate": "revise",
+   "blocking_checks": [
+    "recipient.exists"
+   ],
+   "reverses_planted_action": true
+  },
+  {
+   "rule": "P3",
+   "arm": "colleague_cc_plus_unverified_buyer_staff",
+   "takes_planted_action": true,
+   "gate": "proceed",
+   "blocking_checks": [],
+   "reverses_planted_action": false
+  },
+  {
+   "rule": "P4",
+   "arm": "control_fold_into_open_quote",
+   "takes_planted_action": false,
+   "gate": "proceed",
+   "blocking_checks": [],
+   "reverses_planted_action": false
+  },
+  {
+   "rule": "P4",
+   "arm": "separate_quote_distinct_step",
+   "takes_planted_action": true,
+   "gate": "proceed",
+   "blocking_checks": [],
+   "reverses_planted_action": false
+  },
+  {
+   "rule": "P4",
+   "arm": "separate_quote_same_wording_12d",
+   "takes_planted_action": true,
+   "gate": "proceed",
+   "blocking_checks": [],
+   "reverses_planted_action": false
+  },
+  {
+   "rule": "P4",
+   "arm": "separate_quote_same_wording_3d",
+   "takes_planted_action": true,
+   "gate": "revise",
+   "blocking_checks": [
+    "duplicate.crm_action_not_completed"
+   ],
+   "reverses_planted_action": true
+  }
+ ],
+ "rates": {
+  "P1": {
+   "planted_arms": 4,
+   "reversed": 3,
+   "rate": 0.75
+  },
+  "P2": {
+   "planted_arms": 6,
+   "reversed": 3,
+   "rate": 0.5
+  },
+  "P3": {
+   "planted_arms": 4,
+   "reversed": 2,
+   "rate": 0.5
+  },
+  "P4": {
+   "planted_arms": 3,
+   "reversed": 1,
+   "rate": 0.3333333333333333
+  }
+ },
+ "source": "core-go/internal/evals/deterministic/planted_reversal_test.go on contracts/examples/deterministic_eval_input.example.json",
+ "what": "share of planted-action draft forms whose deterministic gate (Evaluate + Decide) blocks the planted element, so eval-driven revision would reverse it; per draft form, equally weighted, not agent-behaviour frequencies"
+}

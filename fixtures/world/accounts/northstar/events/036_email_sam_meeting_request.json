@@ -1,0 +1,22 @@
+{
+  "source_system": "email",
+  "source_object_id": "<NSH-so-2026-09-24@mail.northstar.health>",
+  "source_event_key": "received",
+  "occurred_at": "2026-09-24T15:10:00Z",
+  "connector": "gmail",
+  "connector_version": "0.1.0",
+  "payload": {
+    "kind": "email",
+    "direction": "inbound",
+    "message_id": "<NSH-so-2026-09-24@mail.northstar.health>",
+    "thread_id": "thr-northstar-intake",
+    "in_reply_to": "<ghost-dana-2026-09-23-ns@ghostvendor.com>",
+    "from": {"email": "sam.okafor@northstar.health", "name": "Sam Okafor"},
+    "to": [{"email": "dana@ghostvendor.com", "name": "Dana Kim"}],
+    "cc": [],
+    "date": "2026-09-24T15:10:00Z",
+    "subject": "Re: Rolling Relay out to all clinics",
+    "body_text": "Thanks Dana. I've read the controls summary and I'd like to book a 60-minute security review with you and Leo next week - Tuesday September 29 or Wednesday September 30 at 10:00 Eastern works on my side. Please send an invite for whichever suits you.\nSam",
+    "crm_opportunity_ref": "opp:NS-2-EXP"
+  }
+}

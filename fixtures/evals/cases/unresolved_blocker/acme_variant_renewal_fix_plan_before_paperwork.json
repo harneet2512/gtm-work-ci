@@ -1,0 +1,171 @@
+{
+  "id": "acme_variant_renewal_fix_plan_before_paperwork",
+  "case_type": "unresolved_blocker",
+  "title": "Acme renewal variant: Sev-2 tickets open; the candidate commits a fix plan with owner and date and parks the renewal paperwork",
+  "should_pass": true,
+  "difficulty": "medium",
+  "slice_tags": {
+    "account": "acme",
+    "origin": "synthetic_variant",
+    "motion": "renewal",
+    "stage": "commercial_review",
+    "champion_status": "active",
+    "economic_buyer": "unknown",
+    "risk": "high",
+    "candidate": "good",
+    "expected_action": "send_email",
+    "extra": ["high_risk", "renewal_at_risk"]
+  },
+  "based_on": {
+    "kind": "synthetic_variant",
+    "account": "acme",
+    "after_event_file": "world/accounts/acme/events/028_email_dana_order_form.json",
+    "checkpoint": 2,
+    "changed_fields": ["motion", "health", "relationship_risk", "blockers"],
+    "change": "Acme cp2 recast as the annual renewal of Acme's existing Relay contract (motion renewal, same people), plus an invented 09-16 email from Tom Becker: carrier-sync failures, three Sev-2 tickets open for two weeks."
+  },
+  "context": {
+    "now": "2026-09-16T09:30:00Z",
+    "state": {
+      "account_id": "0a0c0000-0000-4000-8000-000000000001",
+      "account_name": "Acme Corp",
+      "opportunity_id": "0c0f0000-0000-4000-8000-000000000004",
+      "fields": {
+        "stage": "Commercial review",
+        "health": "at_risk",
+        "motion": "renewal",
+        "champion": "0b0e0000-0000-4000-8000-000000000017",
+        "champion_status": "active",
+        "economic_buyer": "unknown",
+        "relationship_risk": "high",
+        "decision_process": "Finance approved the EU budget line; order form to be signed on Acme Logistics B.V.",
+        "blockers": [
+          {"text": "EU budget line needs finance approval in the Q3 planning cycle", "status": "resolved"},
+          {"text": "Carrier-sync failures at the US sites; three Sev-2 tickets open for two weeks", "status": "open"}
+        ]
+      },
+      "buying_group": [
+        {
+          "person_id": "0b0e0000-0000-4000-8000-000000000017",
+          "display_name": "Priya Shah",
+          "title": "Director of Operations",
+          "roles": ["champion"],
+          "status": "active",
+          "delegated_to_person_id": null,
+          "last_engaged_at": null,
+          "evidence_refs": []
+        },
+        {
+          "person_id": "0b0e0000-0000-4000-8000-000000000019",
+          "display_name": "Tom Becker",
+          "title": "EU Operations Manager",
+          "roles": ["user"],
+          "status": "active",
+          "delegated_to_person_id": null,
+          "last_engaged_at": null,
+          "evidence_refs": []
+        }
+      ],
+      "coverage_gaps": ["economic_buyer"]
+    },
+    "recent_changes": {
+      "summary": "Renewal order form sent on 09-14; Tom reports two weeks of carrier-sync failures with three Sev-2 tickets open and asks for a fix plan before anyone signs.",
+      "material_diff_fields": [],
+      "signals": ["customer_replied", "support_risk_spike"]
+    },
+    "trigger": {
+      "activity_id": "0ac7f000-0000-4000-8000-000000000008",
+      "activity_type": "EmailReceived",
+      "occurred_at": "2026-09-16T08:40:00Z",
+      "actor_person_id": "0b0e0000-0000-4000-8000-000000000019",
+      "event_file": null,
+      "synthetic": true,
+      "text": "Hi Dana - before anyone signs the renewal: our US sites have had carrier-sync failures for two weeks and three Sev-2 tickets are still open. I need a fix plan, not a new order form.\nTom"
+    },
+    "supporting_activities": [],
+    "commitments": [],
+    "timeline_facts": {
+      "last_inbound_at": "2026-09-16T08:40:00Z",
+      "last_inbound_from_person_id": "0b0e0000-0000-4000-8000-000000000019",
+      "last_outbound_at": "2026-09-14T16:00:00Z",
+      "stated_timing": "Tom: fix plan before signature"
+    },
+    "offered_knowledge": []
+  },
+  "candidate_action": {
+    "proposed_action_type": "send_email",
+    "recipients": [
+      {"person_id": "0b0e0000-0000-4000-8000-000000000019", "role": "to", "why": "Raised the tickets"},
+      {"person_id": "0b0e0000-0000-4000-8000-000000000017", "role": "cc", "why": "Champion"}
+    ],
+    "finished_artifact": {
+      "channel": "email",
+      "subject": "Re: carrier-sync failures",
+      "body": "Hi Tom,\n\nThanks for flagging this - three Sev-2s open for two weeks isn't acceptable. Leo Park will review the carrier-sync failures with your team this week and send a written fix plan by Friday. Priya, the renewal paperwork can wait until Tom confirms the fix.\n\nBest,\nDana"
+    },
+    "crm_next_step_intent": {
+      "next_step": "Fix plan to Tom by Friday",
+      "due_at": "2026-09-18T17:00:00Z",
+      "stage_change": null
+    },
+    "reason": "Tom asked for a fix plan before anyone signs.",
+    "evidence_refs": [
+      {
+        "activity_id": "0ac7f000-0000-4000-8000-000000000008",
+        "quote": "I need a fix plan, not a new order form.",
+        "speaker_person_id": "0b0e0000-0000-4000-8000-000000000019",
+        "occurred_at": "2026-09-16T08:40:00Z"
+      }
+    ],
+    "knowledge_refs_used": [],
+    "wait_until": null
+  },
+  "expected": [
+    {
+      "eval_type": "customer_risk_sensitivity",
+      "verdict": "pass",
+      "label": null,
+      "diagnostics": [],
+      "blocking": false,
+      "rationale": "Puts the open Sev-2s first and parks the paperwork, as Tom asked.",
+      "evidence_class": "cs_ops"
+    },
+    {
+      "eval_type": "action_stage_fit",
+      "verdict": "pass",
+      "label": null,
+      "diagnostics": [],
+      "blocking": false,
+      "rationale": "A renewal at risk gets a service recovery step, not a commercial push.",
+      "evidence_class": "methodology"
+    },
+    {
+      "eval_type": "expansion_readiness",
+      "verdict": "pass",
+      "label": null,
+      "diagnostics": [],
+      "blocking": false,
+      "rationale": "No expansion ask while the existing deployment is failing.",
+      "evidence_class": "cs_ops"
+    },
+    {
+      "eval_type": "next_step_quality",
+      "verdict": "pass",
+      "label": null,
+      "diagnostics": [],
+      "blocking": false,
+      "rationale": "Named owner (Leo), concrete deliverable (written fix plan), date (Friday).",
+      "evidence_class": "deal_data"
+    }
+  ],
+  "expected_best_action": {
+    "action": "send_email",
+    "why": "Exactly this.",
+    "recipients": [
+      {"person_id": "0b0e0000-0000-4000-8000-000000000019", "role": "to"},
+      {"person_id": "0b0e0000-0000-4000-8000-000000000017", "role": "cc"}
+    ],
+    "channel": "email"
+  },
+  "notes": "Should-pass control for the renewal variant."
+}

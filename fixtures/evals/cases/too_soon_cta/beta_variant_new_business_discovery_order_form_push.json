@@ -1,0 +1,169 @@
+{
+  "id": "beta_variant_new_business_discovery_order_form_push",
+  "case_type": "too_soon_cta",
+  "title": "Beta new-business variant: Hannah accepts a scoping call and names the CFO's business-case need; the candidate sends an order form",
+  "should_pass": false,
+  "difficulty": "easy",
+  "slice_tags": {
+    "account": "beta",
+    "origin": "synthetic_variant",
+    "motion": "new_business",
+    "stage": "discovery",
+    "champion_status": "active",
+    "economic_buyer": "known",
+    "risk": "low",
+    "candidate": "flawed",
+    "expected_action": "schedule_meeting",
+    "extra": ["new_business"]
+  },
+  "based_on": {
+    "kind": "synthetic_variant",
+    "account": "beta",
+    "after_event_file": "world/accounts/beta/events/005_email_hannah_scope_reply.json",
+    "checkpoint": 1,
+    "changed_fields": ["motion", "stage", "decision_process", "next_milestone"],
+    "change": "Beta at its first reply (08-20) recast as a first-time customer (motion new_business, stage Discovery)."
+  },
+  "context": {
+    "now": "2026-08-20T11:00:00Z",
+    "state": {
+      "account_id": "0a0c0000-0000-4000-8000-000000000002",
+      "account_name": "Beta Inc",
+      "opportunity_id": "0c0f0000-0000-4000-8000-000000000005",
+      "fields": {
+        "stage": "Discovery",
+        "health": "on_track",
+        "motion": "new_business",
+        "champion": "0b0e0000-0000-4000-8000-000000000031",
+        "champion_status": "active",
+        "economic_buyer": "0b0e0000-0000-4000-8000-000000000032",
+        "relationship_risk": "low",
+        "decision_process": "CFO Owen Clarke signs off on anything over $100k and needs a clear business case",
+        "next_milestone": "Scoping call on Wednesday the 26th at 11:00 Central"
+      },
+      "buying_group": [
+        {
+          "person_id": "0b0e0000-0000-4000-8000-000000000031",
+          "display_name": "Hannah Lee",
+          "title": "VP Customer Operations",
+          "roles": ["champion"],
+          "status": "active",
+          "delegated_to_person_id": null,
+          "last_engaged_at": null,
+          "evidence_refs": []
+        },
+        {
+          "person_id": "0b0e0000-0000-4000-8000-000000000032",
+          "display_name": "Owen Clarke",
+          "title": "Chief Financial Officer",
+          "roles": ["economic_buyer"],
+          "status": "unknown",
+          "delegated_to_person_id": null,
+          "last_engaged_at": null,
+          "evidence_refs": []
+        },
+        {
+          "person_id": "0b0e0000-0000-4000-8000-000000000033",
+          "display_name": "Jess Patel",
+          "title": "Support Operations Manager",
+          "roles": ["user"],
+          "status": "active",
+          "delegated_to_person_id": null,
+          "last_engaged_at": null,
+          "evidence_refs": []
+        }
+      ],
+      "coverage_gaps": []
+    },
+    "recent_changes": {
+      "summary": "Hannah wants the whole support org (~140 agents) on Relay; Owen (CFO) signs off over $100k and needs a business case; scoping call proposed for the 26th.",
+      "material_diff_fields": [],
+      "signals": ["customer_replied"]
+    },
+    "trigger": {
+      "activity_id": "0ac70000-0000-4000-8000-0000000b0005",
+      "activity_type": "EmailReply",
+      "occurred_at": "2026-08-20T10:20:00Z",
+      "actor_person_id": "0b0e0000-0000-4000-8000-000000000031",
+      "event_file": "world/accounts/beta/events/005_email_hannah_scope_reply.json",
+      "synthetic": false,
+      "text": "Hi Dana - yes, we want the whole support org on Relay: about 140 agents across Austin and Dublin. Owen Clarke, our CFO, signs off on anything over $100k, so we'll need a clear business case for him. Wednesday the 26th at 11:00 Central works for a scoping call.\nHannah"
+    },
+    "supporting_activities": [],
+    "commitments": [],
+    "timeline_facts": {
+      "last_inbound_at": "2026-08-20T10:20:00Z",
+      "last_inbound_from_person_id": "0b0e0000-0000-4000-8000-000000000031",
+      "last_outbound_at": "2026-08-19T14:00:00Z",
+      "stated_timing": "Scoping call Wed Aug 26, 11:00 Central"
+    },
+    "offered_knowledge": []
+  },
+  "candidate_action": {
+    "proposed_action_type": "send_email",
+    "recipients": [{"person_id": "0b0e0000-0000-4000-8000-000000000031", "role": "to", "why": "Champion"}],
+    "finished_artifact": {
+      "channel": "email",
+      "subject": "Order form",
+      "body": "Hi Hannah,\n\nGreat to hear! I've attached our order form for 140 seats - if Owen can sign by the end of the month we can start onboarding in September.\n\nBest,\nDana",
+      "attachments": ["Beta_Order_Form_140.pdf"]
+    },
+    "crm_next_step_intent": {"next_step": "Signature by 08-31", "due_at": null, "stage_change": null},
+    "reason": "Strong interest; move fast.",
+    "evidence_refs": [
+      {
+        "activity_id": "0ac70000-0000-4000-8000-0000000b0005",
+        "quote": "we want the whole support org on Relay: about 140 agents across Austin and Dublin",
+        "speaker_person_id": "0b0e0000-0000-4000-8000-000000000031",
+        "occurred_at": "2026-08-20T10:20:00Z"
+      }
+    ],
+    "knowledge_refs_used": [],
+    "wait_until": null
+  },
+  "expected": [
+    {
+      "eval_type": "action_stage_fit",
+      "verdict": "fail",
+      "label": null,
+      "diagnostics": [],
+      "blocking": true,
+      "rationale": "A signature push in discovery, before any scoping call.",
+      "evidence_class": "methodology"
+    },
+    {
+      "eval_type": "business_case",
+      "verdict": "fail",
+      "label": null,
+      "diagnostics": ["weak_business_case"],
+      "blocking": false,
+      "rationale": "Skips the business case Hannah said Owen needs before he signs.",
+      "evidence_class": "methodology"
+    },
+    {
+      "eval_type": "cta_calibration",
+      "verdict": "fail",
+      "label": "TOO_STRONG",
+      "diagnostics": ["ask_too_strong"],
+      "blocking": false,
+      "rationale": "Asks for a CFO signature on day one.",
+      "evidence_class": "methodology"
+    },
+    {
+      "eval_type": "buyer_readiness",
+      "verdict": "fail",
+      "label": "TOO_EARLY",
+      "diagnostics": ["too_early"],
+      "blocking": false,
+      "rationale": "The buyer has only agreed to scope.",
+      "evidence_class": "methodology"
+    }
+  ],
+  "expected_best_action": {
+    "action": "schedule_meeting",
+    "why": "Accept Wednesday the 26th at 11:00 Central and ask which pilot numbers matter for Owen.",
+    "recipients": [{"person_id": "0b0e0000-0000-4000-8000-000000000031", "role": "to"}],
+    "channel": "email"
+  },
+  "notes": "Synthetic new-business variant; the buying group is the cp1 group (Owen and Jess appear in the CRM within days)."
+}

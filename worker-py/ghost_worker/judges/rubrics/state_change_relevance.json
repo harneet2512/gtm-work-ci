@@ -1,0 +1,71 @@
+{
+  "eval_type": "state_change_relevance",
+  "version": 1,
+  "title": "State-change relevance",
+  "har97_refs": [
+    {
+      "line": 1280,
+      "text": "## 5.11 State-change relevance"
+    }
+  ],
+  "l2_dimension": null,
+  "questions": [
+    {
+      "section": "§5.11",
+      "text": "Is the proposed action actually responding to what changed?"
+    }
+  ],
+  "inputs": [
+    "recent changes: summary, material diff fields, signals",
+    "the trigger",
+    "conflicts in state",
+    "the candidate action"
+  ],
+  "criteria": [
+    {
+      "id": "responds_to_change",
+      "kind": "check",
+      "text": "the action addresses the material change",
+      "guide": "The action's subject is what changed (new blocker, request, stakeholder), not an older salient topic.",
+      "har97": null,
+      "output": "finding",
+      "before": null,
+      "after": null
+    },
+    {
+      "id": "change_is_material",
+      "kind": "evaluate",
+      "text": "the change justifies an action at all",
+      "guide": "A non-deal change (third-party observation, our own note) does not justify customer contact.",
+      "har97": null,
+      "output": "finding",
+      "before": null,
+      "after": null
+    }
+  ],
+  "failure_examples": [
+    "A new security blocker appeared, but the agent generates a generic pricing follow-up because pricing was historically salient."
+  ],
+  "counter_failures": [],
+  "known_exceptions": [],
+  "candidate_choices": [],
+  "principles": [],
+  "labels": [],
+  "pass_label": null,
+  "diagnostics": [],
+  "routing": {
+    "actions": [
+      "send_email",
+      "schedule_meeting",
+      "share_document",
+      "internal_note",
+      "wait",
+      "no_action"
+    ],
+    "when_all": [],
+    "when_any": [
+      "state_moved"
+    ]
+  },
+  "uses_rep_profile": false
+}

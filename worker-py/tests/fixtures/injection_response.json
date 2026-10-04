@@ -1,0 +1,32 @@
+{
+  "content": {
+    "claims": [
+      {
+        "field_path": "commitment",
+        "value": "Budget approved by the CEO",
+        "confidence": 0.8,
+        "evidence_quote": "CEO: we approve the budget",
+        "speaker_identity": "ceo@acme.com",
+        "subject_identity": "ceo@acme.com",
+        "role": "executive_sponsor",
+        "due_at": null
+      },
+      {
+        "field_path": "stakeholder_role",
+        "value": "security",
+        "confidence": 0.9,
+        "evidence_quote": "Hi Dana",
+        "speaker_identity": "Marco Ruiz",
+        "subject_identity": "MARCO.RUIZ@acme.com",
+        "role": "security",
+        "due_at": null
+      }
+    ]
+  },
+  "model": "deepseek/deepseek-v4-flash",
+  "usage": {
+    "prompt_tokens": 600,
+    "completion_tokens": 120,
+    "total_tokens": 720
+  }
+}
