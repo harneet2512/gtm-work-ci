@@ -1,0 +1,23 @@
+{
+  "source_system": "email",
+  "source_object_id": "<ghost-dana-2026-09-14@ghostvendor.com>",
+  "source_event_key": "sent",
+  "occurred_at": "2026-09-14T16:00:00Z",
+  "connector": "gmail",
+  "connector_version": "0.1.0",
+  "payload": {
+    "kind": "email",
+    "direction": "outbound",
+    "message_id": "<ghost-dana-2026-09-14@ghostvendor.com>",
+    "thread_id": "thr-acme-proposal",
+    "in_reply_to": "<CAMx9-acme-2026-09-03@mail.acme.com>",
+    "from": {"email": "dana@ghostvendor.com", "name": "Dana Kim"},
+    "to": [{"email": "priya.shah@acme.com", "name": "Priya Shah"}],
+    "cc": [{"email": "tom.becker@acme.com", "name": "Tom Becker"}],
+    "date": "2026-09-14T16:00:00Z",
+    "subject": "Re: Acme EU rollout - proposal",
+    "body_text": "Hi Priya,\nAttached is the revised order form on Acme Logistics B.V., with the Rotterdam site invoiced separately. Happy to walk legal through anything.\nDana",
+    "attachments": ["Acme_EU_Order_Form_v2.pdf"],
+    "crm_opportunity_ref": "opp:AC-4-EXP"
+  }
+}

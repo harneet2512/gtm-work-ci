@@ -1,0 +1,42 @@
+{
+  "description": "Materially distinct candidates (HAR-117 contract I10). Read by worker-py/tests/test_strategy_distinct.py and core-go/internal/orchestrator/distinct_test.go so the two implementations cannot drift. people are opaque ids; similarity is the Jaccard share of content words, limit 0.6.",
+  "similarity_limit": 0.6,
+  "cases": [
+    {
+      "name": "same strategy_type is never distinct",
+      "a": {"strategy_type": "stronger_cta", "action_type": "send_email", "people": ["p1"], "body": "Please book a call on Friday to review the order form."},
+      "b": {"strategy_type": "stronger_cta", "action_type": "schedule_meeting", "people": ["p2"], "body": "Completely different words about security architecture."},
+      "distinct": false
+    },
+    {
+      "name": "restyled copy: same action, same people, same words",
+      "a": {"strategy_type": "stronger_cta", "action_type": "send_email", "people": ["p1", "p2"], "body": "Hi Marco, attached are the SOC2 report and the pen-test summary. Could we book a call on Friday to walk through them with your team?"},
+      "b": {"strategy_type": "softer_cta", "action_type": "send_email", "people": ["p2", "p1"], "body": "Hello Marco, attached are the SOC2 report and the pen-test summary. Could we book a call on Friday to walk through them with your team please?"},
+      "distinct": false
+    },
+    {
+      "name": "same action and people but a different move",
+      "a": {"strategy_type": "stronger_cta", "action_type": "send_email", "people": ["p1"], "body": "Attached are the SOC2 report and the pen-test summary. Can we book Friday to review the order form together?"},
+      "b": {"strategy_type": "clarify_first", "action_type": "send_email", "people": ["p1"], "body": "Before sending more material, which regions and data classes should the answers cover? Your reply lets us scope precisely."},
+      "distinct": true
+    },
+    {
+      "name": "same words but a different audience",
+      "a": {"strategy_type": "direct_to_buyer", "action_type": "send_email", "people": ["p1"], "body": "Attached are the SOC2 report and the pen-test summary for your review."},
+      "b": {"strategy_type": "loop_in_champion", "action_type": "send_email", "people": ["p1", "p3"], "body": "Attached are the SOC2 report and the pen-test summary for your review."},
+      "distinct": true
+    },
+    {
+      "name": "same words but a different action",
+      "a": {"strategy_type": "send_now", "action_type": "send_email", "people": ["p1"], "body": "Attached are the SOC2 report and the pen-test summary for your review."},
+      "b": {"strategy_type": "hold_and_log", "action_type": "internal_note", "people": ["p1"], "body": "Attached are the SOC2 report and the pen-test summary for your review."},
+      "distinct": true
+    },
+    {
+      "name": "two quiet strategies with no body are the same only when action and people match",
+      "a": {"strategy_type": "wait_for_buyer", "action_type": "wait", "people": [], "body": ""},
+      "b": {"strategy_type": "no_action_needed", "action_type": "no_action", "people": [], "body": ""},
+      "distinct": true
+    }
+  ]
+}

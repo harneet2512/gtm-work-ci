@@ -1,0 +1,78 @@
+{
+  "content": {
+    "claims": [
+      {
+        "field_path": "economic_buyer",
+        "value": "Tom Becker",
+        "confidence": 0.9,
+        "evidence_quote": "I sign the contract",
+        "speaker_identity": "call:C19:speaker:03",
+        "subject_identity": "call:C19:speaker:03",
+        "role": null,
+        "due_at": null
+      },
+      {
+        "field_path": "stakeholder_role",
+        "value": "economic_buyer",
+        "confidence": 0.88,
+        "evidence_quote": "I sign the contract",
+        "speaker_identity": "call:C19:speaker:03",
+        "subject_identity": "call:C19:speaker:03",
+        "role": "economic_buyer",
+        "due_at": null
+      },
+      {
+        "field_path": "blockers",
+        "value": "Legal review of the DPA",
+        "confidence": 0.9,
+        "evidence_quote": "legal needs to review the DPA first",
+        "speaker_identity": "call:C19:speaker:03",
+        "subject_identity": null,
+        "role": null,
+        "due_at": null
+      },
+      {
+        "field_path": "commitment",
+        "value": "Priya Shah will take the proposal to the CFO",
+        "confidence": 0.85,
+        "evidence_quote": "I will take this to our CFO Tom Becker on Friday",
+        "speaker_identity": "call:C19:speaker:02",
+        "subject_identity": "call:C19:speaker:02",
+        "role": null,
+        "due_at": null
+      },
+      {
+        "field_path": "champion",
+        "value": "Priya Shah",
+        "confidence": 0.6,
+        "evidence_quote": "I will take this to our CFO Tom Becker on Friday",
+        "speaker_identity": "call:C19:speaker:02",
+        "subject_identity": "call:C19:speaker:02",
+        "role": "champion",
+        "due_at": null
+      },
+      {
+        "field_path": "next_meeting",
+        "value": "Wednesday October 8 at 10am",
+        "confidence": 0.9,
+        "evidence_quote": "let's meet Wednesday October 8 at 10am",
+        "speaker_identity": "call:C19:speaker:02",
+        "subject_identity": null,
+        "role": null,
+        "due_at": null
+      },
+      {
+        "field_path": "budget",
+        "value": "approved for Q4",
+        "confidence": 0.8,
+        "evidence_quote": "We have budget approved for Q4",
+        "speaker_identity": "call:C19:speaker:02",
+        "subject_identity": null,
+        "role": null,
+        "due_at": null
+      }
+    ]
+  },
+  "model": "deepseek/deepseek-v4-flash",
+  "usage": {"prompt_tokens": 790, "completion_tokens": 468, "total_tokens": 1258}
+}

@@ -1,0 +1,182 @@
+{
+  "id": "northstar_cp1_order_form_before_security_too_soon",
+  "case_type": "too_soon_cta",
+  "title": "Northstar cp1: pricing accepted; candidate sends an order form for signature before the PHI security review and BAA",
+  "should_pass": false,
+  "difficulty": "medium",
+  "slice_tags": {
+    "account": "northstar",
+    "origin": "checkpoint",
+    "motion": "expansion",
+    "stage": "discovery",
+    "champion_status": "active",
+    "economic_buyer": "known",
+    "risk": "low",
+    "candidate": "flawed",
+    "expected_action": "send_email",
+    "extra": ["phi", "signature_ask"]
+  },
+  "based_on": {
+    "kind": "checkpoint",
+    "account": "northstar",
+    "after_event_file": "world/accounts/northstar/events/016_email_elena_pricing_ok.json",
+    "checkpoint": 1,
+    "changed_fields": [],
+    "change": null
+  },
+  "context": {
+    "now": "2026-09-03T11:30:00Z",
+    "state": {
+      "account_id": "0a0c0000-0000-4000-8000-000000000003",
+      "account_name": "Northstar Health",
+      "opportunity_id": "0c0f0000-0000-4000-8000-000000000006",
+      "fields": {
+        "stage": "Discovery",
+        "health": "on_track",
+        "motion": "expansion",
+        "champion": "0b0e0000-0000-4000-8000-000000000041",
+        "champion_status": "active",
+        "economic_buyer": "0b0e0000-0000-4000-8000-000000000042",
+        "relationship_risk": "low",
+        "decision_process": "Grace Liu (VP Finance) approves budget on Elena Vasquez's recommendation; Sam Okafor's security team must review because intake forms carry PHI (BAA required)",
+        "next_milestone": "Rollout plan review with Elena Vasquez",
+        "current_commitments": [
+          {
+            "text": "Send pricing for the four clinics by next Wednesday",
+            "status": "fulfilled",
+            "owner_person_id": "0b0e0000-0000-4000-8000-000000000001",
+            "due": "2026-09-02"
+          },
+          {
+            "text": "Set up time next week to go through the rollout plan",
+            "status": "open",
+            "owner_person_id": "0b0e0000-0000-4000-8000-000000000041"
+          }
+        ]
+      },
+      "buying_group": [
+        {
+          "person_id": "0b0e0000-0000-4000-8000-000000000041",
+          "display_name": "Elena Vasquez",
+          "title": "Director of Patient Access",
+          "roles": ["champion"],
+          "status": "active",
+          "delegated_to_person_id": null,
+          "last_engaged_at": null,
+          "evidence_refs": []
+        },
+        {
+          "person_id": "0b0e0000-0000-4000-8000-000000000042",
+          "display_name": "Grace Liu",
+          "title": "VP Finance",
+          "roles": ["economic_buyer"],
+          "status": "unknown",
+          "delegated_to_person_id": null,
+          "last_engaged_at": null,
+          "evidence_refs": []
+        }
+      ],
+      "coverage_gaps": ["security"]
+    },
+    "recent_changes": {
+      "summary": "Elena: pricing fits what Grace set aside; she will set up time next week to go through the rollout plan.",
+      "material_diff_fields": [
+        "stage",
+        "health",
+        "owner",
+        "motion",
+        "champion",
+        "champion_status",
+        "economic_buyer",
+        "decision_criteria",
+        "decision_process",
+        "current_commitments",
+        "next_milestone",
+        "next_meeting",
+        "relationship_risk",
+        "product_use_case",
+        "buying_group",
+        "coverage_gaps"
+      ],
+      "signals": ["customer_replied", "expansion_interest", "meeting_accepted", "new_stakeholder_entered", "stakeholder_gap"]
+    },
+    "trigger": {
+      "activity_id": "0ac70000-0000-4000-8000-0000000c0016",
+      "activity_type": "EmailReply",
+      "occurred_at": "2026-09-03T11:20:00Z",
+      "actor_person_id": "0b0e0000-0000-4000-8000-000000000041",
+      "event_file": "world/accounts/northstar/events/016_email_elena_pricing_ok.json",
+      "synthetic": false,
+      "text": "Thanks Dana - this fits within what Grace set aside for intake this year. I'll set up time next week to go through the rollout plan.\nElena"
+    },
+    "supporting_activities": [],
+    "commitments": [],
+    "timeline_facts": {
+      "last_inbound_at": "2026-09-03T11:20:00Z",
+      "last_inbound_from_person_id": "0b0e0000-0000-4000-8000-000000000041",
+      "last_outbound_at": "2026-09-02T16:00:00Z",
+      "stated_timing": "Elena will set up a rollout-plan session next week"
+    },
+    "offered_knowledge": []
+  },
+  "candidate_action": {
+    "proposed_action_type": "send_email",
+    "recipients": [{"person_id": "0b0e0000-0000-4000-8000-000000000041", "role": "to", "why": "Champion"}],
+    "finished_artifact": {
+      "channel": "email",
+      "subject": "Re: Rolling Relay out to all clinics",
+      "body": "Hi Elena,\n\nGreat to hear pricing works. I've attached the order form for all four clinics - if you and Grace can sign this week we'll have plenty of runway before open enrollment.\n\nBest,\nDana",
+      "attachments": ["northstar-order-form.pdf"]
+    },
+    "crm_next_step_intent": {"next_step": "Order form signature this week", "due_at": null, "stage_change": null},
+    "reason": "Pricing accepted; open enrollment deadline is close.",
+    "evidence_refs": [
+      {
+        "activity_id": "0ac70000-0000-4000-8000-0000000c0016",
+        "quote": "this fits within what Grace set aside for intake this year",
+        "speaker_person_id": "0b0e0000-0000-4000-8000-000000000041",
+        "occurred_at": "2026-09-03T11:20:00Z"
+      }
+    ],
+    "knowledge_refs_used": [],
+    "wait_until": null
+  },
+  "expected": [
+    {
+      "eval_type": "buyer_readiness",
+      "verdict": "fail",
+      "label": "TOO_EARLY",
+      "diagnostics": ["too_early", "security_or_procurement_step_missing"],
+      "blocking": true,
+      "rationale": "Security review by Sam Okafor's team and a BAA are required before anything touching PHI; Elena's next step is a rollout-plan session, not signature.",
+      "evidence_class": "methodology",
+      "state_refs": ["decision_process"]
+    },
+    {
+      "eval_type": "decision_process",
+      "verdict": "fail",
+      "label": null,
+      "diagnostics": ["security_or_procurement_step_missing"],
+      "blocking": false,
+      "rationale": "Skips the known security/BAA step in the stated decision process.",
+      "evidence_class": "methodology",
+      "state_refs": ["decision_process"]
+    },
+    {
+      "eval_type": "cta_calibration",
+      "verdict": "fail",
+      "label": "TOO_STRONG",
+      "diagnostics": ["ask_too_strong"],
+      "blocking": false,
+      "rationale": "Signature ask where the buyer offered a planning session.",
+      "evidence_class": "methodology"
+    }
+  ],
+  "expected_best_action": {
+    "action": "send_email",
+    "why": "Thank Elena, confirm the rollout-plan session she offered, and ask how to engage Sam's security team for the BAA.",
+    "recipients": [{"person_id": "0b0e0000-0000-4000-8000-000000000041", "role": "to"}],
+    "channel": "email"
+  },
+  "notes": "Healthcare slice: PHI makes the security step non-optional (customer-stated process, deal_data)."
+}

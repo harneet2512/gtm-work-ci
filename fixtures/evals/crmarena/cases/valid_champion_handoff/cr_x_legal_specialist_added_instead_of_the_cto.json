@@ -1,0 +1,287 @@
+{
+ "id": "cr_x_legal_specialist_added_instead_of_the_cto",
+ "origin": "crmarena",
+ "case_type": "valid_champion_handoff",
+ "title": "Invite for the 30 November meeting adds a legal colleague of Klara's; the CTO she asked for is not mentioned (analogue)",
+ "should_pass": false,
+ "difficulty": "medium",
+ "slice_tags": {
+  "account": "001Wt00000PGoAaIAL",
+  "origin": "crmarena",
+  "motion": "unknown",
+  "stage": "unknown",
+  "champion_status": "active",
+  "economic_buyer": "unknown",
+  "risk": "unknown",
+  "candidate": "flawed",
+  "expected_action": "schedule_meeting",
+  "extra": [
+   "handoff_analogue",
+   "inbound_email",
+   "named_stakeholder_requested"
+  ]
+ },
+ "based_on": {
+  "kind": "crmarena_moment",
+  "account_id": "001Wt00000PGoAaIAL",
+  "deal_id": "006Wt000007BCRfIAO",
+  "trigger_kind": "inbound_email",
+  "decision_at": "2023-11-25T15:00:00Z",
+  "cutoff": "2023-11-01",
+  "deal_group": "current",
+  "events_before_decision": 7
+ },
+ "source": {
+  "dataset": "CRMArena-Pro B2B Salesforce org (Salesforce AI Research)",
+  "licence": "CC BY-NC 4.0 (non-commercial use only)",
+  "attribution": "Salesforce AI Research, CRMArena-Pro (https://github.com/SalesforceAIResearch/CRMArena, LICENSE.txt); records selected and excerpted, nothing edited",
+  "snapshot_manifest_sha256": "8fbda45c15d1806dc4c37d5230a20ac24d6619ef36a88c0efddb344792c89f03",
+  "generator": "bench/evals/crmarena_gold v1"
+ },
+ "context": {
+  "now": "2023-11-25T15:00:00Z",
+  "state": {
+   "account_id": "0a64a0ed-6843-5fea-8052-d3e0c5f1fffa",
+   "account_name": "TrueNorth Technologies",
+   "opportunity_id": "6fd9868f-a177-5985-b35c-1ad4ee279c44",
+   "fields": {
+    "stage": "unknown",
+    "health": "unknown",
+    "motion": "unknown",
+    "champion": "e40f3372-1d82-545c-9d7f-4e81c2246509",
+    "champion_status": "active",
+    "economic_buyer": "unknown",
+    "relationship_risk": "unknown",
+    "decision_process": "Negotiation meeting 2023-11-30 10:30 to finalize terms and pricing; Klara asked that the CTO, Martin Hrubý (not a Contact in the record), be included",
+    "objections": [
+     {
+      "text": "Wants industry case studies and expected ROI before the meeting",
+      "status": "open"
+     }
+    ],
+    "current_commitments": [
+     {
+      "text": "Us: include Martin Hrubý (CTO) in the 2023-11-30 conversation, as the customer asked",
+      "status": "open"
+     },
+     {
+      "text": "Us: provide industry case studies and ROI expectations (asked 2023-11-25)",
+      "status": "open"
+     },
+     {
+      "text": "Customer: review the DevVision IDE offer and send questions before the meeting",
+      "status": "open"
+     }
+    ],
+    "next_milestone": "Negotiation meeting on 2023-11-30 at 10:30"
+   },
+   "buying_group": [
+    {
+     "person_id": "e40f3372-1d82-545c-9d7f-4e81c2246509",
+     "display_name": "Klára Nováková",
+     "title": "Legal Affairs Manager (champion role inferred, not recorded)",
+     "roles": [
+      "champion"
+     ],
+     "status": "active",
+     "delegated_to_person_id": null,
+     "last_engaged_at": "2023-11-25T15:00:00Z",
+     "evidence_refs": [
+      {
+       "activity_id": "244def91-f867-52f1-85d6-07684547c37c",
+       "occurred_at": "2023-11-25T15:00:00Z"
+      }
+     ]
+    },
+    {
+     "person_id": "a2355454-7266-5987-a2ba-0559d56d14aa",
+     "display_name": "Emily Johnson",
+     "title": "Legal Compliance Specialist (role inferred from department)",
+     "roles": [
+      "legal"
+     ],
+     "status": "unknown",
+     "delegated_to_person_id": null,
+     "last_engaged_at": null,
+     "evidence_refs": []
+    }
+   ],
+   "coverage_gaps": [
+    "economic_buyer",
+    "technical_evaluator"
+   ]
+  },
+  "recent_changes": {
+   "summary": "Klara replied three times on 2023-11-25: she will review the DevVision IDE offer, wants industry case studies and ROI, and asks that the CTO, Martin Hrubý, be included.",
+   "material_diff_fields": [
+    "decision_process",
+    "objections",
+    "current_commitments"
+   ],
+   "signals": [
+    "customer_replied",
+    "new_stakeholder_entered"
+   ]
+  },
+  "trigger": {
+   "activity_id": "244def91-f867-52f1-85d6-07684547c37c",
+   "activity_type": "EmailReceived",
+   "occurred_at": "2023-11-25T15:00:00Z",
+   "actor_person_id": "e40f3372-1d82-545c-9d7f-4e81c2246509",
+   "event_file": "crmarena:EmailMessage:02sWt000002006wIAA",
+   "synthetic": false,
+   "text": "Subject: Re: Negotiation Meeting Preparation\n\nHi Carlos,\n\nThank you for the detailed email and for your efforts to ensure our meeting next week is productive. TrueNorth is indeed excited about the potential partnership with TechPulse Solutions.\n\nI appreciate the attention given to our current challenges, particularly in enhancing our technological infrastructure. The insights you've shared about market stability and innovation are reassuring, as these elements are crucial for our strategic objectives. The product details, particularly the DevVision IDE with the discount, are beneficial and highlight your understanding of our budget and operational requirements.\n\nI agree that testimonials are helpful and should support long-term engagement and growth, which is a priority for us. I believe our upcoming discussion will be a valuable opportunity to address any outstanding concerns and align on mutually beneficial terms.\n\nPlease include our CTO, Martin Hrubý, in the conversation as he will bring additional insights into our technical requirements. I'll ensure to have our team ready with any further questions or clarifications we might need.\n\nLooking forward to our discussions.\n\nBest regards,\n\nKlára Nováková\nTrueNorth Technologies",
+   "subject": "Negotiation meeting preparation",
+   "date_semantics": "sent"
+  },
+  "supporting_activities": [
+   {
+    "activity_id": "b19e2654-a88f-5567-9916-a3c40c7c3d3b",
+    "activity_type": "EmailSent",
+    "occurred_at": "2023-11-25T09:00:00Z",
+    "actor_person_id": "9ca99326-dfec-5622-bd38-18cbeb8fb2a2",
+    "event_file": "crmarena:EmailMessage:02sWt000001zwMnIAI",
+    "synthetic": false,
+    "text": "Subject: Negotiation Meeting Preparation\n\nHi Klára,\n\nI hope this message finds you well. I wanted to touch base as we prepare for our upcoming negotiation meeting scheduled for November 30th at 10:30 AM. We’re at an exciting stage, finalizing terms and pricing structures for our partnership, and I’m keen to ensure everything aligns perfectly with TrueNorth Technologies' expectations.\n\nThroughout our discussions, we’ve emphasized the strength of TechPulse Solutions in leading tech innovations within the EDA sector. Our AI Cirku-Tech product has received positive feedback for its advanced optimizations and scalability, which resonate well with what you're looking for in terms of enhancing operational efficiencies.",
+    "subject": "Negotiation meeting preparation",
+    "date_semantics": "sent"
+   },
+   {
+    "activity_id": "801f2f1b-f2a5-5ca1-b35c-3ca2f53b767f",
+    "activity_type": "EmailReceived",
+    "occurred_at": "2023-11-25T10:00:00Z",
+    "actor_person_id": "e40f3372-1d82-545c-9d7f-4e81c2246509",
+    "event_file": "crmarena:EmailMessage:02sWt000001zrJrIAI",
+    "synthetic": false,
+    "text": "Hi Carlos,\n\nThank you for the detailed follow-up email. I appreciate your efforts to address our concerns and align your offerings with our needs at TrueNorth Technologies. The outlined capabilities of your AI Cirku-Tech certainly seem promising in supporting our scalability goals.\n\nYour points about integration stand out, especially considering our past experiences with different solutions. A speedy and smooth setup is a significant advantage for us, and it’s reassuring to know TechPulse Solutions excels in this regard.",
+    "subject": "Negotiation meeting preparation",
+    "date_semantics": "sent"
+   },
+   {
+    "activity_id": "c4dfc653-91b3-594e-b561-1b5ccf89fd3f",
+    "activity_type": "EmailReceived",
+    "occurred_at": "2023-11-25T11:30:00Z",
+    "actor_person_id": "e40f3372-1d82-545c-9d7f-4e81c2246509",
+    "event_file": "crmarena:EmailMessage:02sWt000001zpl7IAA",
+    "synthetic": false,
+    "text": "Hi Carlos,\n\nThank you for the update and for addressing some of TrueNorth's key requirements. I’m glad to hear more about the customization aspects and the support services TechPulse provides. It's reassuring to know that you're emphasizing these elements in the proposed solutions.\n\nRegarding AI Cirku-Tech and DevVision IDE, I appreciate the overview of the features that align with our operational efficiency needs. As we prepare for our upcoming meeting, I have a few additional questions about specific case studies related to our industry and the potential ROI we might expect.\n\nLooking forward to discussing this in more detail on November 30th.\n\nBest,\nKlára Nováková\nTrueNorth Technologies",
+    "subject": "Negotiation meeting preparation",
+    "date_semantics": "sent"
+   }
+  ],
+  "commitments": [
+   {
+    "text": "Include Martin Hrubý (CTO) in the 2023-11-30 conversation",
+    "owner_person_id": "9ca99326-dfec-5622-bd38-18cbeb8fb2a2",
+    "due_at": "2023-11-30T10:30:00Z",
+    "status": "open"
+   }
+  ],
+  "timeline_facts": {
+   "last_inbound_at": "2023-11-25T15:00:00Z",
+   "last_inbound_from_person_id": "e40f3372-1d82-545c-9d7f-4e81c2246509",
+   "last_outbound_at": "2023-11-25T09:15:00Z",
+   "stated_timing": null
+  },
+  "offered_knowledge": [],
+  "state_provenance": {
+   "champion": "inferred, not recorded: the only customer correspondent (3 inbound emails); CRMArena has no roles",
+   "stage": "unknown unless a field below says otherwise: the loader dates the stage at the deal's last event",
+   "decision_process": "02sWt000001zwMnIAI, 02sWt000002006wIAA",
+   "objections": "02sWt000001zpl7IAA",
+   "current_commitments": "02sWt000001zrJrIAI, 02sWt000001zpl7IAA, 02sWt000002006wIAA",
+   "buying_group roles": "inferred from each Contact's Title/Department; the record has no roles"
+  }
+ },
+ "candidate_action": {
+  "proposed_action_type": "schedule_meeting",
+  "recipients": [
+   {
+    "person_id": "e40f3372-1d82-545c-9d7f-4e81c2246509",
+    "role": "to"
+   },
+   {
+    "person_id": "a2355454-7266-5987-a2ba-0559d56d14aa",
+    "role": "cc"
+   }
+  ],
+  "finished_artifact": {
+   "channel": "email",
+   "subject": "Negotiation meeting, November 30 at 10:30 AM",
+   "body": "Hi Klára,\n\nHere is the invite for November 30 at 10:30 AM. I have copied Emily Johnson from your legal team so the contract points are covered.\n\nBest regards,\nCarlos"
+  },
+  "crm_next_step_intent": {
+   "next_step": "Negotiation meeting 2023-11-30 10:30",
+   "due_at": "2023-11-30T10:30:00Z",
+   "stage_change": null
+  },
+  "reason": "Cover the legal side of the terms discussion.",
+  "evidence_refs": [
+   {
+    "activity_id": "b19e2654-a88f-5567-9916-a3c40c7c3d3b",
+    "quote": "negotiation meeting scheduled for November 30th at 10:30 AM",
+    "occurred_at": "2023-11-25T09:00:00Z",
+    "speaker_person_id": "9ca99326-dfec-5622-bd38-18cbeb8fb2a2"
+   }
+  ],
+  "knowledge_refs_used": [],
+  "wait_until": null
+ },
+ "expected": [
+  {
+   "eval_type": "champion_continuity",
+   "verdict": "pass",
+   "label": "CHAMPION_INCLUDED",
+   "diagnostics": [],
+   "blocking": false,
+   "rationale": "Klara stays on the invite.",
+   "evidence_class": "methodology"
+  },
+  {
+   "eval_type": "stakeholder_selection",
+   "verdict": "fail",
+   "label": null,
+   "diagnostics": [],
+   "blocking": true,
+   "rationale": "Klara explicitly asked that the CTO be included; the draft adds a different person and leaves him out.",
+   "evidence_class": "methodology"
+  },
+  {
+   "eval_type": "stakeholder_coverage",
+   "verdict": "fail",
+   "label": "UNDER_THREADED",
+   "diagnostics": [
+    "under_threaded"
+   ],
+   "blocking": false,
+   "rationale": "The person the customer asked for is missing, and an unrequested one is added.",
+   "evidence_class": "deal_data"
+  }
+ ],
+ "expected_best_action": {
+  "action": "schedule_meeting",
+  "why": "Send the invite and ask for Martin Hrubý's address so he is added, as she asked.",
+  "recipients": [
+   {
+    "person_id": "e40f3372-1d82-545c-9d7f-4e81c2246509",
+    "role": "to"
+   }
+  ],
+  "channel": "email"
+ },
+ "labelling": {
+  "label_kind": "model labels, single author, not human labels",
+  "passes": [
+   "pass_1",
+   "pass_2"
+  ],
+  "agreement": {
+   "judgments": 3,
+   "verdict_agree": 3,
+   "fail_agree": 3
+  },
+  "disagreements": []
+ },
+ "evidence_gap": "CRMArena has no delegation or departure, so a true VALID_HANDOFF cannot be built from the record; this case uses the nearest real fact (the buyer asks in writing to include another person while the correspondent stays on the thread). Replace or extend it with the WP32 synthetic layer.",
+ "notes": ""
+}

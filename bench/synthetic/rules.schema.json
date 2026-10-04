@@ -1,0 +1,92 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://ghost.local/bench/synthetic/rules.schema.json",
+  "title": "SyntheticPlantedRules",
+  "description": "Planted-rule registry of the labelled synthetic layer (WP32, HAR-131; spec docs/data/synthetic-layer-v1.md). Bench-only: the platform (core-go, worker-py, knowledge store, eval prompts) never reads it, and a test fails if its text appears there.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["rule_set_version", "spec_version", "provenance", "status", "generation_seed", "seed_policy", "description", "scoring", "outcome", "process", "learnability_gates", "base_rates_file", "transition_facts", "pending_evals", "rules", "power_sim_noise", "changelog"],
+  "properties": {
+    "rule_set_version": {"type": "string", "pattern": "^synthetic_rules:v[1-9][0-9]*$"},
+    "provenance": {"type": "string", "pattern": "^synthetic:v[1-9][0-9]*$"},
+    "status": {"description": "draft while the spec is reviewed; frozen at first generation (content hash pinned in frozen_sha256). A change after freezing is a new version file.", "enum": ["draft", "frozen"]},
+    "frozen_sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+    "description": {"type": "string", "minLength": 1, "maxLength": 2000},
+    "outcome": {"type": "object", "additionalProperties": false, "required": ["link", "base_log_odds", "target_win_rate", "account_effect_sd", "description"], "properties": {"link": {"const": "logit"}, "base_log_odds": {"type": "number", "minimum": -5, "maximum": 5}, "target_win_rate": {"$ref": "#/$defs/unitRange"}, "account_effect_sd": {"description": "SD of an unobserved per-account log-odds offset: irreducible noise no learner can recover.", "type": "number", "minimum": 0, "maximum": 3}, "description": {"type": "string", "minLength": 1, "maxLength": 2000}}},
+    "learnability_gates": {
+      "description": "Generation-time QA on ground truth: the planted signal must be detectable but not trivial.",
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["oracle_auc", "learner_auc", "hidden_learner_auc", "null_incremental_auc_max", "sign_recovery_min", "hidden_sign_recovery_min", "basis", "seed_pass_rate_min", "sweep_seeds"],
+      "properties": {
+        "oracle_auc": {"$ref": "#/$defs/unitRange"},
+        "learner_auc": {"$ref": "#/$defs/unitRange"},
+        "hidden_learner_auc": {"$ref": "#/$defs/unitRange"},
+        "null_incremental_auc_max": {"description": "AUC that null features may add on top of the account's previous-deal win rate (accounts span the time split, so raw null AUC inherits the account offset).", "type": "number", "minimum": 0, "maximum": 0.2},
+        "sign_recovery_min": {"type": "number", "minimum": 0, "maximum": 1},
+        "hidden_sign_recovery_min": {"type": "number", "minimum": 0, "maximum": 1},
+        "basis": {"type": "string", "minLength": 1, "maxLength": 2000},
+        "seed_pass_rate_min": {"description": "Share of the sweep's seeds that must pass every per-seed gate.", "type": "number", "minimum": 0.5, "maximum": 1},
+        "sweep_seeds": {"type": "integer", "minimum": 10}
+      }
+    },
+    "transition_facts": {"description": "Snapshot of the ADR-0012 transition fact keys (contracts/transitions/rules.v1.json, PR #16). A test compares it with the contract once that lands.", "type": "object", "additionalProperties": {"type": "array", "items": {"$ref": "#/$defs/snake"}, "uniqueItems": true}},
+    "pending_evals": {"description": "Eval types a rule exercises that are not yet in contracts/evals/eval_catalog.json on main, with the PR adding them.", "type": "object", "additionalProperties": {"type": "string", "minLength": 1}},
+    "rules": {"type": "array", "minItems": 1, "items": {"$ref": "#/$defs/rule"}},
+    "spec_version": {"type": "string", "pattern": "^[0-9]+\\.[0-9]+$"},
+    "generation_seed": {"description": "The one seed generation uses. Frozen: a gate failure is fixed in the rules, never by changing the seed.", "type": "integer", "minimum": 0},
+    "seed_policy": {"type": "string", "minLength": 20, "maxLength": 1000},
+    "scoring": {"type": "object", "additionalProperties": false, "required": ["uplift_groups", "description"], "properties": {"uplift_groups": {"type": "array", "minItems": 1, "items": {"const": "hidden_company_specific"}}, "description": {"type": "string", "minLength": 1, "maxLength": 2000}}},
+    "process": {"description": "Parameters of the forward generator kernel (forward.py, plan.py, world.py); frozen with the rules.", "type": "object", "additionalProperties": {"type": "number"}},
+    "base_rates_file": {"const": "base_rates.v1.json"},
+    "power_sim_noise": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["description", "classes", "observed_via", "decision_window"],
+      "properties": {"description": {"type": "string"}, "classes": {"type": "object", "additionalProperties": {"type": "object", "additionalProperties": false, "required": ["miss", "false_positive", "basis"], "properties": {"miss": {"type": "number", "minimum": 0, "maximum": 1}, "false_positive": {"type": "number", "minimum": 0, "maximum": 1}, "basis": {"type": "string", "minLength": 1}}}, "required": ["crm_explicit", "identity_title", "llm_extraction"]}, "observed_via": {"type": "object", "additionalProperties": {"enum": ["crm_explicit", "identity_title", "llm_extraction"]}}, "decision_window": {"$ref": "#/$defs/unitRange"}}
+    },
+    "changelog": {"description": "Every change to rules or process parameters, with why. A change after freezing is a new version file.", "type": "array", "minItems": 1, "items": {"type": "object", "additionalProperties": false, "required": ["date", "spec", "change", "why"], "properties": {"date": {"type": "string", "pattern": "^\\d{4}-\\d\\d-\\d\\d$"}, "spec": {"type": "string"}, "change": {"type": "string", "minLength": 10}, "why": {"type": "string", "minLength": 5}}}},
+    "gate_exceptions": {"description": "Recorded, exact waivers of a sweep failure (who decided, when, why). Only an identical failure string is waived; a failure naming a hidden rule or a null gate can never be waived.", "type": "array", "items": {"type": "object", "additionalProperties": false, "required": ["mode", "base", "decided_by", "date", "reason"], "anyOf": [{"required": ["failure"]}, {"required": ["failures"]}], "properties": {"failure": {"type": "string", "minLength": 5}, "failures": {"type": "array", "minItems": 1, "items": {"type": "string", "minLength": 5}}, "base": {"enum": ["stand_in", "real_snapshot"]}, "reconfirmed": {"type": "string", "pattern": "^\\d{4}-\\d\\d-\\d\\d$"}, "mode": {"const": "clean"}, "decided_by": {"enum": ["user", "lead"]}, "date": {"type": "string", "pattern": "^\\d{4}-\\d\\d-\\d\\d$"}, "reason": {"type": "string", "minLength": 40}}}}
+  },
+  "$defs": {
+    "snake": {"type": "string", "pattern": "^[a-z][a-z0-9_]*$"},
+    "unitRange": {"type": "array", "prefixItems": [{"type": "number", "minimum": 0, "maximum": 1}, {"type": "number", "minimum": 0, "maximum": 1}], "minItems": 2, "maxItems": 2},
+    "source": {"type": "object", "additionalProperties": false, "required": ["title", "url"], "properties": {"title": {"type": "string", "minLength": 1}, "url": {"type": "string", "pattern": "^https://"}, "quote": {"type": "string", "maxLength": 500}}},
+    "baseRate": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id", "quantity", "real_value", "assumed", "source", "confidence", "synthetic_target", "derivation"],
+      "properties": {"id": {"$ref": "#/$defs/snake"}, "quantity": {"type": "string", "minLength": 1}, "real_value": {"type": ["string", "null"]}, "assumed": {"type": "boolean"}, "source": {"oneOf": [{"$ref": "#/$defs/source"}, {"type": "null"}]}, "confidence": {"enum": ["high", "moderate", "low", "none"]}, "synthetic_target": {"type": "string", "minLength": 1}, "amplification": {"type": ["number", "null"], "minimum": 0}, "derivation": {"type": "string", "minLength": 1, "maxLength": 1000}},
+      "allOf": [{"if": {"properties": {"source": {"type": "null"}}}, "then": {"properties": {"assumed": {"const": true}}}}]
+    },
+    "transitionRef": {"type": "object", "additionalProperties": false, "required": ["transition", "facts"], "properties": {"transition": {"$ref": "#/$defs/snake"}, "status": {"enum": ["CONFIRMED", "CANDIDATE", "UNRESOLVED", "REJECTED"]}, "facts": {"type": "array", "items": {"$ref": "#/$defs/snake"}, "uniqueItems": true}}},
+    "rule": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["key", "kind", "group", "statement", "feature", "log_odds", "odds_ratio", "prevalence_target", "realized_by", "exercises"],
+      "properties": {
+        "key": {"type": "string", "pattern": "^syn1_[a-z0-9_]+$"},
+        "kind": {"enum": ["effect", "null", "exception"]},
+        "statement": {"type": "string", "minLength": 20, "maxLength": 600},
+        "feature": {"type": "string", "minLength": 1, "maxLength": 1000},
+        "params": {"type": "object", "additionalProperties": {"type": ["number", "string", "boolean"]}},
+        "log_odds": {"type": "number", "minimum": -4, "maximum": 4},
+        "odds_ratio": {"type": "number", "exclusiveMinimum": 0},
+        "prevalence_target": {"type": "number", "minimum": 0, "maximum": 1},
+        "modifies": {"type": "string", "pattern": "^syn1_[a-z0-9_]+$"},
+        "realized_by": {"type": "array", "minItems": 1, "items": {"type": "string", "minLength": 1}},
+        "exercises": {"type": "object", "additionalProperties": false, "required": ["evals", "transitions", "timescale"], "properties": {"evals": {"type": "array", "items": {"$ref": "#/$defs/snake"}, "uniqueItems": true}, "transitions": {"type": "array", "items": {"$ref": "#/$defs/transitionRef"}}, "timescale": {"description": "HAR-97 §12 supervision timescale the rule's signal arrives on.", "type": "array", "minItems": 1, "uniqueItems": true, "items": {"enum": ["immediate", "fast", "slow"]}}}},
+        "group": {"enum": ["eval_known", "hidden_company_specific", "control"]},
+        "encoded_by": {"type": "array", "minItems": 1, "items": {"$ref": "#/$defs/surfaceRef"}, "uniqueItems": true},
+        "key_terms": {"type": "array", "minItems": 3, "items": {"type": "string", "minLength": 3}, "uniqueItems": true},
+        "audit": {"type": "array", "minItems": 2, "items": {"$ref": "#/$defs/auditEntry"}},
+        "observable_text": {"description": "Regexes (on normalised text) of rendered activity text the feature is made of; the key-term scan blanks them.", "type": "array", "items": {"type": "string", "minLength": 3}},
+        "decision": {"description": "The agent decision a hidden rule changes and how spec d2 scores it.", "type": "object", "additionalProperties": false, "required": ["changes", "scored_by"], "properties": {"changes": {"type": "string", "minLength": 10}, "scored_by": {"type": "string", "minLength": 10}}}
+      },
+      "allOf": [{"if": {"properties": {"kind": {"const": "null"}}}, "then": {"properties": {"log_odds": {"const": 0}, "group": {"const": "control"}}}}, {"if": {"properties": {"kind": {"const": "exception"}}}, "then": {"required": ["modifies"]}}, {"if": {"properties": {"group": {"const": "eval_known"}}}, "then": {"required": ["encoded_by"]}}, {"if": {"properties": {"group": {"const": "hidden_company_specific"}}}, "then": {"required": ["key_terms", "audit", "decision"], "properties": {"kind": {"const": "effect"}}}}]
+    },
+    "baseRatesFile": {"type": "object", "additionalProperties": false, "required": ["description", "base_rates"], "properties": {"description": {"type": "string"}, "base_rates": {"type": "array", "minItems": 1, "items": {"$ref": "#/$defs/baseRate"}}}},
+    "surfaceRef": {"description": "An eval type, a knowledge key, a transition rule, the HAR-129 example, or a gold eval case id.", "type": "string", "pattern": "^(eval:[a-z_]+|knowledge:K[0-9]+|transition:[a-z_]+|har129:[a-z_]+|case:[a-z0-9_]+)$"},
+    "auditEntry": {"type": "object", "additionalProperties": false, "required": ["nearest", "why_not_encoded"], "properties": {"nearest": {"$ref": "#/$defs/surfaceRef"}, "why_not_encoded": {"type": "string", "minLength": 20, "maxLength": 400}}}
+  }
+}

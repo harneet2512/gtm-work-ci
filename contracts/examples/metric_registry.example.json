@@ -1,0 +1,197 @@
+{
+  "registry_version": 2,
+  "description": "Example excerpt: one measured, one computable and one blocked metric, one headline item and one operational diagnostic. The full registry is contracts/metrics/metric_registry.json.",
+  "source": {
+    "issue": "HAR-97",
+    "updated_at": "2026-10-02T19:33:49.030Z",
+    "sha256": "0e2e8dfef3134eb3556083cea576c3a9cdcf5784ec512aca2dd8e88c9bb9a53d",
+    "acknowledged_lines": "contracts/metrics/har97_acknowledged_lines.txt",
+    "acknowledged_lines_sha256": "cd0a8282af672a4b878cd963910a7654881deaa93255294ed3112cc7df2f4585",
+    "canonical": {
+      "issue": "HAR-97",
+      "section": "CANONICAL EVAL STRATEGY (sections 8, 9; Frontier V5, V6)",
+      "fetched_on": "2026-10-03"
+    }
+  },
+  "layer_order": [
+    "state_context_L1",
+    "deterministic_evals",
+    "eval_quality"
+  ],
+  "headline_set": [
+    {
+      "rank": 5,
+      "id": "headline.repeat_semantic_correction",
+      "name": "repeat semantic correction",
+      "source": "HAR-97 Canonical §9 item 5",
+      "metric_ids": [
+        "eval_quality.repeat_semantic_correction_rate"
+      ],
+      "evals": [
+        "E16.7"
+      ],
+      "replaces": "P4"
+    }
+  ],
+  "operational_diagnostics": [
+    {
+      "id": "ops.m1_model_token_efficiency",
+      "name": "Model / token efficiency",
+      "class": "operational",
+      "eval": "M1",
+      "section": "Canonical §8 M1",
+      "measures": [
+        "input tokens / episode",
+        "output tokens / episode",
+        "cached tokens / episode",
+        "reasoning tokens where available",
+        "tokens / accepted action",
+        "tokens / successful workflow",
+        "model calls / episode",
+        "model calls / successful workflow"
+      ],
+      "consumers": [
+        "report",
+        "dashboard"
+      ],
+      "knowledge_mutation_allowed": false,
+      "status": "blocked",
+      "blocker": "Not collected: no per-episode usage, latency or cost record is defined and the metrics harness reads none of these quantities.",
+      "tracked_by": [
+        "HAR-132"
+      ],
+      "owner_wp": "HAR-132 (WP33)"
+    }
+  ],
+  "metrics": [
+    {
+      "id": "l1.entity_attachment",
+      "name": "Entity attachment (identity resolution P/R)",
+      "kind": "eval_check",
+      "layer": "state_context_L1",
+      "definition": "Pairwise precision and recall of identity clustering: raw identities (email, CRM ids, speakers, Slack) attached to the right person/account entity.",
+      "formula": {
+        "numerator": "predicted same-entity identity pairs that are gold pairs (P) / gold pairs predicted (R)",
+        "denominator": "predicted pairs (P) / gold pairs (R)"
+      },
+      "unit": "precision_recall",
+      "inputs": {
+        "data": [
+          "fixtures/world + fixtures/live ingested into core"
+        ],
+        "gold": [
+          "fixtures/gold entities (66 identities, 111 pairs)"
+        ]
+      },
+      "har97_ref": {
+        "source": "HAR-97",
+        "section": "§9(transition)",
+        "quote": "Did we attach activities to the right account/person?",
+        "also": [
+          {
+            "source": "HAR-97",
+            "section": "L1",
+            "quote": "correct identity/entity resolution"
+          }
+        ]
+      },
+      "status": "measured",
+      "blocker": null,
+      "current_value": {
+        "value": {
+          "precision": 1.0,
+          "recall": 1.0
+        },
+        "display": "P 1.000 / R 1.000 on 111 gold identity pairs",
+        "data_basis": "legacy_fixture_world",
+        "n": 111,
+        "source": "bench/reports/go-acceptance-2026-10-02.txt",
+        "source_detail": "Go TestWorldIdentityClusteringMatchesGold (core-go/internal/graph), WP5 HAR-103",
+        "measured_on": "2026-10-02",
+        "caveat": "Measured on the legacy fixture world: invented fixture accounts (Acme, Beta, Northstar), not real customer data, with author-written gold identities."
+      },
+      "owner_wp": "HAR-126 (WP28)",
+      "evals": [
+        "E2.1"
+      ]
+    },
+    {
+      "id": "det.recipient_correctness",
+      "name": "Recipient correctness pass rate",
+      "kind": "eval_check",
+      "layer": "deterministic_evals",
+      "definition": "Share of proposed actions that pass the deterministic 'Recipient correctness' eval (code, no LLM).",
+      "formula": {
+        "numerator": "proposals passing recipient_correctness",
+        "denominator": "proposals checked"
+      },
+      "unit": "ratio",
+      "inputs": {
+        "data": [
+          "AgentRunOutput",
+          "AccountState"
+        ],
+        "gold": [
+          "fixtures/evals/cases (87 gold GTM situations): expected[] with eval_type recipient_correctness"
+        ]
+      },
+      "har97_ref": {
+        "source": "HAR-97",
+        "section": "§4",
+        "quote": "Recipient correctness"
+      },
+      "status": "computable",
+      "blocker": null,
+      "current_value": null,
+      "owner_wp": "HAR-115 (WP17)",
+      "tracked_by": [
+        "HAR-115"
+      ],
+      "eval_types": [
+        "recipient_correctness"
+      ],
+      "notes": "Deterministic evaluator on main (HAR-115, core-go/internal/evals/deterministic). Go TestGoldAgreement scores it against the gold deterministic labels (28 of 29 scorable, floor and zero false blocks asserted) and logs the per-eval agreement; the metrics harness does not collect the per-entry rate.",
+      "evals": [
+        "E12.4",
+        "E13.14"
+      ]
+    },
+    {
+      "id": "canon.v6_eval_gaming_proxy_failure",
+      "name": "Eval gaming / proxy failure (V6)",
+      "kind": "canonical",
+      "layer": "eval_quality",
+      "definition": "Whether the agent can raise the measured score without improving the real GTM outcome.",
+      "formula": {
+        "procedure": "Held-out adversarial cases (E22.1-E22.9), outcome checks and human review: score gain with no outcome or human-quality gain counts as proxy failure."
+      },
+      "unit": "count",
+      "inputs": {
+        "data": [
+          "Held-out adversarial cases",
+          "outcome checks"
+        ],
+        "gold": []
+      },
+      "har97_ref": {
+        "source": "HAR-97",
+        "section": "Frontier V6",
+        "quote": "Audit whether the agent can improve the measured score without improving the real GTM outcome."
+      },
+      "status": "blocked",
+      "blocker": "No adversarial or gaming cases exist (E22.1-E22.9 are planned) and there are no outcome checks to compare against.",
+      "current_value": null,
+      "owner_wp": "HAR-121 (WP23)",
+      "tracked_by": [
+        "HAR-121"
+      ],
+      "evals": [
+        "E22.1",
+        "E22.2",
+        "E22.3",
+        "E22.7",
+        "E19.12"
+      ]
+    }
+  ]
+}

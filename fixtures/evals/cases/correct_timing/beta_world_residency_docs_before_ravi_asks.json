@@ -1,0 +1,240 @@
+{
+  "id": "beta_world_residency_docs_before_ravi_asks",
+  "case_type": "correct_timing",
+  "title": "Beta 09-17: Hannah named residency as the real blocker; the candidate sends Ravi the residency documents before he asks",
+  "should_pass": true,
+  "difficulty": "hard",
+  "slice_tags": {
+    "account": "beta",
+    "origin": "world_moment",
+    "motion": "expansion",
+    "stage": "technical_evaluation",
+    "champion_status": "active",
+    "economic_buyer": "known",
+    "risk": "medium",
+    "candidate": "good",
+    "expected_action": "send_email",
+    "extra": ["data_residency", "near_boundary"]
+  },
+  "based_on": {
+    "kind": "world_moment",
+    "account": "beta",
+    "after_event_file": "world/accounts/beta/events/035_crm_opp_stage_tech_eval.json",
+    "checkpoint": 3,
+    "changed_fields": ["current_commitments", "next_milestone", "decision_process"],
+    "change": null
+  },
+  "context": {
+    "now": "2026-09-17T10:00:00Z",
+    "state": {
+      "account_id": "0a0c0000-0000-4000-8000-000000000002",
+      "account_name": "Beta Inc",
+      "opportunity_id": "0c0f0000-0000-4000-8000-000000000005",
+      "fields": {
+        "stage": "Technical evaluation",
+        "health": "at_risk",
+        "motion": "expansion",
+        "champion": "0b0e0000-0000-4000-8000-000000000031",
+        "champion_status": "active",
+        "economic_buyer": "0b0e0000-0000-4000-8000-000000000032",
+        "relationship_risk": "medium",
+        "blockers": [
+          {
+            "text": "EU data residency for the Dublin team's ticket data (where EU ticket data is stored and processed)",
+            "status": "open"
+          }
+        ],
+        "next_milestone": "Ravi confirms where EU ticket data is stored",
+        "current_commitments": [
+          {
+            "text": "Pull the data residency addendum and sub-processor list for Ravi",
+            "status": "open",
+            "owner_person_id": "0b0e0000-0000-4000-8000-000000000001"
+          }
+        ]
+      },
+      "buying_group": [
+        {
+          "person_id": "0b0e0000-0000-4000-8000-000000000031",
+          "display_name": "Hannah Lee",
+          "title": "VP Customer Operations",
+          "roles": ["champion"],
+          "status": "active",
+          "delegated_to_person_id": null,
+          "last_engaged_at": null,
+          "evidence_refs": []
+        },
+        {
+          "person_id": "0b0e0000-0000-4000-8000-000000000032",
+          "display_name": "Owen Clarke",
+          "title": "Chief Financial Officer",
+          "roles": ["economic_buyer"],
+          "status": "unknown",
+          "delegated_to_person_id": null,
+          "last_engaged_at": null,
+          "evidence_refs": []
+        },
+        {
+          "person_id": "0b0e0000-0000-4000-8000-000000000033",
+          "display_name": "Jess Patel",
+          "title": "Support Operations Manager",
+          "roles": ["user"],
+          "status": "active",
+          "delegated_to_person_id": null,
+          "last_engaged_at": null,
+          "evidence_refs": []
+        },
+        {
+          "person_id": "0b0e0000-0000-4000-8000-000000000034",
+          "display_name": "Ravi Menon",
+          "title": "Head of Platform Engineering",
+          "roles": ["technical_evaluator"],
+          "status": "active",
+          "delegated_to_person_id": null,
+          "last_engaged_at": null,
+          "evidence_refs": []
+        }
+      ],
+      "coverage_gaps": []
+    },
+    "recent_changes": {
+      "summary": "Hannah corrected the blocker: residency, not SSO; Leo is pulling the residency addendum and sub-processor list; CRM stage moved to Technical evaluation.",
+      "material_diff_fields": [],
+      "signals": []
+    },
+    "trigger": {
+      "activity_id": "0ac70000-0000-4000-8000-0000000b0035",
+      "activity_type": "OpportunityStageChanged",
+      "occurred_at": "2026-09-17T09:30:00Z",
+      "actor_person_id": "0b0e0000-0000-4000-8000-000000000001",
+      "event_file": "world/accounts/beta/events/035_crm_opp_stage_tech_eval.json",
+      "synthetic": false,
+      "text": ""
+    },
+    "supporting_activities": [
+      {
+        "activity_id": "0ac70000-0000-4000-8000-0000000b0032",
+        "activity_type": "EmailReply",
+        "occurred_at": "2026-09-16T09:10:00Z",
+        "actor_person_id": "0b0e0000-0000-4000-8000-000000000031",
+        "event_file": "world/accounts/beta/events/032_email_hannah_residency_correction.json",
+        "synthetic": false,
+        "text": "The real blocker is EU data residency for the Dublin team's tickets. Ravi needs to confirm where EU ticket data is stored before we go further."
+      },
+      {
+        "activity_id": "0ac70000-0000-4000-8000-0000000b0034",
+        "activity_type": "SlackMessage",
+        "occurred_at": "2026-09-16T14:00:00Z",
+        "actor_person_id": "0b0e0000-0000-4000-8000-000000000002",
+        "event_file": "world/accounts/beta/events/034_slack_residency_note.json",
+        "synthetic": false,
+        "text": "We host EU tenants in Frankfurt; I'll pull our data residency addendum and sub-processor list."
+      }
+    ],
+    "commitments": [
+      {
+        "text": "Pull the data residency addendum and sub-processor list for Ravi",
+        "owner_person_id": "0b0e0000-0000-4000-8000-000000000002",
+        "due_at": null,
+        "status": "open"
+      }
+    ],
+    "timeline_facts": {
+      "last_inbound_at": "2026-09-16T09:10:00Z",
+      "last_inbound_from_person_id": "0b0e0000-0000-4000-8000-000000000031",
+      "last_outbound_at": "2026-09-01T17:00:00Z",
+      "stated_timing": null
+    },
+    "offered_knowledge": []
+  },
+  "candidate_action": {
+    "proposed_action_type": "send_email",
+    "recipients": [
+      {"person_id": "0b0e0000-0000-4000-8000-000000000034", "role": "to", "why": "Must confirm residency"},
+      {"person_id": "0b0e0000-0000-4000-8000-000000000031", "role": "cc", "why": "Champion"}
+    ],
+    "finished_artifact": {
+      "channel": "email",
+      "subject": "EU data residency",
+      "body": "Hi Ravi,\n\nHannah mentioned EU data residency is the real question for the Dublin tickets. Attached are our EU data residency addendum and sub-processor list; EU tenants are hosted in Frankfurt. Happy to walk through them with Leo once you've read them, if useful.\n\nBest,\nDana",
+      "attachments": ["EU_Data_Residency_Addendum.pdf", "Sub-processor_List.pdf"]
+    },
+    "crm_next_step_intent": {"next_step": "Ravi reviews residency documents", "due_at": null, "stage_change": null},
+    "reason": "Hannah named the need; the documents answer it.",
+    "evidence_refs": [
+      {
+        "activity_id": "0ac70000-0000-4000-8000-0000000b0032",
+        "quote": "Ravi needs to confirm where EU ticket data is stored before we go further.",
+        "speaker_person_id": "0b0e0000-0000-4000-8000-000000000031",
+        "occurred_at": "2026-09-16T09:10:00Z"
+      },
+      {
+        "activity_id": "0ac70000-0000-4000-8000-0000000b0034",
+        "quote": "We host EU tenants in Frankfurt",
+        "speaker_person_id": "0b0e0000-0000-4000-8000-000000000002",
+        "occurred_at": "2026-09-16T14:00:00Z"
+      }
+    ],
+    "knowledge_refs_used": [],
+    "wait_until": null
+  },
+  "expected": [
+    {
+      "eval_type": "state_change_relevance",
+      "verdict": "pass",
+      "label": null,
+      "diagnostics": [],
+      "blocking": false,
+      "rationale": "Answers the corrected blocker (residency), not the stale one (SSO).",
+      "evidence_class": "methodology"
+    },
+    {
+      "eval_type": "buyer_readiness",
+      "verdict": "pass",
+      "label": "READY",
+      "diagnostics": [],
+      "blocking": false,
+      "rationale": "The champion named exactly this need for this person.",
+      "evidence_class": "methodology",
+      "debatable": true,
+      "debate_note": "Ravi has not asked yet; some reviewers would first ask him what he needs (as the rep did on 09-17)."
+    },
+    {
+      "eval_type": "champion_continuity",
+      "verdict": "pass",
+      "label": "CHAMPION_INCLUDED",
+      "diagnostics": [],
+      "blocking": false,
+      "rationale": "Hannah cc'd.",
+      "evidence_class": "methodology"
+    },
+    {
+      "eval_type": "stakeholder_selection",
+      "verdict": "pass",
+      "label": null,
+      "diagnostics": [],
+      "blocking": false,
+      "rationale": "The platform approver Hannah named (Ravi), with the champion.",
+      "evidence_class": "methodology"
+    },
+    {
+      "eval_type": "commitment_consistency",
+      "verdict": "pass",
+      "label": null,
+      "diagnostics": [],
+      "blocking": false,
+      "rationale": "Delivers what the team said it would pull.",
+      "evidence_class": "methodology"
+    }
+  ],
+  "expected_best_action": {
+    "action": "send_email",
+    "why": "Exactly this.",
+    "recipients": [
+      {"person_id": "0b0e0000-0000-4000-8000-000000000034", "role": "to"},
+      {"person_id": "0b0e0000-0000-4000-8000-000000000031", "role": "cc"}
+    ],
+    "channel": "email"
+  },
+  "notes": "Hard should-pass: earlier than the real world (Ravi had to ask on 09-24)."
+}

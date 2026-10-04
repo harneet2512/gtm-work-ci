@@ -1,0 +1,1010 @@
+{
+  "version": "har129-requirements.v1",
+  "source": "HAR-129",
+  "quoted_from": "Linear HAR-129 description: §G (27 live proof checks), §16 (32-step acceptance test), §13 (complete visible demo A-I), Definition of done, Canonical demo checklist + ownership. Quotes are faithful; implementation-status words after a colon in the checklist are not part of the requirement.",
+  "sections": [
+    { "id": "G", "title": "Required live proof suite", "reference": "HAR-129 §G" },
+    { "id": "S16", "title": "Exact end-to-end acceptance test", "reference": "HAR-129 §16 steps 1-32" },
+    { "id": "S13", "title": "The complete visible demo", "reference": "HAR-129 §13 A-I" },
+    { "id": "DOD", "title": "Definition of done", "reference": "HAR-129 Definition of done" },
+    { "id": "CHK", "title": "Canonical demo checklist + ownership", "reference": "HAR-129 Canonical demo checklist" },
+    { "id": "SA", "title": "Definition of Done: visible means live-proven", "reference": "HAR-129 §A" },
+    { "id": "SB", "title": "Episode Replay: time-travel through an account", "reference": "HAR-129 §B" },
+    { "id": "SC", "title": "Playing an episode", "reference": "HAR-129 §C" },
+    { "id": "SD", "title": "Frontend and Slack responsibilities", "reference": "HAR-129 §D" },
+    { "id": "SE", "title": "Learning proof beyond human preference", "reference": "HAR-129 §E" },
+    { "id": "SF", "title": "Transfer and exception proof", "reference": "HAR-129 §F" },
+    { "id": "SH", "title": "Agent acceptance artifact", "reference": "HAR-129 §H" },
+    { "id": "SI", "title": "Final behavior confirmation gate", "reference": "HAR-129 §I" },
+    { "id": "S5", "title": "Message 1 — business intelligence only", "reference": "HAR-129 §5" },
+    { "id": "S6", "title": "Message 2 — one strategy surface", "reference": "HAR-129 §6" },
+    { "id": "S7", "title": "Strategy chooser UI", "reference": "HAR-129 §7" },
+    { "id": "S8", "title": "Human chooses a strategy", "reference": "HAR-129 §8" },
+    { "id": "S9", "title": "Update Message 2 in place", "reference": "HAR-129 §9" },
+    { "id": "S10", "title": "Sending must remain explicit", "reference": "HAR-129 §10" },
+    { "id": "S11", "title": "Message 3 — judgment inference", "reference": "HAR-129 §11" },
+    { "id": "S12", "title": "Human validates the inference", "reference": "HAR-129 §12" }
+  ],
+  "requirements": [
+    {
+      "id": "HAR129-G-01",
+      "section": "G",
+      "reference": "HAR-129 §G",
+      "requirement": "replay reset is deterministic",
+      "required_behavior": "Reset the replay world twice and observe the same event set, state snapshots and digests both times."
+    },
+    {
+      "id": "HAR129-G-02",
+      "section": "G",
+      "reference": "HAR-129 §G",
+      "requirement": "no future leakage across the historical/live boundary",
+      "required_behavior": "At episode k, no query returns information whose event or knowledge time is later than k."
+    },
+    {
+      "id": "HAR129-G-03",
+      "section": "G",
+      "reference": "HAR-129 §G",
+      "requirement": "state-at-episode is reproducible",
+      "required_behavior": "Materializing state at episode k twice from the same history yields identical state snapshots and digests."
+    },
+    {
+      "id": "HAR129-G-04",
+      "section": "G",
+      "reference": "HAR-129 §G",
+      "requirement": "Neo4j and Postgres correspond for the replayed account",
+      "required_behavior": "For the replayed account the Neo4j projection matches the authoritative Postgres rows (nodes, edges and evidence links)."
+    },
+    {
+      "id": "HAR129-G-05",
+      "section": "G",
+      "reference": "HAR-129 §G",
+      "requirement": "Play releases exactly the next event",
+      "required_behavior": "Pressing Play ingests exactly event N and leaves every later event unreleased."
+    },
+    {
+      "id": "HAR129-G-06",
+      "section": "G",
+      "reference": "HAR-129 §G",
+      "requirement": "graph/state diff derives from that event",
+      "required_behavior": "The graph and state diffs after Play name the released event as their source and change only what it evidences."
+    },
+    {
+      "id": "HAR129-G-07",
+      "section": "G",
+      "reference": "HAR-129 §G",
+      "requirement": "non-material events do not force actions",
+      "required_behavior": "A non-material episode records no action and shows the reason it did not trigger."
+    },
+    {
+      "id": "HAR129-G-08",
+      "section": "G",
+      "reference": "HAR-129 §G",
+      "requirement": "material events trigger the expected real decision path",
+      "required_behavior": "A material episode runs the real path end to end (ingest, state, guidance, strategies, evals) and reaches a human decision."
+    },
+    {
+      "id": "HAR129-G-09",
+      "section": "G",
+      "reference": "HAR-129 §G",
+      "requirement": "all 3 strategies exist before human selection",
+      "required_behavior": "Before the chooser is shown, all three complete candidates (action, rationale, evals) already exist in the backend."
+    },
+    {
+      "id": "HAR129-G-10",
+      "section": "G",
+      "reference": "HAR-129 §G",
+      "requirement": "strategies are materially different, not paraphrases",
+      "required_behavior": "The three candidates differ materially in strategy, recipients, ask and rationale, not only in wording."
+    },
+    {
+      "id": "HAR129-G-11",
+      "section": "G",
+      "reference": "HAR-129 §G",
+      "requirement": "eval routing is state/action dependent",
+      "required_behavior": "The routed eval set changes with the state, strategy and action rather than being a fixed checklist."
+    },
+    {
+      "id": "HAR129-G-12",
+      "section": "G",
+      "reference": "HAR-129 §G",
+      "requirement": "displayed eval results equal persisted EvalBundle",
+      "required_behavior": "Every eval verdict and reason shown in Slack or the web equals the persisted EvalBundle record."
+    },
+    {
+      "id": "HAR129-G-13",
+      "section": "G",
+      "reference": "HAR-129 §G",
+      "requirement": "Slack messages come from real backend objects",
+      "required_behavior": "Each Slack message is rendered from the authoritative backend objects, not from a prewritten demo payload."
+    },
+    {
+      "id": "HAR129-G-14",
+      "section": "G",
+      "reference": "HAR-129 §G",
+      "requirement": "Slack visible-message limit remains <= 3 per decision episode",
+      "required_behavior": "A decision episode produces at most three visible Slack messages (M1, M2 update in place, M3)."
+    },
+    {
+      "id": "HAR129-G-15",
+      "section": "G",
+      "reference": "HAR-129 §G",
+      "requirement": "choose/edit/send persist authoritative decisions",
+      "required_behavior": "Choosing, editing and sending each persist to the authoritative store against the same DecisionEpisode."
+    },
+    {
+      "id": "HAR129-G-16",
+      "section": "G",
+      "reference": "HAR-129 §G",
+      "requirement": "edited final artifact is re-evaluated before send where required",
+      "required_behavior": "After an edit, the affected evals re-run and the re-evaluated result governs whether Send is allowed."
+    },
+    {
+      "id": "HAR129-G-17",
+      "section": "G",
+      "reference": "HAR-129 §G",
+      "requirement": "HumanDelta/JudgmentInference is persisted and inspectable",
+      "required_behavior": "The HumanDelta and JudgmentInference records are persisted and readable back from the authoritative store."
+    },
+    {
+      "id": "HAR129-G-18",
+      "section": "G",
+      "reference": "HAR-129 §G",
+      "requirement": "human correction/note history is preserved",
+      "required_behavior": "Corrections and notes are kept as append-only history on the same episode rather than overwritten."
+    },
+    {
+      "id": "HAR129-G-19",
+      "section": "G",
+      "reference": "HAR-129 §G",
+      "requirement": "customer reaction/outcome attaches to the correct DecisionEpisode",
+      "required_behavior": "The customer reaction or later outcome links to the DecisionEpisode that produced the action."
+    },
+    {
+      "id": "HAR129-G-20",
+      "section": "G",
+      "reference": "HAR-129 §G",
+      "requirement": "knowledge lifecycle/evidence changes only through allowed gates",
+      "required_behavior": "Knowledge status and evidence change only through the gated lifecycle transitions, never by direct write."
+    },
+    {
+      "id": "HAR129-G-21",
+      "section": "G",
+      "reference": "HAR-129 §G",
+      "requirement": "later episode/account retrieves only temporally available knowledge",
+      "required_behavior": "A later episode retrieves only knowledge whose valid time is at or before that episode."
+    },
+    {
+      "id": "HAR129-G-22",
+      "section": "G",
+      "reference": "HAR-129 §G",
+      "requirement": "applicable knowledge changes a later decision when warranted",
+      "required_behavior": "When applicable learned knowledge exists, a later decision changes and the influence trace shows retrieved -> used -> changed."
+    },
+    {
+      "id": "HAR129-G-23",
+      "section": "G",
+      "reference": "HAR-129 §G",
+      "requirement": "irrelevant knowledge does not create false uplift",
+      "required_behavior": "Irrelevant knowledge in arm C does not improve the decision score versus context only."
+    },
+    {
+      "id": "HAR129-G-24",
+      "section": "G",
+      "reference": "HAR-129 §G",
+      "requirement": "exception case avoids negative transfer",
+      "required_behavior": "On the exception case the candidate rule is retrieved, recognized as non-applicable, and not applied, so no negative transfer occurs."
+    },
+    {
+      "id": "HAR129-G-25",
+      "section": "G",
+      "reference": "HAR-129 §G",
+      "requirement": "A/B/C report is reproducible",
+      "required_behavior": "Re-running the A/B/C proof reproduces the same arm configuration and the same reported decision-score and negative-transfer results."
+    },
+    {
+      "id": "HAR129-G-26",
+      "section": "G",
+      "reference": "HAR-129 §G",
+      "requirement": "complete UI timeline can deep-link each visible claim to evidence/trace",
+      "required_behavior": "Every visible claim in the UI timeline links back to the evidence or trace id that supports it."
+    },
+    {
+      "id": "HAR129-G-27",
+      "section": "G",
+      "reference": "HAR-129 §G",
+      "requirement": "HAR-124 five-minute golden path passes without mocks/fake core",
+      "required_behavior": "The HAR-124 five-minute golden path runs against the real integrated system and passes with no mock or fake core."
+    },
+    {
+      "id": "HAR129-S16-01",
+      "section": "S16",
+      "reference": "HAR-129 §16 step 1",
+      "requirement": "1. Load the frozen replay world from the approved dataset.",
+      "required_behavior": "The frozen replay world loads from the approved dataset."
+    },
+    {
+      "id": "HAR129-S16-02",
+      "section": "S16",
+      "reference": "HAR-129 §16 step 2",
+      "requirement": "2. Select a real current account/opportunity and meaningful held-out Event N.",
+      "required_behavior": "A real current account/opportunity and a meaningful held-out Event N are selected from the data."
+    },
+    {
+      "id": "HAR129-S16-03",
+      "section": "S16",
+      "reference": "HAR-129 §16 step 3",
+      "requirement": "3. Materialize all state only through Event N-1.",
+      "required_behavior": "All state is materialized through Event N-1 only."
+    },
+    {
+      "id": "HAR129-S16-04",
+      "section": "S16",
+      "reference": "HAR-129 §16 step 4",
+      "requirement": "4. Show the current account / relationship map and provenance.",
+      "required_behavior": "The current account / relationship map and its provenance are visible."
+    },
+    {
+      "id": "HAR129-S16-05",
+      "section": "S16",
+      "reference": "HAR-129 §16 step 5",
+      "requirement": "5. Verify Event N is not yet visible to the system.",
+      "required_behavior": "An assertion proves Event N is not visible to the system before Play."
+    },
+    {
+      "id": "HAR129-S16-06",
+      "section": "S16",
+      "reference": "HAR-129 §16 step 6",
+      "requirement": "6. Press Play.",
+      "required_behavior": "Play releases the held-out event."
+    },
+    {
+      "id": "HAR129-S16-07",
+      "section": "S16",
+      "reference": "HAR-129 §16 step 7",
+      "requirement": "7. Ingest Event N through the real HAR-96 pipeline.",
+      "required_behavior": "Event N travels the real HAR-96 ingest pipeline."
+    },
+    {
+      "id": "HAR129-S16-08",
+      "section": "S16",
+      "reference": "HAR-129 §16 step 8",
+      "requirement": "8. Resolve Event N to the correct account / people / opportunity.",
+      "required_behavior": "Event N resolves to the correct account, people and opportunity."
+    },
+    {
+      "id": "HAR129-S16-09",
+      "section": "S16",
+      "reference": "HAR-129 §16 step 9",
+      "requirement": "9. Recompute graph / state and produce an inspectable state diff.",
+      "required_behavior": "Graph and state recompute and produce an inspectable state diff."
+    },
+    {
+      "id": "HAR129-S16-10",
+      "section": "S16",
+      "reference": "HAR-129 §16 step 10",
+      "requirement": "10. Produce the business-intelligence update from the changed state.",
+      "required_behavior": "The business-intelligence update is produced from the changed state."
+    },
+    {
+      "id": "HAR129-S16-11",
+      "section": "S16",
+      "reference": "HAR-129 §16 step 11",
+      "requirement": "11. Send Slack Message 1 with state change, why, evidence and View Map.",
+      "required_behavior": "Slack Message 1 shows the state change, why, evidence and View Map."
+    },
+    {
+      "id": "HAR129-S16-12",
+      "section": "S16",
+      "reference": "HAR-129 §16 step 12",
+      "requirement": "12. Generate 3 materially distinct strategy candidates from the actual state.",
+      "required_behavior": "Three materially distinct strategy candidates are generated from the actual state."
+    },
+    {
+      "id": "HAR129-S16-13",
+      "section": "S16",
+      "reference": "HAR-129 §16 step 13",
+      "requirement": "13. Before Message 2 appears, generate To / CC / Subject / full action / rationale / eval bundle for all 3.",
+      "required_behavior": "For all three candidates the recipients, subject, full action, rationale and eval bundle exist before Message 2 appears."
+    },
+    {
+      "id": "HAR129-S16-14",
+      "section": "S16",
+      "reference": "HAR-129 §16 step 14",
+      "requirement": "14. Rank the 3 and identify Ghost's preferred candidate.",
+      "required_behavior": "The three candidates are ranked and Ghost's preferred candidate is identified."
+    },
+    {
+      "id": "HAR129-S16-15",
+      "section": "S16",
+      "reference": "HAR-129 §16 step 15",
+      "requirement": "15. Send exactly one Slack strategy message containing all 3 candidates.",
+      "required_behavior": "Exactly one Slack strategy message contains all three candidates."
+    },
+    {
+      "id": "HAR129-S16-16",
+      "section": "S16",
+      "reference": "HAR-129 §16 step 16",
+      "requirement": "16. Allow the human to inspect each candidate without generating a new candidate after click.",
+      "required_behavior": "Inspecting a candidate never triggers generation of a new candidate."
+    },
+    {
+      "id": "HAR129-S16-17",
+      "section": "S16",
+      "reference": "HAR-129 §16 step 17",
+      "requirement": "17. Human chooses one strategy.",
+      "required_behavior": "The human chooses one strategy."
+    },
+    {
+      "id": "HAR129-S16-18",
+      "section": "S16",
+      "reference": "HAR-129 §16 step 18",
+      "requirement": "18. Record Ghost preference vs human choice.",
+      "required_behavior": "Ghost's preference and the human choice are both recorded."
+    },
+    {
+      "id": "HAR129-S16-19",
+      "section": "S16",
+      "reference": "HAR-129 §16 step 19",
+      "requirement": "19. Update Message 2 in place into the complete selected action.",
+      "required_behavior": "Message 2 is updated in place into the complete selected action (no new message)."
+    },
+    {
+      "id": "HAR129-S16-20",
+      "section": "S16",
+      "reference": "HAR-129 §16 step 20",
+      "requirement": "20. Show editable To / CC / Subject / body.",
+      "required_behavior": "To, CC, Subject and body are shown and editable."
+    },
+    {
+      "id": "HAR129-S16-21",
+      "section": "S16",
+      "reference": "HAR-129 §16 step 21",
+      "requirement": "21. Show why the selected strategy is grounded in current state + company knowledge.",
+      "required_behavior": "The selected strategy's rationale is grounded in current state and company knowledge."
+    },
+    {
+      "id": "HAR129-S16-22",
+      "section": "S16",
+      "reference": "HAR-129 §16 step 22",
+      "requirement": "22. Show the relevant HAR-97 evals and their reasons.",
+      "required_behavior": "The relevant HAR-97 evals and their reasons are shown for the selected action."
+    },
+    {
+      "id": "HAR129-S16-23",
+      "section": "S16",
+      "reference": "HAR-129 §16 step 23",
+      "requirement": "23. Allow edit before execution.",
+      "required_behavior": "The action can be edited before execution."
+    },
+    {
+      "id": "HAR129-S16-24",
+      "section": "S16",
+      "reference": "HAR-129 §16 step 24",
+      "requirement": "24. Require explicit Send.",
+      "required_behavior": "Sending requires an explicit human Send action."
+    },
+    {
+      "id": "HAR129-S16-25",
+      "section": "S16",
+      "reference": "HAR-129 §16 step 25",
+      "requirement": "25. Preserve the final artifact and human edits.",
+      "required_behavior": "The final artifact and the human edits are preserved."
+    },
+    {
+      "id": "HAR129-S16-26",
+      "section": "S16",
+      "reference": "HAR-129 §16 step 26",
+      "requirement": "26. Infer the semantic reason for the human judgment.",
+      "required_behavior": "The semantic reason for the human judgment is inferred."
+    },
+    {
+      "id": "HAR129-S16-27",
+      "section": "S16",
+      "reference": "HAR-129 §16 step 27",
+      "requirement": "27. Send Slack Message 3 with the inference and evidence.",
+      "required_behavior": "Slack Message 3 shows the inference and its evidence."
+    },
+    {
+      "id": "HAR129-S16-28",
+      "section": "S16",
+      "reference": "HAR-129 §16 step 28",
+      "requirement": "28. Allow Correct / Needs correction / Add note.",
+      "required_behavior": "The human can mark the inference Correct, Needs correction, or Add note."
+    },
+    {
+      "id": "HAR129-S16-29",
+      "section": "S16",
+      "reference": "HAR-129 §16 step 29",
+      "requirement": "29. Store the human-confirmed or corrected inference in the same DecisionEpisode.",
+      "required_behavior": "The confirmed or corrected inference is stored on the same DecisionEpisode."
+    },
+    {
+      "id": "HAR129-S16-30",
+      "section": "S16",
+      "reference": "HAR-129 §16 step 30",
+      "requirement": "30. Determine whether the feedback is account-specific or a candidate reusable criterion.",
+      "required_behavior": "The feedback is classified as account-specific or as a candidate reusable criterion."
+    },
+    {
+      "id": "HAR129-S16-31",
+      "section": "S16",
+      "reference": "HAR-129 §16 step 31",
+      "requirement": "31. Backtest / scope before promotion to company knowledge or a new eval criterion.",
+      "required_behavior": "Candidate knowledge is scoped and backtested before promotion to company knowledge or a new eval criterion."
+    },
+    {
+      "id": "HAR129-S16-32",
+      "section": "S16",
+      "reference": "HAR-129 §16 step 32",
+      "requirement": "32. On a future similar replay, measure whether the learned judgment improves decision quality and reduces repeat correction without negative transfer.",
+      "required_behavior": "A future similar replay measures improved decision quality and reduced repeat correction without negative transfer."
+    },
+    {
+      "id": "HAR129-S13-01",
+      "section": "S13",
+      "reference": "HAR-129 §13 A",
+      "requirement": "A. WEB — current company/account world \"Here is what Ghost knows before the next event.\"",
+      "required_behavior": "Before Play, the web surface shows the account world built from history through N-1."
+    },
+    {
+      "id": "HAR129-S13-02",
+      "section": "S13",
+      "reference": "HAR-129 §13 B",
+      "requirement": "B. PRESS PLAY — release held-out Event N.",
+      "required_behavior": "Pressing Play releases the held-out Event N through the real path."
+    },
+    {
+      "id": "HAR129-S13-03",
+      "section": "S13",
+      "reference": "HAR-129 §13 C",
+      "requirement": "C. SLACK MESSAGE 1 — BUSINESS INTELLIGENCE: what changed, why it matters, evidence, [View account map].",
+      "required_behavior": "Message 1 shows what changed, why it matters and evidence, with a View account map action."
+    },
+    {
+      "id": "HAR129-S13-04",
+      "section": "S13",
+      "reference": "HAR-129 §13 D",
+      "requirement": "D. SLACK MESSAGE 2 — STRATEGY CHOOSER: 3 precomputed strategies, 3 precomputed emails/actions, To / CC / Subject / preview, why each, eval summary, Ghost preference.",
+      "required_behavior": "Message 2 is one chooser surface with three complete precomputed candidates, their eval summaries and Ghost's preference."
+    },
+    {
+      "id": "HAR129-S13-05",
+      "section": "S13",
+      "reference": "HAR-129 §13 E",
+      "requirement": "E. HUMAN CHOOSES — Message 2 updates in place.",
+      "required_behavior": "The human choice updates Message 2 in place."
+    },
+    {
+      "id": "HAR129-S13-06",
+      "section": "S13",
+      "reference": "HAR-129 §13 F",
+      "requirement": "F. UPDATED MESSAGE 2 — SELECTED ACTION: strategy, editable To / CC / Subject, complete email, why, relevant company knowledge, full relevant evals, [Edit] [Send].",
+      "required_behavior": "Updated Message 2 shows the selected action with editable fields, rationale, relevant knowledge, full evals and Edit/Send."
+    },
+    {
+      "id": "HAR129-S13-07",
+      "section": "S13",
+      "reference": "HAR-129 §13 G",
+      "requirement": "G. SEND",
+      "required_behavior": "Send executes only after the explicit human action."
+    },
+    {
+      "id": "HAR129-S13-08",
+      "section": "S13",
+      "reference": "HAR-129 §13 H",
+      "requirement": "H. SLACK MESSAGE 3 — HUMAN-JUDGMENT INFERENCE: Ghost preferred X, human chose Y, Ghost infers why, evidence for inference, [Correct] [Needs correction] [Add note].",
+      "required_behavior": "Message 3 shows the inference with evidence and the Correct / Needs correction / Add note actions."
+    },
+    {
+      "id": "HAR129-S13-09",
+      "section": "S13",
+      "reference": "HAR-129 §13 I",
+      "requirement": "I. LEARNING: decision episode stored, human correction becomes candidate eval/knowledge improvement, future similar cases can be tested for uplift / repeat-correction reduction.",
+      "required_behavior": "The decision episode is stored and the correction becomes candidate knowledge that a future similar case can test for uplift."
+    },
+    {
+      "id": "HAR129-DOD-01",
+      "section": "DOD",
+      "reference": "HAR-129 Definition of done",
+      "requirement": "realistic account activity arrives",
+      "required_behavior": "Realistic account activity arrives through the real ingest path."
+    },
+    {
+      "id": "HAR129-DOD-02",
+      "section": "DOD",
+      "reference": "HAR-129 Definition of done",
+      "requirement": "HAR-96 graph/state updates",
+      "required_behavior": "The HAR-96 graph and state update from the arriving activity."
+    },
+    {
+      "id": "HAR129-DOD-03",
+      "section": "DOD",
+      "reference": "HAR-129 Definition of done",
+      "requirement": "what changed is visible with evidence",
+      "required_behavior": "What changed is visible together with its evidence."
+    },
+    {
+      "id": "HAR129-DOD-04",
+      "section": "DOD",
+      "reference": "HAR-129 Definition of done",
+      "requirement": "account agent is triggered for a clear reason",
+      "required_behavior": "The account agent is triggered and the reason is recorded."
+    },
+    {
+      "id": "HAR129-DOD-05",
+      "section": "DOD",
+      "reference": "HAR-129 Definition of done",
+      "requirement": "previous company knowledge is retrieved if applicable",
+      "required_behavior": "Applicable previous company knowledge is retrieved before the decision."
+    },
+    {
+      "id": "HAR129-DOD-06",
+      "section": "DOD",
+      "reference": "HAR-129 Definition of done",
+      "requirement": "agent makes a decision",
+      "required_behavior": "The agent makes a decision grounded in state and knowledge."
+    },
+    {
+      "id": "HAR129-DOD-07",
+      "section": "DOD",
+      "reference": "HAR-129 Definition of done",
+      "requirement": "evals judge state + decision + trajectory",
+      "required_behavior": "Evals judge the state, the decision and the trajectory."
+    },
+    {
+      "id": "HAR129-DOD-08",
+      "section": "DOD",
+      "reference": "HAR-129 Definition of done",
+      "requirement": "human/customer feedback arrives",
+      "required_behavior": "Human and customer feedback arrive and are captured."
+    },
+    {
+      "id": "HAR129-DOD-09",
+      "section": "DOD",
+      "reference": "HAR-129 Definition of done",
+      "requirement": "missing judgment / missing eval is discovered",
+      "required_behavior": "A missing judgment or a missing eval is discovered from the feedback."
+    },
+    {
+      "id": "HAR129-DOD-10",
+      "section": "DOD",
+      "reference": "HAR-129 Definition of done",
+      "requirement": "company knowledge is updated",
+      "required_behavior": "Company knowledge is updated through the gated lifecycle."
+    },
+    {
+      "id": "HAR129-DOD-11",
+      "section": "DOD",
+      "reference": "HAR-129 Definition of done",
+      "requirement": "second similar account appears",
+      "required_behavior": "A second similar account enters the same situation."
+    },
+    {
+      "id": "HAR129-DOD-12",
+      "section": "DOD",
+      "reference": "HAR-129 Definition of done",
+      "requirement": "prior knowledge changes the second decision",
+      "required_behavior": "The prior knowledge changes the second account's decision."
+    },
+    {
+      "id": "HAR129-DOD-13",
+      "section": "DOD",
+      "reference": "HAR-129 Definition of done",
+      "requirement": "irrelevant knowledge is ignored",
+      "required_behavior": "Irrelevant knowledge is ignored and does not create false uplift."
+    },
+    {
+      "id": "HAR129-DOD-14",
+      "section": "DOD",
+      "reference": "HAR-129 Definition of done",
+      "requirement": "second decision is measurably better",
+      "required_behavior": "The second decision is measurably better than without the knowledge."
+    },
+    {
+      "id": "HAR129-CHK-01",
+      "section": "CHK",
+      "reference": "HAR-129 Canonical demo checklist item 1",
+      "requirement": "Replay world through N-1 (HAR-130/131)",
+      "required_behavior": "The replay world is materialized through N-1 from the approved dataset."
+    },
+    {
+      "id": "HAR129-CHK-02",
+      "section": "CHK",
+      "reference": "HAR-129 Canonical demo checklist item 2",
+      "requirement": "A mined and frozen demo case, plus a second similar case; the user picks both",
+      "required_behavior": "One mined, frozen demo case and a second similar case exist and are picked by the user."
+    },
+    {
+      "id": "HAR129-CHK-03",
+      "section": "CHK",
+      "reference": "HAR-129 Canonical demo checklist item 3",
+      "requirement": "Neo4j subgraph at N-1 and graph diff after N",
+      "required_behavior": "The Neo4j subgraph exists at N-1 and a graph diff appears after N."
+    },
+    {
+      "id": "HAR129-CHK-04",
+      "section": "CHK",
+      "reference": "HAR-129 Canonical demo checklist item 4",
+      "requirement": "Web Before-Play map, timeline and provenance rendered from Neo4j (HAR-102/108)",
+      "required_behavior": "Before Play, the web map, timeline and provenance render from the Neo4j projection."
+    },
+    {
+      "id": "HAR129-CHK-05",
+      "section": "CHK",
+      "reference": "HAR-129 Canonical demo checklist item 5",
+      "requirement": "Assertion that Event N is invisible, plus the Play command (HAR-124)",
+      "required_behavior": "An assertion proves Event N is invisible and the Play command releases it."
+    },
+    {
+      "id": "HAR129-CHK-06",
+      "section": "CHK",
+      "reference": "HAR-129 Canonical demo checklist item 6",
+      "requirement": "StateTransition shown as CANDIDATE or CONFIRMED with its missing facts (HAR-126 → HAR-128)",
+      "required_behavior": "The state transition is shown as CANDIDATE or CONFIRMED together with its missing facts."
+    },
+    {
+      "id": "HAR129-CHK-07",
+      "section": "CHK",
+      "reference": "HAR-129 Canonical demo checklist item 7",
+      "requirement": "AccountChange and BusinessIntelligenceUpdate writer → M1 (HAR-136/137)",
+      "required_behavior": "AccountChange and BusinessIntelligenceUpdate are written from the changed state and drive Message 1."
+    },
+    {
+      "id": "HAR129-CHK-08",
+      "section": "CHK",
+      "reference": "HAR-129 Canonical demo checklist item 8",
+      "requirement": "Knowledge → DecisionGuidance → 3 complete candidates → evals routed by transition → Draft1→revise→Draft2 → EvalBundle, with the five questions answered (HAR-117 + HAR-128 policy)",
+      "required_behavior": "Knowledge flows to guidance to three complete candidates to routed evals and revision, producing an EvalBundle."
+    },
+    {
+      "id": "HAR129-CHK-09",
+      "section": "CHK",
+      "reference": "HAR-129 Canonical demo checklist item 9",
+      "requirement": "M2: choose, edit, explicit idempotent send; edits re-evaluated (E11) (HAR-137; HAR-139 for re-eval)",
+      "required_behavior": "M2 supports choose, edit and an explicit idempotent send, and edits are re-evaluated before send."
+    },
+    {
+      "id": "HAR129-CHK-10",
+      "section": "CHK",
+      "reference": "HAR-129 Canonical demo checklist item 10",
+      "requirement": "JudgmentInference generator, HumanDelta and verdict/note history → M3 (HAR-119, HAR-139)",
+      "required_behavior": "The judgment inference, HumanDelta and verdict/note history are generated and drive Message 3."
+    },
+    {
+      "id": "HAR129-CHK-11",
+      "section": "CHK",
+      "reference": "HAR-129 Canonical demo checklist item 11",
+      "requirement": "Correction classified as account-specific or reusable → scoped candidate knowledge → backtest (HAR-119/118)",
+      "required_behavior": "A correction is classified, scoped into candidate knowledge and backtested."
+    },
+    {
+      "id": "HAR129-CHK-12",
+      "section": "CHK",
+      "reference": "HAR-129 Canonical demo checklist item 12",
+      "requirement": "Second case: knowledge changes the decision, and \"Why did this action change?\" shows the influence trace (HAR-117 E7)",
+      "required_behavior": "On the second case the knowledge changes the decision and the E7 influence trace explains why."
+    },
+    {
+      "id": "HAR129-CHK-13",
+      "section": "CHK",
+      "reference": "HAR-129 Canonical demo checklist item 13",
+      "requirement": "Blind A/B/C (HAR-128): primary a deterministic decision score with a paired sign test; also blind human pairwise review, the E7 trace (retrieved → used → changed) and the negative-transfer rate, with the same model, state and tools in every arm",
+      "required_behavior": "Blind A/B/C produces a deterministic decision score with a paired sign test, the E7 trace, the negative-transfer rate and equal arms."
+    },
+    {
+      "id": "HAR129-CHK-14",
+      "section": "CHK",
+      "reference": "HAR-129 Canonical demo checklist item 14",
+      "requirement": "Trace viewer and eval registry completeness gate (HAR-122, HAR-140 / PR #44)",
+      "required_behavior": "The trace viewer exists and the eval registry completeness gate passes."
+    },
+    {
+      "id": "HAR129-CHK-15",
+      "section": "CHK",
+      "reference": "HAR-129 Canonical demo checklist item 15",
+      "requirement": "Real-core Slack smoke, then E2E (HAR-124), then the live Slack smoke last",
+      "required_behavior": "The real-core Slack smoke and E2E pass, with the live Slack smoke performed last."
+    },
+    {
+      "id": "HAR129-SA-01",
+      "section": "SA",
+      "reference": "HAR-129 §A",
+      "requirement": "If a capability is intended to appear in the final demo, it is NOT done because: code exists, a schema/table exists, a unit test passes in isolation, a mock/fake-core path works, a screenshot exists, a fixture bypasses the production path, a developer can explain how it should work.",
+      "required_behavior": "None of code, schema, isolated unit test, mock/fake-core, screenshot, fixture or explanation marks a demo-visible capability done."
+    },
+    {
+      "id": "HAR129-SA-02",
+      "section": "SA",
+      "reference": "HAR-129 §A",
+      "requirement": "It is done only when a coding agent can start from a documented clean environment, execute the real integrated path, and emit machine-verifiable evidence that the visible behavior occurred.",
+      "required_behavior": "A documented clean environment runs the real integrated path and emits machine-verifiable evidence."
+    },
+    {
+      "id": "HAR129-SB-01",
+      "section": "SB",
+      "reference": "HAR-129 §B",
+      "requirement": "For a selected account with N chronological events, expose: Account; Episode k / N; Historical learning boundary; Current state as-of episode k; Knowledge available as-of episode k; Timeline of prior episodes; Next unreleased event; [Previous] [Play next episode].",
+      "required_behavior": "The replay surface exposes the account, episode k/N, the historical boundary, state and knowledge as-of k, the timeline, the next unreleased event and Previous/Play next."
+    },
+    {
+      "id": "HAR129-SB-02",
+      "section": "SB",
+      "reference": "HAR-129 §B",
+      "requirement": "No future leakage is allowed. At episode k, queries must use only information with valid event/knowledge time <= k.",
+      "required_behavior": "At episode k every query returns only information with valid event or knowledge time at or before k."
+    },
+    {
+      "id": "HAR129-SB-03",
+      "section": "SB",
+      "reference": "HAR-129 §B",
+      "requirement": "For the canonical demonstration, support a configurable split such as: episodes 1–25 Historical Learning Window; episodes 26–50 Held-Out / Live Replay Window.",
+      "required_behavior": "A configurable historical learning window and held-out live replay window are supported."
+    },
+    {
+      "id": "HAR129-SB-04",
+      "section": "SB",
+      "reference": "HAR-129 §B",
+      "requirement": "Historical episodes must be processed chronologically through the same ingestion/state/learning machinery. The UI must show what knowledge was earned by the boundary and its status/provenance.",
+      "required_behavior": "Historical episodes run chronologically through the real machinery and the UI shows the knowledge earned by the boundary with its status and provenance."
+    },
+    {
+      "id": "HAR129-SC-01",
+      "section": "SC",
+      "reference": "HAR-129 §C",
+      "requirement": "Pressing Play for episode k+1 must execute the real path: unreleased event → ingest → normalize/dedupe → extract/evidence → resolve/adjudicate → Postgres authoritative update → Neo4j projection → state recompute → state/graph diff → materiality/signal/trigger → decision guidance + applicable knowledge → 3 materially different complete strategies → routed evals → Slack business intelligence + strategy surface → human choose/edit/send → DecisionEpisode + HumanDelta/JudgmentInference → human confirm/correct → subsequent customer reaction/outcome when its chronological event arrives → knowledge evidence/lifecycle update.",
+      "required_behavior": "Play for k+1 executes the full real chain and reaches the knowledge lifecycle update."
+    },
+    {
+      "id": "HAR129-SC-02",
+      "section": "SC",
+      "reference": "HAR-129 §C",
+      "requirement": "If an episode is not materially actionable, the correct result may be No action required. The system must prove why it did not trigger rather than manufacture an action for every event.",
+      "required_behavior": "A non-actionable episode records No action required with the proof of why it did not trigger."
+    },
+    {
+      "id": "HAR129-SD-01",
+      "section": "SD",
+      "reference": "HAR-129 §D",
+      "requirement": "Frontend = chronological account time machine, evidence surface, state/graph diff, knowledge-as-of-time, decision/outcome inspection.",
+      "required_behavior": "The frontend is a chronological account time machine with evidence, state/graph diff, knowledge-as-of-time and decision/outcome inspection."
+    },
+    {
+      "id": "HAR129-SD-02",
+      "section": "SD",
+      "reference": "HAR-129 §D",
+      "requirement": "Slack = actual operational seller surface. Slack must move because the real episode changed the world, not because the frontend sends a prewritten demo payload.",
+      "required_behavior": "Slack moves because the real episode changed the world, never from a prewritten demo payload."
+    },
+    {
+      "id": "HAR129-SD-03",
+      "section": "SD",
+      "reference": "HAR-129 §D",
+      "requirement": "Both surfaces must resolve to the same stable backend IDs and DecisionEpisode.",
+      "required_behavior": "Frontend and Slack resolve to the same stable backend ids and DecisionEpisode."
+    },
+    {
+      "id": "HAR129-SE-01",
+      "section": "SE",
+      "reference": "HAR-129 §E",
+      "requirement": "Do not equate approval with truth. Preserve separately: agent preference; human judgment and semantic reason; customer reaction; subsequent business/account outcome.",
+      "required_behavior": "Agent preference, human judgment and reason, customer reaction and later outcome are preserved as separate signals."
+    },
+    {
+      "id": "HAR129-SE-02",
+      "section": "SE",
+      "reference": "HAR-129 §E",
+      "requirement": "Reusable knowledge is a hypothesis whose status changes as evidence accumulates. The demo must make these signals distinguishable.",
+      "required_behavior": "Knowledge status changes as evidence accumulates and the signals are distinguishable."
+    },
+    {
+      "id": "HAR129-SF-01",
+      "section": "SF",
+      "reference": "HAR-129 §F",
+      "requirement": "After knowledge is earned from earlier episodes/deals, prove it affects a later decision.",
+      "required_behavior": "Knowledge earned earlier is shown to affect a later decision."
+    },
+    {
+      "id": "HAR129-SF-02",
+      "section": "SF",
+      "reference": "HAR-129 §F",
+      "requirement": "Canonical A/B/C: A = context only; B = context + applicable learned knowledge; C = context + irrelevant knowledge. Same model, tools, state and decoding/configuration where controllable. Blind evaluation must test B>A and B>C and measure negative transfer.",
+      "required_behavior": "The A/B/C arms are as specified with matched model, tools, state and decoding, and the evaluation tests B>A and B>C and measures negative transfer."
+    },
+    {
+      "id": "HAR129-SF-03",
+      "section": "SF",
+      "reference": "HAR-129 §F",
+      "requirement": "Also include an exception case where superficially similar context should NOT use the learned rule. The system must retrieve the candidate knowledge, detect the exception/non-applicability, and avoid blindly applying it.",
+      "required_behavior": "On the exception case the candidate knowledge is retrieved, judged non-applicable and not applied."
+    },
+    {
+      "id": "HAR129-SH-01",
+      "section": "SH",
+      "reference": "HAR-129 §H",
+      "requirement": "Every full run emits a versioned artifact such as artifacts/har129/<run_id>/ with manifest.json, environment.json, episode_timeline.json, state_snapshots.json, graph_diffs.json, decision_episodes.json, eval_bundles.json, human_judgments.json, customer_reactions.json, knowledge_history.json, abc_report.json, e2e-results.json, demo-report.md. The artifact must state PASS/FAIL/NOT_RUN for every HAR-129 demo requirement and link each PASS to machine evidence.",
+      "required_behavior": "One documented command emits the 13 files and states PASS/FAIL/NOT_RUN for every requirement with evidence links."
+    },
+    {
+      "id": "HAR129-SI-01",
+      "section": "SI",
+      "reference": "HAR-129 §I",
+      "requirement": "For every demo-visible requirement in HAR-129, the coding agent must execute the real integrated system and produce a confirmation record with: required behavior; observed live behavior; evidence; confirmation status; gap if not confirmed.",
+      "required_behavior": "Each matrix row carries required behavior, observed live behavior, evidence, status and gap, produced from a real integrated run."
+    },
+    {
+      "id": "HAR129-SI-02",
+      "section": "SI",
+      "reference": "HAR-129 §I.4",
+      "requirement": "A local unit test, schema existence, mock/fake-core run, screenshot, hard-coded UI state, or code inspection alone cannot produce CONFIRMED for a live product requirement.",
+      "required_behavior": "No row is CONFIRMED without observed live behavior and machine evidence."
+    },
+    {
+      "id": "HAR129-SI-03",
+      "section": "SI",
+      "reference": "HAR-129 §I",
+      "requirement": "The final demo-report.md must include: the complete confirmation matrix; counts of CONFIRMED / PARTIAL / NOT CONFIRMED / FAILED / NOT RUN; direct evidence references for every CONFIRMED row; an explicit remaining-work list generated from every non-CONFIRMED row.",
+      "required_behavior": "demo-report.md carries the matrix, the counts, evidence for CONFIRMED rows and a remaining-work list from every non-CONFIRMED row."
+    },
+    {
+      "id": "HAR129-S5-01",
+      "section": "S5",
+      "reference": "HAR-129 §5",
+      "requirement": "It should not contain the strategy chooser or a giant draft.",
+      "required_behavior": "Message 1 contains neither the strategy chooser nor a giant draft."
+    },
+    {
+      "id": "HAR129-S5-02",
+      "section": "S5",
+      "reference": "HAR-129 §5",
+      "requirement": "Every business-intelligence claim must have a trace.",
+      "required_behavior": "Every claim in Message 1 links to its trace/evidence."
+    },
+    {
+      "id": "HAR129-S5-03",
+      "section": "S5",
+      "reference": "HAR-129 §5",
+      "requirement": "Do not substitute a generic confidence score for evidence.",
+      "required_behavior": "Message 1 shows evidence rather than a generic confidence score."
+    },
+    {
+      "id": "HAR129-S5-04",
+      "section": "S5",
+      "reference": "HAR-129 §5",
+      "requirement": "The exact bullets come from the selected replay event and state diff, not a hard-coded Acme/Reorg example.",
+      "required_behavior": "Message 1 bullets derive from the released event and its state diff."
+    },
+    {
+      "id": "HAR129-S5-05",
+      "section": "S5",
+      "reference": "HAR-129 §5",
+      "requirement": "View account map opens the deeper web view with the account graph, activity timeline, provenance and state history.",
+      "required_behavior": "View account map opens the deeper web view with graph, timeline, provenance and state history."
+    },
+    {
+      "id": "HAR129-S5-06",
+      "section": "S5",
+      "reference": "HAR-129 §5",
+      "requirement": "The Slack message and web map must refer to the same underlying state objects.",
+      "required_behavior": "Message 1 and the web map resolve to the same underlying state objects."
+    },
+    {
+      "id": "HAR129-S6-01",
+      "section": "S6",
+      "reference": "HAR-129 §6",
+      "requirement": "After the state change is understood, Ghost should generate three plausible candidate decisions from the same current account state.",
+      "required_behavior": "Three plausible candidate decisions are generated from the same current account state."
+    },
+    {
+      "id": "HAR129-S6-02",
+      "section": "S6",
+      "reference": "HAR-129 §6",
+      "requirement": "Before Message 2 is shown, Ghost must already have created for all three candidates: strategy, why this strategy is plausible, To, CC, Subject, complete email body / action artifact, knowledge used, relevant eval bundle, Ghost ranking / preferred candidate.",
+      "required_behavior": "All three complete candidates with rationale, recipients, subject, action, knowledge and eval bundle exist before Message 2."
+    },
+    {
+      "id": "HAR129-S7-01",
+      "section": "S7",
+      "reference": "HAR-129 §7",
+      "requirement": "Message 2 should be one compact interactive Slack surface containing all three candidates.",
+      "required_behavior": "Message 2 is one compact interactive surface containing all three candidates."
+    },
+    {
+      "id": "HAR129-S7-02",
+      "section": "S7",
+      "reference": "HAR-129 §7",
+      "requirement": "Each card must make the option understandable without requiring a new Slack message: Strategy name; one-line strategic intent; To; CC; Subject; meaningful email preview; Why this strategy; Eval summary; [View full]; [Choose].",
+      "required_behavior": "Each card is self-contained with name, intent, recipients, subject, preview, rationale, eval summary, View full and Choose."
+    },
+    {
+      "id": "HAR129-S7-03",
+      "section": "S7",
+      "reference": "HAR-129 §7",
+      "requirement": "The full draft already exists. View full may open a Slack modal containing the full email/action and deeper rationale. It must not trigger generation of a new draft.",
+      "required_behavior": "View full opens a modal and never triggers generation of a new draft."
+    },
+    {
+      "id": "HAR129-S8-01",
+      "section": "S8",
+      "reference": "HAR-129 §8",
+      "requirement": "When the human chooses Strategy A/B/C, record at minimum: Ghost preferred strategy; Ghost ranking of all candidates; human-selected strategy; all three complete candidate artifacts; all three eval bundles; account state / state diff; knowledge applied to each.",
+      "required_behavior": "The preference, ranking, human choice, all three artifacts and eval bundles, the state/diff and the knowledge per candidate are recorded."
+    },
+    {
+      "id": "HAR129-S8-02",
+      "section": "S8",
+      "reference": "HAR-129 §8",
+      "requirement": "However, one click must not immediately become a universal company rule.",
+      "required_behavior": "A single human choice becomes candidate knowledge, never a universal company rule."
+    },
+    {
+      "id": "HAR129-S9-01",
+      "section": "S9",
+      "reference": "HAR-129 §9",
+      "requirement": "After the human chooses one strategy, the chooser should be replaced / updated in the same Slack message.",
+      "required_behavior": "The chooser updates in place in the same Slack message."
+    },
+    {
+      "id": "HAR129-S9-02",
+      "section": "S9",
+      "reference": "HAR-129 §9",
+      "requirement": "To, CC, Subject and email body must be inspectable and editable before send.",
+      "required_behavior": "To, CC, Subject and body are inspectable and editable before send."
+    },
+    {
+      "id": "HAR129-S9-03",
+      "section": "S9",
+      "reference": "HAR-129 §9",
+      "requirement": "They should be the relevant evals for this actual state / strategy, not a static checklist shown on every run. Show specific pass / warn / fail / not-relevant judgments and the reasons behind them. Do not collapse the experience to a single quality score.",
+      "required_behavior": "Routed evals show specific verdicts with reasons for this state/strategy, never one collapsed quality score."
+    },
+    {
+      "id": "HAR129-S10-01",
+      "section": "S10",
+      "reference": "HAR-129 §10",
+      "requirement": "Choosing a strategy means: This is the judgment/action I want to inspect. It does not immediately send the email. ... then Send is an explicit second action.",
+      "required_behavior": "Choosing never sends; Send is an explicit second action."
+    },
+    {
+      "id": "HAR129-S11-01",
+      "section": "S11",
+      "reference": "HAR-129 §11",
+      "requirement": "After the strategy choice / send, Ghost compares: Ghost preferred strategy vs human-selected strategy vs candidate eval results vs current account state. Ghost then produces an inference about the semantic reason for the human judgment.",
+      "required_behavior": "Message 3 shows a semantic inference derived from the preference, the human choice, the eval results and the state."
+    },
+    {
+      "id": "HAR129-S11-02",
+      "section": "S11",
+      "reference": "HAR-129 §11",
+      "requirement": "If the human selected Ghost's original preference, the same mechanism may capture that the judgment was confirmed rather than contradicted.",
+      "required_behavior": "A human choice matching Ghost's preference is captured as confirmation."
+    },
+    {
+      "id": "HAR129-S12-01",
+      "section": "S12",
+      "reference": "HAR-129 §12",
+      "requirement": "The key learning record is not merely selected_strategy = B. It is: Ghost preferred A; human selected B; Ghost inferred why B was preferred; human confirmed or corrected that inference; human note if supplied.",
+      "required_behavior": "The record stores Ghost's preference, the human choice, the inferred reason, the confirm/correct verdict and any note."
+    },
+    {
+      "id": "HAR129-S12-02",
+      "section": "S12",
+      "reference": "HAR-129 §12",
+      "requirement": "Needs correction / Add note should open a modal rather than add more Slack messages.",
+      "required_behavior": "Needs correction and Add note use a modal, not additional Slack messages."
+    },
+    {
+      "id": "HAR129-S12-03",
+      "section": "S12",
+      "reference": "HAR-129 §12",
+      "requirement": "Store the corrected explanation as part of the DecisionEpisode.",
+      "required_behavior": "The corrected explanation is stored as part of the DecisionEpisode."
+    },
+    {
+      "id": "HAR129-S12-04",
+      "section": "S12",
+      "reference": "HAR-129 §12",
+      "requirement": "Do not promote one human choice directly into universal knowledge. It becomes a candidate criterion / knowledge update that must be scoped and tested.",
+      "required_behavior": "A choice becomes candidate knowledge that is scoped and tested before promotion."
+    }
+  ]
+}
