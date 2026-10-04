@@ -1,0 +1,182 @@
+{
+  "summary": {
+    "model": "openrouter/deepseek/deepseek-v4-flash",
+    "repeats": 5,
+    "situations": {
+      "acme_unguided": {
+        "runs": 5,
+        "errors": {
+          "core_unavailable": 3,
+          "ungrounded_proposal": 1
+        },
+        "actions": {
+          "wait": 1
+        },
+        "checks": {
+          "priya_included": "0/1",
+          "marco_included": "0/1"
+        }
+      },
+      "acme_guided_k17": {
+        "runs": 5,
+        "errors": {
+          "core_unavailable": 3
+        },
+        "actions": {
+          "send_email": 2
+        },
+        "checks": {
+          "priya_included": "2/2",
+          "marco_included": "2/2",
+          "k17_cited": "2/2"
+        }
+      },
+      "acme_guided_wait_until_tuesday": {
+        "runs": 5,
+        "errors": {
+          "core_unavailable": 5
+        },
+        "actions": {},
+        "checks": {}
+      },
+      "beta_non_material": {
+        "runs": 5,
+        "errors": {
+          "core_unavailable": 4
+        },
+        "actions": {
+          "wait": 1
+        },
+        "checks": {
+          "no_action": "0/1"
+        }
+      },
+      "northstar_delegation_exception": {
+        "runs": 5,
+        "errors": {
+          "ungrounded_proposal": 4,
+          "core_unavailable": 1
+        },
+        "actions": {},
+        "checks": {}
+      }
+    }
+  },
+  "raw": {
+    "acme_unguided": [
+      {
+        "error": "core_unavailable"
+      },
+      {
+        "error": "core_unavailable"
+      },
+      {
+        "error": "ungrounded_proposal"
+      },
+      {
+        "action": "wait",
+        "recipients": {},
+        "seconds": 27.8,
+        "knowledge": [],
+        "used_guidance": false,
+        "tool_calls": 6
+      },
+      {
+        "error": "core_unavailable"
+      }
+    ],
+    "acme_guided_k17": [
+      {
+        "error": "core_unavailable"
+      },
+      {
+        "action": "send_email",
+        "recipients": {
+          "0b0e0000-0000-4000-8000-000000000018": "to",
+          "0b0e0000-0000-4000-8000-000000000017": "cc"
+        },
+        "seconds": 34.2,
+        "knowledge": [
+          "0c17c000-0000-4000-8000-000000000017"
+        ],
+        "used_guidance": true,
+        "tool_calls": 6
+      },
+      {
+        "error": "core_unavailable"
+      },
+      {
+        "action": "send_email",
+        "recipients": {
+          "0b0e0000-0000-4000-8000-000000000018": "to",
+          "0b0e0000-0000-4000-8000-000000000017": "cc"
+        },
+        "seconds": 30.6,
+        "knowledge": [
+          "0c17c000-0000-4000-8000-000000000017"
+        ],
+        "used_guidance": true,
+        "tool_calls": 6
+      },
+      {
+        "error": "core_unavailable"
+      }
+    ],
+    "acme_guided_wait_until_tuesday": [
+      {
+        "error": "core_unavailable"
+      },
+      {
+        "error": "core_unavailable"
+      },
+      {
+        "error": "core_unavailable"
+      },
+      {
+        "error": "core_unavailable"
+      },
+      {
+        "error": "core_unavailable"
+      }
+    ],
+    "beta_non_material": [
+      {
+        "error": "core_unavailable"
+      },
+      {
+        "error": "core_unavailable"
+      },
+      {
+        "error": "core_unavailable"
+      },
+      {
+        "error": "core_unavailable"
+      },
+      {
+        "action": "wait",
+        "recipients": {},
+        "seconds": 19.2,
+        "knowledge": [],
+        "used_guidance": false,
+        "tool_calls": 6
+      }
+    ],
+    "northstar_delegation_exception": [
+      {
+        "error": "ungrounded_proposal"
+      },
+      {
+        "error": "ungrounded_proposal"
+      },
+      {
+        "error": "core_unavailable"
+      },
+      {
+        "error": "ungrounded_proposal"
+      },
+      {
+        "error": "ungrounded_proposal"
+      }
+    ]
+  }
+}

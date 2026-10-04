@@ -1,0 +1,205 @@
+{
+  "id": "beta_variant_sev1_outage_acknowledged_first",
+  "case_type": "unresolved_blocker",
+  "title": "Beta variant: a Sev-1 outage is open; the candidate answers Jess first and pauses the rollout paperwork",
+  "should_pass": true,
+  "difficulty": "medium",
+  "slice_tags": {
+    "account": "beta",
+    "origin": "synthetic_variant",
+    "motion": "expansion",
+    "stage": "commercial_review",
+    "champion_status": "active",
+    "economic_buyer": "known",
+    "risk": "high",
+    "candidate": "good",
+    "expected_action": "send_email",
+    "extra": ["high_risk", "support_escalation"]
+  },
+  "based_on": {
+    "kind": "synthetic_variant",
+    "account": "beta",
+    "after_event_file": "world/accounts/beta/events/021_email_hannah_owen_approved.json",
+    "checkpoint": 2,
+    "changed_fields": ["health", "relationship_risk", "blockers"],
+    "change": "Beta cp2 plus an invented 09-08 11:30 email from Jess Patel: a Sev-1 routing outage on the Dublin queue, support ticket unanswered for three hours."
+  },
+  "context": {
+    "now": "2026-09-08T12:00:00Z",
+    "state": {
+      "account_id": "0a0c0000-0000-4000-8000-000000000002",
+      "account_name": "Beta Inc",
+      "opportunity_id": "0c0f0000-0000-4000-8000-000000000005",
+      "fields": {
+        "stage": "Commercial review",
+        "health": "at_risk",
+        "motion": "expansion",
+        "champion": "0b0e0000-0000-4000-8000-000000000031",
+        "champion_status": "active",
+        "economic_buyer": "0b0e0000-0000-4000-8000-000000000032",
+        "relationship_risk": "high",
+        "decision_process": "Owen Clarke approved the business case; the platform team must be comfortable with the integration",
+        "blockers": [
+          {
+            "text": "Sev-1: Relay routing down for the Dublin queue since the morning of 09-08; support ticket unanswered",
+            "status": "open"
+          }
+        ]
+      },
+      "buying_group": [
+        {
+          "person_id": "0b0e0000-0000-4000-8000-000000000031",
+          "display_name": "Hannah Lee",
+          "title": "VP Customer Operations",
+          "roles": ["champion"],
+          "status": "active",
+          "delegated_to_person_id": null,
+          "last_engaged_at": null,
+          "evidence_refs": []
+        },
+        {
+          "person_id": "0b0e0000-0000-4000-8000-000000000032",
+          "display_name": "Owen Clarke",
+          "title": "Chief Financial Officer",
+          "roles": ["economic_buyer"],
+          "status": "unknown",
+          "delegated_to_person_id": null,
+          "last_engaged_at": null,
+          "evidence_refs": []
+        },
+        {
+          "person_id": "0b0e0000-0000-4000-8000-000000000033",
+          "display_name": "Jess Patel",
+          "title": "Support Operations Manager",
+          "roles": ["user"],
+          "status": "active",
+          "delegated_to_person_id": null,
+          "last_engaged_at": null,
+          "evidence_refs": []
+        }
+      ],
+      "coverage_gaps": []
+    },
+    "recent_changes": {
+      "summary": "Owen approved the business case (09:40); two hours later Jess reports a Sev-1 routing outage on the Dublin queue and says the wider rollout waits until it is fixed.",
+      "material_diff_fields": [],
+      "signals": ["customer_replied", "support_risk_spike"]
+    },
+    "trigger": {
+      "activity_id": "0ac7f000-0000-4000-8000-000000000007",
+      "activity_type": "EmailReceived",
+      "occurred_at": "2026-09-08T11:30:00Z",
+      "actor_person_id": "0b0e0000-0000-4000-8000-000000000033",
+      "event_file": null,
+      "synthetic": true,
+      "text": "Hi Dana - Relay routing has been down for our Dublin queue since 7am; EU tickets are piling up and our support ticket has had no response for three hours. Please get someone on this now - we can't talk about the wider rollout until it's fixed.\nJess"
+    },
+    "supporting_activities": [
+      {
+        "activity_id": "0ac70000-0000-4000-8000-0000000b0021",
+        "activity_type": "EmailReply",
+        "occurred_at": "2026-09-08T09:40:00Z",
+        "actor_person_id": "0b0e0000-0000-4000-8000-000000000031",
+        "event_file": "world/accounts/beta/events/021_email_hannah_owen_approved.json",
+        "synthetic": false,
+        "text": "Owen approved the business case this morning"
+      }
+    ],
+    "commitments": [
+      {
+        "text": "Loop in the right platform team person this week",
+        "owner_person_id": "0b0e0000-0000-4000-8000-000000000031",
+        "due_at": null,
+        "status": "open"
+      }
+    ],
+    "timeline_facts": {
+      "last_inbound_at": "2026-09-08T11:30:00Z",
+      "last_inbound_from_person_id": "0b0e0000-0000-4000-8000-000000000033",
+      "last_outbound_at": "2026-09-01T17:00:00Z",
+      "stated_timing": "Jess: no rollout talk until the outage is fixed"
+    },
+    "offered_knowledge": []
+  },
+  "candidate_action": {
+    "proposed_action_type": "send_email",
+    "recipients": [
+      {"person_id": "0b0e0000-0000-4000-8000-000000000033", "role": "to", "why": "Raised the outage"},
+      {"person_id": "0b0e0000-0000-4000-8000-000000000031", "role": "cc", "why": "Champion; owns the rollout"}
+    ],
+    "finished_artifact": {
+      "channel": "email",
+      "subject": "Re: Dublin routing outage",
+      "body": "Hi Jess,\n\nI'm sorry - I've escalated the Dublin routing outage to our support lead as a Sev-1 and asked for an update to you within the hour. Hannah, copying you; let's hold the rollout paperwork until this is fixed.\n\nBest,\nDana"
+    },
+    "crm_next_step_intent": {"next_step": "Sev-1 resolved and confirmed by Jess", "due_at": null, "stage_change": null},
+    "reason": "Sev-1 first; the rollout waits, as Jess asked.",
+    "evidence_refs": [
+      {
+        "activity_id": "0ac7f000-0000-4000-8000-000000000007",
+        "quote": "we can't talk about the wider rollout until it's fixed",
+        "speaker_person_id": "0b0e0000-0000-4000-8000-000000000033",
+        "occurred_at": "2026-09-08T11:30:00Z"
+      }
+    ],
+    "knowledge_refs_used": [],
+    "wait_until": null
+  },
+  "expected": [
+    {
+      "eval_type": "customer_risk_sensitivity",
+      "verdict": "pass",
+      "label": null,
+      "diagnostics": [],
+      "blocking": false,
+      "rationale": "Answers the outage first and pauses commercial steps, as Jess asked.",
+      "evidence_class": "cs_ops"
+    },
+    {
+      "eval_type": "expansion_readiness",
+      "verdict": "pass",
+      "label": null,
+      "diagnostics": [],
+      "blocking": false,
+      "rationale": "Holds the expansion paperwork while the customer's health is red.",
+      "evidence_class": "cs_ops"
+    },
+    {
+      "eval_type": "action_stage_fit",
+      "verdict": "pass",
+      "label": null,
+      "diagnostics": [],
+      "blocking": false,
+      "rationale": "At commercial review with a Sev-1 open, a service response before any commercial step fits.",
+      "evidence_class": "methodology"
+    },
+    {
+      "eval_type": "stakeholder_selection",
+      "verdict": "pass",
+      "label": null,
+      "diagnostics": [],
+      "blocking": false,
+      "rationale": "Jess, who raised the outage, with the champion; Owen is not needed for an outage reply.",
+      "evidence_class": "methodology"
+    },
+    {
+      "eval_type": "timing_cadence",
+      "verdict": "pass",
+      "label": "READY",
+      "diagnostics": [],
+      "blocking": false,
+      "rationale": "Replies within 30 minutes of a Sev-1 report.",
+      "evidence_class": "deal_data"
+    }
+  ],
+  "expected_best_action": {
+    "action": "send_email",
+    "why": "Exactly this.",
+    "recipients": [
+      {"person_id": "0b0e0000-0000-4000-8000-000000000033", "role": "to"},
+      {"person_id": "0b0e0000-0000-4000-8000-000000000031", "role": "cc"}
+    ],
+    "channel": "email"
+  },
+  "notes": "Should-pass control for the outage variant."
+}

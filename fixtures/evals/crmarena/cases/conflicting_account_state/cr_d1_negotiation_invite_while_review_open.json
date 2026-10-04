@@ -1,0 +1,308 @@
+{
+ "id": "cr_d1_negotiation_invite_while_review_open",
+ "origin": "crmarena",
+ "case_type": "conflicting_account_state",
+ "title": "CRM plan says negotiate now; the buyer's last words say review pending and 'final proposal version' awaited",
+ "should_pass": false,
+ "difficulty": "hard",
+ "slice_tags": {
+  "account": "001Wt00000PFsmbIAD",
+  "origin": "crmarena",
+  "motion": "unknown",
+  "stage": "unknown",
+  "champion_status": "active",
+  "economic_buyer": "unknown",
+  "risk": "unknown",
+  "candidate": "flawed",
+  "expected_action": "send_email",
+  "extra": [
+   "crm_vs_customer",
+   "task_trigger"
+  ]
+ },
+ "based_on": {
+  "kind": "crmarena_moment",
+  "account_id": "001Wt00000PFsmbIAD",
+  "deal_id": "006Wt000007B2QgIAK",
+  "trigger_kind": "task_due",
+  "decision_at": "2024-03-28T09:00:00Z",
+  "cutoff": "2023-11-01",
+  "deal_group": "current",
+  "events_before_decision": 13
+ },
+ "source": {
+  "dataset": "CRMArena-Pro B2B Salesforce org (Salesforce AI Research)",
+  "licence": "CC BY-NC 4.0 (non-commercial use only)",
+  "attribution": "Salesforce AI Research, CRMArena-Pro (https://github.com/SalesforceAIResearch/CRMArena, LICENSE.txt); records selected and excerpted, nothing edited",
+  "snapshot_manifest_sha256": "8fbda45c15d1806dc4c37d5230a20ac24d6619ef36a88c0efddb344792c89f03",
+  "generator": "bench/evals/crmarena_gold v1"
+ },
+ "context": {
+  "now": "2024-03-28T09:00:00Z",
+  "state": {
+   "account_id": "6a24e838-9e48-5e5c-b84d-41c557a8ea20",
+   "account_name": "Innovative Robotics",
+   "opportunity_id": "87d267d1-4d92-55a5-8de8-a0dc67c9b00d",
+   "fields": {
+    "stage": "Negotiation (per the rep's own CRM tasks; the customer has not said so)",
+    "health": "unknown",
+    "motion": "unknown",
+    "champion": "53b7478d-6600-5e8a-a114-070cdc4590c9",
+    "champion_status": "active",
+    "economic_buyer": "unknown",
+    "relationship_risk": "unknown",
+    "decision_process": "Chin Wei is reviewing the proposal with the rest of her team and will send feedback; no approver or timeline is named",
+    "objections": [
+     {
+      "text": "Wants to understand additional costs related to customization or future upgrades",
+      "status": "open"
+     }
+    ],
+    "current_commitments": [
+     {
+      "text": "Customer: review the proposal with the team and give feedback 'shortly'",
+      "status": "open"
+     },
+     {
+      "text": "Us: answer the additional-cost question and send relevant case studies (asked 2024-03-22)",
+      "status": "open"
+     },
+     {
+      "text": "Us: arrange another demonstration focused on AI Cirku-Tech (asked 2024-03-23)",
+      "status": "open"
+     }
+    ],
+    "next_milestone": "Customer feedback on the proposal"
+   },
+   "buying_group": [
+    {
+     "person_id": "53b7478d-6600-5e8a-a114-070cdc4590c9",
+     "display_name": "Chin Wei",
+     "title": "Legal Compliance Coordinator (champion role inferred, not recorded)",
+     "roles": [
+      "champion"
+     ],
+     "status": "active",
+     "delegated_to_person_id": null,
+     "last_engaged_at": "2024-03-23T09:30:00Z",
+     "evidence_refs": [
+      {
+       "activity_id": "42015bbd-749b-56e3-aa29-6c0fc258ea03",
+       "occurred_at": "2024-03-23T09:30:00Z"
+      }
+     ]
+    },
+    {
+     "person_id": "fcfc6b94-899f-58e7-b7e6-086ca4c4a00f",
+     "display_name": "Liam Scott",
+     "title": "Chief Financial Officer",
+     "roles": [
+      "unknown"
+     ],
+     "status": "unknown",
+     "delegated_to_person_id": null,
+     "last_engaged_at": null,
+     "evidence_refs": []
+    },
+    {
+     "person_id": "85821c7b-88f0-55ab-9fbd-e69f6844fc53",
+     "display_name": "Tariq Ali",
+     "title": "Network Security Engineer (role inferred from department)",
+     "roles": [
+      "security"
+     ],
+     "status": "unknown",
+     "delegated_to_person_id": null,
+     "last_engaged_at": null,
+     "evidence_refs": []
+    },
+    {
+     "person_id": "594c3c4b-c795-5e3b-9830-edc1903d2897",
+     "display_name": "Mariana Santos",
+     "title": "Lead Software Developer (role inferred from department)",
+     "roles": [
+      "technical_evaluator"
+     ],
+     "status": "unknown",
+     "delegated_to_person_id": null,
+     "last_engaged_at": null,
+     "evidence_refs": []
+    }
+   ],
+   "coverage_gaps": [
+    "economic_buyer"
+   ]
+  },
+  "recent_changes": {
+   "summary": "The CRM task to hold a negotiation meeting is due today; the customer's last message (03-23) says the team is still reviewing and awaits the final proposal version.",
+   "material_diff_fields": [
+    "stage",
+    "next_milestone"
+   ],
+   "signals": [
+    "field_contradicted"
+   ]
+  },
+  "trigger": {
+   "activity_id": "0c1ae789-f385-57a2-80ef-4010a2e3cc60",
+   "activity_type": "CRMTaskLogged",
+   "occurred_at": "2024-03-28T00:00:00Z",
+   "actor_person_id": null,
+   "event_file": "crmarena:Task:00TWt000002z3xcMAA",
+   "synthetic": false,
+   "text": "Arrange and conduct a negotiation meeting to finalize terms and pricing with Innovative Robotics.",
+   "subject": "Hold negotiation meeting",
+   "date_semantics": "task due date"
+  },
+  "supporting_activities": [
+   {
+    "activity_id": "2264c63b-5771-515c-9ca8-c41a5ed175d2",
+    "activity_type": "EmailReceived",
+    "occurred_at": "2024-03-22T17:30:00Z",
+    "actor_person_id": "53b7478d-6600-5e8a-a114-070cdc4590c9",
+    "event_file": "crmarena:EmailMessage:02sWt000001zplAIAQ",
+    "synthetic": false,
+    "text": "Hi Dariusz,\n\nThank you for the detailed follow-up. I appreciate the comprehensive overview of how TechPulse's products can integrate with and benefit our current systems. Your insights into future advancements and how TechPulse remains adaptable are particularly reassuring.\n\nWhile the pricing and discounts are indeed competitive, I would like to understand more about any potential additional costs related to customization or future upgrades. Ensuring long-term cost efficiency and minimizing unexpected expenses remain a priority for us.\n\nI’m also interested in any case studies or examples you can share, particularly those that demonstrate practical outcomes similar to what we aspire to achieve.\n\nThank you once again for the thoughtful discussion. I look forward to your responses and am hopeful for a beneficial partnership.\n\nBest regards,\n\nChin Wei\nInnovative Robotics",
+    "subject": "In-depth Needs Analysis Discussion",
+    "date_semantics": "sent"
+   },
+   {
+    "activity_id": "a4cd8a7b-1d0f-55d9-8dde-0390a97d7ea1",
+    "activity_type": "EmailReceived",
+    "occurred_at": "2024-03-23T09:30:00Z",
+    "actor_person_id": "53b7478d-6600-5e8a-a114-070cdc4590c9",
+    "event_file": "crmarena:EmailMessage:02sWt000001zpGXIAY",
+    "synthetic": false,
+    "text": "Hi Dariusz,\n\nThank you for the follow-up and the detailed discussion we had earlier today. I appreciated your team's approach to understanding our needs and fine-tuning your offerings to align with our strategic direction.\n\nThe emphasis on AI-powered scalability is precisely what we're looking for, and your SecureFlow Suite seems to be a strong contender for enhancing our processes. The competitive pricing of your solutions, coupled with the scalability features, gives you an edge over other options we've considered.\n\nI will review the proposal with my team and get back to you with any feedback or questions. I'm particularly interested in exploring how your roadmap aligns with our projected needs over the next few years. \n\nLooking forward to the final proposal version. Thanks again for the comprehensive session.\n\nBest,\n\nChin Wei\nInnovative Robotics",
+    "subject": "In-depth Needs Analysis Discussion",
+    "date_semantics": "sent"
+   },
+   {
+    "activity_id": "42015bbd-749b-56e3-aa29-6c0fc258ea03",
+    "activity_type": "EmailReceived",
+    "occurred_at": "2024-03-23T09:30:00Z",
+    "actor_person_id": "53b7478d-6600-5e8a-a114-070cdc4590c9",
+    "event_file": "crmarena:EmailMessage:02sWt000001zpGYIAY",
+    "synthetic": false,
+    "text": "Hi Dariusz,\n\nThank you for the summary and for taking the time to discuss our needs in such detail. It was indeed a productive meeting. We're impressed by TechPulse's commitment to customer support and the innovation embedded into your AI-driven EDA solutions.\n\nThe discussion around the CircuitMaster Analyzer and SecureFlow Suite was particularly intriguing. I can see how these products could be real game-changers in our robustness and efficiency, fundamental for our continued growth and adaptation in the industry.\n\nRegarding pricing, the alignment with expected ROI is clear, and we appreciate the transparent approach. We're currently reviewing the proposal with the rest of the team and will provide feedback shortly. It would be helpful to have another demonstration focused on the AI Cirku-Tech, as it seems poised to integrate well with our DesignWave system, and I believe it has much potential for us.\n\nThank you once more for your thorough follow-up. Looking forward to exploring further possibilities with TechPulse.\n\nBest,\n\nChin Wei\nInnovative Robotics",
+    "subject": "In-depth Needs Analysis Discussion",
+    "date_semantics": "sent"
+   }
+  ],
+  "commitments": [
+   {
+    "text": "Hold negotiation meeting to finalize terms (CRM task)",
+    "owner_person_id": "ae4786b7-b52b-5e1d-a2a0-487e5fd789bf",
+    "due_at": "2024-03-28T00:00:00Z",
+    "status": "open"
+   },
+   {
+    "text": "Customer reviews the proposal with her team",
+    "owner_person_id": "53b7478d-6600-5e8a-a114-070cdc4590c9",
+    "due_at": null,
+    "status": "open"
+   }
+  ],
+  "timeline_facts": {
+   "last_inbound_at": "2024-03-23T09:30:00Z",
+   "last_inbound_from_person_id": "53b7478d-6600-5e8a-a114-070cdc4590c9",
+   "last_outbound_at": "2024-03-22T17:00:00Z",
+   "stated_timing": null
+  },
+  "offered_knowledge": [],
+  "state_provenance": {
+   "champion": "inferred, not recorded: the only customer correspondent (3 inbound emails); CRMArena has no roles",
+   "stage": "CRM task 'Hold negotiation meeting' due 2024-03-28 (a plan); contradicted by IN_X/IN_Y",
+   "decision_process": "02sWt000001zpGXIAY, 02sWt000001zpGYIAY",
+   "objections": "02sWt000001zplAIAQ",
+   "current_commitments": "02sWt000001zplAIAQ, 02sWt000001zpGYIAY",
+   "buying_group roles": "inferred from each Contact's Title/Department; the record has no roles"
+  }
+ },
+ "candidate_action": {
+  "proposed_action_type": "schedule_meeting",
+  "recipients": [
+   {
+    "person_id": "53b7478d-6600-5e8a-a114-070cdc4590c9",
+    "role": "to"
+   }
+  ],
+  "finished_artifact": {
+   "channel": "email",
+   "subject": "Negotiation meeting: terms and pricing",
+   "body": "Hi Chin Wei,\n\nAs planned, I have set up our negotiation meeting for Friday, March 29 at 10:00 to finalize terms and pricing. Calendar invite attached.\n\nBest,\nDariusz"
+  },
+  "crm_next_step_intent": {
+   "next_step": "Negotiation meeting 2024-03-29 10:00",
+   "due_at": "2024-03-29T10:00:00Z",
+   "stage_change": null
+  },
+  "reason": "The CRM task says it is time to negotiate.",
+  "evidence_refs": [
+   {
+    "activity_id": "a4cd8a7b-1d0f-55d9-8dde-0390a97d7ea1",
+    "quote": "I will review the proposal with my team and get back to you with any feedback or questions.",
+    "occurred_at": "2024-03-23T09:30:00Z",
+    "speaker_person_id": "53b7478d-6600-5e8a-a114-070cdc4590c9"
+   }
+  ],
+  "knowledge_refs_used": [],
+  "wait_until": null
+ },
+ "expected": [
+  {
+   "eval_type": "commitment_consistency",
+   "verdict": "fail",
+   "label": null,
+   "diagnostics": [],
+   "blocking": true,
+   "rationale": "Treats an unaccepted proposal as agreed: the buyer's last words are that her team is reviewing and awaits the final proposal version.",
+   "evidence_class": "methodology"
+  },
+  {
+   "eval_type": "buyer_readiness",
+   "verdict": "fail",
+   "label": "TOO_EARLY",
+   "diagnostics": [
+    "too_early"
+   ],
+   "blocking": false,
+   "rationale": "A terms-and-pricing meeting is premature; the review and her requested items are open.",
+   "evidence_class": "methodology"
+  },
+  {
+   "eval_type": "grounding",
+   "verdict": "fail",
+   "label": null,
+   "diagnostics": [],
+   "blocking": false,
+   "rationale": "'As planned' rests on the rep's own CRM task, not on anything the buyer agreed.",
+   "evidence_class": "deal_data"
+  }
+ ],
+ "expected_best_action": {
+  "action": "send_email",
+  "why": "Follow the customer's own statement: ask where the review stands, send the final proposal version, hold the negotiation meeting until she says the team is done; note the CRM-vs-customer conflict.",
+  "recipients": [
+   {
+    "person_id": "53b7478d-6600-5e8a-a114-070cdc4590c9",
+    "role": "to"
+   }
+  ],
+  "channel": "email"
+ },
+ "labelling": {
+  "label_kind": "model labels, single author, not human labels",
+  "passes": [
+   "pass_1",
+   "pass_2"
+  ],
+  "agreement": {
+   "judgments": 3,
+   "verdict_agree": 3,
+   "fail_agree": 3
+  },
+  "disagreements": []
+ },
+ "notes": ""
+}

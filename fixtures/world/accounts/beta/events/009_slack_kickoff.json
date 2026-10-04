@@ -1,0 +1,18 @@
+{
+  "source_system": "slack",
+  "source_object_id": "#deal-beta:1787304600.000100",
+  "source_event_key": "posted",
+  "occurred_at": "2026-08-21T09:30:00Z",
+  "connector": "slack",
+  "connector_version": "0.1.0",
+  "payload": {
+    "kind": "slack_message",
+    "channel": "#deal-beta",
+    "ts": "1787304600.000100",
+    "thread_ts": null,
+    "user": "U02DANA",
+    "user_email": "dana@ghostvendor.com",
+    "text": "Beta expansion is live: Hannah Lee (VP Customer Ops) is our champion, ~140 support agents across Austin and Dublin. Owen Clarke (CFO) signs anything over $100k, so he's the economic buyer.",
+    "is_decision": false
+  }
+}

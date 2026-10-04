@@ -1,0 +1,14 @@
+{
+  "id": "learn-agree-fail",
+  "should_pass": false,
+  "candidate_action": {
+    "proposed_action_type": "send_email",
+    "recipients": [],
+    "finished_artifact": { "channel": "email", "subject": null, "body": "hi", "attachments": [] },
+    "reason": "x",
+    "evidence_refs": []
+  },
+  "expected": [
+    { "eval_type": "channel_appropriateness", "verdict": "fail", "blocking": false }
+  ]
+}

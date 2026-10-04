@@ -1,0 +1,33 @@
+{
+  "evaluator": "buyer_readiness",
+  "version": 2,
+  "status": "shadow",
+  "kind": "semantic",
+  "rubric": "Judge whether acting now is appropriate given what the buyer has done and said. NEW in v2: if a technical blocker just appeared and the buyer has not committed to a review date, a meeting CTA before the requested evidence is consumed is TOO_EARLY.",
+  "labels": [
+    "TOO_EARLY",
+    "READY",
+    "LATE_OR_MISSED_WINDOW",
+    "NO_ACTION_NEEDED",
+    "INSUFFICIENT_CONTEXT"
+  ],
+  "examples": [
+    {
+      "case_id": "too_soon_cta_03",
+      "expected_label": "TOO_EARLY",
+      "note": "Acme SOC2 package"
+    }
+  ],
+  "created_from": "human_delta",
+  "source_human_delta_id": "0de1a000-0000-4000-8000-000000000b01",
+  "metrics": {
+    "n_cases": 51,
+    "agreement": 0.88,
+    "false_pass_rate": 0.06,
+    "false_block_rate": 0.08,
+    "repeat_consistency": 0.94,
+    "calibration_error": null
+  },
+  "created_at": "2026-09-29T16:06:00Z",
+  "promoted_at": null
+}

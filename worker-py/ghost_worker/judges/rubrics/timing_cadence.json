@@ -1,0 +1,111 @@
+{
+  "eval_type": "timing_cadence",
+  "version": 1,
+  "title": "Timing / cadence",
+  "har97_refs": [
+    {
+      "line": 1220,
+      "text": "## 5.7 Timing / cadence"
+    }
+  ],
+  "l2_dimension": null,
+  "questions": [
+    {
+      "section": "§5.7",
+      "text": "Even if this is the right action, is now the right time to send/do it?"
+    }
+  ],
+  "inputs": [
+    "last outbound",
+    "last inbound",
+    "expected response window",
+    "customer timezone / meeting schedule where known",
+    "promised deadline",
+    "recent activity burst"
+  ],
+  "criteria": [
+    {
+      "id": "response_window",
+      "kind": "check",
+      "text": "the expected response window is respected",
+      "guide": "Do not send before the window the customer opened has elapsed, nor after it closed.",
+      "har97": null,
+      "output": "finding",
+      "before": null,
+      "after": null
+    },
+    {
+      "id": "deadline",
+      "kind": "check",
+      "text": "promised deadlines are met",
+      "guide": "A promised deadline that is due or past means act now (or it is late).",
+      "har97": null,
+      "output": "finding",
+      "before": null,
+      "after": null
+    },
+    {
+      "id": "not_on_every_change",
+      "kind": "evaluate",
+      "text": "the system is not firing instantly on every graph change",
+      "guide": "Minutes after our own last touch, or during an activity burst, waiting is usually right.",
+      "har97": null,
+      "output": "finding",
+      "before": null,
+      "after": null
+    }
+  ],
+  "failure_examples": [],
+  "counter_failures": [],
+  "known_exceptions": [],
+  "candidate_choices": [],
+  "principles": [
+    "This should stop the system from firing instantly on every graph change."
+  ],
+  "labels": [
+    {
+      "label": "TOO_EARLY",
+      "when": "Acting now is too early (the window has not elapsed); waiting is right."
+    },
+    {
+      "label": "READY",
+      "when": "Now is the right time to act."
+    },
+    {
+      "label": "LATE_OR_MISSED_WINDOW",
+      "when": "The window has passed or is about to pass; acting late or not at all misses it."
+    },
+    {
+      "label": "NO_ACTION_NEEDED",
+      "when": "No timing question arises because nothing needs doing."
+    },
+    {
+      "label": "INSUFFICIENT_CONTEXT",
+      "when": "Timestamps or stated timing are missing."
+    }
+  ],
+  "pass_label": "READY",
+  "diagnostics": [
+    {
+      "name": "too_early",
+      "when": "the action comes before the window elapsed"
+    }
+  ],
+  "routing": {
+    "actions": [
+      "send_email",
+      "schedule_meeting",
+      "share_document",
+      "wait",
+      "no_action"
+    ],
+    "when_all": [],
+    "when_any": [
+      "meeting_ask",
+      "customer_quiet",
+      "awaiting_reply",
+      "proactive_outreach"
+    ]
+  },
+  "uses_rep_profile": false
+}
