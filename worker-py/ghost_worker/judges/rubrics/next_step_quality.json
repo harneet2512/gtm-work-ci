@@ -1,0 +1,135 @@
+{
+  "eval_type": "next_step_quality",
+  "version": 1,
+  "title": "Next-step quality / mutual commitment",
+  "har97_refs": [
+    {
+      "line": 2235,
+      "text": "## 15.2 Next-step quality / mutual commitment"
+    },
+    {
+      "line": 604,
+      "text": "next-step quality"
+    },
+    {
+      "line": 2954,
+      "text": "* next-step quality / mutual commitment"
+    }
+  ],
+  "l2_dimension": "next-step quality / mutual commitment",
+  "questions": [
+    {
+      "section": "§15(GTM).2",
+      "text": "Is there a concrete, mutually understood next step, or are we creating activity without progress?"
+    }
+  ],
+  "inputs": [
+    "commitments of both sides",
+    "next milestone and next meeting",
+    "the latest buyer message",
+    "the candidate's next step and CRM next-step intent"
+  ],
+  "criteria": [
+    {
+      "id": "specific",
+      "kind": "check",
+      "text": "next step is specific",
+      "guide": "The step names what happens, not 'touch base' or 'just checking in'.",
+      "har97": {
+        "line": 2243,
+        "text": "* next step is specific"
+      },
+      "output": "finding",
+      "before": null,
+      "after": null
+    },
+    {
+      "id": "owners_clear",
+      "kind": "check",
+      "text": "buyer-side and seller-side owner are clear where applicable",
+      "guide": "Who does what on each side is stated or unambiguous from the thread.",
+      "har97": {
+        "line": 2244,
+        "text": "* buyer-side and seller-side owner are clear where applicable"
+      },
+      "output": "finding",
+      "before": null,
+      "after": null
+    },
+    {
+      "id": "date_explicit",
+      "kind": "check",
+      "text": "timing/date is explicit where the customer has agreed one",
+      "guide": "If the customer agreed a date or window, the step carries it; do not demand a date the customer has not agreed.",
+      "har97": {
+        "line": 2245,
+        "text": "* timing/date is explicit where the customer has agreed one"
+      },
+      "output": "finding",
+      "before": null,
+      "after": null
+    },
+    {
+      "id": "matches_prior_commitment",
+      "kind": "check",
+      "text": "action matches the prior commitment",
+      "guide": "The step continues what either side already committed to rather than replacing it.",
+      "har97": {
+        "line": 2246,
+        "text": "* action matches the prior commitment"
+      },
+      "output": "finding",
+      "before": null,
+      "after": null
+    },
+    {
+      "id": "no_invented_commitment",
+      "kind": "check",
+      "text": "the system does not invent a commitment the buyer never made",
+      "guide": "Every buyer-side commitment the action relies on appears in the evidence.",
+      "har97": {
+        "line": 2247,
+        "text": "* the system does not invent a commitment the buyer never made"
+      },
+      "output": "finding",
+      "before": null,
+      "after": null
+    }
+  ],
+  "failure_examples": [
+    "generic “just checking in” after a call that had an agreed security review",
+    "asking for a new meeting when the buyer already promised an internal review first",
+    "leaving the call with no concrete next move despite clear momentum"
+  ],
+  "counter_failures": [],
+  "known_exceptions": [],
+  "candidate_choices": [],
+  "principles": [],
+  "labels": [],
+  "pass_label": null,
+  "diagnostics": [
+    {
+      "name": "no_mutual_next_step",
+      "when": "no concrete, mutually understood next step results from the action"
+    },
+    {
+      "name": "next_step_missing_owner_or_date",
+      "when": "the step lacks an owner, or a date the customer agreed"
+    }
+  ],
+  "routing": {
+    "actions": [
+      "send_email",
+      "schedule_meeting",
+      "share_document"
+    ],
+    "when_all": [],
+    "when_any": [
+      "meeting_ask",
+      "customer_quiet",
+      "awaiting_reply",
+      "proactive_outreach"
+    ]
+  },
+  "uses_rep_profile": false
+}

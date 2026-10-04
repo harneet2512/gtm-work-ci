@@ -1,0 +1,40 @@
+# Licensed third-party datasets (Gong call-playbook is confidential / non-redistributable)
+/data/
+
+# Secrets
+.env
+.env.*
+!.env.example
+
+# Go
+core-go/bin/
+*.exe
+*.test
+coverage.out
+
+# Python
+__pycache__/
+*.pyc
+.venv/
+.pytest_cache/
+.coverage
+htmlcov/
+
+# Node / Next.js
+node_modules/
+web/.next/
+web/out/
+
+# Local tooling
+.embedded-postgres/
+bench/reports/*.tmp
+
+# HAR-129 proof runs (generated evidence, not source)
+/artifacts/
+
+# Claude Code local state and agent worktrees
+.claude/
+worker-py/*.egg-info/
+
+# Local tarball Neo4j cache for the graph tests (downloaded, checksum-verified)
+.neo4j-cache/

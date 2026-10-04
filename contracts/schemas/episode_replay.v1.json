@@ -1,0 +1,253 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://ghost.local/contracts/episode_replay.v1.json",
+  "title": "EpisodeReplayView",
+  "description": "The Episode Replay read model (HAR-129 section B) and the results of resetting and advancing a replay (section C). It is a computed view over the frozen DemoManifest and the authoritative stores: it is never persisted. At episode k only events and knowledge with world time at or before event k may appear (no future leakage). The same document is what the web surface and the proof harness read.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "manifest_id", "account_id", "opportunity_id", "episode", "total",
+    "boundary", "window", "state", "knowledge", "prior_episodes",
+    "next_event", "can_previous", "can_play_next", "computed_at"
+  ],
+  "properties": {
+    "manifest_id": { "$ref": "common.v1.json#/$defs/uuid" },
+    "account_id": { "$ref": "common.v1.json#/$defs/uuid" },
+    "opportunity_id": { "oneOf": [{ "$ref": "common.v1.json#/$defs/uuid" }, { "type": "null" }] },
+    "episode": {
+      "description": "The last released episode k. 0 means no event of the manifest has been released yet.",
+      "type": "integer",
+      "minimum": 0
+    },
+    "total": {
+      "description": "N, the number of chronological events in the manifest (history plus the held-out event).",
+      "type": "integer",
+      "minimum": 1
+    },
+    "boundary": {
+      "description": "The configurable historical-learning window and held-out live window (section B). Positions are 1-based and inclusive.",
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["historical_start", "historical_end", "live_start", "live_end"],
+      "properties": {
+        "historical_start": { "type": "integer", "minimum": 0 },
+        "historical_end": { "type": "integer", "minimum": 0 },
+        "live_start": { "type": "integer", "minimum": 0 },
+        "live_end": { "type": "integer", "minimum": 0 }
+      }
+    },
+    "window": {
+      "description": "Which window episode k falls in: none (k=0), historical or live.",
+      "type": "string",
+      "enum": ["none", "historical", "live"]
+    },
+    "state": {
+      "description": "The account state as of the end of episode k (world_as_of = occurred_at of event k, inclusive). Null when k=0 or the account has no state yet.",
+      "oneOf": [{ "$ref": "#/$defs/episodeState" }, { "type": "null" }]
+    },
+    "knowledge": { "$ref": "#/$defs/episodeKnowledge" },
+    "prior_episodes": {
+      "description": "Episodes 1..k, chronological. Every entry is an event that was actually released.",
+      "type": "array",
+      "items": { "$ref": "#/$defs/episodeEvent" }
+    },
+    "next_event": {
+      "description": "The next unreleased event k+1, or null when the replay is complete. It carries no state, change or materiality (it is withheld).",
+      "oneOf": [{ "$ref": "#/$defs/episodeEvent" }, { "type": "null" }]
+    },
+    "can_previous": { "type": "boolean" },
+    "can_play_next": { "type": "boolean" },
+    "computed_at": { "$ref": "common.v1.json#/$defs/timestamp" }
+  },
+  "$defs": {
+    "episodeState": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["version", "as_of", "digest", "document"],
+      "properties": {
+        "version": { "type": "integer", "minimum": 0 },
+        "as_of": { "oneOf": [{ "$ref": "common.v1.json#/$defs/timestamp" }, { "type": "null" }] },
+        "digest": {
+          "description": "Lowercase hex SHA-256 of the semantic content of document (volatile ids and computed-at stamps excluded), so two replays can be compared.",
+          "type": "string",
+          "pattern": "^[0-9a-f]{64}$"
+        },
+        "document": { "type": "object" }
+      }
+    },
+    "episodeKnowledge": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["as_of", "items"],
+      "properties": {
+        "as_of": { "oneOf": [{ "$ref": "common.v1.json#/$defs/timestamp" }, { "type": "null" }] },
+        "items": { "type": "array", "items": { "$ref": "#/$defs/knowledgeItem" } }
+      }
+    },
+    "knowledgeItem": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id", "title", "status"],
+      "properties": {
+        "id": { "$ref": "common.v1.json#/$defs/uuid" },
+        "title": { "type": "string", "minLength": 1, "maxLength": 300 },
+        "status": {
+          "type": "string",
+          "enum": ["candidate", "provisional", "supported", "confirmed", "disputed", "stale", "retired"]
+        }
+      }
+    },
+    "episodeEvent": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "position", "event_id", "occurred_at", "source_system", "provenance_origin",
+        "provenance", "released", "held_out", "material", "account_change_id",
+        "decision_episode_id", "state_version", "graph_diff_id", "no_action_reason",
+        "coalesced"
+      ],
+      "properties": {
+        "position": { "type": "integer", "minimum": 1 },
+        "event_id": { "$ref": "common.v1.json#/$defs/uuid" },
+        "occurred_at": { "$ref": "common.v1.json#/$defs/timestamp" },
+        "source_system": { "$ref": "common.v1.json#/$defs/sourceSystem" },
+        "provenance_origin": { "oneOf": [{ "$ref": "common.v1.json#/$defs/recordOrigin" }, { "type": "null" }] },
+        "provenance": { "oneOf": [{ "$ref": "common.v1.json#/$defs/recordProvenance" }, { "type": "null" }] },
+        "released": { "type": "boolean" },
+        "held_out": { "type": "boolean" },
+        "material": { "oneOf": [{ "type": "boolean" }, { "type": "null" }] },
+        "account_change_id": { "oneOf": [{ "$ref": "common.v1.json#/$defs/uuid" }, { "type": "null" }] },
+        "decision_episode_id": { "oneOf": [{ "$ref": "common.v1.json#/$defs/uuid" }, { "type": "null" }] },
+        "state_version": {
+          "description": "The account-state version visible at the episode bound (world_as_of = occurred_at of event k, inclusive). For a coalesced fold this is the version before the shared diff landed; it never names a version with as_of later than the episode bound.",
+          "oneOf": [{ "type": "integer", "minimum": 0 }, { "type": "null" }]
+        },
+        "graph_diff_id": {
+          "description": "The id of the real graph_projection_diffs row that names the released event's source event (null when the projection has not recorded one).",
+          "oneOf": [{ "type": "integer", "minimum": 1 }, { "type": "null" }]
+        },
+        "no_action_reason": {
+          "description": "Why a released, non-material episode did not trigger an action (section C 'No action required'). Null when the episode is material or not released.",
+          "oneOf": [{ "type": "string", "minLength": 1, "maxLength": 400 }, { "type": "null" }]
+        },
+        "coalesced": {
+          "description": "True when the state diff the event's activity was folded into also folded other activities: the reported materiality and no_action_reason are the fold's shared verdict, not a per-event evaluation. Null when not released.",
+          "oneOf": [{ "type": "boolean" }, { "type": "null" }]
+        }
+      }
+    },
+    "advanceResult": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "manifest_id", "account_id", "episode", "total", "released", "material",
+        "no_action_reason", "state_version", "state_digest", "graph_diff_id",
+        "account_change_id", "decision_episode_id", "advanced_at", "coalesced"
+      ],
+      "properties": {
+        "manifest_id": { "$ref": "common.v1.json#/$defs/uuid" },
+        "account_id": { "$ref": "common.v1.json#/$defs/uuid" },
+        "episode": { "type": "integer", "minimum": 1 },
+        "total": { "type": "integer", "minimum": 1 },
+        "released": { "$ref": "#/$defs/episodeEvent" },
+        "material": { "type": "boolean" },
+        "no_action_reason": { "oneOf": [{ "type": "string", "minLength": 1, "maxLength": 400 }, { "type": "null" }] },
+        "state_version": { "oneOf": [{ "type": "integer", "minimum": 0 }, { "type": "null" }] },
+        "state_digest": { "oneOf": [{ "type": "string", "pattern": "^[0-9a-f]{64}$" }, { "type": "null" }] },
+        "graph_diff_id": { "oneOf": [{ "type": "integer", "minimum": 1 }, { "type": "null" }] },
+        "account_change_id": { "oneOf": [{ "$ref": "common.v1.json#/$defs/uuid" }, { "type": "null" }] },
+        "decision_episode_id": { "oneOf": [{ "$ref": "common.v1.json#/$defs/uuid" }, { "type": "null" }] },
+        "coalesced": { "type": "boolean" },
+        "advanced_at": { "$ref": "common.v1.json#/$defs/timestamp" }
+      }
+    },
+    "resetResult": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["manifest_id", "account_id", "episode", "released_events", "reset_at", "digest"],
+      "properties": {
+        "manifest_id": { "$ref": "common.v1.json#/$defs/uuid" },
+        "account_id": { "$ref": "common.v1.json#/$defs/uuid" },
+        "episode": { "type": "integer", "minimum": 0 },
+        "released_events": {
+          "description": "Events still released after the reset (empty when the reset returns the account to episode 0).",
+          "type": "array",
+          "items": { "$ref": "common.v1.json#/$defs/uuid" }
+        },
+        "reset_at": { "$ref": "common.v1.json#/$defs/timestamp" },
+        "digest": {
+          "description": "Lowercase hex SHA-256 over the released event ids and their state digests, so two resets to the same episode can be compared.",
+          "type": "string",
+          "pattern": "^[0-9a-f]{64}$"
+        }
+      }
+    },
+    "episodeTimeline": {
+      "description": "The payload of the proof harness episode_timeline.json (HAR-129 section H): one row per manifest event, chronological.",
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["manifest_id", "account_id", "total", "released", "episodes", "generated_at"],
+      "properties": {
+        "manifest_id": { "$ref": "common.v1.json#/$defs/uuid" },
+        "account_id": { "$ref": "common.v1.json#/$defs/uuid" },
+        "total": { "type": "integer", "minimum": 1 },
+        "released": { "type": "integer", "minimum": 0 },
+        "episodes": { "type": "array", "items": { "$ref": "#/$defs/episodeEvent" } },
+        "generated_at": { "$ref": "common.v1.json#/$defs/timestamp" }
+      }
+    },
+    "stateSnapshots": {
+      "description": "The payload of the proof harness state_snapshots.json (HAR-129 section H): one state snapshot per released episode.",
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["manifest_id", "account_id", "snapshots", "generated_at"],
+      "properties": {
+        "manifest_id": { "$ref": "common.v1.json#/$defs/uuid" },
+        "account_id": { "$ref": "common.v1.json#/$defs/uuid" },
+        "snapshots": { "type": "array", "items": { "$ref": "#/$defs/stateSnapshot" } },
+        "generated_at": { "$ref": "common.v1.json#/$defs/timestamp" }
+      }
+    },
+    "stateSnapshot": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["position", "event_id", "version", "as_of", "digest"],
+      "properties": {
+        "position": { "type": "integer", "minimum": 1 },
+        "event_id": { "$ref": "common.v1.json#/$defs/uuid" },
+        "version": { "type": "integer", "minimum": 0 },
+        "as_of": { "$ref": "common.v1.json#/$defs/timestamp" },
+        "digest": { "type": "string", "pattern": "^[0-9a-f]{64}$" }
+      }
+    },
+    "graphDiffs": {
+      "description": "The payload of the proof harness graph_diffs.json (HAR-129 section H): one graph-projection diff per released episode.",
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["manifest_id", "account_id", "diffs", "generated_at"],
+      "properties": {
+        "manifest_id": { "$ref": "common.v1.json#/$defs/uuid" },
+        "account_id": { "$ref": "common.v1.json#/$defs/uuid" },
+        "diffs": { "type": "array", "items": { "$ref": "#/$defs/graphDiff" } },
+        "generated_at": { "$ref": "common.v1.json#/$defs/timestamp" }
+      }
+    },
+    "graphDiff": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["position", "event_id", "graph_diff_id", "job_id", "summary", "changes"],
+      "properties": {
+        "position": { "type": "integer", "minimum": 1 },
+        "event_id": { "$ref": "common.v1.json#/$defs/uuid" },
+        "graph_diff_id": {
+          "description": "graph_projection_diffs.id — the real projector row, never a reconstructed reference.",
+          "type": "integer",
+          "minimum": 1
+        },
+        "job_id": { "type": "integer", "minimum": 0 },
+        "summary": { "type": "object" },
+        "changes": { "type": "array", "items": { "type": "object" } }
+      }
+    }
+  }
+}

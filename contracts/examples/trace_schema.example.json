@@ -1,0 +1,93 @@
+{
+  "schema_version": 1,
+  "description": "Canonical DecisionEpisode trace (HAR-97 section 3): every consequential episode reconstructs these spans, backward from the executed action to its causal evidence and forward to the consequences and learning it produced. Trace completeness is an invariant (E18). Required fields name the ids a span must carry, derived from the section 3 wording; per-eval required_trace_fields are written at the construction gate.",
+  "source": {
+    "issue": "HAR-97",
+    "section": "CANONICAL EVAL STRATEGY sections 3 and 11",
+    "fetched_on": "2026-10-03"
+  },
+  "common_fields": [
+    "episode_id",
+    "span_id",
+    "parent_span_ids",
+    "recorded_at"
+  ],
+  "spans": [
+    {
+      "id": "source_events",
+      "order": 1,
+      "label": "original source/event IDs",
+      "surfaces": [
+        1
+      ],
+      "parents": [],
+      "required_fields": [
+        "source_event_ids"
+      ]
+    },
+    {
+      "id": "evidence",
+      "order": 2,
+      "label": "extracted evidence + explicit/inferred boundary",
+      "surfaces": [
+        1,
+        2
+      ],
+      "parents": [
+        "source_events"
+      ],
+      "required_fields": [
+        "evidence_ids",
+        "provenance_refs",
+        "explicit_or_inferred"
+      ]
+    },
+    {
+      "id": "entity_resolution",
+      "order": 3,
+      "label": "entity/account resolution",
+      "surfaces": [
+        3
+      ],
+      "parents": [
+        "evidence"
+      ],
+      "required_fields": [
+        "resolved_entity_ids",
+        "resolution_confidence"
+      ]
+    }
+  ],
+  "traversal": {
+    "backward_from": "executed_action",
+    "forward_from": "knowledge_version"
+  },
+  "eval_result_link": {
+    "required_fields": [
+      "eval_id",
+      "episode_id",
+      "span_id",
+      "supporting_span_ids"
+    ]
+  },
+  "viewer_tree": [
+    "source events",
+    "evidence + provenance",
+    "graph mutations",
+    "state/transition",
+    "precedents",
+    "company knowledge (applicability, actual influence)",
+    "decision candidates",
+    "ranking / recommendation",
+    "evals by surface",
+    "human interaction (semantic interpretation + confidence)",
+    "invalidated/recomputed spans after an edit",
+    "generated action",
+    "tools/writes",
+    "environment result",
+    "customer/world response",
+    "knowledge mutation",
+    "knowledge version",
+    "future episodes influenced"
+  ]
+}

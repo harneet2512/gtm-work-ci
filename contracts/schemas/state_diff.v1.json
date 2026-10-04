@@ -1,0 +1,35 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://ghost.local/contracts/state_diff.v1.json",
+  "title": "StateDiff",
+  "description": "What changed between two AccountState versions. is_material=false records 'no material state change'.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["id", "account_id", "from_version", "to_version", "is_material", "changes", "activity_ids", "created_at"],
+  "properties": {
+    "id": { "$ref": "common.v1.json#/$defs/uuid" },
+    "account_id": { "$ref": "common.v1.json#/$defs/uuid" },
+    "from_version": { "type": "integer", "minimum": 0 },
+    "to_version": { "type": "integer", "minimum": 1 },
+    "is_material": { "type": "boolean" },
+    "changes": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["field", "op", "material"],
+        "properties": {
+          "field": { "type": "string", "description": "AccountState field name, 'buying_group' / 'coverage_gaps', or 'primary_opportunity_changed'. The last is emitted when the AccountState's primary opportunity (opportunity_id) differs between the two versions: before and after are the two opportunity ids (null for none), op is 'changed', and it is not material. In that diff the deal-scoped fields are NOT compared, because the headline then belongs to two different deals and a difference would be a false stage or champion change (ADR-0016); only the account-scoped fields, buying_group and coverage_gaps are." },
+          "opportunity_id": { "oneOf": [{ "$ref": "common.v1.json#/$defs/uuid" }, { "type": "null" }], "description": "The deal a deal-scoped change belongs to; absent for account-scoped changes. The headline of an AccountState belongs to its primary opportunity." },
+          "op": { "type": "string", "enum": ["set", "added", "removed", "changed", "became_unknown"] },
+          "before": {},
+          "after": {},
+          "material": { "type": "boolean" },
+          "evidence_refs": { "type": "array", "items": { "$ref": "common.v1.json#/$defs/evidenceRef" } }
+        }
+      }
+    },
+    "activity_ids": { "type": "array", "items": { "$ref": "common.v1.json#/$defs/uuid" } },
+    "created_at": { "$ref": "common.v1.json#/$defs/timestamp" }
+  }
+}
