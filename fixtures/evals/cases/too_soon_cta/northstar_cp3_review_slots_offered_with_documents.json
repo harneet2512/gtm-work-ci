@@ -1,0 +1,189 @@
+{
+  "id": "northstar_cp3_review_slots_offered_with_documents",
+  "case_type": "too_soon_cta",
+  "title": "Northstar cp3: documents to Sam plus two optional review slots before he has read them - near-boundary, adjudicated acceptable",
+  "should_pass": true,
+  "difficulty": "hard",
+  "slice_tags": {
+    "account": "northstar",
+    "origin": "checkpoint",
+    "motion": "expansion",
+    "stage": "commercial_review",
+    "champion_status": "delegated",
+    "economic_buyer": "known",
+    "risk": "low",
+    "candidate": "good",
+    "expected_action": "send_email",
+    "extra": ["near_boundary"]
+  },
+  "based_on": {
+    "kind": "checkpoint",
+    "account": "northstar",
+    "after_event_file": "world/accounts/northstar/events/029_email_elena_delegation.json",
+    "checkpoint": 3,
+    "changed_fields": [],
+    "change": null
+  },
+  "context": {
+    "now": "2026-09-21T10:00:00Z",
+    "state": {
+      "account_id": "0a0c0000-0000-4000-8000-000000000003",
+      "account_name": "Northstar Health",
+      "opportunity_id": "0c0f0000-0000-4000-8000-000000000006",
+      "fields": {
+        "stage": "Commercial review",
+        "health": "on_track",
+        "motion": "expansion",
+        "champion": "0b0e0000-0000-4000-8000-000000000041",
+        "champion_status": "delegated",
+        "economic_buyer": "0b0e0000-0000-4000-8000-000000000042",
+        "relationship_risk": "low",
+        "decision_process": "Sam Okafor (Information Security Lead) owns the evaluation, including the BAA; Elena Vasquez stepped back from the day-to-day and joins for final sign-off; Grace Liu approves budget on Elena's recommendation",
+        "next_milestone": "Security evaluation led by Sam Okafor, including the BAA"
+      },
+      "buying_group": [
+        {
+          "person_id": "0b0e0000-0000-4000-8000-000000000041",
+          "display_name": "Elena Vasquez",
+          "title": "Director of Patient Access",
+          "roles": ["champion"],
+          "status": "active",
+          "delegated_to_person_id": "0b0e0000-0000-4000-8000-000000000043",
+          "last_engaged_at": null,
+          "evidence_refs": []
+        },
+        {
+          "person_id": "0b0e0000-0000-4000-8000-000000000042",
+          "display_name": "Grace Liu",
+          "title": "VP Finance",
+          "roles": ["economic_buyer"],
+          "status": "unknown",
+          "delegated_to_person_id": null,
+          "last_engaged_at": null,
+          "evidence_refs": []
+        },
+        {
+          "person_id": "0b0e0000-0000-4000-8000-000000000043",
+          "display_name": "Sam Okafor",
+          "title": "Information Security Lead",
+          "roles": ["security", "technical_evaluator"],
+          "status": "new",
+          "delegated_to_person_id": null,
+          "last_engaged_at": null,
+          "evidence_refs": []
+        }
+      ],
+      "coverage_gaps": []
+    },
+    "recent_changes": {
+      "summary": "Elena delegated the evaluation to Sam (cc'd) in writing; she joins for final sign-off.",
+      "material_diff_fields": [
+        "champion_status",
+        "decision_process",
+        "current_commitments",
+        "next_milestone",
+        "buying_group",
+        "coverage_gaps"
+      ],
+      "signals": ["champion_delegated", "customer_replied", "customer_went_silent", "new_stakeholder_entered"]
+    },
+    "trigger": {
+      "activity_id": "0ac70000-0000-4000-8000-0000000c0029",
+      "activity_type": "EmailReply",
+      "occurred_at": "2026-09-21T09:30:00Z",
+      "actor_person_id": "0b0e0000-0000-4000-8000-000000000041",
+      "event_file": "world/accounts/northstar/events/029_email_elena_delegation.json",
+      "synthetic": false,
+      "text": "Hi Dana - sorry for the delay. Sam Okafor leads information security here and will own the evaluation from now on, including the BAA. Please work directly with Sam on this; I'm stepping back from the day-to-day, and Sam will bring me in for final sign-off.\nElena"
+    },
+    "supporting_activities": [
+      {
+        "activity_id": "0ac70000-0000-4000-8000-0000000c0023",
+        "activity_type": "TranscriptReady",
+        "occurred_at": "2026-09-11T15:46:00Z",
+        "actor_person_id": "0b0e0000-0000-4000-8000-000000000041",
+        "event_file": "world/accounts/northstar/events/023_call_plan_transcript.json",
+        "synthetic": false,
+        "text": "speaker_02: Let me introduce you to Sam - he'll want to set the agenda himself."
+      }
+    ],
+    "commitments": [],
+    "timeline_facts": {
+      "last_inbound_at": "2026-09-21T09:30:00Z",
+      "last_inbound_from_person_id": "0b0e0000-0000-4000-8000-000000000041",
+      "last_outbound_at": "2026-09-15T14:00:00Z",
+      "stated_timing": null
+    },
+    "offered_knowledge": []
+  },
+  "candidate_action": {
+    "proposed_action_type": "send_email",
+    "recipients": [{"person_id": "0b0e0000-0000-4000-8000-000000000043", "role": "to", "why": "Evaluation owner"}],
+    "finished_artifact": {
+      "channel": "email",
+      "subject": "Northstar security review",
+      "body": "Hi Sam,\n\nElena let me know you're leading the evaluation - great to be working with you. Our BAA template and HIPAA controls summary are attached. If a 60-minute review with Leo would help once you've read them, Monday September 28 or Tuesday September 29 at 10:00 Eastern work on our side - no need to decide now.\n\nBest,\nDana",
+      "attachments": ["Ghost_Vendor_BAA_and_HIPAA_Controls.pdf"]
+    },
+    "crm_next_step_intent": {"next_step": "Sam reads the pack", "due_at": null, "stage_change": null},
+    "reason": "Documents first; offer optional slots.",
+    "evidence_refs": [
+      {
+        "activity_id": "0ac70000-0000-4000-8000-0000000c0029",
+        "quote": "Sam Okafor leads information security here and will own the evaluation from now on, including the BAA.",
+        "speaker_person_id": "0b0e0000-0000-4000-8000-000000000041",
+        "occurred_at": "2026-09-21T09:30:00Z"
+      }
+    ],
+    "knowledge_refs_used": [],
+    "wait_until": null
+  },
+  "expected": [
+    {
+      "eval_type": "cta_calibration",
+      "verdict": "pass",
+      "label": "APPROPRIATE",
+      "diagnostics": [],
+      "blocking": false,
+      "rationale": "Sam is a new stakeholder who now owns the security evaluation and was expected to set the agenda himself. Sending the relevant documents and offering an optional review after he reads them is appropriately low-pressure and aligned to the next milestone.",
+      "evidence_class": "methodology",
+      "debatable": true,
+      "debate_note": "The slots are explicitly optional ('no need to decide now'); a strict reviewer fails it as too strong because Sam wanted to set the agenda himself. Adjudicated 2026-10-02: passes."
+    },
+    {
+      "eval_type": "buyer_readiness",
+      "verdict": "pass",
+      "label": "READY",
+      "diagnostics": [],
+      "blocking": false,
+      "rationale": "Sending the documents now is right.",
+      "evidence_class": "methodology"
+    },
+    {
+      "eval_type": "champion_continuity",
+      "verdict": "pass",
+      "label": "VALID_HANDOFF",
+      "diagnostics": [],
+      "blocking": false,
+      "rationale": "Elena delegated in writing; writing to Sam alone is correct.",
+      "evidence_class": "methodology"
+    },
+    {
+      "eval_type": "stakeholder_selection",
+      "verdict": "pass",
+      "label": null,
+      "diagnostics": [],
+      "blocking": false,
+      "rationale": "Sam, the delegated evaluation owner.",
+      "evidence_class": "methodology"
+    }
+  ],
+  "expected_best_action": {
+    "action": "send_email",
+    "why": "This email: documents first, optional slots clearly marked as not needing a decision.",
+    "recipients": [{"person_id": "0b0e0000-0000-4000-8000-000000000043", "role": "to"}],
+    "channel": "email"
+  },
+  "gold_revision": [{"revision": "gold-v2", "source": "adjudicated: 2 LLM labellers + GPT-5.6 tie-break, 2026-10-02", "label_kind": "model labels, not human labels", "changes": [{"eval_type": "cta_calibration", "from": "fail", "to": "pass"}]}],
+  "notes": "Near-boundary CTA, one sentence away from northstar_cp3_work_directly_with_sam. Gold v2: originally a flawed too-soon ask; the adjudication (2 LLM labellers + GPT-5.6) judged the optional slots appropriate, so it is now a should-pass near-boundary control."
+}

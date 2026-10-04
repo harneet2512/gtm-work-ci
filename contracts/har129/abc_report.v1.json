@@ -1,0 +1,1021 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://ghost.local/contracts/har129/abc_report.v1.json",
+  "title": "AbcReport",
+  "description": "The blind A/B/C knowledge-uplift report (HAR-128 WP30, HAR-129 section 'Required knowledge-uplift experiment', section F and section G rows on applicable/irrelevant knowledge, the exception case and a reproducible A/B/C report, section H abc_report.json; HAR-97 E7 and E16). Arm A = the same account state with no learned knowledge. Arm B = the same state plus APPLICABLE learned knowledge. Arm C = the same state plus IRRELEVANT knowledge (learned knowledge the deterministic matcher finds does not apply to the situation; it can only be offered where no learned item about the situation's own decision point survived the lifecycle, so arm C is run on `control` situations and compared with A there). Model, tools, state and decoding are identical across arms; only the knowledge differs. The PRIMARY metric is deterministic: for every situation the decision of each arm (the account agent's preferred first-draft candidate, scored BEFORE eval-driven revision) is rated by the hidden rules of the labelled synthetic layer (HAR-131), hidden-only, as the planted log-odds contribution of the chosen seller action. No LLM judge is involved in any number in this file. CORRECTIONS NEEDED are a PROXY: the count of blocking failures of the existing in-core deterministic evals (HAR-97 deterministic suite) on the arm's preferred first draft; no human edit is observed, so this proxy stands in for 'corrections' and says nothing about human editing effort. Every aggregate in this file is recomputable from `situations`, and a report whose aggregates disagree with its situations is invalid (bench/uplift verify).",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "version",
+    "experiment",
+    "provenance",
+    "caveats",
+    "learning",
+    "situations",
+    "paired",
+    "negative_transfer",
+    "corrections",
+    "exceptions",
+    "controls",
+    "headline"
+  ],
+  "properties": {
+    "version": {
+      "const": "abc_report.v1"
+    },
+    "experiment": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "id",
+        "arms",
+        "primary_metric",
+        "scoring",
+        "selection",
+        "n_discriminating",
+        "n_exception",
+        "n_control"
+      ],
+      "properties": {
+        "id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "arms": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "A",
+            "B",
+            "C"
+          ],
+          "properties": {
+            "A": {
+              "const": "same account state, no learned knowledge (the knowledge-withheld counterfactual of E7)"
+            },
+            "B": {
+              "const": "same account state plus applicable learned knowledge"
+            },
+            "C": {
+              "const": "same account state plus irrelevant knowledge"
+            }
+          }
+        },
+        "primary_metric": {
+          "const": "hidden_rule_decision_score"
+        },
+        "scoring": {
+          "description": "How a decision is scored: realised planted action x hidden-only log-odds, before revision, no LLM judge.",
+          "type": "string",
+          "minLength": 1
+        },
+        "selection": {
+          "description": "How the situations were chosen: by decision relevance only, never by outcome or by arm result.",
+          "type": "string",
+          "minLength": 1
+        },
+        "n_discriminating": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "n_exception": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "n_control": {
+          "type": "integer",
+          "minimum": 0
+        }
+      }
+    },
+    "provenance": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "runtime_model",
+        "llm_mode",
+        "calls",
+        "seed",
+        "cassettes",
+        "data"
+      ],
+      "properties": {
+        "runtime_model": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "configured",
+            "family",
+            "answered"
+          ],
+          "properties": {
+            "configured": {
+              "type": "string",
+              "minLength": 1
+            },
+            "family": {
+              "type": "string",
+              "minLength": 1
+            },
+            "answered": {
+              "description": "Models that actually answered (a fallback may have).",
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            }
+          }
+        },
+        "llm_mode": {
+          "enum": [
+            "record",
+            "replay"
+          ]
+        },
+        "calls": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "generation_runs",
+            "recorded_llm_calls"
+          ],
+          "properties": {
+            "generation_runs": {
+              "description": "Strategy generations made (arm A + B + C).",
+              "type": "integer",
+              "minimum": 0
+            },
+            "recorded_llm_calls": {
+              "description": "Model calls the worker made (planner turns and drafts); the cassette count in record mode.",
+              "type": "integer",
+              "minimum": 0
+            }
+          }
+        },
+        "seed": {
+          "description": "The experiment seed: situation sampling order, pair randomisation and bootstrap. Fixed before any run; never tuned.",
+          "type": "integer"
+        },
+        "cassettes": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "count",
+            "sha256"
+          ],
+          "properties": {
+            "count": {
+              "type": "integer",
+              "minimum": 0
+            },
+            "sha256": {
+              "description": "sha256 over the sorted (file name, file sha256) of every cassette the run used.",
+              "$ref": "#/$defs/sha256"
+            }
+          }
+        },
+        "data": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "synthetic_manifest_sha256",
+            "base_export_sha256",
+            "rules_version",
+            "rules_sha256",
+            "split_sha256",
+            "pack_sha256",
+            "learning_sha256"
+          ],
+          "properties": {
+            "synthetic_manifest_sha256": {
+              "$ref": "#/$defs/sha256"
+            },
+            "base_export_sha256": {
+              "$ref": "#/$defs/sha256"
+            },
+            "rules_version": {
+              "type": "string",
+              "minLength": 1
+            },
+            "rules_sha256": {
+              "$ref": "#/$defs/sha256"
+            },
+            "split_sha256": {
+              "$ref": "#/$defs/sha256"
+            },
+            "pack_sha256": {
+              "description": "sha256 of the frozen situation pack the arms ran on.",
+              "$ref": "#/$defs/sha256"
+            },
+            "learning_sha256": {
+              "description": "sha256 of the frozen previous-deal learning evidence.",
+              "$ref": "#/$defs/sha256"
+            }
+          }
+        }
+      }
+    },
+    "caveats": {
+      "description": "The four synthetic-layer caveats (bench/synthetic/caveats.py) verbatim, the ground-truth-state and scale/sampling caveats, and the HAR-131 statement: this proves the loop recovers planted rules from previous deals and applies them correctly; it does not prove the rules hold in real selling.",
+      "type": "array",
+      "minItems": 7,
+      "items": {
+        "type": "string",
+        "minLength": 1
+      }
+    },
+    "learning": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "cutoff",
+        "previous_deals",
+        "hypotheses_tested",
+        "promotion_rule",
+        "knowledge",
+        "null_false_promotions",
+        "guard",
+        "no_leakage",
+        "lifecycle_note"
+      ],
+      "properties": {
+        "cutoff": {
+          "type": "string",
+          "format": "date"
+        },
+        "previous_deals": {
+          "description": "Previous deals (ended before the cutoff, train split) the learner read.",
+          "type": "integer",
+          "minimum": 0
+        },
+        "hypotheses_tested": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/hypothesis"
+          }
+        },
+        "promotion_rule": {
+          "description": "The rule fixed before any run that turns a tested hypothesis into a knowledge candidate.",
+          "type": "string",
+          "minLength": 1
+        },
+        "knowledge": {
+          "description": "The experiment store after learning, through the real lifecycle (knowledge.Record).",
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/knowledge"
+          }
+        },
+        "null_false_promotions": {
+          "description": "Control hypotheses (no planted effect) that were nevertheless promoted.",
+          "type": "integer",
+          "minimum": 0
+        },
+        "guard": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "empty_before_learning",
+            "admitted",
+            "hidden_rule_text_found",
+            "seeded_or_manual_found",
+            "hard_block_passed"
+          ],
+          "properties": {
+            "empty_before_learning": {
+              "type": "boolean"
+            },
+            "admitted": {
+              "type": "integer",
+              "minimum": 0
+            },
+            "hidden_rule_text_found": {
+              "type": "integer",
+              "minimum": 0
+            },
+            "seeded_or_manual_found": {
+              "type": "integer",
+              "minimum": 0
+            },
+            "hard_block_passed": {
+              "description": "bench/synthetic/experiment.py assert_experiment_store raised nothing before every arm.",
+              "type": "boolean"
+            }
+          }
+        },
+        "no_leakage": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "latest_knowledge_created_at",
+            "earliest_trigger_time",
+            "passed"
+          ],
+          "properties": {
+            "latest_knowledge_created_at": {
+              "$ref": "https://ghost.local/contracts/common.v1.json#/$defs/timestamp"
+            },
+            "earliest_trigger_time": {
+              "$ref": "https://ghost.local/contracts/common.v1.json#/$defs/timestamp"
+            },
+            "passed": {
+              "description": "Every knowledge item was created before every test situation's time.",
+              "type": "boolean"
+            }
+          }
+        },
+        "lifecycle_note": {
+          "description": "What the real lifecycle (knowledge.Record) did to the promoted candidates: a statistically promoted item can still be disputed or stale and then is not retrievable. Said plainly so a reader can see why a decision point had no applicable item.",
+          "type": "string",
+          "minLength": 1
+        }
+      }
+    },
+    "situations": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/situation"
+      }
+    },
+    "paired": {
+      "description": "B_vs_A over the discriminating situations only (exception situations carry no planted effect and are reported under exceptions). C_vs_A over the situations where arm C ran (the control situations). B_vs_C over situations that have both arms (none when no situation has both an applicable and an irrelevant learned item).",
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "B_vs_A",
+        "B_vs_C",
+        "C_vs_A"
+      ],
+      "properties": {
+        "B_vs_A": {
+          "$ref": "#/$defs/pairedStat"
+        },
+        "B_vs_C": {
+          "$ref": "#/$defs/pairedStat"
+        },
+        "C_vs_A": {
+          "$ref": "#/$defs/pairedStat"
+        }
+      }
+    },
+    "negative_transfer": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "n",
+        "n_worse",
+        "rate",
+        "discriminating",
+        "exception",
+        "control"
+      ],
+      "properties": {
+        "n": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "n_worse": {
+          "description": "Situations where the knowledge made the decision worse than A: on a discriminating situation B's decision score is below A's; on an exception situation B followed the learned recommendation where A did not (a misapplication); on a control situation C's decision score is below A's.",
+          "type": "integer",
+          "minimum": 0
+        },
+        "rate": {
+          "description": "n_worse / n (0 when n is 0).",
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1
+        },
+        "discriminating": {
+          "$ref": "#/$defs/transferPart"
+        },
+        "exception": {
+          "$ref": "#/$defs/transferPart"
+        },
+        "control": {
+          "$ref": "#/$defs/transferPart"
+        }
+      }
+    },
+    "corrections": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "proxy",
+        "A",
+        "B",
+        "C",
+        "B_minus_A",
+        "B_vs_A"
+      ],
+      "properties": {
+        "proxy": {
+          "const": "blocking failures of the in-core deterministic evals on the preferred first draft; a proxy, no human edit is observed"
+        },
+        "A": {
+          "$ref": "#/$defs/correctionArm"
+        },
+        "B": {
+          "$ref": "#/$defs/correctionArm"
+        },
+        "C": {
+          "$ref": "#/$defs/correctionArm"
+        },
+        "B_minus_A": {
+          "description": "Mean corrections of B minus mean of A (negative: B needs fewer).",
+          "type": "number"
+        },
+        "B_vs_A": {
+          "description": "first = B. first_better counts situations where B needs fewer corrections than A.",
+          "$ref": "#/$defs/pairedCount"
+        }
+      }
+    },
+    "exceptions": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "n",
+        "retrieved",
+        "marked_not_applicable",
+        "applied",
+        "misapplied_by_B",
+        "misapplied_by_A",
+        "b_equals_a",
+        "mean_score_b_minus_a"
+      ],
+      "properties": {
+        "n": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "retrieved": {
+          "description": "Exception situations where the learned knowledge was retrieved.",
+          "type": "integer",
+          "minimum": 0
+        },
+        "marked_not_applicable": {
+          "description": "...and detected as not applicable (DOES_NOT_APPLY or EXCEPTION_TRIGGERED).",
+          "type": "integer",
+          "minimum": 0
+        },
+        "applied": {
+          "description": "...yet applied: arm B cited the knowledge.",
+          "type": "integer",
+          "minimum": 0
+        },
+        "misapplied_by_B": {
+          "description": "Exception situations where B followed the learned recommendation although it does not apply there.",
+          "type": "integer",
+          "minimum": 0
+        },
+        "misapplied_by_A": {
+          "description": "Same for A: the baseline rate of that course without any knowledge.",
+          "type": "integer",
+          "minimum": 0
+        },
+        "b_equals_a": {
+          "description": "Exception situations where B and A made the same classified choice (same realized_option and followed_recommendation).",
+          "type": "integer",
+          "minimum": 0
+        },
+        "mean_score_b_minus_a": {
+          "type": "number"
+        }
+      }
+    },
+    "headline": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "b_better_than_a",
+        "c_ignored",
+        "exception_respected",
+        "text"
+      ],
+      "properties": {
+        "b_better_than_a": {
+          "description": "B's mean decision score exceeds A's AND the paired sign test has p < 0.05 two-sided.",
+          "type": "boolean"
+        },
+        "c_ignored": {
+          "description": "On the control situations: C-vs-A has no significant paired difference (p >= 0.05), |mean difference| is below half the smaller planted effect, and no irrelevant knowledge was applied. False when there are no control situations.",
+          "type": "boolean"
+        },
+        "exception_respected": {
+          "description": "Knowledge was retrieved, marked not applicable and not applied on every exception situation, and B did not realise the action more often than A.",
+          "type": "boolean"
+        },
+        "text": {
+          "description": "Plain statement of the outcome, including a negative one.",
+          "type": "string",
+          "minLength": 1
+        }
+      }
+    },
+    "controls": {
+      "description": "What irrelevant knowledge did on the control situations (arms A and C): it must be retrieved, found not applicable and not used, and the decision must not change.",
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "n",
+        "retrieved",
+        "marked_not_applicable",
+        "applied",
+        "c_equals_a",
+        "mean_score_c_minus_a"
+      ],
+      "properties": {
+        "n": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "retrieved": {
+          "description": "Control situations where some learned knowledge was retrieved.",
+          "type": "integer",
+          "minimum": 0
+        },
+        "marked_not_applicable": {
+          "description": "...and none of it applied.",
+          "type": "integer",
+          "minimum": 0
+        },
+        "applied": {
+          "description": "...yet arm C cited some of it.",
+          "type": "integer",
+          "minimum": 0
+        },
+        "c_equals_a": {
+          "description": "Control situations where C and A made the same classified choice.",
+          "type": "integer",
+          "minimum": 0
+        },
+        "mean_score_c_minus_a": {
+          "type": "number"
+        }
+      }
+    }
+  },
+  "$defs": {
+    "sha256": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{64}$"
+    },
+    "hypothesis": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "decision_point",
+        "kind",
+        "n_option",
+        "n_other",
+        "win_rate_option",
+        "win_rate_other",
+        "p_value",
+        "promoted"
+      ],
+      "properties": {
+        "decision_point": {
+          "type": "string",
+          "minLength": 1
+        },
+        "kind": {
+          "enum": [
+            "action",
+            "control"
+          ]
+        },
+        "n_option": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "n_other": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "win_rate_option": {
+          "type": [
+            "number",
+            "null"
+          ]
+        },
+        "win_rate_other": {
+          "type": [
+            "number",
+            "null"
+          ]
+        },
+        "p_value": {
+          "type": [
+            "number",
+            "null"
+          ]
+        },
+        "promoted": {
+          "type": "boolean"
+        }
+      }
+    },
+    "knowledge": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "id",
+        "key",
+        "title",
+        "decision_point",
+        "status",
+        "counts",
+        "created_at",
+        "origin"
+      ],
+      "properties": {
+        "id": {
+          "$ref": "https://ghost.local/contracts/common.v1.json#/$defs/uuid"
+        },
+        "key": {
+          "type": "string",
+          "pattern": "^K[0-9]+$"
+        },
+        "title": {
+          "type": "string",
+          "minLength": 1
+        },
+        "decision_point": {
+          "type": "string",
+          "minLength": 1
+        },
+        "status": {
+          "enum": [
+            "candidate",
+            "provisional",
+            "supported",
+            "confirmed",
+            "disputed",
+            "stale"
+          ]
+        },
+        "counts": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "decisions",
+            "positive_reactions",
+            "negative_reactions",
+            "outcomes_advanced",
+            "counterexamples"
+          ],
+          "properties": {
+            "decisions": {
+              "type": "integer",
+              "minimum": 0
+            },
+            "positive_reactions": {
+              "type": "integer",
+              "minimum": 0
+            },
+            "negative_reactions": {
+              "type": "integer",
+              "minimum": 0
+            },
+            "outcomes_advanced": {
+              "type": "integer",
+              "minimum": 0
+            },
+            "counterexamples": {
+              "type": "integer",
+              "minimum": 0
+            }
+          }
+        },
+        "created_at": {
+          "$ref": "https://ghost.local/contracts/common.v1.json#/$defs/timestamp"
+        },
+        "origin": {
+          "description": "'irrelevant' marks a distractor item (arm C only); 'learned' items come from previous-deal learning.",
+          "enum": [
+            "learned",
+            "irrelevant"
+          ]
+        }
+      }
+    },
+    "arm": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "candidate_id",
+        "strategy_type",
+        "action_type",
+        "recipients",
+        "realized_option",
+        "followed_recommendation",
+        "action_evidence",
+        "decision_score",
+        "regret",
+        "corrections_needed",
+        "knowledge_retrieved",
+        "knowledge_applicable",
+        "knowledge_exception_blocked",
+        "knowledge_cited",
+        "draft_sha256"
+      ],
+      "properties": {
+        "candidate_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "strategy_type": {
+          "type": "string",
+          "minLength": 1
+        },
+        "action_type": {
+          "type": "string",
+          "minLength": 1
+        },
+        "recipients": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "person_id",
+              "role"
+            ],
+            "properties": {
+              "person_id": {
+                "type": "string",
+                "minLength": 1
+              },
+              "role": {
+                "enum": [
+                  "to",
+                  "cc"
+                ]
+              }
+            }
+          }
+        },
+        "realized_option": {
+          "description": "The preferred first draft realises the planted option the hidden rule rates at this decision point (changes the quoted amount; sends a separate second quote).",
+          "type": "boolean"
+        },
+        "followed_recommendation": {
+          "description": "The preferred first draft follows what the learned item recommends (holds the amount; folds into the open quote). On an exception situation doing so is a misapplication.",
+          "type": "boolean"
+        },
+        "action_evidence": {
+          "description": "The lexicon phrases the deterministic classifier matched in the candidate's strategy type, title and description (never the body).",
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "decision_score": {
+          "description": "Hidden-only planted log-odds contribution of the chosen action (0 when the targeted action was not taken).",
+          "type": "number"
+        },
+        "regret": {
+          "description": "Best option's value minus the chosen option's value; never negative.",
+          "type": "number",
+          "minimum": 0
+        },
+        "corrections_needed": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "knowledge_retrieved": {
+          "$ref": "#/$defs/ids"
+        },
+        "knowledge_applicable": {
+          "$ref": "#/$defs/ids"
+        },
+        "knowledge_exception_blocked": {
+          "$ref": "#/$defs/ids"
+        },
+        "knowledge_cited": {
+          "description": "Knowledge the preferred candidate cites as used.",
+          "$ref": "#/$defs/ids"
+        },
+        "draft_sha256": {
+          "$ref": "#/$defs/sha256"
+        }
+      }
+    },
+    "ids": {
+      "type": "array",
+      "uniqueItems": true,
+      "items": {
+        "$ref": "https://ghost.local/contracts/common.v1.json#/$defs/uuid"
+      }
+    },
+    "situation": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "id",
+        "kind",
+        "decision_point",
+        "deal_id",
+        "trigger_time",
+        "selection_reason",
+        "rule_value",
+        "arms"
+      ],
+      "properties": {
+        "id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "kind": {
+          "description": "discriminating: a learned item about the decision point applies and the hidden rule rates the choice (arms A, B). exception: the item is retrieved but its precondition fails (arms A, B). control: no learned item about this decision point survived the lifecycle, so the only retrieved knowledge is irrelevant to it, and the hidden rule rates the choice (arms A, C).",
+          "enum": [
+            "discriminating",
+            "exception",
+            "control"
+          ]
+        },
+        "decision_point": {
+          "type": "string",
+          "minLength": 1
+        },
+        "deal_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "trigger_time": {
+          "$ref": "https://ghost.local/contracts/common.v1.json#/$defs/timestamp"
+        },
+        "selection_reason": {
+          "description": "Why this situation was selected: a decision-relevance criterion, never an outcome.",
+          "type": "string",
+          "minLength": 1
+        },
+        "rule_value": {
+          "description": "Hidden-only planted log-odds of the targeted action in this situation (0 for an exception situation, where the planted rule does not apply).",
+          "type": "number"
+        },
+        "arms": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "A"
+          ],
+          "description": "A always; B on discriminating and exception situations; C on control situations (and on a discriminating one that also had something irrelevant).",
+          "properties": {
+            "A": {
+              "$ref": "#/$defs/arm"
+            },
+            "B": {
+              "$ref": "#/$defs/arm"
+            },
+            "C": {
+              "$ref": "#/$defs/arm"
+            }
+          }
+        }
+      }
+    },
+    "pairedCount": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "n",
+        "first_better",
+        "second_better",
+        "ties",
+        "sign_test_p"
+      ],
+      "properties": {
+        "n": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "first_better": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "second_better": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "ties": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "sign_test_p": {
+          "description": "Two-sided exact binomial sign test on the non-tied pairs (1.0 when there are none).",
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1
+        }
+      }
+    },
+    "pairedStat": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "n",
+        "mean_score_first",
+        "mean_score_second",
+        "mean_difference",
+        "ci95",
+        "wins",
+        "losses",
+        "ties",
+        "sign_test_p",
+        "share_same_decision"
+      ],
+      "properties": {
+        "n": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "mean_score_first": {
+          "type": "number"
+        },
+        "mean_score_second": {
+          "type": "number"
+        },
+        "mean_difference": {
+          "description": "Mean of (first - second) decision score over all n situations.",
+          "type": "number"
+        },
+        "ci95": {
+          "description": "Seeded percentile bootstrap (10000 resamples) of mean_difference.",
+          "type": "array",
+          "minItems": 2,
+          "maxItems": 2,
+          "items": {
+            "type": "number"
+          }
+        },
+        "wins": {
+          "description": "Situations where the first arm scored higher.",
+          "type": "integer",
+          "minimum": 0
+        },
+        "losses": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "ties": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "sign_test_p": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1
+        },
+        "share_same_decision": {
+          "description": "Share of situations where both arms made the same classified choice (same realized_option and followed_recommendation); C-vs-A should be near 1.",
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1
+        }
+      }
+    },
+    "transferPart": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "n",
+        "n_worse",
+        "rate"
+      ],
+      "properties": {
+        "n": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "n_worse": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "rate": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1
+        }
+      }
+    },
+    "correctionArm": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "total",
+        "mean"
+      ],
+      "properties": {
+        "total": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "mean": {
+          "type": "number",
+          "minimum": 0
+        }
+      }
+    }
+  }
+}

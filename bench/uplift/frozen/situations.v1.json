@@ -1,0 +1,365 @@
+{
+ "excluded": [
+  {
+   "id": "S-second_quote-exce-006Wt000007B5ehIAC",
+   "kind": "exception",
+   "reason": "selection error: the learned item of second_quote must be retrieved and not apply in an exception situation"
+  },
+  {
+   "id": "S-second_quote-exce-006Wt000007B7yHIAS",
+   "kind": "exception",
+   "reason": "selection error: the learned item of second_quote must be retrieved and not apply in an exception situation"
+  },
+  {
+   "id": "S-second_quote-exce-006Wt000007B3WRIA0",
+   "kind": "exception",
+   "reason": "selection error: the learned item of second_quote must be retrieved and not apply in an exception situation"
+  },
+  {
+   "id": "S-second_quote-disc-006Wt000007BG3qIAG",
+   "kind": "discriminating",
+   "reason": "no account state at the trigger"
+  }
+ ],
+ "situations": [
+  {
+   "account_id": "001Wt00000PGcpMIAT",
+   "deal_id": "006Wt000007BAY0IAO",
+   "decision_point": "second_quote",
+   "id": "S-second_quote-disc-006Wt000007BAY0IAO",
+   "kind": "control",
+   "selection_reason": "the deal is in Quote with another quote at the account open within 30 days and the customer has just written; sending a separate quote versus folding it into the open one is rated by the hidden rule; no learned item about this decision point survived the lifecycle, so the knowledge retrieved here is irrelevant to it",
+   "trigger": {
+    "occurred_at": "2023-12-13T10:30:00Z",
+    "source_event_key": "received",
+    "source_object_id": "02sWt00000209pSIAQ"
+   }
+  },
+  {
+   "account_id": "001Wt00000PFsjOIAT",
+   "deal_id": "006Wt000007BCWWIA4",
+   "decision_point": "price_pushback",
+   "id": "S-price_pushback-exce-006Wt000007BCWWIA4",
+   "kind": "exception",
+   "selection_reason": "price-worded objection email BEFORE Quote: the same words as a pushback but no quote exists to re-price, so the learned pushback rule's precondition (stage Quote) fails",
+   "trigger": {
+    "occurred_at": "2024-02-12T15:15:00Z",
+    "source_event_key": "received",
+    "source_object_id": "02sWt00000209WbIAI"
+   }
+  },
+  {
+   "account_id": "001Wt00000PHViXIAX",
+   "deal_id": "006Wt000007BBgrIAG",
+   "decision_point": "price_pushback",
+   "id": "S-price_pushback-disc-006Wt000007BBgrIAG",
+   "kind": "discriminating",
+   "selection_reason": "price-worded objection email from the buyer while the deal is in Quote; the generator recorded a pushback here, so changing the quoted amount versus holding it is rated by the hidden rule",
+   "trigger": {
+    "occurred_at": "2023-11-23T16:00:00Z",
+    "source_event_key": "received",
+    "source_object_id": "02sWt0000020A8qIAE"
+   }
+  },
+  {
+   "account_id": "001Wt00000PHVyfIAH",
+   "deal_id": "006Wt000007BEA6IAO",
+   "decision_point": "second_quote",
+   "id": "S-second_quote-disc-006Wt000007BEA6IAO",
+   "kind": "control",
+   "selection_reason": "the deal is in Quote with another quote at the account open within 30 days and the customer has just written; sending a separate quote versus folding it into the open one is rated by the hidden rule; no learned item about this decision point survived the lifecycle, so the knowledge retrieved here is irrelevant to it",
+   "trigger": {
+    "occurred_at": "2023-11-22T13:00:00Z",
+    "source_event_key": "received",
+    "source_object_id": "02sWt0000020AH8IAM"
+   }
+  },
+  {
+   "account_id": "001Wt00000PFttwIAD",
+   "deal_id": "006Wt000007BH37IAG",
+   "decision_point": "second_quote",
+   "id": "S-second_quote-disc-006Wt000007BH37IAG",
+   "kind": "control",
+   "selection_reason": "the deal is in Quote with another quote at the account open within 30 days and the customer has just written; sending a separate quote versus folding it into the open one is rated by the hidden rule; no learned item about this decision point survived the lifecycle, so the knowledge retrieved here is irrelevant to it",
+   "trigger": {
+    "occurred_at": "2023-11-07T16:00:00Z",
+    "source_event_key": "received",
+    "source_object_id": "02sWt00000209aRIAQ"
+   }
+  },
+  {
+   "account_id": "001Wt00000PGcFxIAL",
+   "deal_id": "006Wt000007BDh3IAG",
+   "decision_point": "price_pushback",
+   "id": "S-price_pushback-disc-006Wt000007BDh3IAG",
+   "kind": "discriminating",
+   "selection_reason": "price-worded objection email from the buyer while the deal is in Quote; the generator recorded a pushback here, so changing the quoted amount versus holding it is rated by the hidden rule",
+   "trigger": {
+    "occurred_at": "2024-04-13T20:30:00Z",
+    "source_event_key": "received",
+    "source_object_id": "02sWt00000209oUIAQ"
+   }
+  },
+  {
+   "account_id": "001Wt00000PGcpMIAT",
+   "deal_id": "006Wt000007BA0MIAW",
+   "decision_point": "price_pushback",
+   "id": "S-price_pushback-disc-006Wt000007BA0MIAW",
+   "kind": "discriminating",
+   "selection_reason": "price-worded objection email from the buyer while the deal is in Quote; the generator recorded a pushback here, so changing the quoted amount versus holding it is rated by the hidden rule",
+   "trigger": {
+    "occurred_at": "2024-02-28T19:10:00Z",
+    "source_event_key": "received",
+    "source_object_id": "02sWt00000209peIAA"
+   }
+  },
+  {
+   "account_id": "001Wt00000PGz2nIAD",
+   "deal_id": "006Wt000007BGv3IAG",
+   "decision_point": "second_quote",
+   "id": "S-second_quote-disc-006Wt000007BGv3IAG",
+   "kind": "control",
+   "selection_reason": "the deal is in Quote with another quote at the account open within 30 days and the customer has just written; sending a separate quote versus folding it into the open one is rated by the hidden rule; no learned item about this decision point survived the lifecycle, so the knowledge retrieved here is irrelevant to it",
+   "trigger": {
+    "occurred_at": "2023-11-20T14:00:00Z",
+    "source_event_key": "received",
+    "source_object_id": "02sWt00000209wcIAA"
+   }
+  },
+  {
+   "account_id": "001Wt00000PGZmfIAH",
+   "deal_id": "006Wt000007BE0TIAW",
+   "decision_point": "second_quote",
+   "id": "S-second_quote-disc-006Wt000007BE0TIAW",
+   "kind": "control",
+   "selection_reason": "the deal is in Quote with another quote at the account open within 30 days and the customer has just written; sending a separate quote versus folding it into the open one is rated by the hidden rule; no learned item about this decision point survived the lifecycle, so the knowledge retrieved here is irrelevant to it",
+   "trigger": {
+    "occurred_at": "2023-11-25T10:00:00Z",
+    "source_event_key": "received",
+    "source_object_id": "02sWt00000209kyIAA"
+   }
+  },
+  {
+   "account_id": "001Wt00000PHVgvIAH",
+   "deal_id": "006Wt000007BAw7IAG",
+   "decision_point": "price_pushback",
+   "id": "S-price_pushback-disc-006Wt000007BAw7IAG",
+   "kind": "discriminating",
+   "selection_reason": "price-worded objection email from the buyer while the deal is in Quote; the generator recorded a pushback here, so changing the quoted amount versus holding it is rated by the hidden rule",
+   "trigger": {
+    "occurred_at": "2024-01-27T14:00:00Z",
+    "source_event_key": "received",
+    "source_object_id": "02sWt0000020A88IAE"
+   }
+  },
+  {
+   "account_id": "001Wt00000PGzSaIAL",
+   "deal_id": "006Wt000007BFNwIAO",
+   "decision_point": "price_pushback",
+   "id": "S-price_pushback-disc-006Wt000007BFNwIAO",
+   "kind": "discriminating",
+   "selection_reason": "price-worded objection email from the buyer while the deal is in Quote; the generator recorded a pushback here, so changing the quoted amount versus holding it is rated by the hidden rule",
+   "trigger": {
+    "occurred_at": "2024-03-23T17:30:00Z",
+    "source_event_key": "received",
+    "source_object_id": "02sWt00000209xoIAA"
+   }
+  },
+  {
+   "account_id": "001Wt00000PGZZoIAP",
+   "deal_id": "006Wt000007B7jqIAC",
+   "decision_point": "second_quote",
+   "id": "S-second_quote-disc-006Wt000007B7jqIAC",
+   "kind": "control",
+   "selection_reason": "the deal is in Quote with another quote at the account open within 30 days and the customer has just written; sending a separate quote versus folding it into the open one is rated by the hidden rule; no learned item about this decision point survived the lifecycle, so the knowledge retrieved here is irrelevant to it",
+   "trigger": {
+    "occurred_at": "2023-11-20T12:00:00Z",
+    "source_event_key": "received",
+    "source_object_id": "02sWt00000201r2IAA"
+   }
+  },
+  {
+   "account_id": "001Wt00000PFsmbIAD",
+   "deal_id": "006Wt000007BDcDIAW",
+   "decision_point": "price_pushback",
+   "id": "S-price_pushback-exce-006Wt000007BDcDIAW",
+   "kind": "exception",
+   "selection_reason": "price-worded objection email BEFORE Quote: the same words as a pushback but no quote exists to re-price, so the learned pushback rule's precondition (stage Quote) fails",
+   "trigger": {
+    "occurred_at": "2024-01-24T15:00:00Z",
+    "source_event_key": "received",
+    "source_object_id": "02sWt00000209YBIAY"
+   }
+  },
+  {
+   "account_id": "001Wt00000PGRqjIAH",
+   "deal_id": "006Wt000007BAHnIAO",
+   "decision_point": "second_quote",
+   "id": "S-second_quote-disc-006Wt000007BAHnIAO",
+   "kind": "control",
+   "selection_reason": "the deal is in Quote with another quote at the account open within 30 days and the customer has just written; sending a separate quote versus folding it into the open one is rated by the hidden rule; no learned item about this decision point survived the lifecycle, so the knowledge retrieved here is irrelevant to it",
+   "trigger": {
+    "occurred_at": "2023-11-01T15:00:00Z",
+    "source_event_key": "received",
+    "source_object_id": "02sWt00000204nHIAQ"
+   }
+  },
+  {
+   "account_id": "001Wt00000PHVqdIAH",
+   "deal_id": "006Wt000007BFJ4IAO",
+   "decision_point": "second_quote",
+   "id": "S-second_quote-disc-006Wt000007BFJ4IAO",
+   "kind": "control",
+   "selection_reason": "the deal is in Quote with another quote at the account open within 30 days and the customer has just written; sending a separate quote versus folding it into the open one is rated by the hidden rule; no learned item about this decision point survived the lifecycle, so the knowledge retrieved here is irrelevant to it",
+   "trigger": {
+    "occurred_at": "2023-11-24T17:50:00Z",
+    "source_event_key": "received",
+    "source_object_id": "02sWt0000020AEiIAM"
+   }
+  },
+  {
+   "account_id": "001Wt00000PGyTIIA1",
+   "deal_id": "006Wt000007BAePIAW",
+   "decision_point": "second_quote",
+   "id": "S-second_quote-disc-006Wt000007BAePIAW",
+   "kind": "control",
+   "selection_reason": "the deal is in Quote with another quote at the account open within 30 days and the customer has just written; sending a separate quote versus folding it into the open one is rated by the hidden rule; no learned item about this decision point survived the lifecycle, so the knowledge retrieved here is irrelevant to it",
+   "trigger": {
+    "occurred_at": "2023-12-04T19:50:00Z",
+    "source_event_key": "received",
+    "source_object_id": "02sWt00000209vfIAA"
+   }
+  },
+  {
+   "account_id": "001Wt00000PHVk9IAH",
+   "deal_id": "006Wt000007BCMnIAO",
+   "decision_point": "second_quote",
+   "id": "S-second_quote-disc-006Wt000007BCMnIAO",
+   "kind": "control",
+   "selection_reason": "the deal is in Quote with another quote at the account open within 30 days and the customer has just written; sending a separate quote versus folding it into the open one is rated by the hidden rule; no learned item about this decision point survived the lifecycle, so the knowledge retrieved here is irrelevant to it",
+   "trigger": {
+    "occurred_at": "2023-11-22T09:30:00Z",
+    "source_event_key": "received",
+    "source_object_id": "02sWt0000020ABUIA2"
+   }
+  },
+  {
+   "account_id": "001Wt00000PGzSbIAL",
+   "deal_id": "006Wt000007B86LIAS",
+   "decision_point": "price_pushback",
+   "id": "S-price_pushback-disc-006Wt000007B86LIAS",
+   "kind": "discriminating",
+   "selection_reason": "price-worded objection email from the buyer while the deal is in Quote; the generator recorded a pushback here, so changing the quoted amount versus holding it is rated by the hidden rule",
+   "trigger": {
+    "occurred_at": "2024-03-29T09:18:00Z",
+    "source_event_key": "received",
+    "source_object_id": "02sWt00000209y7IAA"
+   }
+  },
+  {
+   "account_id": "001Wt00000PFlupIAD",
+   "deal_id": "006Wt000007BH4mIAG",
+   "decision_point": "price_pushback",
+   "id": "S-price_pushback-disc-006Wt000007BH4mIAG",
+   "kind": "discriminating",
+   "selection_reason": "price-worded objection email from the buyer while the deal is in Quote; the generator recorded a pushback here, so changing the quoted amount versus holding it is rated by the hidden rule",
+   "trigger": {
+    "occurred_at": "2023-12-12T18:30:00Z",
+    "source_event_key": "received",
+    "source_object_id": "02sWt00000209VNIAY"
+   }
+  },
+  {
+   "account_id": "001Wt00000PFrk1IAD",
+   "deal_id": "006Wt000007BI8rIAG",
+   "decision_point": "second_quote",
+   "id": "S-second_quote-disc-006Wt000007BI8rIAG",
+   "kind": "control",
+   "selection_reason": "the deal is in Quote with another quote at the account open within 30 days and the customer has just written; sending a separate quote versus folding it into the open one is rated by the hidden rule; no learned item about this decision point survived the lifecycle, so the knowledge retrieved here is irrelevant to it",
+   "trigger": {
+    "occurred_at": "2023-11-06T14:30:00Z",
+    "source_event_key": "received",
+    "source_object_id": "02sWt00000209IIIAY"
+   }
+  },
+  {
+   "account_id": "001Wt00000PGZmfIAH",
+   "deal_id": "006Wt000007B6xMIAS",
+   "decision_point": "price_pushback",
+   "id": "S-price_pushback-disc-006Wt000007B6xMIAS",
+   "kind": "discriminating",
+   "selection_reason": "price-worded objection email from the buyer while the deal is in Quote; the generator recorded a pushback here, so changing the quoted amount versus holding it is rated by the hidden rule",
+   "trigger": {
+    "occurred_at": "2024-03-05T09:15:00Z",
+    "source_event_key": "received",
+    "source_object_id": "02sWt00000209kwIAA"
+   }
+  },
+  {
+   "account_id": "001Wt00000PGR63IAH",
+   "deal_id": "006Wt000007B5GVIA0",
+   "decision_point": "price_pushback",
+   "id": "S-price_pushback-disc-006Wt000007B5GVIA0",
+   "kind": "discriminating",
+   "selection_reason": "price-worded objection email from the buyer while the deal is in Quote; the generator recorded a pushback here, so changing the quoted amount versus holding it is rated by the hidden rule",
+   "trigger": {
+    "occurred_at": "2024-01-17T15:00:00Z",
+    "source_event_key": "received",
+    "source_object_id": "02sWt00000209cNIAQ"
+   }
+  },
+  {
+   "account_id": "001Wt00000PHRTfIAP",
+   "deal_id": "006Wt000007BAJPIA4",
+   "decision_point": "second_quote",
+   "id": "S-second_quote-disc-006Wt000007BAJPIA4",
+   "kind": "control",
+   "selection_reason": "the deal is in Quote with another quote at the account open within 30 days and the customer has just written; sending a separate quote versus folding it into the open one is rated by the hidden rule; no learned item about this decision point survived the lifecycle, so the knowledge retrieved here is irrelevant to it",
+   "trigger": {
+    "occurred_at": "2023-11-02T16:00:00Z",
+    "source_event_key": "received",
+    "source_object_id": "02sWt0000020A40IAE"
+   }
+  },
+  {
+   "account_id": "001Wt00000PHVozIAH",
+   "deal_id": "006Wt000007BDqjIAG",
+   "decision_point": "price_pushback",
+   "id": "S-price_pushback-disc-006Wt000007BDqjIAG",
+   "kind": "discriminating",
+   "selection_reason": "price-worded objection email from the buyer while the deal is in Quote; the generator recorded a pushback here, so changing the quoted amount versus holding it is rated by the hidden rule",
+   "trigger": {
+    "occurred_at": "2024-02-23T17:00:00Z",
+    "source_event_key": "received",
+    "source_object_id": "02sWt0000020ADnIAM"
+   }
+  },
+  {
+   "account_id": "001Wt00000PGQzcIAH",
+   "deal_id": "006Wt000007BB0wIAG",
+   "decision_point": "price_pushback",
+   "id": "S-price_pushback-disc-006Wt000007BB0wIAG",
+   "kind": "discriminating",
+   "selection_reason": "price-worded objection email from the buyer while the deal is in Quote; the generator recorded a pushback here, so changing the quoted amount versus holding it is rated by the hidden rule",
+   "trigger": {
+    "occurred_at": "2024-02-24T16:20:00Z",
+    "source_event_key": "received",
+    "source_object_id": "02sWt00000209bvIAA"
+   }
+  },
+  {
+   "account_id": "001Wt00000PGyTIIA1",
+   "deal_id": "006Wt000007BCZkIAO",
+   "decision_point": "second_quote",
+   "id": "S-second_quote-disc-006Wt000007BCZkIAO",
+   "kind": "control",
+   "selection_reason": "the deal is in Quote with another quote at the account open within 30 days and the customer has just written; sending a separate quote versus folding it into the open one is rated by the hidden rule; no learned item about this decision point survived the lifecycle, so the knowledge retrieved here is irrelevant to it",
+   "trigger": {
+    "occurred_at": "2023-12-25T15:45:00Z",
+    "source_event_key": "received",
+    "source_object_id": "02sWt00000209vcIAA"
+   }
+  }
+ ],
+ "version": "uplift_situations.v1"
+}

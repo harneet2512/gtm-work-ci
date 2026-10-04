@@ -1,0 +1,611 @@
+{
+ "base": "real_snapshot",
+ "description": "Power simulation of the kernel on the REAL base (the CRMArena-Pro snapshot, base.py), one load per seed; this is the gating sweep. clean: features at close, no error (gated). noisy: extraction error per observation class and current deals seen at a decision time (reported).",
+ "rules_sha256": "f7d8778b69df548693d88376a4e5e64bf75b3405f4cd2ded39bab15a82c259fd",
+ "generation_seed": 20261002,
+ "sweep_seeds": 40,
+ "clean": {
+  "metrics": {
+   "win_rate": {
+    "mean": 0.306,
+    "p5": 0.286,
+    "p95": 0.323
+   },
+   "oracle_auc": {
+    "mean": 0.654,
+    "p5": 0.614,
+    "p95": 0.689
+   },
+   "learner_auc": {
+    "mean": 0.63,
+    "p5": 0.582,
+    "p95": 0.677
+   },
+   "hidden_learner_auc": {
+    "mean": 0.642,
+    "p5": 0.582,
+    "p95": 0.691
+   },
+   "null_only_auc": {
+    "mean": 0.503,
+    "p5": 0.459,
+    "p95": 0.553
+   },
+   "null_incremental_auc": {
+    "mean": -0.006,
+    "p5": -0.029,
+    "p95": 0.021
+   },
+   "cc_share": {
+    "mean": 0.396,
+    "p5": 0.376,
+    "p95": 0.416
+   },
+   "cc_only_auc": {
+    "mean": 0.563,
+    "p5": 0.506,
+    "p95": 0.623
+   },
+   "cc_incremental_auc": {
+    "mean": 0.013,
+    "p5": -0.003,
+    "p95": 0.034
+   }
+  },
+  "seed_pass_rate": 0.425,
+  "failing_seeds": {
+   "20261004": [
+    "oracle_auc 0.637 outside [0.65, 0.8]"
+   ],
+   "20261005": [
+    "learner_auc 0.595 outside [0.6, 0.78]"
+   ],
+   "20261006": [
+    "learner_auc 0.546 outside [0.6, 0.78]"
+   ],
+   "20261007": [
+    "oracle_auc 0.620 outside [0.65, 0.8]"
+   ],
+   "20261008": [
+    "oracle_auc 0.624 outside [0.65, 0.8]"
+   ],
+   "20261009": [
+    "win_rate 0.272 outside [0.28, 0.4]",
+    "learner_auc 0.583 outside [0.6, 0.78]"
+   ],
+   "20261010": [
+    "oracle_auc 0.643 outside [0.65, 0.8]"
+   ],
+   "20261011": [
+    "oracle_auc 0.627 outside [0.65, 0.8]",
+    "learner_auc 0.583 outside [0.6, 0.78]"
+   ],
+   "20261012": [
+    "oracle_auc 0.635 outside [0.65, 0.8]"
+   ],
+   "20261014": [
+    "oracle_auc 0.615 outside [0.65, 0.8]"
+   ],
+   "20261015": [
+    "oracle_auc 0.630 outside [0.65, 0.8]",
+    "hidden rule syn1_second_quote_within_30d recovered with the wrong sign (+0.15)"
+   ],
+   "20261016": [
+    "learner_auc 0.595 outside [0.6, 0.78]"
+   ],
+   "20261018": [
+    "oracle_auc 0.631 outside [0.65, 0.8]"
+   ],
+   "20261024": [
+    "oracle_auc 0.645 outside [0.65, 0.8]"
+   ],
+   "20261025": [
+    "oracle_auc 0.646 outside [0.65, 0.8]"
+   ],
+   "20261026": [
+    "oracle_auc 0.614 outside [0.65, 0.8]",
+    "learner_auc 0.582 outside [0.6, 0.78]"
+   ],
+   "20261029": [
+    "oracle_auc 0.649 outside [0.65, 0.8]",
+    "cc_incremental_auc 0.040 > 0.03 ('has a cc' predicts)"
+   ],
+   "20261032": [
+    "cc_incremental_auc 0.034 > 0.03 ('has a cc' predicts)"
+   ],
+   "20261033": [
+    "oracle_auc 0.631 outside [0.65, 0.8]"
+   ],
+   "20261035": [
+    "oracle_auc 0.644 outside [0.65, 0.8]"
+   ],
+   "20261037": [
+    "oracle_auc 0.607 outside [0.65, 0.8]"
+   ],
+   "20261039": [
+    "cc_incremental_auc 0.036 > 0.03 ('has a cc' predicts)"
+   ],
+   "20261041": [
+    "oracle_auc 0.649 outside [0.65, 0.8]"
+   ]
+  },
+  "sign_recovery": {
+   "syn1_push_while_owner_unstable": 0.925,
+   "syn1_champion_gone_unreplaced": 1.0,
+   "syn1_entrant_with_champion": 1.0,
+   "syn1_entrant_without_champion": 0.975,
+   "syn1_written_handover_exempts": 0.775,
+   "syn1_quote_before_economic_buyer": 0.025,
+   "syn1_three_engaged_before_quote": 0.9,
+   "syn1_requested_pause_ignored": 0.45,
+   "syn1_ops_contact_before_quote": 1.0,
+   "syn1_reprice_after_quote_pushback": 1.0,
+   "syn1_cc_colleague_on_technical_reply": 1.0,
+   "syn1_second_quote_within_30d": 0.975
+  },
+  "prevalence": {
+   "syn1_push_while_owner_unstable": 0.029,
+   "syn1_champion_gone_unreplaced": 0.047,
+   "syn1_entrant_with_champion": 0.214,
+   "syn1_entrant_without_champion": 0.173,
+   "syn1_written_handover_exempts": 0.043,
+   "syn1_quote_before_economic_buyer": 0.736,
+   "syn1_three_engaged_before_quote": 0.002,
+   "syn1_requested_pause_ignored": 0.021,
+   "syn1_ops_contact_before_quote": 0.17,
+   "syn1_reprice_after_quote_pushback": 0.165,
+   "syn1_cc_colleague_on_technical_reply": 0.078,
+   "syn1_second_quote_within_30d": 0.165
+  },
+  "sweep_failures": [
+   "seed pass rate 0.42 < 0.9",
+   "syn1_written_handover_exempts sign recovered in 0.78 of seeds < 0.8",
+   "syn1_quote_before_economic_buyer sign recovered in 0.03 of seeds < 0.8",
+   "syn1_requested_pause_ignored sign recovered in 0.45 of seeds < 0.8"
+  ],
+  "frozen_seed": {
+   "seed": 20261002,
+   "win_rate": 0.3004073319755601,
+   "oracle_auc": 0.6620227038183695,
+   "learner_auc": 0.6298864809081527,
+   "hidden_learner_auc": 0.654922600619195,
+   "null_only_auc": 0.4804953560371517,
+   "null_incremental_auc": 0.0014654282765738103,
+   "prevalence": [
+    [
+     "syn1_push_while_owner_unstable",
+     0.024786324786324785
+    ],
+    [
+     "syn1_champion_gone_unreplaced",
+     0.044444444444444446
+    ],
+    [
+     "syn1_entrant_with_champion",
+     0.2358974358974359
+    ],
+    [
+     "syn1_entrant_without_champion",
+     0.1623931623931624
+    ],
+    [
+     "syn1_written_handover_exempts",
+     0.046153846153846156
+    ],
+    [
+     "syn1_quote_before_economic_buyer",
+     0.7222222222222222
+    ],
+    [
+     "syn1_three_engaged_before_quote",
+     0.002564102564102564
+    ],
+    [
+     "syn1_requested_pause_ignored",
+     0.019658119658119658
+    ],
+    [
+     "syn1_ops_contact_before_quote",
+     0.17264957264957265
+    ],
+    [
+     "syn1_reprice_after_quote_pushback",
+     0.15128205128205127
+    ],
+    [
+     "syn1_cc_colleague_on_technical_reply",
+     0.08376068376068375
+    ],
+    [
+     "syn1_second_quote_within_30d",
+     0.17606837606837608
+    ]
+   ],
+   "coef": [
+    [
+     "syn1_push_while_owner_unstable",
+     -1.1732223507506256
+    ],
+    [
+     "syn1_champion_gone_unreplaced",
+     -0.9319428501109884
+    ],
+    [
+     "syn1_entrant_with_champion",
+     0.12185178208849906
+    ],
+    [
+     "syn1_entrant_without_champion",
+     -0.3006291289232839
+    ],
+    [
+     "syn1_written_handover_exempts",
+     0.5498740841444683
+    ],
+    [
+     "syn1_quote_before_economic_buyer",
+     0.6261946513519449
+    ],
+    [
+     "syn1_three_engaged_before_quote",
+     0.6750515765045974
+    ],
+    [
+     "syn1_requested_pause_ignored",
+     -0.18742287818802622
+    ],
+    [
+     "syn1_ops_contact_before_quote",
+     0.5863119671141888
+    ],
+    [
+     "syn1_reprice_after_quote_pushback",
+     -0.8634080896666734
+    ],
+    [
+     "syn1_cc_colleague_on_technical_reply",
+     0.8885878783589685
+    ],
+    [
+     "syn1_second_quote_within_30d",
+     -0.624182240435165
+    ]
+   ],
+   "cc_share": 0.4,
+   "cc_only_auc": 0.5499484004127967,
+   "cc_incremental_auc": 0.0167595459236326
+  }
+ },
+ "noisy": {
+  "metrics": {
+   "win_rate": {
+    "mean": 0.306,
+    "p5": 0.286,
+    "p95": 0.323
+   },
+   "oracle_auc": {
+    "mean": 0.654,
+    "p5": 0.614,
+    "p95": 0.689
+   },
+   "learner_auc": {
+    "mean": 0.566,
+    "p5": 0.517,
+    "p95": 0.608
+   },
+   "hidden_learner_auc": {
+    "mean": 0.616,
+    "p5": 0.568,
+    "p95": 0.653
+   },
+   "null_only_auc": {
+    "mean": 0.503,
+    "p5": 0.459,
+    "p95": 0.553
+   },
+   "null_incremental_auc": {
+    "mean": -0.006,
+    "p5": -0.029,
+    "p95": 0.021
+   },
+   "cc_share": {
+    "mean": 0.396,
+    "p5": 0.376,
+    "p95": 0.416
+   },
+   "cc_only_auc": {
+    "mean": 0.563,
+    "p5": 0.506,
+    "p95": 0.623
+   },
+   "cc_incremental_auc": {
+    "mean": 0.013,
+    "p5": -0.003,
+    "p95": 0.034
+   }
+  },
+  "seed_pass_rate": 0.075,
+  "failing_seeds": {
+   "20261002": [
+    "learner_auc 0.539 outside [0.6, 0.78]"
+   ],
+   "20261003": [
+    "learner_auc 0.544 outside [0.6, 0.78]"
+   ],
+   "20261004": [
+    "oracle_auc 0.637 outside [0.65, 0.8]",
+    "learner_auc 0.561 outside [0.6, 0.78]"
+   ],
+   "20261005": [
+    "learner_auc 0.538 outside [0.6, 0.78]"
+   ],
+   "20261006": [
+    "learner_auc 0.505 outside [0.6, 0.78]"
+   ],
+   "20261007": [
+    "oracle_auc 0.620 outside [0.65, 0.8]",
+    "learner_auc 0.534 outside [0.6, 0.78]"
+   ],
+   "20261008": [
+    "oracle_auc 0.624 outside [0.65, 0.8]",
+    "learner_auc 0.591 outside [0.6, 0.78]"
+   ],
+   "20261009": [
+    "win_rate 0.272 outside [0.28, 0.4]",
+    "learner_auc 0.547 outside [0.6, 0.78]"
+   ],
+   "20261010": [
+    "oracle_auc 0.643 outside [0.65, 0.8]"
+   ],
+   "20261011": [
+    "oracle_auc 0.627 outside [0.65, 0.8]",
+    "learner_auc 0.562 outside [0.6, 0.78]"
+   ],
+   "20261012": [
+    "oracle_auc 0.635 outside [0.65, 0.8]",
+    "learner_auc 0.579 outside [0.6, 0.78]"
+   ],
+   "20261013": [
+    "learner_auc 0.526 outside [0.6, 0.78]"
+   ],
+   "20261014": [
+    "oracle_auc 0.615 outside [0.65, 0.8]",
+    "learner_auc 0.574 outside [0.6, 0.78]"
+   ],
+   "20261015": [
+    "oracle_auc 0.630 outside [0.65, 0.8]",
+    "learner_auc 0.589 outside [0.6, 0.78]",
+    "hidden rule syn1_second_quote_within_30d recovered with the wrong sign (+0.16)"
+   ],
+   "20261016": [
+    "learner_auc 0.517 outside [0.6, 0.78]"
+   ],
+   "20261017": [
+    "learner_auc 0.589 outside [0.6, 0.78]"
+   ],
+   "20261018": [
+    "oracle_auc 0.631 outside [0.65, 0.8]",
+    "learner_auc 0.556 outside [0.6, 0.78]"
+   ],
+   "20261019": [
+    "learner_auc 0.590 outside [0.6, 0.78]"
+   ],
+   "20261020": [
+    "learner_auc 0.554 outside [0.6, 0.78]"
+   ],
+   "20261022": [
+    "learner_auc 0.550 outside [0.6, 0.78]"
+   ],
+   "20261023": [
+    "learner_auc 0.565 outside [0.6, 0.78]"
+   ],
+   "20261024": [
+    "oracle_auc 0.645 outside [0.65, 0.8]",
+    "learner_auc 0.587 outside [0.6, 0.78]"
+   ],
+   "20261025": [
+    "oracle_auc 0.646 outside [0.65, 0.8]",
+    "learner_auc 0.536 outside [0.6, 0.78]"
+   ],
+   "20261026": [
+    "oracle_auc 0.614 outside [0.65, 0.8]",
+    "learner_auc 0.564 outside [0.6, 0.78]"
+   ],
+   "20261027": [
+    "learner_auc 0.568 outside [0.6, 0.78]"
+   ],
+   "20261028": [
+    "learner_auc 0.546 outside [0.6, 0.78]"
+   ],
+   "20261029": [
+    "oracle_auc 0.649 outside [0.65, 0.8]",
+    "learner_auc 0.589 outside [0.6, 0.78]",
+    "cc_incremental_auc 0.040 > 0.03 ('has a cc' predicts)"
+   ],
+   "20261030": [
+    "learner_auc 0.537 outside [0.6, 0.78]"
+   ],
+   "20261031": [
+    "learner_auc 0.550 outside [0.6, 0.78]"
+   ],
+   "20261032": [
+    "learner_auc 0.580 outside [0.6, 0.78]",
+    "cc_incremental_auc 0.034 > 0.03 ('has a cc' predicts)"
+   ],
+   "20261033": [
+    "oracle_auc 0.631 outside [0.65, 0.8]",
+    "learner_auc 0.596 outside [0.6, 0.78]"
+   ],
+   "20261034": [
+    "learner_auc 0.575 outside [0.6, 0.78]"
+   ],
+   "20261035": [
+    "oracle_auc 0.644 outside [0.65, 0.8]",
+    "learner_auc 0.569 outside [0.6, 0.78]"
+   ],
+   "20261036": [
+    "learner_auc 0.574 outside [0.6, 0.78]"
+   ],
+   "20261037": [
+    "oracle_auc 0.607 outside [0.65, 0.8]",
+    "learner_auc 0.549 outside [0.6, 0.78]"
+   ],
+   "20261039": [
+    "learner_auc 0.570 outside [0.6, 0.78]",
+    "cc_incremental_auc 0.036 > 0.03 ('has a cc' predicts)"
+   ],
+   "20261041": [
+    "oracle_auc 0.649 outside [0.65, 0.8]",
+    "learner_auc 0.595 outside [0.6, 0.78]"
+   ]
+  },
+  "sign_recovery": {
+   "syn1_push_while_owner_unstable": 0.75,
+   "syn1_champion_gone_unreplaced": 0.925,
+   "syn1_entrant_with_champion": 0.95,
+   "syn1_entrant_without_champion": 0.975,
+   "syn1_written_handover_exempts": 0.525,
+   "syn1_quote_before_economic_buyer": 0.025,
+   "syn1_three_engaged_before_quote": 0.65,
+   "syn1_requested_pause_ignored": 0.425,
+   "syn1_ops_contact_before_quote": 1.0,
+   "syn1_reprice_after_quote_pushback": 1.0,
+   "syn1_cc_colleague_on_technical_reply": 1.0,
+   "syn1_second_quote_within_30d": 0.975
+  },
+  "prevalence": {
+   "syn1_push_while_owner_unstable": 0.029,
+   "syn1_champion_gone_unreplaced": 0.047,
+   "syn1_entrant_with_champion": 0.214,
+   "syn1_entrant_without_champion": 0.173,
+   "syn1_written_handover_exempts": 0.043,
+   "syn1_quote_before_economic_buyer": 0.736,
+   "syn1_three_engaged_before_quote": 0.002,
+   "syn1_requested_pause_ignored": 0.021,
+   "syn1_ops_contact_before_quote": 0.17,
+   "syn1_reprice_after_quote_pushback": 0.165,
+   "syn1_cc_colleague_on_technical_reply": 0.078,
+   "syn1_second_quote_within_30d": 0.165
+  },
+  "sweep_failures": [
+   "seed pass rate 0.07 < 0.9",
+   "syn1_push_while_owner_unstable sign recovered in 0.75 of seeds < 0.8",
+   "syn1_written_handover_exempts sign recovered in 0.53 of seeds < 0.8",
+   "syn1_quote_before_economic_buyer sign recovered in 0.03 of seeds < 0.8",
+   "syn1_three_engaged_before_quote sign recovered in 0.65 of seeds < 0.8",
+   "syn1_requested_pause_ignored sign recovered in 0.42 of seeds < 0.8"
+  ],
+  "frozen_seed": {
+   "seed": 20261002,
+   "win_rate": 0.3004073319755601,
+   "oracle_auc": 0.6620227038183695,
+   "learner_auc": 0.5391124871001032,
+   "hidden_learner_auc": 0.6079876160990713,
+   "null_only_auc": 0.4804953560371517,
+   "null_incremental_auc": 0.0014654282765738103,
+   "prevalence": [
+    [
+     "syn1_push_while_owner_unstable",
+     0.024786324786324785
+    ],
+    [
+     "syn1_champion_gone_unreplaced",
+     0.044444444444444446
+    ],
+    [
+     "syn1_entrant_with_champion",
+     0.2358974358974359
+    ],
+    [
+     "syn1_entrant_without_champion",
+     0.1623931623931624
+    ],
+    [
+     "syn1_written_handover_exempts",
+     0.046153846153846156
+    ],
+    [
+     "syn1_quote_before_economic_buyer",
+     0.7222222222222222
+    ],
+    [
+     "syn1_three_engaged_before_quote",
+     0.002564102564102564
+    ],
+    [
+     "syn1_requested_pause_ignored",
+     0.019658119658119658
+    ],
+    [
+     "syn1_ops_contact_before_quote",
+     0.17264957264957265
+    ],
+    [
+     "syn1_reprice_after_quote_pushback",
+     0.15128205128205127
+    ],
+    [
+     "syn1_cc_colleague_on_technical_reply",
+     0.08376068376068375
+    ],
+    [
+     "syn1_second_quote_within_30d",
+     0.17606837606837608
+    ]
+   ],
+   "coef": [
+    [
+     "syn1_push_while_owner_unstable",
+     -0.13338682358560003
+    ],
+    [
+     "syn1_champion_gone_unreplaced",
+     -0.5019192662467125
+    ],
+    [
+     "syn1_entrant_with_champion",
+     0.1828781733287217
+    ],
+    [
+     "syn1_entrant_without_champion",
+     -0.14807820324309895
+    ],
+    [
+     "syn1_written_handover_exempts",
+     -0.11856028155627804
+    ],
+    [
+     "syn1_quote_before_economic_buyer",
+     0.41246389823302465
+    ],
+    [
+     "syn1_three_engaged_before_quote",
+     0.414756142894012
+    ],
+    [
+     "syn1_requested_pause_ignored",
+     -0.2109577412543104
+    ],
+    [
+     "syn1_ops_contact_before_quote",
+     0.450521730368702
+    ],
+    [
+     "syn1_reprice_after_quote_pushback",
+     -0.8045290608393671
+    ],
+    [
+     "syn1_cc_colleague_on_technical_reply",
+     0.434587673647001
+    ],
+    [
+     "syn1_second_quote_within_30d",
+     -0.6084383265642022
+    ]
+   ],
+   "cc_share": 0.4,
+   "cc_only_auc": 0.5499484004127967,
+   "cc_incremental_auc": 0.0167595459236326
+  }
+ }
+}

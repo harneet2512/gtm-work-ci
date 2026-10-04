@@ -1,0 +1,705 @@
+{
+  "version": "abc_report.v1",
+  "experiment": {
+    "id": "abc-uplift-v1",
+    "arms": {
+      "A": "same account state, no learned knowledge (the knowledge-withheld counterfactual of E7)",
+      "B": "same account state plus applicable learned knowledge",
+      "C": "same account state plus irrelevant knowledge"
+    },
+    "primary_metric": "hidden_rule_decision_score",
+    "scoring": "A decision is the account agent's preferred first-draft candidate (worker ranking 1, before revision). It is classified from the candidate's strategy type, title and one-line description by a fixed lexicon, and scored as the hidden-only planted log-odds of the option it realises (changing the quoted amount: -1.0; sending a separate second quote: -1.1), 0 otherwise. No LLM judge is used for any number.",
+    "selection": "Situations are test-split decision moments chosen from rendered events by decision relevance only (the hidden rule rates the choice, or its precondition fails), inside the window in which the learned items are fresh under the lifecycle's stale rule, in a fixed seeded order. Neither an outcome nor an arm result was read.",
+    "n_discriminating": 3,
+    "n_exception": 1,
+    "n_control": 2
+  },
+  "provenance": {
+    "runtime_model": {
+      "configured": "openrouter/qwen/qwen3.8-27b:free",
+      "family": "qwen3.8-27b",
+      "answered": [
+        "qwen/qwen3.8-27b:free"
+      ]
+    },
+    "llm_mode": "replay",
+    "calls": {
+      "generation_runs": 12,
+      "recorded_llm_calls": 36
+    },
+    "seed": 20261004,
+    "cassettes": {
+      "count": 36,
+      "sha256": "0000000000000000000000000000000000000000000000000000000000000000"
+    },
+    "data": {
+      "synthetic_manifest_sha256": "0000000000000000000000000000000000000000000000000000000000000000",
+      "base_export_sha256": "0000000000000000000000000000000000000000000000000000000000000000",
+      "rules_version": "synthetic_rules:v1",
+      "rules_sha256": "0000000000000000000000000000000000000000000000000000000000000000",
+      "split_sha256": "0000000000000000000000000000000000000000000000000000000000000000",
+      "pack_sha256": "0000000000000000000000000000000000000000000000000000000000000000",
+      "learning_sha256": "0000000000000000000000000000000000000000000000000000000000000000"
+    }
+  },
+  "caveats": [
+    "Synthetic outcomes: outcomes are drawn from planted rules, so a learner recovering them shows the loop recovers planted rules, not that they hold in real selling. Uplift is scored on the 4 hidden rules only.",
+    "Distinguishable data: before the paraphrase pass a classifier separates real from synthetic emails at AUC 0.998 (cc is a residual tell); any after-paraphrase AUC is reported next to this number, never instead of it.",
+    "Noisy mode: the frozen seed fails the noisy mode (learner AUC 0.546) and the real-base noisy seed pass rate is 0.075, so learning from real extraction may be weak.",
+    "Real-base exception: the real-base sweep passes only under a recorded user exception (clean seed pass rate 0.425; 23 of 40 seeds fail a per-seed gate, mostly oracle AUC below 0.65). Eval-known rules (quote_before_economic_buyer, requested_pause_ignored, written_handover_exempts) are not recovered reliably and back no learning claim; hidden-rule and null gates still apply.",
+    "Ground-truth state: every arm decides on an account state built through the real ingest and recompute path, but the planted facts in customer emails (an objection, a blocker) are supplied by a deterministic table instead of the model extractor, so extraction error is not measured here (see the noisy-mode caveat).",
+    "Scale and sampling: one sample per arm per situation from a free OpenRouter model, on the few situations the lifecycle and the freshness window leave; the paired tests are small-n and a non-significant result is not evidence of no effect. The decision classifier is a fixed lexicon over the candidate's strategy type, title and description; it was written before any model output was seen.",
+    "HAR-131: this proves the loop recovers planted rules from previous deals and applies them correctly; it does not prove the rules hold in real selling."
+  ],
+  "learning": {
+    "cutoff": "2023-11-01",
+    "previous_deals": 564,
+    "hypotheses_tested": [
+      {
+        "decision_point": "ops_outreach",
+        "kind": "action",
+        "n_option": 90,
+        "n_other": 100,
+        "win_rate_option": 0.33,
+        "win_rate_other": 0.54,
+        "p_value": 0.077,
+        "promoted": false
+      },
+      {
+        "decision_point": "price_pushback",
+        "kind": "action",
+        "n_option": 90,
+        "n_other": 100,
+        "win_rate_option": 0.33,
+        "win_rate_other": 0.54,
+        "p_value": 0.0025,
+        "promoted": true
+      },
+      {
+        "decision_point": "technical_reply",
+        "kind": "action",
+        "n_option": 90,
+        "n_other": 100,
+        "win_rate_option": 0.33,
+        "win_rate_other": 0.54,
+        "p_value": 0.247,
+        "promoted": false
+      },
+      {
+        "decision_point": "second_quote",
+        "kind": "action",
+        "n_option": 90,
+        "n_other": 100,
+        "win_rate_option": 0.33,
+        "win_rate_other": 0.54,
+        "p_value": 0.0258,
+        "promoted": true
+      },
+      {
+        "decision_point": "first_send_early_week",
+        "kind": "control",
+        "n_option": 90,
+        "n_other": 100,
+        "win_rate_option": 0.33,
+        "win_rate_other": 0.54,
+        "p_value": 0.93,
+        "promoted": false
+      },
+      {
+        "decision_point": "high_outbound_volume",
+        "kind": "control",
+        "n_option": 90,
+        "n_other": 100,
+        "win_rate_option": 0.33,
+        "win_rate_other": 0.54,
+        "p_value": 0.0128,
+        "promoted": true
+      },
+      {
+        "decision_point": "any_colleague_cc",
+        "kind": "control",
+        "n_option": 90,
+        "n_other": 100,
+        "win_rate_option": 0.33,
+        "win_rate_other": 0.54,
+        "p_value": 0.61,
+        "promoted": false
+      }
+    ],
+    "promotion_rule": "fixture promotion rule",
+    "knowledge": [
+      {
+        "id": "c4c494ce-4b4a-5e13-aacd-86ea05f0b5c6",
+        "key": "K202",
+        "title": "Hold the quoted amount after a price objection",
+        "decision_point": "price_pushback",
+        "status": "provisional",
+        "counts": {
+          "decisions": 106,
+          "positive_reactions": 2,
+          "negative_reactions": 1,
+          "outcomes_advanced": 58,
+          "counterexamples": 0
+        },
+        "created_at": "2023-11-01T00:00:00Z",
+        "origin": "learned"
+      },
+      {
+        "id": "40f47429-3e89-55c7-ac7d-a504c52ee49b",
+        "key": "K204",
+        "title": "Fold a new quote into the one still open",
+        "decision_point": "second_quote",
+        "status": "disputed",
+        "counts": {
+          "decisions": 55,
+          "positive_reactions": 1,
+          "negative_reactions": 21,
+          "outcomes_advanced": 29,
+          "counterexamples": 0
+        },
+        "created_at": "2023-11-01T00:00:00Z",
+        "origin": "learned"
+      },
+      {
+        "id": "19e99b4f-040b-5580-8b5d-e70ae625a718",
+        "key": "K206",
+        "title": "Send more emails than usual",
+        "decision_point": "high_outbound_volume",
+        "status": "disputed",
+        "counts": {
+          "decisions": 55,
+          "positive_reactions": 1,
+          "negative_reactions": 21,
+          "outcomes_advanced": 29,
+          "counterexamples": 0
+        },
+        "created_at": "2023-11-01T00:00:00Z",
+        "origin": "learned"
+      }
+    ],
+    "null_false_promotions": 1,
+    "guard": {
+      "empty_before_learning": true,
+      "admitted": 3,
+      "hidden_rule_text_found": 0,
+      "seeded_or_manual_found": 0,
+      "hard_block_passed": true
+    },
+    "lifecycle_note": "K202 price_pushback: provisional; K204 second_quote: disputed (disputed: 3 negative reactions (>= 3) outnumber 0 positive); K206 high_outbound_volume: disputed (disputed: 3 negative reactions (>= 3) outnumber 0 positive)",
+    "no_leakage": {
+      "latest_knowledge_created_at": "2023-11-01T00:00:00Z",
+      "earliest_trigger_time": "2023-11-10T15:00:00Z",
+      "passed": true
+    }
+  },
+  "situations": [
+    {
+      "id": "S-price-1",
+      "kind": "discriminating",
+      "decision_point": "price_pushback",
+      "deal_id": "006Wt00000FIXTURE0",
+      "trigger_time": "2023-11-10T15:00:00Z",
+      "selection_reason": "fixture reason S-price-1",
+      "rule_value": -1.0,
+      "arms": {
+        "A": {
+          "candidate_id": "S-price-1-A",
+          "strategy_type": "offer_price_concession",
+          "action_type": "send_email",
+          "recipients": [
+            {
+              "person_id": "p-buyer",
+              "role": "to"
+            }
+          ],
+          "realized_option": true,
+          "followed_recommendation": false,
+          "action_evidence": [
+            "option:price concession",
+            "option:reduce the quoted amount"
+          ],
+          "decision_score": -1.0,
+          "regret": 1.0,
+          "corrections_needed": 1,
+          "knowledge_retrieved": [],
+          "knowledge_applicable": [],
+          "knowledge_exception_blocked": [],
+          "knowledge_cited": [],
+          "draft_sha256": "e3bb31d6fdb15b89875264b33533a214ddbf3d82dccadf3e6f8de16d0e685904"
+        },
+        "B": {
+          "candidate_id": "S-price-1-B",
+          "strategy_type": "reinforce_value_case",
+          "action_type": "send_email",
+          "recipients": [
+            {
+              "person_id": "p-buyer",
+              "role": "to"
+            }
+          ],
+          "realized_option": false,
+          "followed_recommendation": true,
+          "action_evidence": [
+            "opposite:hold the quoted price",
+            "opposite:return on investment",
+            "opposite:value case"
+          ],
+          "decision_score": 0.0,
+          "regret": 0.0,
+          "corrections_needed": 0,
+          "knowledge_retrieved": [
+            "c4c494ce-4b4a-5e13-aacd-86ea05f0b5c6"
+          ],
+          "knowledge_applicable": [
+            "c4c494ce-4b4a-5e13-aacd-86ea05f0b5c6"
+          ],
+          "knowledge_exception_blocked": [],
+          "knowledge_cited": [
+            "c4c494ce-4b4a-5e13-aacd-86ea05f0b5c6"
+          ],
+          "draft_sha256": "6e29731fdaefcd64f4d504e3373c87b865dbd850b3dfe732cae4f46430fc011e"
+        }
+      }
+    },
+    {
+      "id": "S-price-2",
+      "kind": "discriminating",
+      "decision_point": "price_pushback",
+      "deal_id": "006Wt00000FIXTURE1",
+      "trigger_time": "2023-11-11T15:00:00Z",
+      "selection_reason": "fixture reason S-price-2",
+      "rule_value": -1.0,
+      "arms": {
+        "A": {
+          "candidate_id": "S-price-2-A",
+          "strategy_type": "offer_price_concession",
+          "action_type": "send_email",
+          "recipients": [
+            {
+              "person_id": "p-buyer",
+              "role": "to"
+            }
+          ],
+          "realized_option": true,
+          "followed_recommendation": false,
+          "action_evidence": [
+            "option:price concession",
+            "option:reduce the quoted amount"
+          ],
+          "decision_score": -1.0,
+          "regret": 1.0,
+          "corrections_needed": 0,
+          "knowledge_retrieved": [],
+          "knowledge_applicable": [],
+          "knowledge_exception_blocked": [],
+          "knowledge_cited": [],
+          "draft_sha256": "e3bb31d6fdb15b89875264b33533a214ddbf3d82dccadf3e6f8de16d0e685904"
+        },
+        "B": {
+          "candidate_id": "S-price-2-B",
+          "strategy_type": "reinforce_value_case",
+          "action_type": "send_email",
+          "recipients": [
+            {
+              "person_id": "p-buyer",
+              "role": "to"
+            }
+          ],
+          "realized_option": false,
+          "followed_recommendation": true,
+          "action_evidence": [
+            "opposite:hold the quoted price",
+            "opposite:return on investment",
+            "opposite:value case"
+          ],
+          "decision_score": 0.0,
+          "regret": 0.0,
+          "corrections_needed": 0,
+          "knowledge_retrieved": [
+            "c4c494ce-4b4a-5e13-aacd-86ea05f0b5c6"
+          ],
+          "knowledge_applicable": [
+            "c4c494ce-4b4a-5e13-aacd-86ea05f0b5c6"
+          ],
+          "knowledge_exception_blocked": [],
+          "knowledge_cited": [
+            "c4c494ce-4b4a-5e13-aacd-86ea05f0b5c6"
+          ],
+          "draft_sha256": "6e29731fdaefcd64f4d504e3373c87b865dbd850b3dfe732cae4f46430fc011e"
+        }
+      }
+    },
+    {
+      "id": "S-price-3",
+      "kind": "discriminating",
+      "decision_point": "price_pushback",
+      "deal_id": "006Wt00000FIXTURE2",
+      "trigger_time": "2023-11-12T15:00:00Z",
+      "selection_reason": "fixture reason S-price-3",
+      "rule_value": -1.0,
+      "arms": {
+        "A": {
+          "candidate_id": "S-price-3-A",
+          "strategy_type": "reinforce_value_case",
+          "action_type": "send_email",
+          "recipients": [
+            {
+              "person_id": "p-buyer",
+              "role": "to"
+            }
+          ],
+          "realized_option": false,
+          "followed_recommendation": true,
+          "action_evidence": [
+            "opposite:hold the quoted price",
+            "opposite:return on investment",
+            "opposite:value case"
+          ],
+          "decision_score": 0.0,
+          "regret": 0.0,
+          "corrections_needed": 0,
+          "knowledge_retrieved": [],
+          "knowledge_applicable": [],
+          "knowledge_exception_blocked": [],
+          "knowledge_cited": [],
+          "draft_sha256": "6e29731fdaefcd64f4d504e3373c87b865dbd850b3dfe732cae4f46430fc011e"
+        },
+        "B": {
+          "candidate_id": "S-price-3-B",
+          "strategy_type": "reinforce_value_case",
+          "action_type": "send_email",
+          "recipients": [
+            {
+              "person_id": "p-buyer",
+              "role": "to"
+            }
+          ],
+          "realized_option": false,
+          "followed_recommendation": true,
+          "action_evidence": [
+            "opposite:hold the quoted price",
+            "opposite:return on investment",
+            "opposite:value case"
+          ],
+          "decision_score": 0.0,
+          "regret": 0.0,
+          "corrections_needed": 0,
+          "knowledge_retrieved": [
+            "c4c494ce-4b4a-5e13-aacd-86ea05f0b5c6"
+          ],
+          "knowledge_applicable": [
+            "c4c494ce-4b4a-5e13-aacd-86ea05f0b5c6"
+          ],
+          "knowledge_exception_blocked": [],
+          "knowledge_cited": [
+            "c4c494ce-4b4a-5e13-aacd-86ea05f0b5c6"
+          ],
+          "draft_sha256": "6e29731fdaefcd64f4d504e3373c87b865dbd850b3dfe732cae4f46430fc011e"
+        }
+      }
+    },
+    {
+      "id": "S-quote-c1",
+      "kind": "control",
+      "decision_point": "second_quote",
+      "deal_id": "006Wt00000FIXTURE3",
+      "trigger_time": "2023-11-13T15:00:00Z",
+      "selection_reason": "fixture reason S-quote-c1",
+      "rule_value": -1.1,
+      "arms": {
+        "A": {
+          "candidate_id": "S-quote-c1-A",
+          "strategy_type": "send_separate_quote",
+          "action_type": "send_email",
+          "recipients": [
+            {
+              "person_id": "p-buyer",
+              "role": "to"
+            }
+          ],
+          "realized_option": true,
+          "followed_recommendation": false,
+          "action_evidence": [
+            "option:issue a new quote",
+            "option:send a separate quote",
+            "option:send separate quote"
+          ],
+          "decision_score": -1.1,
+          "regret": 1.1,
+          "corrections_needed": 0,
+          "knowledge_retrieved": [],
+          "knowledge_applicable": [],
+          "knowledge_exception_blocked": [],
+          "knowledge_cited": [],
+          "draft_sha256": "730dddddfb523c5e016c2aca89909a37e76a2c5da474431bed54a6e8a0cc3fda"
+        },
+        "C": {
+          "candidate_id": "S-quote-c1-C",
+          "strategy_type": "send_separate_quote",
+          "action_type": "send_email",
+          "recipients": [
+            {
+              "person_id": "p-buyer",
+              "role": "to"
+            }
+          ],
+          "realized_option": true,
+          "followed_recommendation": false,
+          "action_evidence": [
+            "option:issue a new quote",
+            "option:send a separate quote",
+            "option:send separate quote"
+          ],
+          "decision_score": -1.1,
+          "regret": 1.1,
+          "corrections_needed": 0,
+          "knowledge_retrieved": [
+            "c4c494ce-4b4a-5e13-aacd-86ea05f0b5c6"
+          ],
+          "knowledge_applicable": [],
+          "knowledge_exception_blocked": [],
+          "knowledge_cited": [],
+          "draft_sha256": "730dddddfb523c5e016c2aca89909a37e76a2c5da474431bed54a6e8a0cc3fda"
+        }
+      }
+    },
+    {
+      "id": "S-quote-c2",
+      "kind": "control",
+      "decision_point": "second_quote",
+      "deal_id": "006Wt00000FIXTURE4",
+      "trigger_time": "2023-11-14T15:00:00Z",
+      "selection_reason": "fixture reason S-quote-c2",
+      "rule_value": -1.1,
+      "arms": {
+        "A": {
+          "candidate_id": "S-quote-c2-A",
+          "strategy_type": "fold_into_open_quote",
+          "action_type": "send_email",
+          "recipients": [
+            {
+              "person_id": "p-buyer",
+              "role": "to"
+            }
+          ],
+          "realized_option": false,
+          "followed_recommendation": true,
+          "action_evidence": [
+            "opposite:consolidate",
+            "opposite:fold",
+            "opposite:open quote",
+            "opposite:update the existing"
+          ],
+          "decision_score": 0.0,
+          "regret": 0.0,
+          "corrections_needed": 0,
+          "knowledge_retrieved": [],
+          "knowledge_applicable": [],
+          "knowledge_exception_blocked": [],
+          "knowledge_cited": [],
+          "draft_sha256": "c5132c75a70319a2300fe807e3794cd8343de0f2f79a2dea91251863fe6c21df"
+        },
+        "C": {
+          "candidate_id": "S-quote-c2-C",
+          "strategy_type": "fold_into_open_quote",
+          "action_type": "send_email",
+          "recipients": [
+            {
+              "person_id": "p-buyer",
+              "role": "to"
+            }
+          ],
+          "realized_option": false,
+          "followed_recommendation": true,
+          "action_evidence": [
+            "opposite:consolidate",
+            "opposite:fold",
+            "opposite:open quote",
+            "opposite:update the existing"
+          ],
+          "decision_score": 0.0,
+          "regret": 0.0,
+          "corrections_needed": 0,
+          "knowledge_retrieved": [
+            "c4c494ce-4b4a-5e13-aacd-86ea05f0b5c6"
+          ],
+          "knowledge_applicable": [],
+          "knowledge_exception_blocked": [],
+          "knowledge_cited": [],
+          "draft_sha256": "c5132c75a70319a2300fe807e3794cd8343de0f2f79a2dea91251863fe6c21df"
+        }
+      }
+    },
+    {
+      "id": "S-price-x",
+      "kind": "exception",
+      "decision_point": "price_pushback",
+      "deal_id": "006Wt00000FIXTURE5",
+      "trigger_time": "2023-11-15T15:00:00Z",
+      "selection_reason": "fixture reason S-price-x",
+      "rule_value": 0.0,
+      "arms": {
+        "A": {
+          "candidate_id": "S-price-x-A",
+          "strategy_type": "schedule_call",
+          "action_type": "send_email",
+          "recipients": [
+            {
+              "person_id": "p-buyer",
+              "role": "to"
+            }
+          ],
+          "realized_option": false,
+          "followed_recommendation": false,
+          "action_evidence": [],
+          "decision_score": 0.0,
+          "regret": 0.0,
+          "corrections_needed": 0,
+          "knowledge_retrieved": [],
+          "knowledge_applicable": [],
+          "knowledge_exception_blocked": [],
+          "knowledge_cited": [],
+          "draft_sha256": "62e5da0b195b8fde1547a1205eb02cd6e8192e3f8df5bb87162343af6c549714"
+        },
+        "B": {
+          "candidate_id": "S-price-x-B",
+          "strategy_type": "schedule_call",
+          "action_type": "send_email",
+          "recipients": [
+            {
+              "person_id": "p-buyer",
+              "role": "to"
+            }
+          ],
+          "realized_option": false,
+          "followed_recommendation": false,
+          "action_evidence": [],
+          "decision_score": 0.0,
+          "regret": 0.0,
+          "corrections_needed": 0,
+          "knowledge_retrieved": [
+            "c4c494ce-4b4a-5e13-aacd-86ea05f0b5c6"
+          ],
+          "knowledge_applicable": [],
+          "knowledge_exception_blocked": [],
+          "knowledge_cited": [],
+          "draft_sha256": "62e5da0b195b8fde1547a1205eb02cd6e8192e3f8df5bb87162343af6c549714"
+        }
+      }
+    }
+  ],
+  "paired": {
+    "B_vs_A": {
+      "n": 3,
+      "mean_score_first": 0.0,
+      "mean_score_second": -0.666667,
+      "mean_difference": 0.666667,
+      "ci95": [
+        0.0,
+        1.0
+      ],
+      "wins": 2,
+      "losses": 0,
+      "ties": 1,
+      "sign_test_p": 0.5,
+      "share_same_decision": 0.333333
+    },
+    "B_vs_C": {
+      "n": 0,
+      "mean_score_first": 0.0,
+      "mean_score_second": 0.0,
+      "mean_difference": 0.0,
+      "ci95": [
+        0.0,
+        0.0
+      ],
+      "wins": 0,
+      "losses": 0,
+      "ties": 0,
+      "sign_test_p": 1.0,
+      "share_same_decision": 1.0
+    },
+    "C_vs_A": {
+      "n": 2,
+      "mean_score_first": -0.55,
+      "mean_score_second": -0.55,
+      "mean_difference": 0.0,
+      "ci95": [
+        0.0,
+        0.0
+      ],
+      "wins": 0,
+      "losses": 0,
+      "ties": 2,
+      "sign_test_p": 1.0,
+      "share_same_decision": 1.0
+    }
+  },
+  "negative_transfer": {
+    "n": 6,
+    "n_worse": 0,
+    "rate": 0.0,
+    "discriminating": {
+      "n": 3,
+      "n_worse": 0,
+      "rate": 0.0
+    },
+    "exception": {
+      "n": 1,
+      "n_worse": 0,
+      "rate": 0.0
+    },
+    "control": {
+      "n": 2,
+      "n_worse": 0,
+      "rate": 0.0
+    }
+  },
+  "corrections": {
+    "proxy": "blocking failures of the in-core deterministic evals on the preferred first draft; a proxy, no human edit is observed",
+    "A": {
+      "total": 1,
+      "mean": 0.166667
+    },
+    "B": {
+      "total": 0,
+      "mean": 0.0
+    },
+    "C": {
+      "total": 0,
+      "mean": 0.0
+    },
+    "B_minus_A": -0.25,
+    "B_vs_A": {
+      "n": 4,
+      "first_better": 1,
+      "second_better": 0,
+      "ties": 3,
+      "sign_test_p": 1.0
+    }
+  },
+  "exceptions": {
+    "n": 1,
+    "retrieved": 1,
+    "marked_not_applicable": 1,
+    "applied": 0,
+    "misapplied_by_B": 0,
+    "misapplied_by_A": 0,
+    "b_equals_a": 1,
+    "mean_score_b_minus_a": 0.0
+  },
+  "controls": {
+    "n": 2,
+    "retrieved": 2,
+    "marked_not_applicable": 2,
+    "applied": 0,
+    "c_equals_a": 2,
+    "mean_score_c_minus_a": 0.0
+  },
+  "headline": {
+    "b_better_than_a": false,
+    "c_ignored": true,
+    "exception_respected": true,
+    "text": "B vs A over 3 discriminating situations: mean decision score +0.000 vs -0.667 (difference +0.667, 95% CI +0.000 to +1.000), B better in 2, worse in 0, tied in 1, sign test p = 0.5000: B is NOT shown better than A. C vs A over 2 control situations: difference +0.000, p = 1.0000, same decision in 100%: C is ignored. Negative transfer: 0 of 6 situations (0.0%). Exception situations: 1 of 1 retrieved, 1 marked not applicable, 0 applied; B misapplied the learned course in 0 vs 0 for A: the exception was respected."
+  }
+}

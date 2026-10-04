@@ -1,0 +1,65 @@
+{
+  "agent_run_id": "0f0a0000-0000-4000-8000-000000000601",
+  "draft_index": 2,
+  "source": "revision_planner",
+  "output": {
+    "proposed_action_type": "send_email",
+    "recipients": [
+      {
+        "person_id": "0b0e0000-0000-4000-8000-000000000018",
+        "role": "to",
+        "why": "Requested the security documents"
+      },
+      {
+        "person_id": "0b0e0000-0000-4000-8000-000000000017",
+        "role": "cc",
+        "why": "Active champion; keep commercial continuity"
+      }
+    ],
+    "finished_artifact": {
+      "channel": "email",
+      "subject": "Re: Expansion to EU teams",
+      "body": "Hi Marco,\n\nThanks for jumping in. Attached are our SOC2 Type II report and the latest pen-test summary. Happy to set up time with our security team once you've reviewed - whatever timing works for you and Priya.\n\nBest,\nDana",
+      "attachments": [
+        "soc2-type2-2026.pdf",
+        "pentest-summary-2026Q3.pdf"
+      ]
+    },
+    "crm_next_step_intent": {
+      "next_step": "Security review of SOC2 package by Acme security (Marco)",
+      "due_at": null,
+      "stage_change": null
+    },
+    "reason": "Marco asked for SOC2 + pen-test before any review date; Priya stays commercial point of contact.",
+    "evidence_refs": [
+      {
+        "activity_id": "0ac70000-0000-4000-8000-000000000101",
+        "claim_id": "0c1a0000-0000-4000-8000-000000000201",
+        "quote": "Before we can sign off on the EU rollout we'll need your SOC2 Type II report and the pen-test summary.",
+        "speaker_person_id": "0b0e0000-0000-4000-8000-000000000018",
+        "occurred_at": "2026-09-29T15:42:00Z"
+      }
+    ],
+    "knowledge_refs_used": [],
+    "wait_until": null
+  },
+  "decision": {
+    "action": "send_email",
+    "why_now": "Marco requested the security package; K17 keeps the active champion in the loop.",
+    "used_guidance": true,
+    "wait_until": null,
+    "who_to_involve": [
+      { "person_id": "0b0e0000-0000-4000-8000-000000000018", "why": "Requested the security documents" },
+      { "person_id": "0b0e0000-0000-4000-8000-000000000017", "why": "Active champion; keep commercial continuity" }
+    ],
+    "who_not_to_involve": []
+  },
+  "revision_feedback": [
+    {
+      "eval_result_id": "0e1a0000-0000-4000-8000-000000000901",
+      "instruction": "Keep Priya (champion) involved; cc her on the security package."
+    }
+  ],
+  "model": "deepseek/deepseek-v4-flash",
+  "created_at": "2026-09-29T15:42:24Z"
+}

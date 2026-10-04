@@ -1,0 +1,268 @@
+{
+  "id": "beta_cp3_enrichment_title_and_employer",
+  "case_type": "conflicting_account_state",
+  "title": "Beta cp3: candidate addresses Ravi with the third-party title/employer the first-party sources contradict",
+  "should_pass": false,
+  "difficulty": "medium",
+  "slice_tags": {
+    "account": "beta",
+    "origin": "checkpoint",
+    "motion": "expansion",
+    "stage": "technical_evaluation",
+    "champion_status": "active",
+    "economic_buyer": "known",
+    "risk": "medium",
+    "candidate": "flawed",
+    "expected_action": "send_email",
+    "extra": ["data_residency", "enrichment", "standing_conflict"]
+  },
+  "based_on": {
+    "kind": "checkpoint",
+    "account": "beta",
+    "after_event_file": "world/accounts/beta/events/039_email_ravi_residency_request.json",
+    "checkpoint": 3,
+    "changed_fields": [],
+    "change": null
+  },
+  "context": {
+    "now": "2026-09-24T11:10:00Z",
+    "state": {
+      "account_id": "0a0c0000-0000-4000-8000-000000000002",
+      "account_name": "Beta Inc",
+      "opportunity_id": "0c0f0000-0000-4000-8000-000000000005",
+      "fields": {
+        "stage": "Technical evaluation",
+        "health": "at_risk",
+        "motion": "expansion",
+        "champion": "0b0e0000-0000-4000-8000-000000000031",
+        "champion_status": "active",
+        "economic_buyer": "0b0e0000-0000-4000-8000-000000000032",
+        "relationship_risk": "medium",
+        "blockers": [
+          {
+            "text": "EU data residency for the Dublin team's ticket data (where EU ticket data is stored and processed)",
+            "status": "open"
+          }
+        ],
+        "decision_process": "Ravi Menon (Head of Platform Engineering) must confirm EU data residency before any review session; Owen Clarke already approved the budget",
+        "next_milestone": "Platform team integration review",
+        "next_meeting": null,
+        "current_commitments": [
+          {
+            "text": "Send business case with the Austin pilot numbers by Tuesday",
+            "status": "fulfilled",
+            "owner_person_id": "0b0e0000-0000-4000-8000-000000000001",
+            "due": "2026-09-01"
+          },
+          {
+            "text": "Take the business case to Owen Clarke on Friday",
+            "status": "fulfilled",
+            "owner_person_id": "0b0e0000-0000-4000-8000-000000000031",
+            "due": "2026-09-04"
+          },
+          {
+            "text": "Loop in the right platform team person this week",
+            "status": "fulfilled",
+            "owner_person_id": "0b0e0000-0000-4000-8000-000000000031"
+          },
+          {
+            "text": "Send data residency documentation and sub-processor list to Ravi Menon",
+            "status": "open",
+            "owner_person_id": "0b0e0000-0000-4000-8000-000000000001"
+          }
+        ]
+      },
+      "buying_group": [
+        {
+          "person_id": "0b0e0000-0000-4000-8000-000000000031",
+          "display_name": "Hannah Lee",
+          "title": "VP Customer Operations",
+          "roles": ["champion"],
+          "status": "active",
+          "delegated_to_person_id": null,
+          "last_engaged_at": null,
+          "evidence_refs": []
+        },
+        {
+          "person_id": "0b0e0000-0000-4000-8000-000000000032",
+          "display_name": "Owen Clarke",
+          "title": "Chief Financial Officer",
+          "roles": ["economic_buyer"],
+          "status": "unknown",
+          "delegated_to_person_id": null,
+          "last_engaged_at": null,
+          "evidence_refs": []
+        },
+        {
+          "person_id": "0b0e0000-0000-4000-8000-000000000033",
+          "display_name": "Jess Patel",
+          "title": "Support Operations Manager",
+          "roles": ["user"],
+          "status": "active",
+          "delegated_to_person_id": null,
+          "last_engaged_at": null,
+          "evidence_refs": []
+        },
+        {
+          "person_id": "0b0e0000-0000-4000-8000-000000000034",
+          "display_name": "Ravi Menon",
+          "title": "Head of Platform Engineering",
+          "roles": ["technical_evaluator"],
+          "status": "active",
+          "delegated_to_person_id": null,
+          "last_engaged_at": null,
+          "evidence_refs": []
+        }
+      ],
+      "coverage_gaps": [],
+      "conflicts": [
+        {
+          "field": "next_milestone",
+          "winner_value": "Platform team integration review",
+          "winner_standing": "crm_explicit",
+          "winner_event_file": "world/accounts/beta/events/024_crm_opp_next_step.json",
+          "contradicting_value": "Ravi Menon reads the data residency documentation and sub-processor list; review session not yet scheduled",
+          "contradicting_standing": "first_party_ai",
+          "contradicting_event_file": "world/accounts/beta/events/039_email_ravi_residency_request.json",
+          "contradicting_quote": "I'm not ready to schedule a review session until I've read them."
+        }
+      ]
+    },
+    "recent_changes": {
+      "summary": "Ravi (Head of Platform Engineering) asked for data residency documentation and the sub-processor list; not ready to schedule a review; Hannah still drives the rollout.",
+      "material_diff_fields": [
+        "stage",
+        "health",
+        "blockers",
+        "decision_criteria",
+        "decision_process",
+        "current_commitments",
+        "next_milestone",
+        "relationship_risk",
+        "buying_group"
+      ],
+      "signals": [
+        "customer_replied",
+        "customer_went_silent",
+        "field_contradicted",
+        "meeting_accepted",
+        "new_stakeholder_entered",
+        "security_blocker_appeared",
+        "stage_advanced"
+      ]
+    },
+    "trigger": {
+      "activity_id": "0ac70000-0000-4000-8000-0000000b0039",
+      "activity_type": "EmailReply",
+      "occurred_at": "2026-09-24T11:05:00Z",
+      "actor_person_id": "0b0e0000-0000-4000-8000-000000000034",
+      "event_file": "world/accounts/beta/events/039_email_ravi_residency_request.json",
+      "synthetic": false,
+      "text": "Hi Dana - thanks. Before we go further I need to confirm where EU ticket data is stored and processed, and whether it ever leaves the EU. Could you send your data residency documentation and your sub-processor list? I'm not ready to schedule a review session until I've read them. Hannah is still driving the rollout on our side.\nRavi"
+    },
+    "supporting_activities": [
+      {
+        "activity_id": "0ac70000-0000-4000-8000-0000000b0028",
+        "activity_type": "EnrichmentUpdated",
+        "occurred_at": "2026-09-12T06:00:00Z",
+        "actor_person_id": null,
+        "event_file": "world/accounts/beta/events/028_enrich_ravi.json",
+        "synthetic": false,
+        "text": ""
+      }
+    ],
+    "commitments": [
+      {
+        "text": "Send data residency documentation and sub-processor list to Ravi Menon",
+        "owner_person_id": "0b0e0000-0000-4000-8000-000000000001",
+        "due_at": null,
+        "status": "open"
+      }
+    ],
+    "timeline_facts": {
+      "last_inbound_at": "2026-09-24T11:05:00Z",
+      "last_inbound_from_person_id": "0b0e0000-0000-4000-8000-000000000034",
+      "last_outbound_at": "2026-09-17T16:00:00Z",
+      "stated_timing": "Ravi will not schedule a review session until he has read the documents"
+    },
+    "offered_knowledge": [],
+    "rep_profile": {
+      "person_id": "0b0e0000-0000-4000-8000-000000000001",
+      "style": "Short plain emails: 'Hi <first name>,' opener, two to four sentences, one concrete offer, a light ask or none, signed 'Best,' and 'Dana'; no flattery about titles, no references to other customers.",
+      "notes": "Derived from Dana's sent emails in the world (Acme 004/015/028/032, Beta 004/017/036, Northstar 005/014/025/034)."
+    }
+  },
+  "candidate_action": {
+    "proposed_action_type": "send_email",
+    "recipients": [
+      {"person_id": "0b0e0000-0000-4000-8000-000000000034", "role": "to", "why": "Requested the documents"},
+      {"person_id": "0b0e0000-0000-4000-8000-000000000031", "role": "cc", "why": "Champion"}
+    ],
+    "finished_artifact": {
+      "channel": "email",
+      "subject": "Re: Relay for the Beta support org",
+      "body": "Hi Ravi,\n\nAs a Senior Engineering Manager I know you'll want the details - attached are our EU data residency addendum and sub-processor list. Happy to compare notes on how Globex handled residency too.\n\nBest,\nDana",
+      "attachments": ["eu-data-residency-addendum.pdf", "sub-processors-2026.pdf"]
+    },
+    "crm_next_step_intent": {"next_step": "Ravi reviews residency docs", "due_at": null, "stage_change": null},
+    "reason": "Ravi asked for documentation.",
+    "evidence_refs": [
+      {
+        "activity_id": "0ac70000-0000-4000-8000-0000000b0039",
+        "quote": "Could you send your data residency documentation and your sub-processor list?",
+        "speaker_person_id": "0b0e0000-0000-4000-8000-000000000034",
+        "occurred_at": "2026-09-24T11:05:00Z"
+      }
+    ],
+    "knowledge_refs_used": [],
+    "wait_until": null
+  },
+  "expected": [
+    {
+      "eval_type": "grounding",
+      "verdict": "fail",
+      "label": null,
+      "diagnostics": [],
+      "blocking": true,
+      "rationale": "Ravi is Head of Platform Engineering at Beta per the CRM contact, the call and his own email; the enrichment (title, globex.com) is third_party and outranked.",
+      "evidence_class": "deal_data"
+    },
+    {
+      "eval_type": "rep_style",
+      "verdict": "fail",
+      "label": null,
+      "diagnostics": [],
+      "blocking": false,
+      "rationale": "Getting the buyer's title and employer wrong in a first technical exchange damages credibility.",
+      "evidence_class": "methodology"
+    },
+    {
+      "eval_type": "champion_continuity",
+      "verdict": "pass",
+      "label": "CHAMPION_INCLUDED",
+      "diagnostics": [],
+      "blocking": false,
+      "rationale": "Hannah cc'd.",
+      "evidence_class": "methodology"
+    },
+    {
+      "eval_type": "buyer_readiness",
+      "verdict": "pass",
+      "label": "READY",
+      "diagnostics": [],
+      "blocking": false,
+      "rationale": "Documents, no premature ask.",
+      "evidence_class": "methodology"
+    }
+  ],
+  "expected_best_action": {
+    "action": "send_email",
+    "why": "Same documents without the enrichment claims.",
+    "recipients": [
+      {"person_id": "0b0e0000-0000-4000-8000-000000000034", "role": "to"},
+      {"person_id": "0b0e0000-0000-4000-8000-000000000031", "role": "cc"}
+    ],
+    "channel": "email"
+  },
+  "notes": "Gold stale facts: person.title / person.employer from 028."
+}

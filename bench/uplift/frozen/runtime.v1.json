@@ -1,0 +1,33 @@
+{
+ "configured_model": "openrouter/qwen/qwen3.8-flash",
+ "pulls": 4,
+ "situation_ids": [
+  "S-price_pushback-disc-006Wt000007B5GVIA0",
+  "S-price_pushback-disc-006Wt000007B6xMIAS",
+  "S-price_pushback-disc-006Wt000007B86LIAS",
+  "S-price_pushback-disc-006Wt000007BA0MIAW",
+  "S-price_pushback-disc-006Wt000007BAw7IAG",
+  "S-price_pushback-disc-006Wt000007BB0wIAG",
+  "S-price_pushback-disc-006Wt000007BBgrIAG",
+  "S-price_pushback-disc-006Wt000007BDh3IAG",
+  "S-price_pushback-disc-006Wt000007BDqjIAG",
+  "S-price_pushback-disc-006Wt000007BFNwIAO",
+  "S-price_pushback-disc-006Wt000007BH4mIAG",
+  "S-price_pushback-exce-006Wt000007BCWWIA4",
+  "S-price_pushback-exce-006Wt000007BDcDIAW",
+  "S-second_quote-disc-006Wt000007B7jqIAC",
+  "S-second_quote-disc-006Wt000007BAHnIAO",
+  "S-second_quote-disc-006Wt000007BAJPIA4",
+  "S-second_quote-disc-006Wt000007BAY0IAO",
+  "S-second_quote-disc-006Wt000007BAePIAW",
+  "S-second_quote-disc-006Wt000007BCMnIAO",
+  "S-second_quote-disc-006Wt000007BCZkIAO",
+  "S-second_quote-disc-006Wt000007BE0TIAW",
+  "S-second_quote-disc-006Wt000007BEA6IAO",
+  "S-second_quote-disc-006Wt000007BFJ4IAO",
+  "S-second_quote-disc-006Wt000007BGv3IAG",
+  "S-second_quote-disc-006Wt000007BH37IAG",
+  "S-second_quote-disc-006Wt000007BI8rIAG"
+ ],
+ "version": "uplift_runtime.v1"
+}

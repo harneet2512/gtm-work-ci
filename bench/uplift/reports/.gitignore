@@ -1,0 +1,2 @@
+# the raw arms file (every candidate, the exported store) is derivable by `python -m bench.uplift run`; only the report and the blind pairs are committed
+arms.json

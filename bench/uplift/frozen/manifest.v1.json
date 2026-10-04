@@ -1,0 +1,10 @@
+{
+ "base_export_sha256": "0b10864dd6dc0091538c6f8ae4ecebc3d9cb8cb1a1b9843bb110b67e8208a45d",
+ "learning_sha256": "501b7fd43111ff8ebc2d00325c3494dd4e3b0d5236aa39af3e7f2c4f671ec42a",
+ "rules_sha256": "f7d8778b69df548693d88376a4e5e64bf75b3405f4cd2ded39bab15a82c259fd",
+ "rules_version": "synthetic_rules:v1",
+ "seed": 20261004,
+ "split_sha256": "bb1d9566501926352412220bf48348895311a8c1a6e4ffc76812f81324d69fae",
+ "synthetic_manifest_sha256": "d7cfe9a36bbf72d361127cdb0f6ee01e1bab10a415591374e58ea3f5fa504e91",
+ "version": "uplift_manifest.v1"
+}

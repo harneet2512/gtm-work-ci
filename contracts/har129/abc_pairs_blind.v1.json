@@ -1,0 +1,56 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://ghost.local/contracts/har129/abc_pairs_blind.v1.json",
+  "title": "AbcBlindPair",
+  "description": "One line of pairs_blind.jsonl: an UNLABELLED, randomised pair of full drafts from two arms of the same situation, for blind pairwise review by a GTM expert (HAR-97 L4 'B > A', 'B > C'). Which arm produced which side is NOT in this file: it is in the separate key file (abc_pairs_key.v1.json) and must not reach the reviewer. The pair carries no arm label, no knowledge id, no model name and no decision score. The web review page is a later item; this contract only fixes the files.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["pair_id", "situation", "left", "right"],
+  "properties": {
+    "pair_id": { "type": "string", "pattern": "^P[0-9]{3,}$" },
+    "situation": {
+      "description": "What the reviewer is shown about the account at the decision time, identical for both drafts.",
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["state_header", "trigger_summary", "people"],
+      "properties": {
+        "state_header": { "type": "string", "minLength": 1 },
+        "trigger_summary": { "type": "string", "minLength": 1 },
+        "people": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": ["person_id", "name", "title", "side"],
+            "properties": {
+              "person_id": { "type": "string", "minLength": 1 },
+              "name": { "type": "string", "minLength": 1 },
+              "title": { "type": ["string", "null"] },
+              "side": { "enum": ["buyer", "seller"] }
+            }
+          }
+        }
+      }
+    },
+    "left": { "$ref": "#/$defs/draft" },
+    "right": { "$ref": "#/$defs/draft" }
+  },
+  "$defs": {
+    "draft": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["strategy_type", "title", "description", "action_type", "to", "cc", "channel", "subject", "body"],
+      "properties": {
+        "strategy_type": { "type": "string", "minLength": 1 },
+        "title": { "type": "string" },
+        "description": { "type": "string" },
+        "action_type": { "type": "string", "minLength": 1 },
+        "to": { "type": "array", "items": { "type": "string" } },
+        "cc": { "type": "array", "items": { "type": "string" } },
+        "channel": { "type": "string" },
+        "subject": { "type": ["string", "null"] },
+        "body": { "type": "string" }
+      }
+    }
+  }
+}

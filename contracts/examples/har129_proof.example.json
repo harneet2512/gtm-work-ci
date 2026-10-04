@@ -1,0 +1,68 @@
+{
+  "run_id": "har129-20261004T000000Z-abcdef",
+  "generated_at": "2026-10-04T00:00:00Z",
+  "contract": "HAR-129",
+  "command": "ghostctl proof-har129",
+  "status": "not_run",
+  "requirement_source": {
+    "version": "har129-requirements.v1",
+    "path": "contracts/har129/requirements.v1.json",
+    "requirements_total": 3,
+    "sha256": "0000000000000000000000000000000000000000000000000000000000000000"
+  },
+  "summary": {
+    "confirmed": 0,
+    "partial": 0,
+    "not_confirmed": 0,
+    "failed": 0,
+    "not_run": 3,
+    "total": 3
+  },
+  "artifacts": [
+    { "name": "manifest.json", "path": "manifest.json", "present": true, "status": "not_run" },
+    { "name": "environment.json", "path": "environment.json", "present": true, "status": "not_run" },
+    { "name": "episode_timeline.json", "path": "episode_timeline.json", "present": true, "status": "not_run" },
+    { "name": "state_snapshots.json", "path": "state_snapshots.json", "present": true, "status": "not_run" },
+    { "name": "graph_diffs.json", "path": "graph_diffs.json", "present": true, "status": "not_run" },
+    { "name": "decision_episodes.json", "path": "decision_episodes.json", "present": true, "status": "not_run" },
+    { "name": "eval_bundles.json", "path": "eval_bundles.json", "present": true, "status": "not_run" },
+    { "name": "human_judgments.json", "path": "human_judgments.json", "present": true, "status": "not_run" },
+    { "name": "customer_reactions.json", "path": "customer_reactions.json", "present": true, "status": "not_run" },
+    { "name": "knowledge_history.json", "path": "knowledge_history.json", "present": true, "status": "not_run" },
+    { "name": "abc_report.json", "path": "abc_report.json", "present": true, "status": "not_run" },
+    { "name": "e2e-results.json", "path": "e2e-results.json", "present": true, "status": "not_run" },
+    { "name": "demo-report.md", "path": "demo-report.md", "present": true, "status": "not_run" }
+  ],
+  "matrix": [
+    {
+      "requirement_id": "HAR129-G-01",
+      "section": "G",
+      "requirement": "replay reset is deterministic",
+      "required_behavior": "Reset the replay world twice and observe the same event set, state snapshots and digests both times.",
+      "observed_live_behavior": "Not run: no integrated execution has tested this yet.",
+      "evidence": [],
+      "status": "not_run",
+      "gap": "No integrated run has exercised replay reset."
+    },
+    {
+      "requirement_id": "HAR129-G-02",
+      "section": "G",
+      "requirement": "no future leakage across the historical/live boundary",
+      "required_behavior": "At episode k, no query returns information whose event or knowledge time is after k.",
+      "observed_live_behavior": "Not run: no integrated execution has tested this yet.",
+      "evidence": [],
+      "status": "not_run",
+      "gap": "No integrated run has exercised the historical/live boundary."
+    },
+    {
+      "requirement_id": "HAR129-S13-01",
+      "section": "S13",
+      "requirement": "A. WEB — current company/account world \"Here is what Ghost knows before the next event.\"",
+      "required_behavior": "Before Play, the web surface shows the account world built from history through N-1.",
+      "observed_live_behavior": "Not run: no integrated execution has tested this yet.",
+      "evidence": [],
+      "status": "not_run",
+      "gap": "The web Before-Play surface has not been exercised in an integrated run."
+    }
+  ]
+}

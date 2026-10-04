@@ -1,0 +1,67 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://ghost.local/contracts/har129/abc_pairs_key.v1.json",
+  "title": "AbcPairsKey",
+  "description": "The key of pairs_blind.jsonl (pairs_key.json): for every pair_id, which situation it came from, which comparison it belongs to and which arm is on the left. Kept apart from the blind file so a reviewer never sees it; the reviewer's preference is joined to the arm only after the review.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "version",
+    "seed",
+    "pairs"
+  ],
+  "properties": {
+    "version": {
+      "const": "abc_pairs_key.v1"
+    },
+    "seed": {
+      "description": "The seed of the left/right randomisation.",
+      "type": "integer"
+    },
+    "pairs": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "pair_id",
+          "situation_id",
+          "comparison",
+          "left_arm",
+          "right_arm"
+        ],
+        "properties": {
+          "pair_id": {
+            "type": "string",
+            "pattern": "^P[0-9]{3,}$"
+          },
+          "situation_id": {
+            "type": "string",
+            "minLength": 1
+          },
+          "comparison": {
+            "enum": [
+              "B_vs_A",
+              "B_vs_C",
+              "C_vs_A"
+            ]
+          },
+          "left_arm": {
+            "enum": [
+              "A",
+              "B",
+              "C"
+            ]
+          },
+          "right_arm": {
+            "enum": [
+              "A",
+              "B",
+              "C"
+            ]
+          }
+        }
+      }
+    }
+  }
+}

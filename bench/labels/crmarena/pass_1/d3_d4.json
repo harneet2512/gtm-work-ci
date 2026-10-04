@@ -1,0 +1,294 @@
+{
+ "cr_d3_cto_requested_but_not_included": {
+  "stakeholder_selection": [
+   "fail",
+   null,
+   true,
+   "Klara explicitly asked that the CTO, Martin Hrubý, be included; the draft confirms the meeting without him."
+  ],
+  "stakeholder_coverage": [
+   "fail",
+   "UNDER_THREADED",
+   false,
+   "The one stakeholder the customer asked for is missing from the thread."
+  ],
+  "next_step_quality": [
+   "pass",
+   null,
+   false,
+   "A dated meeting with an agenda."
+  ]
+ },
+ "cr_d3_asks_for_ctos_address_and_adds_him": {
+  "stakeholder_selection": [
+   "pass",
+   null,
+   false,
+   "Acts on her request: asks for the CTO's address to add him."
+  ],
+  "stakeholder_coverage": [
+   "pass",
+   "RIGHT_SIZED",
+   false,
+   "Klara plus the one person she named."
+  ],
+  "next_step_quality": [
+   "pass",
+   null,
+   false,
+   "Next step is concrete: her reply with his address, then the invite."
+  ],
+  "grounding": [
+   "pass",
+   null,
+   false,
+   "Case studies and ROI figures are offered as future deliverables, not asserted."
+  ]
+ },
+ "cr_d3_fourth_negotiation_prep_email": {
+  "duplicate_action": [
+   "fail",
+   null,
+   true,
+   "A fourth preparation email on the same meeting within 16 hours."
+  ],
+  "next_action_quality": [
+   "fail",
+   "WAIT",
+   false,
+   "Klara is reviewing the offer and will revert; waiting is the right move."
+  ],
+  "relationship_pressure": [
+   "warn",
+   null,
+   false,
+   "Another touch without news."
+  ]
+ },
+ "cr_d3_looking_forward_to_a_meeting_that_has_passed": {
+  "commitment_consistency": [
+   "fail",
+   null,
+   true,
+   "Treats the 11-30 meeting as upcoming and promises tomorrow's agenda for a date that has passed."
+  ],
+  "timing_cadence": [
+   "fail",
+   "LATE_OR_MISSED_WINDOW",
+   true,
+   "The slot has passed and the draft treats it as open."
+  ],
+  "next_action_quality": [
+   "fail",
+   "NEEDS_REVISION",
+   false,
+   "Needs to close the loop on the missed date."
+  ]
+ },
+ "cr_d3_asks_whether_the_planned_meeting_took_place": {
+  "commitment_consistency": [
+   "pass",
+   null,
+   false,
+   "Does not assume what happened; keeps the CTO and case-study commitments."
+  ],
+  "timing_cadence": [
+   "pass",
+   "LATE_OR_MISSED_WINDOW",
+   false,
+   "The date has passed and the draft handles that by asking and offering new times."
+  ],
+  "next_action_quality": [
+   "pass",
+   "GOOD",
+   false,
+   "Closes the loop and keeps the open items alive."
+  ]
+ },
+ "cr_x_waits_while_the_buyer_reviews_the_offer": {
+  "next_action_quality": [
+   "pass",
+   "WAIT",
+   false,
+   "Three preparation emails are out and Klara said she will review and revert."
+  ],
+  "buyer_readiness": [
+   "pass",
+   "TOO_EARLY",
+   false,
+   "No buyer-side reason to act yet; the draft recognises that."
+  ],
+  "relationship_pressure": [
+   "pass",
+   null,
+   false,
+   "No repeated nudge."
+  ]
+ },
+ "cr_x_schedule_with_the_cto_to_be_added": {
+  "champion_continuity": [
+   "pass",
+   "CHAMPION_INCLUDED",
+   false,
+   "Klara stays on the invite; the CTO is added at her request."
+  ],
+  "stakeholder_selection": [
+   "pass",
+   null,
+   false,
+   "Adds exactly the person the customer named."
+  ],
+  "stakeholder_coverage": [
+   "pass",
+   "RIGHT_SIZED",
+   false,
+   "Klara plus the CTO she asked for."
+  ]
+ },
+ "cr_d4_contract_with_friday_deadline_while_procurement_reviews": {
+  "buyer_readiness": [
+   "fail",
+   "TOO_EARLY",
+   false,
+   "Aditya will revert after discussing with procurement and still wants the timeline, training and case studies; a contract push precedes both."
+  ],
+  "cta_calibration": [
+   "fail",
+   "TOO_STRONG",
+   true,
+   "A signed contract by a fixed Friday deadline is a closing commitment he has not signalled."
+  ],
+  "decision_process": [
+   "fail",
+   null,
+   true,
+   "Contradicts the gate he stated: the procurement team's review."
+  ]
+ },
+ "cr_d4_finance_officer_pricing_direct_dropping_aditya": {
+  "champion_continuity": [
+   "fail",
+   "CHAMPION_BYPASSED",
+   true,
+   "Aditya, the only correspondent, who wrote an hour earlier, is dropped."
+  ],
+  "stakeholder_selection": [
+   "fail",
+   null,
+   true,
+   "Pricing flexibility goes to the Finance Officer, not verified in the buying group."
+  ],
+  "buyer_readiness": [
+   "fail",
+   "TOO_EARLY",
+   false,
+   "A finance call before his feedback and before his asks are answered."
+  ]
+ },
+ "cr_d4_three_colleagues_copied_on_a_pricing_reply": {
+  "stakeholder_coverage": [
+   "fail",
+   "OVER_THREADED",
+   true,
+   "A Supply Chain Coordinator and an Operations Assistant, with the Finance Officer, are pulled in while Aditya's working-level step is under way."
+  ],
+  "stakeholder_selection": [
+   "fail",
+   null,
+   true,
+   "Pricing options go to three addressees not verified in the buying group."
+  ],
+  "cta_calibration": [
+   "pass",
+   "APPROPRIATE",
+   false,
+   "A meeting next week is what he asked for."
+  ]
+ },
+ "cr_d4_offers_two_slots_and_the_requested_material": {
+  "timing_cadence": [
+   "pass",
+   "READY",
+   false,
+   "Replies the same morning to his request."
+  ],
+  "buyer_readiness": [
+   "pass",
+   "READY",
+   false,
+   "He asked for a time next week and for materials."
+  ],
+  "cta_calibration": [
+   "pass",
+   "APPROPRIATE",
+   false,
+   "Two slots for a call he requested."
+  ],
+  "grounding": [
+   "pass",
+   null,
+   false,
+   "Promises materials; asserts nothing the record lacks."
+  ]
+ },
+ "cr_d4_treats_one_signature_title_as_fact": {
+  "grounding": [
+   "fail",
+   null,
+   true,
+   "Asserts he is the director who can take it to approval; the Contact says Research Analyst and his other signature says Procurement Manager."
+  ],
+  "decision_process": [
+   "warn",
+   null,
+   false,
+   "Has the contract ready for 'approval' while procurement's review is the stated gate."
+  ],
+  "economic_buyer_coverage": [
+   "fail",
+   null,
+   false,
+   "Assumes the approver instead of finding out; the economic buyer is unknown."
+  ]
+ },
+ "cr_d4_asks_who_approves_instead_of_assuming": {
+  "grounding": [
+   "pass",
+   null,
+   false,
+   "Asserts no title or authority; asks."
+  ],
+  "decision_process": [
+   "pass",
+   null,
+   false,
+   "Finds out who approves instead of presuming."
+  ],
+  "economic_buyer_coverage": [
+   "pass",
+   null,
+   false,
+   "Asks the question that identifies the approver."
+  ]
+ },
+ "cr_x_k102_misapplied_hold_off_on_a_requested_meeting": {
+  "knowledge_applicability": [
+   "fail",
+   "DOES_NOT_APPLY",
+   false,
+   "K102 needs an open legal review; the stated review is procurement's."
+  ],
+  "grounding": [
+   "warn",
+   null,
+   false,
+   "Says the buyer's team is working through paperwork; the record shows a procurement review of the proposal, no contract."
+  ],
+  "next_action_quality": [
+   "fail",
+   "ACT_NOW",
+   true,
+   "Withholds the meeting and materials he asked for."
+  ]
+ }
+}
