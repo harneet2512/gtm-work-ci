@@ -1,0 +1,192 @@
+{
+  "id": "beta_customer_owned_commitment_light_checkin",
+  "case_type": "stale_commitment",
+  "title": "Beta variant: the champion's Friday CFO review has passed without news; candidate sends one light check-in",
+  "should_pass": true,
+  "difficulty": "medium",
+  "slice_tags": {
+    "account": "beta",
+    "origin": "synthetic_variant",
+    "motion": "expansion",
+    "stage": "commercial_review",
+    "champion_status": "active",
+    "economic_buyer": "known",
+    "risk": "low",
+    "candidate": "good",
+    "expected_action": "send_email",
+    "extra": ["customer_owed_commitment"]
+  },
+  "based_on": {
+    "kind": "synthetic_variant",
+    "account": "beta",
+    "after_event_file": "world/accounts/beta/events/020_crm_opp_stage_commercial_review.json",
+    "checkpoint": 1,
+    "changed_fields": ["current_commitments"],
+    "change": "Same as Beta cp1 but evaluated Monday 2026-09-07 with no word from Hannah after her Friday meeting with Owen (in the real world she wrote on 09-08)."
+  },
+  "context": {
+    "now": "2026-09-07T15:00:00Z",
+    "state": {
+      "account_id": "0a0c0000-0000-4000-8000-000000000002",
+      "account_name": "Beta Inc",
+      "opportunity_id": "0c0f0000-0000-4000-8000-000000000005",
+      "fields": {
+        "stage": "Commercial review",
+        "health": "on_track",
+        "motion": "expansion",
+        "champion": "0b0e0000-0000-4000-8000-000000000031",
+        "champion_status": "active",
+        "economic_buyer": "0b0e0000-0000-4000-8000-000000000032",
+        "relationship_risk": "low",
+        "decision_process": "CFO Owen Clarke signs off on spend over $100k based on a business case; Hannah Lee takes it to him",
+        "next_milestone": "Owen Clarke reviews the business case",
+        "current_commitments": [
+          {
+            "text": "Take the business case to Owen Clarke on Friday",
+            "status": "overdue",
+            "owner_person_id": "0b0e0000-0000-4000-8000-000000000031",
+            "due": "2026-09-04"
+          }
+        ]
+      },
+      "buying_group": [
+        {
+          "person_id": "0b0e0000-0000-4000-8000-000000000031",
+          "display_name": "Hannah Lee",
+          "title": "VP Customer Operations",
+          "roles": ["champion"],
+          "status": "active",
+          "delegated_to_person_id": null,
+          "last_engaged_at": null,
+          "evidence_refs": []
+        },
+        {
+          "person_id": "0b0e0000-0000-4000-8000-000000000032",
+          "display_name": "Owen Clarke",
+          "title": "Chief Financial Officer",
+          "roles": ["economic_buyer"],
+          "status": "unknown",
+          "delegated_to_person_id": null,
+          "last_engaged_at": null,
+          "evidence_refs": []
+        },
+        {
+          "person_id": "0b0e0000-0000-4000-8000-000000000033",
+          "display_name": "Jess Patel",
+          "title": "Support Operations Manager",
+          "roles": ["user"],
+          "status": "active",
+          "delegated_to_person_id": null,
+          "last_engaged_at": null,
+          "evidence_refs": []
+        }
+      ],
+      "coverage_gaps": []
+    },
+    "recent_changes": {
+      "summary": "Hannah's Friday meeting with Owen has passed; no update yet.",
+      "material_diff_fields": ["current_commitments"],
+      "signals": ["commitment_overdue"]
+    },
+    "trigger": {
+      "activity_id": "0ac70000-0000-4000-8000-0000000b0019",
+      "activity_type": "EmailReply",
+      "occurred_at": "2026-09-02T13:15:00Z",
+      "actor_person_id": "0b0e0000-0000-4000-8000-000000000031",
+      "event_file": "world/accounts/beta/events/019_email_hannah_taking_to_owen.json",
+      "synthetic": false,
+      "text": "Thanks Dana, this is exactly what Owen needs. I'm taking it to him on Friday.\nHannah"
+    },
+    "supporting_activities": [],
+    "commitments": [
+      {
+        "text": "Take the business case to Owen Clarke on Friday",
+        "owner_person_id": "0b0e0000-0000-4000-8000-000000000031",
+        "due_at": "2026-09-04T23:59:00Z",
+        "status": "overdue"
+      }
+    ],
+    "timeline_facts": {
+      "last_inbound_at": "2026-09-02T13:15:00Z",
+      "last_inbound_from_person_id": "0b0e0000-0000-4000-8000-000000000031",
+      "last_outbound_at": "2026-09-01T17:00:00Z",
+      "stated_timing": "Hannah: taking it to Owen on Friday (Sep 4)"
+    },
+    "offered_knowledge": []
+  },
+  "candidate_action": {
+    "proposed_action_type": "send_email",
+    "recipients": [{"person_id": "0b0e0000-0000-4000-8000-000000000031", "role": "to", "why": "Champion; owns the CFO review"}],
+    "finished_artifact": {
+      "channel": "email",
+      "subject": "Re: Relay for the Beta support org",
+      "body": "Hi Hannah,\n\nHope Friday with Owen went well. If he had any questions on the Austin numbers, I'm happy to pull together whatever helps.\n\nBest,\nDana"
+    },
+    "crm_next_step_intent": {"next_step": "Hannah reports Owen's decision", "due_at": null, "stage_change": null},
+    "reason": "Hannah's commitment to take the business case to Owen was due Friday.",
+    "evidence_refs": [
+      {
+        "activity_id": "0ac70000-0000-4000-8000-0000000b0019",
+        "quote": "I'm taking it to him on Friday.",
+        "speaker_person_id": "0b0e0000-0000-4000-8000-000000000031",
+        "occurred_at": "2026-09-02T13:15:00Z"
+      }
+    ],
+    "knowledge_refs_used": [],
+    "wait_until": null
+  },
+  "expected": [
+    {
+      "eval_type": "commitment_consistency",
+      "verdict": "pass",
+      "label": null,
+      "diagnostics": [],
+      "blocking": false,
+      "rationale": "Correctly treats the overdue item as customer-owned and follows up lightly instead of re-sending material.",
+      "evidence_class": "methodology"
+    },
+    {
+      "eval_type": "cta_calibration",
+      "verdict": "pass",
+      "label": "APPROPRIATE",
+      "diagnostics": [],
+      "blocking": false,
+      "rationale": "Low-pressure offer of help.",
+      "evidence_class": "methodology"
+    },
+    {
+      "eval_type": "timing_cadence",
+      "verdict": "pass",
+      "label": "READY",
+      "diagnostics": [],
+      "blocking": false,
+      "rationale": "First business day after the stated date.",
+      "evidence_class": "deal_data"
+    },
+    {
+      "eval_type": "champion_continuity",
+      "verdict": "pass",
+      "label": "CHAMPION_INCLUDED",
+      "diagnostics": [],
+      "blocking": false,
+      "rationale": "Stays with the champion; does not go to Owen directly.",
+      "evidence_class": "methodology"
+    },
+    {
+      "eval_type": "relationship_pressure",
+      "verdict": "pass",
+      "label": null,
+      "diagnostics": [],
+      "blocking": false,
+      "rationale": "One light touch after the customer-owned Friday meeting, with no ask.",
+      "evidence_class": "cs_ops"
+    }
+  ],
+  "expected_best_action": {
+    "action": "send_email",
+    "why": "One light check-in to Hannah offering help with Owen's questions.",
+    "recipients": [{"person_id": "0b0e0000-0000-4000-8000-000000000031", "role": "to"}],
+    "channel": "email"
+  },
+  "notes": "Should-pass control for stale-commitment handling."
+}

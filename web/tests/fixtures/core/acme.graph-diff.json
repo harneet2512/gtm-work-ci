@@ -1,0 +1,20 @@
+{
+  "event_id": "05e00000-0000-4000-8000-000000000101",
+  "projected": true,
+  "job_ids": [41, 42],
+  "summary": { "added": 10, "changed": 1, "removed": 1, "repaired": 0 },
+  "changes": [
+    { "kind": "node", "op": "added", "type": "Activity", "id": "0ac70000-0000-4000-8000-000000000101", "props": { "id": "0ac70000-0000-4000-8000-000000000101", "account_id": "0a0c0000-0000-4000-8000-000000000001", "activity_type": "EmailReceived", "source_system": "email", "occurred_at": "2026-09-29T15:42:00Z", "visibility": "org" }, "source_event_ids": ["05e00000-0000-4000-8000-000000000101"], "attributed_to_event": true },
+    { "kind": "node", "op": "added", "type": "Claim", "id": "0c1a0000-0000-4000-8000-000000000201", "source_event_ids": ["05e00000-0000-4000-8000-000000000101"], "attributed_to_event": true },
+    { "kind": "node", "op": "added", "type": "Signal", "id": "051a0000-0000-4000-8000-000000000401", "source_event_ids": ["05e00000-0000-4000-8000-000000000101"], "attributed_to_event": true },
+    { "kind": "node", "op": "changed", "type": "Opportunity", "id": "0c0f0000-0000-4000-8000-000000000004", "changed": { "health": { "before": "unknown", "after": "at_risk" } }, "source_event_ids": ["05e00000-0000-4000-8000-000000000101"], "attributed_to_event": true },
+    { "kind": "edge", "op": "added", "type": "INVOLVES", "id": "0ed90000-0000-4000-8000-000000000010", "from": "0ac70000-0000-4000-8000-000000000101", "to": "0b0e0000-0000-4000-8000-000000000018", "source_event_ids": ["05e00000-0000-4000-8000-000000000101"], "attributed_to_event": true },
+    { "kind": "edge", "op": "added", "type": "INVOLVES", "id": "0ed90000-0000-4000-8000-000000000011", "from": "0ac70000-0000-4000-8000-000000000101", "to": "0b0e0000-0000-4000-8000-000000000017", "source_event_ids": ["05e00000-0000-4000-8000-000000000101"], "attributed_to_event": true },
+    { "kind": "edge", "op": "added", "type": "INVOLVES", "id": "0ed90000-0000-4000-8000-000000000012", "from": "0ac70000-0000-4000-8000-000000000101", "to": "0b0e0000-0000-4000-8000-000000000001", "source_event_ids": ["05e00000-0000-4000-8000-000000000101"], "attributed_to_event": true },
+    { "kind": "edge", "op": "added", "type": "ABOUT", "id": "0ed90000-0000-4000-8000-000000000013", "from": "0ac70000-0000-4000-8000-000000000101", "to": "0c0f0000-0000-4000-8000-000000000004", "source_event_ids": ["05e00000-0000-4000-8000-000000000101"], "attributed_to_event": true },
+    { "kind": "edge", "op": "added", "type": "SUPPORTED_BY", "id": "0ed90000-0000-4000-8000-000000000014", "from": "0c1a0000-0000-4000-8000-000000000201", "to": "0ac70000-0000-4000-8000-000000000101", "source_event_ids": ["05e00000-0000-4000-8000-000000000101"], "attributed_to_event": true },
+    { "kind": "edge", "op": "added", "type": "DERIVED_FROM", "id": "0ed90000-0000-4000-8000-000000000015", "from": "051a0000-0000-4000-8000-000000000401", "to": "0c1a0000-0000-4000-8000-000000000201", "source_event_ids": ["05e00000-0000-4000-8000-000000000101"], "attributed_to_event": true },
+    { "kind": "edge", "op": "added", "type": "TECHNICAL_EVALUATOR_FOR", "id": "0ed90000-0000-4000-8000-000000000005", "from": "0b0e0000-0000-4000-8000-000000000018", "to": "0c0f0000-0000-4000-8000-000000000004", "source_event_ids": ["05e00000-0000-4000-8000-000000000101"], "attributed_to_event": false },
+    { "kind": "edge", "op": "removed", "type": "INFLUENCES", "id": "0ed90000-0000-4000-8000-000000000099", "from": "0b0e0000-0000-4000-8000-000000000018", "to": "0c0f0000-0000-4000-8000-000000000004", "source_event_ids": ["05e00000-0000-4000-8000-000000000101"], "attributed_to_event": false }
+  ]
+}

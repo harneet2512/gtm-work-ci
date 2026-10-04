@@ -1,0 +1,41 @@
+{
+  "catalog_version": 4,
+  "description": "Example excerpt with two eval types, one out-of-scope eval and one case type. The full catalog is contracts/evals/eval_catalog.json.",
+  "evidence_classes": {
+    "deal_data": "Observed customer or deal behaviour only: Gong/Salesloft-style won-vs-lost analyses of stakeholder coverage, next-step behaviour, engagement and timing, and the buyer's own first-party evidence.",
+    "methodology": "Established enterprise-sales methodology (MEDDPICC: economic buyer, champion, decision criteria and process, metrics/pain, compelling event; mutual action plans).",
+    "cs_ops": "Operational expansion/customer-success systems (Gainsight-style product use, stakeholder engagement, risk, support and expansion signals).",
+    "product_rule": "A hard product, policy or data rule of this platform; used only for deterministic, trace and human-delta evals."
+  },
+  "eval_types": {
+    "champion_continuity": {
+      "kind": "semantic",
+      "evidence_class": "methodology",
+      "labels": ["CHAMPION_INCLUDED", "CHAMPION_BYPASSED", "VALID_HANDOFF"],
+      "can_block": true,
+      "har97_sections": ["§5.5"],
+      "description": "The action preserves a valuable relationship path: the active champion stays involved unless ownership was explicitly delegated or the champion left (methodology, like champion_strength: both are the MEDDPICC champion).",
+      "blocking_rule": "Block when the label is CHAMPION_BYPASSED: the active champion is dropped although ownership was not explicitly delegated and the champion did not leave."
+    },
+    "knowledge_applicability": {
+      "kind": "semantic",
+      "evidence_class": "methodology",
+      "labels": ["APPLIES", "DOES_NOT_APPLY", "EXCEPTION_TRIGGERED"],
+      "can_block": false,
+      "har97_sections": ["§5.14", "L4"],
+      "description": "Retrieved company knowledge actually applies to this account state. Methodology, not deal_data: learned knowledge is not presented as empirically proven (§15(GTM)).",
+      "blocking_rule": "Never blocks: it explains or qualifies; the action-level evals carry the block.",
+      "label_rule": "Signature first (ADR-0011): DOES_NOT_APPLY if any signature condition fails; EXCEPTION_TRIGGERED if the signature holds and an exception holds; otherwise APPLIES. 'diff.<signal_type>' conditions match open signals."
+    }
+  },
+  "out_of_scope": {
+    "trigger_eval": {
+      "har97_sections": ["Trigger eval"],
+      "labels": [],
+      "contract": "trigger_evaluation.v1.json",
+      "reason": "Judges whether the agent should have run at all, before any draft exists; its outcome is a TriggerEvaluation (eligible + reason_codes), not an EvalResult on a draft. HAR-97's RUN_AGENT / WAIT / NO_ACTION / COALESCE_WITH_PENDING_EVENT / HUMAN_REVIEW have no contract vocabulary yet.",
+      "measured_by": "gold checkpoint `expected.trigger` (fixtures/gold) against TriggerEvaluation records"
+    }
+  },
+  "case_types": {"champion_bypass": "A new thread that drops the active champion."}
+}

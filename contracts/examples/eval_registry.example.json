@@ -1,0 +1,118 @@
+{
+  "registry_version": 1,
+  "description": "Example excerpt: one implemented, one partial and one planned eval. The full registry is contracts/evals/eval_registry.json.",
+  "source": {
+    "issue": "HAR-97",
+    "section": "CANONICAL EVAL STRATEGY (sections 1, 4-8, 12, 13; E1-E22, M1-M5)",
+    "fetched_on": "2026-10-03"
+  },
+  "families": [
+    {
+      "id": "E7",
+      "name": "Knowledge influence attribution",
+      "section": "§4 E7",
+      "class": "behavioral",
+      "surfaces": [
+        8
+      ],
+      "owner": "HAR-128",
+      "invariant": "Retrieval is not influence: retrieved, applicable, used and changed-the-decision are traced separately."
+    },
+    {
+      "id": "E12",
+      "name": "Action / output generation",
+      "section": "§4 E12",
+      "class": "behavioral",
+      "surfaces": [
+        13
+      ],
+      "owner": "HAR-116",
+      "invariant": "Decision quality and artifact quality are graded separately."
+    }
+  ],
+  "evals": [
+    {
+      "id": "E12.4",
+      "family": "E12",
+      "name": "stakeholder / recipient correctness",
+      "section": "§4 E12",
+      "surfaces": [
+        13
+      ],
+      "dimensions": [
+        "BOUNDARIES"
+      ],
+      "class": "behavioral",
+      "status": "implemented",
+      "owner": "HAR-116",
+      "grader": "deterministic",
+      "mode": "blocking",
+      "invariant": "Decision quality and artifact quality are graded separately.",
+      "knowledge_mutation_allowed": true,
+      "repeated_trials_required": false,
+      "version": 1,
+      "implemented_by": [
+        "core-go/internal/evals/deterministic/recipients.go",
+        "metric l3.correct_recipients"
+      ],
+      "contract_status": "pending",
+      "definitions_ref": {
+        "catalog_types": [
+          "recipient_correctness"
+        ],
+        "gold": [
+          "fixtures/evals/cases"
+        ]
+      }
+    },
+    {
+      "id": "E12.1",
+      "family": "E12",
+      "name": "intent adherence",
+      "section": "§4 E12",
+      "surfaces": [
+        13
+      ],
+      "dimensions": [
+        "INTENDED_BEHAVIOR"
+      ],
+      "class": "behavioral",
+      "status": "partial",
+      "owner": "HAR-116",
+      "grader": "deterministic",
+      "mode": "shadow",
+      "invariant": "Decision quality and artifact quality are graded separately.",
+      "knowledge_mutation_allowed": true,
+      "repeated_trials_required": false,
+      "version": 1,
+      "implemented_by": [
+        "worker rejects inconsistent drafts (502 inconsistent_draft)",
+        "metric l3.action_matches_decision (computable)"
+      ],
+      "contract_status": "pending"
+    },
+    {
+      "id": "E7.3",
+      "family": "E7",
+      "name": "knowledge-to-ranking attribution",
+      "section": "§4 E7",
+      "surfaces": [
+        8
+      ],
+      "dimensions": [
+        "CAUSAL_TRACE_ATTRIBUTION"
+      ],
+      "class": "behavioral",
+      "status": "planned",
+      "owner": "HAR-128",
+      "grader": null,
+      "mode": null,
+      "invariant": "Retrieval is not influence: retrieved, applicable, used and changed-the-decision are traced separately.",
+      "knowledge_mutation_allowed": true,
+      "repeated_trials_required": false,
+      "version": 1,
+      "implemented_by": [],
+      "contract_status": "pending"
+    }
+  ]
+}

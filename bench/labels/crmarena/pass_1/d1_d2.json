@@ -1,0 +1,300 @@
+{
+ "cr_d1_signature_push_after_review_notice": {
+  "buyer_readiness": [
+   "fail",
+   "TOO_EARLY",
+   true,
+   "Chin Wei says the team is still reviewing and has an unanswered cost question, case-study request and demo request; an order-form push comes before the evidence she asked for."
+  ],
+  "cta_calibration": [
+   "fail",
+   "TOO_STRONG",
+   true,
+   "A signed order form by a fixed Friday deadline is a closing commitment the buyer has not signalled."
+  ],
+  "next_action_quality": [
+   "fail",
+   "NEEDS_REVISION",
+   false,
+   "Replaces the answers she asked for with an order form; the right move is to answer the open asks and let her review finish."
+  ]
+ },
+ "cr_d1_cfo_pulled_in_while_team_reviews": {
+  "stakeholder_coverage": [
+   "fail",
+   "OVER_THREADED",
+   true,
+   "The CFO and the lead developer are added while Chin Wei's working-level review is still under way."
+  ],
+  "stakeholder_selection": [
+   "fail",
+   null,
+   true,
+   "Pricing figures go to two people who have never appeared on the deal and are not verified in the buying group."
+  ],
+  "champion_continuity": [
+   "pass",
+   "CHAMPION_INCLUDED",
+   false,
+   "Chin Wei, the only correspondent, is the main recipient."
+  ]
+ },
+ "cr_d1_cfo_direct_pricing_drops_chin_wei": {
+  "champion_continuity": [
+   "fail",
+   "CHAMPION_BYPASSED",
+   true,
+   "The only correspondent, who replied that morning, is dropped; no delegation or departure is recorded."
+  ],
+  "stakeholder_selection": [
+   "fail",
+   null,
+   true,
+   "Pricing goes to the CFO, an addressee not verified in the buying group, instead of the person running the review."
+  ],
+  "buyer_readiness": [
+   "fail",
+   "TOO_EARLY",
+   false,
+   "A commercial walkthrough with the CFO is premature while the working contact's questions and review are open."
+  ]
+ },
+ "cr_d1_case_studies_sent_cost_question_ignored": {
+  "commitment_consistency": [
+   "fail",
+   null,
+   true,
+   "The additional-cost question we owe an answer to is ignored while a negotiation meeting is pushed."
+  ],
+  "next_step_quality": [
+   "warn",
+   null,
+   false,
+   "A dated meeting is proposed, but it is not what she asked for (cost answer, demo) and it presumes the review is finished."
+  ],
+  "next_action_quality": [
+   "fail",
+   "NEEDS_REVISION",
+   false,
+   "Case studies are right; skipping the cost answer and pushing negotiation needs revision."
+  ]
+ },
+ "cr_d1_answers_cost_question_and_sends_case_studies": {
+  "timing_cadence": [
+   "pass",
+   "READY",
+   false,
+   "The task is due and the buyer's questions are a day old."
+  ],
+  "buyer_readiness": [
+   "pass",
+   "READY",
+   false,
+   "She asked for case studies, a cost answer and a demo; answering is exactly what is due."
+  ],
+  "cta_calibration": [
+   "pass",
+   "APPROPRIATE",
+   false,
+   "Only offers demo dates she asked for."
+  ],
+  "grounding": [
+   "pass",
+   null,
+   false,
+   "The PulseSim Pro price and discount come from the rep's own 03-22 email; no cost figure is invented for customization."
+  ]
+ },
+ "cr_d1_just_checking_in_after_a_week_of_silence": {
+  "timing_cadence": [
+   "fail",
+   "LATE_OR_MISSED_WINDOW",
+   false,
+   "Her questions have waited 7-8 days; a light check-in treats the thread as fresh."
+  ],
+  "commitment_consistency": [
+   "fail",
+   null,
+   true,
+   "Three things we owe (cost answer, case studies, demo) are ignored."
+  ],
+  "momentum": [
+   "fail",
+   "COOLING",
+   false,
+   "No reply for a week after an engaged buyer asked questions; a check-in without substance does not fit that."
+  ],
+  "next_action_quality": [
+   "fail",
+   "NEEDS_REVISION",
+   false,
+   "Needs to acknowledge the gap and deliver what is owed."
+  ]
+ },
+ "cr_d1_negotiation_invite_while_review_open": {
+  "commitment_consistency": [
+   "fail",
+   null,
+   true,
+   "Treats an unaccepted proposal as agreed: the buyer's last words are that her team is reviewing and awaits the final proposal version."
+  ],
+  "buyer_readiness": [
+   "fail",
+   "TOO_EARLY",
+   false,
+   "A terms-and-pricing meeting is premature; the review and her requested items are open."
+  ],
+  "grounding": [
+   "fail",
+   null,
+   false,
+   "'As planned' rests on the rep's own CRM task, not on anything the buyer agreed."
+  ]
+ },
+ "cr_d1_fourth_recap_after_three_identical": {
+  "duplicate_action": [
+   "fail",
+   null,
+   true,
+   "A fourth recap of the same meeting within 90 minutes of three near-identical ones."
+  ],
+  "state_change_relevance": [
+   "fail",
+   null,
+   true,
+   "Ignores the change (her new cost question and case-study request) and repeats a stale topic."
+  ],
+  "next_action_quality": [
+   "fail",
+   "NEEDS_REVISION",
+   false,
+   "The right move answers her questions."
+  ]
+ },
+ "cr_x_call_offered_instead_of_the_written_cost_answer": {
+  "channel_appropriateness": [
+   "fail",
+   null,
+   true,
+   "A call replaces the written cost answer and the case studies she explicitly asked to receive."
+  ],
+  "next_action_quality": [
+   "fail",
+   "ACT_NOW",
+   true,
+   "Replaces what she asked for now (a written answer and examples) with a meeting."
+  ],
+  "commitment_consistency": [
+   "warn",
+   null,
+   false,
+   "The call would address both owed items, but nothing is delivered now."
+  ]
+ },
+ "cr_x_k101_ignored_cost_answer_deferred_to_a_call": {
+  "knowledge_applicability": [
+   "fail",
+   "APPLIES",
+   false,
+   "K101 applies (an open cost question) and no exception holds; the draft defers the cost answer to a call."
+  ],
+  "commitment_consistency": [
+   "warn",
+   null,
+   false,
+   "Case studies are sent, but the cost answer owed is only deferred."
+  ],
+  "next_action_quality": [
+   "fail",
+   "NEEDS_REVISION",
+   false,
+   "The cost answer should come in writing first."
+  ]
+ },
+ "cr_d2_long_email_instead_of_the_requested_call": {
+  "channel_appropriateness": [
+   "fail",
+   null,
+   false,
+   "She asked for a call and offered a slot; a written summary replaces it, harmlessly but unhelpfully."
+  ],
+  "next_step_quality": [
+   "fail",
+   null,
+   true,
+   "No next step at all ('Await questions') while her request for a call is open."
+  ],
+  "next_action_quality": [
+   "fail",
+   "ACT_NOW",
+   true,
+   "Replaces the call she asked for now."
+  ]
+ },
+ "cr_d2_crm_note_only_no_reply_to_customer": {
+  "channel_appropriateness": [
+   "fail",
+   null,
+   false,
+   "The call request stays in an internal note and never reaches her."
+  ],
+  "next_step_quality": [
+   "fail",
+   null,
+   true,
+   "No mutual next step: she gets nothing while her request is open."
+  ],
+  "next_action_quality": [
+   "fail",
+   "ACT_NOW",
+   true,
+   "Withholds the reply she is waiting for."
+  ]
+ },
+ "cr_d2_books_the_thursday_call": {
+  "timing_cadence": [
+   "pass",
+   "READY",
+   false,
+   "Replies the same hour to a request for a call this week."
+  ],
+  "buyer_readiness": [
+   "pass",
+   "READY",
+   false,
+   "She volunteered a slot; booking it is what is due."
+  ],
+  "cta_calibration": [
+   "pass",
+   "APPROPRIATE",
+   false,
+   "Takes the slot she offered, with room to move it."
+  ],
+  "next_step_quality": [
+   "pass",
+   null,
+   false,
+   "A dated call with an agenda."
+  ]
+ },
+ "cr_x_k101_misapplied_cost_breakdown_instead_of_the_call": {
+  "knowledge_applicability": [
+   "fail",
+   "DOES_NOT_APPLY",
+   false,
+   "K101 needs an open cost question; Keiko only praised the pricing, so the signature fails and the knowledge is misapplied."
+  ],
+  "next_step_quality": [
+   "fail",
+   null,
+   true,
+   "No call is booked; the next step is 'await her view' while her request for a call is open."
+  ],
+  "next_action_quality": [
+   "fail",
+   "ACT_NOW",
+   true,
+   "Withholds the call she asked for and sends an unrequested document."
+  ]
+ }
+}
