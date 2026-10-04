@@ -1,0 +1,92 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://ghost.local/contracts/human_strategy_decision.v1.json",
+  "title": "HumanStrategyDecision",
+  "description": "The human's choice among the candidates and what they did with it (HAR-129 section 8-10). Choosing is a supervised judgment and does not send: send_decision stays 'pending' until an explicit Send (or Discard). One record per episode, written at the choice and completed at send; the selection never changes. When the send decision is made core also records the existing HumanDecision (approve when nothing was edited, edit when something was, reject on discard) and links it, so human deltas and the learning loop read it unchanged.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "id", "decision_episode_id", "agent_run_id", "strategy_set_id", "selected_candidate_id",
+    "original_agent_preference", "surface", "actor_label", "chosen_at", "edits", "send_decision"
+  ],
+  "properties": {
+    "id": { "$ref": "common.v1.json#/$defs/uuid" },
+    "decision_episode_id": { "$ref": "common.v1.json#/$defs/uuid" },
+    "agent_run_id": { "$ref": "common.v1.json#/$defs/uuid" },
+    "strategy_set_id": { "$ref": "common.v1.json#/$defs/uuid" },
+    "selected_candidate_id": { "$ref": "common.v1.json#/$defs/uuid" },
+    "original_agent_preference": {
+      "description": "The candidate Ghost ranked first; recorded again here so the judgment is self-contained.",
+      "$ref": "common.v1.json#/$defs/uuid"
+    },
+    "surface": { "$ref": "human_decision.v1.json#/properties/surface" },
+    "actor_person_id": { "oneOf": [{ "$ref": "common.v1.json#/$defs/uuid" }, { "type": "null" }] },
+    "actor_label": { "type": "string", "minLength": 1, "maxLength": 200 },
+    "chosen_at": { "$ref": "common.v1.json#/$defs/timestamp" },
+    "final_to": {
+      "description": "Recipients to send to after edits; set when edited or sent.",
+      "type": ["array", "null"],
+      "items": { "$ref": "strategy_candidate.v1.json#/properties/to/items" }
+    },
+    "final_cc": {
+      "type": ["array", "null"],
+      "items": { "$ref": "strategy_candidate.v1.json#/properties/cc/items" }
+    },
+    "final_artifact": {
+      "description": "The artifact as it was (or will be) sent; set when edited or sent. An unedited send stores the candidate's artifact here.",
+      "oneOf": [{ "$ref": "agent_run_output.v1.json#/properties/finished_artifact" }, { "type": "null" }]
+    },
+    "edits": {
+      "description": "Structured diff of the human's changes to recipients, subject and body, in the HumanDelta literal-change vocabulary (computed by core from the candidate and the final artifact). Empty when nothing changed.",
+      "type": "array",
+      "items": { "$ref": "human_delta.v1.json#/properties/literal_changes/items" }
+    },
+    "send_decision": {
+      "description": "pending until the human presses Send (send) or discards the action (discard). Never inferred from the choice.",
+      "type": "string",
+      "enum": ["pending", "send", "discard"]
+    },
+    "send_decided_at": { "oneOf": [{ "$ref": "common.v1.json#/$defs/timestamp" }, { "type": "null" }] },
+    "human_decision_id": {
+      "description": "The HumanDecision recorded when the send decision was made.",
+      "oneOf": [{ "$ref": "common.v1.json#/$defs/uuid" }, { "type": "null" }]
+    }
+  },
+  "allOf": [
+    {
+      "description": "Edits need the final artifact they produced.",
+      "if": { "properties": { "edits": { "minItems": 1 } } },
+      "then": { "required": ["final_artifact"], "properties": { "final_artifact": { "type": "object" } } }
+    },
+    {
+      "description": "Send is explicit and complete: final recipients and artifact, a time, and the recorded HumanDecision.",
+      "if": { "properties": { "send_decision": { "const": "send" } } },
+      "then": {
+        "required": ["final_to", "final_artifact", "send_decided_at", "human_decision_id"],
+        "properties": {
+          "final_to": { "type": "array", "minItems": 1 },
+          "final_artifact": { "type": "object" },
+          "send_decided_at": { "$ref": "common.v1.json#/$defs/timestamp" },
+          "human_decision_id": { "$ref": "common.v1.json#/$defs/uuid" }
+        }
+      }
+    },
+    {
+      "if": { "properties": { "send_decision": { "const": "discard" } } },
+      "then": {
+        "required": ["send_decided_at", "human_decision_id"],
+        "properties": {
+          "send_decided_at": { "$ref": "common.v1.json#/$defs/timestamp" },
+          "human_decision_id": { "$ref": "common.v1.json#/$defs/uuid" }
+        }
+      }
+    },
+    {
+      "description": "A pending choice has no send time and no HumanDecision yet.",
+      "if": { "properties": { "send_decision": { "const": "pending" } } },
+      "then": {
+        "properties": { "send_decided_at": { "type": "null" }, "human_decision_id": { "type": "null" } }
+      }
+    }
+  ]
+}

@@ -1,0 +1,290 @@
+{
+  "id": "northstar_cp4_k17_misapplied_cc_elena",
+  "case_type": "explicit_exception",
+  "title": "Northstar cp4: candidate applies K17 and pulls Elena back onto Sam's review invite",
+  "should_pass": false,
+  "difficulty": "hard",
+  "slice_tags": {
+    "account": "northstar",
+    "origin": "checkpoint",
+    "motion": "expansion",
+    "stage": "commercial_review",
+    "champion_status": "delegated",
+    "economic_buyer": "known",
+    "risk": "low",
+    "candidate": "flawed",
+    "expected_action": "schedule_meeting",
+    "extra": ["delegation", "k17_trap", "phi"]
+  },
+  "based_on": {
+    "kind": "checkpoint",
+    "account": "northstar",
+    "after_event_file": "world/accounts/northstar/events/036_email_sam_meeting_request.json",
+    "checkpoint": 4,
+    "changed_fields": [],
+    "change": null
+  },
+  "context": {
+    "now": "2026-09-24T15:20:00Z",
+    "state": {
+      "account_id": "0a0c0000-0000-4000-8000-000000000003",
+      "account_name": "Northstar Health",
+      "opportunity_id": "0c0f0000-0000-4000-8000-000000000006",
+      "fields": {
+        "stage": "Commercial review",
+        "health": "on_track",
+        "motion": "expansion",
+        "champion": "0b0e0000-0000-4000-8000-000000000041",
+        "champion_status": "delegated",
+        "economic_buyer": "0b0e0000-0000-4000-8000-000000000042",
+        "relationship_risk": "low",
+        "blockers": [
+          {
+            "text": "Security sign-off by Sam Okafor's team before any clinic goes live (intake forms carry PHI; BAA required)",
+            "status": "open"
+          }
+        ],
+        "decision_process": "Sam Okafor (Information Security Lead) owns the evaluation, including the BAA; Elena Vasquez stepped back from the day-to-day and joins for final sign-off; Grace Liu approves budget on Elena's recommendation",
+        "next_milestone": "60-minute security review with Sam Okafor and Leo Park (Sam proposed Sep 29 or Sep 30, 10:00 Eastern); invite not yet sent",
+        "next_meeting": null,
+        "current_commitments": [
+          {
+            "text": "Send pricing for the four clinics by next Wednesday",
+            "status": "fulfilled",
+            "owner_person_id": "0b0e0000-0000-4000-8000-000000000001",
+            "due": "2026-09-02"
+          },
+          {
+            "text": "Set up time next week to go through the rollout plan",
+            "status": "fulfilled",
+            "owner_person_id": "0b0e0000-0000-4000-8000-000000000041"
+          },
+          {
+            "text": "Introduce Dana Kim to Sam Okafor",
+            "status": "fulfilled",
+            "owner_person_id": "0b0e0000-0000-4000-8000-000000000041"
+          },
+          {
+            "text": "Have the BAA template and HIPAA controls summary ready",
+            "status": "fulfilled",
+            "owner_person_id": "0b0e0000-0000-4000-8000-000000000001"
+          },
+          {
+            "text": "Send Sam Okafor an invite for the security review on Sep 29 or Sep 30",
+            "status": "open",
+            "owner_person_id": "0b0e0000-0000-4000-8000-000000000001"
+          }
+        ]
+      },
+      "buying_group": [
+        {
+          "person_id": "0b0e0000-0000-4000-8000-000000000041",
+          "display_name": "Elena Vasquez",
+          "title": "Director of Patient Access",
+          "roles": ["champion"],
+          "status": "active",
+          "delegated_to_person_id": "0b0e0000-0000-4000-8000-000000000043",
+          "last_engaged_at": null,
+          "evidence_refs": []
+        },
+        {
+          "person_id": "0b0e0000-0000-4000-8000-000000000042",
+          "display_name": "Grace Liu",
+          "title": "VP Finance",
+          "roles": ["economic_buyer"],
+          "status": "unknown",
+          "delegated_to_person_id": null,
+          "last_engaged_at": null,
+          "evidence_refs": []
+        },
+        {
+          "person_id": "0b0e0000-0000-4000-8000-000000000043",
+          "display_name": "Sam Okafor",
+          "title": "Information Security Lead",
+          "roles": ["security", "technical_evaluator"],
+          "status": "active",
+          "delegated_to_person_id": null,
+          "last_engaged_at": null,
+          "evidence_refs": []
+        }
+      ],
+      "coverage_gaps": []
+    },
+    "recent_changes": {
+      "summary": "Sam (delegated evaluation owner) read the controls summary and asked for a 60-minute security review with Dana and Leo on Sep 29 or Sep 30 at 10:00 Eastern.",
+      "material_diff_fields": ["current_commitments", "next_milestone", "buying_group"],
+      "signals": ["customer_replied"]
+    },
+    "trigger": {
+      "activity_id": "0ac70000-0000-4000-8000-0000000c0036",
+      "activity_type": "EmailReply",
+      "occurred_at": "2026-09-24T15:10:00Z",
+      "actor_person_id": "0b0e0000-0000-4000-8000-000000000043",
+      "event_file": "world/accounts/northstar/events/036_email_sam_meeting_request.json",
+      "synthetic": false,
+      "text": "Thanks Dana. I've read the controls summary and I'd like to book a 60-minute security review with you and Leo next week - Tuesday September 29 or Wednesday September 30 at 10:00 Eastern works on my side. Please send an invite for whichever suits you.\nSam"
+    },
+    "supporting_activities": [],
+    "commitments": [
+      {
+        "text": "Send Sam Okafor an invite for the security review on Sep 29 or Sep 30",
+        "owner_person_id": "0b0e0000-0000-4000-8000-000000000001",
+        "due_at": null,
+        "status": "open"
+      }
+    ],
+    "timeline_facts": {
+      "last_inbound_at": "2026-09-24T15:10:00Z",
+      "last_inbound_from_person_id": "0b0e0000-0000-4000-8000-000000000043",
+      "last_outbound_at": "2026-09-23T14:30:00Z",
+      "stated_timing": "Sam offered Tue Sep 29 or Wed Sep 30, 10:00 Eastern"
+    },
+    "offered_knowledge": [
+      {
+        "id": "0c17c000-0000-4000-8000-000000000117",
+        "key": "K17",
+        "title": "Keep the active champion involved when a new stakeholder enters during expansion",
+        "situation_signature": [
+          {"field": "motion", "op": "eq", "value": "expansion"},
+          {"field": "diff.new_stakeholder_entered", "op": "exists"},
+          {"field": "champion_status", "op": "in", "value": ["active", "weakening", "delegated", "departed", "inactive"]}
+        ],
+        "guidance": {
+          "summary": "Introduce the new stakeholder with the champion still in the loop; do not create a direct handoff.",
+          "do": ["cc or include the champion in the next interaction", "address the new stakeholder's specific request"],
+          "dont": [
+            "start a separate thread that drops the champion",
+            "escalate the ask while the new stakeholder is still reviewing"
+          ]
+        },
+        "status": "supported",
+        "counts": {
+          "decisions": 8,
+          "positive_reactions": 6,
+          "negative_reactions": 1,
+          "outcomes_advanced": 3,
+          "counterexamples": 1
+        },
+        "supporting_decision_episode_ids": ["0e9e0000-0000-4000-8000-000000000a01"],
+        "counterexamples": [
+          {
+            "decision_episode_id": "0e9e0000-0000-4000-8000-000000000a01",
+            "note": "Champion was leaving the company; direct handoff worked."
+          }
+        ],
+        "exceptions": [
+          {
+            "description": "Champion explicitly delegated ownership",
+            "conditions": [{"field": "champion_status", "op": "eq", "value": "delegated"}]
+          },
+          {
+            "description": "Champion departed",
+            "conditions": [{"field": "champion_status", "op": "in", "value": ["departed", "inactive"]}]
+          }
+        ],
+        "evidence_classes": ["deal_data", "methodology"],
+        "used_by_evaluators": ["champion_continuity:v1"],
+        "provenance": {
+          "created_from": "seed_history",
+          "source_decision_episode_id": null,
+          "note": "Version 2 of K17 (supersedes 0c17c000-0000-4000-8000-000000000017, the contract example): the signature requires a known champion (champion_status in a set) instead of 'active', so its delegated/departed exceptions are reachable (ADR-0011, signature first). Correction authored 2026-10-02, dated before the cases that offer it."
+        },
+        "created_at": "2026-09-20T00:00:00Z",
+        "last_validated_at": "2026-09-20T00:00:00Z"
+      }
+    ]
+  },
+  "candidate_action": {
+    "proposed_action_type": "schedule_meeting",
+    "recipients": [
+      {
+        "person_id": "0b0e0000-0000-4000-8000-000000000043",
+        "role": "to",
+        "why": "Evaluation owner; requested the review"
+      },
+      {"person_id": "0b0e0000-0000-4000-8000-000000000002", "role": "cc", "why": "Technical owner for the review"},
+      {"person_id": "0b0e0000-0000-4000-8000-000000000041", "role": "cc", "why": "Champion (K17)"}
+    ],
+    "finished_artifact": {
+      "channel": "email",
+      "subject": "Northstar security review - Relay",
+      "body": "Hi Sam,\n\nThanks for reading the controls summary. I've sent an invite for Tuesday September 29, 10:00-11:00 Eastern, with Leo Park joining. If Wednesday suits better, decline and I'll move it.\n\nBest,\nDana"
+    },
+    "crm_next_step_intent": {
+      "next_step": "Security review with Sam Okafor and Leo Park",
+      "due_at": "2026-09-29T14:00:00Z",
+      "stage_change": null
+    },
+    "reason": "Sam asked for an invite for Sep 29 or Sep 30 at 10:00 Eastern.",
+    "evidence_refs": [
+      {
+        "activity_id": "0ac70000-0000-4000-8000-0000000c0036",
+        "quote": "I'd like to book a 60-minute security review with you and Leo next week - Tuesday September 29 or Wednesday September 30 at 10:00 Eastern works on my side.",
+        "speaker_person_id": "0b0e0000-0000-4000-8000-000000000043",
+        "occurred_at": "2026-09-24T15:10:00Z"
+      },
+      {
+        "activity_id": "0ac70000-0000-4000-8000-0000000c0036",
+        "quote": "Please send an invite for whichever suits you.",
+        "speaker_person_id": "0b0e0000-0000-4000-8000-000000000043",
+        "occurred_at": "2026-09-24T15:10:00Z"
+      }
+    ],
+    "knowledge_refs_used": ["0c17c000-0000-4000-8000-000000000117"],
+    "wait_until": null
+  },
+  "expected": [
+    {
+      "eval_type": "exception_awareness",
+      "verdict": "fail",
+      "label": "EXCEPTION_MISSED",
+      "diagnostics": [],
+      "blocking": true,
+      "rationale": "Elena wrote 'Please work directly with Sam on this; I'm stepping back from the day-to-day' - K17's delegation exception holds and is ignored.",
+      "evidence_class": "methodology",
+      "state_refs": ["champion_status"],
+      "knowledge_refs": ["0c17c000-0000-4000-8000-000000000117"],
+      "debatable": true,
+      "debate_note": "Elena still joins for final sign-off, so a cc is mild; reviewers who weigh harm over instruction would fail it without blocking. Gold blocks because it contradicts her written 'work directly with Sam'."
+    },
+    {
+      "eval_type": "knowledge_applicability",
+      "verdict": "fail",
+      "label": "EXCEPTION_TRIGGERED",
+      "diagnostics": [],
+      "blocking": false,
+      "rationale": "K17 v2's signature holds and its delegation exception holds, yet the draft applies it.",
+      "evidence_class": "methodology",
+      "knowledge_refs": ["0c17c000-0000-4000-8000-000000000117"]
+    },
+    {
+      "eval_type": "stakeholder_coverage",
+      "verdict": "warn",
+      "label": "OVER_THREADED_TOO_EARLY",
+      "diagnostics": ["over_threaded_too_early"],
+      "blocking": false,
+      "rationale": "Sam requested a working-level security review with Dana and Leo, while Elena explicitly delegated day-to-day ownership and only joins for final sign-off. Copying Elena is broader than needed at this step, but she is a relevant champion rather than an unrelated stakeholder, so it does not meet the blocking rule.",
+      "evidence_class": "deal_data"
+    },
+    {
+      "eval_type": "timing_cadence",
+      "verdict": "pass",
+      "label": "READY",
+      "diagnostics": [],
+      "blocking": false,
+      "rationale": "Invite timing is fine.",
+      "evidence_class": "deal_data"
+    }
+  ],
+  "expected_best_action": {
+    "action": "schedule_meeting",
+    "why": "Invite Sam with Leo only.",
+    "recipients": [
+      {"person_id": "0b0e0000-0000-4000-8000-000000000043", "role": "to"},
+      {"person_id": "0b0e0000-0000-4000-8000-000000000002", "role": "cc"}
+    ],
+    "channel": "email"
+  },
+  "gold_revision": [{"revision": "gold-v2", "source": "adjudicated: 2 LLM labellers + GPT-5.6 tie-break, 2026-10-02", "label_kind": "model labels, not human labels", "changes": [{"eval_type": "stakeholder_coverage", "from": "fail", "to": "warn"}]}],
+  "notes": "Gold Northstar cp4 note: pulling the champion back into the thread would be wrong."
+}

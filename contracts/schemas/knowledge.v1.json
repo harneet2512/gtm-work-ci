@@ -1,0 +1,160 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://ghost.local/contracts/knowledge.v1.json",
+  "title": "Knowledge",
+  "description": "Reusable, organization-specific GTM knowledge learned from decision episodes, customer reactions and outcomes (HAR-97 §11). Scoped by a structured situation signature and explicit exceptions — never a slogan.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "id", "title", "situation_signature", "guidance", "status", "counts",
+    "supporting_decision_episode_ids", "counterexamples", "exceptions", "provenance", "created_at"
+  ],
+  "properties": {
+    "id": { "$ref": "common.v1.json#/$defs/uuid" },
+    "key": { "type": ["string", "null"], "pattern": "^K[0-9]+$", "description": "Human-friendly handle, e.g. K17." },
+    "title": { "type": "string", "minLength": 1, "maxLength": 300 },
+    "situation_signature": {
+      "description": "All conditions must hold for the knowledge to apply. Conditions are over AccountState fields, the buying group, open signals (ADR-0011) and the account's relationship state and open StateTransition (ADR-0012, ADR-0013). Evaluated first, together with applicability_conditions: if any condition fails the knowledge does not apply (DOES_NOT_APPLY), whatever its exceptions say.",
+      "type": "array", "minItems": 1, "items": { "$ref": "#/$defs/condition" }
+    },
+    "applicability_conditions": {
+      "description": "Optional narrowing conditions learned after the signature (HAR-97 §11; SQL knowledge.applicability_conditions). Same grammar as situation_signature and evaluated with it: the knowledge applies only if every signature condition AND every applicability condition holds. Absent or empty means no narrowing (ADR-0013).",
+      "type": "array", "items": { "$ref": "#/$defs/condition" }
+    },
+    "guidance": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["summary", "do", "dont"],
+      "properties": {
+        "summary": { "type": "string", "minLength": 1, "maxLength": 1000 },
+        "do": { "type": "array", "items": { "type": "string", "maxLength": 500 } },
+        "dont": { "type": "array", "items": { "type": "string", "maxLength": 500 } }
+      }
+    },
+    "status": { "type": "string", "enum": ["candidate", "provisional", "supported", "confirmed", "disputed", "stale"] },
+    "counts": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["decisions", "positive_reactions", "negative_reactions", "outcomes_advanced", "counterexamples"],
+      "properties": {
+        "decisions": { "type": "integer", "minimum": 0 },
+        "positive_reactions": { "type": "integer", "minimum": 0 },
+        "negative_reactions": { "type": "integer", "minimum": 0 },
+        "outcomes_advanced": { "type": "integer", "minimum": 0 },
+        "counterexamples": { "type": "integer", "minimum": 0 }
+      }
+    },
+    "supporting_decision_episode_ids": { "type": "array", "items": { "$ref": "common.v1.json#/$defs/uuid" } },
+    "counterexamples": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["decision_episode_id", "note"],
+        "properties": {
+          "decision_episode_id": { "$ref": "common.v1.json#/$defs/uuid" },
+          "note": { "type": "string", "maxLength": 1000 }
+        }
+      }
+    },
+    "exceptions": {
+      "description": "Checked only when the signature holds: if any exception's conditions then hold, the knowledge must NOT be applied (HAR-97 §5.15, 'exception in current state that overrides the learned default'). Exceptions must be reachable, i.e. compatible with the signature.",
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["description", "conditions"],
+        "properties": {
+          "description": { "type": "string", "maxLength": 500 },
+          "conditions": { "type": "array", "minItems": 1, "items": { "$ref": "#/$defs/condition" } }
+        }
+      }
+    },
+    "evidence_classes": {
+      "type": "array", "items": { "$ref": "eval_result.v1.json#/properties/evidence_class" }, "uniqueItems": true
+    },
+    "used_by_evaluators": { "type": "array", "items": { "type": "string", "pattern": "^[a-z_]+:v[0-9]+$" } },
+    "provenance": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["created_from"],
+      "properties": {
+        "created_from": { "type": "string", "enum": ["human_delta", "seed_history", "manual"] },
+        "source_decision_episode_id": { "oneOf": [{ "$ref": "common.v1.json#/$defs/uuid" }, { "type": "null" }] },
+        "note": { "type": ["string", "null"] }
+      }
+    },
+    "created_at": { "$ref": "common.v1.json#/$defs/timestamp" },
+    "last_validated_at": { "oneOf": [{ "$ref": "common.v1.json#/$defs/timestamp" }, { "type": "null" }] },
+    "status_history": {
+      "description": "Lifecycle history, oldest first (SQL knowledge_status_history, append-only, ADR-0013). The first entry has from_status null.",
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["from_status", "to_status", "reason", "changed_at"],
+        "properties": {
+          "from_status": { "oneOf": [{ "$ref": "#/properties/status" }, { "type": "null" }] },
+          "to_status": { "$ref": "#/properties/status" },
+          "reason": { "type": "string", "minLength": 1, "maxLength": 1000 },
+          "evidence_kind": {
+            "type": ["string", "null"],
+            "enum": ["decision_episode", "human_decision", "customer_reaction", "business_outcome", "counterexample", null]
+          },
+          "evidence_ref_id": { "oneOf": [{ "$ref": "common.v1.json#/$defs/uuid" }, { "type": "null" }] },
+          "changed_at": { "$ref": "common.v1.json#/$defs/timestamp" }
+        }
+      }
+    }
+  },
+  "$defs": {
+    "condition": {
+      "description": "One deterministic test over the situation (ADR-0013). Strings compare case-insensitively with whitespace collapsed. eq / neq: the field is known and its scalar value equals / differs from value (an unknown field satisfies neither). in: the field is known and equals one of value. contains: a list field has an item matching value (a string is a substring of the item text; an object is an itemPattern whose given keys must all match one item), or a known scalar string contains value. exists: a known, non-null, non-empty value; an open signal of that type; an engaged buying-group member (status not departed, inactive or disengaged) holding that role; an open transition. not_exists is the exact negation of exists. is_unknown: the state field (or relationship_state) is unknown. eq / in on 'buying_group.<role>' test the status of the members holding that role. A malformed or unknown condition is an error, never silently false.",
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["field", "op"],
+      "properties": {
+        "field": {
+          "description": "An AccountState field (e.g. 'motion', 'champion_status', 'blockers'); 'buying_group.<role>'; 'diff.<signal_type>' = a signal of that type is open for this opportunity: STANDING types (signal.v1.json#/$defs/standingSignalType) while standingOpenWhile holds, EVENT types for eventWindowDays after created_at. Signals with a null opportunity_id are account-level and match every opportunity of the account; 'relationship_state' = the newest CONFIRMED relationship state or 'unknown' (ADR-0012); 'transition.from_state', 'transition.to_state' (the to_state_candidate) or 'transition.status' = the account's one open StateTransition, so knowledge can be scoped to a transition such as REORG -> EXPANSION while CANDIDATE (ADR-0013).",
+          "type": "string", "minLength": 1,
+          "pattern": "^(diff\\.[a-z_]+|buying_group\\.[a-z_]+|transition\\.(from_state|to_state|status)|[a-z_]+)$"
+        },
+        "op": { "type": "string", "enum": ["eq", "neq", "in", "contains", "exists", "not_exists", "is_unknown"] },
+        "value": { "description": "Required by eq, neq, in and contains; forbidden for exists, not_exists and is_unknown." }
+      },
+      "allOf": [
+        {
+          "if": { "properties": { "op": { "enum": ["eq", "neq"] } } },
+          "then": { "required": ["value"], "properties": { "value": { "type": ["string", "number", "boolean"] } } }
+        },
+        {
+          "if": { "properties": { "op": { "const": "in" } } },
+          "then": { "required": ["value"], "properties": { "value": { "type": "array", "minItems": 1, "items": { "type": ["string", "number", "boolean"] } } } }
+        },
+        {
+          "if": { "properties": { "op": { "const": "contains" } } },
+          "then": { "required": ["value"], "properties": { "value": { "oneOf": [{ "type": "string", "minLength": 1 }, { "$ref": "#/$defs/itemPattern" }] } } }
+        },
+        {
+          "if": { "properties": { "op": { "enum": ["exists", "not_exists", "is_unknown"] } } },
+          "then": { "not": { "required": ["value"] } }
+        }
+      ]
+    },
+    "itemPattern": {
+      "description": "A list-item pattern for 'contains': every given key must match the same item (ADR-0013).",
+      "type": "object",
+      "additionalProperties": false,
+      "minProperties": 1,
+      "properties": {
+        "text": { "type": "string", "minLength": 1, "description": "Substring of the item text (case-insensitive, whitespace collapsed)." },
+        "status": {
+          "oneOf": [
+            { "$ref": "account_state.v1.json#/$defs/listField/properties/value/items/properties/status" },
+            { "type": "array", "minItems": 1, "items": { "$ref": "account_state.v1.json#/$defs/listField/properties/value/items/properties/status" } }
+          ]
+        }
+      }
+    }
+  }
+}

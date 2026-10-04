@@ -1,0 +1,434 @@
+openapi: 3.1.0
+info:
+  title: Ghost model worker API
+  version: 0.1.0
+  description: |
+    Python model-facing service. Two separable agent layers:
+    - /v1/extract — graph maintenance: returns ClaimCandidates only (core adjudicates and writes claims).
+    - /v1/draft   — account action: returns an AgentRunOutput only (core writes the AgentRun).
+    /v1/draft runs the single Account Agent: it pulls bounded context from core /internal/ctx/* with
+    the run-scoped bearer token (never force-fed history), decides (wait / no action are legitimate),
+    then invokes a skill to produce the Draft. Draft 1 only; revisions come from the revision planner.
+servers:
+  - url: http://127.0.0.1:8090
+paths:
+  /healthz:
+    get:
+      operationId: health
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                required: [status, model, llm_mode]
+                properties:
+                  status: { type: string }
+                  model: { type: string }
+                  llm_mode: { type: string, enum: [live, record, replay] }
+
+  /v1/extract:
+    post:
+      operationId: extractClaims
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              additionalProperties: false
+              required: [activity, text]
+              properties:
+                activity: { $ref: "../schemas/activity.v1.json" }
+                text:
+                  type: string
+                  minLength: 1
+                  maxLength: 60000
+                  description: Normalized plain text (email body, transcript with speaker labels). Quotes must be verbatim substrings of this.
+                known_people:
+                  type: array
+                  description: Identities already resolved for this account, to help attribute speakers.
+                  items:
+                    type: object
+                    required: [raw_identity, display_name]
+                    properties:
+                      raw_identity: { type: string }
+                      display_name: { type: string }
+                      title: { type: [string, "null"] }
+                      internal:
+                        type: [boolean, "null"]
+                        description: >-
+                          true for people at our (seller) organization, false for people at the account
+                          (buyer side), null or absent when unknown. Tells the extractor whose side
+                          first-person words and ownership claims belong to.
+                extractor_version: { type: string, default: extract-v4 }
+      responses:
+        "200":
+          description: Claim candidates (quotes already verified verbatim; unverifiable ones dropped)
+          content:
+            application/json:
+              schema:
+                type: object
+                required: [claims, model, extractor_version, dropped, rejected]
+                properties:
+                  claims: { type: array, items: { $ref: "../schemas/claim_candidate.v1.json" } }
+                  model: { type: string }
+                  extractor_version: { type: string }
+                  dropped:
+                    type: integer
+                    minimum: 0
+                    description: Candidates rejected because the quote was not a verbatim substring.
+                  rejected:
+                    type: integer
+                    minimum: 0
+                    description: >-
+                      Verified candidates removed by deterministic guards, e.g. an `owner` claim (seller side)
+                      naming a known_people entry with internal=false.
+        "422": { $ref: "#/components/responses/Error" }
+        "424": { $ref: "#/components/responses/Error" }
+        "502": { $ref: "#/components/responses/Error" }
+
+  /v1/draft:
+    post:
+      operationId: draftAction
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              additionalProperties: false
+              required: [run_id, account_id, workflow, trigger_context, state_header, run_token]
+              properties:
+                run_id: { $ref: "../schemas/common.v1.json#/$defs/uuid" }
+                account_id: { $ref: "../schemas/common.v1.json#/$defs/uuid" }
+                workflow: { type: string, enum: [post_interaction_followup] }
+                trigger_context:
+                  type: object
+                  additionalProperties: false
+                  required: [trigger_activity_ids, signal_types, reason_codes]
+                  properties:
+                    trigger_activity_ids: { type: array, minItems: 1, items: { $ref: "../schemas/common.v1.json#/$defs/uuid" } }
+                    signal_types: { type: array, items: { $ref: "../schemas/signal.v1.json#/properties/signal_type" } }
+                    reason_codes: { type: array, items: { $ref: "../schemas/trigger_evaluation.v1.json#/properties/reason_codes/items" } }
+                    rep_person_id: { oneOf: [{ $ref: "../schemas/common.v1.json#/$defs/uuid" }, { type: "null" }] }
+                state_header:
+                  type: string
+                  maxLength: 2000
+                  description: Short state summary (stage, champion, top blocker, what changed). Everything else must be pulled.
+                run_token:
+                  type: string
+                  minLength: 32
+                  description: |
+                    Run-scoped bearer token for core /internal/ctx/*. The worker calls the core URL from its
+                    own configuration (CORE_URL), never a URL supplied in the request.
+                max_tool_calls: { type: integer, minimum: 1, maximum: 12, default: 6 }
+                rep_profile:
+                  type: object
+                  additionalProperties: false
+                  description: |
+                    Optional style hints for how this rep writes (HAR-97 section 14 input). Given only to the
+                    drafting skill, never to the decision step: style must not change strategy.
+                  properties:
+                    brevity: { type: string, maxLength: 200 }
+                    formality: { type: string, maxLength: 200 }
+                    directness: { type: string, maxLength: 200 }
+                    warmth: { type: string, maxLength: 200 }
+                    pressure: { type: string, maxLength: 200 }
+                    examples: { type: array, maxItems: 5, items: { type: string, maxLength: 2000 } }
+                decision_guidance:
+                  $ref: "../schemas/decision_guidance.v1.json"
+                state_transition:
+                  description: |
+                    The StateTransition the account is in at the run's clock (HAR-128, ADR-0012): its open CANDIDATE or
+                    UNRESOLVED transition, else the newest CONFIRMED one; absent when it has none. The agent reads it,
+                    including supporting and missing facts and their evidence, and never rewrites it. While the status is
+                    CANDIDATE or UNRESOLVED the agent proposes research, an account brief, a question to the internal
+                    owner, a low-pressure follow-up or waiting; an aggressive expansion CTA, commercial escalation, broad
+                    executive outreach or a pricing push is restricted and core marks such a candidate restricted
+                    (EvalBundle.candidate_policy) and never prefers it.
+                  $ref: "../schemas/state_transition.v1.json"
+                  description: |
+                    Optional Decision Guidance produced before drafting (HAR-97 §14, §16). When present the
+                    account agent applies it before deciding and records the knowledge it used.
+      responses:
+        "200":
+          description: Structured proposal (Draft 1) with the agent's decision
+          content:
+            application/json:
+              schema:
+                type: object
+                required: [output, decision, draft_index, model, tool_calls, cited_access_ids]
+                properties:
+                  output: { $ref: "../schemas/agent_run_output.v1.json" }
+                  decision:
+                    $ref: "../schemas/agent_run_draft.v1.json#/$defs/decision"
+                    description: |
+                      The account agent's structured decision (persisted by core with the draft). Its `action`
+                      uses the proposed_action_type vocabulary; HAR-97's decision vocabulary maps onto it as
+                      REPLY -> send_email, MEETING -> schedule_meeting, SHARE_DOCUMENT -> share_document,
+                      INTERNAL_TASK -> internal_note, WAIT -> wait, NO_ACTION -> no_action. A REPLY keeps its
+                      thread: when the channel is email, core sets in_reply_to from the trigger activity.
+                  draft_index: { type: integer, const: 1, description: Draft 1 always comes from the account agent. }
+                  model: { type: string }
+                  tool_calls: { type: integer, minimum: 0 }
+                  cited_access_ids:
+                    type: array
+                    description: |
+                      context_access_log ids of the pulls that returned the evidence this output cites. The
+                      full pull trail (AgentRun.input_context_refs) comes only from core's server-side log.
+                    items: { type: integer }
+        "422": { $ref: "#/components/responses/Error" }
+        "424": { $ref: "#/components/responses/Error" }
+        "502": { $ref: "#/components/responses/Error" }
+
+  /v1/strategies:
+    post:
+      operationId: generateStrategies
+      description: |
+        HAR-129 section 6: generate the 3 candidate strategies for one account state, each already complete
+        (To, CC, Subject, full artifact, rationale, evidence, knowledge used) and ranked, exactly one preferred.
+        Same agent layer as /v1/draft (pulls bounded context from core with the run token; style hints reach only
+        the drafting step). Candidates come back without `draft_index` and `eval_bundle_ref`: core stores each as
+        a draft of the run, runs the evals through /v1/judge and the deterministic checks, and only then writes
+        the StrategySet. Each candidate carries its decision class (action_class) and answers the five questions
+        (what changed, why the state changed, what remains unknown, what prior knowledge applies, why this is the
+        next action) as structured fields. The worker verifies that the three candidates are materially distinct (different
+        strategy_type, and not restyled copies of one action) and that every recipient and evidence reference
+        was returned by one of this run's pulls; core re-validates both before anything is stored.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              additionalProperties: false
+              required: [run_id, account_id, decision_episode_id, workflow, trigger_context, state_header, run_token, candidate_count]
+              properties:
+                run_id: { $ref: "../schemas/common.v1.json#/$defs/uuid" }
+                account_id: { $ref: "../schemas/common.v1.json#/$defs/uuid" }
+                decision_episode_id: { $ref: "../schemas/common.v1.json#/$defs/uuid" }
+                workflow: { type: string, enum: [post_interaction_followup] }
+                trigger_context:
+                  $ref: "#/paths/~1v1~1draft/post/requestBody/content/application~1json/schema/properties/trigger_context"
+                account_change_id:
+                  description: The AccountChange the strategies react to (readable through the run's context pulls).
+                  $ref: "../schemas/common.v1.json#/$defs/uuid"
+                state_header: { type: string, maxLength: 2000 }
+                run_token: { type: string, minLength: 32 }
+                candidate_count:
+                  description: Exactly 3 for the demo path; the field exists so a later contract can widen it.
+                  type: integer
+                  const: 3
+                max_tool_calls: { type: integer, minimum: 1, maximum: 12, default: 6 }
+                rep_profile:
+                  $ref: "#/paths/~1v1~1draft/post/requestBody/content/application~1json/schema/properties/rep_profile"
+                decision_guidance: { $ref: "../schemas/decision_guidance.v1.json" }
+                state_transition:
+                  $ref: "#/paths/~1v1~1draft/post/requestBody/content/application~1json/schema/properties/state_transition"
+      responses:
+        "200":
+          description: Three ranked, complete candidates
+          content:
+            application/json:
+              schema:
+                type: object
+                required: [candidates, model, tool_calls, cited_access_ids]
+                properties:
+                  candidates:
+                    type: array
+                    minItems: 3
+                    maxItems: 3
+                    items: { $ref: "../schemas/strategy_candidate.v1.json" }
+                  model: { type: string }
+                  tool_calls: { type: integer, minimum: 0 }
+                  cited_access_ids: { type: array, items: { type: integer } }
+        "422": { $ref: "#/components/responses/Error" }
+        "424": { $ref: "#/components/responses/Error" }
+        "502": { $ref: "#/components/responses/Error" }
+
+  /v1/judge:
+    post:
+      operationId: judgeCandidate
+      description: |
+        HAR-129 section 9: route and run the semantic evals relevant to ONE candidate and return one bundle
+        item per selected eval (and one `not_relevant` item, with its reason, for each eval that was
+        considered and does not apply). Core adds the deterministic evals and assembles the EvalBundle. The
+        judges read the run's state through the run token, like the draft agent. Core calls this while the run
+        is still context_built (the run token stops working once the run awaits a human).
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              additionalProperties: false
+              required: [run_id, account_id, draft_index, candidate, run_token]
+              properties:
+                run_id: { $ref: "../schemas/common.v1.json#/$defs/uuid" }
+                account_id: { $ref: "../schemas/common.v1.json#/$defs/uuid" }
+                draft_index: { type: integer, minimum: 1 }
+                candidate: { $ref: "../schemas/strategy_candidate.v1.json" }
+                run_token: { type: string, minLength: 32 }
+                trigger_context:
+                  description: The trigger's signals, which route the evals (same object as /v1/draft).
+                  $ref: "#/paths/~1v1~1draft/post/requestBody/content/application~1json/schema/properties/trigger_context"
+                eval_suite:
+                  description: |
+                    The suite core's router selected from the transition status, the state and the action
+                    (contracts/transitions/routing.v1.json, HAR-128). Semantic evals listed in excluded_eval_types are
+                    governed by a suite this candidate is not in: they are returned as not_relevant and not judged.
+                    Evals no suite governs stay routed by the action alone.
+                  type: object
+                  additionalProperties: false
+                  required: [name, excluded_eval_types]
+                  properties:
+                    name: { type: string, pattern: "^[a-z][a-z0-9_]*$" }
+                    excluded_eval_types: { type: array, uniqueItems: true, items: { $ref: "../schemas/eval_result.v1.json#/$defs/evalType" } }
+                offered_knowledge:
+                  description: The company knowledge the run's DecisionGuidance considered (applied or not), for the knowledge evals.
+                  type: array
+                  maxItems: 50
+                  items: { $ref: "../schemas/knowledge.v1.json" }
+      responses:
+        "200":
+          description: Eval bundle items for the candidate
+          content:
+            application/json:
+              schema:
+                type: object
+                required: [items, model]
+                properties:
+                  items:
+                    type: array
+                    minItems: 1
+                    items: { $ref: "../schemas/eval_bundle.v1.json#/$defs/item" }
+                  model: { type: string }
+        "422": { $ref: "#/components/responses/Error" }
+        "424": { $ref: "#/components/responses/Error" }
+        "502": { $ref: "#/components/responses/Error" }
+
+  /v1/revise:
+    post:
+      operationId: reviseCandidate
+      description: |
+        HAR-117 / HAR-97 section 7: the revision planner. Core calls it at most once per candidate, when a blocking
+        deterministic or semantic eval failed. It returns the same candidate (same candidate_id, strategy_type and
+        ranking) with a corrected action: recipients, subject and artifact change to follow the feedback; evidence
+        and knowledge references keep to what the candidate already cites. Core stores the result as a draft with
+        source revision_planner and re-evaluates it.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              additionalProperties: false
+              required: [run_id, account_id, draft_index, candidate, feedback, run_token]
+              properties:
+                run_id: { $ref: "../schemas/common.v1.json#/$defs/uuid" }
+                account_id: { $ref: "../schemas/common.v1.json#/$defs/uuid" }
+                draft_index: { type: integer, minimum: 1, description: The draft being revised. }
+                candidate: { $ref: "../schemas/strategy_candidate.v1.json" }
+                feedback:
+                  type: array
+                  minItems: 1
+                  maxItems: 20
+                  items:
+                    type: object
+                    additionalProperties: false
+                    required: [eval_result_id, instruction]
+                    properties:
+                      eval_result_id: { $ref: "../schemas/common.v1.json#/$defs/uuid" }
+                      instruction: { type: string, minLength: 1, maxLength: 1000 }
+                run_token: { type: string, minLength: 32 }
+      responses:
+        "200":
+          description: The revised candidate
+          content:
+            application/json:
+              schema:
+                type: object
+                required: [candidate, model]
+                properties:
+                  candidate: { $ref: "../schemas/strategy_candidate.v1.json" }
+                  model: { type: string }
+        "422": { $ref: "#/components/responses/Error" }
+        "424": { $ref: "#/components/responses/Error" }
+        "502": { $ref: "#/components/responses/Error" }
+
+  /v1/judgment-inference:
+    post:
+      operationId: inferJudgment
+      description: |
+        HAR-129 section 11: after the human's choice (and send), infer why the human chose what they chose, from
+        the preferred and the chosen candidate, the eval bundles and the account state. Returns the inference
+        payload; core writes the JudgmentInference with its pending verdict. Not implemented yet (contract only).
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              additionalProperties: false
+              required: [decision_episode_id, strategy_set, eval_bundles, human_strategy_decision, run_token]
+              properties:
+                decision_episode_id: { $ref: "../schemas/common.v1.json#/$defs/uuid" }
+                strategy_set: { $ref: "../schemas/strategy_set.v1.json" }
+                eval_bundles:
+                  type: array
+                  minItems: 3
+                  maxItems: 3
+                  items: { $ref: "../schemas/eval_bundle.v1.json" }
+                human_strategy_decision: { $ref: "../schemas/human_strategy_decision.v1.json" }
+                run_token: { type: string, minLength: 32 }
+      responses:
+        "200":
+          description: Inferred semantic delta and the evidence behind it
+          content:
+            application/json:
+              schema:
+                type: object
+                required: [inferred_semantic_delta, evidence, model]
+                properties:
+                  inferred_semantic_delta: { $ref: "../schemas/judgment_inference.v1.json#/properties/inferred_semantic_delta" }
+                  evidence: { $ref: "../schemas/judgment_inference.v1.json#/properties/evidence" }
+                  model: { type: string }
+        "422": { $ref: "#/components/responses/Error" }
+        "424": { $ref: "#/components/responses/Error" }
+        "502": { $ref: "#/components/responses/Error" }
+
+components:
+  responses:
+    Error:
+      description: Error envelope
+      content:
+        application/json:
+          schema:
+            type: object
+            required: [error]
+            properties:
+              error:
+                type: object
+                required: [code, message]
+                properties:
+                  code:
+                    type: string
+                    description: |
+                      invalid_request, request_too_large (422); provider_error, core_unavailable,
+                      deadline_exceeded, ungrounded_proposal, tool_budget_exceeded, inconsistent_draft, invalid_strategies (502).
+                      provider_unavailable_nonretryable (424, HAR-135): the model provider refused the call in a way
+                      no retry can fix (HTTP 401/402/403, or an "insufficient credits", "quota" or "auth" message),
+                      or the worker's own provider circuit breaker is open. Clients MUST NOT retry it; core parks
+                      the job and trips its own breaker. Distinct from provider_error (502), which is retryable.
+                      It is also what an exhausted OpenRouter free-models-per-day cap returns (the worker's breaker then stays
+                      open until 00:00 UTC). A plain 429 is not this: it is retried inside the worker with Retry-After or
+                      exponential backoff and jitter, then the fallback model, and only then surfaces as provider_error (502).
+                      inconsistent_draft (/v1/draft only): the drafting skill's output contradicts the account
+                      decision (it leaves out someone the decision involves, or addresses someone the decision
+                      excludes); a decision/skill consistency failure, not a provider failure.
+                      invalid_strategies (/v1/strategies, /v1/revise): the generated candidates are not three
+                      materially distinct, complete candidates (or a revision breaks the candidate contract). Core
+                      retries invalid output once, then fails the run.
+                  message: { type: string }

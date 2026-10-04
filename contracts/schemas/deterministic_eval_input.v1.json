@@ -1,0 +1,227 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://ghost.local/contracts/deterministic_eval_input.v1.json",
+  "title": "DeterministicEvalInput",
+  "description": "Everything the HAR-97 §4 deterministic evals read for one draft of an AgentRun (WP17, ADR-0014). Core assembles it from the run, the draft, the AccountState the draft was written from, the people/opportunity directory, the activities the draft may cite, prior actions on the account, the asset library, the commercial context, the CRM stage rules and the workspace policy. The evals are pure functions of this document: no LLM, no clock, no I/O.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "agent_run_id", "draft_index", "workspace_id", "account_id", "opportunity_id", "run_mode", "evaluated_at",
+    "draft", "state", "latest_state", "run_steps", "people", "opportunities", "activities", "prior_actions",
+    "assets", "commercial", "crm", "policy"
+  ],
+  "properties": {
+    "agent_run_id": { "$ref": "common.v1.json#/$defs/uuid" },
+    "draft_index": { "type": "integer", "minimum": 1 },
+    "workspace_id": { "$ref": "#/$defs/workspaceId" },
+    "account_id": { "description": "The run's (intended) account.", "$ref": "common.v1.json#/$defs/uuid" },
+    "opportunity_id": { "oneOf": [{ "$ref": "common.v1.json#/$defs/uuid" }, { "type": "null" }] },
+    "run_mode": { "$ref": "common.v1.json#/$defs/runMode" },
+    "execute_mode": {
+      "description": "What the executor will do with the action once approved: 'perform' calls the tools; 'record_only' records the action without effect (the only mode a dry_run may use). Absent means 'record_only' when run_mode is dry_run (the default run mode) and 'perform' when it is live; a dry run that declares 'perform' is stopped before execution.",
+      "type": "string", "enum": ["perform", "record_only"]
+    },
+    "evaluated_at": { "description": "'Now' for every date check.", "$ref": "common.v1.json#/$defs/timestamp" },
+    "draft": { "$ref": "agent_run_output.v1.json" },
+    "state": { "description": "The AccountState the draft was written from (agent_runs.state_version).", "$ref": "account_state.v1.json" },
+    "latest_state": {
+      "description": "The account's state at evaluation time when it is newer than `state`; null when unchanged.",
+      "oneOf": [{ "$ref": "account_state.v1.json" }, { "type": "null" }]
+    },
+    "run_steps": { "$ref": "agent_run.v1.json#/properties/steps" },
+    "people": { "type": "array", "items": { "$ref": "#/$defs/person" } },
+    "opportunities": { "type": "array", "items": { "$ref": "#/$defs/opportunity" } },
+    "activities": {
+      "description": "Activities the draft may cite (its evidence_refs plus the run's context), with their normalized text.",
+      "type": "array", "items": { "$ref": "#/$defs/activity" }
+    },
+    "prior_actions": {
+      "description": "Outbound emails, meetings, document shares and CRM writes already made on the account (activities and executed runs).",
+      "type": "array", "items": { "$ref": "#/$defs/priorAction" }
+    },
+    "assets": { "type": "array", "items": { "$ref": "#/$defs/asset" } },
+    "commercial": { "$ref": "#/$defs/commercial" },
+    "crm": { "$ref": "#/$defs/crm" },
+    "policy": { "$ref": "#/$defs/policy" }
+  },
+  "$defs": {
+    "workspaceId": { "type": "string", "pattern": "^[a-z0-9][a-z0-9_-]{0,62}$" },
+    "tool": {
+      "description": "Tools an action can use (ADR-0014). slack_post and crm_note are internal-only; crm_update writes CRM fields.",
+      "type": "string",
+      "enum": ["email_send", "calendar_invite", "document_share", "slack_post", "crm_note", "crm_update"]
+    },
+    "autonomyLevel": {
+      "description": "Ordered ladder (ADR-0014): each level permits its own effects and every lower level's.",
+      "type": "string",
+      "enum": ["suggest_only", "internal_actions", "crm_writeback", "customer_facing"]
+    },
+    "person": {
+      "description": "One row of the people directory (migration 0001 people + 0015 internal_only).",
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["person_id", "display_name", "kind", "account_id", "merged_into", "has_email", "internal_only"],
+      "properties": {
+        "person_id": { "$ref": "common.v1.json#/$defs/uuid" },
+        "display_name": { "type": "string", "minLength": 1, "maxLength": 300 },
+        "kind": { "type": "string", "enum": ["contact", "employee"] },
+        "account_id": { "oneOf": [{ "$ref": "common.v1.json#/$defs/uuid" }, { "type": "null" }] },
+        "merged_into": { "oneOf": [{ "$ref": "common.v1.json#/$defs/uuid" }, { "type": "null" }] },
+        "has_email": { "type": "boolean" },
+        "internal_only": {
+          "description": "An employee who must never be addressed on customer-facing communication (deal desk, internal counsel).",
+          "type": "boolean"
+        }
+      },
+      "allOf": [
+        {
+          "description": "Employees belong to our org, never to a customer account (people_employee_has_no_account).",
+          "if": { "properties": { "kind": { "const": "employee" } } },
+          "then": { "properties": { "account_id": { "type": "null" } } }
+        },
+        {
+          "description": "Only employees can be internal-only (people_internal_only_is_employee).",
+          "if": { "properties": { "internal_only": { "const": true } } },
+          "then": { "properties": { "kind": { "const": "employee" } } }
+        }
+      ]
+    },
+    "opportunity": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["opportunity_id", "account_id", "owner_person_id"],
+      "properties": {
+        "opportunity_id": { "$ref": "common.v1.json#/$defs/uuid" },
+        "account_id": { "$ref": "common.v1.json#/$defs/uuid" },
+        "owner_person_id": { "oneOf": [{ "$ref": "common.v1.json#/$defs/uuid" }, { "type": "null" }] }
+      }
+    },
+    "activity": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["activity_id", "account_id", "activity_type", "occurred_at", "text"],
+      "properties": {
+        "activity_id": { "$ref": "common.v1.json#/$defs/uuid" },
+        "account_id": { "oneOf": [{ "$ref": "common.v1.json#/$defs/uuid" }, { "type": "null" }] },
+        "activity_type": { "$ref": "common.v1.json#/$defs/activityType" },
+        "occurred_at": { "$ref": "common.v1.json#/$defs/timestamp" },
+        "text": { "description": "Normalized body text (activities.body_text, else summary); '' when the activity has none.", "type": "string", "maxLength": 40000 }
+      }
+    },
+    "priorAction": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "ref_kind", "ref_id", "action", "status", "occurred_at", "recipient_person_ids", "subject", "body_text",
+        "attachments", "meeting_start", "stage_change", "next_step"
+      ],
+      "properties": {
+        "ref_kind": { "type": "string", "enum": ["activity", "agent_run"] },
+        "ref_id": { "$ref": "common.v1.json#/$defs/uuid" },
+        "action": { "type": "string", "enum": ["send_email", "schedule_meeting", "share_document", "crm_update"] },
+        "status": { "type": "string", "enum": ["completed", "scheduled", "cancelled"] },
+        "occurred_at": { "$ref": "common.v1.json#/$defs/timestamp" },
+        "recipient_person_ids": { "type": "array", "items": { "$ref": "common.v1.json#/$defs/uuid" } },
+        "subject": { "type": ["string", "null"], "maxLength": 1000 },
+        "body_text": { "type": ["string", "null"], "maxLength": 40000 },
+        "attachments": { "description": "Attachment file names or shared document titles.", "type": "array", "items": { "type": "string", "minLength": 1 } },
+        "meeting_start": { "oneOf": [{ "$ref": "common.v1.json#/$defs/timestamp" }, { "type": "null" }] },
+        "stage_change": { "type": ["string", "null"] },
+        "next_step": { "type": ["string", "null"] }
+      },
+      "allOf": [
+        {
+          "description": "A meeting records when it starts.",
+          "if": { "properties": { "action": { "const": "schedule_meeting" } } },
+          "then": { "properties": { "meeting_start": { "$ref": "common.v1.json#/$defs/timestamp" } } }
+        },
+        {
+          "description": "A CRM write changes the stage or the next step.",
+          "if": { "properties": { "action": { "const": "crm_update" } } },
+          "then": { "anyOf": [
+            { "properties": { "stage_change": { "type": "string" } } },
+            { "properties": { "next_step": { "type": "string" } } }
+          ] }
+        }
+      ]
+    },
+    "asset": {
+      "description": "A sendable asset (document, report) in the workspace library.",
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["name", "aliases", "available", "confidential", "share_condition", "share_condition_met"],
+      "properties": {
+        "name": { "type": "string", "minLength": 1, "maxLength": 300 },
+        "aliases": { "description": "Other file names or phrases that refer to the asset.", "type": "array", "items": { "type": "string", "minLength": 1 } },
+        "available": { "type": "boolean" },
+        "confidential": { "type": "boolean" },
+        "share_condition": { "type": ["string", "null"], "maxLength": 500 },
+        "share_condition_met": { "type": "boolean" }
+      },
+      "if": { "properties": { "confidential": { "const": true } } },
+      "then": { "properties": { "share_condition": { "type": "string", "minLength": 1 } } }
+    },
+    "commercial": {
+      "description": "Price book and the account's quoted lines; empty lists mean nothing is on file.",
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["currency", "catalog", "quoted", "approved_discount_percents"],
+      "properties": {
+        "currency": { "type": ["string", "null"], "pattern": "^[A-Z]{3}$" },
+        "catalog": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": ["product", "plans", "regions"],
+            "properties": {
+              "product": { "type": "string", "minLength": 1 },
+              "plans": { "type": "array", "items": { "type": "string", "minLength": 1 } },
+              "regions": { "type": "array", "items": { "type": "string", "minLength": 1 } }
+            }
+          }
+        },
+        "quoted": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": ["product", "plan", "region", "quantity", "unit", "unit_price", "total"],
+            "properties": {
+              "product": { "type": "string", "minLength": 1 },
+              "plan": { "type": ["string", "null"] },
+              "region": { "type": ["string", "null"] },
+              "quantity": { "type": ["number", "null"], "minimum": 0 },
+              "unit": { "type": ["string", "null"] },
+              "unit_price": { "type": ["number", "null"], "minimum": 0 },
+              "total": { "type": ["number", "null"], "minimum": 0 }
+            }
+          }
+        },
+        "approved_discount_percents": { "type": "array", "items": { "type": "number", "exclusiveMinimum": 0, "maximum": 100 } }
+      }
+    },
+    "crm": {
+      "description": "Stage rules (ADR-0014): open stages in order; terminal stages are human-only.",
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["stages", "terminal_stages", "max_forward_steps"],
+      "properties": {
+        "stages": { "type": "array", "minItems": 1, "uniqueItems": true, "items": { "type": "string", "minLength": 1 } },
+        "terminal_stages": { "type": "array", "uniqueItems": true, "items": { "type": "string", "minLength": 1 } },
+        "max_forward_steps": { "type": "integer", "minimum": 1 }
+      }
+    },
+    "policy": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["workspace_id", "account_ids", "autonomy_level", "allowed_tools"],
+      "properties": {
+        "workspace_id": { "$ref": "#/$defs/workspaceId" },
+        "account_ids": { "description": "Accounts the agent may act on; [] = every account of the workspace.", "type": "array", "uniqueItems": true, "items": { "$ref": "common.v1.json#/$defs/uuid" } },
+        "autonomy_level": { "$ref": "#/$defs/autonomyLevel" },
+        "allowed_tools": { "type": "array", "uniqueItems": true, "items": { "$ref": "#/$defs/tool" } }
+      }
+    }
+  }
+}

@@ -1,0 +1,16 @@
+{
+  "source_system": "docs",
+  "source_object_id": "gdrive:acme-mnda-2026",
+  "source_event_key": "shared:2026-09-25T10:00:00Z",
+  "occurred_at": "2026-09-25T10:00:00Z",
+  "connector": "google_drive",
+  "connector_version": "0.1.0",
+  "payload": {
+    "kind": "document",
+    "document_id": "gdrive:acme-mnda-2026",
+    "title": "Acme - Ghost Vendor Mutual NDA",
+    "shared_at": "2026-09-25T10:00:00Z",
+    "shared_by": "dana@ghostvendor.com",
+    "shared_with": ["priya.shah@acme.com", "marco.ruiz@acme.com"]
+  }
+}

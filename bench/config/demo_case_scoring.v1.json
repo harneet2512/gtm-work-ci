@@ -1,0 +1,48 @@
+{
+  "version": "v1",
+  "frozen_on": "2026-10-03",
+  "note": "Weights were set from the HAR-129 section 1 wording before any account was scored and are not tuned to a preferred account. Change them only with a new version and a stated reason; the report records this file's sha256.",
+  "dimension_weights": {
+    "stakeholder_structure": 1.0,
+    "relationship_ownership": 1.0,
+    "buyer_intent": 1.0,
+    "blockers_risk": 1.0,
+    "next_step_commitment": 1.0,
+    "recommended_action": 1.0
+  },
+  "history": {
+    "distinct_dimension": 1.0,
+    "material_event": 0.25,
+    "material_event_cap": 8,
+    "revisited_dimension": 0.5,
+    "revisited_dimension_cap": 3
+  },
+  "held_out": {
+    "material": 1.0,
+    "per_dimension": 1.0,
+    "novel_dimension": 1.0,
+    "decision_change": 3.0
+  },
+  "requirements": {
+    "min_history_events": 2,
+    "min_history_distinct_dimensions": 2,
+    "held_out_must_be_material": true,
+    "held_out_strictly_after_history": true,
+    "held_out_excluded_event_key_prefixes": ["field:StageName:"]
+  },
+  "rationale": {
+    "dimension_weights": "HAR-129 lists the six dimensions as one set with no ranking, so each starts at 1.0. Giving one more weight would be choosing the story first.",
+    "history.distinct_dimension": "The spec asks for several distinct changes across the timeline. Each dimension counts once however often it moves, so a case cannot score by repeating one kind of change; the maximum is the sum of the six weights.",
+    "history.material_event": "A timeline whose changes arrive in separate events is easier to narrate than one big event. Small (a quarter of a dimension) so it breaks ties between equally broad histories; capped so a long history does not dominate.",
+    "history.revisited_dimension": "HAR-129 prefers a surprising, non-monotonic sequence over a clean funnel: a dimension that changes again later (an assumption weakened or reversed) is evidence the state engine is reacting to the data. Half a dimension, capped.",
+    "held_out.material": "The held-out event must change something, or Play shows nothing.",
+    "held_out.per_dimension": "Each distinct dimension the held-out event moves is one more thing to explain in Slack.",
+    "held_out.novel_dimension": "A dimension the history never touched makes the held-out event a new kind of change, not a continuation.",
+    "held_out.decision_change": "The strongest decision point: the trigger would run the account agent on the event (recommended_action: a customer reply or stakeholder/blocker change made the account eligible), i.e. the next action is open. Worth three dimensions because HAR-129 asks for a last event that alters the decision.",
+    "requirements.min_history_events": "A world with fewer than two events before Event N cannot show a sequence.",
+    "requirements.min_history_distinct_dimensions": "Two distinct dimensions in the history is the minimum that is a sequence of different changes rather than one.",
+    "requirements.held_out_must_be_material": "An event that changes no dimension is not a demo moment.",
+    "requirements.held_out_strictly_after_history": "Event N must be dated strictly after event N-1: with a tie, 'history through N-1' would not be well defined by time, and the freeze cut (events dated before N) could not separate them.",
+    "requirements.held_out_excluded_event_key_prefixes": "The snapshot stores a deal's final StageName as one event dated at its last activity: it is the recorded outcome (HAR-130 withholds outcomes from agents), not a next event a rep reacts to. Holding it out would make the demo 'the deal closed', so it cannot be Event N. It may still sit in a history whose cut is earlier. A data-hygiene rule applied to every account alike, not a preference for any story."
+  }
+}

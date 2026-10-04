@@ -1,0 +1,132 @@
+{
+  "id": "0f0a0000-0000-4000-8000-000000000601",
+  "account_id": "0a0c0000-0000-4000-8000-000000000001",
+  "opportunity_id": "0c0f0000-0000-4000-8000-000000000004",
+  "workflow": "post_interaction_followup",
+  "run_mode": "dry_run",
+  "status": "awaiting_human",
+  "trigger_evaluation_id": "07e10000-0000-4000-8000-000000000501",
+  "trigger_activity_ids": [
+    "0ac70000-0000-4000-8000-000000000101"
+  ],
+  "correlation_id": "0c0c0000-0000-4000-8000-000000000801",
+  "state_version": 7,
+  "input_context_refs": [
+    {
+      "tool": "state",
+      "access_id": 101,
+      "returned_ids": [
+        "0a0c0000-0000-4000-8000-000000000001"
+      ],
+      "bytes": 3120
+    },
+    {
+      "tool": "evidence",
+      "access_id": 102,
+      "returned_ids": [
+        "0c1a0000-0000-4000-8000-000000000201"
+      ],
+      "bytes": 640
+    }
+  ],
+  "output": {
+    "proposed_action_type": "send_email",
+    "recipients": [
+      {
+        "person_id": "0b0e0000-0000-4000-8000-000000000018",
+        "role": "to",
+        "why": "Requested the security documents"
+      },
+      {
+        "person_id": "0b0e0000-0000-4000-8000-000000000017",
+        "role": "cc",
+        "why": "Active champion; keep commercial continuity"
+      }
+    ],
+    "finished_artifact": {
+      "channel": "email",
+      "subject": "Re: Expansion to EU teams",
+      "body": "Hi Marco,\n\nThanks for jumping in. Attached are our SOC2 Type II report and the latest pen-test summary. Happy to set up time with our security team once you've reviewed - whatever timing works for you and Priya.\n\nBest,\nDana",
+      "attachments": [
+        "soc2-type2-2026.pdf",
+        "pentest-summary-2026Q3.pdf"
+      ]
+    },
+    "crm_next_step_intent": {
+      "next_step": "Security review of SOC2 package by Acme security (Marco)",
+      "due_at": null,
+      "stage_change": null
+    },
+    "reason": "Marco asked for SOC2 + pen-test before any review date; Priya stays commercial point of contact.",
+    "evidence_refs": [
+      {
+        "activity_id": "0ac70000-0000-4000-8000-000000000101",
+        "claim_id": "0c1a0000-0000-4000-8000-000000000201",
+        "quote": "Before we can sign off on the EU rollout we'll need your SOC2 Type II report and the pen-test summary.",
+        "speaker_person_id": "0b0e0000-0000-4000-8000-000000000018",
+        "occurred_at": "2026-09-29T15:42:00Z"
+      }
+    ],
+    "knowledge_refs_used": [],
+    "wait_until": null
+  },
+  "evidence_refs": [
+    {
+      "activity_id": "0ac70000-0000-4000-8000-000000000101",
+      "claim_id": "0c1a0000-0000-4000-8000-000000000201",
+      "quote": "Before we can sign off on the EU rollout we'll need your SOC2 Type II report and the pen-test summary.",
+      "speaker_person_id": "0b0e0000-0000-4000-8000-000000000018",
+      "occurred_at": "2026-09-29T15:42:00Z"
+    }
+  ],
+  "knowledge_refs_used": [],
+  "model": "deepseek/deepseek-v4-flash",
+  "steps": [
+    {
+      "seq": 1,
+      "step": "build_context",
+      "status": "succeeded",
+      "started_at": "2026-09-29T15:42:12Z",
+      "finished_at": "2026-09-29T15:42:13Z",
+      "external_effect_id": null,
+      "detail": {}
+    },
+    {
+      "seq": 2,
+      "step": "draft",
+      "status": "succeeded",
+      "started_at": "2026-09-29T15:42:13Z",
+      "finished_at": "2026-09-29T15:42:24Z",
+      "external_effect_id": null,
+      "detail": {}
+    },
+    {
+      "seq": 3,
+      "step": "crm_intent",
+      "status": "recorded",
+      "started_at": "2026-09-29T15:42:24Z",
+      "finished_at": "2026-09-29T15:42:24Z",
+      "external_effect_id": null,
+      "detail": {}
+    },
+    {
+      "seq": 4,
+      "step": "await_human",
+      "status": "running",
+      "started_at": "2026-09-29T15:42:24Z",
+      "finished_at": null,
+      "external_effect_id": null,
+      "detail": {}
+    }
+  ],
+  "error": null,
+  "generation": {
+    "phase": "published",
+    "attempt": 1,
+    "reason": null,
+    "strategy_set_id": "0a5e0000-0000-4000-8000-000000000a01",
+    "decision_episode_id": "0de00000-0000-4000-8000-000000000b01"
+  },
+  "created_at": "2026-09-29T15:42:12Z",
+  "updated_at": "2026-09-29T15:42:24Z"
+}

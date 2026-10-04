@@ -1,0 +1,1451 @@
+openapi: 3.1.0
+info:
+  title: Ghost core API
+  version: 0.1.0
+  description: |
+    Core Go service. Public endpoints back the web UI (and later Slack/MCP). The `internal`
+    endpoints are the bounded pull-context tools the draft agent calls; every call is logged
+    server-side in context_access_log under the run the bearer run token names.
+servers:
+  - url: http://127.0.0.1:8080
+security:
+  - apiToken: []
+tags:
+  - name: ingest
+  - name: accounts
+  - name: runs
+  - name: internal
+  - name: replay
+  - name: learning
+paths:
+  /healthz:
+    get:
+      operationId: health
+      security: []
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema: { type: object, required: [status], properties: { status: { type: string } } }
+
+  /ingest:
+    post:
+      tags: [ingest]
+      operationId: ingestSourceEvent
+      description: Accepts one raw connector envelope. Idempotent on (source_system, source_object_id, source_event_key).
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema: { $ref: "../schemas/source_event.v1.json" }
+      responses:
+        "201":
+          description: New activity created
+          content:
+            application/json:
+              schema: { $ref: "#/components/schemas/IngestResult" }
+        "200":
+          description: Duplicate delivery; existing activity returned, nothing changed
+          content:
+            application/json:
+              schema: { $ref: "#/components/schemas/IngestResult" }
+        "400": { $ref: "#/components/responses/Error" }
+        "401": { $ref: "#/components/responses/Error" }
+        "413": { $ref: "#/components/responses/Error" }
+        "422": { $ref: "#/components/responses/Error" }
+
+  /accounts:
+    get:
+      tags: [accounts]
+      operationId: listAccounts
+      responses:
+        "200":
+          description: Accounts with headline state
+          content:
+            application/json:
+              schema:
+                type: object
+                required: [items]
+                properties:
+                  items: { type: array, items: { $ref: "#/components/schemas/AccountSummary" } }
+
+  /accounts/{account_id}:
+    get:
+      tags: [accounts]
+      operationId: getAccount
+      parameters: [{ $ref: "#/components/parameters/AccountId" }]
+      responses:
+        "200":
+          description: Account
+          content:
+            application/json:
+              schema: { $ref: "#/components/schemas/AccountSummary" }
+        "404": { $ref: "#/components/responses/Error" }
+
+  /accounts/{account_id}/state:
+    get:
+      tags: [accounts]
+      operationId: getAccountState
+      parameters:
+        - { $ref: "#/components/parameters/AccountId" }
+        - name: as_of
+          in: query
+          required: false
+          description: |
+            Return the state as the core believed it at this time (state_history.computed_at, i.e.
+            coalesce.StateAt with the known_at basis). A time before the first state is a 404 with
+            code `state_not_computed`.
+          schema: { type: string, format: date-time }
+        - name: world_as_of
+          in: query
+          required: false
+          description: |
+            Return the state as the world stood strictly before this time: the highest state version
+            whose `as_of` (the newest folded activity's `occurred_at`) is earlier than the parameter, so
+            nothing derived from an activity at or after it is visible (ADR-0019). A time before the
+            first version is a 404 with code `state_not_computed_before`; there is no fallback to a later
+            version. Mutually exclusive with `as_of` (400), which keeps its computed-at meaning.
+          schema: { type: string, format: date-time }
+      responses:
+        "200":
+          description: Current, computed-at (`as_of`) or world-time (`world_as_of`) AccountState
+          content:
+            application/json:
+              schema: { $ref: "../schemas/account_state.v1.json" }
+        "400": { $ref: "#/components/responses/Error" }
+        "401": { $ref: "#/components/responses/Error" }
+        "404":
+          description: |
+            Unknown account (`not_found`), no state computed yet or at `as_of` (`state_not_computed`), or
+            no state version strictly before `world_as_of` (`state_not_computed_before`)
+          content:
+            application/json:
+              schema: { $ref: "#/components/schemas/Error" }
+
+  /accounts/{account_id}/diffs:
+    get:
+      tags: [accounts]
+      operationId: listStateDiffs
+      description: Empty `items` (never an error) while no diff has been recorded for the account.
+      parameters:
+        - { $ref: "#/components/parameters/AccountId" }
+        - { $ref: "#/components/parameters/Limit" }
+        - name: material_only
+          in: query
+          schema: { type: boolean, default: true }
+      responses:
+        "200":
+          description: Recent state diffs, newest first
+          content:
+            application/json:
+              schema:
+                type: object
+                required: [items]
+                properties:
+                  items: { type: array, items: { $ref: "../schemas/state_diff.v1.json" } }
+        "400": { $ref: "#/components/responses/Error" }
+        "401": { $ref: "#/components/responses/Error" }
+        "404": { $ref: "#/components/responses/Error" }
+
+  /accounts/{account_id}/signals:
+    get:
+      tags: [accounts]
+      operationId: listSignals
+      description: Empty `items` (never an error) while no signal has been recorded for the account.
+      parameters: [{ $ref: "#/components/parameters/AccountId" }, { $ref: "#/components/parameters/Limit" }]
+      responses:
+        "200":
+          description: Recent signals
+          content:
+            application/json:
+              schema:
+                type: object
+                required: [items]
+                properties:
+                  items: { type: array, items: { $ref: "../schemas/signal.v1.json" } }
+        "400": { $ref: "#/components/responses/Error" }
+        "401": { $ref: "#/components/responses/Error" }
+        "404": { $ref: "#/components/responses/Error" }
+
+  /accounts/{account_id}/timeline:
+    get:
+      tags: [accounts]
+      operationId: getTimeline
+      description: |
+        Activities resolved to the account, newest first, with the keyset cursor `before` (strictly
+        earlier `occurred_at`). A page never ends inside a run of activities that share one
+        `occurred_at`: the trailing tied rows are left for the next page, so paging with
+        `next_before` skips nothing. A page whose rows all share one instant is returned as the
+        whole run of ties, which may exceed `limit` (capped at 1000).
+
+        `before` is a world-time cutoff (ADR-0019): only activities with `occurred_at < before` are
+        returned, whatever was ingested since. To page through a run of activities that share one
+        instant (more than the 1000 cap), pass `before_id` with `before`: the cursor is then the pair
+        `(occurred_at, id)` and the page holds the rows ordered strictly after it, so no number of ties
+        can drop a row. `next_before` and `next_before_id` are that cursor for the next page; both are
+        null on the last page. `before_id` without `before` is a 400, and so is a `before_id` that is
+        not an activity of the account or whose `occurred_at` is not exactly `before`: the id only breaks
+        ties at the cursor row's own instant and never widens the strict `before`.
+      parameters:
+        - { $ref: "#/components/parameters/AccountId" }
+        - { $ref: "#/components/parameters/Limit" }
+        - name: before
+          in: query
+          schema: { type: string, format: date-time }
+        - name: before_id
+          in: query
+          description: Tie-break of `before`; the id of the last activity of the previous page (`next_before_id`).
+          schema: { $ref: "../schemas/common.v1.json#/$defs/uuid" }
+      responses:
+        "200":
+          description: Activity feed, newest first
+          content:
+            application/json:
+              schema:
+                type: object
+                required: [items]
+                properties:
+                  items: { type: array, items: { $ref: "../schemas/activity.v1.json" } }
+                  next_before: { type: [string, "null"], format: date-time }
+                  next_before_id: { type: [string, "null"], format: uuid }
+        "400": { $ref: "#/components/responses/Error" }
+        "401": { $ref: "#/components/responses/Error" }
+        "404": { $ref: "#/components/responses/Error" }
+
+  /accounts/{account_id}/transitions:
+    get:
+      tags: [accounts]
+      operationId: listStateTransitions
+      description: |
+        Relationship-state transitions of the account (ADR-0012), newest first (last_updated_at), terminal
+        ones included (CONFIRMED, REJECTED, closed stale UNRESOLVED), so rejected and closed transitions stay inspectable. Read-only: only the transition detector
+        writes transitions; no API (and no agent tool) can create, change or delete one. With
+        include_history, each item also carries its state_transition_history snapshots, oldest first.
+      parameters:
+        - { $ref: "#/components/parameters/AccountId" }
+        - { $ref: "#/components/parameters/Limit" }
+        - name: status
+          in: query
+          required: false
+          schema: { $ref: "../schemas/common.v1.json#/$defs/transitionStatus" }
+        - name: include_history
+          in: query
+          schema: { type: boolean, default: false }
+      responses:
+        "200":
+          description: State transitions, newest first
+          content:
+            application/json:
+              schema:
+                type: object
+                required: [items]
+                properties:
+                  items:
+                    type: array
+                    items:
+                      type: object
+                      required: [transition]
+                      properties:
+                        transition: { $ref: "../schemas/state_transition.v1.json" }
+                        history:
+                          description: Snapshots from state_transition_history, oldest first (only with include_history).
+                          type: array
+                          items: { $ref: "../schemas/state_transition.v1.json" }
+        "404": { $ref: "#/components/responses/Error" }
+
+  /accounts/{account_id}/graph:
+    get:
+      tags: [accounts]
+      operationId: getAccountGraph
+      description: |
+        The bounded neighborhood of the account in the Neo4j projection: account, opportunities, active
+        stakeholders, recent activities, supported claims and commitments, recent signals, decision
+        episodes and applicable knowledge (HAR-96 Architecture update, HAR-129 1B). The web account map and
+        the account agent read this same projection (the agent through the `graph_neighborhood` context
+        tool). Nodes and edges are ids, short labels, status, validity and evidence refs only: Neo4j
+        answers what is connected, Postgres answers exactly what happened (claim values and quotes are
+        served by `/accounts/{account_id}/claims` and the timeline).
+
+        `limit` caps the nodes of each section (default 10, max 20) and `truncated` says when a section
+        had more. By default only what currently holds is returned; `include_closed=true` adds history
+        (closed relationships, superseded claims, expired signals, every knowledge status). The
+        operator view is not visibility-filtered (like the other operator reads); the run-scoped tool is.
+
+        `projection.complete` is false while the account has an unfinished projection job: the graph
+        then lags Postgres and `projection.projected_at` says when it last caught up.
+
+        `world_as_of` returns the neighborhood as the world stood strictly before that time (ADR-0019):
+        the same builder the projector uses, run over Postgres with the cutoff, so the response has the
+        same shape and ids but no node or edge derived from an activity at or after the time. Claim
+        status, supersession, closed relationships and signal expiry are those at that time. It does not
+        read Neo4j: `projection.complete` is true and `projected_at` null, and it works while the graph
+        database is down. Knowledge, rejected claims and a person's `title` have no world time and are
+        left out.
+      parameters:
+        - { $ref: "#/components/parameters/AccountId" }
+        - name: limit
+          in: query
+          schema: { type: integer, minimum: 1, maximum: 20, default: 10 }
+        - name: include_closed
+          in: query
+          schema: { type: boolean, default: false }
+        - name: world_as_of
+          in: query
+          description: World-time cutoff, strictly before; see above.
+          schema: { type: string, format: date-time }
+      responses:
+        "200":
+          description: Bounded neighborhood
+          content:
+            application/json:
+              schema: { $ref: "#/components/schemas/Graph" }
+        "400": { $ref: "#/components/responses/Error" }
+        "401": { $ref: "#/components/responses/Error" }
+        "404": { $ref: "#/components/responses/Error" }
+        "503": { $ref: "#/components/responses/Error" }
+
+  /events/{event_id}/graph-diff:
+    get:
+      tags: [accounts]
+      operationId: getEventGraphDiff
+      description: |
+        The exact nodes and edges the graph projections of one source event added, changed or removed
+        (HAR-129 1B "show exact graph diff"). The diff of each projection is recorded in Postgres before
+        the graph is written; an event is usually projected twice (ingest, then recompute) and the
+        projections are merged into the net change. `attributed_to_event` marks the elements the event is
+        itself evidence for; the others changed in the same coalesced burst. `projected: false` means no
+        projection of the event has recorded its diff yet.
+      parameters:
+        - name: event_id
+          in: path
+          required: true
+          schema: { $ref: "../schemas/common.v1.json#/$defs/uuid" }
+      responses:
+        "200":
+          description: Graph diff of the event
+          content:
+            application/json:
+              schema: { $ref: "#/components/schemas/GraphDiff" }
+        "401": { $ref: "#/components/responses/Error" }
+        "404": { $ref: "#/components/responses/Error" }
+
+  /graph/projection:
+    get:
+      tags: [accounts]
+      operationId: getGraphProjection
+      description: |
+        Projection lag: how far the Neo4j graph is behind Postgres (the outbox of unfinished projection
+        jobs) and the enqueue-to-complete latency of the last 100 projections. No agent trigger fires for
+        an account while its projection is unfinished.
+      responses:
+        "200":
+          description: Projection lag
+          content:
+            application/json:
+              schema: { $ref: "#/components/schemas/GraphLag" }
+        "401": { $ref: "#/components/responses/Error" }
+
+  /accounts/{account_id}/claims:
+    get:
+      tags: [accounts]
+      operationId: listClaims
+      description: All claims for a field, including outranked/superseded ones (for "why this value?").
+      parameters:
+        - { $ref: "#/components/parameters/AccountId" }
+        - name: field_path
+          in: query
+          required: true
+          schema: { $ref: "../schemas/claim.v1.json#/$defs/fieldPath" }
+      responses:
+        "200":
+          description: Claims, winner first
+          content:
+            application/json:
+              schema:
+                type: object
+                required: [items]
+                properties:
+                  items: { type: array, items: { $ref: "../schemas/claim.v1.json" } }
+
+  /accounts/{account_id}/claims/{claim_id}/confirm:
+    post:
+      tags: [accounts]
+      operationId: confirmClaim
+      description: |
+        Rep confirms a claim (ADR-0008). Typically answers a field_contradicted signal: the confirmed
+        value becomes a human_approved claim that outranks CRM-explicit and AI-inferred claims.
+        Recorded as a HumanApproved activity so the confirmation itself has provenance.
+      parameters:
+        - { $ref: "#/components/parameters/AccountId" }
+        - name: claim_id
+          in: path
+          required: true
+          schema: { $ref: "../schemas/common.v1.json#/$defs/uuid" }
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              additionalProperties: false
+              required: [surface, actor_label]
+              properties:
+                surface: { type: string, enum: [web, slack, mcp, api] }
+                actor_person_id: { oneOf: [{ $ref: "../schemas/common.v1.json#/$defs/uuid" }, { type: "null" }] }
+                actor_label: { type: string, minLength: 1, maxLength: 200 }
+                reason: { type: [string, "null"], maxLength: 2000 }
+      responses:
+        "201":
+          description: The new human_approved claim
+          content:
+            application/json:
+              schema: { $ref: "../schemas/claim.v1.json" }
+        "404": { $ref: "#/components/responses/Error" }
+        "409": { $ref: "#/components/responses/Error" }
+
+  /runs:
+    get:
+      tags: [runs]
+      operationId: listRuns
+      parameters:
+        - { $ref: "#/components/parameters/Limit" }
+        - name: account_id
+          in: query
+          schema: { $ref: "../schemas/common.v1.json#/$defs/uuid" }
+        - name: status
+          in: query
+          schema: { type: string }
+      responses:
+        "200":
+          description: Agent runs, newest first
+          content:
+            application/json:
+              schema:
+                type: object
+                required: [items]
+                properties:
+                  items: { type: array, items: { $ref: "../schemas/agent_run.v1.json" } }
+
+  /runs/{run_id}:
+    get:
+      tags: [runs]
+      operationId: getRun
+      description: |
+        The run and its steps. HAR-117 (WP19): `generation.phase` is the status surface for Slack and the web:
+        queued, generating, evaluating, paused (a transient failure; the orchestrator resumes the run),
+        published (the StrategySet exists; `strategy_set_id`, `decision_episode_id`) or failed (permanent;
+        `reason`). Read-only; the same run object GET /runs/{run_id}/trace returns under `run`.
+      parameters: [{ $ref: "#/components/parameters/RunId" }]
+      responses:
+        "200":
+          description: Agent run
+          content:
+            application/json:
+              schema: { $ref: "../schemas/agent_run.v1.json" }
+        "401": { $ref: "#/components/responses/Error" }
+        "404": { $ref: "#/components/responses/Error" }
+
+  /runs/{run_id}/trace:
+    get:
+      tags: [runs]
+      operationId: getRunTrace
+      description: |
+        Full lineage for the Runs UI and HAR-97: run, trigger evaluation, signals, state diff,
+        state before / at run, trigger and correlated (same correlation_id) activities, plus the
+        context pulls (from context_access_log; their `items` are `{id}` stubs of the returned ids,
+        the payloads are not retained), output, decisions, and placeholders for evals/reactions.
+        Read-only: the run, its signals and its diff are written by the run executor (HAR-106).
+      parameters: [{ $ref: "#/components/parameters/RunId" }]
+      responses:
+        "200":
+          description: Run trace
+          content:
+            application/json:
+              schema: { $ref: "#/components/schemas/RunTrace" }
+        "401": { $ref: "#/components/responses/Error" }
+        "404": { $ref: "#/components/responses/Error" }
+
+  /runs/{run_id}/decisions:
+    post:
+      tags: [runs]
+      operationId: recordDecision
+      description: |
+        Same endpoint and object for web, Slack and MCP surfaces. One decision per run:
+        a second submission (e.g. a Slack double-click) returns 409 with the existing decision.
+        Allowed only while the run is awaiting_human.
+      parameters: [{ $ref: "#/components/parameters/RunId" }]
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema: { $ref: "#/components/schemas/DecisionRequest" }
+      responses:
+        "201":
+          description: Decision recorded
+          content:
+            application/json:
+              schema: { $ref: "../schemas/human_decision.v1.json" }
+        "404": { $ref: "#/components/responses/Error" }
+        "409": { $ref: "#/components/responses/Error" }
+        "422": { $ref: "#/components/responses/Error" }
+
+  /runs/{run_id}/strategies:
+    get:
+      tags: [runs]
+      operationId: getRunStrategies
+      description: |
+        HAR-129 section 6, 7: the strategy set of the run with the eval bundle of every candidate, exactly as
+        generated. Read-only and idempotent: "View full" in Slack and the web call this; nothing here generates
+        a draft. 404 `strategies_not_ready` until the set and all its bundles exist (Message 2 is only posted
+        after that).
+      parameters: [{ $ref: "#/components/parameters/RunId" }]
+      responses:
+        "200":
+          description: Strategy set and the eval bundles of its candidates
+          content:
+            application/json:
+              schema: { $ref: "#/components/schemas/RunStrategies" }
+        "401": { $ref: "#/components/responses/Error" }
+        "404": { $ref: "#/components/responses/Error" }
+
+  /runs/{run_id}/strategy-decision:
+    get:
+      tags: [runs]
+      operationId: getStrategyDecision
+      description: |
+        HAR-136, HAR-137: the HumanStrategyDecision of the run as it stands (the choice, the saved edits, the
+        send state). Read-only. Slack re-renders Message 2 from it after a modal submit, after a conflict and
+        when an outcome was ambiguous. 404 `no_decision` until the human has chosen.
+      parameters: [{ $ref: "#/components/parameters/RunId" }]
+      responses:
+        "200":
+          description: The human strategy decision
+          content:
+            application/json:
+              schema: { $ref: "../schemas/human_strategy_decision.v1.json" }
+        "401": { $ref: "#/components/responses/Error" }
+        "404": { $ref: "#/components/responses/Error" }
+    post:
+      tags: [runs]
+      operationId: recordStrategyDecision
+      description: |
+        HAR-129 section 8-10: the human chooses a candidate, and may then save edits to its recipients, subject
+        and body. Choosing does not send. The first call creates the HumanStrategyDecision (201, episode status
+        `chosen`) and records Ghost's preference beside the choice; later calls with the same
+        `selected_candidate_id` update the pending edits (200). Core computes the `edits` diff from the
+        candidate and the final artifact. 409 `selection_locked` when a different candidate is submitted after
+        the choice, 409 `already_decided` after Send or Discard. Same endpoint for Slack and web.
+      parameters: [{ $ref: "#/components/parameters/RunId" }]
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema: { $ref: "#/components/schemas/StrategyDecisionRequest" }
+      responses:
+        "200":
+          description: Edits saved on the existing choice
+          content:
+            application/json:
+              schema: { $ref: "../schemas/human_strategy_decision.v1.json" }
+        "201":
+          description: Choice recorded
+          content:
+            application/json:
+              schema: { $ref: "../schemas/human_strategy_decision.v1.json" }
+        "400": { $ref: "#/components/responses/Error" }
+        "401": { $ref: "#/components/responses/Error" }
+        "404": { $ref: "#/components/responses/Error" }
+        "409": { $ref: "#/components/responses/DecisionConflict" }
+        "422": { $ref: "#/components/responses/Error" }
+
+  /runs/{run_id}/send:
+    post:
+      tags: [runs]
+      operationId: sendStrategy
+      description: |
+        HAR-129 section 10: the explicit second action. `send` records the HumanDecision (approve when nothing
+        was edited, edit when something was, with the human delta), executes the final artifact under the run's
+        run mode (a dry run records the effect and sends nothing), and moves the episode to `decided`; the
+        judgment inference is then generated asynchronously (Message 3). `discard` records a reject. Requires a
+        prior choice (409 `no_choice`); a second call returns 409 `already_decided` with the existing record.
+        Policy may refuse a send (422), for example while a blocking eval of the selected candidate has failed
+        (`blocking_eval`), or when the run is live and core has no sender (`live_send_unavailable`). The
+        HumanDelta (semantic labels) is written by the learning loop afterwards, not by this call; the literal
+        `edits` are already on the decision.
+      parameters: [{ $ref: "#/components/parameters/RunId" }]
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema: { $ref: "#/components/schemas/SendRequest" }
+      responses:
+        "200":
+          description: Send decision recorded
+          content:
+            application/json:
+              schema: { $ref: "../schemas/human_strategy_decision.v1.json" }
+        "400": { $ref: "#/components/responses/Error" }
+        "401": { $ref: "#/components/responses/Error" }
+        "404": { $ref: "#/components/responses/Error" }
+        "409": { $ref: "#/components/responses/DecisionConflict" }
+        "422": { $ref: "#/components/responses/Error" }
+
+  /episodes/{episode_id}/judgment-inference:
+    get:
+      tags: [learning]
+      operationId: getJudgmentInference
+      description: |
+        HAR-136, HAR-137: the JudgmentInference of the episode (Message 3) with the human's verdict so far.
+        Read-only. 404 `inference_not_ready` until the inference has been generated after the send, and
+        `not_found` for an unknown episode.
+      parameters: [{ $ref: "#/components/parameters/EpisodeId" }]
+      responses:
+        "200":
+          description: The judgment inference
+          content:
+            application/json:
+              schema: { $ref: "../schemas/judgment_inference.v1.json" }
+        "401": { $ref: "#/components/responses/Error" }
+        "404": { $ref: "#/components/responses/Error" }
+
+  /episodes/{episode_id}/judgment-verdict:
+    post:
+      tags: [learning]
+      operationId: recordJudgmentVerdict
+      description: |
+        HAR-129 section 11, 12: the human answers Ghost's inference. `confirmed` and `corrected` set the
+        verdict (corrected needs `corrected_statement`); a request with only a `note` adds the note and leaves
+        the verdict as it is. The first verdict closes the episode (`judged`); later calls may add notes or
+        change confirmed to corrected and are logged. 404 `inference_not_ready` before Message 3's inference
+        exists. A correction never promotes company knowledge: it only feeds a candidate criterion.
+      parameters: [{ $ref: "#/components/parameters/EpisodeId" }]
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema: { $ref: "#/components/schemas/JudgmentVerdictRequest" }
+      responses:
+        "200":
+          description: Updated inference
+          content:
+            application/json:
+              schema: { $ref: "../schemas/judgment_inference.v1.json" }
+        "400": { $ref: "#/components/responses/Error" }
+        "401": { $ref: "#/components/responses/Error" }
+        "404": { $ref: "#/components/responses/Error" }
+        "422": { $ref: "#/components/responses/Error" }
+
+  /accounts/{account_id}/business-intelligence/latest:
+    get:
+      tags: [accounts]
+      operationId: getLatestBusinessIntelligence
+      description: |
+        HAR-129 section 5: the newest BusinessIntelligenceUpdate of the account, the object Slack Message 1
+        renders and `View account map` points at. 404 `no_update` when no material change has been reported.
+      parameters: [{ $ref: "#/components/parameters/AccountId" }]
+      responses:
+        "200":
+          description: Latest business-intelligence update
+          content:
+            application/json:
+              schema: { $ref: "../schemas/business_intelligence_update.v1.json" }
+        "401": { $ref: "#/components/responses/Error" }
+        "404": { $ref: "#/components/responses/Error" }
+
+  /replay/play:
+    post:
+      tags: [replay]
+      operationId: playReplay
+      description: |
+        HAR-129 section 3, HAR-124: release the held-out event of a frozen demo manifest through the real
+        pipeline (ingest, activity, claims, state recompute, state diff, signals, transitions, trigger,
+        graph projection) and write the AccountChange and, for a material change, the
+        BusinessIntelligenceUpdate that restates it. Never writes state directly.
+
+        Before anything is released the event-N-invisible assertion runs (GET
+        /replay/manifests/{manifest_id}/invisibility): if any activity, claim, state, signal or graph node
+        derived from the event exists, or anything of the account or deal is dated at or after the event, or
+        AccountState was last moved by something other than event N-1, Play refuses with 422
+        `held_out_event_visible` and writes nothing.
+        The replay dataset must hold the event (GHOST_REPLAY_EVENTS) and the graph projection must be
+        configured, or 503 `replay_source_unavailable` / `graph_unavailable` before anything is released.
+
+        A Play that was interrupted after the event was released is resumed (200) and finishes the
+        same objects. 200 returns the world at the new cursor and the AccountChange; `business_intelligence_update`
+        is its BusinessIntelligenceUpdate, null when the change is not material (nothing to report).
+        409 `already_released` once Play has completed: nothing changes (no second event, change or update).
+        409 `play_in_progress` (with `Retry-After`) while another Play of the manifest is running: the caller is
+        refused at once and holds no connection. 404 `manifest_not_found`; 422 `wrong_event` when `event_id` is
+        not the manifest's held-out event; 422 `release_mismatch` when the replay event differs from the
+        manifest or the pipeline attributed it to another account or another deal;
+        504 `timeout` when the recompute or the projection did not finish in time (call Play again to resume).
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema: { $ref: "#/components/schemas/PlayRequest" }
+      responses:
+        "200":
+          description: World after the event
+          content:
+            application/json:
+              schema: { $ref: "#/components/schemas/PlayResult" }
+        "400": { $ref: "#/components/responses/Error" }
+        "401": { $ref: "#/components/responses/Error" }
+        "404": { $ref: "#/components/responses/Error" }
+        "409": { $ref: "#/components/responses/Error" }
+        "422": { $ref: "#/components/responses/Error" }
+        "503": { $ref: "#/components/responses/Error" }
+        "504": { $ref: "#/components/responses/Error" }
+
+  /replay/manifests/{manifest_id}/invisibility:
+    get:
+      tags: [replay]
+      operationId: getReplayInvisibility
+      description: |
+        HAR-129 section 3, HAR-124: the event-N-invisible runtime assertion. Reports whether anything derived
+        from the manifest's held-out event exists before Play: source events, activities, claims, account and
+        opportunity state (current and history), state diffs, signals, trigger evaluations, runs, state
+        transitions and graph projections in Postgres, and nodes or edges in Neo4j. It also proves the world
+        stops at N-1: any activity of the account or deal dated at or after the event (in Postgres or as a
+        graph Activity node) is a leak, and so is AccountState whose last_activity_id is not the manifest's
+        last history event. `status` is `withheld`
+        (nothing found: Play may run), `leaked` (`leaks` names each find; Play refuses) or `released` (Play
+        has been called, so the event is legitimately present). 404 `manifest_not_found`; 503
+        `graph_unavailable` when Neo4j cannot be checked (an unchecked store is never reported as clean).
+      parameters: [{ $ref: "#/components/parameters/ManifestId" }]
+      responses:
+        "200":
+          description: The invisibility report
+          content:
+            application/json:
+              schema: { $ref: "#/components/schemas/InvisibilityReport" }
+        "401": { $ref: "#/components/responses/Error" }
+        "404": { $ref: "#/components/responses/Error" }
+        "503": { $ref: "#/components/responses/Error" }
+
+  /replay/manifests/{manifest_id}/episodes:
+    get:
+      tags: [replay]
+      operationId: listReplayEpisodes
+      description: |
+        HAR-129 §B/§C: the episode replay view at the released cursor, or at `at` for Previous semantics
+        (`at` must be a released position, 0..released). The document answers the account and deal, the
+        episode k/N, the historical/live boundary (GHOST_REPLAY_HISTORICAL_END, default N-1), the account
+        state as the world knew it at the end of episode k (world_as_of = occurred_at of event k,
+        inclusive), the knowledge applicable as of that moment, the prior released episodes, and the next
+        unreleased event — named but withheld: no state, change, decision, diff or materiality, so nothing
+        the events after k caused can appear. 400 `bad_request` when `at` is not a non-negative integer;
+        422 `invalid_episode` when `at` names an unreleased position;
+        503 `knowledge_unavailable` when the deployment has no lifecycle rules to age knowledge with
+        (the view fails closed rather than answer unaged knowledge); 404 `manifest_not_found`.
+      parameters:
+        - { $ref: "#/components/parameters/ManifestId" }
+        - name: at
+          in: query
+          required: false
+          description: "The released episode to view (0..released); defaults to the released cursor."
+          schema: { type: integer, minimum: 0 }
+      responses:
+        "200":
+          description: The episode replay view (EpisodeReplayView)
+          content:
+            application/json:
+              schema: { $ref: "../schemas/episode_replay.v1.json" }
+        "400": { $ref: "#/components/responses/Error" }
+        "401": { $ref: "#/components/responses/Error" }
+        "404": { $ref: "#/components/responses/Error" }
+        "422": { $ref: "#/components/responses/Error" }
+        "503": { $ref: "#/components/responses/Error" }
+
+  /replay/manifests/{manifest_id}/episodes/next:
+    post:
+      tags: [replay]
+      operationId: advanceReplayEpisode
+      description: |
+        HAR-129 §B/§C (Play-next): release exactly the next unreleased event of the sequence and report what
+        its release left. A history event is already in the world — its episode records the trail the frozen
+        pipeline run left (source event, activity, the state diff and version it folded to, the trigger
+        evaluation's materiality or its no-action reason, the account change, decision episode and graph
+        diff); the held-out event (position N) is released through Play itself — the real ingest, coalesce,
+        recompute, graph projection and business-intelligence write path. Idempotent: advancing over an
+        already-released position returns its bookkeeping and ingests nothing. 409 `replay_complete` when
+        every event is released; 409 `play_in_progress` while another release of the manifest runs;
+        422 `episode_not_materialized` when a history event left no trail in the world (it was never
+        materialized, so the episode cannot be released honestly); 404 `manifest_not_found`.
+      parameters: [{ $ref: "#/components/parameters/ManifestId" }]
+      responses:
+        "200":
+          description: The released episode's bookkeeping (advanceResult)
+          content:
+            application/json:
+              schema: { $ref: "../schemas/episode_replay.v1.json#/$defs/advanceResult" }
+        "401": { $ref: "#/components/responses/Error" }
+        "404": { $ref: "#/components/responses/Error" }
+        "409": { $ref: "#/components/responses/Error" }
+        "422": { $ref: "#/components/responses/Error" }
+        "503": { $ref: "#/components/responses/Error" }
+
+  /replay/manifests/{manifest_id}/reset:
+    post:
+      tags: [replay]
+      operationId: resetReplay
+      description: |
+        HAR-129 §C: move the released cursor back to `episode`, so the released events are exactly
+        1..episode (none at 0). The episode bookkeeping rows stay — they are the record of what the replay
+        did — and the view and the next advance read the cursor. Deterministic: two resets to the same
+        episode answer the same released events and the same digest over them and the states they ended in.
+        422 `invalid_episode` when the target was never released or is out of range;
+        404 `manifest_not_found`.
+      parameters: [{ $ref: "#/components/parameters/ManifestId" }]
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema: { $ref: "#/components/schemas/ReplayResetRequest" }
+      responses:
+        "200":
+          description: The reset result (resetResult)
+          content:
+            application/json:
+              schema: { $ref: "../schemas/episode_replay.v1.json#/$defs/resetResult" }
+        "400": { $ref: "#/components/responses/Error" }
+        "401": { $ref: "#/components/responses/Error" }
+        "404": { $ref: "#/components/responses/Error" }
+        "422": { $ref: "#/components/responses/Error" }
+
+  /outbox/events:
+    get:
+      tags: [internal]
+      operationId: listOutboxEvents
+      description: |
+        HAR-117 (WP19), HAR-136: the events a consumer has not acknowledged yet, oldest id first (the id is allocated
+        at insert, not at commit, so it is an identity and never a cursor). A surface reacts to `bi_update.published`
+        (Slack posts Message 1) and `strategy_set.published` (Slack posts Message 2 with the real set) instead of
+        polling the read model. Events are written in the transaction that commits the fact. Delivery is at-least-once
+        per consumer: act, then POST the acknowledgement; a crash in between delivers the event again, which the
+        surface survives through the create-only message refs (`/surface-messages`). Without `topic`, every topic.
+      parameters:
+        - name: consumer
+          in: query
+          required: true
+          description: The consumer's name (lowercase letters, digits, - and _, at most 32 characters), for example `slack`.
+          schema: { type: string, pattern: "^[a-z][a-z0-9_-]{0,31}$" }
+        - name: topic
+          in: query
+          description: "Only this topic. Without it, every topic, in id order."
+          schema: { type: string, enum: [strategy_set.published, bi_update.published] }
+        - { $ref: "#/components/parameters/Limit" }
+      responses:
+        "200":
+          description: Unacknowledged events of the consumer
+          content:
+            application/json:
+              schema:
+                type: object
+                required: [items]
+                properties:
+                  items: { type: array, items: { $ref: "../schemas/outbox_event.v1.json" } }
+        "400": { $ref: "#/components/responses/Error" }
+        "401": { $ref: "#/components/responses/Error" }
+
+  /outbox/events/{event_id}/ack:
+    post:
+      tags: [internal]
+      operationId: ackOutboxEvent
+      description: Idempotent. Acknowledging an event for one consumer does not affect any other consumer.
+      parameters:
+        - name: event_id
+          in: path
+          required: true
+          schema: { type: integer, minimum: 1 }
+        - name: consumer
+          in: query
+          required: true
+          schema: { type: string, pattern: "^[a-z][a-z0-9_-]{0,31}$" }
+      responses:
+        "204": { description: Acknowledged }
+        "400": { $ref: "#/components/responses/Error" }
+        "401": { $ref: "#/components/responses/Error" }
+        "404": { $ref: "#/components/responses/Error" }
+
+  /surface-messages/{subject_id}/{surface}/{kind}:
+    get:
+      tags: [internal]
+      operationId: getSurfaceMessage
+      description: |
+        HAR-136: the create-only ref of a message a surface posted (or reserved) for the subject. 404 when nothing was
+        reserved. A ref whose `ts` is null is a reservation: a post may or may not have happened.
+      parameters:
+        - { $ref: "#/components/parameters/SurfaceSubject" }
+        - { $ref: "#/components/parameters/SurfaceName" }
+        - { $ref: "#/components/parameters/SurfaceKind" }
+      responses:
+        "200":
+          description: The ref
+          content:
+            application/json:
+              schema: { $ref: "../schemas/surface_message.v1.json" }
+        "400": { $ref: "#/components/responses/Error" }
+        "401": { $ref: "#/components/responses/Error" }
+        "404": { $ref: "#/components/responses/Error" }
+
+  /surface-messages/{subject_id}/{surface}/{kind}/reservation:
+    post:
+      tags: [internal]
+      operationId: reserveSurfaceMessage
+      description: |
+        HAR-136: reserve the (subject, surface, kind) slot before posting. Atomic and idempotent: the first caller
+        creates the row (`created: true`) and owns the post; every later caller gets the existing row
+        (`created: false`) with whatever `ts` it has, and must reconcile against the channel before it posts.
+      parameters:
+        - { $ref: "#/components/parameters/SurfaceSubject" }
+        - { $ref: "#/components/parameters/SurfaceName" }
+        - { $ref: "#/components/parameters/SurfaceKind" }
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              additionalProperties: false
+              required: [channel]
+              properties:
+                channel: { type: string, minLength: 1, maxLength: 64 }
+      responses:
+        "200":
+          description: The slot
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: false
+                required: [created, message]
+                properties:
+                  created: { type: boolean }
+                  message: { $ref: "../schemas/surface_message.v1.json" }
+        "400": { $ref: "#/components/responses/Error" }
+        "401": { $ref: "#/components/responses/Error" }
+
+  /surface-messages/{subject_id}/{surface}/{kind}/ts:
+    put:
+      tags: [internal]
+      operationId: recordSurfaceMessageTs
+      description: |
+        HAR-136: record the ts of the posted message. Write-once: the same ts again is a no-op (200); a different ts
+        is a 409 carrying the ts already recorded (the caller's message is a duplicate it should remove). 404 when
+        the slot was never reserved.
+      parameters:
+        - { $ref: "#/components/parameters/SurfaceSubject" }
+        - { $ref: "#/components/parameters/SurfaceName" }
+        - { $ref: "#/components/parameters/SurfaceKind" }
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              additionalProperties: false
+              required: [ts]
+              properties:
+                ts: { type: string, pattern: "^[0-9]+\\.[0-9]+$" }
+      responses:
+        "200":
+          description: The ref with its ts
+          content:
+            application/json:
+              schema: { $ref: "../schemas/surface_message.v1.json" }
+        "400": { $ref: "#/components/responses/Error" }
+        "401": { $ref: "#/components/responses/Error" }
+        "404": { $ref: "#/components/responses/Error" }
+        "409": { $ref: "#/components/responses/Error" }
+
+  /provider-breaker:
+    get:
+      tags: [internal]
+      operationId: getProviderBreaker
+      description: |
+        HAR-135: state of the process-wide provider circuit breaker. It opens after `threshold` consecutive
+        provider failures (a non-retryable credits/quota/auth refusal from the worker, an unreachable worker,
+        a 5xx), pauses every model call (no job is claimed) and closes after `cooldown_seconds` (one probe
+        call goes through; one failure reopens it) or on POST /provider-breaker/reset.
+      responses:
+        "200":
+          description: Breaker status
+          content:
+            application/json:
+              schema: { $ref: "#/components/schemas/ProviderBreakerStatus" }
+        "401": { $ref: "#/components/responses/Error" }
+
+  /provider-breaker/reset:
+    post:
+      tags: [internal]
+      operationId: resetProviderBreaker
+      description: "Operator action (ghostctl breaker reset): close the breaker now and clear the failure streak. Idempotent."
+      responses:
+        "200":
+          description: Breaker status after the reset
+          content:
+            application/json:
+              schema: { $ref: "#/components/schemas/ProviderBreakerStatus" }
+        "401": { $ref: "#/components/responses/Error" }
+
+  /internal/ctx/{tool}:
+    get:
+      tags: [internal]
+      operationId: pullContext
+      description: |
+        Bounded context pull for the draft agent, logged in context_access_log.
+
+        Authentication: a run-scoped bearer token (`rt1.<run_id>.<expiry unix s>.<hex hmac-sha256>`,
+        minted by the core when it starts a draft, safe in a header). Core verifies the signature in
+        constant time, then derives the run AND its account from the token. There is no account
+        parameter (any query parameter other than `field_path` and `limit`, including `account_id`,
+        is a 400), so an agent cannot read another account's data. The operator `apiToken` is not
+        accepted here.
+
+        Token lifetime: a token is valid until its expiry and while the run is `pending`,
+        `context_built` or `drafted`; once the run reaches `awaiting_human` (or any later status)
+        pulls are refused with 403. A missing, malformed, wrongly signed or expired token is 401.
+
+        Tools: `state` (a header item plus one item per state field, known fields first, or only
+        the field named by `field_path`), `recent_diffs` (material state diffs, newest first;
+        `field_path` keeps those that changed that field), `evidence` (REQUIRES `field_path`: every
+        claim for that field, winner first, including outranked ones), `activities` (recent account
+        activities with a bounded text excerpt), `people` (the buying group), `commitments` (state current_commitments). Tables
+        not yet written by HAR-106 give `items: []`, never an error.
+
+        `graph_neighborhood` (offered only when core is configured with Neo4j; otherwise 404) returns the
+        bounded Neo4j neighborhood of the run's account, one item per section in reading order (`account`,
+        `opportunities`, `stakeholders`, `activities`, `claims`, `commitments`, `signals`, `decisions`,
+        `knowledge`, then `edges`): ids, labels, status, validity and `evidence_refs` (Postgres activity
+        ids) only. Each section holds at most 5 nodes (`limit`/2 above 10 items) and `edges` at most 20; the
+        first item carries `projection` and `withheld`. The exact evidence is fetched with the other tools.
+        Hidden (non-`org`) activities are dropped and claims, commitments, signals and episodes whose
+        evidence includes one are returned as `{id, type, withheld: "visibility"}`.
+
+        World time: when the run has trigger activities, every tool serves the world as of the run's
+        trigger event (ADR-0019): only activities with `occurred_at` up to the newest trigger's (the
+        trigger itself included) and data derived from them. The cutoff is derived from the run on the
+        server; there is no parameter to change it. State, people and commitments read the state version
+        of that time; `recent_diffs` the diffs of visible versions; `evidence` and `activities` filter by
+        `occurred_at` and report claim status as it was then; `graph_neighborhood` is the world graph
+        (no Neo4j read). A run whose trigger activities cannot be found is refused (403) rather than served current data. `world_as_of` in the packet
+        echoes the cutoff and is recorded in the access log `args`.
+
+        No projection barrier: every pull is world-cut and reads Postgres only (the graph tool rebuilds
+        the world graph from it), so no pull waits for the Neo4j projection (ADR-0019).
+
+        Fail closed (409): `world_time_ambiguous` when another activity of the account has the same
+        `occurred_at` as the run's newest trigger (the run's cutoff would include it); and
+        `run_state_after_cutoff` when the state version recorded on the run (`agent_runs.state_version`)
+        folds an activity at or after the cutoff (a coalesced burst). Nothing is served and nothing is
+        logged. State, people and commitments read exactly the run's recorded version when there is one;
+        `recent_diffs` stops at that version. `evidence` reads at most 2000 claims of the field and sets
+        `truncated` when there are more.
+
+        Visibility: only activities whose `permissions.visibility` is exactly `org` are served (a
+        missing key counts as not `org`). Claims whose source activity is not `org` are left out of
+        `evidence`, and such activities are removed from the `evidence_refs` and `activity_ids` lists
+        of every tool. Values whose evidence includes a non-`org` activity are withheld: a state
+        field, buying-group member or commitment item is returned as
+        `{known: false, value: null, withheld: "visibility"}`, and a diff change loses its `before`
+        and `after` and gains `withheld: "visibility"`. A withheld value sets `truncated`.
+
+        Bounds: at most `limit` items (default 10, max 20) and at most 12288 bytes of serialized
+        items (`limits.max_bytes`); long texts and evidence lists are clipped per item and an item
+        that still does not fit is dropped; `truncated` is true whenever anything was left out. A
+        run may make at most 50 pulls (429 after that). A packet is logged before it is returned
+        and its `access_id` is the context_access_log row id.
+      security:
+        - runToken: []
+      parameters:
+        - name: tool
+          in: path
+          required: true
+          schema: { type: string, enum: [state, recent_diffs, evidence, activities, people, commitments, graph_neighborhood] }
+        - name: field_path
+          in: query
+          schema: { $ref: "../schemas/claim.v1.json#/$defs/fieldPath" }
+        - name: limit
+          in: query
+          schema: { type: integer, minimum: 1, maximum: 20, default: 10 }
+      responses:
+        "200":
+          description: Context packet
+          content:
+            application/json:
+              schema: { $ref: "../schemas/context_packet.v1.json" }
+        "400": { $ref: "#/components/responses/Error" }
+        "401": { $ref: "#/components/responses/Error" }
+        "403": { $ref: "#/components/responses/Error" }
+        "404": { $ref: "#/components/responses/Error" }
+        "409": { $ref: "#/components/responses/Error" }
+        "429": { $ref: "#/components/responses/Error" }
+
+components:
+  securitySchemes:
+    apiToken:
+      type: http
+      scheme: bearer
+      description: Operator/UI token (GHOST_API_TOKEN). Slack and MCP adapters use their own service tokens.
+    runToken:
+      type: http
+      scheme: bearer
+      description: Run-scoped token handed to the worker in /v1/draft; binds context pulls to one run and its account.
+  parameters:
+    SurfaceSubject:
+      name: subject_id
+      in: path
+      required: true
+      description: The DecisionEpisode (kinds chooser, judgment) or the BusinessIntelligenceUpdate (kind bi).
+      schema: { $ref: "../schemas/common.v1.json#/$defs/uuid" }
+    SurfaceName:
+      name: surface
+      in: path
+      required: true
+      schema: { type: string, pattern: "^[a-z][a-z0-9_-]{0,31}$" }
+    SurfaceKind:
+      name: kind
+      in: path
+      required: true
+      schema: { type: string, enum: [bi, chooser, judgment] }
+    AccountId:
+      name: account_id
+      in: path
+      required: true
+      schema: { $ref: "../schemas/common.v1.json#/$defs/uuid" }
+    RunId:
+      name: run_id
+      in: path
+      required: true
+      schema: { $ref: "../schemas/common.v1.json#/$defs/uuid" }
+    EpisodeId:
+      name: episode_id
+      in: path
+      required: true
+      schema: { $ref: "../schemas/common.v1.json#/$defs/uuid" }
+    ManifestId:
+      name: manifest_id
+      in: path
+      required: true
+      schema: { $ref: "../schemas/common.v1.json#/$defs/uuid" }
+    Limit:
+      name: limit
+      in: query
+      schema: { type: integer, minimum: 1, maximum: 200, default: 50 }
+  responses:
+    Error:
+      description: Error envelope
+      content:
+        application/json:
+          schema: { $ref: "#/components/schemas/Error" }
+    DecisionConflict:
+      description: |
+        409 on strategy-decision and send. `already_decided` answers with the existing HumanStrategyDecision
+        (nothing changed, the caller re-renders it); `selection_locked` and `no_choice` answer with the error
+        envelope (code in `error.code`).
+      content:
+        application/json:
+          schema:
+            oneOf:
+              - { $ref: "#/components/schemas/Error" }
+              - { $ref: "../schemas/human_strategy_decision.v1.json" }
+  schemas:
+    ProviderBreakerStatus:
+      type: object
+      additionalProperties: false
+      required: [state, consecutive_failures, threshold, cooldown_seconds, trips_total, rejected_total, opened_at, last_reason]
+      properties:
+        state: { type: string, enum: [closed, open, half_open] }
+        consecutive_failures: { type: integer, minimum: 0 }
+        threshold: { type: integer, minimum: 1 }
+        cooldown_seconds: { type: number, exclusiveMinimum: 0 }
+        trips_total: { type: integer, minimum: 0, description: Times the breaker has opened since the process started. }
+        rejected_total: { type: integer, minimum: 0, description: Model calls refused locally while it was open. }
+        opened_at: { type: [string, "null"], format: date-time }
+        last_reason: { type: string, description: The last provider failure counted (no customer text). }
+    Error:
+      type: object
+      required: [error]
+      properties:
+        error:
+          type: object
+          required: [code, message]
+          properties:
+            code: { type: string }
+            message: { type: string }
+            details: { type: object }
+    IngestResult:
+      type: object
+      required: [activity_id, source_event_id, duplicate]
+      properties:
+        activity_id: { $ref: "../schemas/common.v1.json#/$defs/uuid" }
+        source_event_id: { $ref: "../schemas/common.v1.json#/$defs/uuid" }
+        duplicate: { type: boolean }
+        account_id: { oneOf: [{ $ref: "../schemas/common.v1.json#/$defs/uuid" }, { type: "null" }] }
+        recompute_due_at: { type: [string, "null"], format: date-time }
+    AccountSummary:
+      type: object
+      required: [id, name]
+      properties:
+        id: { $ref: "../schemas/common.v1.json#/$defs/uuid" }
+        name: { type: string }
+        domain: { type: [string, "null"] }
+        stage: { type: [string, "null"] }
+        health: { type: [string, "null"] }
+        motion: { type: [string, "null"] }
+        last_meaningful_change: { type: [string, "null"] }
+        last_activity_at: { type: [string, "null"], format: date-time }
+        open_run_id: { oneOf: [{ $ref: "../schemas/common.v1.json#/$defs/uuid" }, { type: "null" }] }
+    GraphEvidenceRef:
+      type: object
+      additionalProperties: false
+      required: [activity_id]
+      properties:
+        activity_id: { $ref: "../schemas/common.v1.json#/$defs/uuid" }
+    Graph:
+      type: object
+      required: [account_id, nodes, edges, sections, truncated, withheld, projection]
+      properties:
+        account_id: { $ref: "../schemas/common.v1.json#/$defs/uuid" }
+        nodes:
+          type: array
+          items:
+            type: object
+            required: [id, type, label, evidence_refs, source_event_ids]
+            properties:
+              id: { $ref: "../schemas/common.v1.json#/$defs/uuid" }
+              type: { type: string, description: "A node label of contracts/graph/ontology.v1.json." }
+              label: { type: string }
+              status: { type: string }
+              valid_from: { type: string }
+              valid_to: { type: string }
+              data: { type: object }
+              evidence_refs: { type: array, items: { $ref: "#/components/schemas/GraphEvidenceRef" } }
+              source_event_ids: { type: array, items: { $ref: "../schemas/common.v1.json#/$defs/uuid" } }
+              withheld: { type: string, enum: [visibility] }
+        edges:
+          type: array
+          items:
+            type: object
+            required: [id, source, target, rel_type, status, evidence_refs, source_event_ids]
+            properties:
+              id: { type: string }
+              source: { $ref: "../schemas/common.v1.json#/$defs/uuid" }
+              target: { $ref: "../schemas/common.v1.json#/$defs/uuid" }
+              rel_type: { type: string, description: "A relationship type of contracts/graph/ontology.v1.json." }
+              status: { type: string }
+              standing: { $ref: "../schemas/common.v1.json#/$defs/standing" }
+              confidence: { type: number }
+              valid_from: { type: string }
+              valid_to: { type: string }
+              evidence_refs: { type: array, items: { $ref: "#/components/schemas/GraphEvidenceRef" } }
+              source_event_ids: { type: array, items: { $ref: "../schemas/common.v1.json#/$defs/uuid" } }
+        sections:
+          type: object
+          description: Node ids per section, in reading order.
+          additionalProperties: { type: array, items: { $ref: "../schemas/common.v1.json#/$defs/uuid" } }
+        truncated: { type: boolean }
+        withheld: { type: boolean }
+        projection:
+          type: object
+          required: [complete, projected_at]
+          properties:
+            complete: { type: boolean }
+            projected_at: { type: [string, "null"] }
+    GraphDiff:
+      type: object
+      required: [event_id, projected, job_ids, summary, changes]
+      properties:
+        event_id: { $ref: "../schemas/common.v1.json#/$defs/uuid" }
+        projected: { type: boolean }
+        job_ids: { type: array, items: { type: integer } }
+        summary:
+          type: object
+          required: [added, changed, removed, repaired]
+          properties:
+            added: { type: integer }
+            changed: { type: integer }
+            removed: { type: integer }
+            repaired: { type: integer }
+        changes:
+          type: array
+          items:
+            type: object
+            required: [kind, op, type, id, source_event_ids, attributed_to_event]
+            properties:
+              kind: { type: string, enum: [node, edge] }
+              op: { type: string, enum: [added, changed, removed, repaired] }
+              type: { type: string }
+              id: { type: string }
+              from: { type: string }
+              to: { type: string }
+              before_hash: { type: string }
+              after_hash: { type: string }
+              props: { type: object }
+              changed:
+                type: object
+                additionalProperties:
+                  type: object
+                  properties:
+                    before: {}
+                    after: {}
+              source_event_ids: { type: array, items: { $ref: "../schemas/common.v1.json#/$defs/uuid" } }
+              attributed_to_event: { type: boolean }
+    GraphLag:
+      type: object
+      required: [pending_jobs, in_flight_jobs, failing_jobs, oldest_unfinished_seconds, latency_p50_seconds, latency_p95_seconds, last_projected_at]
+      properties:
+        pending_jobs: { type: integer }
+        in_flight_jobs: { type: integer }
+        failing_jobs: { type: integer }
+        oldest_unfinished_seconds: { type: number }
+        latency_p50_seconds: { type: number }
+        latency_p95_seconds: { type: number }
+        last_projected_at: { type: [string, "null"], format: date-time }
+    DecisionRequest:
+      type: object
+      additionalProperties: false
+      required: [decision, surface, actor_label]
+      properties:
+        decision: { type: string, enum: [approve, edit, reject, ignore] }
+        surface: { type: string, enum: [web, slack, mcp, api] }
+        actor_person_id: { oneOf: [{ $ref: "../schemas/common.v1.json#/$defs/uuid" }, { type: "null" }] }
+        actor_label: { type: string, minLength: 1, maxLength: 200 }
+        edited_artifact: { oneOf: [{ $ref: "../schemas/agent_run_output.v1.json#/properties/finished_artifact" }, { type: "null" }] }
+        reason: { type: [string, "null"], maxLength: 2000 }
+      if: { properties: { decision: { const: edit } } }
+      then: { required: [edited_artifact], properties: { edited_artifact: { type: object } } }
+    RunTrace:
+      type: object
+      required: [run, trigger_activities, trigger_evaluation, signals, context_accesses, decisions, placeholders]
+      properties:
+        run: { $ref: "../schemas/agent_run.v1.json" }
+        trigger_activities: { type: array, items: { $ref: "../schemas/activity.v1.json" } }
+        correlated_activities: { type: array, items: { $ref: "../schemas/activity.v1.json" } }
+        state_before: { oneOf: [{ $ref: "../schemas/account_state.v1.json" }, { type: "null" }] }
+        state_at_run: { oneOf: [{ $ref: "../schemas/account_state.v1.json" }, { type: "null" }] }
+        state_diff: { oneOf: [{ $ref: "../schemas/state_diff.v1.json" }, { type: "null" }] }
+        signals: { type: array, items: { $ref: "../schemas/signal.v1.json" } }
+        trigger_evaluation: { $ref: "../schemas/trigger_evaluation.v1.json" }
+        context_accesses: { type: array, items: { $ref: "../schemas/context_packet.v1.json" } }
+        decisions: { type: array, items: { $ref: "../schemas/human_decision.v1.json" } }
+        placeholders:
+          type: object
+          description: HAR-97 slots, empty in HAR-96.
+          required: [eval_runs, customer_reactions, knowledge_updates]
+          properties:
+            eval_runs: { type: array, items: { type: object } }
+            customer_reactions: { type: array, items: { type: object } }
+            knowledge_updates: { type: array, items: { type: object } }
+    RunStrategies:
+      type: object
+      additionalProperties: false
+      required: [strategy_set, eval_bundles]
+      properties:
+        strategy_set: { $ref: "../schemas/strategy_set.v1.json" }
+        eval_bundles:
+          description: One bundle per candidate (candidate.eval_bundle_ref points at it).
+          type: array
+          minItems: 3
+          maxItems: 3
+          items: { $ref: "../schemas/eval_bundle.v1.json" }
+    StrategyDecisionRequest:
+      type: object
+      additionalProperties: false
+      required: [selected_candidate_id, surface, actor_label]
+      properties:
+        selected_candidate_id: { $ref: "../schemas/common.v1.json#/$defs/uuid" }
+        surface: { $ref: "../schemas/human_decision.v1.json#/properties/surface" }
+        actor_person_id: { oneOf: [{ $ref: "../schemas/common.v1.json#/$defs/uuid" }, { type: "null" }] }
+        actor_label: { type: string, minLength: 1, maxLength: 200 }
+        final_to:
+          description: Edited recipients; omit to keep the current ones (the saved edit, else the candidate's).
+          type: array
+          minItems: 1
+          items: { $ref: "../schemas/strategy_candidate.v1.json#/properties/to/items" }
+        final_cc:
+          type: array
+          items: { $ref: "../schemas/strategy_candidate.v1.json#/properties/cc/items" }
+        final_artifact:
+          description: Edited subject and body (and attachments); omit to keep the current ones (the saved edit, else the candidate's).
+          $ref: "../schemas/agent_run_output.v1.json#/properties/finished_artifact"
+    SendRequest:
+      type: object
+      additionalProperties: false
+      required: [decision, surface, actor_label]
+      properties:
+        decision: { type: string, enum: [send, discard] }
+        surface: { $ref: "../schemas/human_decision.v1.json#/properties/surface" }
+        actor_person_id: { oneOf: [{ $ref: "../schemas/common.v1.json#/$defs/uuid" }, { type: "null" }] }
+        actor_label: { type: string, minLength: 1, maxLength: 200 }
+    JudgmentVerdictRequest:
+      type: object
+      additionalProperties: false
+      required: [surface, actor_label]
+      anyOf:
+        - { required: [verdict] }
+        - { required: [note] }
+      properties:
+        verdict: { type: string, enum: [confirmed, corrected] }
+        corrected_statement: { type: string, minLength: 1, maxLength: 1500 }
+        note: { type: string, minLength: 1, maxLength: 2000 }
+        surface: { $ref: "../schemas/human_decision.v1.json#/properties/surface" }
+        actor_person_id: { oneOf: [{ $ref: "../schemas/common.v1.json#/$defs/uuid" }, { type: "null" }] }
+        actor_label: { type: string, minLength: 1, maxLength: 200 }
+      if: { required: [verdict], properties: { verdict: { const: corrected } } }
+      then: { required: [corrected_statement] }
+    PlayRequest:
+      type: object
+      additionalProperties: false
+      required: [manifest_id]
+      properties:
+        manifest_id: { $ref: "../schemas/common.v1.json#/$defs/uuid" }
+        event_id:
+          description: Must be the manifest's held-out event; defaults to it. Any other id is 422.
+          $ref: "../schemas/common.v1.json#/$defs/uuid"
+    PlayResult:
+      type: object
+      additionalProperties: false
+      required: [replay_world, account_change, business_intelligence_update]
+      properties:
+        replay_world: { $ref: "../schemas/replay_world.v1.json" }
+        account_change: { $ref: "../schemas/account_change.v1.json" }
+        business_intelligence_update:
+          description: The update that restates the change; null when the change is not material.
+          oneOf:
+            - { $ref: "../schemas/business_intelligence_update.v1.json" }
+            - { type: "null" }
+    ReplayResetRequest:
+      type: object
+      additionalProperties: false
+      required: [episode]
+      properties:
+        episode:
+          description: "The released position to move the cursor back to (0 unreleases nothing new; it must have been released)."
+          type: integer
+          minimum: 0
+    InvisibilityReport:
+      type: object
+      additionalProperties: false
+      required: [manifest_id, held_out_event_id, status, checked, leaks]
+      properties:
+        manifest_id: { $ref: "../schemas/common.v1.json#/$defs/uuid" }
+        held_out_event_id: { $ref: "../schemas/common.v1.json#/$defs/uuid" }
+        status: { type: string, enum: [withheld, leaked, released] }
+        checked:
+          description: The stores that were inspected, in order (empty once released).
+          type: array
+          items: { type: string }
+        leaks:
+          type: array
+          items:
+            type: object
+            additionalProperties: false
+            required: [store, kind, id]
+            properties:
+              store: { type: string, enum: [postgres, neo4j] }
+              kind: { type: string, description: "What was found, e.g. source_event, activity, claim, account_state, state_diff, signal, graph_node." }
+              id: { type: string }
