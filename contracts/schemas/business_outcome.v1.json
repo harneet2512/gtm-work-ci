@@ -1,0 +1,29 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://ghost.local/contracts/business_outcome.v1.json",
+  "title": "BusinessOutcome",
+  "description": "Slow supervision (HAR-97 §12, HAR-120): a commercial movement on the run's opportunity — a stage move, a closed deal, an ACV change — detected from CRM activity after a sent decision. Correlated evidence, never causal truth.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["id", "account_id", "outcome_type", "value", "evidence_refs", "occurred_at"],
+  "properties": {
+    "id": { "$ref": "common.v1.json#/$defs/uuid" },
+    "account_id": { "$ref": "common.v1.json#/$defs/uuid" },
+    "agent_run_id": { "oneOf": [{ "$ref": "common.v1.json#/$defs/uuid" }, { "type": "null" }] },
+    "opportunity_id": { "oneOf": [{ "$ref": "common.v1.json#/$defs/uuid" }, { "type": "null" }] },
+    "activity_id": { "oneOf": [{ "$ref": "common.v1.json#/$defs/uuid" }, { "type": "null" }] },
+    "outcome_type": {
+      "type": "string",
+      "enum": [
+        "stage_advanced", "stage_regressed", "renewal", "expansion", "closed_won", "closed_lost",
+        "acv_change", "cycle_change"
+      ]
+    },
+    "value": {
+      "type": "object",
+      "description": "What moved, as observed: for a stage change {from, to}; for an ACV change {from, to, delta} (numbers); free-form for the rest."
+    },
+    "evidence_refs": { "type": "array", "items": { "$ref": "common.v1.json#/$defs/evidenceRef" } },
+    "occurred_at": { "$ref": "common.v1.json#/$defs/timestamp" }
+  }
+}

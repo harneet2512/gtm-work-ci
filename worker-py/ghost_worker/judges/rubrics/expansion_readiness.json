@@ -1,0 +1,161 @@
+{
+  "eval_type": "expansion_readiness",
+  "version": 1,
+  "title": "Expansion readiness",
+  "har97_refs": [
+    {
+      "line": 2385,
+      "text": "## 15.10 Expansion readiness"
+    },
+    {
+      "line": 612,
+      "text": "expansion readiness"
+    },
+    {
+      "line": 2962,
+      "text": "* expansion readiness"
+    }
+  ],
+  "l2_dimension": "expansion readiness",
+  "questions": [
+    {
+      "section": "§15(GTM).10",
+      "text": "Is this account actually ready for an expansion action?"
+    }
+  ],
+  "inputs": [
+    "product/adoption signals",
+    "stakeholder engagement",
+    "value realized",
+    "support / health state",
+    "budget / need",
+    "expansion language",
+    "new team / geography / use-case signals"
+  ],
+  "criteria": [
+    {
+      "id": "adoption",
+      "kind": "combine",
+      "text": "product/adoption signals",
+      "guide": "Usage or adoption evidence that supports more scope.",
+      "har97": {
+        "line": 2395,
+        "text": "* product/adoption signals"
+      },
+      "output": "finding",
+      "before": null,
+      "after": null
+    },
+    {
+      "id": "engagement",
+      "kind": "combine",
+      "text": "stakeholder engagement",
+      "guide": "Engaged stakeholders who would sponsor the expansion.",
+      "har97": {
+        "line": 2396,
+        "text": "* stakeholder engagement"
+      },
+      "output": "finding",
+      "before": null,
+      "after": null
+    },
+    {
+      "id": "value_realized",
+      "kind": "combine",
+      "text": "customer value realized",
+      "guide": "Evidence the customer got value from what they have.",
+      "har97": {
+        "line": 2397,
+        "text": "* customer value realized"
+      },
+      "output": "finding",
+      "before": null,
+      "after": null
+    },
+    {
+      "id": "health",
+      "kind": "combine",
+      "text": "support / health state",
+      "guide": "No open severe support issue or poor health that should come first.",
+      "har97": {
+        "line": 2398,
+        "text": "* support / health state"
+      },
+      "output": "finding",
+      "before": null,
+      "after": null
+    },
+    {
+      "id": "budget_need",
+      "kind": "combine",
+      "text": "budget / business need",
+      "guide": "A stated budget or business need for more.",
+      "har97": {
+        "line": 2399,
+        "text": "* budget / business need"
+      },
+      "output": "finding",
+      "before": null,
+      "after": null
+    },
+    {
+      "id": "expansion_language",
+      "kind": "combine",
+      "text": "expansion-related language",
+      "guide": "The customer's own words about growing usage.",
+      "har97": {
+        "line": 2400,
+        "text": "* expansion-related language"
+      },
+      "output": "finding",
+      "before": null,
+      "after": null
+    },
+    {
+      "id": "additional_scope",
+      "kind": "combine",
+      "text": "additional-team / geography / use-case signals",
+      "guide": "Signals of new teams, regions or use cases.",
+      "har97": {
+        "line": 2401,
+        "text": "* additional-team / geography / use-case signals"
+      },
+      "output": "finding",
+      "before": null,
+      "after": null
+    }
+  ],
+  "failure_examples": [],
+  "counter_failures": [],
+  "known_exceptions": [],
+  "candidate_choices": [],
+  "principles": [
+    "Combine the signals, where available.",
+    "Do not treat one positive signal as sufficient."
+  ],
+  "labels": [],
+  "pass_label": null,
+  "diagnostics": [
+    {
+      "name": "expansion_signal_too_weak",
+      "when": "fewer signals than an expansion action needs"
+    },
+    {
+      "name": "customer_risk_conflicts_with_upsell",
+      "when": "health or support risk conflicts with the expansion ask"
+    }
+  ],
+  "routing": {
+    "actions": [
+      "send_email",
+      "schedule_meeting",
+      "share_document"
+    ],
+    "when_all": [
+      "commercial_ask",
+      "expansion_motion"
+    ],
+    "when_any": []
+  },
+  "uses_rep_profile": false
+}

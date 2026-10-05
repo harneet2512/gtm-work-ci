@@ -1,0 +1,37 @@
+{
+  "type": "modal",
+  "title": {
+    "type": "plain_text",
+    "text": "Add note",
+    "emoji": false
+  },
+  "blocks": [
+    {
+      "type": "input",
+      "block_id": "ghost.input.note",
+      "label": {
+        "type": "plain_text",
+        "text": "Note",
+        "emoji": false
+      },
+      "element": {
+        "type": "plain_text_input",
+        "action_id": "value",
+        "multiline": true,
+        "max_length": 3000
+      }
+    }
+  ],
+  "close": {
+    "type": "plain_text",
+    "text": "Close",
+    "emoji": false
+  },
+  "submit": {
+    "type": "plain_text",
+    "text": "Save",
+    "emoji": false
+  },
+  "private_metadata": "{\"run_id\":\"0f0a0000-0000-4000-8000-000000000601\",\"episode_id\":\"0e9e0000-0000-4000-8000-000000000a01\",\"channel_id\":\"C0DRYRUN\",\"message_ts\":\"1700000000.000300\"}",
+  "callback_id": "ghost.judgment_note_modal"
+}

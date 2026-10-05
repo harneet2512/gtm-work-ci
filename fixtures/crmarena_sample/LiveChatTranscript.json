@@ -1,0 +1,26 @@
+[
+  {
+    "AccountId": "001Wt00000PHVkAIAX",
+    "Body": "[2021-02-20T14:31:52] Anastasia Ivanova (Customer): Hi, I&#39;m not getting consistent update notifications for SecureFlow Suite and missing important features for compliance.\n[2021-02-20T14:34:03] Aisha Karim (Agent): Hello Anastasia, I&#39;m sorry to hear about the notification issue with SecureFlow Suite. Let&#39;s work on resolving this quickly.\n[2021-02-20T14:35:29] Aisha Karim (Agent): I&#39;ll ensure you have access to the full suite of training modules so you&#39;re updated on all features.\n[2021-02-20T14:36:51] Anastasia Ivanova (Customer): Great, that would be really helpful. How soon can I expect access?\n[2021-02-20T14:38:15] Aisha Karim (Agent): You should receive access within the next 24 hours. I&#39;ll also verify and ensure your notification settings are correct.\n[2021-02-20T14:39:47] Anastasia Ivanova (Customer): Thank you, Aisha. That should solve the issue for us.",
+    "CaseId": "500Wt00000DDzmAIAT",
+    "EndTime": "2021-02-20T14:39:47.000+0000",
+    "Id": "570Wt000005HPwpIAG",
+    "OwnerId": "005Wt000003NJbJIAW"
+  },
+  {
+    "AccountId": "001Wt00000PGdBuIAL",
+    "Body": "[2023-02-15T14:31:12] Elena Vasiliev (Customer): Hi, we&#39;re having intermittent trouble accessing the training modules online. It&#39;s delaying our product adoption.\n[2023-02-15T14:35:07] Chen Huang (Agent): Hello Elena, thanks for reaching out. I understand the importance of seamless access to the training modules. Let me check your access status right away.\n[2023-02-15T14:37:21] Chen Huang (Agent): Could you please confirm if this issue is occurring for all users in your team or specific individuals?\n[2023-02-15T14:38:34] Elena Vasiliev (Customer): It seems to be affecting everyone on the team intermittently.\n[2023-02-15T14:39:56] Chen Huang (Agent): Got it, Elena. I&#39;ll start by checking PulseSim Pro&#39;s access settings and resolve this.\n Please hold on for a few moments.\n[2023-02-15T14:40:21] Elena Vasiliev (Customer): Thank you.\n[2023-02-15T14:45:11] Chen Huang (Agent): I&#39;ve reviewed the status. To proceed, I&#39;ll ensure comprehensive access is granted for the entire suite, aligned with your request.\n[2023-02-15T14:46:39] Chen Huang (Agent): I will grant access to &#39;Comprehensive Training Access&#39; for your team. This will allow full utilization. Please try accessing the modules again.\n[2023-02-15T14:47:14] Elena Vasiliev (Customer): We appreciate the quick response! We&#39;ll check now.\n[2023-02-15T14:48:30] Elena Vasiliev (Customer): It seems to be working now! Thank you so much for resolving this promptly.\n[2023-02-15T14:49:15] Chen Huang (Agent): Excellent! I&#39;m glad we could resolve the issue.\nLet me know if there&#39;s anything else I can assist you with.\n[2023-02-15T14:49:45] Elena Vasiliev (Customer): Nothing more at the moment. Thanks again, Chen!\n[2023-02-15T14:50:12] Chen Huang (Agent): You&#39;re welcome, Elena! Have a great day.",
+    "CaseId": "500Wt00000DDzhJIAT",
+    "EndTime": "2023-02-15T14:50:12.000+0000",
+    "Id": "570Wt000005HQo1IAG",
+    "OwnerId": "005Wt000003NIaQIAW"
+  },
+  {
+    "AccountId": "001Wt00000PFj4zIAD",
+    "Body": "[2022-02-03T14:31:13] Mohammed Bashir (Customer): Hi, I&#39;m experiencing latency issues when deploying TechPulse&#39;s OptiPower Manager in our workflows.\n[2022-02-03T14:33:25] Aisha Karim (Agent): Hello Mohammed, I&#39;m sorry to hear about the latency issues. Let&#39;s see how we can resolve this for you.\n[2022-02-03T14:34:45] Aisha Karim (Agent): Could you please provide more details on the specific steps where you&#39;re noticing the delays?\n[2022-02-03T14:36:02] Mohammed Bashir (Customer): Sure, the delays are happening during the data integration phase with OptiPower Manager.\n[2022-02-03T14:38:10] Aisha Karim (Agent): Thank you, Mohammed. Based on your description, I believe our Data Integration Toolkit might help streamline the process.\n[2022-02-03T14:40:35] Aisha Karim (Agent): I can provide the toolkit and assist with its implementation. Will that work for you?\n[2022-02-03T14:41:50] Mohammed Bashir (Customer): Yes, that sounds perfect. How soon can we get started?\n[2022-02-03T14:43:15] Aisha Karim (Agent): I will initiate the process immediately and ensure you have access to the toolkit within the next few hours.\n[2022-02-03T14:44:30] Aisha Karim (Agent): Once you receive it, I&#39;ll be available to guide you through the integration.\n[2022-02-03T14:45:47] Mohammed Bashir (Customer): Great, thank you for your help!\n[2022-02-03T14:46:56] Aisha Karim (Agent): You&#39;re welcome, Mohammed. If there&#39;s anything else, just let me know.",
+    "CaseId": "500Wt00000DDYdwIAH",
+    "EndTime": "2022-02-03T14:46:56.000+0000",
+    "Id": "570Wt000005HR5lIAG",
+    "OwnerId": "005Wt000003NJbJIAW"
+  }
+]

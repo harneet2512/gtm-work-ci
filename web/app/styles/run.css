@@ -1,0 +1,139 @@
+/* Run chain (WP24): candidates, their eval bundles, the human decision and why the action changed.
+   Ghost's pick carries the Ghost accent; the human's choice carries ink. */
+.candidates {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: var(--space-3);
+}
+
+.candidates .panel + .panel {
+  margin-top: 0;
+}
+
+.candidate {
+  position: relative;
+  padding: var(--space-4);
+  border-radius: var(--radius-md);
+  box-shadow: none;
+}
+
+.candidate .candidate-head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: var(--space-2);
+}
+
+.candidate.preferred {
+  border-color: var(--brand-line);
+  box-shadow: inset 0 2px 0 var(--brand);
+}
+
+.candidate.chosen {
+  border-color: var(--human);
+  box-shadow: 0 0 0 1px var(--human);
+}
+
+.artifact {
+  margin: var(--space-2) 0;
+}
+
+.artifact-body {
+  margin: var(--space-2) 0;
+  padding: var(--space-3) var(--space-4);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-md);
+  background: var(--surface-subtle);
+  color: var(--ink);
+  font-size: var(--text-md);
+  line-height: var(--leading-normal);
+  white-space: pre-wrap;
+}
+
+.eval-item {
+  padding: var(--space-1-5) 0;
+  border-bottom: 1px solid var(--line);
+}
+
+.eval-item:last-child {
+  border-bottom: 0;
+}
+
+.eval-detail {
+  margin: var(--space-1-5) 0 var(--space-2) var(--space-3);
+}
+
+.eval-diffs {
+  margin: var(--space-1) 0;
+  padding-left: var(--space-5);
+}
+
+.eval-bundle .counts {
+  display: flex;
+  gap: var(--space-2);
+}
+
+.eval-bundle .evals .eval-item summary {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: var(--space-0-5) var(--space-2);
+  padding: var(--space-1) 0;
+}
+
+.eval-bundle .eval-item .eval-name {
+  font-weight: 600;
+}
+
+.eval-summary-reason {
+  flex-basis: 100%;
+  color: var(--ink-2);
+  font-size: var(--text-sm);
+  line-height: var(--leading-snug);
+}
+
+.eval-bundle .held {
+  font-size: var(--text-sm);
+}
+
+.eval-page-link {
+  margin: var(--space-2) 0 0;
+  font-size: var(--text-sm);
+  font-weight: 500;
+}
+
+.human-decision {
+  margin-top: var(--space-3);
+  padding-top: var(--space-3);
+  border-top: 1px solid var(--line);
+}
+
+.semantic-delta {
+  margin: var(--space-3) 0;
+  padding: var(--space-3) var(--space-4);
+  border-left: 2px solid var(--brand);
+  border-radius: 0 var(--radius-md) var(--radius-md) 0;
+  background: var(--brand-tint);
+}
+
+.knowledge-compare {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: var(--space-3);
+  margin-top: var(--space-2);
+}
+
+.knowledge-side h4 {
+  margin-top: 0;
+}
+
+/* Evidence deep links land on the run trace's activity */
+.trace-activity {
+  border-radius: var(--radius-xs);
+  scroll-margin-top: calc(var(--header-h) + var(--space-4));
+}
+
+.trace-activity:target {
+  background: var(--brand-tint);
+  box-shadow: 0 0 0 2px var(--brand);
+}

@@ -1,0 +1,158 @@
+{
+  "eval_type": "champion_strength",
+  "version": 1,
+  "title": "Champion strength / mobilization",
+  "har97_refs": [
+    {
+      "line": 2293,
+      "text": "## 15.5 Champion strength / mobilization"
+    },
+    {
+      "line": 607,
+      "text": "champion strength"
+    },
+    {
+      "line": 2957,
+      "text": "* champion strength / mobilization"
+    }
+  ],
+  "l2_dimension": "champion strength / mobilization",
+  "questions": [
+    {
+      "section": "§15(GTM).5",
+      "text": "Do we have a real champion who has influence and motivation to help move the deal internally?"
+    }
+  ],
+  "inputs": [
+    "champion and champion_status",
+    "buying group statuses and delegations",
+    "recent champion activity",
+    "the candidate's recipients and ask"
+  ],
+  "criteria": [
+    {
+      "id": "present",
+      "kind": "check",
+      "text": "champion present",
+      "guide": "Is a champion identified in the state?",
+      "har97": {
+        "line": 2301,
+        "text": "* champion present"
+      },
+      "output": "finding",
+      "before": null,
+      "after": null
+    },
+    {
+      "id": "influence",
+      "kind": "evaluate",
+      "text": "champion influence",
+      "guide": "Does evidence show the champion can move others (approvals, introductions)?",
+      "har97": {
+        "line": 2302,
+        "text": "* champion influence"
+      },
+      "output": "finding",
+      "before": null,
+      "after": null
+    },
+    {
+      "id": "activity",
+      "kind": "evaluate",
+      "text": "champion activity / responsiveness",
+      "guide": "Is the champion responsive and active recently, or quiet/weakening?",
+      "har97": {
+        "line": 2303,
+        "text": "* champion activity / responsiveness"
+      },
+      "output": "finding",
+      "before": null,
+      "after": null
+    },
+    {
+      "id": "navigating",
+      "kind": "evaluate",
+      "text": "evidence they are helping navigate internally",
+      "guide": "Quotes showing the champion introduces people, explains the process or pushes internally.",
+      "har97": {
+        "line": 2304,
+        "text": "* evidence they are helping navigate internally"
+      },
+      "output": "finding",
+      "before": null,
+      "after": null
+    },
+    {
+      "id": "over_reliance",
+      "kind": "evaluate",
+      "text": "over-reliance on a single champion",
+      "guide": "Does the deal depend on the champion alone where other stakeholders are needed?",
+      "har97": {
+        "line": 2305,
+        "text": "* over-reliance on a single champion"
+      },
+      "output": "finding",
+      "before": null,
+      "after": null
+    },
+    {
+      "id": "strengthens",
+      "kind": "evaluate",
+      "text": "whether the action strengthens or weakens them",
+      "guide": "Does this action make the champion more effective internally, or undercut them?",
+      "har97": {
+        "line": 2306,
+        "text": "* whether the action strengthens or weakens them"
+      },
+      "output": "finding",
+      "before": null,
+      "after": null
+    },
+    {
+      "id": "delegated",
+      "kind": "check",
+      "text": "whether ownership was explicitly delegated",
+      "guide": "If the champion explicitly handed ownership to someone, the new owner carries the step.",
+      "har97": {
+        "line": 2307,
+        "text": "* whether ownership was explicitly delegated"
+      },
+      "output": "finding",
+      "before": null,
+      "after": null
+    }
+  ],
+  "failure_examples": [],
+  "counter_failures": [],
+  "known_exceptions": [
+    "Champion explicitly delegated ownership or left the process."
+  ],
+  "candidate_choices": [],
+  "principles": [
+    "Do not reduce this to “keep the champion CC’d.”"
+  ],
+  "labels": [],
+  "pass_label": null,
+  "diagnostics": [
+    {
+      "name": "weak_champion",
+      "when": "the champion lacks influence, activity or motivation"
+    },
+    {
+      "name": "over_reliant_on_champion",
+      "when": "the deal depends on the champion alone"
+    }
+  ],
+  "routing": {
+    "actions": [
+      "send_email",
+      "schedule_meeting",
+      "share_document"
+    ],
+    "when_all": [],
+    "when_any": [
+      "champion_in_question"
+    ]
+  },
+  "uses_rep_profile": false
+}

@@ -1,0 +1,52 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://ghost.local/contracts/eval_areas.v1.json",
+  "title": "EvalAreas",
+  "description": "The roll-up of EvalResults into the four product areas of the HAR-145 Ghost Eval Control Plane: eval_type -> registry family (E1-E22) -> area. The instance is contracts/evals/eval_areas.json. Every EvalResult eval type maps to exactly one family, every E family to exactly one area; M1-M5 are metrics and belong to no area. Cross-references to eval_registry.json and eval_result.v1.json are tested in Go (internal/contracts, internal/evalarea).",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["areas_version", "description", "areas", "metric_families", "family_spans", "eval_types"],
+  "properties": {
+    "areas_version": { "type": "integer", "minimum": 1 },
+    "description": { "type": "string", "minLength": 1, "maxLength": 2000 },
+    "source": { "type": "object" },
+    "areas": {
+      "type": "array",
+      "minItems": 4,
+      "maxItems": 4,
+      "items": { "$ref": "#/$defs/area" }
+    },
+    "metric_families": {
+      "description": "Operational diagnostics: served as OperationalMetrics, never counted as eval verdicts.",
+      "type": "array",
+      "uniqueItems": true,
+      "items": { "type": "string", "pattern": "^M[0-9]+$" }
+    },
+    "family_spans": {
+      "description": "E family -> the TraceSpan kind (episode_trace.v1.json) its EvalResults are attached to. A family absent here has no span of its own.",
+      "type": "object",
+      "propertyNames": { "type": "string", "pattern": "^E[0-9]+$" },
+      "additionalProperties": { "$ref": "episode_trace.v1.json#/$defs/spanKind" }
+    },
+    "eval_types": {
+      "description": "EvalResult eval_type -> its primary registry family.",
+      "type": "object",
+      "propertyNames": { "$ref": "eval_result.v1.json#/$defs/evalType" },
+      "additionalProperties": { "type": "string", "pattern": "^E[0-9]+$" }
+    }
+  },
+  "$defs": {
+    "areaId": { "enum": ["intelligence", "decision_learning", "cliff_experience", "system"] },
+    "area": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id", "label", "order", "families"],
+      "properties": {
+        "id": { "$ref": "#/$defs/areaId" },
+        "label": { "type": "string", "minLength": 1, "maxLength": 60 },
+        "order": { "type": "integer", "minimum": 1, "maximum": 4 },
+        "families": { "description": "May be empty: Cliff / Experience holds the messages, which no eval family judges.", "type": "array", "uniqueItems": true, "items": { "type": "string", "pattern": "^E[0-9]+$" } }
+      }
+    }
+  }
+}

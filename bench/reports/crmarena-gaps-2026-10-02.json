@@ -1,0 +1,245 @@
+{
+  "counts": {
+    "Account": 101,
+    "AccountHistory": 101,
+    "Case": 153,
+    "CaseHistory": 153,
+    "Contact": 886,
+    "ContactHistory": 886,
+    "Contract": 163,
+    "EmailMessage": 5177,
+    "EmailMessageRelation": 10354,
+    "Lead": 1465,
+    "LiveChatTranscript": 58,
+    "Opportunity": 1170,
+    "OpportunityContactRole": 1170,
+    "OpportunityHistory": 3011,
+    "OpportunityLineItem": 4926,
+    "Order": 163,
+    "OrderItem": 689,
+    "Product2": 51,
+    "Quote": 704,
+    "QuoteLineItem": 2966,
+    "Task": 4782,
+    "User": 386
+  },
+  "coverage": {
+    "Account": {
+      "Industry": 1.0,
+      "NumberOfEmployees": 1.0,
+      "Type": 0.0,
+      "Website": 0.0
+    },
+    "Case": {
+      "ClosedDate": 0.4902,
+      "ContactId": 1.0,
+      "Description": 1.0
+    },
+    "Contact": {
+      "Department": 1.0,
+      "Email": 1.0,
+      "Phone": 1.0,
+      "ReportsToId": 0.0,
+      "Title": 1.0
+    },
+    "EmailMessage": {
+      "CcAddress": 0.0,
+      "FromName": 0.0,
+      "ReplyToEmailMessageId": 0.0,
+      "TextBody": 1.0,
+      "ThreadIdentifier": 0.0
+    },
+    "Opportunity": {
+      "Amount": 1.0,
+      "CloseDate": 1.0,
+      "ContractId__c": 0.1393,
+      "Description": 1.0,
+      "LeadSource": 0.0,
+      "NextStep": 0.0,
+      "Type": 0.0
+    },
+    "Quote": {
+      "ContactId": 1.0,
+      "Description": 1.0,
+      "Discount": 1.0,
+      "GrandTotal": 1.0
+    },
+    "Task": {
+      "CompletedDateTime": 0.0,
+      "Description": 1.0,
+      "WhoId": 0.0
+    }
+  },
+  "date_ranges": {
+    "Account": {
+      "field": "CreatedDate",
+      "max": "2025-04-20",
+      "min": "2025-04-20",
+      "n": 101
+    },
+    "Case": {
+      "field": "CreatedDate",
+      "max": "2024-05-15",
+      "min": "2020-07-01",
+      "n": 153
+    },
+    "Contact": {
+      "field": "CreatedDate",
+      "max": "2025-04-20",
+      "min": "2025-04-20",
+      "n": 886
+    },
+    "Contract": {
+      "field": "CustomerSignedDate",
+      "max": "2024-09-25",
+      "min": "2020-06-13",
+      "n": 163
+    },
+    "EmailMessage": {
+      "field": "MessageDate",
+      "max": "2024-09-20",
+      "min": "2020-02-25",
+      "n": 5177
+    },
+    "LiveChatTranscript": {
+      "field": "EndTime",
+      "max": "2024-05-15",
+      "min": "2020-07-05",
+      "n": 58
+    },
+    "Opportunity": {
+      "field": "CreatedDate",
+      "max": "2024-05-15",
+      "min": "2020-01-10",
+      "n": 1170
+    },
+    "OpportunityHistory": {
+      "field": "CreatedDate",
+      "max": "2025-08-08",
+      "min": "2025-04-21",
+      "n": 3011
+    },
+    "Order": {
+      "field": "EffectiveDate",
+      "max": "2024-10-01",
+      "min": "2020-06-20",
+      "n": 163
+    },
+    "Quote": {
+      "field": "CreatedDate",
+      "max": "2024-05-20",
+      "min": "2020-02-15",
+      "n": 704
+    },
+    "Task": {
+      "field": "ActivityDate",
+      "max": "2025-01-15",
+      "min": "2020-03-01",
+      "n": 4782
+    }
+  },
+  "deals": {
+    "deals_closedate_before_last_activity": 220,
+    "deals_created_after_first_activity": 2,
+    "deals_with_more_than_one_stage_in_history": 1,
+    "deals_without_email_or_task": 12,
+    "is_closed_true": 0,
+    "is_won_true": 0,
+    "stage_history_created": {
+      "field": "CreatedDate",
+      "max": "2025-08-08",
+      "min": "2025-04-21",
+      "n": 3011
+    },
+    "stage_history_rows": 3011,
+    "stage_names": {
+      "Closed": 257,
+      "Discovery": 241,
+      "Negotiation": 222,
+      "Qualification": 225,
+      "Quote": 225
+    }
+  },
+  "email": {
+    "emails": 5177,
+    "incoming_flag_true": 0,
+    "re_subjects": 507,
+    "recipients_per_email": {
+      "1": 5177
+    },
+    "related_to_prefix": {
+      "006": 5177
+    },
+    "sent_by_customer_address": 2245,
+    "sent_by_customer_share": 0.4336,
+    "with_cc_or_bcc": 0,
+    "with_reply_to_id": 0,
+    "with_thread_or_message_id": 0
+  },
+  "links": {
+    "accounts_with_website": 0,
+    "chats_with_contact": 0,
+    "chats_with_start_time": 0,
+    "contracts_with_source_opportunity": 0,
+    "converted_leads": 1269,
+    "deals_naming_a_contract": 163,
+    "leads_with_converted_opportunity": 0,
+    "orders_with_contract": 0,
+    "task_status": {
+      "Deferred": 37,
+      "In Progress": 883,
+      "Not Started": 3856,
+      "Waiting": 6
+    },
+    "task_types": {
+      "Call": 4782
+    },
+    "tasks_completed_at": 0,
+    "tasks_with_who": 0
+  },
+  "people": {
+    "account_history_fields": {
+      "created": 101
+    },
+    "contact_history_fields": {
+      "created": 886
+    },
+    "contact_role_values": {
+      "None": 1170
+    },
+    "contacts_per_deal": {
+      "1": 1170
+    },
+    "contacts_with_reports_to": 0,
+    "user_addresses_with_several_user_records": 164,
+    "users_with_title_department_manager": 0
+  },
+  "quotes": {
+    "acceptance_auc": {
+      "auc": 0.437,
+      "cv": "GroupKFold(5) by AccountId",
+      "features": [
+        "log GrandTotal",
+        "Discount",
+        "LineItemCount",
+        "validity days"
+      ],
+      "positives": 163,
+      "quotes": 704
+    },
+    "created_before_first_deal_activity": 603,
+    "quotes_on_deals_with_activity": 696,
+    "status": {
+      "Accepted": 163,
+      "Approved": 204,
+      "Denied": 10,
+      "Draft": 17,
+      "In Review": 94,
+      "Need Review": 1,
+      "Needs Review": 110,
+      "Presented": 90,
+      "Rejected": 15
+    }
+  },
+  "snapshot_exported_at": "2026-10-02T19:03:39Z"
+}

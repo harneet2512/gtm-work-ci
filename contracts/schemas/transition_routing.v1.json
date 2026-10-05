@@ -1,0 +1,88 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://ghost.local/contracts/transition_routing.v1.json",
+  "title": "TransitionRouting",
+  "description": "Which eval suites apply, keyed on the StateTransition's (to_state, status) and, without an open transition, on the confirmed relationship state (HAR-97 pitch §4-§5, §11 'based on transition status/state/action'; ADR-0012). State determination happens before eval routing. Suites add to the always-on deterministic and trace evals. The instance is contracts/transitions/routing.v1.json.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["routing_version", "description", "routes", "state_suites", "suites"],
+  "properties": {
+    "routing_version": { "type": "string", "pattern": "^transition_routing:v[0-9]+$" },
+    "description": { "type": "string", "minLength": 1, "maxLength": 1500 },
+    "routes": {
+      "description": "Per (status, to_state): the suite, or suite_of_state (use state_suites of the transition's from_state). The most specific route wins: an exact to_state before '*'.",
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["status", "to_state", "basis"],
+        "properties": {
+          "status": { "$ref": "common.v1.json#/$defs/transitionStatus" },
+          "to_state": { "oneOf": [{ "$ref": "common.v1.json#/$defs/relationshipState" }, { "const": "*" }] },
+          "suite": { "$ref": "#/$defs/suiteName" },
+          "suite_of_state": { "const": "from_state" },
+          "fallback_suite": { "$ref": "#/$defs/suiteName", "description": "With suite_of_state: the suite when the from_state has none (state_suites value null)." },
+          "basis": { "type": "string", "minLength": 1, "maxLength": 400, "description": "HAR-97 section, or 'Product decision: ...'." }
+        },
+        "oneOf": [{ "required": ["suite"] }, { "required": ["suite_of_state", "fallback_suite"] }],
+        "dependentRequired": { "fallback_suite": ["suite_of_state"] }
+      }
+    },
+    "action_routes": {
+    "description": "Per-candidate refinement after the (status, to_state) route (HAR-128, 'based on transition status/state/action'): a candidate whose action class is action_class, under a transition whose status is in statuses, is judged under suite instead of the route's. The first matching rule wins; no rule means the route's suite stands. A candidate whose text is an expansion CTA counts as EXPANSION_MOTION whatever its label.",
+    "type": "array",
+    "items": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["statuses", "action_class", "suite", "basis"],
+      "properties": {
+        "statuses": { "type": "array", "minItems": 1, "uniqueItems": true, "items": { "$ref": "common.v1.json#/$defs/transitionStatus" } },
+        "action_class": { "enum": ["REPLY", "MEETING", "SHARE_DOCUMENT", "INTERNAL_TASK", "WAIT", "NO_ACTION", "ASK_RESEARCH", "EXPANSION_MOTION", "CRM_UPDATE", "UNKNOWN", "HUMAN_REVIEW"] },
+        "suite": { "$ref": "#/$defs/suiteName" },
+        "basis": { "type": "string", "minLength": 1, "maxLength": 400 }
+      }
+    }
+  },
+  "state_suites": {
+      "description": "Suite for an account in a confirmed relationship state with no open transition (and the REJECTED fallback); null = no state-specific suite yet.",
+      "type": "object",
+      "propertyNames": { "$ref": "common.v1.json#/$defs/relationshipStateOrUnknown" },
+      "additionalProperties": { "oneOf": [{ "$ref": "#/$defs/suiteName" }, { "type": "null" }] }
+    },
+    "suites": {
+      "type": "object",
+      "minProperties": 1,
+      "propertyNames": { "$ref": "#/$defs/suiteName" },
+      "additionalProperties": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["har97_sections", "description", "evals"],
+        "properties": {
+          "har97_sections": { "$ref": "eval_catalog.v1.json#/$defs/sections" },
+          "description": { "type": "string", "minLength": 1, "maxLength": 600 },
+          "evals": {
+            "type": "array",
+            "minItems": 1,
+            "items": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": ["har97_eval", "eval_types"],
+              "properties": {
+                "har97_eval": { "type": "string", "minLength": 1, "maxLength": 100, "description": "The eval as HAR-97 names it." },
+                "eval_types": { "type": "array", "uniqueItems": true, "items": { "$ref": "eval_result.v1.json#/$defs/evalType" } },
+                "note": { "type": "string", "minLength": 1, "maxLength": 300 },
+                "gap": { "type": "string", "minLength": 1, "maxLength": 300, "description": "Why no eval type implements it yet." }
+              },
+              "if": { "properties": { "eval_types": { "maxItems": 0 } } },
+              "then": { "required": ["gap"] }
+            }
+          }
+        }
+      }
+    }
+  },
+  "$defs": {
+    "suiteName": { "type": "string", "pattern": "^[a-z][a-z0-9_]*$" }
+  }
+}

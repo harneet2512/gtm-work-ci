@@ -1,0 +1,78 @@
+{
+  "id": "0c17c000-0000-4000-8000-000000000023",
+  "key": "K23",
+  "title": "Name the mutual next step with owner and date after a product demo",
+  "situation_signature": [
+    {
+      "field": "motion",
+      "op": "eq",
+      "value": "expansion"
+    },
+    {
+      "field": "diff.meeting_completed",
+      "op": "exists"
+    }
+  ],
+  "applicability_conditions": [
+    {
+      "field": "transition.status",
+      "op": "in",
+      "value": ["CANDIDATE", "CONFIRMED"]
+    }
+  ],
+  "guidance": {
+    "summary": "Close the recap with a dated, owned next step; an open-ended 'we will circle back' stalls the deal.",
+    "do": ["propose a concrete date and name the owner's side", "restate the agreed evaluation criteria"],
+    "dont": ["end the thread without a dated next step"]
+  },
+  "status": "provisional",
+  "counts": {
+    "decisions": 2,
+    "positive_reactions": 1,
+    "negative_reactions": 0,
+    "outcomes_advanced": 0,
+    "counterexamples": 0
+  },
+  "supporting_decision_episode_ids": [
+    "0e9e0000-0000-4000-8000-000000000a02",
+    "0e9e0000-0000-4000-8000-000000000a03"
+  ],
+  "counterexamples": [],
+  "exceptions": [
+    {
+      "description": "The buyer explicitly asked for no meetings this quarter",
+      "conditions": [
+        {
+          "field": "decision_process",
+          "op": "contains",
+          "value": "no meetings"
+        }
+      ]
+    }
+  ],
+  "evidence_classes": ["methodology"],
+  "used_by_evaluators": ["next_step_quality:v1"],
+  "provenance": {
+    "created_from": "human_delta",
+    "source_decision_episode_id": "0e9e0000-0000-4000-8000-000000000a02",
+    "note": "Rep added a dated owner to the recap after two demos stalled"
+  },
+  "created_at": "2026-09-12T11:00:00Z",
+  "last_validated_at": "2026-09-28T08:00:00Z",
+  "status_history": [
+    {
+      "from_status": null,
+      "to_status": "candidate",
+      "reason": "created from a human delta",
+      "changed_at": "2026-09-12T11:00:00Z"
+    },
+    {
+      "from_status": "candidate",
+      "to_status": "provisional",
+      "reason": "earned provisional: 2 decisions (>= 1), 1 positive reactions (>= 1), 0 advanced outcomes (>= 0), counterexample share 0.00 (<= 0.50)",
+      "evidence_kind": "customer_reaction",
+      "evidence_ref_id": "0eac7000-0000-4000-8000-000000000d02",
+      "changed_at": "2026-09-28T08:00:00Z"
+    }
+  ]
+}

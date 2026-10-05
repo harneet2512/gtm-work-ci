@@ -1,0 +1,52 @@
+[
+  {
+    "source_system": "crm",
+    "source_object_id": "opp:AC-4-EXP",
+    "source_event_key": "field:StageName:Negotiation",
+    "connector": "salesforce",
+    "connector_version": "0.1.0",
+    "payload": {
+      "kind": "crm_change",
+      "object_type": "Opportunity",
+      "record_id": "opp:AC-4-EXP",
+      "account_record_id": "account:AC-4",
+      "changed_at": "2026-09-30T08:15:00Z",
+      "changed_by": "dana@ghostvendor.com",
+      "fields": { "StageName": { "old": "Proposal", "new": "Negotiation" } }
+    }
+  },
+  {
+    "source_system": "crm",
+    "source_object_id": "contact:817",
+    "source_event_key": "created",
+    "connector": "salesforce",
+    "connector_version": "0.1.0",
+    "payload": {
+      "kind": "crm_change",
+      "object_type": "Contact",
+      "record_id": "contact:817",
+      "account_record_id": "account:AC-4",
+      "changed_at": "2026-09-30T08:20:00Z",
+      "changed_by": "dana@ghostvendor.com",
+      "created": true,
+      "fields": { "Email": { "new": "marco.ruiz@acme.com" }, "Title": { "new": "VP Security" } }
+    }
+  },
+  {
+    "source_system": "crm",
+    "source_object_id": "note:9",
+    "source_event_key": "created",
+    "connector": "salesforce",
+    "connector_version": "0.1.0",
+    "payload": {
+      "kind": "crm_change",
+      "object_type": "Note",
+      "record_id": "note:9",
+      "account_record_id": "account:AC-4",
+      "changed_at": "2026-10-01T15:00:00Z",
+      "changed_by": "dana@ghostvendor.com",
+      "created": true,
+      "note_body": "Security review went well; waiting on SOC2 pack."
+    }
+  }
+]

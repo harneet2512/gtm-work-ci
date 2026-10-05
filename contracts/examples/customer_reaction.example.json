@@ -1,0 +1,17 @@
+{
+  "id": "0eac7000-0000-4000-8000-000000000d01",
+  "account_id": "0a0c0000-0000-4000-8000-000000000001",
+  "agent_run_id": "0f0a0000-0000-4000-8000-000000000601",
+  "activity_id": "0ac70000-0000-4000-8000-000000000102",
+  "reaction_type": "replied",
+  "polarity": "positive",
+  "evidence_refs": [
+    {
+      "activity_id": "0ac70000-0000-4000-8000-000000000102",
+      "quote": "Thanks Dana - we'll review and propose a date.",
+      "speaker_person_id": "0b0e0000-0000-4000-8000-000000000018",
+      "occurred_at": "2026-09-30T09:10:00Z"
+    }
+  ],
+  "created_at": "2026-09-30T09:10:05Z"
+}

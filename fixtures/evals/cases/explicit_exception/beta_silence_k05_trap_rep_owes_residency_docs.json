@@ -1,0 +1,269 @@
+{
+  "id": "beta_silence_k05_trap_rep_owes_residency_docs",
+  "case_type": "explicit_exception",
+  "title": "Beta 09-23: K05 (one light check-in after silence) looks applicable, but the ball is in our court",
+  "should_pass": false,
+  "difficulty": "hard",
+  "slice_tags": {
+    "account": "beta",
+    "origin": "world_moment",
+    "motion": "expansion",
+    "stage": "technical_evaluation",
+    "champion_status": "active",
+    "economic_buyer": "known",
+    "risk": "medium",
+    "candidate": "flawed",
+    "expected_action": "send_email",
+    "extra": ["k05_trap", "rep_owed_commitment", "silence"]
+  },
+  "based_on": {
+    "kind": "world_moment",
+    "account": "beta",
+    "after_event_file": "world/accounts/beta/events/038_clock_customer_silence.json",
+    "checkpoint": 3,
+    "changed_fields": ["current_commitments", "next_milestone", "decision_process"],
+    "change": null
+  },
+  "context": {
+    "now": "2026-09-23T09:30:00Z",
+    "state": {
+      "account_id": "0a0c0000-0000-4000-8000-000000000002",
+      "account_name": "Beta Inc",
+      "opportunity_id": "0c0f0000-0000-4000-8000-000000000005",
+      "fields": {
+        "stage": "Technical evaluation",
+        "health": "at_risk",
+        "motion": "expansion",
+        "champion": "0b0e0000-0000-4000-8000-000000000031",
+        "champion_status": "active",
+        "economic_buyer": "0b0e0000-0000-4000-8000-000000000032",
+        "relationship_risk": "medium",
+        "blockers": [
+          {
+            "text": "EU data residency for the Dublin team's ticket data (where EU ticket data is stored and processed)",
+            "status": "open"
+          }
+        ],
+        "next_milestone": "Ravi confirms where EU ticket data is stored",
+        "current_commitments": [
+          {
+            "text": "Pull the data residency addendum and sub-processor list for Ravi",
+            "status": "open",
+            "owner_person_id": "0b0e0000-0000-4000-8000-000000000001"
+          }
+        ]
+      },
+      "buying_group": [
+        {
+          "person_id": "0b0e0000-0000-4000-8000-000000000031",
+          "display_name": "Hannah Lee",
+          "title": "VP Customer Operations",
+          "roles": ["champion"],
+          "status": "active",
+          "delegated_to_person_id": null,
+          "last_engaged_at": null,
+          "evidence_refs": []
+        },
+        {
+          "person_id": "0b0e0000-0000-4000-8000-000000000032",
+          "display_name": "Owen Clarke",
+          "title": "Chief Financial Officer",
+          "roles": ["economic_buyer"],
+          "status": "unknown",
+          "delegated_to_person_id": null,
+          "last_engaged_at": null,
+          "evidence_refs": []
+        },
+        {
+          "person_id": "0b0e0000-0000-4000-8000-000000000033",
+          "display_name": "Jess Patel",
+          "title": "Support Operations Manager",
+          "roles": ["user"],
+          "status": "active",
+          "delegated_to_person_id": null,
+          "last_engaged_at": null,
+          "evidence_refs": []
+        },
+        {
+          "person_id": "0b0e0000-0000-4000-8000-000000000034",
+          "display_name": "Ravi Menon",
+          "title": "Head of Platform Engineering",
+          "roles": ["technical_evaluator"],
+          "status": "active",
+          "delegated_to_person_id": null,
+          "last_engaged_at": null,
+          "evidence_refs": []
+        }
+      ],
+      "coverage_gaps": []
+    },
+    "recent_changes": {
+      "summary": "Seven days without customer activity since Hannah's residency correction; the rep said internally she would pull the residency addendum.",
+      "material_diff_fields": [],
+      "signals": ["customer_went_silent"]
+    },
+    "trigger": {
+      "activity_id": "0ac70000-0000-4000-8000-0000000b0038",
+      "activity_type": "CustomerWentSilent",
+      "occurred_at": "2026-09-23T09:00:00Z",
+      "actor_person_id": null,
+      "event_file": "world/accounts/beta/events/038_clock_customer_silence.json",
+      "synthetic": false,
+      "text": ""
+    },
+    "supporting_activities": [
+      {
+        "activity_id": "0ac70000-0000-4000-8000-0000000b0034",
+        "activity_type": "SlackMessage",
+        "occurred_at": "2026-09-16T14:00:00Z",
+        "actor_person_id": "0b0e0000-0000-4000-8000-000000000001",
+        "event_file": "world/accounts/beta/events/034_slack_residency_note.json",
+        "synthetic": false,
+        "text": "Ravi's real question is EU data residency for the Dublin ticket data. We host EU tenants in Frankfurt; I'll pull our data residency addendum and sub-processor list."
+      },
+      {
+        "activity_id": "0ac70000-0000-4000-8000-0000000b0036",
+        "activity_type": "EmailSent",
+        "occurred_at": "2026-09-17T16:00:00Z",
+        "actor_person_id": "0b0e0000-0000-4000-8000-000000000001",
+        "event_file": "world/accounts/beta/events/036_email_dana_followup.json",
+        "synthetic": false,
+        "text": "Hi Hannah and Ravi,\nThanks for Tuesday's session and for the clarification on SSO. Ravi, good to meet you - let us know what you need from us on EU data residency and we'll get it to you.\nBest,\nDana"
+      }
+    ],
+    "commitments": [
+      {
+        "text": "Pull the data residency addendum and sub-processor list for Ravi",
+        "owner_person_id": "0b0e0000-0000-4000-8000-000000000001",
+        "due_at": null,
+        "status": "open"
+      }
+    ],
+    "timeline_facts": {
+      "last_inbound_at": "2026-09-16T09:10:00Z",
+      "last_inbound_from_person_id": "0b0e0000-0000-4000-8000-000000000031",
+      "last_outbound_at": "2026-09-17T16:00:00Z",
+      "stated_timing": "No customer date given"
+    },
+    "offered_knowledge": [
+      {
+        "id": "0c17c000-0000-4000-8000-000000000005",
+        "key": "K05",
+        "title": "One light check-in after a week of customer silence while the customer owes the next step",
+        "situation_signature": [
+          {"field": "diff.customer_went_silent", "op": "exists"},
+          {"field": "champion_status", "op": "eq", "value": "active"}
+        ],
+        "guidance": {
+          "summary": "When the customer owes the next step and has gone quiet for about a week, send one short, low-pressure check-in to the champion.",
+          "do": [
+            "send one short check-in to the champion",
+            "offer help with whatever the customer is waiting on internally"
+          ],
+          "dont": ["chase more than once in the same week", "add new stakeholders or escalate to their management"]
+        },
+        "status": "supported",
+        "counts": {
+          "decisions": 11,
+          "positive_reactions": 7,
+          "negative_reactions": 1,
+          "outcomes_advanced": 4,
+          "counterexamples": 0
+        },
+        "supporting_decision_episode_ids": [],
+        "counterexamples": [],
+        "exceptions": [
+          {
+            "description": "We owe the customer an open deliverable: send it instead of checking in",
+            "conditions": [{"field": "current_commitments", "op": "contains", "value": "open item owned by our rep"}]
+          },
+          {
+            "description": "Customer stated a later date for their next step",
+            "conditions": [{"field": "next_milestone", "op": "contains", "value": "customer-stated later date"}]
+          }
+        ],
+        "evidence_classes": ["methodology", "cs_ops"],
+        "used_by_evaluators": ["timing_cadence:v1", "next_action_quality:v1"],
+        "provenance": {
+          "created_from": "seed_history",
+          "source_decision_episode_id": null,
+          "note": "Seeded history (synthetic) for the WP16 eval benchmark"
+        },
+        "created_at": "2026-08-01T00:00:00Z",
+        "last_validated_at": "2026-09-20T00:00:00Z"
+      }
+    ]
+  },
+  "candidate_action": {
+    "proposed_action_type": "send_email",
+    "recipients": [{"person_id": "0b0e0000-0000-4000-8000-000000000031", "role": "to", "why": "Champion"}],
+    "finished_artifact": {
+      "channel": "email",
+      "subject": "Re: Relay for the Beta support org",
+      "body": "Hi Hannah,\n\nJust checking in - any update on Ravi's review? Happy to help however we can.\n\nBest,\nDana"
+    },
+    "crm_next_step_intent": {"next_step": "Hannah updates on Ravi's review", "due_at": null, "stage_change": null},
+    "reason": "A week of silence (K05).",
+    "evidence_refs": [
+      {
+        "activity_id": "0ac70000-0000-4000-8000-0000000b0036",
+        "quote": "let us know what you need from us on EU data residency and we'll get it to you",
+        "speaker_person_id": "0b0e0000-0000-4000-8000-000000000001",
+        "occurred_at": "2026-09-17T16:00:00Z"
+      }
+    ],
+    "knowledge_refs_used": ["0c17c000-0000-4000-8000-000000000005"],
+    "wait_until": null
+  },
+  "expected": [
+    {
+      "eval_type": "knowledge_applicability",
+      "verdict": "fail",
+      "label": "EXCEPTION_TRIGGERED",
+      "diagnostics": [],
+      "blocking": false,
+      "rationale": "K05's first exception holds: we owe the residency addendum and sub-processor list (internal note 09-16), so the silence is ours to break with the deliverable.",
+      "evidence_class": "methodology",
+      "state_refs": ["current_commitments"],
+      "knowledge_refs": ["0c17c000-0000-4000-8000-000000000005"]
+    },
+    {
+      "eval_type": "commitment_consistency",
+      "verdict": "fail",
+      "label": null,
+      "diagnostics": [],
+      "blocking": true,
+      "rationale": "Ignores the rep's own open commitment.",
+      "evidence_class": "methodology",
+      "state_refs": ["current_commitments"]
+    },
+    {
+      "eval_type": "next_action_quality",
+      "verdict": "fail",
+      "label": "NEEDS_REVISION",
+      "diagnostics": [],
+      "blocking": false,
+      "rationale": "Send the residency documents proactively instead of asking for an update.",
+      "evidence_class": "methodology"
+    },
+    {
+      "eval_type": "exception_awareness",
+      "verdict": "fail",
+      "label": "EXCEPTION_MISSED",
+      "diagnostics": [],
+      "blocking": false,
+      "rationale": "K05's exception (we owe the residency documents) holds and the draft checks in instead of delivering; not a customer instruction, so it revises rather than blocks.",
+      "evidence_class": "methodology"
+    }
+  ],
+  "expected_best_action": {
+    "action": "send_email",
+    "why": "Send the residency addendum and sub-processor list to Ravi with Hannah cc'd.",
+    "recipients": [
+      {"person_id": "0b0e0000-0000-4000-8000-000000000034", "role": "to"},
+      {"person_id": "0b0e0000-0000-4000-8000-000000000031", "role": "cc"}
+    ],
+    "channel": "email"
+  },
+  "notes": "In the real world Ravi asked for exactly these documents the next day (039)."
+}

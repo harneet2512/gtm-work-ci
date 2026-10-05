@@ -1,0 +1,98 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://ghost.local/contracts/demo_manifest.v1.json",
+  "title": "DemoManifest",
+  "description": "The frozen, reproducible record of the mined demo case (HAR-129 section 1). Written once after case mining and never edited; content_sha256 is the lowercase hex SHA-256 of the UTF-8 canonical JSON of the document without the content_sha256 field and without the database-assigned ids (top-level account_id and opportunity_id, and in each events[] item state_diff_id and state_after.account_id / state_after.opportunity_id), so the same case hashes the same in any database; every other field, created_at included, is covered. Canonical JSON: object keys sorted by byte order at every level, arrays in their given order, no insignificant whitespace, numbers as written, strings with no HTML escaping (the characters < > & stay literal, unlike the default Go and JavaScript encoders), no trailing newline. `events` is the history through N-1 in real chronology (replay_position strictly increasing), each with the state it produced. The held-out event N is a separate field and carries only what the event is: no state snapshot, diff or material flag, because Event N must not be visible to the system before Play (any state for it is produced by Play itself). What mining expected of N lives in `selection_expectations`, a block no pipeline stage reads.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "id", "account_id", "opportunity_id", "data_cutoff", "events", "held_out_event",
+    "why_selected", "content_sha256", "created_at"
+  ],
+  "properties": {
+    "id": { "$ref": "common.v1.json#/$defs/uuid" },
+    "account_id": { "$ref": "common.v1.json#/$defs/uuid" },
+    "opportunity_id": { "$ref": "common.v1.json#/$defs/uuid" },
+    "data_cutoff": {
+      "description": "Occurred-at of the last history event: the replay world is materialized through here.",
+      "$ref": "common.v1.json#/$defs/timestamp"
+    },
+    "events": {
+      "description": "Events 1..N-1 with the snapshot and material diff after each. The event_sequence_ids are events[].event.event_id followed by held_out_event.event_id.",
+      "type": "array",
+      "minItems": 1,
+      "items": { "$ref": "#/$defs/manifestEvent" }
+    },
+    "held_out_event": {
+      "description": "Event N: replay_position is the last history position plus one (SQL CHECK). Its held-out id is held_out_event.event_id. It must pin payload_sha256 (SQL CHECK demo_manifests_held_out_payload_pinned): the digest of the payload the replay dataset holds for it, which Play verifies before releasing the event.",
+      "$ref": "held_out_event.v1.json",
+      "required": ["payload_sha256"]
+    },
+    "why_selected": {
+      "description": "Why this case and this event were chosen, in terms of the mined state transitions; never a hand-authored story.",
+      "type": "string", "minLength": 1, "maxLength": 4000
+    },
+    "selection_expectations": {
+      "description": "What case mining predicted Event N would change, kept for audit and for checking Play afterwards. It is not state: no pipeline stage, agent or surface reads it, and it must never be used to produce a snapshot or diff for N.",
+      "oneOf": [
+        { "type": "null" },
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["material_dimensions"],
+          "properties": {
+            "is_material": { "type": "boolean" },
+            "material_dimensions": { "type": "array", "uniqueItems": true, "items": { "$ref": "common.v1.json#/$defs/changeDimension" } }
+          }
+        }
+      ]
+    },
+    "mining": {
+      "description": "How the case was found: how many account timelines were scanned and how the sequence scored.",
+      "oneOf": [
+        { "type": "null" },
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["accounts_scanned", "sequence_score"],
+          "properties": {
+            "accounts_scanned": { "type": "integer", "minimum": 1 },
+            "sequence_score": { "type": "number" },
+            "method": { "type": "string", "maxLength": 200 }
+          }
+        }
+      ]
+    },
+    "content_sha256": { "type": "string", "pattern": "^[0-9a-f]{64}$" },
+    "created_at": { "$ref": "common.v1.json#/$defs/timestamp" }
+  },
+  "$defs": {
+    "manifestEvent": {
+      "description": "One history event with the state it produced: HeldOutEvent fields, the snapshot after it and the material diff it caused.",
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["event", "state_after", "state_diff_id", "is_material", "material_dimensions"],
+      "properties": {
+        "event": { "$ref": "held_out_event.v1.json" },
+        "state_after": { "$ref": "common.v1.json#/$defs/stateRef" },
+        "state_diff_id": { "oneOf": [{ "$ref": "common.v1.json#/$defs/uuid" }, { "type": "null" }] },
+        "graph_diff_ref": { "oneOf": [{ "$ref": "common.v1.json#/$defs/graphDiffRef" }, { "type": "null" }] },
+        "is_material": { "type": "boolean" },
+        "material_dimensions": {
+          "type": "array",
+          "uniqueItems": true,
+          "items": { "$ref": "common.v1.json#/$defs/changeDimension" }
+        }
+      },
+      "if": { "properties": { "is_material": { "const": true } } },
+      "then": {
+        "description": "A material event names what it changed and points at its diff.",
+        "required": ["state_diff_id"],
+        "properties": {
+          "state_diff_id": { "$ref": "common.v1.json#/$defs/uuid" },
+          "material_dimensions": { "minItems": 1 }
+        }
+      }
+    }
+  }
+}
