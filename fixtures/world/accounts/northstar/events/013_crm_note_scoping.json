@@ -1,0 +1,18 @@
+{
+  "source_system": "crm",
+  "source_object_id": "note:NS-2-001",
+  "source_event_key": "created",
+  "occurred_at": "2026-08-28T09:10:00Z",
+  "connector": "salesforce",
+  "connector_version": "0.1.0",
+  "payload": {
+    "kind": "crm_change",
+    "object_type": "Note",
+    "record_id": "note:NS-2-001",
+    "account_record_id": "account:NS-2",
+    "changed_at": "2026-08-28T09:10:00Z",
+    "changed_by": "dana@ghostvendor.com",
+    "created": true,
+    "note_body": "Scoping call 8/27: Elena Vasquez champions the rollout to all four clinics; hard deadline is open enrollment on Nov 2. Grace Liu (VP Finance) approves budget on Elena's recommendation. Intake forms carry PHI, so Sam Okafor's security team must review and we need a BAA."
+  }
+}

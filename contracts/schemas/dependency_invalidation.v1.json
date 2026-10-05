@@ -1,0 +1,134 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://ghost.local/contracts/dependency_invalidation.v1.json",
+  "title": "DependencyInvalidation",
+  "description": "What a human edit of the chosen action invalidated, recomputed and preserved (HAR-97 E11 edit propagation; HAR-145 'Human edit / recomputation visualization'). Derived at read time from stored facts only: the saved edits or the HumanDelta's literal changes, the candidate's EvalBundle (the evals on the OLD artifact), the send-time re-evaluation batch of the FINAL artifact, and the account state version before and after. Nothing is predicted and nothing is fabricated: an object is `invalidated` only because a declared dependency says the edited field feeds it (an eval is declared independent of a field explicitly, an eval the table does not know depends on every field); `recomputed` lists only rows that exist; an invalidated object nothing re-derived is listed in `not_recomputed` (semantic evals are not re-run at send time, the set is not re-ranked, knowledge use is not re-judged). A send whose re-run of an eval that was declared independent of every edit nevertheless changed its verdict is reported as invalidated (undeclared dependency), never preserved.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["run_id", "decision_episode_id", "human_delta_id", "status", "edited", "semantic_labels", "account_state", "entries", "preserved_overall", "generated_at"],
+  "properties": {
+    "run_id": { "$ref": "common.v1.json#/$defs/uuid" },
+    "decision_episode_id": { "$ref": "common.v1.json#/$defs/uuid" },
+    "human_delta_id": { "oneOf": [{ "$ref": "common.v1.json#/$defs/uuid" }, { "type": "null" }] },
+    "status": {
+      "description": "not_decided: no candidate chosen yet. unedited: chosen (or sent) with no edit, so nothing is invalidated. edits_pending: edits are saved and the send has not happened, so the invalidation is known and nothing has been recomputed yet. reevaluated: sent with edits; the final artifact was re-evaluated at send time by the deterministic evals (the status does not claim more: semantic evals are not re-run, the set is not re-ranked and knowledge use is not re-judged, so those stay in not_recomputed). discarded: the decision was discarded, the edited artifact was never used. recomputation_unavailable: sent with edits, but the send-time batch is not linked (sent before the link was recorded); invalidation is listed, recomputed is empty.",
+      "type": "string",
+      "enum": ["not_decided", "unedited", "edits_pending", "reevaluated", "discarded", "recomputation_unavailable"]
+    },
+    "edited": { "type": "boolean" },
+    "semantic_labels": {
+      "description": "The HumanDelta's worker-assigned labels (delta-level: the worker labels the whole change). Empty before the send or when the delta is unlabeled.",
+      "type": "array",
+      "items": { "type": "string" }
+    },
+    "account_state": {
+      "description": "A human edit never writes account state, but preserved is PROVEN, not assumed. version_before is the version the run read; version_after is the version the send-time evaluation stored that it read (null before the send). preserved compares the stored version and the stored sha-256 of the state document: true when both match, false when either differs, null (unknown) when either side cannot be established (before the send, a run with no pinned version, a state that cannot be read). An unknown or false state is never listed as preserved.",
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["account_id", "version_before", "version_after", "preserved"],
+      "properties": {
+        "account_id": { "$ref": "common.v1.json#/$defs/uuid" },
+        "version_before": { "oneOf": [{ "type": "integer", "minimum": 1 }, { "type": "null" }] },
+        "version_after": { "oneOf": [{ "type": "integer", "minimum": 1 }, { "type": "null" }] },
+        "preserved": { "oneOf": [{ "type": "boolean" }, { "type": "null" }] }
+      },
+      "allOf": [
+        {
+          "description": "No version read by a send, nothing to compare: unknown.",
+          "if": { "properties": { "version_after": { "type": "null" } }, "required": ["version_after"] },
+          "then": { "properties": { "preserved": { "type": "null" } } }
+        }
+      ]
+    },
+    "entries": {
+      "description": "One entry per edit, in edit order. Empty when nothing was edited.",
+      "type": "array",
+      "items": { "$ref": "#/$defs/entry" }
+    },
+    "preserved_overall": {
+      "description": "Objects no edit touched (the intersection of every entry's preserved set). With no edit it is everything: the account state and every eval of the candidate.",
+      "type": "array",
+      "items": { "$ref": "#/$defs/spanRef" }
+    },
+    "generated_at": { "$ref": "common.v1.json#/$defs/timestamp" }
+  },
+  "$defs": {
+    "field": {
+      "description": "The part of the action an edit changes.",
+      "type": "string",
+      "enum": ["recipients", "subject", "body", "channel", "attachments"]
+    },
+    "semanticClass": {
+      "description": "A coarse deterministic class of the edit (the literal kind decides it). The worker's finer labels are the delta's semantic_labels.",
+      "type": "string",
+      "enum": ["stakeholder_change", "content_change", "channel_change", "attachment_change"]
+    },
+    "edit": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["field", "kind", "before", "after", "semantic_class"],
+      "properties": {
+        "field": { "$ref": "#/$defs/field" },
+        "kind": {
+          "description": "The literal change kind of human_delta.literal_changes.",
+          "type": "string",
+          "enum": ["recipient_added", "recipient_removed", "recipient_role_changed", "subject_changed", "channel_changed", "paragraph_added", "paragraph_removed", "paragraph_edited", "attachment_added", "attachment_removed"]
+        },
+        "before": { "description": "The draft's value, null when the edit adds something.", "type": ["string", "object", "null"] },
+        "after": { "description": "The human's value, null when the edit removes something.", "type": ["string", "object", "null"] },
+        "semantic_class": { "$ref": "#/$defs/semanticClass" }
+      }
+    },
+    "spanRef": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["kind", "ref_id", "field", "label", "reason", "verdict", "replaces"],
+      "properties": {
+        "kind": {
+          "description": "artifact_field: a part of the candidate's action (ref_id is the candidate). ranking_rationale: why the candidate ranked where it did (ref_id is the candidate). knowledge_use_claim: the claim that the draft applies a piece of company knowledge (ref_id is the knowledge). eval_result: one EvalResult (ref_id is its id). final_artifact: the artifact as sent (ref_id is the human strategy decision). account_state: the account's state (ref_id is the account).",
+          "type": "string",
+          "enum": ["artifact_field", "ranking_rationale", "knowledge_use_claim", "eval_result", "final_artifact", "account_state"]
+        },
+        "ref_id": { "oneOf": [{ "$ref": "common.v1.json#/$defs/uuid" }, { "type": "null" }] },
+        "field": { "oneOf": [{ "$ref": "#/$defs/field" }, { "type": "null" }], "description": "The edited field the object depends on, where it has one." },
+        "label": { "type": "string", "minLength": 1, "maxLength": 200 },
+        "reason": { "type": "string", "minLength": 1, "maxLength": 500 },
+        "verdict": { "description": "For an eval_result, its verdict (null when the eval was not relevant or the ref is not an eval).", "oneOf": [{ "type": "string", "enum": ["pass", "warn", "fail", "abstain"] }, { "type": "null" }] },
+        "replaces": { "description": "For a re-evaluated eval_result, the id of the old result it replaces.", "oneOf": [{ "$ref": "common.v1.json#/$defs/uuid" }, { "type": "null" }] }
+      }
+    },
+    "entry": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["index", "edit", "invalidated", "recomputed", "not_recomputed", "preserved"],
+      "properties": {
+        "index": { "type": "integer", "minimum": 0 },
+        "edit": { "$ref": "#/$defs/edit" },
+        "invalidated": { "description": "What this edit made stale, each with its reason.", "type": "array", "items": { "$ref": "#/$defs/spanRef" } },
+        "recomputed": { "description": "The new rows that re-derive invalidated objects; each names what it replaces.", "type": "array", "items": { "$ref": "#/$defs/spanRef" } },
+        "not_recomputed": { "description": "Invalidated objects that nothing re-derived, with the reason; the honest gap.", "type": "array", "items": { "$ref": "#/$defs/spanRef" } },
+        "preserved": { "description": "Objects this edit does not touch.", "type": "array", "items": { "$ref": "#/$defs/spanRef" } }
+      }
+    }
+  },
+  "allOf": [
+    {
+      "description": "No edit, nothing invalidated. A discarded decision invalidated nothing either: the edited artifact was never used.",
+      "if": { "properties": { "status": { "enum": ["not_decided", "unedited", "discarded"] } }, "required": ["status"] },
+      "then": { "properties": { "entries": { "maxItems": 0 } } }
+    },
+    {
+      "if": { "properties": { "status": { "enum": ["not_decided", "unedited"] } }, "required": ["status"] },
+      "then": { "properties": { "edited": { "const": false } } }
+    },
+    {
+      "if": { "properties": { "status": { "enum": ["edits_pending", "reevaluated", "recomputation_unavailable"] } }, "required": ["status"] },
+      "then": { "properties": { "entries": { "minItems": 1 }, "edited": { "const": true } } }
+    },
+    {
+      "description": "Before the send nothing has been recomputed.",
+      "if": { "properties": { "status": { "const": "edits_pending" } }, "required": ["status"] },
+      "then": { "properties": { "account_state": { "properties": { "version_after": { "type": "null" } } } } }
+    }
+  ]
+}

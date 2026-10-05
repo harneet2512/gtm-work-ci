@@ -1,0 +1,188 @@
+{
+  "eval_run_id": "0f0a0000-0000-4000-8000-000000000601",
+  "previous_eval_run_id": "0f0a0000-0000-4000-8000-000000000600",
+  "areas": [
+    {
+      "area": "intelligence",
+      "label": "Intelligence",
+      "order": 1,
+      "measured": false,
+      "counts": {
+        "pass": 0,
+        "warn": 0,
+        "fail": 0,
+        "unknown": 0,
+        "blocking_fail": 0,
+        "total": 0
+      },
+      "delta": {
+        "pass": 0,
+        "warn": 0,
+        "fail": 0,
+        "unknown": 0,
+        "blocking_fail": 0,
+        "total": 0
+      },
+      "families": []
+    },
+    {
+      "area": "decision_learning",
+      "label": "Decision & Learning",
+      "order": 2,
+      "measured": true,
+      "counts": {
+        "pass": 1,
+        "warn": 0,
+        "fail": 0,
+        "unknown": 0,
+        "blocking_fail": 0,
+        "total": 1
+      },
+      "delta": {
+        "pass": 1,
+        "warn": 0,
+        "fail": -1,
+        "unknown": 0,
+        "blocking_fail": 0,
+        "total": 0
+      },
+      "families": [
+        {
+          "family_id": "E8",
+          "name": "Decision construction",
+          "counts": {
+            "pass": 1,
+            "warn": 0,
+            "fail": 0,
+            "unknown": 0,
+            "blocking_fail": 0,
+            "total": 1
+          },
+          "delta": {
+            "pass": 1,
+            "warn": 0,
+            "fail": -1,
+            "unknown": 0,
+            "blocking_fail": 0,
+            "total": 0
+          },
+          "eval_types": [
+            {
+              "eval_type": "champion_continuity",
+              "counts": {
+                "pass": 1,
+                "warn": 0,
+                "fail": 0,
+                "unknown": 0,
+                "blocking_fail": 0,
+                "total": 1
+              },
+              "delta": {
+                "pass": 1,
+                "warn": 0,
+                "fail": -1,
+                "unknown": 0,
+                "blocking_fail": 0,
+                "total": 0
+              },
+              "result_ids": [
+                "0e1a0000-0000-4000-8000-000000000911"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "area": "cliff_experience",
+      "label": "Cliff / Experience",
+      "order": 3,
+      "measured": true,
+      "counts": {
+        "pass": 0,
+        "warn": 1,
+        "fail": 0,
+        "unknown": 0,
+        "blocking_fail": 0,
+        "total": 1
+      },
+      "delta": {
+        "pass": 0,
+        "warn": 1,
+        "fail": 0,
+        "unknown": 0,
+        "blocking_fail": 0,
+        "total": 1
+      },
+      "families": [
+        {
+          "family_id": "E12",
+          "name": "Action / output generation",
+          "counts": {
+            "pass": 0,
+            "warn": 1,
+            "fail": 0,
+            "unknown": 0,
+            "blocking_fail": 0,
+            "total": 1
+          },
+          "delta": {
+            "pass": 0,
+            "warn": 1,
+            "fail": 0,
+            "unknown": 0,
+            "blocking_fail": 0,
+            "total": 1
+          },
+          "eval_types": [
+            {
+              "eval_type": "cta_calibration",
+              "counts": {
+                "pass": 0,
+                "warn": 1,
+                "fail": 0,
+                "unknown": 0,
+                "blocking_fail": 0,
+                "total": 1
+              },
+              "delta": {
+                "pass": 0,
+                "warn": 1,
+                "fail": 0,
+                "unknown": 0,
+                "blocking_fail": 0,
+                "total": 1
+              },
+              "result_ids": [
+                "0e1a0000-0000-4000-8000-000000000912"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "area": "system",
+      "label": "System",
+      "order": 4,
+      "measured": false,
+      "counts": {
+        "pass": 0,
+        "warn": 0,
+        "fail": 0,
+        "unknown": 0,
+        "blocking_fail": 0,
+        "total": 0
+      },
+      "delta": {
+        "pass": 0,
+        "warn": 0,
+        "fail": 0,
+        "unknown": 0,
+        "blocking_fail": 0,
+        "total": 0
+      },
+      "families": []
+    }
+  ]
+}

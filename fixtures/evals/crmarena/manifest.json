@@ -1,0 +1,963 @@
+{
+ "generator": "bench/evals/crmarena_gold v1",
+ "cases": 55,
+ "cases_sha256": "94a9eb429585c10a6b0b7a90f1765d87a7a1888edfe23cd79f6a2af48f86245e",
+ "snapshot_manifest_sha256": "8fbda45c15d1806dc4c37d5230a20ac24d6619ef36a88c0efddb344792c89f03",
+ "snapshot_file_sha256": {
+  "Account": "16564e38d50ca81221e9aa185f6f3ae31514f9f32dd8f14b6dda7e7312fae036",
+  "Contact": "2fd8980a4af96dc108c844e7c7bdc61ed368bdd78acac624ed6d43a563d6e937",
+  "Contract": "09ec73e79843618d4122aeb047a234fb272733ad117828f00f4f5a2dda8ba454",
+  "EmailMessage": "5387fe3cddff60e46653066fc354a307c710e64f8322d0651f119a832c593d2d",
+  "Opportunity": "dec22c6f0adfa34a2adba53be1b1ba2c68827ce4d5acc0aadd9d509f7bee36c2",
+  "Quote": "dcf34f910dc150cb637edb755af245e603d82bf762a4732f980e8aa81e9c1396",
+  "Task": "57e1ee81a71a41cc2c37360e6f7ca5d8f0382f0d766155c6071a31b78a3901f3",
+  "User": "2539dac482fcd993a3e9dd96e0b01adeed3fdd61fdae3be1440ec4d56fdb6914"
+ },
+ "frozen_split": "bench/data/deal_split.json (cutoff 2023-11-01)",
+ "evidence": {
+  "cr_d1_signature_push_after_review_notice": {
+   "crmarena:EmailMessage:02sWt000001zpGYIAY": {
+    "excerpt_sha256": "6598ae090e3c0a24aa0c369f8636d7ddefe64ff740cc85223f7eb44de0fda6b6",
+    "body_sha256": "6598ae090e3c0a24aa0c369f8636d7ddefe64ff740cc85223f7eb44de0fda6b6"
+   },
+   "crmarena:EmailMessage:02sWt000001zy6lIAA": {
+    "excerpt_sha256": "bc552825658ef5f5f26f7f5dc14a73fb887ea96c304525f4fb5a53233acec071",
+    "body_sha256": "b014aa2debde62ed790b57e06b128d62b32ab939a85cae206e9e73619c401d85"
+   },
+   "crmarena:EmailMessage:02sWt000001zplAIAQ": {
+    "excerpt_sha256": "a972c6760f07f0f81abbfa74d2fbdb1d88f893195e32ee01000f8c793238c984",
+    "body_sha256": "a972c6760f07f0f81abbfa74d2fbdb1d88f893195e32ee01000f8c793238c984"
+   },
+   "crmarena:EmailMessage:02sWt000001zpGXIAY": {
+    "excerpt_sha256": "e5d5544718ac41d1ef4b823a2f0aec7d4cee0f5bb296f48f436431d2fdcbff3e",
+    "body_sha256": "e5d5544718ac41d1ef4b823a2f0aec7d4cee0f5bb296f48f436431d2fdcbff3e"
+   }
+  },
+  "cr_d1_cfo_pulled_in_while_team_reviews": {
+   "crmarena:EmailMessage:02sWt000001zpGYIAY": {
+    "excerpt_sha256": "6598ae090e3c0a24aa0c369f8636d7ddefe64ff740cc85223f7eb44de0fda6b6",
+    "body_sha256": "6598ae090e3c0a24aa0c369f8636d7ddefe64ff740cc85223f7eb44de0fda6b6"
+   },
+   "crmarena:EmailMessage:02sWt000001zy6lIAA": {
+    "excerpt_sha256": "bc552825658ef5f5f26f7f5dc14a73fb887ea96c304525f4fb5a53233acec071",
+    "body_sha256": "b014aa2debde62ed790b57e06b128d62b32ab939a85cae206e9e73619c401d85"
+   },
+   "crmarena:EmailMessage:02sWt000001zplAIAQ": {
+    "excerpt_sha256": "a972c6760f07f0f81abbfa74d2fbdb1d88f893195e32ee01000f8c793238c984",
+    "body_sha256": "a972c6760f07f0f81abbfa74d2fbdb1d88f893195e32ee01000f8c793238c984"
+   },
+   "crmarena:EmailMessage:02sWt000001zpGXIAY": {
+    "excerpt_sha256": "e5d5544718ac41d1ef4b823a2f0aec7d4cee0f5bb296f48f436431d2fdcbff3e",
+    "body_sha256": "e5d5544718ac41d1ef4b823a2f0aec7d4cee0f5bb296f48f436431d2fdcbff3e"
+   }
+  },
+  "cr_d1_cfo_direct_pricing_drops_chin_wei": {
+   "crmarena:EmailMessage:02sWt000001zpGYIAY": {
+    "excerpt_sha256": "6598ae090e3c0a24aa0c369f8636d7ddefe64ff740cc85223f7eb44de0fda6b6",
+    "body_sha256": "6598ae090e3c0a24aa0c369f8636d7ddefe64ff740cc85223f7eb44de0fda6b6"
+   },
+   "crmarena:EmailMessage:02sWt000001zy6lIAA": {
+    "excerpt_sha256": "bc552825658ef5f5f26f7f5dc14a73fb887ea96c304525f4fb5a53233acec071",
+    "body_sha256": "b014aa2debde62ed790b57e06b128d62b32ab939a85cae206e9e73619c401d85"
+   },
+   "crmarena:EmailMessage:02sWt000001zplAIAQ": {
+    "excerpt_sha256": "a972c6760f07f0f81abbfa74d2fbdb1d88f893195e32ee01000f8c793238c984",
+    "body_sha256": "a972c6760f07f0f81abbfa74d2fbdb1d88f893195e32ee01000f8c793238c984"
+   },
+   "crmarena:EmailMessage:02sWt000001zpGXIAY": {
+    "excerpt_sha256": "e5d5544718ac41d1ef4b823a2f0aec7d4cee0f5bb296f48f436431d2fdcbff3e",
+    "body_sha256": "e5d5544718ac41d1ef4b823a2f0aec7d4cee0f5bb296f48f436431d2fdcbff3e"
+   }
+  },
+  "cr_d1_case_studies_sent_cost_question_ignored": {
+   "crmarena:Task:00TWt000002yz2nMAA": {
+    "excerpt_sha256": "9e5d4c7c80417c6a3935a462c5422b613acf8fb32dd0e3c870b956165da54d05",
+    "body_sha256": "9e5d4c7c80417c6a3935a462c5422b613acf8fb32dd0e3c870b956165da54d05"
+   },
+   "crmarena:EmailMessage:02sWt000001zplAIAQ": {
+    "excerpt_sha256": "a972c6760f07f0f81abbfa74d2fbdb1d88f893195e32ee01000f8c793238c984",
+    "body_sha256": "a972c6760f07f0f81abbfa74d2fbdb1d88f893195e32ee01000f8c793238c984"
+   },
+   "crmarena:EmailMessage:02sWt000001zpGXIAY": {
+    "excerpt_sha256": "e5d5544718ac41d1ef4b823a2f0aec7d4cee0f5bb296f48f436431d2fdcbff3e",
+    "body_sha256": "e5d5544718ac41d1ef4b823a2f0aec7d4cee0f5bb296f48f436431d2fdcbff3e"
+   },
+   "crmarena:EmailMessage:02sWt000001zpGYIAY": {
+    "excerpt_sha256": "6598ae090e3c0a24aa0c369f8636d7ddefe64ff740cc85223f7eb44de0fda6b6",
+    "body_sha256": "6598ae090e3c0a24aa0c369f8636d7ddefe64ff740cc85223f7eb44de0fda6b6"
+   }
+  },
+  "cr_d1_answers_cost_question_and_sends_case_studies": {
+   "crmarena:Task:00TWt000002yz2nMAA": {
+    "excerpt_sha256": "9e5d4c7c80417c6a3935a462c5422b613acf8fb32dd0e3c870b956165da54d05",
+    "body_sha256": "9e5d4c7c80417c6a3935a462c5422b613acf8fb32dd0e3c870b956165da54d05"
+   },
+   "crmarena:EmailMessage:02sWt000001zplAIAQ": {
+    "excerpt_sha256": "a972c6760f07f0f81abbfa74d2fbdb1d88f893195e32ee01000f8c793238c984",
+    "body_sha256": "a972c6760f07f0f81abbfa74d2fbdb1d88f893195e32ee01000f8c793238c984"
+   },
+   "crmarena:EmailMessage:02sWt000001zpGXIAY": {
+    "excerpt_sha256": "e5d5544718ac41d1ef4b823a2f0aec7d4cee0f5bb296f48f436431d2fdcbff3e",
+    "body_sha256": "e5d5544718ac41d1ef4b823a2f0aec7d4cee0f5bb296f48f436431d2fdcbff3e"
+   },
+   "crmarena:EmailMessage:02sWt000001zpGYIAY": {
+    "excerpt_sha256": "6598ae090e3c0a24aa0c369f8636d7ddefe64ff740cc85223f7eb44de0fda6b6",
+    "body_sha256": "6598ae090e3c0a24aa0c369f8636d7ddefe64ff740cc85223f7eb44de0fda6b6"
+   }
+  },
+  "cr_d1_just_checking_in_after_a_week_of_silence": {
+   "crmarena:Task:00TWt000002z1XgMAI": {
+    "excerpt_sha256": "75f6e0b5e1ce16fb8fac39f3101289f804e9ea52bf4f8b63e7e87ec2b3cc8977",
+    "body_sha256": "75f6e0b5e1ce16fb8fac39f3101289f804e9ea52bf4f8b63e7e87ec2b3cc8977"
+   },
+   "crmarena:EmailMessage:02sWt000001zplAIAQ": {
+    "excerpt_sha256": "a972c6760f07f0f81abbfa74d2fbdb1d88f893195e32ee01000f8c793238c984",
+    "body_sha256": "a972c6760f07f0f81abbfa74d2fbdb1d88f893195e32ee01000f8c793238c984"
+   },
+   "crmarena:EmailMessage:02sWt000001zpGYIAY": {
+    "excerpt_sha256": "6598ae090e3c0a24aa0c369f8636d7ddefe64ff740cc85223f7eb44de0fda6b6",
+    "body_sha256": "6598ae090e3c0a24aa0c369f8636d7ddefe64ff740cc85223f7eb44de0fda6b6"
+   },
+   "crmarena:Task:00TWt000002z3xcMAA": {
+    "excerpt_sha256": "f2fc1a3afdf29079f4e27ef0a2c7e33aac7b5d436fb76e7d8aab1f94ac742a52",
+    "body_sha256": "f2fc1a3afdf29079f4e27ef0a2c7e33aac7b5d436fb76e7d8aab1f94ac742a52"
+   }
+  },
+  "cr_d1_negotiation_invite_while_review_open": {
+   "crmarena:Task:00TWt000002z3xcMAA": {
+    "excerpt_sha256": "f2fc1a3afdf29079f4e27ef0a2c7e33aac7b5d436fb76e7d8aab1f94ac742a52",
+    "body_sha256": "f2fc1a3afdf29079f4e27ef0a2c7e33aac7b5d436fb76e7d8aab1f94ac742a52"
+   },
+   "crmarena:EmailMessage:02sWt000001zplAIAQ": {
+    "excerpt_sha256": "a972c6760f07f0f81abbfa74d2fbdb1d88f893195e32ee01000f8c793238c984",
+    "body_sha256": "a972c6760f07f0f81abbfa74d2fbdb1d88f893195e32ee01000f8c793238c984"
+   },
+   "crmarena:EmailMessage:02sWt000001zpGXIAY": {
+    "excerpt_sha256": "e5d5544718ac41d1ef4b823a2f0aec7d4cee0f5bb296f48f436431d2fdcbff3e",
+    "body_sha256": "e5d5544718ac41d1ef4b823a2f0aec7d4cee0f5bb296f48f436431d2fdcbff3e"
+   },
+   "crmarena:EmailMessage:02sWt000001zpGYIAY": {
+    "excerpt_sha256": "6598ae090e3c0a24aa0c369f8636d7ddefe64ff740cc85223f7eb44de0fda6b6",
+    "body_sha256": "6598ae090e3c0a24aa0c369f8636d7ddefe64ff740cc85223f7eb44de0fda6b6"
+   }
+  },
+  "cr_d1_fourth_recap_after_three_identical": {
+   "crmarena:EmailMessage:02sWt000001zplAIAQ": {
+    "excerpt_sha256": "a972c6760f07f0f81abbfa74d2fbdb1d88f893195e32ee01000f8c793238c984",
+    "body_sha256": "a972c6760f07f0f81abbfa74d2fbdb1d88f893195e32ee01000f8c793238c984"
+   },
+   "crmarena:EmailMessage:02sWt000001zy6lIAA": {
+    "excerpt_sha256": "bc552825658ef5f5f26f7f5dc14a73fb887ea96c304525f4fb5a53233acec071",
+    "body_sha256": "b014aa2debde62ed790b57e06b128d62b32ab939a85cae206e9e73619c401d85"
+   },
+   "crmarena:EmailMessage:02sWt000001zoKMIAY": {
+    "excerpt_sha256": "7efec822b739c59cbd41877be7a074de0a7ceae12e115062ca5dd7fa777b8697",
+    "body_sha256": "c4a1e5fc4a8fd95e2715d35f96c0c7d4552c21aa5579a6259d53c9987b043e99"
+   },
+   "crmarena:EmailMessage:02sWt00000201r1IAA": {
+    "excerpt_sha256": "648da33bcc0387b5f552e7b56fd380313748b482ceb05836db74d3823fd173f9",
+    "body_sha256": "2785d7d407ea433812f20a2268698111b7642b69aff84c812e437ef725d4ffd9"
+   }
+  },
+  "cr_d2_long_email_instead_of_the_requested_call": {
+   "crmarena:EmailMessage:02sWt00000200N4IAI": {
+    "excerpt_sha256": "0937b01b39adad119a995d49f213d74b4d56330c694226150dbae3eeb98c3b00",
+    "body_sha256": "0937b01b39adad119a995d49f213d74b4d56330c694226150dbae3eeb98c3b00"
+   },
+   "crmarena:EmailMessage:02sWt000002008ZIAQ": {
+    "excerpt_sha256": "740fa7359ccc9203bfbde4c9db5a8d5523a42e380cf1b0b138b8f44bd305bd35",
+    "body_sha256": "b2054974e24c8efdb82321cfc7ee082b447895ed9e0b3dd6ef2dbacbfa127ee0"
+   }
+  },
+  "cr_d2_crm_note_only_no_reply_to_customer": {
+   "crmarena:EmailMessage:02sWt00000200N4IAI": {
+    "excerpt_sha256": "0937b01b39adad119a995d49f213d74b4d56330c694226150dbae3eeb98c3b00",
+    "body_sha256": "0937b01b39adad119a995d49f213d74b4d56330c694226150dbae3eeb98c3b00"
+   },
+   "crmarena:EmailMessage:02sWt000002008ZIAQ": {
+    "excerpt_sha256": "740fa7359ccc9203bfbde4c9db5a8d5523a42e380cf1b0b138b8f44bd305bd35",
+    "body_sha256": "b2054974e24c8efdb82321cfc7ee082b447895ed9e0b3dd6ef2dbacbfa127ee0"
+   }
+  },
+  "cr_d2_books_the_thursday_call": {
+   "crmarena:EmailMessage:02sWt00000200N4IAI": {
+    "excerpt_sha256": "0937b01b39adad119a995d49f213d74b4d56330c694226150dbae3eeb98c3b00",
+    "body_sha256": "0937b01b39adad119a995d49f213d74b4d56330c694226150dbae3eeb98c3b00"
+   },
+   "crmarena:EmailMessage:02sWt000002008ZIAQ": {
+    "excerpt_sha256": "740fa7359ccc9203bfbde4c9db5a8d5523a42e380cf1b0b138b8f44bd305bd35",
+    "body_sha256": "b2054974e24c8efdb82321cfc7ee082b447895ed9e0b3dd6ef2dbacbfa127ee0"
+   }
+  },
+  "cr_d2_books_thursday_and_attaches_the_order_form": {
+   "crmarena:EmailMessage:02sWt00000200N4IAI": {
+    "excerpt_sha256": "0937b01b39adad119a995d49f213d74b4d56330c694226150dbae3eeb98c3b00",
+    "body_sha256": "0937b01b39adad119a995d49f213d74b4d56330c694226150dbae3eeb98c3b00"
+   },
+   "crmarena:EmailMessage:02sWt000002008ZIAQ": {
+    "excerpt_sha256": "740fa7359ccc9203bfbde4c9db5a8d5523a42e380cf1b0b138b8f44bd305bd35",
+    "body_sha256": "b2054974e24c8efdb82321cfc7ee082b447895ed9e0b3dd6ef2dbacbfa127ee0"
+   }
+  },
+  "cr_d3_cto_requested_but_not_included": {
+   "crmarena:EmailMessage:02sWt000002006wIAA": {
+    "excerpt_sha256": "6d8df95c9cfe4871f9329af309f8df90d09959638aad1dcf1a9142a0251bee52",
+    "body_sha256": "6d8df95c9cfe4871f9329af309f8df90d09959638aad1dcf1a9142a0251bee52"
+   },
+   "crmarena:EmailMessage:02sWt000001zwMnIAI": {
+    "excerpt_sha256": "1f97c8e4a3ea64d18b40e1fa70c596fc0d81723f20e6dccce736c2fd9df7368b",
+    "body_sha256": "91863c31dd9d57c0f81e3d362ef0350e5c6e968b3fd3e2c288366a3a4886287a"
+   },
+   "crmarena:EmailMessage:02sWt000001zrJrIAI": {
+    "excerpt_sha256": "a2d83b86c3a95386aa8adc9e54443caa2c888e847df143c12f6e7e281b6ca7ee",
+    "body_sha256": "2f30ab7d0840c24dd45a39f730dadf0bc32e3de4d969048f7311fb3e72cf01d0"
+   },
+   "crmarena:EmailMessage:02sWt000001zpl7IAA": {
+    "excerpt_sha256": "0144186d2a0cb16494ba5df8fac62593fe06e0912121c65db3181c65315466d3",
+    "body_sha256": "0144186d2a0cb16494ba5df8fac62593fe06e0912121c65db3181c65315466d3"
+   }
+  },
+  "cr_d3_asks_for_ctos_address_and_adds_him": {
+   "crmarena:EmailMessage:02sWt000002006wIAA": {
+    "excerpt_sha256": "6d8df95c9cfe4871f9329af309f8df90d09959638aad1dcf1a9142a0251bee52",
+    "body_sha256": "6d8df95c9cfe4871f9329af309f8df90d09959638aad1dcf1a9142a0251bee52"
+   },
+   "crmarena:EmailMessage:02sWt000001zwMnIAI": {
+    "excerpt_sha256": "1f97c8e4a3ea64d18b40e1fa70c596fc0d81723f20e6dccce736c2fd9df7368b",
+    "body_sha256": "91863c31dd9d57c0f81e3d362ef0350e5c6e968b3fd3e2c288366a3a4886287a"
+   },
+   "crmarena:EmailMessage:02sWt000001zrJrIAI": {
+    "excerpt_sha256": "a2d83b86c3a95386aa8adc9e54443caa2c888e847df143c12f6e7e281b6ca7ee",
+    "body_sha256": "2f30ab7d0840c24dd45a39f730dadf0bc32e3de4d969048f7311fb3e72cf01d0"
+   },
+   "crmarena:EmailMessage:02sWt000001zpl7IAA": {
+    "excerpt_sha256": "0144186d2a0cb16494ba5df8fac62593fe06e0912121c65db3181c65315466d3",
+    "body_sha256": "0144186d2a0cb16494ba5df8fac62593fe06e0912121c65db3181c65315466d3"
+   }
+  },
+  "cr_d3_fourth_negotiation_prep_email": {
+   "crmarena:EmailMessage:02sWt000001zrJrIAI": {
+    "excerpt_sha256": "2f30ab7d0840c24dd45a39f730dadf0bc32e3de4d969048f7311fb3e72cf01d0",
+    "body_sha256": "2f30ab7d0840c24dd45a39f730dadf0bc32e3de4d969048f7311fb3e72cf01d0"
+   },
+   "crmarena:EmailMessage:02sWt000001zx12IAA": {
+    "excerpt_sha256": "48d1c3fb9c909c7e8a769b41f753ecdfc8f5c498b0a9f7eee4039e29f8e2a827",
+    "body_sha256": "6e396b102dc4f08da662cf8da754b6b8f669a9d30df20c4f3af65c39a475b647"
+   },
+   "crmarena:EmailMessage:02sWt000001zwMnIAI": {
+    "excerpt_sha256": "7512c188ba687ee4e779dc0b117f852d8da056540085b2ea5f0ab1fed73d355d",
+    "body_sha256": "91863c31dd9d57c0f81e3d362ef0350e5c6e968b3fd3e2c288366a3a4886287a"
+   },
+   "crmarena:EmailMessage:02sWt000001zuO7IAI": {
+    "excerpt_sha256": "d765988d89d0cba5c4928182a6087032b20475702163472dcc02dca65d1a64eb",
+    "body_sha256": "e58a1a36d201dc2555237fd3fd749ad12e4ee4da8f3e3c0e914980c906762749"
+   }
+  },
+  "cr_d3_looking_forward_to_a_meeting_that_has_passed": {
+   "crmarena:Task:00TWt000002z4lWMAQ": {
+    "excerpt_sha256": "61bd021d39dbef634cceb122477ff5808bec378d4b7c48d610a59db68c4dda48",
+    "body_sha256": "61bd021d39dbef634cceb122477ff5808bec378d4b7c48d610a59db68c4dda48"
+   },
+   "crmarena:EmailMessage:02sWt000001zwMnIAI": {
+    "excerpt_sha256": "7512c188ba687ee4e779dc0b117f852d8da056540085b2ea5f0ab1fed73d355d",
+    "body_sha256": "91863c31dd9d57c0f81e3d362ef0350e5c6e968b3fd3e2c288366a3a4886287a"
+   },
+   "crmarena:EmailMessage:02sWt000001zpl7IAA": {
+    "excerpt_sha256": "0144186d2a0cb16494ba5df8fac62593fe06e0912121c65db3181c65315466d3",
+    "body_sha256": "0144186d2a0cb16494ba5df8fac62593fe06e0912121c65db3181c65315466d3"
+   },
+   "crmarena:EmailMessage:02sWt000002006wIAA": {
+    "excerpt_sha256": "6d8df95c9cfe4871f9329af309f8df90d09959638aad1dcf1a9142a0251bee52",
+    "body_sha256": "6d8df95c9cfe4871f9329af309f8df90d09959638aad1dcf1a9142a0251bee52"
+   }
+  },
+  "cr_d3_asks_whether_the_planned_meeting_took_place": {
+   "crmarena:Task:00TWt000002z4lWMAQ": {
+    "excerpt_sha256": "61bd021d39dbef634cceb122477ff5808bec378d4b7c48d610a59db68c4dda48",
+    "body_sha256": "61bd021d39dbef634cceb122477ff5808bec378d4b7c48d610a59db68c4dda48"
+   },
+   "crmarena:EmailMessage:02sWt000001zwMnIAI": {
+    "excerpt_sha256": "7512c188ba687ee4e779dc0b117f852d8da056540085b2ea5f0ab1fed73d355d",
+    "body_sha256": "91863c31dd9d57c0f81e3d362ef0350e5c6e968b3fd3e2c288366a3a4886287a"
+   },
+   "crmarena:EmailMessage:02sWt000001zpl7IAA": {
+    "excerpt_sha256": "0144186d2a0cb16494ba5df8fac62593fe06e0912121c65db3181c65315466d3",
+    "body_sha256": "0144186d2a0cb16494ba5df8fac62593fe06e0912121c65db3181c65315466d3"
+   },
+   "crmarena:EmailMessage:02sWt000002006wIAA": {
+    "excerpt_sha256": "6d8df95c9cfe4871f9329af309f8df90d09959638aad1dcf1a9142a0251bee52",
+    "body_sha256": "6d8df95c9cfe4871f9329af309f8df90d09959638aad1dcf1a9142a0251bee52"
+   }
+  },
+  "cr_d4_contract_with_friday_deadline_while_procurement_reviews": {
+   "crmarena:EmailMessage:02sWt000001zu9iIAA": {
+    "excerpt_sha256": "cfb9b586395c7594c7ff2abdcd0f61a85a3a8f6dba9f1ae872c641a40a7c0bb8",
+    "body_sha256": "cfb9b586395c7594c7ff2abdcd0f61a85a3a8f6dba9f1ae872c641a40a7c0bb8"
+   },
+   "crmarena:EmailMessage:02sWt000001zpElIAI": {
+    "excerpt_sha256": "6e7e32fd4c9cd8552c9534434dfd063422e5e813e9aeca6359ffea63cde3b720",
+    "body_sha256": "6e7e32fd4c9cd8552c9534434dfd063422e5e813e9aeca6359ffea63cde3b720"
+   },
+   "crmarena:EmailMessage:02sWt000001zx5wIAA": {
+    "excerpt_sha256": "30125c18d9351f715362e496db71c7a947acc91022b8644fd7d531cd0de2645d",
+    "body_sha256": "d323df51faf3ae4eaf6e83294a722adea3196c807ab19fc8b7972182339f07d0"
+   }
+  },
+  "cr_d4_finance_officer_pricing_direct_dropping_aditya": {
+   "crmarena:EmailMessage:02sWt000001zu9iIAA": {
+    "excerpt_sha256": "cfb9b586395c7594c7ff2abdcd0f61a85a3a8f6dba9f1ae872c641a40a7c0bb8",
+    "body_sha256": "cfb9b586395c7594c7ff2abdcd0f61a85a3a8f6dba9f1ae872c641a40a7c0bb8"
+   },
+   "crmarena:EmailMessage:02sWt000001zpZtIAI": {
+    "excerpt_sha256": "bfb550bea79c34bd683ca1e225be0031ef140cc917518c94dbef8bce56796aa4",
+    "body_sha256": "aadf0c93e31ec999270108fb67d9a6a4aaa51e999025aeac915f90445ea6a4a2"
+   },
+   "crmarena:EmailMessage:02sWt000001zpElIAI": {
+    "excerpt_sha256": "6e7e32fd4c9cd8552c9534434dfd063422e5e813e9aeca6359ffea63cde3b720",
+    "body_sha256": "6e7e32fd4c9cd8552c9534434dfd063422e5e813e9aeca6359ffea63cde3b720"
+   }
+  },
+  "cr_d4_three_colleagues_copied_on_a_pricing_reply": {
+   "crmarena:EmailMessage:02sWt000001zw1pIAA": {
+    "excerpt_sha256": "ad80d8a56a9ddad19a8dd4195e6fda601505d34fc299217dbda20bb1d1835221",
+    "body_sha256": "ad80d8a56a9ddad19a8dd4195e6fda601505d34fc299217dbda20bb1d1835221"
+   },
+   "crmarena:EmailMessage:02sWt000001zpElIAI": {
+    "excerpt_sha256": "6e7e32fd4c9cd8552c9534434dfd063422e5e813e9aeca6359ffea63cde3b720",
+    "body_sha256": "6e7e32fd4c9cd8552c9534434dfd063422e5e813e9aeca6359ffea63cde3b720"
+   },
+   "crmarena:EmailMessage:02sWt000001zu9iIAA": {
+    "excerpt_sha256": "cfb9b586395c7594c7ff2abdcd0f61a85a3a8f6dba9f1ae872c641a40a7c0bb8",
+    "body_sha256": "cfb9b586395c7594c7ff2abdcd0f61a85a3a8f6dba9f1ae872c641a40a7c0bb8"
+   }
+  },
+  "cr_d4_offers_two_slots_and_the_requested_material": {
+   "crmarena:EmailMessage:02sWt000001zw1pIAA": {
+    "excerpt_sha256": "ad80d8a56a9ddad19a8dd4195e6fda601505d34fc299217dbda20bb1d1835221",
+    "body_sha256": "ad80d8a56a9ddad19a8dd4195e6fda601505d34fc299217dbda20bb1d1835221"
+   },
+   "crmarena:EmailMessage:02sWt000001zpElIAI": {
+    "excerpt_sha256": "6e7e32fd4c9cd8552c9534434dfd063422e5e813e9aeca6359ffea63cde3b720",
+    "body_sha256": "6e7e32fd4c9cd8552c9534434dfd063422e5e813e9aeca6359ffea63cde3b720"
+   },
+   "crmarena:EmailMessage:02sWt000001zu9iIAA": {
+    "excerpt_sha256": "cfb9b586395c7594c7ff2abdcd0f61a85a3a8f6dba9f1ae872c641a40a7c0bb8",
+    "body_sha256": "cfb9b586395c7594c7ff2abdcd0f61a85a3a8f6dba9f1ae872c641a40a7c0bb8"
+   }
+  },
+  "cr_d4_treats_one_signature_title_as_fact": {
+   "crmarena:EmailMessage:02sWt000001zw1pIAA": {
+    "excerpt_sha256": "ad80d8a56a9ddad19a8dd4195e6fda601505d34fc299217dbda20bb1d1835221",
+    "body_sha256": "ad80d8a56a9ddad19a8dd4195e6fda601505d34fc299217dbda20bb1d1835221"
+   },
+   "crmarena:EmailMessage:02sWt000001zpElIAI": {
+    "excerpt_sha256": "6e7e32fd4c9cd8552c9534434dfd063422e5e813e9aeca6359ffea63cde3b720",
+    "body_sha256": "6e7e32fd4c9cd8552c9534434dfd063422e5e813e9aeca6359ffea63cde3b720"
+   },
+   "crmarena:EmailMessage:02sWt000001zu9iIAA": {
+    "excerpt_sha256": "cfb9b586395c7594c7ff2abdcd0f61a85a3a8f6dba9f1ae872c641a40a7c0bb8",
+    "body_sha256": "cfb9b586395c7594c7ff2abdcd0f61a85a3a8f6dba9f1ae872c641a40a7c0bb8"
+   }
+  },
+  "cr_d4_asks_who_approves_instead_of_assuming": {
+   "crmarena:EmailMessage:02sWt000001zw1pIAA": {
+    "excerpt_sha256": "ad80d8a56a9ddad19a8dd4195e6fda601505d34fc299217dbda20bb1d1835221",
+    "body_sha256": "ad80d8a56a9ddad19a8dd4195e6fda601505d34fc299217dbda20bb1d1835221"
+   },
+   "crmarena:EmailMessage:02sWt000001zpElIAI": {
+    "excerpt_sha256": "6e7e32fd4c9cd8552c9534434dfd063422e5e813e9aeca6359ffea63cde3b720",
+    "body_sha256": "6e7e32fd4c9cd8552c9534434dfd063422e5e813e9aeca6359ffea63cde3b720"
+   },
+   "crmarena:EmailMessage:02sWt000001zu9iIAA": {
+    "excerpt_sha256": "cfb9b586395c7594c7ff2abdcd0f61a85a3a8f6dba9f1ae872c641a40a7c0bb8",
+    "body_sha256": "cfb9b586395c7594c7ff2abdcd0f61a85a3a8f6dba9f1ae872c641a40a7c0bb8"
+   }
+  },
+  "cr_d5_signature_by_thursday_while_legal_reviews": {
+   "crmarena:EmailMessage:02sWt000002011NIAQ": {
+    "excerpt_sha256": "bc4145d257ad5e8027c942f089033c401ec7fcec9b7ba390ee1bc8dc1ca76dc8",
+    "body_sha256": "bc4145d257ad5e8027c942f089033c401ec7fcec9b7ba390ee1bc8dc1ca76dc8"
+   },
+   "crmarena:EmailMessage:02sWt000001ztVOIAY": {
+    "excerpt_sha256": "913d7bb3ac4b1bd01e1713de543d4d957dbb78f41919c14c5691aacf36244fd4",
+    "body_sha256": "913d7bb3ac4b1bd01e1713de543d4d957dbb78f41919c14c5691aacf36244fd4"
+   },
+   "crmarena:EmailMessage:02sWt000001zqipIAA": {
+    "excerpt_sha256": "8805ab51d17a3e9a7f205941d365d295f976bf862ac50e1cf40a1554f291a65f",
+    "body_sha256": "8805ab51d17a3e9a7f205941d365d295f976bf862ac50e1cf40a1554f291a65f"
+   },
+   "crmarena:EmailMessage:02sWt00000200y9IAA": {
+    "excerpt_sha256": "1530fb943372911625b8bae6b6b87589d49705d44e55d4e9e1153ffbe5af73b9",
+    "body_sha256": "1530fb943372911625b8bae6b6b87589d49705d44e55d4e9e1153ffbe5af73b9"
+   }
+  },
+  "cr_d5_marketing_director_copied_on_contract_thread": {
+   "crmarena:EmailMessage:02sWt000002011NIAQ": {
+    "excerpt_sha256": "bc4145d257ad5e8027c942f089033c401ec7fcec9b7ba390ee1bc8dc1ca76dc8",
+    "body_sha256": "bc4145d257ad5e8027c942f089033c401ec7fcec9b7ba390ee1bc8dc1ca76dc8"
+   },
+   "crmarena:EmailMessage:02sWt000001ztVOIAY": {
+    "excerpt_sha256": "913d7bb3ac4b1bd01e1713de543d4d957dbb78f41919c14c5691aacf36244fd4",
+    "body_sha256": "913d7bb3ac4b1bd01e1713de543d4d957dbb78f41919c14c5691aacf36244fd4"
+   },
+   "crmarena:EmailMessage:02sWt000001zqipIAA": {
+    "excerpt_sha256": "8805ab51d17a3e9a7f205941d365d295f976bf862ac50e1cf40a1554f291a65f",
+    "body_sha256": "8805ab51d17a3e9a7f205941d365d295f976bf862ac50e1cf40a1554f291a65f"
+   },
+   "crmarena:EmailMessage:02sWt00000200y9IAA": {
+    "excerpt_sha256": "1530fb943372911625b8bae6b6b87589d49705d44e55d4e9e1153ffbe5af73b9",
+    "body_sha256": "1530fb943372911625b8bae6b6b87589d49705d44e55d4e9e1153ffbe5af73b9"
+   }
+  },
+  "cr_d5_introduces_security_with_haruto_copied": {
+   "crmarena:EmailMessage:02sWt000002011NIAQ": {
+    "excerpt_sha256": "bc4145d257ad5e8027c942f089033c401ec7fcec9b7ba390ee1bc8dc1ca76dc8",
+    "body_sha256": "bc4145d257ad5e8027c942f089033c401ec7fcec9b7ba390ee1bc8dc1ca76dc8"
+   },
+   "crmarena:EmailMessage:02sWt000001ztVOIAY": {
+    "excerpt_sha256": "913d7bb3ac4b1bd01e1713de543d4d957dbb78f41919c14c5691aacf36244fd4",
+    "body_sha256": "913d7bb3ac4b1bd01e1713de543d4d957dbb78f41919c14c5691aacf36244fd4"
+   },
+   "crmarena:EmailMessage:02sWt000001zqipIAA": {
+    "excerpt_sha256": "8805ab51d17a3e9a7f205941d365d295f976bf862ac50e1cf40a1554f291a65f",
+    "body_sha256": "8805ab51d17a3e9a7f205941d365d295f976bf862ac50e1cf40a1554f291a65f"
+   },
+   "crmarena:EmailMessage:02sWt00000200y9IAA": {
+    "excerpt_sha256": "1530fb943372911625b8bae6b6b87589d49705d44e55d4e9e1153ffbe5af73b9",
+    "body_sha256": "1530fb943372911625b8bae6b6b87589d49705d44e55d4e9e1153ffbe5af73b9"
+   }
+  },
+  "cr_d5_repeats_the_thursday_call_proposal": {
+   "crmarena:EmailMessage:02sWt000002011NIAQ": {
+    "excerpt_sha256": "bc4145d257ad5e8027c942f089033c401ec7fcec9b7ba390ee1bc8dc1ca76dc8",
+    "body_sha256": "bc4145d257ad5e8027c942f089033c401ec7fcec9b7ba390ee1bc8dc1ca76dc8"
+   },
+   "crmarena:EmailMessage:02sWt000001ztVOIAY": {
+    "excerpt_sha256": "913d7bb3ac4b1bd01e1713de543d4d957dbb78f41919c14c5691aacf36244fd4",
+    "body_sha256": "913d7bb3ac4b1bd01e1713de543d4d957dbb78f41919c14c5691aacf36244fd4"
+   },
+   "crmarena:EmailMessage:02sWt000001zqipIAA": {
+    "excerpt_sha256": "8805ab51d17a3e9a7f205941d365d295f976bf862ac50e1cf40a1554f291a65f",
+    "body_sha256": "8805ab51d17a3e9a7f205941d365d295f976bf862ac50e1cf40a1554f291a65f"
+   },
+   "crmarena:EmailMessage:02sWt00000200y9IAA": {
+    "excerpt_sha256": "1530fb943372911625b8bae6b6b87589d49705d44e55d4e9e1153ffbe5af73b9",
+    "body_sha256": "1530fb943372911625b8bae6b6b87589d49705d44e55d4e9e1153ffbe5af73b9"
+   }
+  },
+  "cr_d5_answers_the_open_timeline_question": {
+   "crmarena:EmailMessage:02sWt000002011NIAQ": {
+    "excerpt_sha256": "bc4145d257ad5e8027c942f089033c401ec7fcec9b7ba390ee1bc8dc1ca76dc8",
+    "body_sha256": "bc4145d257ad5e8027c942f089033c401ec7fcec9b7ba390ee1bc8dc1ca76dc8"
+   },
+   "crmarena:EmailMessage:02sWt000001ztVOIAY": {
+    "excerpt_sha256": "913d7bb3ac4b1bd01e1713de543d4d957dbb78f41919c14c5691aacf36244fd4",
+    "body_sha256": "913d7bb3ac4b1bd01e1713de543d4d957dbb78f41919c14c5691aacf36244fd4"
+   },
+   "crmarena:EmailMessage:02sWt000001zqipIAA": {
+    "excerpt_sha256": "8805ab51d17a3e9a7f205941d365d295f976bf862ac50e1cf40a1554f291a65f",
+    "body_sha256": "8805ab51d17a3e9a7f205941d365d295f976bf862ac50e1cf40a1554f291a65f"
+   },
+   "crmarena:EmailMessage:02sWt00000200y9IAA": {
+    "excerpt_sha256": "1530fb943372911625b8bae6b6b87589d49705d44e55d4e9e1153ffbe5af73b9",
+    "body_sha256": "1530fb943372911625b8bae6b6b87589d49705d44e55d4e9e1153ffbe5af73b9"
+   }
+  },
+  "cr_d6_proposal_attached_as_if_the_demo_request_were_fresh": {
+   "crmarena:Task:00TWt000002z8SfMAI": {
+    "excerpt_sha256": "e423c3f429f7ce80a5251cc9925c229661f99b8d2b987b98412872b99fe935f9",
+    "body_sha256": "e423c3f429f7ce80a5251cc9925c229661f99b8d2b987b98412872b99fe935f9"
+   },
+   "crmarena:EmailMessage:02sWt000001zurFIAQ": {
+    "excerpt_sha256": "820e702e23741619aa0f239413bbbbd5fd4d23b87fe369363615966e297ef71c",
+    "body_sha256": "dd100e5fc08987eee61a4f8b3f1a2a00d75ea353f1b7533f80574a81c1e03dba"
+   },
+   "crmarena:EmailMessage:02sWt00000204nJIAQ": {
+    "excerpt_sha256": "b78928be0f30034efad287a580367dcd451dc025ae72c18c55183b94ca7ef83f",
+    "body_sha256": "b78928be0f30034efad287a580367dcd451dc025ae72c18c55183b94ca7ef83f"
+   }
+  },
+  "cr_d6_apologises_for_the_gap_and_offers_demo_dates": {
+   "crmarena:Task:00TWt000002z8SfMAI": {
+    "excerpt_sha256": "e423c3f429f7ce80a5251cc9925c229661f99b8d2b987b98412872b99fe935f9",
+    "body_sha256": "e423c3f429f7ce80a5251cc9925c229661f99b8d2b987b98412872b99fe935f9"
+   },
+   "crmarena:EmailMessage:02sWt000001zurFIAQ": {
+    "excerpt_sha256": "820e702e23741619aa0f239413bbbbd5fd4d23b87fe369363615966e297ef71c",
+    "body_sha256": "dd100e5fc08987eee61a4f8b3f1a2a00d75ea353f1b7533f80574a81c1e03dba"
+   },
+   "crmarena:EmailMessage:02sWt00000204nJIAQ": {
+    "excerpt_sha256": "b78928be0f30034efad287a580367dcd451dc025ae72c18c55183b94ca7ef83f",
+    "body_sha256": "b78928be0f30034efad287a580367dcd451dc025ae72c18c55183b94ca7ef83f"
+   }
+  },
+  "cr_d6_invents_budget_go_live_and_a_ciso": {
+   "crmarena:Task:00TWt000002z7jOMAQ": {
+    "excerpt_sha256": "347ce3630ddd3124e51afafedabfde95d1747af2e14d747acbe83b87d1c9d017",
+    "body_sha256": "347ce3630ddd3124e51afafedabfde95d1747af2e14d747acbe83b87d1c9d017"
+   },
+   "crmarena:EmailMessage:02sWt000001zurFIAQ": {
+    "excerpt_sha256": "820e702e23741619aa0f239413bbbbd5fd4d23b87fe369363615966e297ef71c",
+    "body_sha256": "dd100e5fc08987eee61a4f8b3f1a2a00d75ea353f1b7533f80574a81c1e03dba"
+   },
+   "crmarena:EmailMessage:02sWt00000204nJIAQ": {
+    "excerpt_sha256": "b78928be0f30034efad287a580367dcd451dc025ae72c18c55183b94ca7ef83f",
+    "body_sha256": "b78928be0f30034efad287a580367dcd451dc025ae72c18c55183b94ca7ef83f"
+   }
+  },
+  "cr_d6_asks_before_planning_the_demo": {
+   "crmarena:Task:00TWt000002z7jOMAQ": {
+    "excerpt_sha256": "347ce3630ddd3124e51afafedabfde95d1747af2e14d747acbe83b87d1c9d017",
+    "body_sha256": "347ce3630ddd3124e51afafedabfde95d1747af2e14d747acbe83b87d1c9d017"
+   },
+   "crmarena:EmailMessage:02sWt000001zurFIAQ": {
+    "excerpt_sha256": "820e702e23741619aa0f239413bbbbd5fd4d23b87fe369363615966e297ef71c",
+    "body_sha256": "dd100e5fc08987eee61a4f8b3f1a2a00d75ea353f1b7533f80574a81c1e03dba"
+   },
+   "crmarena:EmailMessage:02sWt00000204nJIAQ": {
+    "excerpt_sha256": "b78928be0f30034efad287a580367dcd451dc025ae72c18c55183b94ca7ef83f",
+    "body_sha256": "b78928be0f30034efad287a580367dcd451dc025ae72c18c55183b94ca7ef83f"
+   }
+  },
+  "cr_d7_contract_draft_to_fernando_alone_while_finance_reviews": {
+   "crmarena:Task:00TWt000002yxwvMAA": {
+    "excerpt_sha256": "33dabcb1753cb69dd2ade18d97ca51929df57161457fff965a84e0422db12b32",
+    "body_sha256": "33dabcb1753cb69dd2ade18d97ca51929df57161457fff965a84e0422db12b32"
+   },
+   "crmarena:EmailMessage:02sWt000001zsB4IAI": {
+    "excerpt_sha256": "4be2e66514fdde2cbfabbf47f425d9ff3f4a2efb1b8067ace9867aee4e29efed",
+    "body_sha256": "4be2e66514fdde2cbfabbf47f425d9ff3f4a2efb1b8067ace9867aee4e29efed"
+   },
+   "crmarena:EmailMessage:02sWt000001zpGOIAY": {
+    "excerpt_sha256": "426c3bf212ceff6594b53183416a119a4b5ae473ad6cbabf7db821774fd2cf65",
+    "body_sha256": "426c3bf212ceff6594b53183416a119a4b5ae473ad6cbabf7db821774fd2cf65"
+   },
+   "crmarena:EmailMessage:02sWt000001zx93IAA": {
+    "excerpt_sha256": "8afca65e020e72644405ec48a8645554a9c18334791c10fa39ed970f86f01f64",
+    "body_sha256": "8afca65e020e72644405ec48a8645554a9c18334791c10fa39ed970f86f01f64"
+   }
+  },
+  "cr_d7_offers_to_walk_finance_through_the_pricing": {
+   "crmarena:Task:00TWt000002yxwvMAA": {
+    "excerpt_sha256": "33dabcb1753cb69dd2ade18d97ca51929df57161457fff965a84e0422db12b32",
+    "body_sha256": "33dabcb1753cb69dd2ade18d97ca51929df57161457fff965a84e0422db12b32"
+   },
+   "crmarena:EmailMessage:02sWt000001zsB4IAI": {
+    "excerpt_sha256": "4be2e66514fdde2cbfabbf47f425d9ff3f4a2efb1b8067ace9867aee4e29efed",
+    "body_sha256": "4be2e66514fdde2cbfabbf47f425d9ff3f4a2efb1b8067ace9867aee4e29efed"
+   },
+   "crmarena:EmailMessage:02sWt000001zpGOIAY": {
+    "excerpt_sha256": "426c3bf212ceff6594b53183416a119a4b5ae473ad6cbabf7db821774fd2cf65",
+    "body_sha256": "426c3bf212ceff6594b53183416a119a4b5ae473ad6cbabf7db821774fd2cf65"
+   },
+   "crmarena:EmailMessage:02sWt000001zx93IAA": {
+    "excerpt_sha256": "8afca65e020e72644405ec48a8645554a9c18334791c10fa39ed970f86f01f64",
+    "body_sha256": "8afca65e020e72644405ec48a8645554a9c18334791c10fa39ed970f86f01f64"
+   }
+  },
+  "cr_d7_promises_the_testimonials_again_thirteen_days_later": {
+   "crmarena:Task:00TWt000002yxyXMAQ": {
+    "excerpt_sha256": "3f7e1a9e86ad9d2b57d3648485c73403bfada1927cc310d49c09dbca6d3eb3da",
+    "body_sha256": "3f7e1a9e86ad9d2b57d3648485c73403bfada1927cc310d49c09dbca6d3eb3da"
+   },
+   "crmarena:EmailMessage:02sWt000001zsB4IAI": {
+    "excerpt_sha256": "4be2e66514fdde2cbfabbf47f425d9ff3f4a2efb1b8067ace9867aee4e29efed",
+    "body_sha256": "4be2e66514fdde2cbfabbf47f425d9ff3f4a2efb1b8067ace9867aee4e29efed"
+   },
+   "crmarena:EmailMessage:02sWt000001zpGOIAY": {
+    "excerpt_sha256": "426c3bf212ceff6594b53183416a119a4b5ae473ad6cbabf7db821774fd2cf65",
+    "body_sha256": "426c3bf212ceff6594b53183416a119a4b5ae473ad6cbabf7db821774fd2cf65"
+   },
+   "crmarena:EmailMessage:02sWt000001zx93IAA": {
+    "excerpt_sha256": "8afca65e020e72644405ec48a8645554a9c18334791c10fa39ed970f86f01f64",
+    "body_sha256": "8afca65e020e72644405ec48a8645554a9c18334791c10fa39ed970f86f01f64"
+   }
+  },
+  "cr_d8_demo_slots_while_the_cost_of_updates_stays_unanswered": {
+   "crmarena:Task:00TWt000002z44CMAQ": {
+    "excerpt_sha256": "006436fc13e2f9cd8d2c750778a809bc8f39a45803e19b2d700ee3756ba06ac4",
+    "body_sha256": "006436fc13e2f9cd8d2c750778a809bc8f39a45803e19b2d700ee3756ba06ac4"
+   },
+   "crmarena:EmailMessage:02sWt000001zqAuIAI": {
+    "excerpt_sha256": "ef9b815f4af4c5216442b3f3affdcccb0f57271cb54278e6952c31511d8fdba7",
+    "body_sha256": "7121fcb65ffb6753b890b74bb07ba9aba74d3c8dfa44823cd14782deee62b21b"
+   },
+   "crmarena:EmailMessage:02sWt00000200VCIAY": {
+    "excerpt_sha256": "89c1c0bc063ef81c3aa11fa2a25fef68efa9b099c0aa91fc421c29a15e17846d",
+    "body_sha256": "89c1c0bc063ef81c3aa11fa2a25fef68efa9b099c0aa91fc421c29a15e17846d"
+   },
+   "crmarena:EmailMessage:02sWt00000200QUIAY": {
+    "excerpt_sha256": "7a319e1c5fd7d62ad970132499bc18c34c1be6d0c936758f16c5ab0d2c0d2447",
+    "body_sha256": "7a319e1c5fd7d62ad970132499bc18c34c1be6d0c936758f16c5ab0d2c0d2447"
+   }
+  },
+  "cr_d8_testimonials_cost_answer_date_and_demo_slots": {
+   "crmarena:Task:00TWt000002z44CMAQ": {
+    "excerpt_sha256": "006436fc13e2f9cd8d2c750778a809bc8f39a45803e19b2d700ee3756ba06ac4",
+    "body_sha256": "006436fc13e2f9cd8d2c750778a809bc8f39a45803e19b2d700ee3756ba06ac4"
+   },
+   "crmarena:EmailMessage:02sWt000001zqAuIAI": {
+    "excerpt_sha256": "ef9b815f4af4c5216442b3f3affdcccb0f57271cb54278e6952c31511d8fdba7",
+    "body_sha256": "7121fcb65ffb6753b890b74bb07ba9aba74d3c8dfa44823cd14782deee62b21b"
+   },
+   "crmarena:EmailMessage:02sWt00000200VCIAY": {
+    "excerpt_sha256": "89c1c0bc063ef81c3aa11fa2a25fef68efa9b099c0aa91fc421c29a15e17846d",
+    "body_sha256": "89c1c0bc063ef81c3aa11fa2a25fef68efa9b099c0aa91fc421c29a15e17846d"
+   },
+   "crmarena:EmailMessage:02sWt00000200QUIAY": {
+    "excerpt_sha256": "7a319e1c5fd7d62ad970132499bc18c34c1be6d0c936758f16c5ab0d2c0d2447",
+    "body_sha256": "7a319e1c5fd7d62ad970132499bc18c34c1be6d0c936758f16c5ab0d2c0d2447"
+   }
+  },
+  "cr_d8_invents_agreement_on_the_update_cadence": {
+   "crmarena:Task:00TWt000002z44CMAQ": {
+    "excerpt_sha256": "006436fc13e2f9cd8d2c750778a809bc8f39a45803e19b2d700ee3756ba06ac4",
+    "body_sha256": "006436fc13e2f9cd8d2c750778a809bc8f39a45803e19b2d700ee3756ba06ac4"
+   },
+   "crmarena:EmailMessage:02sWt000001zqAuIAI": {
+    "excerpt_sha256": "ef9b815f4af4c5216442b3f3affdcccb0f57271cb54278e6952c31511d8fdba7",
+    "body_sha256": "7121fcb65ffb6753b890b74bb07ba9aba74d3c8dfa44823cd14782deee62b21b"
+   },
+   "crmarena:EmailMessage:02sWt00000200VCIAY": {
+    "excerpt_sha256": "89c1c0bc063ef81c3aa11fa2a25fef68efa9b099c0aa91fc421c29a15e17846d",
+    "body_sha256": "89c1c0bc063ef81c3aa11fa2a25fef68efa9b099c0aa91fc421c29a15e17846d"
+   },
+   "crmarena:EmailMessage:02sWt00000200QUIAY": {
+    "excerpt_sha256": "7a319e1c5fd7d62ad970132499bc18c34c1be6d0c936758f16c5ab0d2c0d2447",
+    "body_sha256": "7a319e1c5fd7d62ad970132499bc18c34c1be6d0c936758f16c5ab0d2c0d2447"
+   }
+  },
+  "cr_d8_k101_cost_answered_in_writing_with_slots": {
+   "crmarena:Task:00TWt000002z44CMAQ": {
+    "excerpt_sha256": "006436fc13e2f9cd8d2c750778a809bc8f39a45803e19b2d700ee3756ba06ac4",
+    "body_sha256": "006436fc13e2f9cd8d2c750778a809bc8f39a45803e19b2d700ee3756ba06ac4"
+   },
+   "crmarena:EmailMessage:02sWt000001zqAuIAI": {
+    "excerpt_sha256": "ef9b815f4af4c5216442b3f3affdcccb0f57271cb54278e6952c31511d8fdba7",
+    "body_sha256": "7121fcb65ffb6753b890b74bb07ba9aba74d3c8dfa44823cd14782deee62b21b"
+   },
+   "crmarena:EmailMessage:02sWt00000200VCIAY": {
+    "excerpt_sha256": "89c1c0bc063ef81c3aa11fa2a25fef68efa9b099c0aa91fc421c29a15e17846d",
+    "body_sha256": "89c1c0bc063ef81c3aa11fa2a25fef68efa9b099c0aa91fc421c29a15e17846d"
+   },
+   "crmarena:EmailMessage:02sWt00000200QUIAY": {
+    "excerpt_sha256": "7a319e1c5fd7d62ad970132499bc18c34c1be6d0c936758f16c5ab0d2c0d2447",
+    "body_sha256": "7a319e1c5fd7d62ad970132499bc18c34c1be6d0c936758f16c5ab0d2c0d2447"
+   }
+  },
+  "cr_d9_k104_waits_for_the_date_the_buyer_gave": {
+   "crmarena:EmailMessage:02sWt000001zqE3IAI": {
+    "excerpt_sha256": "21a63773266b4101bc5895e30ce81bfa421245f12eed833516603d8ca478f4c7",
+    "body_sha256": "21a63773266b4101bc5895e30ce81bfa421245f12eed833516603d8ca478f4c7"
+   },
+   "crmarena:EmailMessage:02sWt000001zxygIAA": {
+    "excerpt_sha256": "9a72efef0c816514040b3f602e860e16739a8e85988d78764ce39f676222d8a1",
+    "body_sha256": "63c480c3714484bc8f12e170cceee5cd44b8e8773f576e922ad50d47fd88f9c4"
+   },
+   "crmarena:EmailMessage:02sWt000001zwD1IAI": {
+    "excerpt_sha256": "ad495143b266f607b8181bfff0452eef0e503ecda319a069dc4e0d9f9ae39568",
+    "body_sha256": "e0d11f590911033fbf1c216e770bc98836ace1d3511f910557761dc5a21b7fe0"
+   }
+  },
+  "cr_d9_k104_check_in_sent_despite_the_buyers_date": {
+   "crmarena:EmailMessage:02sWt000001zqE3IAI": {
+    "excerpt_sha256": "21a63773266b4101bc5895e30ce81bfa421245f12eed833516603d8ca478f4c7",
+    "body_sha256": "21a63773266b4101bc5895e30ce81bfa421245f12eed833516603d8ca478f4c7"
+   },
+   "crmarena:EmailMessage:02sWt000001zxygIAA": {
+    "excerpt_sha256": "9a72efef0c816514040b3f602e860e16739a8e85988d78764ce39f676222d8a1",
+    "body_sha256": "63c480c3714484bc8f12e170cceee5cd44b8e8773f576e922ad50d47fd88f9c4"
+   },
+   "crmarena:EmailMessage:02sWt000001zwD1IAI": {
+    "excerpt_sha256": "ad495143b266f607b8181bfff0452eef0e503ecda319a069dc4e0d9f9ae39568",
+    "body_sha256": "e0d11f590911033fbf1c216e770bc98836ace1d3511f910557761dc5a21b7fe0"
+   }
+  },
+  "cr_d9_k104_answers_the_upgrade_question_without_a_deadline": {
+   "crmarena:EmailMessage:02sWt000001zqh6IAA": {
+    "excerpt_sha256": "88dc21c084d28c6e301a1ec526251657152bb4cd1d4dd0fe858d45c6f5af923e",
+    "body_sha256": "88dc21c084d28c6e301a1ec526251657152bb4cd1d4dd0fe858d45c6f5af923e"
+   },
+   "crmarena:EmailMessage:02sWt000001zwD1IAI": {
+    "excerpt_sha256": "b551c680851f89840a2ae319f4dd88a01555e8dc30191d9ee541cecea869ab84",
+    "body_sha256": "e0d11f590911033fbf1c216e770bc98836ace1d3511f910557761dc5a21b7fe0"
+   },
+   "crmarena:EmailMessage:02sWt000001zqE3IAI": {
+    "excerpt_sha256": "620a5cb692c174d970680e5434e6e0855e5c09ab468dc96cfcbaea9c25d49255",
+    "body_sha256": "21a63773266b4101bc5895e30ce81bfa421245f12eed833516603d8ca478f4c7"
+   },
+   "crmarena:EmailMessage:02sWt000001zq7bIAA": {
+    "excerpt_sha256": "aa9b5712baf3356154c2b151649cc4eff6ae58eac1b9f93b16a5fb67c18d3a8b",
+    "body_sha256": "aa9b5712baf3356154c2b151649cc4eff6ae58eac1b9f93b16a5fb67c18d3a8b"
+   }
+  },
+  "cr_d11_internal_review_task_needs_no_customer_contact": {
+   "crmarena:Task:00TWt000002z5zRMAQ": {
+    "excerpt_sha256": "64a1d64c476117fcd5da7b6cc0e5245e7bacecc446b6123107c7056def4422a4",
+    "body_sha256": "64a1d64c476117fcd5da7b6cc0e5245e7bacecc446b6123107c7056def4422a4"
+   },
+   "crmarena:EmailMessage:02sWt000001zvH2IAI": {
+    "excerpt_sha256": "7c0239b54893f5073b894415a2d2a7b1cb769016c9d54846af4b6074a83500dc",
+    "body_sha256": "7c0239b54893f5073b894415a2d2a7b1cb769016c9d54846af4b6074a83500dc"
+   },
+   "crmarena:Contract:800Wt00000DE0s0IAD": {
+    "excerpt_sha256": "563fb8cf41df4d69a2fc38643bacc7852914ebeb443dcbe5b7dffad8f7baf2c1",
+    "body_sha256": "563fb8cf41df4d69a2fc38643bacc7852914ebeb443dcbe5b7dffad8f7baf2c1"
+   },
+   "crmarena:Task:00TWt000002z5o9MAA": {
+    "excerpt_sha256": "44454c9ffc4bb4367427fb45c3a6b6fe15e92a1a13f2ef3bfb09aa6524c4e826",
+    "body_sha256": "44454c9ffc4bb4367427fb45c3a6b6fe15e92a1a13f2ef3bfb09aa6524c4e826"
+   }
+  },
+  "cr_d11_upsell_and_case_study_ask_on_an_internal_task": {
+   "crmarena:Task:00TWt000002z5zRMAQ": {
+    "excerpt_sha256": "64a1d64c476117fcd5da7b6cc0e5245e7bacecc446b6123107c7056def4422a4",
+    "body_sha256": "64a1d64c476117fcd5da7b6cc0e5245e7bacecc446b6123107c7056def4422a4"
+   },
+   "crmarena:EmailMessage:02sWt000001zvH2IAI": {
+    "excerpt_sha256": "7c0239b54893f5073b894415a2d2a7b1cb769016c9d54846af4b6074a83500dc",
+    "body_sha256": "7c0239b54893f5073b894415a2d2a7b1cb769016c9d54846af4b6074a83500dc"
+   },
+   "crmarena:Contract:800Wt00000DE0s0IAD": {
+    "excerpt_sha256": "563fb8cf41df4d69a2fc38643bacc7852914ebeb443dcbe5b7dffad8f7baf2c1",
+    "body_sha256": "563fb8cf41df4d69a2fc38643bacc7852914ebeb443dcbe5b7dffad8f7baf2c1"
+   },
+   "crmarena:Task:00TWt000002z5o9MAA": {
+    "excerpt_sha256": "44454c9ffc4bb4367427fb45c3a6b6fe15e92a1a13f2ef3bfb09aa6524c4e826",
+    "body_sha256": "44454c9ffc4bb4367427fb45c3a6b6fe15e92a1a13f2ef3bfb09aa6524c4e826"
+   }
+  },
+  "cr_x_call_offered_instead_of_the_written_cost_answer": {
+   "crmarena:EmailMessage:02sWt000001zplAIAQ": {
+    "excerpt_sha256": "a972c6760f07f0f81abbfa74d2fbdb1d88f893195e32ee01000f8c793238c984",
+    "body_sha256": "a972c6760f07f0f81abbfa74d2fbdb1d88f893195e32ee01000f8c793238c984"
+   },
+   "crmarena:EmailMessage:02sWt000001zy6lIAA": {
+    "excerpt_sha256": "bc552825658ef5f5f26f7f5dc14a73fb887ea96c304525f4fb5a53233acec071",
+    "body_sha256": "b014aa2debde62ed790b57e06b128d62b32ab939a85cae206e9e73619c401d85"
+   },
+   "crmarena:EmailMessage:02sWt000001zoKMIAY": {
+    "excerpt_sha256": "7efec822b739c59cbd41877be7a074de0a7ceae12e115062ca5dd7fa777b8697",
+    "body_sha256": "c4a1e5fc4a8fd95e2715d35f96c0c7d4552c21aa5579a6259d53c9987b043e99"
+   },
+   "crmarena:EmailMessage:02sWt00000201r1IAA": {
+    "excerpt_sha256": "648da33bcc0387b5f552e7b56fd380313748b482ceb05836db74d3823fd173f9",
+    "body_sha256": "2785d7d407ea433812f20a2268698111b7642b69aff84c812e437ef725d4ffd9"
+   }
+  },
+  "cr_x_k101_ignored_cost_answer_deferred_to_a_call": {
+   "crmarena:Task:00TWt000002yz2nMAA": {
+    "excerpt_sha256": "9e5d4c7c80417c6a3935a462c5422b613acf8fb32dd0e3c870b956165da54d05",
+    "body_sha256": "9e5d4c7c80417c6a3935a462c5422b613acf8fb32dd0e3c870b956165da54d05"
+   },
+   "crmarena:EmailMessage:02sWt000001zplAIAQ": {
+    "excerpt_sha256": "a972c6760f07f0f81abbfa74d2fbdb1d88f893195e32ee01000f8c793238c984",
+    "body_sha256": "a972c6760f07f0f81abbfa74d2fbdb1d88f893195e32ee01000f8c793238c984"
+   },
+   "crmarena:EmailMessage:02sWt000001zpGXIAY": {
+    "excerpt_sha256": "e5d5544718ac41d1ef4b823a2f0aec7d4cee0f5bb296f48f436431d2fdcbff3e",
+    "body_sha256": "e5d5544718ac41d1ef4b823a2f0aec7d4cee0f5bb296f48f436431d2fdcbff3e"
+   },
+   "crmarena:EmailMessage:02sWt000001zpGYIAY": {
+    "excerpt_sha256": "6598ae090e3c0a24aa0c369f8636d7ddefe64ff740cc85223f7eb44de0fda6b6",
+    "body_sha256": "6598ae090e3c0a24aa0c369f8636d7ddefe64ff740cc85223f7eb44de0fda6b6"
+   }
+  },
+  "cr_x_k101_misapplied_cost_breakdown_instead_of_the_call": {
+   "crmarena:EmailMessage:02sWt00000200N4IAI": {
+    "excerpt_sha256": "0937b01b39adad119a995d49f213d74b4d56330c694226150dbae3eeb98c3b00",
+    "body_sha256": "0937b01b39adad119a995d49f213d74b4d56330c694226150dbae3eeb98c3b00"
+   },
+   "crmarena:EmailMessage:02sWt000002008ZIAQ": {
+    "excerpt_sha256": "740fa7359ccc9203bfbde4c9db5a8d5523a42e380cf1b0b138b8f44bd305bd35",
+    "body_sha256": "b2054974e24c8efdb82321cfc7ee082b447895ed9e0b3dd6ef2dbacbfa127ee0"
+   }
+  },
+  "cr_x_k102_misapplied_hold_off_on_a_requested_meeting": {
+   "crmarena:EmailMessage:02sWt000001zu9iIAA": {
+    "excerpt_sha256": "cfb9b586395c7594c7ff2abdcd0f61a85a3a8f6dba9f1ae872c641a40a7c0bb8",
+    "body_sha256": "cfb9b586395c7594c7ff2abdcd0f61a85a3a8f6dba9f1ae872c641a40a7c0bb8"
+   },
+   "crmarena:EmailMessage:02sWt000001zpElIAI": {
+    "excerpt_sha256": "6e7e32fd4c9cd8552c9534434dfd063422e5e813e9aeca6359ffea63cde3b720",
+    "body_sha256": "6e7e32fd4c9cd8552c9534434dfd063422e5e813e9aeca6359ffea63cde3b720"
+   },
+   "crmarena:EmailMessage:02sWt000001zx5wIAA": {
+    "excerpt_sha256": "30125c18d9351f715362e496db71c7a947acc91022b8644fd7d531cd0de2645d",
+    "body_sha256": "d323df51faf3ae4eaf6e83294a722adea3196c807ab19fc8b7972182339f07d0"
+   }
+  },
+  "cr_x_k102_followed_no_signature_chase": {
+   "crmarena:EmailMessage:02sWt000002011NIAQ": {
+    "excerpt_sha256": "bc4145d257ad5e8027c942f089033c401ec7fcec9b7ba390ee1bc8dc1ca76dc8",
+    "body_sha256": "bc4145d257ad5e8027c942f089033c401ec7fcec9b7ba390ee1bc8dc1ca76dc8"
+   },
+   "crmarena:EmailMessage:02sWt000001ztVOIAY": {
+    "excerpt_sha256": "913d7bb3ac4b1bd01e1713de543d4d957dbb78f41919c14c5691aacf36244fd4",
+    "body_sha256": "913d7bb3ac4b1bd01e1713de543d4d957dbb78f41919c14c5691aacf36244fd4"
+   },
+   "crmarena:EmailMessage:02sWt000001zqipIAA": {
+    "excerpt_sha256": "8805ab51d17a3e9a7f205941d365d295f976bf862ac50e1cf40a1554f291a65f",
+    "body_sha256": "8805ab51d17a3e9a7f205941d365d295f976bf862ac50e1cf40a1554f291a65f"
+   },
+   "crmarena:EmailMessage:02sWt00000200y9IAA": {
+    "excerpt_sha256": "1530fb943372911625b8bae6b6b87589d49705d44e55d4e9e1153ffbe5af73b9",
+    "body_sha256": "1530fb943372911625b8bae6b6b87589d49705d44e55d4e9e1153ffbe5af73b9"
+   }
+  },
+  "cr_x_k103_not_triggered_by_a_legal_team_mention": {
+   "crmarena:EmailMessage:02sWt000002011NIAQ": {
+    "excerpt_sha256": "bc4145d257ad5e8027c942f089033c401ec7fcec9b7ba390ee1bc8dc1ca76dc8",
+    "body_sha256": "bc4145d257ad5e8027c942f089033c401ec7fcec9b7ba390ee1bc8dc1ca76dc8"
+   },
+   "crmarena:EmailMessage:02sWt000001ztVOIAY": {
+    "excerpt_sha256": "913d7bb3ac4b1bd01e1713de543d4d957dbb78f41919c14c5691aacf36244fd4",
+    "body_sha256": "913d7bb3ac4b1bd01e1713de543d4d957dbb78f41919c14c5691aacf36244fd4"
+   },
+   "crmarena:EmailMessage:02sWt000001zqipIAA": {
+    "excerpt_sha256": "8805ab51d17a3e9a7f205941d365d295f976bf862ac50e1cf40a1554f291a65f",
+    "body_sha256": "8805ab51d17a3e9a7f205941d365d295f976bf862ac50e1cf40a1554f291a65f"
+   },
+   "crmarena:EmailMessage:02sWt00000200y9IAA": {
+    "excerpt_sha256": "1530fb943372911625b8bae6b6b87589d49705d44e55d4e9e1153ffbe5af73b9",
+    "body_sha256": "1530fb943372911625b8bae6b6b87589d49705d44e55d4e9e1153ffbe5af73b9"
+   }
+  },
+  "cr_x_waits_while_the_buyer_reviews_the_offer": {
+   "crmarena:EmailMessage:02sWt000001zrJrIAI": {
+    "excerpt_sha256": "2f30ab7d0840c24dd45a39f730dadf0bc32e3de4d969048f7311fb3e72cf01d0",
+    "body_sha256": "2f30ab7d0840c24dd45a39f730dadf0bc32e3de4d969048f7311fb3e72cf01d0"
+   },
+   "crmarena:EmailMessage:02sWt000001zx12IAA": {
+    "excerpt_sha256": "48d1c3fb9c909c7e8a769b41f753ecdfc8f5c498b0a9f7eee4039e29f8e2a827",
+    "body_sha256": "6e396b102dc4f08da662cf8da754b6b8f669a9d30df20c4f3af65c39a475b647"
+   },
+   "crmarena:EmailMessage:02sWt000001zwMnIAI": {
+    "excerpt_sha256": "7512c188ba687ee4e779dc0b117f852d8da056540085b2ea5f0ab1fed73d355d",
+    "body_sha256": "91863c31dd9d57c0f81e3d362ef0350e5c6e968b3fd3e2c288366a3a4886287a"
+   },
+   "crmarena:EmailMessage:02sWt000001zuO7IAI": {
+    "excerpt_sha256": "d765988d89d0cba5c4928182a6087032b20475702163472dcc02dca65d1a64eb",
+    "body_sha256": "e58a1a36d201dc2555237fd3fd749ad12e4ee4da8f3e3c0e914980c906762749"
+   }
+  },
+  "cr_x_schedule_with_the_cto_to_be_added": {
+   "crmarena:EmailMessage:02sWt000002006wIAA": {
+    "excerpt_sha256": "6d8df95c9cfe4871f9329af309f8df90d09959638aad1dcf1a9142a0251bee52",
+    "body_sha256": "6d8df95c9cfe4871f9329af309f8df90d09959638aad1dcf1a9142a0251bee52"
+   },
+   "crmarena:EmailMessage:02sWt000001zwMnIAI": {
+    "excerpt_sha256": "1f97c8e4a3ea64d18b40e1fa70c596fc0d81723f20e6dccce736c2fd9df7368b",
+    "body_sha256": "91863c31dd9d57c0f81e3d362ef0350e5c6e968b3fd3e2c288366a3a4886287a"
+   },
+   "crmarena:EmailMessage:02sWt000001zrJrIAI": {
+    "excerpt_sha256": "a2d83b86c3a95386aa8adc9e54443caa2c888e847df143c12f6e7e281b6ca7ee",
+    "body_sha256": "2f30ab7d0840c24dd45a39f730dadf0bc32e3de4d969048f7311fb3e72cf01d0"
+   },
+   "crmarena:EmailMessage:02sWt000001zpl7IAA": {
+    "excerpt_sha256": "0144186d2a0cb16494ba5df8fac62593fe06e0912121c65db3181c65315466d3",
+    "body_sha256": "0144186d2a0cb16494ba5df8fac62593fe06e0912121c65db3181c65315466d3"
+   }
+  },
+  "cr_x_tech_session_asks_who_from_the_tech_team": {
+   "crmarena:EmailMessage:02sWt000001zpeeIAA": {
+    "excerpt_sha256": "c0d1ac48467585bb0b6d921745ee76c010f3f4d6fd8761f28459b64a651529e1",
+    "body_sha256": "c0d1ac48467585bb0b6d921745ee76c010f3f4d6fd8761f28459b64a651529e1"
+   },
+   "crmarena:Task:00TWt000002z60zMAA": {
+    "excerpt_sha256": "efa0022982a67548a68e30f37b3631d678fc68ecc175dfff4a3038993c8e30ba",
+    "body_sha256": "efa0022982a67548a68e30f37b3631d678fc68ecc175dfff4a3038993c8e30ba"
+   },
+   "crmarena:EmailMessage:02sWt000002034nIAA": {
+    "excerpt_sha256": "0ba9486c79bcc5c614975f502ef705068038a9ba1229f5e52cd8c83d490fee51",
+    "body_sha256": "cca86a43feebdab6622943b17c77bfc31af3ab0db7db9cec5d9842cccde5a56e"
+   }
+  },
+  "cr_x_finance_and_tech_review_call_asks_who_joins": {
+   "crmarena:EmailMessage:02sWt000001zr3kIAA": {
+    "excerpt_sha256": "efecf66161412e2041bccfd5bdeb2d444d38c7048663d1c0c65b63b96e42da25",
+    "body_sha256": "efecf66161412e2041bccfd5bdeb2d444d38c7048663d1c0c65b63b96e42da25"
+   },
+   "crmarena:EmailMessage:02sWt000001zxh3IAA": {
+    "excerpt_sha256": "a9dc9d4674cd57a243412af146a66c0f8f6f696942bbac0378e5dbcf93107336",
+    "body_sha256": "a9dc9d4674cd57a243412af146a66c0f8f6f696942bbac0378e5dbcf93107336"
+   }
+  },
+  "cr_x_legal_specialist_added_instead_of_the_cto": {
+   "crmarena:EmailMessage:02sWt000002006wIAA": {
+    "excerpt_sha256": "6d8df95c9cfe4871f9329af309f8df90d09959638aad1dcf1a9142a0251bee52",
+    "body_sha256": "6d8df95c9cfe4871f9329af309f8df90d09959638aad1dcf1a9142a0251bee52"
+   },
+   "crmarena:EmailMessage:02sWt000001zwMnIAI": {
+    "excerpt_sha256": "1f97c8e4a3ea64d18b40e1fa70c596fc0d81723f20e6dccce736c2fd9df7368b",
+    "body_sha256": "91863c31dd9d57c0f81e3d362ef0350e5c6e968b3fd3e2c288366a3a4886287a"
+   },
+   "crmarena:EmailMessage:02sWt000001zrJrIAI": {
+    "excerpt_sha256": "a2d83b86c3a95386aa8adc9e54443caa2c888e847df143c12f6e7e281b6ca7ee",
+    "body_sha256": "2f30ab7d0840c24dd45a39f730dadf0bc32e3de4d969048f7311fb3e72cf01d0"
+   },
+   "crmarena:EmailMessage:02sWt000001zpl7IAA": {
+    "excerpt_sha256": "0144186d2a0cb16494ba5df8fac62593fe06e0912121c65db3181c65315466d3",
+    "body_sha256": "0144186d2a0cb16494ba5df8fac62593fe06e0912121c65db3181c65315466d3"
+   }
+  }
+ },
+ "licence": "CC BY-NC 4.0 (non-commercial use only); Salesforce AI Research, CRMArena-Pro",
+ "files": {
+  "cases/applicable_knowledge/cr_d8_k101_cost_answered_in_writing_with_slots.json": "792ff1048da00d63c1e2e39ddc10b6524cf08b51be7698bf0abed56c3706329b",
+  "cases/applicable_knowledge/cr_x_k101_ignored_cost_answer_deferred_to_a_call.json": "1cab37637448c14ad9b1aeb644898a8140933ef22f422cf492aac64134aa87cd",
+  "cases/applicable_knowledge/cr_x_k102_followed_no_signature_chase.json": "1081e141ab8590add8c6da0e685dd5b6c34decede140d48a178a09b98cc4ee0c",
+  "cases/champion_bypass/cr_d1_cfo_direct_pricing_drops_chin_wei.json": "30f7fb213d3f2ddb49e00a89604e1474bbf7ebe1aa19aa7a3a2181e5f8d5786b",
+  "cases/champion_bypass/cr_d4_finance_officer_pricing_direct_dropping_aditya.json": "50edba8e6edfb43f148f18a818fe5f33900b0fcb6bd7df6d0c878ee9da80aac9",
+  "cases/champion_bypass/cr_d5_introduces_security_with_haruto_copied.json": "1169a4243ca39486028528c8a41bc248138f3bdae691514df24136dda984b8db",
+  "cases/conflicting_account_state/cr_d1_negotiation_invite_while_review_open.json": "2a2e371b6b868b6a395641e07ce828a9e6cae66e0f829d1cd79f1514962efeff",
+  "cases/conflicting_account_state/cr_d4_asks_who_approves_instead_of_assuming.json": "fd0cede411f7d4af24468469cde8ab32f080ccc4d487cacbd0f8a708f0ed7c72",
+  "cases/conflicting_account_state/cr_d4_treats_one_signature_title_as_fact.json": "f99398d332ee30517e3245998e03166a3e72d013865dcc31c19d95ee69231515",
+  "cases/correct_timing/cr_d1_answers_cost_question_and_sends_case_studies.json": "2485e104005b8f7acc4790e34f21f04452b689c0005591c0493bce3905964d40",
+  "cases/correct_timing/cr_d2_books_the_thursday_call.json": "9a6f854c9554c0397b04172b2aea4df7d0d870744664224efcfd142ed6b51c7d",
+  "cases/correct_timing/cr_d2_books_thursday_and_attaches_the_order_form.json": "cef93121922197bb0cdb49f4617d46e3ce31341a4db891ec6fd81b7217e0a7fc",
+  "cases/correct_timing/cr_d4_offers_two_slots_and_the_requested_material.json": "327c8c23ebb0d7f3c2c2a28d2f4b387fb18c054d144da959c6d2fcb9bb825f7a",
+  "cases/duplicate_action/cr_d1_fourth_recap_after_three_identical.json": "c9129de5271b1b14dacc595681b729df93a8221e61ab666bdc71f3fadd92029b",
+  "cases/duplicate_action/cr_d3_fourth_negotiation_prep_email.json": "39787a02c023d75f21f5e47308d28cdb456b1820e0c6d3981a12f6e354d98794",
+  "cases/duplicate_action/cr_d5_answers_the_open_timeline_question.json": "7449127459d83726563f1cf770e028d5045dec26801765f35e496690eb2a21eb",
+  "cases/duplicate_action/cr_d5_repeats_the_thursday_call_proposal.json": "116a86096183a2c8fff5e0f8fd620cf1316b1cc022ccc933eb32548c8d5e0b52",
+  "cases/explicit_exception/cr_d9_k104_answers_the_upgrade_question_without_a_deadline.json": "c87f56c69ff19260d8d851dbc7bd5ba445b349df4872d1932062789cb0c346c2",
+  "cases/explicit_exception/cr_d9_k104_check_in_sent_despite_the_buyers_date.json": "5b8dea9af4dcb3f8a58ca021bc9fdb5a83d7057f65c709067490e597eee49399",
+  "cases/explicit_exception/cr_d9_k104_waits_for_the_date_the_buyer_gave.json": "2fa860260d7524f54ef55719a7110a3dd65e7e9125c4fe0794d93da0ba51866f",
+  "cases/insufficient_evidence/cr_d6_asks_before_planning_the_demo.json": "6b9ba634407fe8aceac161399529db135b2cd1cd5e56da469991d05a2d192ed4",
+  "cases/insufficient_evidence/cr_d6_invents_budget_go_live_and_a_ciso.json": "4bece0e3ba2be17c9f10615e92b9905c904f3559aed3b8c0ec7b5e97107a2b3d",
+  "cases/insufficient_evidence/cr_d8_invents_agreement_on_the_update_cadence.json": "60b36e572b7ddbd591fc05b6ef73b8393d69c75b30321e1a5fd4b589ebdc2c60",
+  "cases/misleading_similar_knowledge/cr_x_k101_misapplied_cost_breakdown_instead_of_the_call.json": "3c471e424083fdc74d2b0d30d50cdbd602ef9dc43ba3e60754369258059d0ed7",
+  "cases/misleading_similar_knowledge/cr_x_k102_misapplied_hold_off_on_a_requested_meeting.json": "504de87475c5f2836a86d52d8750391a31b1212940dec6e953dec84422297272",
+  "cases/misleading_similar_knowledge/cr_x_k103_not_triggered_by_a_legal_team_mention.json": "5339621f539895ed02c8c9fb3271941f1f08878d5ba02e09cce3c56410d72dfc",
+  "cases/no_action/cr_d11_internal_review_task_needs_no_customer_contact.json": "7e3ec4e65d9467823c04bc27c416655ec4d266e947702244985377b4161ccce6",
+  "cases/no_action/cr_d11_upsell_and_case_study_ask_on_an_internal_task.json": "ec98bae553618e1d84f85f40fd0ea8746b6ac95492d488c45cc92d452dcb51dd",
+  "cases/no_action/cr_x_waits_while_the_buyer_reviews_the_offer.json": "29aebdcb08b4ce696cb42c3c4667b4d4ba07f8c552190804af910a9a613211e1",
+  "cases/over_threading/cr_d1_cfo_pulled_in_while_team_reviews.json": "ff8bc197fe5fe6eca5969f9b6d658276fcf3fe07b7500e5fc23cbdb1ae2ba414",
+  "cases/over_threading/cr_d4_three_colleagues_copied_on_a_pricing_reply.json": "39855b1a0886f745622536738144d1cd1f71dcac1e0f86342d3eabc4b650af99",
+  "cases/over_threading/cr_d5_marketing_director_copied_on_contract_thread.json": "2754837dab7f724b30e37c8efd91f1dfd75e5abff34da2d28f9c7b684913abd8",
+  "cases/stale_commitment/cr_d3_asks_whether_the_planned_meeting_took_place.json": "7de92453aec43bd85749aa0c90a0d3278e8fcbe9c8dda33ef9544b06fc6bdf00",
+  "cases/stale_commitment/cr_d3_looking_forward_to_a_meeting_that_has_passed.json": "d4f1b55c3479f2ca33b6f6a1c3fc22b45a93b2295f39286b6386c04c98e7405d",
+  "cases/stale_commitment/cr_d7_promises_the_testimonials_again_thirteen_days_later.json": "d4b33e30431b0f8fefdb695813f8357e3010f47215577eea7bdbcd53365e9d4d",
+  "cases/too_late_follow_up/cr_d1_just_checking_in_after_a_week_of_silence.json": "5eadf26217efff7895a15a9f2e863392f19771f4a40d69cbff4e39c6d8deb51a",
+  "cases/too_late_follow_up/cr_d6_apologises_for_the_gap_and_offers_demo_dates.json": "b926c316841d06808aed040edfafb916f839805ebb95004301d94bf93a005f3b",
+  "cases/too_late_follow_up/cr_d6_proposal_attached_as_if_the_demo_request_were_fresh.json": "f761d2a8645b51c2e6466a1ec0344d64ac72c575eeea1650ab007bb08fb3a0b8",
+  "cases/too_soon_cta/cr_d1_signature_push_after_review_notice.json": "3b1fa7d60c3c354e5e09a1e2f4fd3bb7a344323777be5f82b5f85dbdc5b34624",
+  "cases/too_soon_cta/cr_d4_contract_with_friday_deadline_while_procurement_reviews.json": "12fa0f25fea47a50cd778d6448e80b2c55b068fa29350fc9db1cb91673996e99",
+  "cases/too_soon_cta/cr_d5_signature_by_thursday_while_legal_reviews.json": "cca41a49355e3792dd7478ccd002542cd7b54d4db7f2d137792d6f4676387457",
+  "cases/under_threading/cr_d3_asks_for_ctos_address_and_adds_him.json": "54297b4c610dd9b4e08d02d2d4260dc739413c5ca9f5f3d591e3f1d53fe88dea",
+  "cases/under_threading/cr_d3_cto_requested_but_not_included.json": "566d046873b898429f0365285207cfe391b703fd51248c66a5ffe4d8b1fe7773",
+  "cases/under_threading/cr_d7_contract_draft_to_fernando_alone_while_finance_reviews.json": "73763be6b96cb9acdfa6f2369ba152bd4fc5a09cc51d762135eea63ed628b63e",
+  "cases/under_threading/cr_d7_offers_to_walk_finance_through_the_pricing.json": "bfc7b8fbd0771b975518b1910799095587b50cf3cb86064581176aacd1d91d84",
+  "cases/unresolved_blocker/cr_d1_case_studies_sent_cost_question_ignored.json": "6136188644b3b329dd11916079103f51782a4d54f4763c35bc7bd55fa0567c44",
+  "cases/unresolved_blocker/cr_d8_demo_slots_while_the_cost_of_updates_stays_unanswered.json": "af2b43929695be3bff71b8a78a83fb68945c48a4b3011abd845e9078e60b5779",
+  "cases/unresolved_blocker/cr_d8_testimonials_cost_answer_date_and_demo_slots.json": "2f20fc363ecaa937ed17ce6b0f1f161384e3123d98e324fd32d1efa2667fe742",
+  "cases/valid_champion_handoff/cr_x_finance_and_tech_review_call_asks_who_joins.json": "e37e5868aff9bd004bb7e8a2edfef1de165fc65fbadb21c9db8497365364a1f6",
+  "cases/valid_champion_handoff/cr_x_legal_specialist_added_instead_of_the_cto.json": "7bdc4ea2cd4d6309d539a717448ce6f6eae2e7a60db11e3966979a9a8a423a3b",
+  "cases/valid_champion_handoff/cr_x_schedule_with_the_cto_to_be_added.json": "5a006b615493c22df8ada6e3f0a5cde1f3d5d1c76d890af0776e4ae23ef5800b",
+  "cases/valid_champion_handoff/cr_x_tech_session_asks_who_from_the_tech_team.json": "ab8da712f3c120e48de291a6cdbfdd5b6e4c47a6616329d1dc1324cfff7d12cd",
+  "cases/wrong_channel/cr_d2_crm_note_only_no_reply_to_customer.json": "bef2077053c9507a9b95eabf914cb6ecd1242ac685669d3b392cb0e7a66c385d",
+  "cases/wrong_channel/cr_d2_long_email_instead_of_the_requested_call.json": "c12c395552d8927a5ad75fb7ee25ea785346ec024c18109d5d180ddefc6444a4",
+  "cases/wrong_channel/cr_x_call_offered_instead_of_the_written_cost_answer.json": "a01ed21e1748b406d2ae8d010072e31cf65af90fa19b8cbd675bcbf2cdb165e1"
+ }
+}

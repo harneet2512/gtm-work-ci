@@ -1,0 +1,71 @@
+{
+  "activity": {
+    "id": "0ac70000-0000-4000-8000-000000000202",
+    "idempotency_key": "4a4a4a4a4a4a4a4a4a4a4a4a4a4a4a4a4a4a4a4a4a4a4a4a4a4a4a4a4a4a4a4a",
+    "activity_type": "TranscriptReady",
+    "source_system": "call",
+    "source_object_id": "call:C19",
+    "source_event_id": "05e00000-0000-4000-8000-000000000202",
+    "occurred_at": "2026-10-01T16:30:00Z",
+    "ingested_at": "2026-10-01T16:45:00Z",
+    "participants": [
+      {
+        "raw_identity": "call:C19:speaker:01",
+        "display_name": "Dana Kim",
+        "role": "speaker",
+        "person_id": null
+      },
+      {
+        "raw_identity": "call:C19:speaker:02",
+        "display_name": "Priya Shah",
+        "role": "speaker",
+        "person_id": null
+      },
+      {
+        "raw_identity": "call:C19:speaker:03",
+        "display_name": "Tom Becker",
+        "role": "speaker",
+        "person_id": null
+      }
+    ],
+    "account_id": "0a0c0000-0000-4000-8000-000000000001",
+    "opportunity_id": "0c0f0000-0000-4000-8000-000000000004",
+    "account_hint": "acme.com",
+    "opportunity_hint": null,
+    "payload_ref": "source_events/05e00000-0000-4000-8000-000000000202",
+    "summary": null,
+    "permissions": {
+      "visibility": "org"
+    },
+    "provenance": {
+      "source_system": "call",
+      "source_object_id": "call:C19",
+      "connector": "gong",
+      "connector_version": "0.1.0"
+    },
+    "caused_by_activity_id": null,
+    "correlation_id": null
+  },
+  "text": "Dana Kim: Thanks for joining, Priya and Tom. Quick recap of the EU rollout plan.\nPriya Shah: We have budget approved for Q4, and I will take this to our CFO Tom Becker on Friday.\nTom Becker: I sign the contract, but legal needs to review the DPA first.\nDana Kim: Can we book a follow-up for October 8?\nPriya Shah: Yes, let's meet Wednesday October 8 at 10am.",
+  "known_people": [
+    {
+      "raw_identity": "call:C19:speaker:01",
+      "display_name": "Dana Kim",
+      "title": "Account Executive",
+      "internal": true
+    },
+    {
+      "raw_identity": "call:C19:speaker:02",
+      "display_name": "Priya Shah",
+      "title": "VP Operations",
+      "internal": false
+    },
+    {
+      "raw_identity": "call:C19:speaker:03",
+      "display_name": "Tom Becker",
+      "title": "CFO",
+      "internal": false
+    }
+  ],
+  "extractor_version": "extract-v4"
+}

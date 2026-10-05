@@ -1,0 +1,24 @@
+{
+  "source_system": "crm",
+  "source_object_id": "contact:842",
+  "source_event_key": "created",
+  "occurred_at": "2026-09-21T11:00:00Z",
+  "connector": "salesforce",
+  "connector_version": "0.1.0",
+  "payload": {
+    "kind": "crm_change",
+    "object_type": "Contact",
+    "record_id": "contact:842",
+    "account_record_id": "account:AC-4",
+    "changed_at": "2026-09-21T11:00:00Z",
+    "changed_by": "dana@ghostvendor.com",
+    "created": true,
+    "fields": {
+      "FirstName": {"new": "Marco"},
+      "LastName": {"new": "Ruiz"},
+      "Email": {"new": "marco.ruiz@acme.com"},
+      "Title": {"new": "Head of Security"},
+      "AccountId": {"new": "account:AC-4"}
+    }
+  }
+}

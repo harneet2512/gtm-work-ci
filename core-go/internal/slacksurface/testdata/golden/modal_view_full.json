@@ -1,0 +1,94 @@
+{
+  "type": "modal",
+  "title": {
+    "type": "plain_text",
+    "text": "Full draft",
+    "emoji": false
+  },
+  "blocks": [
+    {
+      "type": "header",
+      "text": {
+        "type": "plain_text",
+        "text": "Send package, buyer sets timing",
+        "emoji": false
+      },
+      "block_id": "ghost.full.header"
+    },
+    {
+      "type": "section",
+      "text": {
+        "type": "mrkdwn",
+        "text": "Send the package, keep Priya involved and leave the review timing to Marco.",
+        "verbatim": true
+      },
+      "block_id": "ghost.full.intent"
+    },
+    {
+      "type": "section",
+      "block_id": "ghost.full.addr",
+      "fields": [
+        {
+          "type": "mrkdwn",
+          "text": "*To*\nMarco \u0026lt;marco@acme.example.test\u0026gt;",
+          "verbatim": true
+        },
+        {
+          "type": "mrkdwn",
+          "text": "*CC*\nPriya \u0026lt;priya@acme.example.test\u0026gt;",
+          "verbatim": true
+        },
+        {
+          "type": "mrkdwn",
+          "text": "*Subject*\nRe: Expansion to EU teams",
+          "verbatim": true
+        }
+      ]
+    },
+    {
+      "type": "section",
+      "text": {
+        "type": "mrkdwn",
+        "text": "*Full message*\n```Hi Marco,\n\nThanks for jumping in. Attached are our SOC2 Type II report and the latest pen-test summary. Happy to set up time with our security team once you've reviewed - whatever timing works for you and Priya.\n\nBest,\nDana```",
+        "verbatim": true
+      },
+      "block_id": "ghost.full.body.0"
+    },
+    {
+      "type": "section",
+      "text": {
+        "type": "mrkdwn",
+        "text": "*Why this strategy*\n• Marco said he cannot commit to a date before his team reads the documents, and Priya remains the commercial point of contact.\n• State used: blockers, buying group, next meeting, champion status\n• Evidence: “Before we can sign off on the EU rollout we'll need your SOC2 Type II report and the pen-test summary.” (2026-09-29 15:42 UTC)\n• Evidence: “I can't commit to a review date until our team has read them.” (2026-09-29 15:42 UTC)\n• Knowledge applied: 1 knowledge item",
+        "verbatim": true
+      },
+      "block_id": "ghost.full.why"
+    },
+    {
+      "type": "section",
+      "text": {
+        "type": "mrkdwn",
+        "text": "*Evals for this action*\n:warning: *CTA calibration*  Warn  The draft offers a call. Marco said he cannot commit to a date until his team has read the documents, so the offer should wait for his timing.\n:white_check_mark: *Relationship continuity*  Pass  Priya stays on cc and the draft does not take over the commercial thread.",
+        "verbatim": true
+      },
+      "block_id": "ghost.full.evals"
+    },
+    {
+      "type": "context",
+      "block_id": "ghost.full.evals.notes",
+      "elements": [
+        {
+          "type": "mrkdwn",
+          "text": ":heavy_minus_sign: Not relevant here (1): Economic buyer\nSales methodology",
+          "verbatim": true
+        }
+      ]
+    }
+  ],
+  "close": {
+    "type": "plain_text",
+    "text": "Close",
+    "emoji": false
+  },
+  "private_metadata": "{\"run_id\":\"0f0a0000-0000-4000-8000-000000000601\",\"candidate_id\":\"0ca00000-0000-4000-8000-0000000000a2\",\"channel_id\":\"C0DRYRUN\",\"message_ts\":\"1700000000.000100\"}",
+  "callback_id": "ghost.strategy_full_modal"
+}

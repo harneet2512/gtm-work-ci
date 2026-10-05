@@ -1,0 +1,25 @@
+{
+  "source_system": "calendar",
+  "source_object_id": "gcal:acme-scope-0825",
+  "source_event_key": "response:priya.shah@acme.com:accepted",
+  "occurred_at": "2026-08-19T11:40:00Z",
+  "connector": "google_calendar",
+  "connector_version": "0.1.0",
+  "payload": {
+    "kind": "calendar_event",
+    "event_id": "gcal:acme-scope-0825",
+    "title": "Acme EU rollout scoping",
+    "start": "2026-08-25T13:00:00Z",
+    "end": "2026-08-25T13:45:00Z",
+    "status": "scheduled",
+    "organizer": {"email": "dana@ghostvendor.com", "name": "Dana Kim"},
+    "attendees": [
+      {"email": "dana@ghostvendor.com", "name": "Dana Kim", "response": "accepted"},
+      {"email": "leo@ghostvendor.com", "name": "Leo Park", "response": "accepted"},
+      {"email": "priya.shah@acme.com", "name": "Priya Shah", "response": "accepted"},
+      {"email": "tom.becker@acme.com", "name": "Tom Becker", "response": "needs_action"}
+    ],
+    "description": "Scope the Berlin and Rotterdam rollout.",
+    "crm_opportunity_ref": "opp:AC-4-EXP"
+  }
+}

@@ -1,0 +1,9 @@
+{
+  "run_id": "har129-20261004T000000Z-abcdef",
+  "artifact": "episode_timeline.json",
+  "generated_at": "2026-10-04T00:00:00Z",
+  "status": "not_run",
+  "requirement_ids": ["HAR129-G-02", "HAR129-G-05"],
+  "evidence": [],
+  "data": {}
+}

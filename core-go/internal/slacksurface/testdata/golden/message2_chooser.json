@@ -1,0 +1,246 @@
+{
+  "text": "I see 3 reasonable paths.",
+  "blocks": [
+    {
+      "type": "header",
+      "text": {
+        "type": "plain_text",
+        "text": "I see 3 reasonable paths.",
+        "emoji": false
+      },
+      "block_id": "ghost.strategy.header"
+    },
+    {
+      "type": "context",
+      "block_id": "ghost.strategy.pref",
+      "elements": [
+        {
+          "type": "mrkdwn",
+          "text": "I recommend *A. Propose a security call*",
+          "verbatim": true
+        }
+      ]
+    },
+    {
+      "type": "divider"
+    },
+    {
+      "type": "section",
+      "text": {
+        "type": "mrkdwn",
+        "text": "*A. Propose a security call*  :star: _Recommended_\nSend the package and ask for a Tuesday call with Acme security.",
+        "verbatim": true
+      },
+      "block_id": "ghost.strategy.card.0ca00000-0000-4000-8000-0000000000a1"
+    },
+    {
+      "type": "section",
+      "text": {
+        "type": "mrkdwn",
+        "text": "\u003e Attached are our SOC2 Type II report and the latest pen-test summary. Could we hold 30 minutes with our security team on Tuesday at 10:00...",
+        "verbatim": true
+      },
+      "block_id": "ghost.strategy.card.0ca00000-0000-4000-8000-0000000000a1.preview"
+    },
+    {
+      "type": "section",
+      "text": {
+        "type": "mrkdwn",
+        "text": "*Why*\nMarco is a new decision-relevant stakeholder and the EU sign-off is gated on his review; a dated call keeps momentum.",
+        "verbatim": true
+      },
+      "block_id": "ghost.strategy.card.0ca00000-0000-4000-8000-0000000000a1.why"
+    },
+    {
+      "type": "context",
+      "block_id": "ghost.strategy.card.0ca00000-0000-4000-8000-0000000000a1.evals",
+      "elements": [
+        {
+          "type": "mrkdwn",
+          "text": "*Evals*  :x: 1 fail · :warning: 1 warn: CTA calibration. The draft offers a call.",
+          "verbatim": true
+        }
+      ]
+    },
+    {
+      "type": "actions",
+      "block_id": "ghost.strategy.actions.0ca00000-0000-4000-8000-0000000000a1",
+      "elements": [
+        {
+          "type": "button",
+          "text": {
+            "type": "plain_text",
+            "text": "View full",
+            "emoji": false
+          },
+          "action_id": "ghost.strategy.view_full",
+          "value": "{\"run_id\":\"0f0a0000-0000-4000-8000-000000000601\",\"candidate_id\":\"0ca00000-0000-4000-8000-0000000000a1\"}"
+        },
+        {
+          "type": "button",
+          "text": {
+            "type": "plain_text",
+            "text": "Select A",
+            "emoji": false
+          },
+          "action_id": "ghost.strategy.choose",
+          "value": "{\"run_id\":\"0f0a0000-0000-4000-8000-000000000601\",\"candidate_id\":\"0ca00000-0000-4000-8000-0000000000a1\"}",
+          "style": "primary"
+        }
+      ]
+    },
+    {
+      "type": "divider"
+    },
+    {
+      "type": "section",
+      "text": {
+        "type": "mrkdwn",
+        "text": "*B. Send package, buyer sets timing*\nSend the package, keep Priya involved and leave the review timing to Marco.",
+        "verbatim": true
+      },
+      "block_id": "ghost.strategy.card.0ca00000-0000-4000-8000-0000000000a2"
+    },
+    {
+      "type": "section",
+      "text": {
+        "type": "mrkdwn",
+        "text": "\u003e Attached are our SOC2 Type II report and the latest pen-test summary. Happy to set up time with our security team once you've reviewed...",
+        "verbatim": true
+      },
+      "block_id": "ghost.strategy.card.0ca00000-0000-4000-8000-0000000000a2.preview"
+    },
+    {
+      "type": "section",
+      "text": {
+        "type": "mrkdwn",
+        "text": "*Why*\nMarco said he cannot commit to a date before his team reads the documents, and Priya remains the commercial point of contact.",
+        "verbatim": true
+      },
+      "block_id": "ghost.strategy.card.0ca00000-0000-4000-8000-0000000000a2.why"
+    },
+    {
+      "type": "context",
+      "block_id": "ghost.strategy.card.0ca00000-0000-4000-8000-0000000000a2.evals",
+      "elements": [
+        {
+          "type": "mrkdwn",
+          "text": "*Evals*  :warning: 1 warn · :white_check_mark: 1 pass: CTA calibration. The draft offers a call.",
+          "verbatim": true
+        }
+      ]
+    },
+    {
+      "type": "actions",
+      "block_id": "ghost.strategy.actions.0ca00000-0000-4000-8000-0000000000a2",
+      "elements": [
+        {
+          "type": "button",
+          "text": {
+            "type": "plain_text",
+            "text": "View full",
+            "emoji": false
+          },
+          "action_id": "ghost.strategy.view_full",
+          "value": "{\"run_id\":\"0f0a0000-0000-4000-8000-000000000601\",\"candidate_id\":\"0ca00000-0000-4000-8000-0000000000a2\"}"
+        },
+        {
+          "type": "button",
+          "text": {
+            "type": "plain_text",
+            "text": "Select B",
+            "emoji": false
+          },
+          "action_id": "ghost.strategy.choose",
+          "value": "{\"run_id\":\"0f0a0000-0000-4000-8000-000000000601\",\"candidate_id\":\"0ca00000-0000-4000-8000-0000000000a2\"}"
+        }
+      ]
+    },
+    {
+      "type": "divider"
+    },
+    {
+      "type": "section",
+      "text": {
+        "type": "mrkdwn",
+        "text": "*C. Check the gate with Priya*\nAsk Priya whether Marco's review gates the rollout before sending anything.",
+        "verbatim": true
+      },
+      "block_id": "ghost.strategy.card.0ca00000-0000-4000-8000-0000000000a3"
+    },
+    {
+      "type": "section",
+      "text": {
+        "type": "mrkdwn",
+        "text": "\u003e Marco has asked for our SOC2 report and pen-test summary before he can sign off. Is his review the gate for the whole rollout...",
+        "verbatim": true
+      },
+      "block_id": "ghost.strategy.card.0ca00000-0000-4000-8000-0000000000a3.preview"
+    },
+    {
+      "type": "section",
+      "text": {
+        "type": "mrkdwn",
+        "text": "*Why*\nThe state does not say whether security review is the only gate; asking the champion avoids sending the wrong ask.",
+        "verbatim": true
+      },
+      "block_id": "ghost.strategy.card.0ca00000-0000-4000-8000-0000000000a3.why"
+    },
+    {
+      "type": "context",
+      "block_id": "ghost.strategy.card.0ca00000-0000-4000-8000-0000000000a3.evals",
+      "elements": [
+        {
+          "type": "mrkdwn",
+          "text": "*Evals*  :white_check_mark: 2 pass",
+          "verbatim": true
+        }
+      ]
+    },
+    {
+      "type": "actions",
+      "block_id": "ghost.strategy.actions.0ca00000-0000-4000-8000-0000000000a3",
+      "elements": [
+        {
+          "type": "button",
+          "text": {
+            "type": "plain_text",
+            "text": "View full",
+            "emoji": false
+          },
+          "action_id": "ghost.strategy.view_full",
+          "value": "{\"run_id\":\"0f0a0000-0000-4000-8000-000000000601\",\"candidate_id\":\"0ca00000-0000-4000-8000-0000000000a3\"}"
+        },
+        {
+          "type": "button",
+          "text": {
+            "type": "plain_text",
+            "text": "Select C",
+            "emoji": false
+          },
+          "action_id": "ghost.strategy.choose",
+          "value": "{\"run_id\":\"0f0a0000-0000-4000-8000-000000000601\",\"candidate_id\":\"0ca00000-0000-4000-8000-0000000000a3\"}"
+        }
+      ]
+    },
+    {
+      "type": "divider"
+    },
+    {
+      "type": "actions",
+      "block_id": "ghost.strategy.links",
+      "elements": [
+        {
+          "type": "button",
+          "text": {
+            "type": "plain_text",
+            "text": "View evals",
+            "emoji": false
+          },
+          "action_id": "ghost.strategy.view_evals",
+          "url": "https://ghost.example.test/runs/0f0a0000-0000-4000-8000-000000000601/evals"
+        }
+      ]
+    }
+  ]
+}

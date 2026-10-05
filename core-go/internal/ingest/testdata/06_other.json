@@ -1,0 +1,44 @@
+[
+  {
+    "source_system": "enrichment",
+    "source_object_id": "clearbit:marco.ruiz@acme.com:2026-09-28T06:00:00Z",
+    "source_event_key": "observed",
+    "connector": "clearbit",
+    "connector_version": "0.1.0",
+    "payload": {
+      "kind": "enrichment",
+      "provider": "clearbit",
+      "subject": { "email": "marco.ruiz@acme.com", "domain": null },
+      "observed_at": "2026-09-28T06:00:00Z",
+      "facts": { "title": "VP Security", "seniority": "vp" }
+    }
+  },
+  {
+    "source_system": "docs",
+    "source_object_id": "doc-soc2",
+    "source_event_key": "shared:2026-10-02T09:00:00Z",
+    "connector": "drive",
+    "connector_version": "0.1.0",
+    "payload": {
+      "kind": "document",
+      "document_id": "doc-soc2",
+      "title": "SOC2 Type II report",
+      "shared_at": "2026-10-02T09:00:00Z",
+      "shared_by": "dana@ghostvendor.com",
+      "shared_with": ["marco.ruiz@acme.com", "priya.shah@acme.com"]
+    }
+  },
+  {
+    "source_system": "ghost.clock",
+    "source_object_id": "account:AC-4:customer_silence:2026-10-09",
+    "source_event_key": "tick",
+    "connector": "clock",
+    "connector_version": "0.1.0",
+    "payload": {
+      "kind": "clock_tick",
+      "account_ref": "account:AC-4",
+      "rule": "customer_silence",
+      "observed_at": "2026-10-09T00:00:00Z"
+    }
+  }
+]
