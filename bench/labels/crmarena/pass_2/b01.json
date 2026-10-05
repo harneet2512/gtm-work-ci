@@ -1,0 +1,153 @@
+{
+ "S2ec2": {
+  "economic_buyer_coverage": [
+   "pass",
+   null,
+   false
+  ],
+  "grounding": [
+   "pass",
+   null,
+   false
+  ],
+  "decision_process": [
+   "pass",
+   null,
+   false
+  ]
+ },
+ "S94bc": {
+  "next_action_quality": [
+   "fail",
+   "NEEDS_REVISION",
+   false
+  ],
+  "commitment_consistency": [
+   "fail",
+   null,
+   true
+  ],
+  "timing_cadence": [
+   "fail",
+   "LATE_OR_MISSED_WINDOW",
+   false
+  ]
+ },
+ "Se70f": {
+  "commitment_consistency": [
+   "warn",
+   null,
+   false
+  ],
+  "next_action_quality": [
+   "fail",
+   "NEEDS_REVISION",
+   false
+  ],
+  "knowledge_applicability": [
+   "fail",
+   "APPLIES",
+   false
+  ]
+ },
+ "S9b7e": {
+  "state_change_relevance": [
+   "pass",
+   null,
+   false
+  ],
+  "next_action_quality": [
+   "pass",
+   "NO_ACTION",
+   false
+  ],
+  "buyer_readiness": [
+   "pass",
+   "NO_ACTION_NEEDED",
+   false
+  ]
+ },
+ "S19d5": {
+  "cta_calibration": [
+   "pass",
+   "APPROPRIATE",
+   false
+  ],
+  "timing_cadence": [
+   "pass",
+   "READY",
+   false
+  ],
+  "buyer_readiness": [
+   "pass",
+   "READY",
+   false
+  ],
+  "grounding": [
+   "pass",
+   null,
+   false
+  ]
+ },
+ "S9c15": {
+  "commitment_consistency": [
+   "pass",
+   null,
+   false
+  ],
+  "next_action_quality": [
+   "pass",
+   "GOOD",
+   false
+  ],
+  "momentum": [
+   "pass",
+   "COOLING",
+   false
+  ],
+  "timing_cadence": [
+   "pass",
+   "LATE_OR_MISSED_WINDOW",
+   false
+  ]
+ },
+ "S2429": {
+  "buyer_readiness": [
+   "fail",
+   "TOO_EARLY",
+   false
+  ],
+  "cta_calibration": [
+   "fail",
+   "TOO_STRONG",
+   true
+  ],
+  "decision_process": [
+   "fail",
+   null,
+   true
+  ]
+ },
+ "S934d": {
+  "stakeholder_coverage": [
+   "pass",
+   "RIGHT_SIZED",
+   false
+  ],
+  "grounding": [
+   "pass",
+   null,
+   false
+  ],
+  "stakeholder_selection": [
+   "pass",
+   null,
+   false
+  ],
+  "next_step_quality": [
+   "pass",
+   null,
+   false
+  ]
+ }
+}

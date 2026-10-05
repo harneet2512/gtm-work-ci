@@ -1,0 +1,224 @@
+{
+  "id": "northstar_silence_light_checkin_on_sam_intro",
+  "case_type": "correct_timing",
+  "title": "Northstar 09-18: after a quiet week the candidate sends one light check-in about the introduction Elena offered",
+  "should_pass": true,
+  "difficulty": "medium",
+  "slice_tags": {
+    "account": "northstar",
+    "origin": "world_moment",
+    "motion": "expansion",
+    "stage": "commercial_review",
+    "champion_status": "active",
+    "economic_buyer": "known",
+    "risk": "low",
+    "candidate": "good",
+    "expected_action": "send_email",
+    "extra": ["customer_silence"]
+  },
+  "based_on": {
+    "kind": "world_moment",
+    "account": "northstar",
+    "after_event_file": "world/accounts/northstar/events/028_clock_customer_silence.json",
+    "checkpoint": 2,
+    "changed_fields": ["current_commitments"],
+    "change": null
+  },
+  "context": {
+    "now": "2026-09-18T16:30:00Z",
+    "state": {
+      "account_id": "0a0c0000-0000-4000-8000-000000000003",
+      "account_name": "Northstar Health",
+      "opportunity_id": "0c0f0000-0000-4000-8000-000000000006",
+      "fields": {
+        "stage": "Commercial review",
+        "health": "on_track",
+        "motion": "expansion",
+        "champion": "0b0e0000-0000-4000-8000-000000000041",
+        "champion_status": "active",
+        "economic_buyer": "0b0e0000-0000-4000-8000-000000000042",
+        "relationship_risk": "low",
+        "blockers": [
+          {
+            "text": "Security sign-off by Sam Okafor's team before any clinic goes live (intake forms carry PHI; BAA required)",
+            "status": "open"
+          }
+        ],
+        "decision_process": "Grace Liu (VP Finance) approves budget on Elena Vasquez's recommendation; Sam Okafor's security team must review because intake forms carry PHI (BAA required)",
+        "next_milestone": "Security review by Sam Okafor's team, including the BAA",
+        "current_commitments": [
+          {
+            "text": "Send pricing for the four clinics by next Wednesday",
+            "status": "fulfilled",
+            "owner_person_id": "0b0e0000-0000-4000-8000-000000000001",
+            "due": "2026-09-02"
+          },
+          {
+            "text": "Set up time next week to go through the rollout plan",
+            "status": "fulfilled",
+            "owner_person_id": "0b0e0000-0000-4000-8000-000000000041"
+          },
+          {
+            "text": "Introduce Dana Kim to Sam Okafor",
+            "status": "open",
+            "owner_person_id": "0b0e0000-0000-4000-8000-000000000041"
+          },
+          {
+            "text": "Have the BAA template and HIPAA controls summary ready",
+            "status": "fulfilled",
+            "owner_person_id": "0b0e0000-0000-4000-8000-000000000001"
+          }
+        ]
+      },
+      "buying_group": [
+        {
+          "person_id": "0b0e0000-0000-4000-8000-000000000041",
+          "display_name": "Elena Vasquez",
+          "title": "Director of Patient Access",
+          "roles": ["champion"],
+          "status": "active",
+          "delegated_to_person_id": null,
+          "last_engaged_at": null,
+          "evidence_refs": []
+        },
+        {
+          "person_id": "0b0e0000-0000-4000-8000-000000000042",
+          "display_name": "Grace Liu",
+          "title": "VP Finance",
+          "roles": ["economic_buyer"],
+          "status": "unknown",
+          "delegated_to_person_id": null,
+          "last_engaged_at": null,
+          "evidence_refs": []
+        }
+      ],
+      "coverage_gaps": ["security"]
+    },
+    "recent_changes": {
+      "summary": "A week without customer activity since the 09-11 rollout-plan call; the rep sent the BAA template and HIPAA summary on 09-15; Elena still owes the introduction to Sam.",
+      "material_diff_fields": [],
+      "signals": ["customer_went_silent"]
+    },
+    "trigger": {
+      "activity_id": "0ac70000-0000-4000-8000-0000000c0028",
+      "activity_type": "CustomerWentSilent",
+      "occurred_at": "2026-09-18T16:00:00Z",
+      "actor_person_id": null,
+      "event_file": "world/accounts/northstar/events/028_clock_customer_silence.json",
+      "synthetic": false,
+      "text": ""
+    },
+    "supporting_activities": [
+      {
+        "activity_id": "0ac70000-0000-4000-8000-0000000c0023",
+        "activity_type": "TranscriptReady",
+        "occurred_at": "2026-09-11T15:46:00Z",
+        "actor_person_id": "0b0e0000-0000-4000-8000-000000000041",
+        "event_file": "world/accounts/northstar/events/023_call_plan_transcript.json",
+        "synthetic": false,
+        "text": "speaker_02: Let me introduce you to Sam - he'll want to set the agenda himself."
+      },
+      {
+        "activity_id": "0ac70000-0000-4000-8000-0000000c0025",
+        "activity_type": "EmailSent",
+        "occurred_at": "2026-09-15T14:00:00Z",
+        "actor_person_id": "0b0e0000-0000-4000-8000-000000000001",
+        "event_file": "world/accounts/northstar/events/025_email_dana_hipaa_pack.json",
+        "synthetic": false,
+        "text": "Whenever you're ready, I'd be glad to be introduced to Sam."
+      }
+    ],
+    "commitments": [
+      {
+        "text": "Introduce Dana Kim to Sam Okafor",
+        "owner_person_id": "0b0e0000-0000-4000-8000-000000000041",
+        "due_at": null,
+        "status": "open"
+      }
+    ],
+    "timeline_facts": {
+      "last_inbound_at": "2026-09-03T11:20:00Z",
+      "last_inbound_from_person_id": "0b0e0000-0000-4000-8000-000000000041",
+      "last_outbound_at": "2026-09-15T14:00:00Z",
+      "stated_timing": null
+    },
+    "offered_knowledge": []
+  },
+  "candidate_action": {
+    "proposed_action_type": "send_email",
+    "recipients": [
+      {"person_id": "0b0e0000-0000-4000-8000-000000000041", "role": "to", "why": "Champion; owes the introduction"}
+    ],
+    "finished_artifact": {
+      "channel": "email",
+      "subject": "Re: BAA and HIPAA summary",
+      "body": "Hi Elena,\n\nHope the week went well. Whenever it suits, I'd be glad to be introduced to Sam so his team can start the security review - the BAA template and HIPAA summary are in my note from Tuesday.\n\nBest,\nDana"
+    },
+    "crm_next_step_intent": {"next_step": "Introduction to Sam (Elena)", "due_at": null, "stage_change": null},
+    "reason": "Elena offered to introduce Sam; one light nudge after a quiet week.",
+    "evidence_refs": [
+      {
+        "activity_id": "0ac70000-0000-4000-8000-0000000c0023",
+        "quote": "Let me introduce you to Sam - he'll want to set the agenda himself.",
+        "speaker_person_id": "0b0e0000-0000-4000-8000-000000000041",
+        "occurred_at": "2026-09-11T15:46:00Z"
+      }
+    ],
+    "knowledge_refs_used": [],
+    "wait_until": null
+  },
+  "expected": [
+    {
+      "eval_type": "momentum",
+      "verdict": "pass",
+      "label": "COOLING",
+      "diagnostics": [],
+      "blocking": false,
+      "rationale": "Matches a cooling but explained pause with one light, useful touch.",
+      "evidence_class": "deal_data"
+    },
+    {
+      "eval_type": "timing_cadence",
+      "verdict": "pass",
+      "label": "READY",
+      "diagnostics": [],
+      "blocking": false,
+      "rationale": "A week after the last outbound and three days after the pack; one nudge is due.",
+      "evidence_class": "deal_data"
+    },
+    {
+      "eval_type": "commitment_consistency",
+      "verdict": "pass",
+      "label": null,
+      "diagnostics": [],
+      "blocking": false,
+      "rationale": "Nudges the customer-owned introduction without re-sending the pack.",
+      "evidence_class": "methodology"
+    },
+    {
+      "eval_type": "relationship_pressure",
+      "verdict": "pass",
+      "label": null,
+      "diagnostics": [],
+      "blocking": false,
+      "rationale": "One short message, no deadline.",
+      "evidence_class": "cs_ops"
+    },
+    {
+      "eval_type": "decision_process",
+      "verdict": "pass",
+      "label": null,
+      "diagnostics": [],
+      "blocking": false,
+      "rationale": "Moves the next gate (Sam's security review) through the person who owns the introduction.",
+      "evidence_class": "methodology"
+    }
+  ],
+  "expected_best_action": {
+    "action": "send_email",
+    "why": "Exactly this.",
+    "recipients": [{"person_id": "0b0e0000-0000-4000-8000-000000000041", "role": "to"}],
+    "channel": "email"
+  },
+  "notes": "Should-pass control for the quiet week."
+}

@@ -1,0 +1,308 @@
+{
+ "id": "cr_d5_marketing_director_copied_on_contract_thread",
+ "origin": "crmarena",
+ "case_type": "over_threading",
+ "title": "Reply to Haruto copying the Marketing Director 'to align on rollout messaging' while legal review is running",
+ "should_pass": false,
+ "difficulty": "medium",
+ "slice_tags": {
+  "account": "001Wt00000PFsmaIAD",
+  "origin": "crmarena",
+  "motion": "unknown",
+  "stage": "unknown",
+  "champion_status": "active",
+  "economic_buyer": "unknown",
+  "risk": "unknown",
+  "candidate": "flawed",
+  "expected_action": "send_email",
+  "extra": [
+   "executive_cc",
+   "inbound_email"
+  ]
+ },
+ "based_on": {
+  "kind": "crmarena_moment",
+  "account_id": "001Wt00000PFsmaIAD",
+  "deal_id": "006Wt000007BDAnIAO",
+  "trigger_kind": "inbound_email",
+  "decision_at": "2023-11-29T14:00:00Z",
+  "cutoff": "2023-11-01",
+  "deal_group": "current",
+  "events_before_decision": 16
+ },
+ "source": {
+  "dataset": "CRMArena-Pro B2B Salesforce org (Salesforce AI Research)",
+  "licence": "CC BY-NC 4.0 (non-commercial use only)",
+  "attribution": "Salesforce AI Research, CRMArena-Pro (https://github.com/SalesforceAIResearch/CRMArena, LICENSE.txt); records selected and excerpted, nothing edited",
+  "snapshot_manifest_sha256": "8fbda45c15d1806dc4c37d5230a20ac24d6619ef36a88c0efddb344792c89f03",
+  "generator": "bench/evals/crmarena_gold v1"
+ },
+ "context": {
+  "now": "2023-11-29T14:00:00Z",
+  "state": {
+   "account_id": "74a17c0f-b94e-5e13-909e-949e5a18c6c5",
+   "account_name": "EcoLite Innovations",
+   "opportunity_id": "0ea9407c-cb6f-5a09-83b8-a2376d21e5b6",
+   "fields": {
+    "stage": "unknown",
+    "health": "unknown",
+    "motion": "unknown",
+    "champion": "2f728fb4-106d-5ef2-ab61-cbec24a34175",
+    "champion_status": "active",
+    "economic_buyer": "unknown",
+    "relationship_risk": "unknown",
+    "decision_process": "Haruto's legal team is reviewing the draft contract; he will reach out by Friday (2023-12-01) at the latest if adjustments are needed; a signing date is anticipated",
+    "objections": [
+     {
+      "text": "Wants clarification of the implementation timeline, especially deployment of AI Cirku-Tech",
+      "status": "open"
+     },
+     {
+      "text": "Wants to confirm how the discounts apply (asked for a brief call this week)",
+      "status": "open"
+     }
+    ],
+    "current_commitments": [
+     {
+      "text": "Customer: legal review of the contract; adjustments by Friday 2023-12-01 at the latest",
+      "status": "open"
+     },
+     {
+      "text": "Us: call on Thursday 2023-11-30 at 14:00 (proposed 11:00)",
+      "status": "open"
+     },
+     {
+      "text": "Us: clarify the implementation timeline for AI Cirku-Tech",
+      "status": "open"
+     }
+    ],
+    "next_milestone": "Customer's legal review; feedback by 2023-12-01"
+   },
+   "buying_group": [
+    {
+     "person_id": "2f728fb4-106d-5ef2-ab61-cbec24a34175",
+     "display_name": "Haruto Yamamoto",
+     "title": "Lead Automation Engineer (champion role inferred, not recorded)",
+     "roles": [
+      "champion"
+     ],
+     "status": "active",
+     "delegated_to_person_id": null,
+     "last_engaged_at": "2023-11-29T14:00:00Z",
+     "evidence_refs": [
+      {
+       "activity_id": "fd917ae6-68ce-5a7d-ba82-147f35d3457c",
+       "occurred_at": "2023-11-29T14:00:00Z"
+      }
+     ]
+    },
+    {
+     "person_id": "d621b537-32c8-5eb0-9eb8-d7bdd6b2e3f1",
+     "display_name": "Zara Nassar",
+     "title": "Cyber Risk Analyst (role inferred from department)",
+     "roles": [
+      "security"
+     ],
+     "status": "unknown",
+     "delegated_to_person_id": null,
+     "last_engaged_at": null,
+     "evidence_refs": []
+    },
+    {
+     "person_id": "b52a88df-ce72-51f5-8790-1d9f0c962d67",
+     "display_name": "Elodie Rousseau",
+     "title": "Marketing Director",
+     "roles": [
+      "unknown"
+     ],
+     "status": "unknown",
+     "delegated_to_person_id": null,
+     "last_engaged_at": null,
+     "evidence_refs": []
+    }
+   ],
+   "coverage_gaps": [
+    "economic_buyer"
+   ]
+  },
+  "recent_changes": {
+   "summary": "At 14:00 Haruto says his legal team is reviewing the contract and he will revert by Friday; earlier he asked for the implementation timeline and a call about the discounts.",
+   "material_diff_fields": [
+    "decision_process",
+    "current_commitments"
+   ],
+   "signals": [
+    "customer_replied"
+   ]
+  },
+  "trigger": {
+   "activity_id": "fd917ae6-68ce-5a7d-ba82-147f35d3457c",
+   "activity_type": "EmailReceived",
+   "occurred_at": "2023-11-29T14:00:00Z",
+   "actor_person_id": "2f728fb4-106d-5ef2-ab61-cbec24a34175",
+   "event_file": "crmarena:EmailMessage:02sWt000002011NIAQ",
+   "synthetic": false,
+   "text": "Hello Luciana,\n\nThank you for your detailed email and for providing the contract draft. We appreciate the clarity and comprehensiveness with which you’ve addressed EcoLite Innovations’ primary concerns, particularly regarding the implementation process and security compliance.\n\nTechPulse Solutions’ responsiveness and innovative features have indeed been pivotal in our decision-making process. We are pleased with the proposed terms and the support services you have outlined. The emphasis on scalable and future-proof solutions is precisely what we are looking for.\n\nRegarding the contract, our legal team is reviewing the document, and I anticipate we can finalize all aspects shortly. If any adjustments are needed, I will reach out by Friday latest to ensure everything is ready by the anticipated signing date.\n\nThanks once again for your excellent cooperation and support. I look forward to concluding this agreement and seeing the positive impacts of our partnership unfold.\n\nBest regards,\n\nHaruto Yamamoto\nEcoLite Innovations",
+   "subject": "Final Contract Discussions and Preparation",
+   "date_semantics": "sent"
+  },
+  "supporting_activities": [
+   {
+    "activity_id": "11d75c70-e7c7-5377-9db6-3bf5cce23e48",
+    "activity_type": "EmailReply",
+    "occurred_at": "2023-11-29T10:00:00Z",
+    "actor_person_id": "2f728fb4-106d-5ef2-ab61-cbec24a34175",
+    "event_file": "crmarena:EmailMessage:02sWt000001ztVOIAY",
+    "synthetic": false,
+    "text": "Hi Luciana,\n\nThank you for the detailed email and the attached draft of the contract. I appreciate the thorough approach you and your team have taken to ensure that every aspect of the implementation and support has been tailored to our needs.\n\nThe points you made regarding the responsiveness and effectiveness of TechPulse’s support services have been a significant factor for us. Knowing that we can rely on prompt and efficient assistance gives us great peace of mind.\n\nRegarding scalability and future advancements, it's reassuring to know that the AIOptics Vision and OptiEnergy Suite will be able to grow with us. Adaptability to future trends is indeed a critical aspect of what we are looking for, and it seems TechPulse has thought this through.\n\nAs for the pricing and terms, they appear to be in line with our expectations. I would just like a bit more clarification on the timelines involved in the implementation process, especially around the deployment of AI Cirku-Tech.\n\nOnce I have that information, I think we will be ready to move forward towards the signing process.\n\nBest,\n\nHaruto Yamamoto\nEcoLite Innovations",
+    "subject": "Re: Final Contract Discussions and Preparation",
+    "date_semantics": "sent"
+   },
+   {
+    "activity_id": "090a230d-65fc-5b24-9c70-33742ddaed8e",
+    "activity_type": "EmailReceived",
+    "occurred_at": "2023-11-29T10:15:00Z",
+    "actor_person_id": "2f728fb4-106d-5ef2-ab61-cbec24a34175",
+    "event_file": "crmarena:EmailMessage:02sWt000001zqipIAA",
+    "synthetic": false,
+    "text": "Hi Luciana,\n\nThank you for summarizing our progress and for the detailed overview of the contract terms. I appreciate the clarity and transparency you've maintained throughout our discussions.\n\nThe total cost of ownership and advanced features of TechPulse Solutions have indeed aligned well with EcoLite’s financial and operational objectives. The emphasis on innovation and the user-friendly aspects of your products have particularly impressed us.\n\nBefore moving forward, I would just like to confirm a couple of details regarding the application of the discounts and the specific terms outlined in the document. Could we set up a brief call later this week?\n\nOnce again, thank you for ensuring a smooth negotiation process. I look forward to bringing this to a successful close.\n\nBest regards,\n\nHaruto Yamamoto\nEcoLite Innovations",
+    "subject": "Final Contract Discussions and Preparation",
+    "date_semantics": "sent"
+   },
+   {
+    "activity_id": "863b65e3-c23b-5db5-bc86-cd05cedafd73",
+    "activity_type": "EmailSent",
+    "occurred_at": "2023-11-29T11:00:00Z",
+    "actor_person_id": "4e54ea57-27e5-561d-be02-a8f8e1daa59a",
+    "event_file": "crmarena:EmailMessage:02sWt00000200y9IAA",
+    "synthetic": false,
+    "text": "Hello Haruto,\n\nThank you for your swift response and the positive remarks about our offerings. I’m glad to hear that our approach aligns well with EcoLite’s vision.\n\nI’m happy to go over the discount terms and any specifics within the contract. Could we schedule a call for Thursday at 2 PM? Let me know if this works or propose another time convenient for you.\n\nI look forward to resolving your queries and moving forward to the signing ceremony.\n\nWarm regards,\n\nLuciana Alves\nSales Representative | TechPulse Solutions",
+    "subject": "Final Contract Discussions and Preparation",
+    "date_semantics": "sent"
+   }
+  ],
+  "commitments": [
+   {
+    "text": "Legal review of the contract; adjustments by Friday 2023-12-01",
+    "owner_person_id": "2f728fb4-106d-5ef2-ab61-cbec24a34175",
+    "due_at": "2023-12-01T00:00:00Z",
+    "status": "open"
+   },
+   {
+    "text": "Call Thursday 2023-11-30 at 14:00 (proposed 11:00)",
+    "owner_person_id": "4e54ea57-27e5-561d-be02-a8f8e1daa59a",
+    "due_at": "2023-11-30T14:00:00Z",
+    "status": "open"
+   },
+   {
+    "text": "Clarify the implementation timeline for AI Cirku-Tech",
+    "owner_person_id": "4e54ea57-27e5-561d-be02-a8f8e1daa59a",
+    "due_at": null,
+    "status": "open"
+   }
+  ],
+  "timeline_facts": {
+   "last_inbound_at": "2023-11-29T14:00:00Z",
+   "last_inbound_from_person_id": "2f728fb4-106d-5ef2-ab61-cbec24a34175",
+   "last_outbound_at": "2023-11-29T11:00:00Z",
+   "stated_timing": null
+  },
+  "offered_knowledge": [],
+  "state_provenance": {
+   "champion": "inferred, not recorded: the only customer correspondent (4 inbound emails); CRMArena has no roles",
+   "stage": "unknown unless a field below says otherwise: the loader dates the stage at the deal's last event",
+   "decision_process": "02sWt000002011NIAQ",
+   "objections": "02sWt000001ztVOIAY, 02sWt000001zqipIAA",
+   "current_commitments": "02sWt000002011NIAQ, 02sWt00000200y9IAA, 02sWt000001ztVOIAY",
+   "buying_group roles": "inferred from each Contact's Title/Department; the record has no roles"
+  }
+ },
+ "candidate_action": {
+  "proposed_action_type": "send_email",
+  "recipients": [
+   {
+    "person_id": "2f728fb4-106d-5ef2-ab61-cbec24a34175",
+    "role": "to"
+   },
+   {
+    "person_id": "b52a88df-ce72-51f5-8790-1d9f0c962d67",
+    "role": "cc"
+   }
+  ],
+  "finished_artifact": {
+   "channel": "email",
+   "subject": "Re: Final Contract Discussions and Preparation",
+   "body": "Hi Haruto,\n\nThanks for the update. I have copied Elodie Rousseau so marketing can align on rollout messaging while legal finishes. I will send the deployment timeline for AI Cirku-Tech tomorrow and we can use Thursday's call for the discount details.\n\nWarm regards,\nLuciana"
+  },
+  "crm_next_step_intent": {
+   "next_step": "Deployment timeline sent 2023-11-30; call Thursday 14:00",
+   "due_at": "2023-11-30T14:00:00Z",
+   "stage_change": null
+  },
+  "reason": "Bring marketing in early so the rollout is ready at signing.",
+  "evidence_refs": [
+   {
+    "activity_id": "fd917ae6-68ce-5a7d-ba82-147f35d3457c",
+    "quote": "If any adjustments are needed, I will reach out by Friday latest to ensure everything is ready by the anticipated signing date.",
+    "occurred_at": "2023-11-29T14:00:00Z",
+    "speaker_person_id": "2f728fb4-106d-5ef2-ab61-cbec24a34175"
+   }
+  ],
+  "knowledge_refs_used": [],
+  "wait_until": null
+ },
+ "expected": [
+  {
+   "eval_type": "stakeholder_coverage",
+   "verdict": "fail",
+   "label": "OVER_THREADED",
+   "diagnostics": [],
+   "blocking": true,
+   "rationale": "A Marketing Director is pulled into a contract thread while legal review and working-level questions are under way.",
+   "evidence_class": "deal_data"
+  },
+  {
+   "eval_type": "stakeholder_selection",
+   "verdict": "fail",
+   "label": null,
+   "diagnostics": [],
+   "blocking": false,
+   "rationale": "An unrequested executive-level addressee; no price is sent, so this revises rather than blocks.",
+   "evidence_class": "methodology"
+  },
+  {
+   "eval_type": "cta_calibration",
+   "verdict": "pass",
+   "label": "APPROPRIATE",
+   "diagnostics": [],
+   "blocking": false,
+   "rationale": "Only confirms the call and a timeline.",
+   "evidence_class": "methodology"
+  }
+ ],
+ "expected_best_action": {
+  "action": "send_email",
+  "why": "Haruto alone: timeline answer and the Thursday call; no new stakeholders while legal reviews.",
+  "recipients": [
+   {
+    "person_id": "2f728fb4-106d-5ef2-ab61-cbec24a34175",
+    "role": "to"
+   }
+  ],
+  "channel": "email"
+ },
+ "labelling": {
+  "label_kind": "model labels, single author, not human labels",
+  "passes": [
+   "pass_1",
+   "pass_2"
+  ],
+  "agreement": {
+   "judgments": 3,
+   "verdict_agree": 3,
+   "fail_agree": 3
+  },
+  "disagreements": []
+ },
+ "notes": ""
+}

@@ -1,0 +1,42 @@
+{
+ "Sc382": {
+  "evidence_sufficiency": ["fail", "NEEDS_MORE_CONTEXT", false],
+  "grounding": ["fail", null, true],
+  "next_action_quality": ["fail", "NEEDS_REVISION", false]
+ },
+ "Sde6d": {
+  "next_action_quality": ["pass", "WAIT", false],
+  "relationship_pressure": ["pass", null, false],
+  "buyer_readiness": ["pass", "TOO_EARLY", false]
+ },
+ "S2774": {
+  "knowledge_applicability": ["pass", "DOES_NOT_APPLY", false],
+  "stakeholder_selection": ["pass", null, false],
+  "stakeholder_coverage": ["pass", "RIGHT_SIZED", false]
+ },
+ "Sb602": {
+  "duplicate_action": ["fail", null, true],
+  "next_action_quality": ["fail", "WAIT", false],
+  "relationship_pressure": ["fail", null, false]
+ },
+ "S8ff9": {
+  "next_action_quality": ["pass", "GOOD", false],
+  "exception_awareness": ["pass", "EXCEPTION_HONORED", false],
+  "knowledge_applicability": ["pass", "EXCEPTION_TRIGGERED", false]
+ },
+ "Sd6d9": {
+  "stakeholder_coverage": ["fail", "UNDER_THREADED", true],
+  "decision_process": ["warn", null, false],
+  "commitment_consistency": ["pass", null, false]
+ },
+ "S1a8e": {
+  "channel_appropriateness": ["fail", null, false],
+  "next_action_quality": ["fail", "ACT_NOW", true],
+  "next_step_quality": ["fail", null, true]
+ },
+ "Scf1b": {
+  "next_action_quality": ["fail", "NEEDS_REVISION", false],
+  "state_change_relevance": ["fail", null, true],
+  "duplicate_action": ["fail", null, true]
+ }
+}

@@ -1,0 +1,116 @@
+{
+  "eval_type": "cta_calibration",
+  "version": 1,
+  "title": "CTA / ask calibration",
+  "har97_refs": [
+    {
+      "line": 1128,
+      "text": "## 5.2 CTA / ask calibration"
+    }
+  ],
+  "l2_dimension": null,
+  "questions": [
+    {
+      "section": "§5.2",
+      "text": "Is the size/type of ask appropriate for the state of this relationship?"
+    }
+  ],
+  "inputs": [
+    "stage",
+    "what the buyer signalled",
+    "agreed next step",
+    "explicit commitments",
+    "the ask in the candidate message"
+  ],
+  "criteria": [
+    {
+      "id": "ask_matches_signal",
+      "kind": "evaluate",
+      "text": "the ask does not escalate beyond what the buyer signalled",
+      "guide": "Compare the strength of the ask (none, light, specific, closing) with the buyer's latest signal.",
+      "har97": null,
+      "output": "finding",
+      "before": null,
+      "after": null
+    },
+    {
+      "id": "ask_matches_next_reasonable_step",
+      "kind": "check",
+      "text": "the ask is the next reasonable step for the stage",
+      "guide": "A contract or signature ask when technical validation is the next step is too strong.",
+      "har97": null,
+      "output": "finding",
+      "before": null,
+      "after": null
+    },
+    {
+      "id": "clear_when_agreed",
+      "kind": "check",
+      "text": "a clear ask exists where an agreed next step or explicit commitment exists",
+      "guide": "A vague CTA, or none, despite an agreed next step or explicit commitment is too weak.",
+      "har97": null,
+      "output": "finding",
+      "before": null,
+      "after": null
+    },
+    {
+      "id": "single_ask",
+      "kind": "check",
+      "text": "the buyer is not asked to do several things at once",
+      "guide": "Several parallel asks in one message dilute the step and count as too strong.",
+      "har97": null,
+      "output": "finding",
+      "before": null,
+      "after": null
+    }
+  ],
+  "failure_examples": [
+    "asking for contract signature when next reasonable step is technical validation",
+    "requesting executive involvement too early",
+    "vague CTA when a clear agreed next step exists",
+    "no CTA despite an explicit commitment",
+    "asking the buyer to do multiple things at once",
+    "escalating commitment beyond what the buyer signaled"
+  ],
+  "counter_failures": [],
+  "known_exceptions": [],
+  "candidate_choices": [],
+  "principles": [
+    "Separate from timing: judge the size/type of the ask, not when it is sent (§5.2)."
+  ],
+  "labels": [
+    {
+      "label": "TOO_WEAK",
+      "when": "ask_strength = too_weak: the ask is vaguer or softer than the agreed step or commitment requires."
+    },
+    {
+      "label": "APPROPRIATE",
+      "when": "ask_strength = appropriate for the state of this relationship."
+    },
+    {
+      "label": "TOO_STRONG",
+      "when": "ask_strength = too_strong: the ask escalates beyond what the buyer signalled."
+    }
+  ],
+  "pass_label": "APPROPRIATE",
+  "diagnostics": [
+    {
+      "name": "ask_too_strong",
+      "when": "the ask escalates beyond the buyer's signal"
+    },
+    {
+      "name": "ask_too_weak",
+      "when": "the ask is vaguer than the agreed step or commitment"
+    }
+  ],
+  "routing": {
+    "actions": [
+      "send_email",
+      "schedule_meeting",
+      "share_document"
+    ],
+    "when_all": [],
+    "when_any": []
+  },
+  "uses_rep_profile": false
+}

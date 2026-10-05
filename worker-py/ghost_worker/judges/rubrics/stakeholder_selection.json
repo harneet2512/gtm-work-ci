@@ -1,0 +1,114 @@
+{
+  "eval_type": "stakeholder_selection",
+  "version": 1,
+  "title": "Stakeholder selection",
+  "har97_refs": [
+    {
+      "line": 1151,
+      "text": "## 5.3 Stakeholder selection"
+    }
+  ],
+  "l2_dimension": null,
+  "questions": [
+    {
+      "section": "§5.3",
+      "text": "Are we involving the right people for this action?"
+    }
+  ],
+  "inputs": [
+    "buying group with roles and status",
+    "who asked for what",
+    "recipients of the candidate",
+    "delegations"
+  ],
+  "criteria": [
+    {
+      "id": "champion_not_bypassed",
+      "kind": "check",
+      "text": "the active champion is not bypassed",
+      "guide": "Unless ownership was delegated or the champion left, the active champion stays on the path.",
+      "har97": null,
+      "output": "finding",
+      "before": null,
+      "after": null
+    },
+    {
+      "id": "right_function",
+      "kind": "check",
+      "text": "material goes to the stakeholder whose function it serves",
+      "guide": "Security material reaches the active security stakeholder, not only the commercial contact.",
+      "har97": null,
+      "output": "finding",
+      "before": null,
+      "after": null
+    },
+    {
+      "id": "no_unrequested_executive",
+      "kind": "check",
+      "text": "no executive is involved without a request for escalation",
+      "guide": "An executive is involved only when the working team asked for escalation.",
+      "har97": null,
+      "output": "finding",
+      "before": null,
+      "after": null
+    },
+    {
+      "id": "required_included",
+      "kind": "check",
+      "text": "an explicitly required stakeholder is not omitted",
+      "guide": "Anyone the customer named as required for this step is included.",
+      "har97": null,
+      "output": "finding",
+      "before": null,
+      "after": null
+    },
+    {
+      "id": "verified_addressee",
+      "kind": "check",
+      "text": "every addressee is a verified member of the buying group",
+      "guide": "Commercial or confidential material is not sent to an addressee the evidence does not tie to the account's process.",
+      "har97": null,
+      "output": "finding",
+      "before": null,
+      "after": null
+    }
+  ],
+  "failure_examples": [
+    "bypassing the active champion",
+    "sending security material only to commercial contact when a security stakeholder is active",
+    "involving an executive when the working team has not asked for escalation",
+    "omitting an explicitly required stakeholder"
+  ],
+  "counter_failures": [],
+  "known_exceptions": [],
+  "candidate_choices": [],
+  "principles": [
+    "Breadth (how many people) is stakeholder_coverage; this eval judges whether they are the RIGHT people."
+  ],
+  "labels": [],
+  "pass_label": null,
+  "diagnostics": [
+    {
+      "name": "wrong_stakeholder",
+      "when": "a recipient is the wrong person for the step, or a required one is missing"
+    },
+    {
+      "name": "champion_bypassed",
+      "when": "the active champion is dropped without delegation or departure"
+    }
+  ],
+  "routing": {
+    "actions": [
+      "send_email",
+      "schedule_meeting",
+      "share_document"
+    ],
+    "when_all": [
+      "has_recipients"
+    ],
+    "when_any": [
+      "addressee_in_question"
+    ]
+  },
+  "uses_rep_profile": false
+}

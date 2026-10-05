@@ -1,0 +1,5451 @@
+{
+  "cutoff": "2023-11-01",
+  "rule": "first day of the month that maximizes min(previous deals, replayable current deals), ties to the earlier month; previous = ended before the cutoff (last event of any kind: email, task, quote, contract signature) and quiet for at least previous_min_quiet_days on the cutoff date; ambiguous = ended before the cutoff but quiet for fewer days (never current); current = started before it and active at or after it; replayable = current with \u003e= 2 activities on each side",
+  "seed": 0,
+  "previous_min_quiet_days": 60,
+  "counts": {
+    "previous": 588,
+    "ambiguous": 110,
+    "current": 314,
+    "current_replayable": 125,
+    "future": 146,
+    "no_activity": 12,
+    "accounts_with_previous_and_current": 96,
+    "previous_deal_activities": 4502,
+    "current_deal_activities_before_cutoff": 955,
+    "current_deal_activities_from_cutoff": 2285
+  },
+  "candidates": [
+    {
+      "cutoff": "2020-02-01",
+      "counts": {
+        "previous": 0,
+        "ambiguous": 0,
+        "current": 1,
+        "current_replayable": 0,
+        "future": 1157,
+        "no_activity": 12,
+        "accounts_with_previous_and_current": 0,
+        "previous_deal_activities": 0,
+        "current_deal_activities_before_cutoff": 0,
+        "current_deal_activities_from_cutoff": 7
+      }
+    },
+    {
+      "cutoff": "2020-03-01",
+      "counts": {
+        "previous": 0,
+        "ambiguous": 0,
+        "current": 18,
+        "current_replayable": 1,
+        "future": 1140,
+        "no_activity": 12,
+        "accounts_with_previous_and_current": 0,
+        "previous_deal_activities": 0,
+        "current_deal_activities_before_cutoff": 6,
+        "current_deal_activities_from_cutoff": 131
+      }
+    },
+    {
+      "cutoff": "2020-04-01",
+      "counts": {
+        "previous": 0,
+        "ambiguous": 3,
+        "current": 44,
+        "current_replayable": 8,
+        "future": 1111,
+        "no_activity": 12,
+        "accounts_with_previous_and_current": 0,
+        "previous_deal_activities": 0,
+        "current_deal_activities_before_cutoff": 40,
+        "current_deal_activities_from_cutoff": 346
+      }
+    },
+    {
+      "cutoff": "2020-05-01",
+      "counts": {
+        "previous": 1,
+        "ambiguous": 13,
+        "current": 45,
+        "current_replayable": 12,
+        "future": 1099,
+        "no_activity": 12,
+        "accounts_with_previous_and_current": 1,
+        "previous_deal_activities": 5,
+        "current_deal_activities_before_cutoff": 79,
+        "current_deal_activities_from_cutoff": 328
+      }
+    },
+    {
+      "cutoff": "2020-06-01",
+      "counts": {
+        "previous": 4,
+        "ambiguous": 16,
+        "current": 51,
+        "current_replayable": 13,
+        "future": 1087,
+        "no_activity": 12,
+        "accounts_with_previous_and_current": 4,
+        "previous_deal_activities": 29,
+        "current_deal_activities_before_cutoff": 119,
+        "current_deal_activities_from_cutoff": 368
+      }
+    },
+    {
+      "cutoff": "2020-07-01",
+      "counts": {
+        "previous": 14,
+        "ambiguous": 19,
+        "current": 63,
+        "current_replayable": 12,
+        "future": 1062,
+        "no_activity": 12,
+        "accounts_with_previous_and_current": 10,
+        "previous_deal_activities": 103,
+        "current_deal_activities_before_cutoff": 136,
+        "current_deal_activities_from_cutoff": 493
+      }
+    },
+    {
+      "cutoff": "2020-08-01",
+      "counts": {
+        "previous": 22,
+        "ambiguous": 23,
+        "current": 67,
+        "current_replayable": 20,
+        "future": 1046,
+        "no_activity": 12,
+        "accounts_with_previous_and_current": 9,
+        "previous_deal_activities": 174,
+        "current_deal_activities_before_cutoff": 144,
+        "current_deal_activities_from_cutoff": 483
+      }
+    },
+    {
+      "cutoff": "2020-09-01",
+      "counts": {
+        "previous": 36,
+        "ambiguous": 26,
+        "current": 80,
+        "current_replayable": 18,
+        "future": 1016,
+        "no_activity": 12,
+        "accounts_with_previous_and_current": 13,
+        "previous_deal_activities": 287,
+        "current_deal_activities_before_cutoff": 138,
+        "current_deal_activities_from_cutoff": 634
+      }
+    },
+    {
+      "cutoff": "2020-10-01",
+      "counts": {
+        "previous": 45,
+        "ambiguous": 26,
+        "current": 94,
+        "current_replayable": 22,
+        "future": 993,
+        "no_activity": 12,
+        "accounts_with_previous_and_current": 16,
+        "previous_deal_activities": 379,
+        "current_deal_activities_before_cutoff": 161,
+        "current_deal_activities_from_cutoff": 741
+      }
+    },
+    {
+      "cutoff": "2020-11-01",
+      "counts": {
+        "previous": 62,
+        "ambiguous": 22,
+        "current": 95,
+        "current_replayable": 22,
+        "future": 979,
+        "no_activity": 12,
+        "accounts_with_previous_and_current": 21,
+        "previous_deal_activities": 509,
+        "current_deal_activities_before_cutoff": 162,
+        "current_deal_activities_from_cutoff": 730
+      }
+    },
+    {
+      "cutoff": "2020-12-01",
+      "counts": {
+        "previous": 73,
+        "ambiguous": 24,
+        "current": 102,
+        "current_replayable": 28,
+        "future": 959,
+        "no_activity": 12,
+        "accounts_with_previous_and_current": 26,
+        "previous_deal_activities": 598,
+        "current_deal_activities_before_cutoff": 191,
+        "current_deal_activities_from_cutoff": 734
+      }
+    },
+    {
+      "cutoff": "2021-01-01",
+      "counts": {
+        "previous": 84,
+        "ambiguous": 27,
+        "current": 103,
+        "current_replayable": 26,
+        "future": 944,
+        "no_activity": 12,
+        "accounts_with_previous_and_current": 31,
+        "previous_deal_activities": 685,
+        "current_deal_activities_before_cutoff": 199,
+        "current_deal_activities_from_cutoff": 770
+      }
+    },
+    {
+      "cutoff": "2021-02-01",
+      "counts": {
+        "previous": 97,
+        "ambiguous": 35,
+        "current": 106,
+        "current_replayable": 24,
+        "future": 920,
+        "no_activity": 12,
+        "accounts_with_previous_and_current": 36,
+        "previous_deal_activities": 783,
+        "current_deal_activities_before_cutoff": 187,
+        "current_deal_activities_from_cutoff": 864
+      }
+    },
+    {
+      "cutoff": "2021-03-01",
+      "counts": {
+        "previous": 111,
+        "ambiguous": 35,
+        "current": 118,
+        "current_replayable": 26,
+        "future": 894,
+        "no_activity": 12,
+        "accounts_with_previous_and_current": 39,
+        "previous_deal_activities": 873,
+        "current_deal_activities_before_cutoff": 200,
+        "current_deal_activities_from_cutoff": 1009
+      }
+    },
+    {
+      "cutoff": "2021-04-01",
+      "counts": {
+        "previous": 132,
+        "ambiguous": 32,
+        "current": 143,
+        "current_replayable": 32,
+        "future": 851,
+        "no_activity": 12,
+        "accounts_with_previous_and_current": 45,
+        "previous_deal_activities": 1020,
+        "current_deal_activities_before_cutoff": 265,
+        "current_deal_activities_from_cutoff": 1123
+      }
+    },
+    {
+      "cutoff": "2021-05-01",
+      "counts": {
+        "previous": 147,
+        "ambiguous": 35,
+        "current": 149,
+        "current_replayable": 35,
+        "future": 827,
+        "no_activity": 12,
+        "accounts_with_previous_and_current": 46,
+        "previous_deal_activities": 1111,
+        "current_deal_activities_before_cutoff": 278,
+        "current_deal_activities_from_cutoff": 1214
+      }
+    },
+    {
+      "cutoff": "2021-06-01",
+      "counts": {
+        "previous": 164,
+        "ambiguous": 32,
+        "current": 159,
+        "current_replayable": 34,
+        "future": 803,
+        "no_activity": 12,
+        "accounts_with_previous_and_current": 53,
+        "previous_deal_activities": 1258,
+        "current_deal_activities_before_cutoff": 339,
+        "current_deal_activities_from_cutoff": 1276
+      }
+    },
+    {
+      "cutoff": "2021-07-01",
+      "counts": {
+        "previous": 182,
+        "ambiguous": 38,
+        "current": 173,
+        "current_replayable": 33,
+        "future": 765,
+        "no_activity": 12,
+        "accounts_with_previous_and_current": 60,
+        "previous_deal_activities": 1407,
+        "current_deal_activities_before_cutoff": 322,
+        "current_deal_activities_from_cutoff": 1360
+      }
+    },
+    {
+      "cutoff": "2021-08-01",
+      "counts": {
+        "previous": 196,
+        "ambiguous": 43,
+        "current": 170,
+        "current_replayable": 42,
+        "future": 749,
+        "no_activity": 12,
+        "accounts_with_previous_and_current": 64,
+        "previous_deal_activities": 1496,
+        "current_deal_activities_before_cutoff": 427,
+        "current_deal_activities_from_cutoff": 1244
+      }
+    },
+    {
+      "cutoff": "2021-09-01",
+      "counts": {
+        "previous": 220,
+        "ambiguous": 39,
+        "current": 165,
+        "current_replayable": 39,
+        "future": 734,
+        "no_activity": 12,
+        "accounts_with_previous_and_current": 65,
+        "previous_deal_activities": 1710,
+        "current_deal_activities_before_cutoff": 351,
+        "current_deal_activities_from_cutoff": 1259
+      }
+    },
+    {
+      "cutoff": "2021-10-01",
+      "counts": {
+        "previous": 240,
+        "ambiguous": 33,
+        "current": 165,
+        "current_replayable": 41,
+        "future": 720,
+        "no_activity": 12,
+        "accounts_with_previous_and_current": 66,
+        "previous_deal_activities": 1873,
+        "current_deal_activities_before_cutoff": 345,
+        "current_deal_activities_from_cutoff": 1272
+      }
+    },
+    {
+      "cutoff": "2021-11-01",
+      "counts": {
+        "previous": 260,
+        "ambiguous": 24,
+        "current": 162,
+        "current_replayable": 38,
+        "future": 712,
+        "no_activity": 12,
+        "accounts_with_previous_and_current": 68,
+        "previous_deal_activities": 2054,
+        "current_deal_activities_before_cutoff": 336,
+        "current_deal_activities_from_cutoff": 1266
+      }
+    },
+    {
+      "cutoff": "2021-12-01",
+      "counts": {
+        "previous": 273,
+        "ambiguous": 22,
+        "current": 182,
+        "current_replayable": 39,
+        "future": 681,
+        "no_activity": 12,
+        "accounts_with_previous_and_current": 71,
+        "previous_deal_activities": 2165,
+        "current_deal_activities_before_cutoff": 326,
+        "current_deal_activities_from_cutoff": 1459
+      }
+    },
+    {
+      "cutoff": "2022-01-01",
+      "counts": {
+        "previous": 284,
+        "ambiguous": 37,
+        "current": 173,
+        "current_replayable": 34,
+        "future": 664,
+        "no_activity": 12,
+        "accounts_with_previous_and_current": 68,
+        "previous_deal_activities": 2245,
+        "current_deal_activities_before_cutoff": 271,
+        "current_deal_activities_from_cutoff": 1445
+      }
+    },
+    {
+      "cutoff": "2022-02-01",
+      "counts": {
+        "previous": 297,
+        "ambiguous": 37,
+        "current": 193,
+        "current_replayable": 40,
+        "future": 631,
+        "no_activity": 12,
+        "accounts_with_previous_and_current": 69,
+        "previous_deal_activities": 2336,
+        "current_deal_activities_before_cutoff": 315,
+        "current_deal_activities_from_cutoff": 1551
+      }
+    },
+    {
+      "cutoff": "2022-03-01",
+      "counts": {
+        "previous": 321,
+        "ambiguous": 39,
+        "current": 192,
+        "current_replayable": 31,
+        "future": 606,
+        "no_activity": 12,
+        "accounts_with_previous_and_current": 72,
+        "previous_deal_activities": 2514,
+        "current_deal_activities_before_cutoff": 240,
+        "current_deal_activities_from_cutoff": 1567
+      }
+    },
+    {
+      "cutoff": "2022-04-01",
+      "counts": {
+        "previous": 334,
+        "ambiguous": 46,
+        "current": 206,
+        "current_replayable": 37,
+        "future": 572,
+        "no_activity": 12,
+        "accounts_with_previous_and_current": 76,
+        "previous_deal_activities": 2614,
+        "current_deal_activities_before_cutoff": 296,
+        "current_deal_activities_from_cutoff": 1600
+      }
+    },
+    {
+      "cutoff": "2022-05-01",
+      "counts": {
+        "previous": 360,
+        "ambiguous": 31,
+        "current": 212,
+        "current_replayable": 34,
+        "future": 555,
+        "no_activity": 12,
+        "accounts_with_previous_and_current": 77,
+        "previous_deal_activities": 2863,
+        "current_deal_activities_before_cutoff": 305,
+        "current_deal_activities_from_cutoff": 1688
+      }
+    },
+    {
+      "cutoff": "2022-06-01",
+      "counts": {
+        "previous": 381,
+        "ambiguous": 21,
+        "current": 217,
+        "current_replayable": 31,
+        "future": 539,
+        "no_activity": 12,
+        "accounts_with_previous_and_current": 78,
+        "previous_deal_activities": 3013,
+        "current_deal_activities_before_cutoff": 270,
+        "current_deal_activities_from_cutoff": 1779
+      }
+    },
+    {
+      "cutoff": "2022-07-01",
+      "counts": {
+        "previous": 392,
+        "ambiguous": 20,
+        "current": 230,
+        "current_replayable": 30,
+        "future": 516,
+        "no_activity": 12,
+        "accounts_with_previous_and_current": 82,
+        "previous_deal_activities": 3105,
+        "current_deal_activities_before_cutoff": 226,
+        "current_deal_activities_from_cutoff": 1938
+      }
+    },
+    {
+      "cutoff": "2022-08-01",
+      "counts": {
+        "previous": 402,
+        "ambiguous": 16,
+        "current": 248,
+        "current_replayable": 34,
+        "future": 492,
+        "no_activity": 12,
+        "accounts_with_previous_and_current": 81,
+        "previous_deal_activities": 3178,
+        "current_deal_activities_before_cutoff": 231,
+        "current_deal_activities_from_cutoff": 2107
+      }
+    },
+    {
+      "cutoff": "2022-09-01",
+      "counts": {
+        "previous": 413,
+        "ambiguous": 7,
+        "current": 261,
+        "current_replayable": 39,
+        "future": 477,
+        "no_activity": 12,
+        "accounts_with_previous_and_current": 85,
+        "previous_deal_activities": 3261,
+        "current_deal_activities_before_cutoff": 287,
+        "current_deal_activities_from_cutoff": 2170
+      }
+    },
+    {
+      "cutoff": "2022-10-01",
+      "counts": {
+        "previous": 419,
+        "ambiguous": 11,
+        "current": 278,
+        "current_replayable": 38,
+        "future": 450,
+        "no_activity": 12,
+        "accounts_with_previous_and_current": 87,
+        "previous_deal_activities": 3304,
+        "current_deal_activities_before_cutoff": 253,
+        "current_deal_activities_from_cutoff": 2365
+      }
+    },
+    {
+      "cutoff": "2022-11-01",
+      "counts": {
+        "previous": 420,
+        "ambiguous": 13,
+        "current": 287,
+        "current_replayable": 43,
+        "future": 438,
+        "no_activity": 12,
+        "accounts_with_previous_and_current": 87,
+        "previous_deal_activities": 3314,
+        "current_deal_activities_before_cutoff": 269,
+        "current_deal_activities_from_cutoff": 2429
+      }
+    },
+    {
+      "cutoff": "2022-12-01",
+      "counts": {
+        "previous": 430,
+        "ambiguous": 8,
+        "current": 302,
+        "current_replayable": 46,
+        "future": 418,
+        "no_activity": 12,
+        "accounts_with_previous_and_current": 87,
+        "previous_deal_activities": 3389,
+        "current_deal_activities_before_cutoff": 293,
+        "current_deal_activities_from_cutoff": 2541
+      }
+    },
+    {
+      "cutoff": "2023-01-01",
+      "counts": {
+        "previous": 433,
+        "ambiguous": 12,
+        "current": 301,
+        "current_replayable": 47,
+        "future": 412,
+        "no_activity": 12,
+        "accounts_with_previous_and_current": 87,
+        "previous_deal_activities": 3410,
+        "current_deal_activities_before_cutoff": 283,
+        "current_deal_activities_from_cutoff": 2561
+      }
+    },
+    {
+      "cutoff": "2023-02-01",
+      "counts": {
+        "previous": 438,
+        "ambiguous": 13,
+        "current": 336,
+        "current_replayable": 52,
+        "future": 371,
+        "no_activity": 12,
+        "accounts_with_previous_and_current": 90,
+        "previous_deal_activities": 3438,
+        "current_deal_activities_before_cutoff": 313,
+        "current_deal_activities_from_cutoff": 2802
+      }
+    },
+    {
+      "cutoff": "2023-03-01",
+      "counts": {
+        "previous": 445,
+        "ambiguous": 20,
+        "current": 350,
+        "current_replayable": 61,
+        "future": 343,
+        "no_activity": 12,
+        "accounts_with_previous_and_current": 91,
+        "previous_deal_activities": 3479,
+        "current_deal_activities_before_cutoff": 381,
+        "current_deal_activities_from_cutoff": 2899
+      }
+    },
+    {
+      "cutoff": "2023-04-01",
+      "counts": {
+        "previous": 450,
+        "ambiguous": 45,
+        "current": 349,
+        "current_replayable": 71,
+        "future": 314,
+        "no_activity": 12,
+        "accounts_with_previous_and_current": 90,
+        "previous_deal_activities": 3513,
+        "current_deal_activities_before_cutoff": 396,
+        "current_deal_activities_from_cutoff": 2894
+      }
+    },
+    {
+      "cutoff": "2023-05-01",
+      "counts": {
+        "previous": 468,
+        "ambiguous": 45,
+        "current": 361,
+        "current_replayable": 74,
+        "future": 284,
+        "no_activity": 12,
+        "accounts_with_previous_and_current": 92,
+        "previous_deal_activities": 3603,
+        "current_deal_activities_before_cutoff": 452,
+        "current_deal_activities_from_cutoff": 2966
+      }
+    },
+    {
+      "cutoff": "2023-06-01",
+      "counts": {
+        "previous": 496,
+        "ambiguous": 34,
+        "current": 370,
+        "current_replayable": 78,
+        "future": 258,
+        "no_activity": 12,
+        "accounts_with_previous_and_current": 94,
+        "previous_deal_activities": 3815,
+        "current_deal_activities_before_cutoff": 468,
+        "current_deal_activities_from_cutoff": 3014
+      }
+    },
+    {
+      "cutoff": "2023-07-01",
+      "counts": {
+        "previous": 515,
+        "ambiguous": 41,
+        "current": 362,
+        "current_replayable": 81,
+        "future": 240,
+        "no_activity": 12,
+        "accounts_with_previous_and_current": 97,
+        "previous_deal_activities": 3956,
+        "current_deal_activities_before_cutoff": 476,
+        "current_deal_activities_from_cutoff": 2990
+      }
+    },
+    {
+      "cutoff": "2023-08-01",
+      "counts": {
+        "previous": 531,
+        "ambiguous": 39,
+        "current": 366,
+        "current_replayable": 84,
+        "future": 222,
+        "no_activity": 12,
+        "accounts_with_previous_and_current": 97,
+        "previous_deal_activities": 4073,
+        "current_deal_activities_before_cutoff": 519,
+        "current_deal_activities_from_cutoff": 2985
+      }
+    },
+    {
+      "cutoff": "2023-09-01",
+      "counts": {
+        "previous": 556,
+        "ambiguous": 31,
+        "current": 371,
+        "current_replayable": 92,
+        "future": 200,
+        "no_activity": 12,
+        "accounts_with_previous_and_current": 97,
+        "previous_deal_activities": 4255,
+        "current_deal_activities_before_cutoff": 562,
+        "current_deal_activities_from_cutoff": 2996
+      }
+    },
+    {
+      "cutoff": "2023-10-01",
+      "counts": {
+        "previous": 571,
+        "ambiguous": 53,
+        "current": 369,
+        "current_replayable": 99,
+        "future": 165,
+        "no_activity": 12,
+        "accounts_with_previous_and_current": 100,
+        "previous_deal_activities": 4367,
+        "current_deal_activities_before_cutoff": 634,
+        "current_deal_activities_from_cutoff": 3026
+      }
+    },
+    {
+      "cutoff": "2023-11-01",
+      "counts": {
+        "previous": 588,
+        "ambiguous": 110,
+        "current": 314,
+        "current_replayable": 125,
+        "future": 146,
+        "no_activity": 12,
+        "accounts_with_previous_and_current": 96,
+        "previous_deal_activities": 4502,
+        "current_deal_activities_before_cutoff": 955,
+        "current_deal_activities_from_cutoff": 2285
+      }
+    },
+    {
+      "cutoff": "2023-12-01",
+      "counts": {
+        "previous": 626,
+        "ambiguous": 240,
+        "current": 165,
+        "current_replayable": 93,
+        "future": 127,
+        "no_activity": 12,
+        "accounts_with_previous_and_current": 80,
+        "previous_deal_activities": 4758,
+        "current_deal_activities_before_cutoff": 998,
+        "current_deal_activities_from_cutoff": 935
+      }
+    },
+    {
+      "cutoff": "2024-01-01",
+      "counts": {
+        "previous": 709,
+        "ambiguous": 267,
+        "current": 83,
+        "current_replayable": 40,
+        "future": 99,
+        "no_activity": 12,
+        "accounts_with_previous_and_current": 49,
+        "previous_deal_activities": 5427,
+        "current_deal_activities_before_cutoff": 534,
+        "current_deal_activities_from_cutoff": 427
+      }
+    },
+    {
+      "cutoff": "2024-02-01",
+      "counts": {
+        "previous": 876,
+        "ambiguous": 136,
+        "current": 55,
+        "current_replayable": 34,
+        "future": 91,
+        "no_activity": 12,
+        "accounts_with_previous_and_current": 41,
+        "previous_deal_activities": 6908,
+        "current_deal_activities_before_cutoff": 383,
+        "current_deal_activities_from_cutoff": 294
+      }
+    },
+    {
+      "cutoff": "2024-03-01",
+      "counts": {
+        "previous": 976,
+        "ambiguous": 58,
+        "current": 52,
+        "current_replayable": 27,
+        "future": 72,
+        "no_activity": 12,
+        "accounts_with_previous_and_current": 38,
+        "previous_deal_activities": 8025,
+        "current_deal_activities_before_cutoff": 305,
+        "current_deal_activities_from_cutoff": 350
+      }
+    },
+    {
+      "cutoff": "2024-04-01",
+      "counts": {
+        "previous": 1012,
+        "ambiguous": 53,
+        "current": 53,
+        "current_replayable": 27,
+        "future": 40,
+        "no_activity": 12,
+        "accounts_with_previous_and_current": 38,
+        "previous_deal_activities": 8402,
+        "current_deal_activities_before_cutoff": 321,
+        "current_deal_activities_from_cutoff": 345
+      }
+    },
+    {
+      "cutoff": "2024-05-01",
+      "counts": {
+        "previous": 1035,
+        "ambiguous": 65,
+        "current": 43,
+        "current_replayable": 21,
+        "future": 15,
+        "no_activity": 12,
+        "accounts_with_previous_and_current": 30,
+        "previous_deal_activities": 8648,
+        "current_deal_activities_before_cutoff": 265,
+        "current_deal_activities_from_cutoff": 230
+      }
+    },
+    {
+      "cutoff": "2024-06-01",
+      "counts": {
+        "previous": 1067,
+        "ambiguous": 62,
+        "current": 29,
+        "current_replayable": 16,
+        "future": 0,
+        "no_activity": 12,
+        "accounts_with_previous_and_current": 18,
+        "previous_deal_activities": 8962,
+        "current_deal_activities_before_cutoff": 174,
+        "current_deal_activities_from_cutoff": 139
+      }
+    },
+    {
+      "cutoff": "2024-07-01",
+      "counts": {
+        "previous": 1100,
+        "ambiguous": 44,
+        "current": 14,
+        "current_replayable": 9,
+        "future": 0,
+        "no_activity": 12,
+        "accounts_with_previous_and_current": 12,
+        "previous_deal_activities": 9315,
+        "current_deal_activities_before_cutoff": 117,
+        "current_deal_activities_from_cutoff": 44
+      }
+    },
+    {
+      "cutoff": "2024-08-01",
+      "counts": {
+        "previous": 1129,
+        "ambiguous": 23,
+        "current": 6,
+        "current_replayable": 4,
+        "future": 0,
+        "no_activity": 12,
+        "accounts_with_previous_and_current": 6,
+        "previous_deal_activities": 9646,
+        "current_deal_activities_before_cutoff": 49,
+        "current_deal_activities_from_cutoff": 21
+      }
+    },
+    {
+      "cutoff": "2024-09-01",
+      "counts": {
+        "previous": 1146,
+        "ambiguous": 9,
+        "current": 3,
+        "current_replayable": 2,
+        "future": 0,
+        "no_activity": 12,
+        "accounts_with_previous_and_current": 3,
+        "previous_deal_activities": 9827,
+        "current_deal_activities_before_cutoff": 21,
+        "current_deal_activities_from_cutoff": 14
+      }
+    },
+    {
+      "cutoff": "2024-10-01",
+      "counts": {
+        "previous": 1152,
+        "ambiguous": 5,
+        "current": 1,
+        "current_replayable": 0,
+        "future": 0,
+        "no_activity": 12,
+        "accounts_with_previous_and_current": 1,
+        "previous_deal_activities": 9889,
+        "current_deal_activities_before_cutoff": 14,
+        "current_deal_activities_from_cutoff": 1
+      }
+    },
+    {
+      "cutoff": "2024-11-01",
+      "counts": {
+        "previous": 1155,
+        "ambiguous": 2,
+        "current": 1,
+        "current_replayable": 0,
+        "future": 0,
+        "no_activity": 12,
+        "accounts_with_previous_and_current": 1,
+        "previous_deal_activities": 9924,
+        "current_deal_activities_before_cutoff": 14,
+        "current_deal_activities_from_cutoff": 1
+      }
+    },
+    {
+      "cutoff": "2024-12-01",
+      "counts": {
+        "previous": 1157,
+        "ambiguous": 0,
+        "current": 1,
+        "current_replayable": 0,
+        "future": 0,
+        "no_activity": 12,
+        "accounts_with_previous_and_current": 1,
+        "previous_deal_activities": 9944,
+        "current_deal_activities_before_cutoff": 14,
+        "current_deal_activities_from_cutoff": 1
+      }
+    },
+    {
+      "cutoff": "2025-01-01",
+      "counts": {
+        "previous": 1157,
+        "ambiguous": 0,
+        "current": 1,
+        "current_replayable": 0,
+        "future": 0,
+        "no_activity": 12,
+        "accounts_with_previous_and_current": 1,
+        "previous_deal_activities": 9944,
+        "current_deal_activities_before_cutoff": 14,
+        "current_deal_activities_from_cutoff": 1
+      }
+    }
+  ],
+  "previous_deals_by_stage": {
+    "Closed": 182,
+    "Discovery": 125,
+    "Negotiation": 77,
+    "Qualification": 110,
+    "Quote": 94
+  },
+  "ambiguous_deals_by_stage": {
+    "Closed": 12,
+    "Discovery": 36,
+    "Negotiation": 11,
+    "Qualification": 34,
+    "Quote": 17
+  },
+  "previous_deal_ids": [
+    "006Wt000007Aw3XIAS",
+    "006Wt000007Aya9IAC",
+    "006Wt000007AyaCIAS",
+    "006Wt000007Ayi2IAC",
+    "006Wt000007AywiIAC",
+    "006Wt000007AywjIAC",
+    "006Wt000007AywkIAC",
+    "006Wt000007AzvrIAC",
+    "006Wt000007B0OtIAK",
+    "006Wt000007B0g2IAC",
+    "006Wt000007B183IAC",
+    "006Wt000007B184IAC",
+    "006Wt000007B185IAC",
+    "006Wt000007B1KxIAK",
+    "006Wt000007B1knIAC",
+    "006Wt000007B1koIAC",
+    "006Wt000007B1kqIAC",
+    "006Wt000007B2QhIAK",
+    "006Wt000007B2TuIAK",
+    "006Wt000007B2TvIAK",
+    "006Wt000007B2qUIAS",
+    "006Wt000007B3BSIA0",
+    "006Wt000007B3WSIA0",
+    "006Wt000007B3t1IAC",
+    "006Wt000007B41EIAS",
+    "006Wt000007B41IIAS",
+    "006Wt000007B49JIAS",
+    "006Wt000007B49LIAS",
+    "006Wt000007B49TIAS",
+    "006Wt000007B4IoIAK",
+    "006Wt000007B4IpIAK",
+    "006Wt000007B4IqIAK",
+    "006Wt000007B4ViIAK",
+    "006Wt000007B4vXIAS",
+    "006Wt000007B5DQIA0",
+    "006Wt000007B5EtIAK",
+    "006Wt000007B5EvIAK",
+    "006Wt000007B5I8IAK",
+    "006Wt000007B5LLIA0",
+    "006Wt000007B5OeIAK",
+    "006Wt000007B5OfIAK",
+    "006Wt000007B5OgIAK",
+    "006Wt000007B5OhIAK",
+    "006Wt000007B5VIIA0",
+    "006Wt000007B5VJIA0",
+    "006Wt000007B5bSIAS",
+    "006Wt000007B5egIAC",
+    "006Wt000007B5eiIAC",
+    "006Wt000007B5jWIAS",
+    "006Wt000007B5jXIAS",
+    "006Wt000007B5l8IAC",
+    "006Wt000007B5q1IAC",
+    "006Wt000007B5q2IAC",
+    "006Wt000007B5uqIAC",
+    "006Wt000007B5urIAC",
+    "006Wt000007B5usIAC",
+    "006Wt000007B5wQIAS",
+    "006Wt000007B5wRIAS",
+    "006Wt000007B5y5IAC",
+    "006Wt000007B5zfIAC",
+    "006Wt000007B62tIAC",
+    "006Wt000007B62vIAC",
+    "006Wt000007B62wIAC",
+    "006Wt000007B631IAC",
+    "006Wt000007B6CZIA0",
+    "006Wt000007B6EDIA0",
+    "006Wt000007B6KdIAK",
+    "006Wt000007B6KfIAK",
+    "006Wt000007B6KgIAK",
+    "006Wt000007B6Z8IAK",
+    "006Wt000007B6akIAC",
+    "006Wt000007B6alIAC",
+    "006Wt000007B6cQIAS",
+    "006Wt000007B6cSIAS",
+    "006Wt000007B6cVIAS",
+    "006Wt000007B6cWIAS",
+    "006Wt000007B6frIAC",
+    "006Wt000007B6ipIAC",
+    "006Wt000007B6itIAC",
+    "006Wt000007B6iuIAC",
+    "006Wt000007B6kQIAS",
+    "006Wt000007B6kRIAS",
+    "006Wt000007B6kSIAS",
+    "006Wt000007B6kTIAS",
+    "006Wt000007B6kVIAS",
+    "006Wt000007B6kWIAS",
+    "006Wt000007B6u6IAC",
+    "006Wt000007B6u8IAC",
+    "006Wt000007B6xKIAS",
+    "006Wt000007B6xLIAS",
+    "006Wt000007B6xNIAS",
+    "006Wt000007B6xOIAS",
+    "006Wt000007B7ETIA0",
+    "006Wt000007B7INIA0",
+    "006Wt000007B7IOIA0",
+    "006Wt000007B7IPIA0",
+    "006Wt000007B7JuIAK",
+    "006Wt000007B7LZIA0",
+    "006Wt000007B7OkIAK",
+    "006Wt000007B7OlIAK",
+    "006Wt000007B7OmIAK",
+    "006Wt000007B7TaIAK",
+    "006Wt000007B7TcIAK",
+    "006Wt000007B7VCIA0",
+    "006Wt000007B7a3IAC",
+    "006Wt000007B7beIAC",
+    "006Wt000007B7bgIAC",
+    "006Wt000007B7bhIAC",
+    "006Wt000007B7esIAC",
+    "006Wt000007B7jnIAC",
+    "006Wt000007B7joIAC",
+    "006Wt000007B7jpIAC",
+    "006Wt000007B7lKIAS",
+    "006Wt000007B7qAIAS",
+    "006Wt000007B7qBIAS",
+    "006Wt000007B7tOIAS",
+    "006Wt000007B7yFIAS",
+    "006Wt000007B7yGIAS",
+    "006Wt000007B7zqIAC",
+    "006Wt000007B81TIAS",
+    "006Wt000007B837IAC",
+    "006Wt000007B838IAC",
+    "006Wt000007B86JIAS",
+    "006Wt000007B86KIAS",
+    "006Wt000007B8ClIAK",
+    "006Wt000007B8CnIAK",
+    "006Wt000007B8CoIAK",
+    "006Wt000007B8CqIAK",
+    "006Wt000007B8EMIA0",
+    "006Wt000007B8FzIAK",
+    "006Wt000007B8G2IAK",
+    "006Wt000007B8G5IAK",
+    "006Wt000007B8JCIA0",
+    "006Wt000007B8KoIAK",
+    "006Wt000007B8KpIAK",
+    "006Wt000007B8PgIAK",
+    "006Wt000007B8PhIAK",
+    "006Wt000007B8RJIA0",
+    "006Wt000007B8RKIA0",
+    "006Wt000007B8RLIA0",
+    "006Wt000007B8xWIAS",
+    "006Wt000007B9OwIAK",
+    "006Wt000007B9X2IAK",
+    "006Wt000007B9YdIAK",
+    "006Wt000007B9YeIAK",
+    "006Wt000007B9YgIAK",
+    "006Wt000007BA0NIAW",
+    "006Wt000007BA0OIAW",
+    "006Wt000007BA3GIAW",
+    "006Wt000007BA3IIAW",
+    "006Wt000007BA4sIAG",
+    "006Wt000007BA4uIAG",
+    "006Wt000007BA9hIAG",
+    "006Wt000007BA9jIAG",
+    "006Wt000007BABJIA4",
+    "006Wt000007BABKIA4",
+    "006Wt000007BABLIA4",
+    "006Wt000007BACwIAO",
+    "006Wt000007BACxIAO",
+    "006Wt000007BAEXIA4",
+    "006Wt000007BAEYIA4",
+    "006Wt000007BAEZIA4",
+    "006Wt000007BAHlIAO",
+    "006Wt000007BAHmIAO",
+    "006Wt000007BAJNIA4",
+    "006Wt000007BAJOIA4",
+    "006Wt000007BAJQIA4",
+    "006Wt000007BAKzIAO",
+    "006Wt000007BAL0IAO",
+    "006Wt000007BAL1IAO",
+    "006Wt000007BAL2IAO",
+    "006Wt000007BAMcIAO",
+    "006Wt000007BAMdIAO",
+    "006Wt000007BAMeIAO",
+    "006Wt000007BAMhIAO",
+    "006Wt000007BAMjIAO",
+    "006Wt000007BAPqIAO",
+    "006Wt000007BAPrIAO",
+    "006Wt000007BAT5IAO",
+    "006Wt000007BAT6IAO",
+    "006Wt000007BAT8IAO",
+    "006Wt000007BAT9IAO",
+    "006Wt000007BAUfIAO",
+    "006Wt000007BAWJIA4",
+    "006Wt000007BAWKIA4",
+    "006Wt000007BAWLIA4",
+    "006Wt000007BAXvIAO",
+    "006Wt000007BAXxIAO",
+    "006Wt000007BAY1IAO",
+    "006Wt000007BAZXIA4",
+    "006Wt000007BAb7IAG",
+    "006Wt000007BAcjIAG",
+    "006Wt000007BAeNIAW",
+    "006Wt000007BAeQIAW",
+    "006Wt000007BAfyIAG",
+    "006Wt000007BAhZIAW",
+    "006Wt000007BAjCIAW",
+    "006Wt000007BAjDIAW",
+    "006Wt000007BAjFIAW",
+    "006Wt000007BAjHIAW",
+    "006Wt000007BAjIIAW",
+    "006Wt000007BAjKIAW",
+    "006Wt000007BAknIAG",
+    "006Wt000007BAmPIAW",
+    "006Wt000007BAo1IAG",
+    "006Wt000007BApdIAG",
+    "006Wt000007BArFIAW",
+    "006Wt000007BAssIAG",
+    "006Wt000007BAstIAG",
+    "006Wt000007BAsuIAG",
+    "006Wt000007BAuTIAW",
+    "006Wt000007BAuWIAW",
+    "006Wt000007BAw8IAG",
+    "006Wt000007BAwAIAW",
+    "006Wt000007BAwBIAW",
+    "006Wt000007BAzJIAW",
+    "006Wt000007BAzKIAW",
+    "006Wt000007BAzLIAW",
+    "006Wt000007BB0xIAG",
+    "006Wt000007BB2XIAW",
+    "006Wt000007BB5qIAG",
+    "006Wt000007BBAcIAO",
+    "006Wt000007BBAdIAO",
+    "006Wt000007BBAeIAO",
+    "006Wt000007BBAhIAO",
+    "006Wt000007BBCFIA4",
+    "006Wt000007BBCGIA4",
+    "006Wt000007BBFRIA4",
+    "006Wt000007BBH3IAO",
+    "006Wt000007BBH5IAO",
+    "006Wt000007BBH6IAO",
+    "006Wt000007BBIfIAO",
+    "006Wt000007BBIgIAO",
+    "006Wt000007BBIhIAO",
+    "006Wt000007BBIiIAO",
+    "006Wt000007BBP9IAO",
+    "006Wt000007BBQjIAO",
+    "006Wt000007BBQkIAO",
+    "006Wt000007BBTxIAO",
+    "006Wt000007BBVZIA4",
+    "006Wt000007BBVaIAO",
+    "006Wt000007BBVbIAO",
+    "006Wt000007BBVcIAO",
+    "006Wt000007BBVdIAO",
+    "006Wt000007BBXBIA4",
+    "006Wt000007BBYnIAO",
+    "006Wt000007BBYoIAO",
+    "006Wt000007BBaPIAW",
+    "006Wt000007BBaRIAW",
+    "006Wt000007BBaUIAW",
+    "006Wt000007BBc2IAG",
+    "006Wt000007BBddIAG",
+    "006Wt000007BBfFIAW",
+    "006Wt000007BBguIAG",
+    "006Wt000007BBiTIAW",
+    "006Wt000007BBiUIAW",
+    "006Wt000007BBliIAG",
+    "006Wt000007BBnKIAW",
+    "006Wt000007BBnLIAW",
+    "006Wt000007BBovIAG",
+    "006Wt000007BBqXIAW",
+    "006Wt000007BBs9IAG",
+    "006Wt000007BBtnIAG",
+    "006Wt000007BBvOIAW",
+    "006Wt000007BBwzIAG",
+    "006Wt000007BBx1IAG",
+    "006Wt000007BBybIAG",
+    "006Wt000007BBycIAG",
+    "006Wt000007BBydIAG",
+    "006Wt000007BByfIAG",
+    "006Wt000007BC1pIAG",
+    "006Wt000007BC1qIAG",
+    "006Wt000007BC1rIAG",
+    "006Wt000007BC3RIAW",
+    "006Wt000007BC3UIAW",
+    "006Wt000007BC3VIAW",
+    "006Wt000007BC53IAG",
+    "006Wt000007BC6fIAG",
+    "006Wt000007BC9tIAG",
+    "006Wt000007BC9uIAG",
+    "006Wt000007BCBVIA4",
+    "006Wt000007BCD8IAO",
+    "006Wt000007BCEjIAO",
+    "006Wt000007BCGMIA4",
+    "006Wt000007BCHxIAO",
+    "006Wt000007BCLCIA4",
+    "006Wt000007BCLFIA4",
+    "006Wt000007BCReIAO",
+    "006Wt000007BCTFIA4",
+    "006Wt000007BCTIIA4",
+    "006Wt000007BCUsIAO",
+    "006Wt000007BCWTIA4",
+    "006Wt000007BCWUIA4",
+    "006Wt000007BCWVIA4",
+    "006Wt000007BCWYIA4",
+    "006Wt000007BCZhIAO",
+    "006Wt000007BCZlIAO",
+    "006Wt000007BCcwIAG",
+    "006Wt000007BCeXIAW",
+    "006Wt000007BCeYIAW",
+    "006Wt000007BCg9IAG",
+    "006Wt000007BCgBIAW",
+    "006Wt000007BCgCIAW",
+    "006Wt000007BChlIAG",
+    "006Wt000007BChmIAG",
+    "006Wt000007BChoIAG",
+    "006Wt000007BCjNIAW",
+    "006Wt000007BCkzIAG",
+    "006Wt000007BCprIAG",
+    "006Wt000007BCpsIAG",
+    "006Wt000007BCptIAG",
+    "006Wt000007BCrSIAW",
+    "006Wt000007BCt3IAG",
+    "006Wt000007BCufIAG",
+    "006Wt000007BCugIAG",
+    "006Wt000007BCuiIAG",
+    "006Wt000007BCujIAG",
+    "006Wt000007BCwHIAW",
+    "006Wt000007BCxtIAG",
+    "006Wt000007BCzWIAW",
+    "006Wt000007BD17IAG",
+    "006Wt000007BD2jIAG",
+    "006Wt000007BD2nIAG",
+    "006Wt000007BD4MIAW",
+    "006Wt000007BD5xIAG",
+    "006Wt000007BD7ZIAW",
+    "006Wt000007BD7aIAG",
+    "006Wt000007BDAqIAO",
+    "006Wt000007BDAtIAO",
+    "006Wt000007BDAuIAO",
+    "006Wt000007BDCPIA4",
+    "006Wt000007BDE1IAO",
+    "006Wt000007BDE2IAO",
+    "006Wt000007BDFeIAO",
+    "006Wt000007BDFfIAO",
+    "006Wt000007BDFgIAO",
+    "006Wt000007BDIrIAO",
+    "006Wt000007BDKTIA4",
+    "006Wt000007BDKUIA4",
+    "006Wt000007BDM5IAO",
+    "006Wt000007BDM6IAO",
+    "006Wt000007BDNjIAO",
+    "006Wt000007BDNmIAO",
+    "006Wt000007BDNnIAO",
+    "006Wt000007BDNoIAO",
+    "006Wt000007BDNrIAO",
+    "006Wt000007BDPJIA4",
+    "006Wt000007BDPKIA4",
+    "006Wt000007BDQwIAO",
+    "006Wt000007BDSXIA4",
+    "006Wt000007BDSYIA4",
+    "006Wt000007BDSZIA4",
+    "006Wt000007BDSaIAO",
+    "006Wt000007BDSbIAO",
+    "006Wt000007BDU9IAO",
+    "006Wt000007BDUAIA4",
+    "006Wt000007BDVlIAO",
+    "006Wt000007BDVnIAO",
+    "006Wt000007BDXPIA4",
+    "006Wt000007BDYzIAO",
+    "006Wt000007BDZ2IAO",
+    "006Wt000007BDZ3IAO",
+    "006Wt000007BDabIAG",
+    "006Wt000007BDacIAG",
+    "006Wt000007BDadIAG",
+    "006Wt000007BDaeIAG",
+    "006Wt000007BDafIAG",
+    "006Wt000007BDagIAG",
+    "006Wt000007BDdqIAG",
+    "006Wt000007BDfRIAW",
+    "006Wt000007BDifIAG",
+    "006Wt000007BDkHIAW",
+    "006Wt000007BDnVIAW",
+    "006Wt000007BDp9IAG",
+    "006Wt000007BDvZIAW",
+    "006Wt000007BDynIAG",
+    "006Wt000007BDypIAG",
+    "006Wt000007BE0PIAW",
+    "006Wt000007BE0QIAW",
+    "006Wt000007BE0RIAW",
+    "006Wt000007BE0SIAW",
+    "006Wt000007BE21IAG",
+    "006Wt000007BE22IAG",
+    "006Wt000007BE23IAG",
+    "006Wt000007BE25IAG",
+    "006Wt000007BE26IAG",
+    "006Wt000007BE3dIAG",
+    "006Wt000007BE5FIAW",
+    "006Wt000007BE6rIAG",
+    "006Wt000007BE8TIAW",
+    "006Wt000007BE8UIAW",
+    "006Wt000007BE8VIAW",
+    "006Wt000007BEBhIAO",
+    "006Wt000007BEDJIA4",
+    "006Wt000007BEEvIAO",
+    "006Wt000007BEGXIA4",
+    "006Wt000007BEI9IAO",
+    "006Wt000007BEJlIAO",
+    "006Wt000007BEJmIAO",
+    "006Wt000007BELNIA4",
+    "006Wt000007BELOIA4",
+    "006Wt000007BEN0IAO",
+    "006Wt000007BEObIAO",
+    "006Wt000007BEOcIAO",
+    "006Wt000007BEQDIA4",
+    "006Wt000007BEQEIA4",
+    "006Wt000007BEQFIA4",
+    "006Wt000007BERpIAO",
+    "006Wt000007BERrIAO",
+    "006Wt000007BERuIAO",
+    "006Wt000007BETRIA4",
+    "006Wt000007BETXIA4",
+    "006Wt000007BEV3IAO",
+    "006Wt000007BEWgIAO",
+    "006Wt000007BEWhIAO",
+    "006Wt000007BEWjIAO",
+    "006Wt000007BEWkIAO",
+    "006Wt000007BEWmIAO",
+    "006Wt000007BEYHIA4",
+    "006Wt000007BEZwIAO",
+    "006Wt000007BEbVIAW",
+    "006Wt000007BEbWIAW",
+    "006Wt000007BEd7IAG",
+    "006Wt000007BEekIAG",
+    "006Wt000007BEgMIAW",
+    "006Wt000007BEhzIAG",
+    "006Wt000007BEjZIAW",
+    "006Wt000007BEmnIAG",
+    "006Wt000007BEmoIAG",
+    "006Wt000007BEmpIAG",
+    "006Wt000007BEmrIAG",
+    "006Wt000007BEmuIAG",
+    "006Wt000007BEq2IAG",
+    "006Wt000007BEq4IAG",
+    "006Wt000007BEtFIAW",
+    "006Wt000007BEtGIAW",
+    "006Wt000007BEurIAG",
+    "006Wt000007BEwTIAW",
+    "006Wt000007BEy6IAG",
+    "006Wt000007BEy7IAG",
+    "006Wt000007BEzhIAG",
+    "006Wt000007BF1JIAW",
+    "006Wt000007BF2wIAG",
+    "006Wt000007BF2xIAG",
+    "006Wt000007BF4YIAW",
+    "006Wt000007BFAzIAO",
+    "006Wt000007BFCbIAO",
+    "006Wt000007BFCcIAO",
+    "006Wt000007BFEFIA4",
+    "006Wt000007BFEGIA4",
+    "006Wt000007BFFqIAO",
+    "006Wt000007BFFsIAO",
+    "006Wt000007BFFuIAO",
+    "006Wt000007BFHRIA4",
+    "006Wt000007BFHSIA4",
+    "006Wt000007BFHTIA4",
+    "006Wt000007BFJ6IAO",
+    "006Wt000007BFKfIAO",
+    "006Wt000007BFKgIAO",
+    "006Wt000007BFKiIAO",
+    "006Wt000007BFPVIA4",
+    "006Wt000007BFR8IAO",
+    "006Wt000007BFSkIAO",
+    "006Wt000007BFUNIA4",
+    "006Wt000007BFVzIAO",
+    "006Wt000007BFXaIAO",
+    "006Wt000007BFXbIAO",
+    "006Wt000007BFZBIA4",
+    "006Wt000007BFaoIAG",
+    "006Wt000007BFcQIAW",
+    "006Wt000007BFcRIAW",
+    "006Wt000007BFcUIAW",
+    "006Wt000007BFe1IAG",
+    "006Wt000007BFe2IAG",
+    "006Wt000007BFfdIAG",
+    "006Wt000007BFffIAG",
+    "006Wt000007BFhFIAW",
+    "006Wt000007BFirIAG",
+    "006Wt000007BFkTIAW",
+    "006Wt000007BFkUIAW",
+    "006Wt000007BFm5IAG",
+    "006Wt000007BFm6IAG",
+    "006Wt000007BFnlIAG",
+    "006Wt000007BFnmIAG",
+    "006Wt000007BFpKIAW",
+    "006Wt000007BFqwIAG",
+    "006Wt000007BFqyIAG",
+    "006Wt000007BFuBIAW",
+    "006Wt000007BFvmIAG",
+    "006Wt000007BFxNIAW",
+    "006Wt000007BFxOIAW",
+    "006Wt000007BFxPIAW",
+    "006Wt000007BFxQIAW",
+    "006Wt000007BFyzIAG",
+    "006Wt000007BG0bIAG",
+    "006Wt000007BG0dIAG",
+    "006Wt000007BG0eIAG",
+    "006Wt000007BG2EIAW",
+    "006Wt000007BG2FIAW",
+    "006Wt000007BG5RIAW",
+    "006Wt000007BG8fIAG",
+    "006Wt000007BGAJIA4",
+    "006Wt000007BGAKIA4",
+    "006Wt000007BGBtIAO",
+    "006Wt000007BGGjIAO",
+    "006Wt000007BGGkIAO",
+    "006Wt000007BGNBIA4",
+    "006Wt000007BGOnIAO",
+    "006Wt000007BGS1IAO",
+    "006Wt000007BGTdIAO",
+    "006Wt000007BGVFIA4",
+    "006Wt000007BGWrIAO",
+    "006Wt000007BGa6IAG",
+    "006Wt000007BGbhIAG",
+    "006Wt000007BGdJIAW",
+    "006Wt000007BGewIAG",
+    "006Wt000007BGgXIAW",
+    "006Wt000007BGgYIAW",
+    "006Wt000007BGi9IAG",
+    "006Wt000007BGjlIAG",
+    "006Wt000007BGjmIAG",
+    "006Wt000007BGjnIAG",
+    "006Wt000007BGmzIAG",
+    "006Wt000007BGobIAG",
+    "006Wt000007BGqDIAW",
+    "006Wt000007BGrpIAG",
+    "006Wt000007BGwfIAG",
+    "006Wt000007BGwgIAG",
+    "006Wt000007BGyIIAW",
+    "006Wt000007BGztIAG",
+    "006Wt000007BH1VIAW",
+    "006Wt000007BH4jIAG",
+    "006Wt000007BH6LIAW",
+    "006Wt000007BH6MIAW",
+    "006Wt000007BH6NIAW",
+    "006Wt000007BH7zIAG",
+    "006Wt000007BH9ZIAW",
+    "006Wt000007BHBBIA4",
+    "006Wt000007BHBCIA4",
+    "006Wt000007BHCpIAO",
+    "006Wt000007BHERIA4",
+    "006Wt000007BHG1IAO",
+    "006Wt000007BHHeIAO",
+    "006Wt000007BHHfIAO",
+    "006Wt000007BHHhIAO",
+    "006Wt000007BHJFIA4",
+    "006Wt000007BHJGIA4",
+    "006Wt000007BHJHIA4",
+    "006Wt000007BHPiIAO",
+    "006Wt000007BHRJIA4",
+    "006Wt000007BHSvIAO",
+    "006Wt000007BHSwIAO",
+    "006Wt000007BHSxIAO",
+    "006Wt000007BHUXIA4",
+    "006Wt000007BHXlIAO",
+    "006Wt000007BHeDIAW",
+    "006Wt000007BHhRIAW",
+    "006Wt000007BHj3IAG",
+    "006Wt000007BHkfIAG",
+    "006Wt000007BHntIAG",
+    "006Wt000007BHnuIAG",
+    "006Wt000007BHpVIAW",
+    "006Wt000007BHuLIAW",
+    "006Wt000007BHuMIAW",
+    "006Wt000007BHvxIAG",
+    "006Wt000007BHvzIAG",
+    "006Wt000007BI0nIAG",
+    "006Wt000007BI2PIAW",
+    "006Wt000007BI41IAG",
+    "006Wt000007BI44IAG",
+    "006Wt000007BI5dIAG",
+    "006Wt000007BI5eIAG",
+    "006Wt000007BI8sIAG",
+    "006Wt000007BIDhIAO",
+    "006Wt000007BIFJIA4",
+    "006Wt000007BIGvIAO",
+    "006Wt000007BIIXIA4",
+    "006Wt000007BIK9IAO",
+    "006Wt000007BIKAIA4",
+    "006Wt000007BILlIAO",
+    "006Wt000007BIOzIAO",
+    "006Wt000007BISDIA4",
+    "006Wt000007BIX4IAO",
+    "006Wt000007BIdVIAW",
+    "006Wt000007BIf7IAG",
+    "006Wt000007BIlZIAW",
+    "006Wt000007BInBIAW",
+    "006Wt000007BIonIAG"
+  ],
+  "previous_deals": [
+    {
+      "deal_id": "006Wt000007Aw3XIAS",
+      "stage": "Quote",
+      "days_quiet_at_cutoff": 966
+    },
+    {
+      "deal_id": "006Wt000007Aya9IAC",
+      "stage": "Discovery",
+      "days_quiet_at_cutoff": 73
+    },
+    {
+      "deal_id": "006Wt000007AyaCIAS",
+      "stage": "Negotiation",
+      "days_quiet_at_cutoff": 958
+    },
+    {
+      "deal_id": "006Wt000007Ayi2IAC",
+      "stage": "Discovery",
+      "days_quiet_at_cutoff": 960
+    },
+    {
+      "deal_id": "006Wt000007AywiIAC",
+      "stage": "Closed",
+      "days_quiet_at_cutoff": 650
+    },
+    {
+      "deal_id": "006Wt000007AywjIAC",
+      "stage": "Discovery",
+      "days_quiet_at_cutoff": 1218
+    },
+    {
+      "deal_id": "006Wt000007AywkIAC",
+      "stage": "Discovery",
+      "days_quiet_at_cutoff": 504
+    },
+    {
+      "deal_id": "006Wt000007AzvrIAC",
+      "stage": "Discovery",
+      "days_quiet_at_cutoff": 869
+    },
+    {
+      "deal_id": "006Wt000007B0OtIAK",
+      "stage": "Discovery",
+      "days_quiet_at_cutoff": 213
+    },
+    {
+      "deal_id": "006Wt000007B0g2IAC",
+      "stage": "Discovery",
+      "days_quiet_at_cutoff": 951
+    },
+    {
+      "deal_id": "006Wt000007B183IAC",
+      "stage": "Closed",
+      "days_quiet_at_cutoff": 497
+    },
+    {
+      "deal_id": "006Wt000007B184IAC",
+      "stage": "Negotiation",
+      "days_quiet_at_cutoff": 939
+    },
+    {
+      "deal_id": "006Wt000007B185IAC",
+      "stage": "Discovery",
+      "days_quiet_at_cutoff": 676
+    },
+    {
+      "deal_id": "006Wt000007B1KxIAK",
+      "stage": "Discovery",
+      "days_quiet_at_cutoff": 1300
+    },
+    {
+      "deal_id": "006Wt000007B1knIAC",
+      "stage": "Qualification",
+      "days_quiet_at_cutoff": 245
+    },
+    {
+      "deal_id": "006Wt000007B1koIAC",
+      "stage": "Closed",
+      "days_quiet_at_cutoff": 593
+    },
+    {
+      "deal_id": "006Wt000007B1kqIAC",
+      "stage": "Negotiation",
+      "days_quiet_at_cutoff": 930
+    },
+    {
+      "deal_id": "006Wt000007B2QhIAK",
+      "stage": "Negotiation",
+      "days_quiet_at_cutoff": 328
+    },
+    {
+      "deal_id": "006Wt000007B2TuIAK",
+      "stage": "Closed",
+      "days_quiet_at_cutoff": 537
+    },
+    {
+      "deal_id": "006Wt000007B2TvIAK",
+      "stage": "Quote",
+      "days_quiet_at_cutoff": 599
+    },
+    {
+      "deal_id": "006Wt000007B2qUIAS",
+      "stage": "Discovery",
+      "days_quiet_at_cutoff": 269
+    },
+    {
+      "deal_id": "006Wt000007B3BSIA0",
+      "stage": "Qualification",
+      "days_quiet_at_cutoff": 570
+    },
+    {
+      "deal_id": "006Wt000007B3WSIA0",
+      "stage": "Qualification",
+      "days_quiet_at_cutoff": 505
+    },
+    {
+      "deal_id": "006Wt000007B3t1IAC",
+      "stage": "Negotiation",
+      "days_quiet_at_cutoff": 601
+    },
+    {
+      "deal_id": "006Wt000007B41EIAS",
+      "stage": "Negotiation",
+      "days_quiet_at_cutoff": 890
+    },
+    {
+      "deal_id": "006Wt000007B41IIAS",
+      "stage": "Closed",
+      "days_quiet_at_cutoff": 793
+    },
+    {
+      "deal_id": "006Wt000007B49JIAS",
+      "stage": "Quote",
+      "days_quiet_at_cutoff": 1023
+    },
+    {
+      "deal_id": "006Wt000007B49LIAS",
+      "stage": "Closed",
+      "days_quiet_at_cutoff": 184
+    },
+    {
+      "deal_id": "006Wt000007B49TIAS",
+      "stage": "Quote",
+      "days_quiet_at_cutoff": 645
+    },
+    {
+      "deal_id": "006Wt000007B4IoIAK",
+      "stage": "Negotiation",
+      "days_quiet_at_cutoff": 611
+    },
+    {
+      "deal_id": "006Wt000007B4IpIAK",
+      "stage": "Closed",
+      "days_quiet_at_cutoff": 671
+    },
+    {
+      "deal_id": "006Wt000007B4IqIAK",
+      "stage": "Quote",
+      "days_quiet_at_cutoff": 935
+    },
+    {
+      "deal_id": "006Wt000007B4ViIAK",
+      "stage": "Closed",
+      "days_quiet_at_cutoff": 264
+    },
+    {
+      "deal_id": "006Wt000007B4vXIAS",
+      "stage": "Negotiation",
+      "days_quiet_at_cutoff": 869
+    },
+    {
+      "deal_id": "006Wt000007B5DQIA0",
+      "stage": "Negotiation",
+      "days_quiet_at_cutoff": 925
+    },
+    {
+      "deal_id": "006Wt000007B5EtIAK",
+      "stage": "Discovery",
+      "days_quiet_at_cutoff": 994
+    },
+    {
+      "deal_id": "006Wt000007B5EvIAK",
+      "stage": "Closed",
+      "days_quiet_at_cutoff": 317
+    },
+    {
+      "deal_id": "006Wt000007B5I8IAK",
+      "stage": "Closed",
+      "days_quiet_at_cutoff": 1065
+    },
+    {
+      "deal_id": "006Wt000007B5LLIA0",
+      "stage": "Discovery",
+      "days_quiet_at_cutoff": 818
+    },
+    {
+      "deal_id": "006Wt000007B5OeIAK",
+      "stage": "Closed",
+      "days_quiet_at_cutoff": 830
+    },
+    {
+      "deal_id": "006Wt000007B5OfIAK",
+      "stage": "Closed",
+      "days_quiet_at_cutoff": 1054
+    },
+    {
+      "deal_id": "006Wt000007B5OgIAK",
+      "stage": "Closed",
+      "days_quiet_at_cutoff": 1076
+    },
+    {
+      "deal_id": "006Wt000007B5OhIAK",
+      "stage": "Discovery",
+      "days_quiet_at_cutoff": 1122
+    },
+    {
+      "deal_id": "006Wt000007B5VIIA0",
+      "stage": "Negotiation",
+      "days_quiet_at_cutoff": 1255
+    },
+    {
+      "deal_id": "006Wt000007B5VJIA0",
+      "stage": "Qualification",
+      "days_quiet_at_cutoff": 625
+    },
+    {
+      "deal_id": "006Wt000007B5bSIAS",
+      "stage": "Quote",
+      "days_quiet_at_cutoff": 1049
+    },
+    {
+      "deal_id": "006Wt000007B5egIAC",
+      "stage": "Qualification",
+      "days_quiet_at_cutoff": 195
+    },
+    {
+      "deal_id": "006Wt000007B5eiIAC",
+      "stage": "Discovery",
+      "days_quiet_at_cutoff": 655
+    },
+    {
+      "deal_id": "006Wt000007B5jWIAS",
+      "stage": "Closed",
+      "days_quiet_at_cutoff": 168
+    },
+    {
+      "deal_id": "006Wt000007B5jXIAS",
+      "stage": "Negotiation",
+      "days_quiet_at_cutoff": 961
+    },
+    {
+      "deal_id": "006Wt000007B5l8IAC",
+      "stage": "Closed",
+      "days_quiet_at_cutoff": 849
+    },
+    {
+      "deal_id": "006Wt000007B5q1IAC",
+      "stage": "Qualification",
+      "days_quiet_at_cutoff": 273
+    },
+    {
+      "deal_id": "006Wt000007B5q2IAC",
+      "stage": "Closed",
+      "days_quiet_at_cutoff": 999
+    },
+    {
+      "deal_id": "006Wt000007B5uqIAC",
+      "stage": "Quote",
+      "days_quiet_at_cutoff": 606
+    },
+    {
+      "deal_id": "006Wt000007B5urIAC",
+      "stage": "Quote",
+      "days_quiet_at_cutoff": 1199
+    },
+    {
+      "deal_id": "006Wt000007B5usIAC",
+      "stage": "Qualification",
+      "days_quiet_at_cutoff": 843
+    },
+    {
+      "deal_id": "006Wt000007B5wQIAS",
+      "stage": "Qualification",
+      "days_quiet_at_cutoff": 1015
+    },
+    {
+      "deal_id": "006Wt000007B5wRIAS",
+      "stage": "Negotiation",
+      "days_quiet_at_cutoff": 1078
+    },
+    {
+      "deal_id": "006Wt000007B5y5IAC",
+      "stage": "Discovery",
+      "days_quiet_at_cutoff": 1007
+    },
+    {
+      "deal_id": "006Wt000007B5zfIAC",
+      "stage": "Negotiation",
+      "days_quiet_at_cutoff": 1194
+    },
+    {
+      "deal_id": "006Wt000007B62tIAC",
+      "stage": "Discovery",
+      "days_quiet_at_cutoff": 1142
+    },
+    {
+      "deal_id": "006Wt000007B62vIAC",
+      "stage": "Closed",
+      "days_quiet_at_cutoff": 1006
+    },
+    {
+      "deal_id": "006Wt000007B62wIAC",
+      "stage": "Discovery",
+      "days_quiet_at_cutoff": 205
+    },
+    {
+      "deal_id": "006Wt000007B631IAC",
+      "stage": "Qualification",
+      "days_quiet_at_cutoff": 1027
+    },
+    {
+      "deal_id": "006Wt000007B6CZIA0",
+      "stage": "Qualification",
+      "days_quiet_at_cutoff": 847
+    },
+    {
+      "deal_id": "006Wt000007B6EDIA0",
+      "stage": "Negotiation",
+      "days_quiet_at_cutoff": 88
+    },
+    {
+      "deal_id": "006Wt000007B6KdIAK",
+      "stage": "Discovery",
+      "days_quiet_at_cutoff": 976
+    },
+    {
+      "deal_id": "006Wt000007B6KfIAK",
+      "stage": "Discovery",
+      "days_quiet_at_cutoff": 1295
+    },
+    {
+      "deal_id": "006Wt000007B6KgIAK",
+      "stage": "Qualification",
+      "days_quiet_at_cutoff": 269
+    },
+    {
+      "deal_id": "006Wt000007B6Z8IAK",
+      "stage": "Closed",
+      "days_quiet_at_cutoff": 1117
+    },
+    {
+      "deal_id": "006Wt000007B6akIAC",
+      "stage": "Discovery",
+      "days_quiet_at_cutoff": 637
+    },
+    {
+      "deal_id": "006Wt000007B6alIAC",
+      "stage": "Negotiation",
+      "days_quiet_at_cutoff": 69
+    },
+    {
+      "deal_id": "006Wt000007B6cQIAS",
+      "stage": "Quote",
+      "days_quiet_at_cutoff": 872
+    },
+    {
+      "deal_id": "006Wt000007B6cSIAS",
+      "stage": "Negotiation",
+      "days_quiet_at_cutoff": 625
+    },
+    {
+      "deal_id": "006Wt000007B6cVIAS",
+      "stage": "Closed",
+      "days_quiet_at_cutoff": 838
+    },
+    {
+      "deal_id": "006Wt000007B6cWIAS",
+      "stage": "Quote",
+      "days_quiet_at_cutoff": 822
+    },
+    {
+      "deal_id": "006Wt000007B6frIAC",
+      "stage": "Qualification",
+      "days_quiet_at_cutoff": 625
+    },
+    {
+      "deal_id": "006Wt000007B6ipIAC",
+      "stage": "Quote",
+      "days_quiet_at_cutoff": 105
+    },
+    {
+      "deal_id": "006Wt000007B6itIAC",
+      "stage": "Discovery",
+      "days_quiet_at_cutoff": 173
+    },
+    {
+      "deal_id": "006Wt000007B6iuIAC",
+      "stage": "Qualification",
+      "days_quiet_at_cutoff": 688
+    },
+    {
+      "deal_id": "006Wt000007B6kQIAS",
+      "stage": "Closed",
+      "days_quiet_at_cutoff": 64
+    },
+    {
+      "deal_id": "006Wt000007B6kRIAS",
+      "stage": "Negotiation",
+      "days_quiet_at_cutoff": 1183
+    },
+    {
+      "deal_id": "006Wt000007B6kSIAS",
+      "stage": "Discovery",
+      "days_quiet_at_cutoff": 860
+    },
+    {
+      "deal_id": "006Wt000007B6kTIAS",
+      "stage": "Closed",
+      "days_quiet_at_cutoff": 1036
+    },
+    {
+      "deal_id": "006Wt000007B6kVIAS",
+      "stage": "Qualification",
+      "days_quiet_at_cutoff": 207
+    },
+    {
+      "deal_id": "006Wt000007B6kWIAS",
+      "stage": "Quote",
+      "days_quiet_at_cutoff": 712
+    },
+    {
+      "deal_id": "006Wt000007B6u6IAC",
+      "stage": "Qualification",
+      "days_quiet_at_cutoff": 1295
+    },
+    {
+      "deal_id": "006Wt000007B6u8IAC",
+      "stage": "Closed",
+      "days_quiet_at_cutoff": 490
+    },
+    {
+      "deal_id": "006Wt000007B6xKIAS",
+      "stage": "Discovery",
+      "days_quiet_at_cutoff": 1020
+    },
+    {
+      "deal_id": "006Wt000007B6xLIAS",
+      "stage": "Discovery",
+      "days_quiet_at_cutoff": 759
+    },
+    {
+      "deal_id": "006Wt000007B6xNIAS",
+      "stage": "Quote",
+      "days_quiet_at_cutoff": 640
+    },
+    {
+      "deal_id": "006Wt000007B6xOIAS",
+      "stage": "Quote",
+      "days_quiet_at_cutoff": 933
+    },
+    {
+      "deal_id": "006Wt000007B7ETIA0",
+      "stage": "Qualification",
+      "days_quiet_at_cutoff": 709
+    },
+    {
+      "deal_id": "006Wt000007B7INIA0",
+      "stage": "Closed",
+      "days_quiet_at_cutoff": 489
+    },
+    {
+      "deal_id": "006Wt000007B7IOIA0",
+      "stage": "Qualification",
+      "days_quiet_at_cutoff": 1086
+    },
+    {
+      "deal_id": "006Wt000007B7IPIA0",
+      "stage": "Quote",
+      "days_quiet_at_cutoff": 1183
+    },
+    {
+      "deal_id": "006Wt000007B7JuIAK",
+      "stage": "Quote",
+      "days_quiet_at_cutoff": 1125
+    },
+    {
+      "deal_id": "006Wt000007B7LZIA0",
+      "stage": "Qualification",
+      "days_quiet_at_cutoff": 77
+    },
+    {
+      "deal_id": "006Wt000007B7OkIAK",
+      "stage": "Discovery",
+      "days_quiet_at_cutoff": 1163
+    },
+    {
+      "deal_id": "006Wt000007B7OlIAK",
+      "stage": "Quote",
+      "days_quiet_at_cutoff": 757
+    },
+    {
+      "deal_id": "006Wt000007B7OmIAK",
+      "stage": "Qualification",
+      "days_quiet_at_cutoff": 226
+    },
+    {
+      "deal_id": "006Wt000007B7TaIAK",
+      "stage": "Quote",
+      "days_quiet_at_cutoff": 748
+    },
+    {
+      "deal_id": "006Wt000007B7TcIAK",
+      "stage": "Negotiation",
+      "days_quiet_at_cutoff": 870
+    },
+    {
+      "deal_id": "006Wt000007B7VCIA0",
+      "stage": "Qualification",
+      "days_quiet_at_cutoff": 525
+    },
+    {
+      "deal_id": "006Wt000007B7a3IAC",
+      "stage": "Quote",
+      "days_quiet_at_cutoff": 863
+    },
+    {
+      "deal_id": "006Wt000007B7beIAC",
+      "stage": "Negotiation",
+      "days_quiet_at_cutoff": 117
+    },
+    {
+      "deal_id": "006Wt000007B7bgIAC",
+      "stage": "Discovery",
+      "days_quiet_at_cutoff": 586
+    },
+    {
+      "deal_id": "006Wt000007B7bhIAC",
+      "stage": "Quote",
+      "days_quiet_at_cutoff": 905
+    },
+    {
+      "deal_id": "006Wt000007B7esIAC",
+      "stage": "Discovery",
+      "days_quiet_at_cutoff": 1003
+    },
+    {
+      "deal_id": "006Wt000007B7jnIAC",
+      "stage": "Negotiation",
+      "days_quiet_at_cutoff": 686
+    },
+    {
+      "deal_id": "006Wt000007B7joIAC",
+      "stage": "Closed",
+      "days_quiet_at_cutoff": 360
+    },
+    {
+      "deal_id": "006Wt000007B7jpIAC",
+      "stage": "Discovery",
+      "days_quiet_at_cutoff": 747
+    },
+    {
+      "deal_id": "006Wt000007B7lKIAS",
+      "stage": "Closed",
+      "days_quiet_at_cutoff": 838
+    },
+    {
+      "deal_id": "006Wt000007B7qAIAS",
+      "stage": "Discovery",
+      "days_quiet_at_cutoff": 700
+    },
+    {
+      "deal_id": "006Wt000007B7qBIAS",
+      "stage": "Closed",
+      "days_quiet_at_cutoff": 320
+    },
+    {
+      "deal_id": "006Wt000007B7tOIAS",
+      "stage": "Discovery",
+      "days_quiet_at_cutoff": 691
+    },
+    {
+      "deal_id": "006Wt000007B7yFIAS",
+      "stage": "Closed",
+      "days_quiet_at_cutoff": 629
+    },
+    {
+      "deal_id": "006Wt000007B7yGIAS",
+      "stage": "Closed",
+      "days_quiet_at_cutoff": 535
+    },
+    {
+      "deal_id": "006Wt000007B7zqIAC",
+      "stage": "Closed",
+      "days_quiet_at_cutoff": 415
+    },
+    {
+      "deal_id": "006Wt000007B81TIAS",
+      "stage": "Qualification",
+      "days_quiet_at_cutoff": 151
+    },
+    {
+      "deal_id": "006Wt000007B837IAC",
+      "stage": "Discovery",
+      "days_quiet_at_cutoff": 971
+    },
+    {
+      "deal_id": "006Wt000007B838IAC",
+      "stage": "Negotiation",
+      "days_quiet_at_cutoff": 140
+    },
+    {
+      "deal_id": "006Wt000007B86JIAS",
+      "stage": "Qualification",
+      "days_quiet_at_cutoff": 1339
+    },
+    {
+      "deal_id": "006Wt000007B86KIAS",
+      "stage": "Qualification",
+      "days_quiet_at_cutoff": 1231
+    },
+    {
+      "deal_id": "006Wt000007B8ClIAK",
+      "stage": "Qualification",
+      "days_quiet_at_cutoff": 573
+    },
+    {
+      "deal_id": "006Wt000007B8CnIAK",
+      "stage": "Negotiation",
+      "days_quiet_at_cutoff": 1061
+    },
+    {
+      "deal_id": "006Wt000007B8CoIAK",
+      "stage": "Quote",
+      "days_quiet_at_cutoff": 842
+    },
+    {
+      "deal_id": "006Wt000007B8CqIAK",
+      "stage": "Closed",
+      "days_quiet_at_cutoff": 144
+    },
+    {
+      "deal_id": "006Wt000007B8EMIA0",
+      "stage": "Quote",
+      "days_quiet_at_cutoff": 92
+    },
+    {
+      "deal_id": "006Wt000007B8FzIAK",
+      "stage": "Qualification",
+      "days_quiet_at_cutoff": 96
+    },
+    {
+      "deal_id": "006Wt000007B8G2IAK",
+      "stage": "Qualification",
+      "days_quiet_at_cutoff": 1115
+    },
+    {
+      "deal_id": "006Wt000007B8G5IAK",
+      "stage": "Negotiation",
+      "days_quiet_at_cutoff": 208
+    },
+    {
+      "deal_id": "006Wt000007B8JCIA0",
+      "stage": "Closed",
+      "days_quiet_at_cutoff": 249
+    },
+    {
+      "deal_id": "006Wt000007B8KoIAK",
+      "stage": "Quote",
+      "days_quiet_at_cutoff": 141
+    },
+    {
+      "deal_id": "006Wt000007B8KpIAK",
+      "stage": "Closed",
+      "days_quiet_at_cutoff": 803
+    },
+    {
+      "deal_id": "006Wt000007B8PgIAK",
+      "stage": "Closed",
+      "days_quiet_at_cutoff": 456
+    },
+    {
+      "deal_id": "006Wt000007B8PhIAK",
+      "stage": "Closed",
+      "days_quiet_at_cutoff": 1051
+    },
+    {
+      "deal_id": "006Wt000007B8RJIA0",
+      "stage": "Qualification",
+      "days_quiet_at_cutoff": 1030
+    },
+    {
+      "deal_id": "006Wt000007B8RKIA0",
+      "stage": "Closed",
+      "days_quiet_at_cutoff": 883
+    },
+    {
+      "deal_id": "006Wt000007B8RLIA0",
+      "stage": "Closed",
+      "days_quiet_at_cutoff": 238
+    },
+    {
+      "deal_id": "006Wt000007B8xWIAS",
+      "stage": "Discovery",
+      "days_quiet_at_cutoff": 270
+    },
+    {
+      "deal_id": "006Wt000007B9OwIAK",
+      "stage": "Negotiation",
+      "days_quiet_at_cutoff": 782
+    },
+    {
+      "deal_id": "006Wt000007B9X2IAK",
+      "stage": "Closed",
+      "days_quiet_at_cutoff": 1017
+    },
+    {
+      "deal_id": "006Wt000007B9YdIAK",
+      "stage": "Discovery",
+      "days_quiet_at_cutoff": 210
+    },
+    {
+      "deal_id": "006Wt000007B9YeIAK",
+      "stage": "Quote",
+      "days_quiet_at_cutoff": 575
+    },
+    {
+      "deal_id": "006Wt000007B9YgIAK",
+      "stage": "Negotiation",
+      "days_quiet_at_cutoff": 818
+    },
+    {
+      "deal_id": "006Wt000007BA0NIAW",
+      "stage": "Negotiation",
+      "days_quiet_at_cutoff": 530
+    },
+    {
+      "deal_id": "006Wt000007BA0OIAW",
+      "stage": "Quote",
+      "days_quiet_at_cutoff": 218
+    },
+    {
+      "deal_id": "006Wt000007BA3GIAW",
+      "stage": "Qualification",
+      "days_quiet_at_cutoff": 273
+    },
+    {
+      "deal_id": "006Wt000007BA3IIAW",
+      "stage": "Qualification",
+      "days_quiet_at_cutoff": 1073
+    },
+    {
+      "deal_id": "006Wt000007BA4sIAG",
+      "stage": "Quote",
+      "days_quiet_at_cutoff": 129
+    },
+    {
+      "deal_id": "006Wt000007BA4uIAG",
+      "stage": "Quote",
+      "days_quiet_at_cutoff": 861
+    },
+    {
+      "deal_id": "006Wt000007BA9hIAG",
+      "stage": "Closed",
+      "days_quiet_at_cutoff": 1160
+    },
+    {
+      "deal_id": "006Wt000007BA9jIAG",
+      "stage": "Closed",
+      "days_quiet_at_cutoff": 1041
+    },
+    {
+      "deal_id": "006Wt000007BABJIA4",
+      "stage": "Discovery",
+      "days_quiet_at_cutoff": 1145
+    },
+    {
+      "deal_id": "006Wt000007BABKIA4",
+      "stage": "Quote",
+      "days_quiet_at_cutoff": 170
+    },
+    {
+      "deal_id": "006Wt000007BABLIA4",
+      "stage": "Negotiation",
+      "days_quiet_at_cutoff": 63
+    },
+    {
+      "deal_id": "006Wt000007BACwIAO",
+      "stage": "Closed",
+      "days_quiet_at_cutoff": 895
+    },
+    {
+      "deal_id": "006Wt000007BACxIAO",
+      "stage": "Negotiation",
+      "days_quiet_at_cutoff": 742
+    },
+    {
+      "deal_id": "006Wt000007BAEXIA4",
+      "stage": "Discovery",
+      "days_quiet_at_cutoff": 1214
+    },
+    {
+      "deal_id": "006Wt000007BAEYIA4",
+      "stage": "Negotiation",
+      "days_quiet_at_cutoff": 593
+    },
+    {
+      "deal_id": "006Wt000007BAEZIA4",
+      "stage": "Closed",
+      "days_quiet_at_cutoff": 560
+    },
+    {
+      "deal_id": "006Wt000007BAHlIAO",
+      "stage": "Discovery",
+      "days_quiet_at_cutoff": 175
+    },
+    {
+      "deal_id": "006Wt000007BAHmIAO",
+      "stage": "Discovery",
+      "days_quiet_at_cutoff": 385
+    },
+    {
+      "deal_id": "006Wt000007BAJNIA4",
+      "stage": "Discovery",
+      "days_quiet_at_cutoff": 982
+    },
+    {
+      "deal_id": "006Wt000007BAJOIA4",
+      "stage": "Discovery",
+      "days_quiet_at_cutoff": 721
+    },
+    {
+      "deal_id": "006Wt000007BAJQIA4",
+      "stage": "Discovery",
+      "days_quiet_at_cutoff": 992
+    },
+    {
+      "deal_id": "006Wt000007BAKzIAO",
+      "stage": "Quote",
+      "days_quiet_at_cutoff": 591
+    },
+    {
+      "deal_id": "006Wt000007BAL0IAO",
+      "stage": "Quote",
+      "days_quiet_at_cutoff": 1216
+    },
+    {
+      "deal_id": "006Wt000007BAL1IAO",
+      "stage": "Closed",
+      "days_quiet_at_cutoff": 1127
+    },
+    {
+      "deal_id": "006Wt000007BAL2IAO",
+      "stage": "Closed",
+      "days_quiet_at_cutoff": 679
+    },
+    {
+      "deal_id": "006Wt000007BAMcIAO",
+      "stage": "Closed",
+      "days_quiet_at_cutoff": 695
+    },
+    {
+      "deal_id": "006Wt000007BAMdIAO",
+      "stage": "Qualification",
+      "days_quiet_at_cutoff": 474
+    },
+    {
+      "deal_id": "006Wt000007BAMeIAO",
+      "stage": "Negotiation",
+      "days_quiet_at_cutoff": 232
+    },
+    {
+      "deal_id": "006Wt000007BAMhIAO",
+      "stage": "Quote",
+      "days_quiet_at_cutoff": 812
+    },
+    {
+      "deal_id": "006Wt000007BAMjIAO",
+      "stage": "Negotiation",
+      "days_quiet_at_cutoff": 961
+    },
+    {
+      "deal_id": "006Wt000007BAPqIAO",
+      "stage": "Negotiation",
+      "days_quiet_at_cutoff": 198
+    },
+    {
+      "deal_id": "006Wt000007BAPrIAO",
+      "stage": "Discovery",
+      "days_quiet_at_cutoff": 175
+    },
+    {
+      "deal_id": "006Wt000007BAT5IAO",
+      "stage": "Qualification",
+      "days_quiet_at_cutoff": 1229
+    },
+    {
+      "deal_id": "006Wt000007BAT6IAO",
+      "stage": "Quote",
+      "days_quiet_at_cutoff": 183
+    },
+    {
+      "deal_id": "006Wt000007BAT8IAO",
+      "stage": "Quote",
+      "days_quiet_at_cutoff": 1217
+    },
+    {
+      "deal_id": "006Wt000007BAT9IAO",
+      "stage": "Closed",
+      "days_quiet_at_cutoff": 582
+    },
+    {
+      "deal_id": "006Wt000007BAUfIAO",
+      "stage": "Discovery",
+      "days_quiet_at_cutoff": 1061
+    },
+    {
+      "deal_id": "006Wt000007BAWJIA4",
+      "stage": "Closed",
+      "days_quiet_at_cutoff": 1234
+    },
+    {
+      "deal_id": "006Wt000007BAWKIA4",
+      "stage": "Quote",
+      "days_quiet_at_cutoff": 144
+    },
+    {
+      "deal_id": "006Wt000007BAWLIA4",
+      "stage": "Discovery",
+      "days_quiet_at_cutoff": 1107
+    },
+    {
+      "deal_id": "006Wt000007BAXvIAO",
+      "stage": "Discovery",
+      "days_quiet_at_cutoff": 231
+    },
+    {
+      "deal_id": "006Wt000007BAXxIAO",
+      "stage": "Closed",
+      "days_quiet_at_cutoff": 956
+    },
+    {
+      "deal_id": "006Wt000007BAY1IAO",
+      "stage": "Closed",
+      "days_quiet_at_cutoff": 417
+    },
+    {
+      "deal_id": "006Wt000007BAZXIA4",
+      "stage": "Negotiation",
+      "days_quiet_at_cutoff": 1023
+    },
+    {
+      "deal_id": "006Wt000007BAb7IAG",
+      "stage": "Discovery",
+      "days_quiet_at_cutoff": 930
+    },
+    {
+      "deal_id": "006Wt000007BAcjIAG",
+      "stage": "Qualification",
+      "days_quiet_at_cutoff": 1126
+    },
+    {
+      "deal_id": "006Wt000007BAeNIAW",
+      "stage": "Qualification",
+      "days_quiet_at_cutoff": 224
+    },
+    {
+      "deal_id": "006Wt000007BAeQIAW",
+      "stage": "Discovery",
+      "days_quiet_at_cutoff": 951
+    },
+    {
+      "deal_id": "006Wt000007BAfyIAG",
+      "stage": "Negotiation",
+      "days_quiet_at_cutoff": 221
+    },
+    {
+      "deal_id": "006Wt000007BAhZIAW",
+      "stage": "Qualification",
+      "days_quiet_at_cutoff": 488
+    },
+    {
+      "deal_id": "006Wt000007BAjCIAW",
+      "stage": "Quote",
+      "days_quiet_at_cutoff": 634
+    },
+    {
+      "deal_id": "006Wt000007BAjDIAW",
+      "stage": "Closed",
+      "days_quiet_at_cutoff": 568
+    },
+    {
+      "deal_id": "006Wt000007BAjFIAW",
+      "stage": "Quote",
+      "days_quiet_at_cutoff": 85
+    },
+    {
+      "deal_id": "006Wt000007BAjHIAW",
+      "stage": "Qualification",
+      "days_quiet_at_cutoff": 234
+    },
+    {
+      "deal_id": "006Wt000007BAjIIAW",
+      "stage": "Quote",
+      "days_quiet_at_cutoff": 616
+    },
+    {
+      "deal_id": "006Wt000007BAjKIAW",
+      "stage": "Qualification",
+      "days_quiet_at_cutoff": 149
+    },
+    {
+      "deal_id": "006Wt000007BAknIAG",
+      "stage": "Closed",
+      "days_quiet_at_cutoff": 545
+    },
+    {
+      "deal_id": "006Wt000007BAmPIAW",
+      "stage": "Discovery",
+      "days_quiet_at_cutoff": 417
+    },
+    {
+      "deal_id": "006Wt000007BAo1IAG",
+      "stage": "Discovery",
+      "days_quiet_at_cutoff": 1007
+    },
+    {
+      "deal_id": "006Wt000007BApdIAG",
+      "stage": "Closed",
+      "days_quiet_at_cutoff": 289
+    },
+    {
+      "deal_id": "006Wt000007BArFIAW",
+      "stage": "Closed",
+      "days_quiet_at_cutoff": 593
+    },
+    {
+      "deal_id": "006Wt000007BAssIAG",
+      "stage": "Closed",
+      "days_quiet_at_cutoff": 1081
+    },
+    {
+      "deal_id": "006Wt000007BAstIAG",
+      "stage": "Closed",
+      "days_quiet_at_cutoff": 653
+    },
+    {
+      "deal_id": "006Wt000007BAsuIAG",
+      "stage": "Discovery",
+      "days_quiet_at_cutoff": 572
+    },
+    {
+      "deal_id": "006Wt000007BAuTIAW",
+      "stage": "Closed",
+      "days_quiet_at_cutoff": 949
+    },
+    {
+      "deal_id": "006Wt000007BAuWIAW",
+      "stage": "Quote",
+      "days_quiet_at_cutoff": 111
+    },
+    {
+      "deal_id": "006Wt000007BAw8IAG",
+      "stage": "Qualification",
+      "days_quiet_at_cutoff": 650
+    },
+    {
+      "deal_id": "006Wt000007BAwAIAW",
+      "stage": "Quote",
+      "days_quiet_at_cutoff": 929
+    },
+    {
+      "deal_id": "006Wt000007BAwBIAW",
+      "stage": "Qualification",
+      "days_quiet_at_cutoff": 264
+    },
+    {
+      "deal_id": "006Wt000007BAzJIAW",
+      "stage": "Negotiation",
+      "days_quiet_at_cutoff": 796
+    },
+    {
+      "deal_id": "006Wt000007BAzKIAW",
+      "stage": "Negotiation",
+      "days_quiet_at_cutoff": 930
+    },
+    {
+      "deal_id": "006Wt000007BAzLIAW",
+      "stage": "Negotiation",
+      "days_quiet_at_cutoff": 624
+    },
+    {
+      "deal_id": "006Wt000007BB0xIAG",
+      "stage": "Negotiation",
+      "days_quiet_at_cutoff": 1107
+    },
+    {
+      "deal_id": "006Wt000007BB2XIAW",
+      "stage": "Discovery",
+      "days_quiet_at_cutoff": 982
+    },
+    {
+      "deal_id": "006Wt000007BB5qIAG",
+      "stage": "Quote",
+      "days_quiet_at_cutoff": 1014
+    },
+    {
+      "deal_id": "006Wt000007BBAcIAO",
+      "stage": "Closed",
+      "days_quiet_at_cutoff": 234
+    },
+    {
+      "deal_id": "006Wt000007BBAdIAO",
+      "stage": "Closed",
+      "days_quiet_at_cutoff": 226
+    },
+    {
+      "deal_id": "006Wt000007BBAeIAO",
+      "stage": "Qualification",
+      "days_quiet_at_cutoff": 1248
+    },
+    {
+      "deal_id": "006Wt000007BBAhIAO",
+      "stage": "Qualification",
+      "days_quiet_at_cutoff": 787
+    },
+    {
+      "deal_id": "006Wt000007BBCFIA4",
+      "stage": "Quote",
+      "days_quiet_at_cutoff": 596
+    },
+    {
+      "deal_id": "006Wt000007BBCGIA4",
+      "stage": "Negotiation",
+      "days_quiet_at_cutoff": 126
+    },
+    {
+      "deal_id": "006Wt000007BBFRIA4",
+      "stage": "Negotiation",
+      "days_quiet_at_cutoff": 139
+    },
+    {
+      "deal_id": "006Wt000007BBH3IAO",
+      "stage": "Closed",
+      "days_quiet_at_cutoff": 494
+    },
+    {
+      "deal_id": "006Wt000007BBH5IAO",
+      "stage": "Discovery",
+      "days_quiet_at_cutoff": 989
+    },
+    {
+      "deal_id": "006Wt000007BBH6IAO",
+      "stage": "Qualification",
+      "days_quiet_at_cutoff": 197
+    },
+    {
+      "deal_id": "006Wt000007BBIfIAO",
+      "stage": "Closed",
+      "days_quiet_at_cutoff": 771
+    },
+    {
+      "deal_id": "006Wt000007BBIgIAO",
+      "stage": "Closed",
+      "days_quiet_at_cutoff": 858
+    },
+    {
+      "deal_id": "006Wt000007BBIhIAO",
+      "stage": "Qualification",
+      "days_quiet_at_cutoff": 824
+    },
+    {
+      "deal_id": "006Wt000007BBIiIAO",
+      "stage": "Negotiation",
+      "days_quiet_at_cutoff": 548
+    },
+    {
+      "deal_id": "006Wt000007BBP9IAO",
+      "stage": "Closed",
+      "days_quiet_at_cutoff": 864
+    },
+    {
+      "deal_id": "006Wt000007BBQjIAO",
+      "stage": "Quote",
+      "days_quiet_at_cutoff": 1086
+    },
+    {
+      "deal_id": "006Wt000007BBQkIAO",
+      "stage": "Negotiation",
+      "days_quiet_at_cutoff": 807
+    },
+    {
+      "deal_id": "006Wt000007BBTxIAO",
+      "stage": "Negotiation",
+      "days_quiet_at_cutoff": 686
+    },
+    {
+      "deal_id": "006Wt000007BBVZIA4",
+      "stage": "Qualification",
+      "days_quiet_at_cutoff": 1158
+    },
+    {
+      "deal_id": "006Wt000007BBVaIAO",
+      "stage": "Negotiation",
+      "days_quiet_at_cutoff": 834
+    },
+    {
+      "deal_id": "006Wt000007BBVbIAO",
+      "stage": "Closed",
+      "days_quiet_at_cutoff": 606
+    },
+    {
+      "deal_id": "006Wt000007BBVcIAO",
+      "stage": "Closed",
+      "days_quiet_at_cutoff": 320
+    },
+    {
+      "deal_id": "006Wt000007BBVdIAO",
+      "stage": "Closed",
+      "days_quiet_at_cutoff": 521
+    },
+    {
+      "deal_id": "006Wt000007BBXBIA4",
+      "stage": "Closed",
+      "days_quiet_at_cutoff": 499
+    },
+    {
+      "deal_id": "006Wt000007BBYnIAO",
+      "stage": "Closed",
+      "days_quiet_at_cutoff": 231
+    },
+    {
+      "deal_id": "006Wt000007BBYoIAO",
+      "stage": "Discovery",
+      "days_quiet_at_cutoff": 1236
+    },
+    {
+      "deal_id": "006Wt000007BBaPIAW",
+      "stage": "Closed",
+      "days_quiet_at_cutoff": 234
+    },
+    {
+      "deal_id": "006Wt000007BBaRIAW",
+      "stage": "Discovery",
+      "days_quiet_at_cutoff": 874
+    },
+    {
+      "deal_id": "006Wt000007BBaUIAW",
+      "stage": "Discovery",
+      "days_quiet_at_cutoff": 989
+    },
+    {
+      "deal_id": "006Wt000007BBc2IAG",
+      "stage": "Discovery",
+      "days_quiet_at_cutoff": 673
+    },
+    {
+      "deal_id": "006Wt000007BBddIAG",
+      "stage": "Discovery",
+      "days_quiet_at_cutoff": 402
+    },
+    {
+      "deal_id": "006Wt000007BBfFIAW",
+      "stage": "Closed",
+      "days_quiet_at_cutoff": 1050
+    },
+    {
+      "deal_id": "006Wt000007BBguIAG",
+      "stage": "Qualification",
+      "days_quiet_at_cutoff": 273
+    },
+    {
+      "deal_id": "006Wt000007BBiTIAW",
+      "stage": "Closed",
+      "days_quiet_at_cutoff": 813
+    },
+    {
+      "deal_id": "006Wt000007BBiUIAW",
+      "stage": "Discovery",
+      "days_quiet_at_cutoff": 634
+    },
+    {
+      "deal_id": "006Wt000007BBliIAG",
+      "stage": "Closed",
+      "days_quiet_at_cutoff": 809
+    },
+    {
+      "deal_id": "006Wt000007BBnKIAW",
+      "stage": "Negotiation",
+      "days_quiet_at_cutoff": 645
+    },
+    {
+      "deal_id": "006Wt000007BBnLIAW",
+      "stage": "Closed",
+      "days_quiet_at_cutoff": 1142
+    },
+    {
+      "deal_id": "006Wt000007BBovIAG",
+      "stage": "Discovery",
+      "days_quiet_at_cutoff": 80
+    },
+    {
+      "deal_id": "006Wt000007BBqXIAW",
+      "stage": "Closed",
+      "days_quiet_at_cutoff": 407
+    },
+    {
+      "deal_id": "006Wt000007BBs9IAG",
+      "stage": "Closed",
+      "days_quiet_at_cutoff": 351
+    },
+    {
+      "deal_id": "006Wt000007BBtnIAG",
+      "stage": "Closed",
+      "days_quiet_at_cutoff": 644
+    },
+    {
+      "deal_id": "006Wt000007BBvOIAW",
+      "stage": "Quote",
+      "days_quiet_at_cutoff": 1056
+    },
+    {
+      "deal_id": "006Wt000007BBwzIAG",
+      "stage": "Closed",
+      "days_quiet_at_cutoff": 165
+    },
+    {
+      "deal_id": "006Wt000007BBx1IAG",
+      "stage": "Closed",
+      "days_quiet_at_cutoff": 728
+    },
+    {
+      "deal_id": "006Wt000007BBybIAG",
+      "stage": "Negotiation",
+      "days_quiet_at_cutoff": 1331
+    },
+    {
+      "deal_id": "006Wt000007BBycIAG",
+      "stage": "Discovery",
+      "days_quiet_at_cutoff": 139
+    },
+    {
+      "deal_id": "006Wt000007BBydIAG",
+      "stage": "Quote",
+      "days_quiet_at_cutoff": 999
+    },
+    {
+      "deal_id": "006Wt000007BByfIAG",
+      "stage": "Qualification",
+      "days_quiet_at_cutoff": 243
+    },
+    {
+      "deal_id": "006Wt000007BC1pIAG",
+      "stage": "Discovery",
+      "days_quiet_at_cutoff": 1247
+    },
+    {
+      "deal_id": "006Wt000007BC1qIAG",
+      "stage": "Quote",
+      "days_quiet_at_cutoff": 619
+    },
+    {
+      "deal_id": "006Wt000007BC1rIAG",
+      "stage": "Discovery",
+      "days_quiet_at_cutoff": 631
+    },
+    {
+      "deal_id": "006Wt000007BC3RIAW",
+      "stage": "Quote",
+      "days_quiet_at_cutoff": 1209
+    },
+    {
+      "deal_id": "006Wt000007BC3UIAW",
+      "stage": "Qualification",
+      "days_quiet_at_cutoff": 808
+    },
+    {
+      "deal_id": "006Wt000007BC3VIAW",
+      "stage": "Closed",
+      "days_quiet_at_cutoff": 681
+    },
+    {
+      "deal_id": "006Wt000007BC53IAG",
+      "stage": "Quote",
+      "days_quiet_at_cutoff": 233
+    },
+    {
+      "deal_id": "006Wt000007BC6fIAG",
+      "stage": "Closed",
+      "days_quiet_at_cutoff": 194
+    },
+    {
+      "deal_id": "006Wt000007BC9tIAG",
+      "stage": "Closed",
+      "days_quiet_at_cutoff": 406
+    },
+    {
+      "deal_id": "006Wt000007BC9uIAG",
+      "stage": "Closed",
+      "days_quiet_at_cutoff": 1030
+    },
+    {
+      "deal_id": "006Wt000007BCBVIA4",
+      "stage": "Qualification",
+      "days_quiet_at_cutoff": 401
+    },
+    {
+      "deal_id": "006Wt000007BCD8IAO",
+      "stage": "Negotiation",
+      "days_quiet_at_cutoff": 149
+    },
+    {
+      "deal_id": "006Wt000007BCEjIAO",
+      "stage": "Negotiation",
+      "days_quiet_at_cutoff": 1025
+    },
+    {
+      "deal_id": "006Wt000007BCGMIA4",
+      "stage": "Discovery",
+      "days_quiet_at_cutoff": 577
+    },
+    {
+      "deal_id": "006Wt000007BCHxIAO",
+      "stage": "Discovery",
+      "days_quiet_at_cutoff": 259
+    },
+    {
+      "deal_id": "006Wt000007BCLCIA4",
+      "stage": "Closed",
+      "days_quiet_at_cutoff": 489
+    },
+    {
+      "deal_id": "006Wt000007BCLFIA4",
+      "stage": "Closed",
+      "days_quiet_at_cutoff": 619
+    },
+    {
+      "deal_id": "006Wt000007BCReIAO",
+      "stage": "Quote",
+      "days_quiet_at_cutoff": 1112
+    },
+    {
+      "deal_id": "006Wt000007BCTFIA4",
+      "stage": "Discovery",
+      "days_quiet_at_cutoff": 165
+    },
+    {
+      "deal_id": "006Wt000007BCTIIA4",
+      "stage": "Qualification",
+      "days_quiet_at_cutoff": 134
+    },
+    {
+      "deal_id": "006Wt000007BCUsIAO",
+      "stage": "Qualification",
+      "days_quiet_at_cutoff": 855
+    },
+    {
+      "deal_id": "006Wt000007BCWTIA4",
+      "stage": "Closed",
+      "days_quiet_at_cutoff": 596
+    },
+    {
+      "deal_id": "006Wt000007BCWUIA4",
+      "stage": "Closed",
+      "days_quiet_at_cutoff": 1066
+    },
+    {
+      "deal_id": "006Wt000007BCWVIA4",
+      "stage": "Quote",
+      "days_quiet_at_cutoff": 1112
+    },
+    {
+      "deal_id": "006Wt000007BCWYIA4",
+      "stage": "Closed",
+      "days_quiet_at_cutoff": 681
+    },
+    {
+      "deal_id": "006Wt000007BCZhIAO",
+      "stage": "Quote",
+      "days_quiet_at_cutoff": 1178
+    },
+    {
+      "deal_id": "006Wt000007BCZlIAO",
+      "stage": "Closed",
+      "days_quiet_at_cutoff": 1055
+    },
+    {
+      "deal_id": "006Wt000007BCcwIAG",
+      "stage": "Closed",
+      "days_quiet_at_cutoff": 315
+    },
+    {
+      "deal_id": "006Wt000007BCeXIAW",
+      "stage": "Negotiation",
+      "days_quiet_at_cutoff": 834
+    },
+    {
+      "deal_id": "006Wt000007BCeYIAW",
+      "stage": "Closed",
+      "days_quiet_at_cutoff": 891
+    },
+    {
+      "deal_id": "006Wt000007BCg9IAG",
+      "stage": "Discovery",
+      "days_quiet_at_cutoff": 696
+    },
+    {
+      "deal_id": "006Wt000007BCgBIAW",
+      "stage": "Closed",
+      "days_quiet_at_cutoff": 1290
+    },
+    {
+      "deal_id": "006Wt000007BCgCIAW",
+      "stage": "Qualification",
+      "days_quiet_at_cutoff": 1046
+    },
+    {
+      "deal_id": "006Wt000007BChlIAG",
+      "stage": "Qualification",
+      "days_quiet_at_cutoff": 826
+    },
+    {
+      "deal_id": "006Wt000007BChmIAG",
+      "stage": "Closed",
+      "days_quiet_at_cutoff": 134
+    },
+    {
+      "deal_id": "006Wt000007BChoIAG",
+      "stage": "Qualification",
+      "days_quiet_at_cutoff": 361
+    },
+    {
+      "deal_id": "006Wt000007BCjNIAW",
+      "stage": "Qualification",
+      "days_quiet_at_cutoff": 814
+    },
+    {
+      "deal_id": "006Wt000007BCkzIAG",
+      "stage": "Qualification",
+      "days_quiet_at_cutoff": 61
+    },
+    {
+      "deal_id": "006Wt000007BCprIAG",
+      "stage": "Discovery",
+      "days_quiet_at_cutoff": 925
+    },
+    {
+      "deal_id": "006Wt000007BCpsIAG",
+      "stage": "Closed",
+      "days_quiet_at_cutoff": 232
+    },
+    {
+      "deal_id": "006Wt000007BCptIAG",
+      "stage": "Qualification",
+      "days_quiet_at_cutoff": 716
+    },
+    {
+      "deal_id": "006Wt000007BCrSIAW",
+      "stage": "Qualification",
+      "days_quiet_at_cutoff": 859
+    },
+    {
+      "deal_id": "006Wt000007BCt3IAG",
+      "stage": "Qualification",
+      "days_quiet_at_cutoff": 907
+    },
+    {
+      "deal_id": "006Wt000007BCufIAG",
+      "stage": "Closed",
+      "days_quiet_at_cutoff": 746
+    },
+    {
+      "deal_id": "006Wt000007BCugIAG",
+      "stage": "Qualification",
+      "days_quiet_at_cutoff": 228
+    },
+    {
+      "deal_id": "006Wt000007BCuiIAG",
+      "stage": "Qualification",
+      "days_quiet_at_cutoff": 145
+    },
+    {
+      "deal_id": "006Wt000007BCujIAG",
+      "stage": "Quote",
+      "days_quiet_at_cutoff": 1234
+    },
+    {
+      "deal_id": "006Wt000007BCwHIAW",
+      "stage": "Quote",
+      "days_quiet_at_cutoff": 856
+    },
+    {
+      "deal_id": "006Wt000007BCxtIAG",
+      "stage": "Qualification",
+      "days_quiet_at_cutoff": 1015
+    },
+    {
+      "deal_id": "006Wt000007BCzWIAW",
+      "stage": "Discovery",
+      "days_quiet_at_cutoff": 1025
+    },
+    {
+      "deal_id": "006Wt000007BD17IAG",
+      "stage": "Quote",
+      "days_quiet_at_cutoff": 139
+    },
+    {
+      "deal_id": "006Wt000007BD2jIAG",
+      "stage": "Closed",
+      "days_quiet_at_cutoff": 686
+    },
+    {
+      "deal_id": "006Wt000007BD2nIAG",
+      "stage": "Closed",
+      "days_quiet_at_cutoff": 706
+    },
+    {
+      "deal_id": "006Wt000007BD4MIAW",
+      "stage": "Negotiation",
+      "days_quiet_at_cutoff": 1158
+    },
+    {
+      "deal_id": "006Wt000007BD5xIAG",
+      "stage": "Quote",
+      "days_quiet_at_cutoff": 900
+    },
+    {
+      "deal_id": "006Wt000007BD7ZIAW",
+      "stage": "Negotiation",
+      "days_quiet_at_cutoff": 853
+    },
+    {
+      "deal_id": "006Wt000007BD7aIAG",
+      "stage": "Discovery",
+      "days_quiet_at_cutoff": 846
+    },
+    {
+      "deal_id": "006Wt000007BDAqIAO",
+      "stage": "Quote",
+      "days_quiet_at_cutoff": 925
+    },
+    {
+      "deal_id": "006Wt000007BDAtIAO",
+      "stage": "Closed",
+      "days_quiet_at_cutoff": 1142
+    },
+    {
+      "deal_id": "006Wt000007BDAuIAO",
+      "stage": "Negotiation",
+      "days_quiet_at_cutoff": 1010
+    },
+    {
+      "deal_id": "006Wt000007BDCPIA4",
+      "stage": "Qualification",
+      "days_quiet_at_cutoff": 238
+    },
+    {
+      "deal_id": "006Wt000007BDE1IAO",
+      "stage": "Negotiation",
+      "days_quiet_at_cutoff": 1056
+    },
+    {
+      "deal_id": "006Wt000007BDE2IAO",
+      "stage": "Quote",
+      "days_quiet_at_cutoff": 184
+    },
+    {
+      "deal_id": "006Wt000007BDFeIAO",
+      "stage": "Qualification",
+      "days_quiet_at_cutoff": 195
+    },
+    {
+      "deal_id": "006Wt000007BDFfIAO",
+      "stage": "Closed",
+      "days_quiet_at_cutoff": 1269
+    },
+    {
+      "deal_id": "006Wt000007BDFgIAO",
+      "stage": "Closed",
+      "days_quiet_at_cutoff": 1056
+    },
+    {
+      "deal_id": "006Wt000007BDIrIAO",
+      "stage": "Closed",
+      "days_quiet_at_cutoff": 848
+    },
+    {
+      "deal_id": "006Wt000007BDKTIA4",
+      "stage": "Quote",
+      "days_quiet_at_cutoff": 65
+    },
+    {
+      "deal_id": "006Wt000007BDKUIA4",
+      "stage": "Discovery",
+      "days_quiet_at_cutoff": 1255
+    },
+    {
+      "deal_id": "006Wt000007BDM5IAO",
+      "stage": "Qualification",
+      "days_quiet_at_cutoff": 109
+    },
+    {
+      "deal_id": "006Wt000007BDM6IAO",
+      "stage": "Closed",
+      "days_quiet_at_cutoff": 110
+    },
+    {
+      "deal_id": "006Wt000007BDNjIAO",
+      "stage": "Qualification",
+      "days_quiet_at_cutoff": 1300
+    },
+    {
+      "deal_id": "006Wt000007BDNmIAO",
+      "stage": "Negotiation",
+      "days_quiet_at_cutoff": 1091
+    },
+    {
+      "deal_id": "006Wt000007BDNnIAO",
+      "stage": "Closed",
+      "days_quiet_at_cutoff": 1265
+    },
+    {
+      "deal_id": "006Wt000007BDNoIAO",
+      "stage": "Qualification",
+      "days_quiet_at_cutoff": 175
+    },
+    {
+      "deal_id": "006Wt000007BDNrIAO",
+      "stage": "Discovery",
+      "days_quiet_at_cutoff": 566
+    },
+    {
+      "deal_id": "006Wt000007BDPJIA4",
+      "stage": "Discovery",
+      "days_quiet_at_cutoff": 849
+    },
+    {
+      "deal_id": "006Wt000007BDPKIA4",
+      "stage": "Quote",
+      "days_quiet_at_cutoff": 900
+    },
+    {
+      "deal_id": "006Wt000007BDQwIAO",
+      "stage": "Negotiation",
+      "days_quiet_at_cutoff": 1239
+    },
+    {
+      "deal_id": "006Wt000007BDSXIA4",
+      "stage": "Discovery",
+      "days_quiet_at_cutoff": 245
+    },
+    {
+      "deal_id": "006Wt000007BDSYIA4",
+      "stage": "Closed",
+      "days_quiet_at_cutoff": 992
+    },
+    {
+      "deal_id": "006Wt000007BDSZIA4",
+      "stage": "Qualification",
+      "days_quiet_at_cutoff": 85
+    },
+    {
+      "deal_id": "006Wt000007BDSaIAO",
+      "stage": "Discovery",
+      "days_quiet_at_cutoff": 104
+    },
+    {
+      "deal_id": "006Wt000007BDSbIAO",
+      "stage": "Closed",
+      "days_quiet_at_cutoff": 818
+    },
+    {
+      "deal_id": "006Wt000007BDU9IAO",
+      "stage": "Closed",
+      "days_quiet_at_cutoff": 173
+    },
+    {
+      "deal_id": "006Wt000007BDUAIA4",
+      "stage": "Closed",
+      "days_quiet_at_cutoff": 194
+    },
+    {
+      "deal_id": "006Wt000007BDVlIAO",
+      "stage": "Discovery",
+      "days_quiet_at_cutoff": 747
+    },
+    {
+      "deal_id": "006Wt000007BDVnIAO",
+      "stage": "Quote",
+      "days_quiet_at_cutoff": 862
+    },
+    {
+      "deal_id": "006Wt000007BDXPIA4",
+      "stage": "Discovery",
+      "days_quiet_at_cutoff": 170
+    },
+    {
+      "deal_id": "006Wt000007BDYzIAO",
+      "stage": "Discovery",
+      "days_quiet_at_cutoff": 1183
+    },
+    {
+      "deal_id": "006Wt000007BDZ2IAO",
+      "stage": "Qualification",
+      "days_quiet_at_cutoff": 617
+    },
+    {
+      "deal_id": "006Wt000007BDZ3IAO",
+      "stage": "Closed",
+      "days_quiet_at_cutoff": 148
+    },
+    {
+      "deal_id": "006Wt000007BDabIAG",
+      "stage": "Closed",
+      "days_quiet_at_cutoff": 614
+    },
+    {
+      "deal_id": "006Wt000007BDacIAG",
+      "stage": "Closed",
+      "days_quiet_at_cutoff": 132
+    },
+    {
+      "deal_id": "006Wt000007BDadIAG",
+      "stage": "Closed",
+      "days_quiet_at_cutoff": 1181
+    },
+    {
+      "deal_id": "006Wt000007BDaeIAG",
+      "stage": "Closed",
+      "days_quiet_at_cutoff": 579
+    },
+    {
+      "deal_id": "006Wt000007BDafIAG",
+      "stage": "Closed",
+      "days_quiet_at_cutoff": 314
+    },
+    {
+      "deal_id": "006Wt000007BDagIAG",
+      "stage": "Discovery",
+      "days_quiet_at_cutoff": 840
+    },
+    {
+      "deal_id": "006Wt000007BDdqIAG",
+      "stage": "Closed",
+      "days_quiet_at_cutoff": 78
+    },
+    {
+      "deal_id": "006Wt000007BDfRIAW",
+      "stage": "Qualification",
+      "days_quiet_at_cutoff": 673
+    },
+    {
+      "deal_id": "006Wt000007BDifIAG",
+      "stage": "Discovery",
+      "days_quiet_at_cutoff": 134
+    },
+    {
+      "deal_id": "006Wt000007BDkHIAW",
+      "stage": "Qualification",
+      "days_quiet_at_cutoff": 218
+    },
+    {
+      "deal_id": "006Wt000007BDnVIAW",
+      "stage": "Closed",
+      "days_quiet_at_cutoff": 1143
+    },
+    {
+      "deal_id": "006Wt000007BDp9IAG",
+      "stage": "Quote",
+      "days_quiet_at_cutoff": 165
+    },
+    {
+      "deal_id": "006Wt000007BDvZIAW",
+      "stage": "Discovery",
+      "days_quiet_at_cutoff": 956
+    },
+    {
+      "deal_id": "006Wt000007BDynIAG",
+      "stage": "Discovery",
+      "days_quiet_at_cutoff": 975
+    },
+    {
+      "deal_id": "006Wt000007BDypIAG",
+      "stage": "Discovery",
+      "days_quiet_at_cutoff": 1163
+    },
+    {
+      "deal_id": "006Wt000007BE0PIAW",
+      "stage": "Closed",
+      "days_quiet_at_cutoff": 767
+    },
+    {
+      "deal_id": "006Wt000007BE0QIAW",
+      "stage": "Closed",
+      "days_quiet_at_cutoff": 422
+    },
+    {
+      "deal_id": "006Wt000007BE0RIAW",
+      "stage": "Quote",
+      "days_quiet_at_cutoff": 239
+    },
+    {
+      "deal_id": "006Wt000007BE0SIAW",
+      "stage": "Quote",
+      "days_quiet_at_cutoff": 586
+    },
+    {
+      "deal_id": "006Wt000007BE21IAG",
+      "stage": "Quote",
+      "days_quiet_at_cutoff": 691
+    },
+    {
+      "deal_id": "006Wt000007BE22IAG",
+      "stage": "Closed",
+      "days_quiet_at_cutoff": 678
+    },
+    {
+      "deal_id": "006Wt000007BE23IAG",
+      "stage": "Quote",
+      "days_quiet_at_cutoff": 1201
+    },
+    {
+      "deal_id": "006Wt000007BE25IAG",
+      "stage": "Negotiation",
+      "days_quiet_at_cutoff": 255
+    },
+    {
+      "deal_id": "006Wt000007BE26IAG",
+      "stage": "Qualification",
+      "days_quiet_at_cutoff": 239
+    },
+    {
+      "deal_id": "006Wt000007BE3dIAG",
+      "stage": "Qualification",
+      "days_quiet_at_cutoff": 655
+    },
+    {
+      "deal_id": "006Wt000007BE5FIAW",
+      "stage": "Closed",
+      "days_quiet_at_cutoff": 508
+    },
+    {
+      "deal_id": "006Wt000007BE6rIAG",
+      "stage": "Negotiation",
+      "days_quiet_at_cutoff": 611
+    },
+    {
+      "deal_id": "006Wt000007BE8TIAW",
+      "stage": "Closed",
+      "days_quiet_at_cutoff": 895
+    },
+    {
+      "deal_id": "006Wt000007BE8UIAW",
+      "stage": "Quote",
+      "days_quiet_at_cutoff": 136
+    },
+    {
+      "deal_id": "006Wt000007BE8VIAW",
+      "stage": "Closed",
+      "days_quiet_at_cutoff": 1023
+    },
+    {
+      "deal_id": "006Wt000007BEBhIAO",
+      "stage": "Quote",
+      "days_quiet_at_cutoff": 617
+    },
+    {
+      "deal_id": "006Wt000007BEDJIA4",
+      "stage": "Negotiation",
+      "days_quiet_at_cutoff": 1309
+    },
+    {
+      "deal_id": "006Wt000007BEEvIAO",
+      "stage": "Closed",
+      "days_quiet_at_cutoff": 1219
+    },
+    {
+      "deal_id": "006Wt000007BEGXIA4",
+      "stage": "Closed",
+      "days_quiet_at_cutoff": 1066
+    },
+    {
+      "deal_id": "006Wt000007BEI9IAO",
+      "stage": "Quote",
+      "days_quiet_at_cutoff": 956
+    },
+    {
+      "deal_id": "006Wt000007BEJlIAO",
+      "stage": "Closed",
+      "days_quiet_at_cutoff": 1075
+    },
+    {
+      "deal_id": "006Wt000007BEJmIAO",
+      "stage": "Closed",
+      "days_quiet_at_cutoff": 231
+    },
+    {
+      "deal_id": "006Wt000007BELNIA4",
+      "stage": "Discovery",
+      "days_quiet_at_cutoff": 1142
+    },
+    {
+      "deal_id": "006Wt000007BELOIA4",
+      "stage": "Quote",
+      "days_quiet_at_cutoff": 711
+    },
+    {
+      "deal_id": "006Wt000007BEN0IAO",
+      "stage": "Discovery",
+      "days_quiet_at_cutoff": 620
+    },
+    {
+      "deal_id": "006Wt000007BEObIAO",
+      "stage": "Closed",
+      "days_quiet_at_cutoff": 63
+    },
+    {
+      "deal_id": "006Wt000007BEOcIAO",
+      "stage": "Closed",
+      "days_quiet_at_cutoff": 387
+    },
+    {
+      "deal_id": "006Wt000007BEQDIA4",
+      "stage": "Closed",
+      "days_quiet_at_cutoff": 70
+    },
+    {
+      "deal_id": "006Wt000007BEQEIA4",
+      "stage": "Qualification",
+      "days_quiet_at_cutoff": 1161
+    },
+    {
+      "deal_id": "006Wt000007BEQFIA4",
+      "stage": "Discovery",
+      "days_quiet_at_cutoff": 737
+    },
+    {
+      "deal_id": "006Wt000007BERpIAO",
+      "stage": "Negotiation",
+      "days_quiet_at_cutoff": 245
+    },
+    {
+      "deal_id": "006Wt000007BERrIAO",
+      "stage": "Closed",
+      "days_quiet_at_cutoff": 964
+    },
+    {
+      "deal_id": "006Wt000007BERuIAO",
+      "stage": "Closed",
+      "days_quiet_at_cutoff": 988
+    },
+    {
+      "deal_id": "006Wt000007BETRIA4",
+      "stage": "Qualification",
+      "days_quiet_at_cutoff": 256
+    },
+    {
+      "deal_id": "006Wt000007BETXIA4",
+      "stage": "Negotiation",
+      "days_quiet_at_cutoff": 808
+    },
+    {
+      "deal_id": "006Wt000007BEV3IAO",
+      "stage": "Negotiation",
+      "days_quiet_at_cutoff": 119
+    },
+    {
+      "deal_id": "006Wt000007BEWgIAO",
+      "stage": "Qualification",
+      "days_quiet_at_cutoff": 546
+    },
+    {
+      "deal_id": "006Wt000007BEWhIAO",
+      "stage": "Negotiation",
+      "days_quiet_at_cutoff": 1075
+    },
+    {
+      "deal_id": "006Wt000007BEWjIAO",
+      "stage": "Discovery",
+      "days_quiet_at_cutoff": 686
+    },
+    {
+      "deal_id": "006Wt000007BEWkIAO",
+      "stage": "Closed",
+      "days_quiet_at_cutoff": 772
+    },
+    {
+      "deal_id": "006Wt000007BEWmIAO",
+      "stage": "Quote",
+      "days_quiet_at_cutoff": 110
+    },
+    {
+      "deal_id": "006Wt000007BEYHIA4",
+      "stage": "Discovery",
+      "days_quiet_at_cutoff": 940
+    },
+    {
+      "deal_id": "006Wt000007BEZwIAO",
+      "stage": "Quote",
+      "days_quiet_at_cutoff": 226
+    },
+    {
+      "deal_id": "006Wt000007BEbVIAW",
+      "stage": "Qualification",
+      "days_quiet_at_cutoff": 200
+    },
+    {
+      "deal_id": "006Wt000007BEbWIAW",
+      "stage": "Quote",
+      "days_quiet_at_cutoff": 1134
+    },
+    {
+      "deal_id": "006Wt000007BEd7IAG",
+      "stage": "Closed",
+      "days_quiet_at_cutoff": 683
+    },
+    {
+      "deal_id": "006Wt000007BEekIAG",
+      "stage": "Closed",
+      "days_quiet_at_cutoff": 1163
+    },
+    {
+      "deal_id": "006Wt000007BEgMIAW",
+      "stage": "Closed",
+      "days_quiet_at_cutoff": 344
+    },
+    {
+      "deal_id": "006Wt000007BEhzIAG",
+      "stage": "Discovery",
+      "days_quiet_at_cutoff": 777
+    },
+    {
+      "deal_id": "006Wt000007BEjZIAW",
+      "stage": "Discovery",
+      "days_quiet_at_cutoff": 650
+    },
+    {
+      "deal_id": "006Wt000007BEmnIAG",
+      "stage": "Discovery",
+      "days_quiet_at_cutoff": 258
+    },
+    {
+      "deal_id": "006Wt000007BEmoIAG",
+      "stage": "Closed",
+      "days_quiet_at_cutoff": 535
+    },
+    {
+      "deal_id": "006Wt000007BEmpIAG",
+      "stage": "Qualification",
+      "days_quiet_at_cutoff": 1158
+    },
+    {
+      "deal_id": "006Wt000007BEmrIAG",
+      "stage": "Discovery",
+      "days_quiet_at_cutoff": 693
+    },
+    {
+      "deal_id": "006Wt000007BEmuIAG",
+      "stage": "Discovery",
+      "days_quiet_at_cutoff": 930
+    },
+    {
+      "deal_id": "006Wt000007BEq2IAG",
+      "stage": "Quote",
+      "days_quiet_at_cutoff": 78
+    },
+    {
+      "deal_id": "006Wt000007BEq4IAG",
+      "stage": "Qualification",
+      "days_quiet_at_cutoff": 231
+    },
+    {
+      "deal_id": "006Wt000007BEtFIAW",
+      "stage": "Closed",
+      "days_quiet_at_cutoff": 869
+    },
+    {
+      "deal_id": "006Wt000007BEtGIAW",
+      "stage": "Qualification",
+      "days_quiet_at_cutoff": 210
+    },
+    {
+      "deal_id": "006Wt000007BEurIAG",
+      "stage": "Quote",
+      "days_quiet_at_cutoff": 999
+    },
+    {
+      "deal_id": "006Wt000007BEwTIAW",
+      "stage": "Closed",
+      "days_quiet_at_cutoff": 1198
+    },
+    {
+      "deal_id": "006Wt000007BEy6IAG",
+      "stage": "Closed",
+      "days_quiet_at_cutoff": 124
+    },
+    {
+      "deal_id": "006Wt000007BEy7IAG",
+      "stage": "Closed",
+      "days_quiet_at_cutoff": 1265
+    },
+    {
+      "deal_id": "006Wt000007BEzhIAG",
+      "stage": "Quote",
+      "days_quiet_at_cutoff": 114
+    },
+    {
+      "deal_id": "006Wt000007BF1JIAW",
+      "stage": "Discovery",
+      "days_quiet_at_cutoff": 170
+    },
+    {
+      "deal_id": "006Wt000007BF2wIAG",
+      "stage": "Negotiation",
+      "days_quiet_at_cutoff": 670
+    },
+    {
+      "deal_id": "006Wt000007BF2xIAG",
+      "stage": "Qualification",
+      "days_quiet_at_cutoff": 225
+    },
+    {
+      "deal_id": "006Wt000007BF4YIAW",
+      "stage": "Discovery",
+      "days_quiet_at_cutoff": 824
+    },
+    {
+      "deal_id": "006Wt000007BFAzIAO",
+      "stage": "Qualification",
+      "days_quiet_at_cutoff": 481
+    },
+    {
+      "deal_id": "006Wt000007BFCbIAO",
+      "stage": "Discovery",
+      "days_quiet_at_cutoff": 614
+    },
+    {
+      "deal_id": "006Wt000007BFCcIAO",
+      "stage": "Discovery",
+      "days_quiet_at_cutoff": 961
+    },
+    {
+      "deal_id": "006Wt000007BFEFIA4",
+      "stage": "Closed",
+      "days_quiet_at_cutoff": 676
+    },
+    {
+      "deal_id": "006Wt000007BFEGIA4",
+      "stage": "Qualification",
+      "days_quiet_at_cutoff": 874
+    },
+    {
+      "deal_id": "006Wt000007BFFqIAO",
+      "stage": "Quote",
+      "days_quiet_at_cutoff": 140
+    },
+    {
+      "deal_id": "006Wt000007BFFsIAO",
+      "stage": "Closed",
+      "days_quiet_at_cutoff": 281
+    },
+    {
+      "deal_id": "006Wt000007BFFuIAO",
+      "stage": "Closed",
+      "days_quiet_at_cutoff": 854
+    },
+    {
+      "deal_id": "006Wt000007BFHRIA4",
+      "stage": "Closed",
+      "days_quiet_at_cutoff": 1230
+    },
+    {
+      "deal_id": "006Wt000007BFHSIA4",
+      "stage": "Negotiation",
+      "days_quiet_at_cutoff": 726
+    },
+    {
+      "deal_id": "006Wt000007BFHTIA4",
+      "stage": "Quote",
+      "days_quiet_at_cutoff": 910
+    },
+    {
+      "deal_id": "006Wt000007BFJ6IAO",
+      "stage": "Negotiation",
+      "days_quiet_at_cutoff": 905
+    },
+    {
+      "deal_id": "006Wt000007BFKfIAO",
+      "stage": "Negotiation",
+      "days_quiet_at_cutoff": 782
+    },
+    {
+      "deal_id": "006Wt000007BFKgIAO",
+      "stage": "Closed",
+      "days_quiet_at_cutoff": 1029
+    },
+    {
+      "deal_id": "006Wt000007BFKiIAO",
+      "stage": "Closed",
+      "days_quiet_at_cutoff": 681
+    },
+    {
+      "deal_id": "006Wt000007BFPVIA4",
+      "stage": "Discovery",
+      "days_quiet_at_cutoff": 940
+    },
+    {
+      "deal_id": "006Wt000007BFR8IAO",
+      "stage": "Quote",
+      "days_quiet_at_cutoff": 1279
+    },
+    {
+      "deal_id": "006Wt000007BFSkIAO",
+      "stage": "Qualification",
+      "days_quiet_at_cutoff": 861
+    },
+    {
+      "deal_id": "006Wt000007BFUNIA4",
+      "stage": "Discovery",
+      "days_quiet_at_cutoff": 1111
+    },
+    {
+      "deal_id": "006Wt000007BFVzIAO",
+      "stage": "Negotiation",
+      "days_quiet_at_cutoff": 611
+    },
+    {
+      "deal_id": "006Wt000007BFXaIAO",
+      "stage": "Closed",
+      "days_quiet_at_cutoff": 1022
+    },
+    {
+      "deal_id": "006Wt000007BFXbIAO",
+      "stage": "Negotiation",
+      "days_quiet_at_cutoff": 853
+    },
+    {
+      "deal_id": "006Wt000007BFZBIA4",
+      "stage": "Negotiation",
+      "days_quiet_at_cutoff": 757
+    },
+    {
+      "deal_id": "006Wt000007BFaoIAG",
+      "stage": "Closed",
+      "days_quiet_at_cutoff": 371
+    },
+    {
+      "deal_id": "006Wt000007BFcQIAW",
+      "stage": "Qualification",
+      "days_quiet_at_cutoff": 624
+    },
+    {
+      "deal_id": "006Wt000007BFcRIAW",
+      "stage": "Negotiation",
+      "days_quiet_at_cutoff": 818
+    },
+    {
+      "deal_id": "006Wt000007BFcUIAW",
+      "stage": "Closed",
+      "days_quiet_at_cutoff": 1237
+    },
+    {
+      "deal_id": "006Wt000007BFe1IAG",
+      "stage": "Quote",
+      "days_quiet_at_cutoff": 780
+    },
+    {
+      "deal_id": "006Wt000007BFe2IAG",
+      "stage": "Closed",
+      "days_quiet_at_cutoff": 575
+    },
+    {
+      "deal_id": "006Wt000007BFfdIAG",
+      "stage": "Negotiation",
+      "days_quiet_at_cutoff": 818
+    },
+    {
+      "deal_id": "006Wt000007BFffIAG",
+      "stage": "Closed",
+      "days_quiet_at_cutoff": 531
+    },
+    {
+      "deal_id": "006Wt000007BFhFIAW",
+      "stage": "Discovery",
+      "days_quiet_at_cutoff": 1295
+    },
+    {
+      "deal_id": "006Wt000007BFirIAG",
+      "stage": "Negotiation",
+      "days_quiet_at_cutoff": 1200
+    },
+    {
+      "deal_id": "006Wt000007BFkTIAW",
+      "stage": "Discovery",
+      "days_quiet_at_cutoff": 1209
+    },
+    {
+      "deal_id": "006Wt000007BFkUIAW",
+      "stage": "Quote",
+      "days_quiet_at_cutoff": 1203
+    },
+    {
+      "deal_id": "006Wt000007BFm5IAG",
+      "stage": "Discovery",
+      "days_quiet_at_cutoff": 606
+    },
+    {
+      "deal_id": "006Wt000007BFm6IAG",
+      "stage": "Qualification",
+      "days_quiet_at_cutoff": 925
+    },
+    {
+      "deal_id": "006Wt000007BFnlIAG",
+      "stage": "Closed",
+      "days_quiet_at_cutoff": 568
+    },
+    {
+      "deal_id": "006Wt000007BFnmIAG",
+      "stage": "Discovery",
+      "days_quiet_at_cutoff": 1168
+    },
+    {
+      "deal_id": "006Wt000007BFpKIAW",
+      "stage": "Quote",
+      "days_quiet_at_cutoff": 124
+    },
+    {
+      "deal_id": "006Wt000007BFqwIAG",
+      "stage": "Quote",
+      "days_quiet_at_cutoff": 905
+    },
+    {
+      "deal_id": "006Wt000007BFqyIAG",
+      "stage": "Discovery",
+      "days_quiet_at_cutoff": 589
+    },
+    {
+      "deal_id": "006Wt000007BFuBIAW",
+      "stage": "Closed",
+      "days_quiet_at_cutoff": 757
+    },
+    {
+      "deal_id": "006Wt000007BFvmIAG",
+      "stage": "Qualification",
+      "days_quiet_at_cutoff": 259
+    },
+    {
+      "deal_id": "006Wt000007BFxNIAW",
+      "stage": "Quote",
+      "days_quiet_at_cutoff": 1300
+    },
+    {
+      "deal_id": "006Wt000007BFxOIAW",
+      "stage": "Negotiation",
+      "days_quiet_at_cutoff": 772
+    },
+    {
+      "deal_id": "006Wt000007BFxPIAW",
+      "stage": "Quote",
+      "days_quiet_at_cutoff": 711
+    },
+    {
+      "deal_id": "006Wt000007BFxQIAW",
+      "stage": "Closed",
+      "days_quiet_at_cutoff": 1162
+    },
+    {
+      "deal_id": "006Wt000007BFyzIAG",
+      "stage": "Closed",
+      "days_quiet_at_cutoff": 509
+    },
+    {
+      "deal_id": "006Wt000007BG0bIAG",
+      "stage": "Qualification",
+      "days_quiet_at_cutoff": 938
+    },
+    {
+      "deal_id": "006Wt000007BG0dIAG",
+      "stage": "Closed",
+      "days_quiet_at_cutoff": 590
+    },
+    {
+      "deal_id": "006Wt000007BG0eIAG",
+      "stage": "Closed",
+      "days_quiet_at_cutoff": 241
+    },
+    {
+      "deal_id": "006Wt000007BG2EIAW",
+      "stage": "Discovery",
+      "days_quiet_at_cutoff": 1244
+    },
+    {
+      "deal_id": "006Wt000007BG2FIAW",
+      "stage": "Closed",
+      "days_quiet_at_cutoff": 701
+    },
+    {
+      "deal_id": "006Wt000007BG5RIAW",
+      "stage": "Qualification",
+      "days_quiet_at_cutoff": 154
+    },
+    {
+      "deal_id": "006Wt000007BG8fIAG",
+      "stage": "Quote",
+      "days_quiet_at_cutoff": 869
+    },
+    {
+      "deal_id": "006Wt000007BGAJIA4",
+      "stage": "Discovery",
+      "days_quiet_at_cutoff": 860
+    },
+    {
+      "deal_id": "006Wt000007BGAKIA4",
+      "stage": "Qualification",
+      "days_quiet_at_cutoff": 621
+    },
+    {
+      "deal_id": "006Wt000007BGBtIAO",
+      "stage": "Closed",
+      "days_quiet_at_cutoff": 956
+    },
+    {
+      "deal_id": "006Wt000007BGGjIAO",
+      "stage": "Discovery",
+      "days_quiet_at_cutoff": 619
+    },
+    {
+      "deal_id": "006Wt000007BGGkIAO",
+      "stage": "Quote",
+      "days_quiet_at_cutoff": 818
+    },
+    {
+      "deal_id": "006Wt000007BGNBIA4",
+      "stage": "Qualification",
+      "days_quiet_at_cutoff": 615
+    },
+    {
+      "deal_id": "006Wt000007BGOnIAO",
+      "stage": "Quote",
+      "days_quiet_at_cutoff": 958
+    },
+    {
+      "deal_id": "006Wt000007BGS1IAO",
+      "stage": "Qualification",
+      "days_quiet_at_cutoff": 829
+    },
+    {
+      "deal_id": "006Wt000007BGTdIAO",
+      "stage": "Closed",
+      "days_quiet_at_cutoff": 785
+    },
+    {
+      "deal_id": "006Wt000007BGVFIA4",
+      "stage": "Discovery",
+      "days_quiet_at_cutoff": 930
+    },
+    {
+      "deal_id": "006Wt000007BGWrIAO",
+      "stage": "Discovery",
+      "days_quiet_at_cutoff": 1277
+    },
+    {
+      "deal_id": "006Wt000007BGa6IAG",
+      "stage": "Discovery",
+      "days_quiet_at_cutoff": 259
+    },
+    {
+      "deal_id": "006Wt000007BGbhIAG",
+      "stage": "Qualification",
+      "days_quiet_at_cutoff": 677
+    },
+    {
+      "deal_id": "006Wt000007BGdJIAW",
+      "stage": "Closed",
+      "days_quiet_at_cutoff": 596
+    },
+    {
+      "deal_id": "006Wt000007BGewIAG",
+      "stage": "Closed",
+      "days_quiet_at_cutoff": 99
+    },
+    {
+      "deal_id": "006Wt000007BGgXIAW",
+      "stage": "Quote",
+      "days_quiet_at_cutoff": 599
+    },
+    {
+      "deal_id": "006Wt000007BGgYIAW",
+      "stage": "Discovery",
+      "days_quiet_at_cutoff": 149
+    },
+    {
+      "deal_id": "006Wt000007BGi9IAG",
+      "stage": "Closed",
+      "days_quiet_at_cutoff": 924
+    },
+    {
+      "deal_id": "006Wt000007BGjlIAG",
+      "stage": "Qualification",
+      "days_quiet_at_cutoff": 898
+    },
+    {
+      "deal_id": "006Wt000007BGjmIAG",
+      "stage": "Closed",
+      "days_quiet_at_cutoff": 479
+    },
+    {
+      "deal_id": "006Wt000007BGjnIAG",
+      "stage": "Discovery",
+      "days_quiet_at_cutoff": 658
+    },
+    {
+      "deal_id": "006Wt000007BGmzIAG",
+      "stage": "Discovery",
+      "days_quiet_at_cutoff": 114
+    },
+    {
+      "deal_id": "006Wt000007BGobIAG",
+      "stage": "Qualification",
+      "days_quiet_at_cutoff": 1326
+    },
+    {
+      "deal_id": "006Wt000007BGqDIAW",
+      "stage": "Qualification",
+      "days_quiet_at_cutoff": 1126
+    },
+    {
+      "deal_id": "006Wt000007BGrpIAG",
+      "stage": "Discovery",
+      "days_quiet_at_cutoff": 73
+    },
+    {
+      "deal_id": "006Wt000007BGwfIAG",
+      "stage": "Closed",
+      "days_quiet_at_cutoff": 1219
+    },
+    {
+      "deal_id": "006Wt000007BGwgIAG",
+      "stage": "Quote",
+      "days_quiet_at_cutoff": 879
+    },
+    {
+      "deal_id": "006Wt000007BGyIIAW",
+      "stage": "Discovery",
+      "days_quiet_at_cutoff": 1306
+    },
+    {
+      "deal_id": "006Wt000007BGztIAG",
+      "stage": "Negotiation",
+      "days_quiet_at_cutoff": 153
+    },
+    {
+      "deal_id": "006Wt000007BH1VIAW",
+      "stage": "Qualification",
+      "days_quiet_at_cutoff": 117
+    },
+    {
+      "deal_id": "006Wt000007BH4jIAG",
+      "stage": "Closed",
+      "days_quiet_at_cutoff": 696
+    },
+    {
+      "deal_id": "006Wt000007BH6LIAW",
+      "stage": "Closed",
+      "days_quiet_at_cutoff": 133
+    },
+    {
+      "deal_id": "006Wt000007BH6MIAW",
+      "stage": "Closed",
+      "days_quiet_at_cutoff": 448
+    },
+    {
+      "deal_id": "006Wt000007BH6NIAW",
+      "stage": "Quote",
+      "days_quiet_at_cutoff": 614
+    },
+    {
+      "deal_id": "006Wt000007BH7zIAG",
+      "stage": "Qualification",
+      "days_quiet_at_cutoff": 958
+    },
+    {
+      "deal_id": "006Wt000007BH9ZIAW",
+      "stage": "Closed",
+      "days_quiet_at_cutoff": 61
+    },
+    {
+      "deal_id": "006Wt000007BHBBIA4",
+      "stage": "Closed",
+      "days_quiet_at_cutoff": 422
+    },
+    {
+      "deal_id": "006Wt000007BHBCIA4",
+      "stage": "Discovery",
+      "days_quiet_at_cutoff": 1102
+    },
+    {
+      "deal_id": "006Wt000007BHCpIAO",
+      "stage": "Closed",
+      "days_quiet_at_cutoff": 471
+    },
+    {
+      "deal_id": "006Wt000007BHERIA4",
+      "stage": "Discovery",
+      "days_quiet_at_cutoff": 791
+    },
+    {
+      "deal_id": "006Wt000007BHG1IAO",
+      "stage": "Closed",
+      "days_quiet_at_cutoff": 281
+    },
+    {
+      "deal_id": "006Wt000007BHHeIAO",
+      "stage": "Quote",
+      "days_quiet_at_cutoff": 114
+    },
+    {
+      "deal_id": "006Wt000007BHHfIAO",
+      "stage": "Negotiation",
+      "days_quiet_at_cutoff": 841
+    },
+    {
+      "deal_id": "006Wt000007BHHhIAO",
+      "stage": "Discovery",
+      "days_quiet_at_cutoff": 480
+    },
+    {
+      "deal_id": "006Wt000007BHJFIA4",
+      "stage": "Closed",
+      "days_quiet_at_cutoff": 407
+    },
+    {
+      "deal_id": "006Wt000007BHJGIA4",
+      "stage": "Closed",
+      "days_quiet_at_cutoff": 205
+    },
+    {
+      "deal_id": "006Wt000007BHJHIA4",
+      "stage": "Qualification",
+      "days_quiet_at_cutoff": 665
+    },
+    {
+      "deal_id": "006Wt000007BHPiIAO",
+      "stage": "Closed",
+      "days_quiet_at_cutoff": 1281
+    },
+    {
+      "deal_id": "006Wt000007BHRJIA4",
+      "stage": "Closed",
+      "days_quiet_at_cutoff": 591
+    },
+    {
+      "deal_id": "006Wt000007BHSvIAO",
+      "stage": "Negotiation",
+      "days_quiet_at_cutoff": 195
+    },
+    {
+      "deal_id": "006Wt000007BHSwIAO",
+      "stage": "Closed",
+      "days_quiet_at_cutoff": 536
+    },
+    {
+      "deal_id": "006Wt000007BHSxIAO",
+      "stage": "Qualification",
+      "days_quiet_at_cutoff": 645
+    },
+    {
+      "deal_id": "006Wt000007BHUXIA4",
+      "stage": "Discovery",
+      "days_quiet_at_cutoff": 629
+    },
+    {
+      "deal_id": "006Wt000007BHXlIAO",
+      "stage": "Quote",
+      "days_quiet_at_cutoff": 905
+    },
+    {
+      "deal_id": "006Wt000007BHeDIAW",
+      "stage": "Closed",
+      "days_quiet_at_cutoff": 818
+    },
+    {
+      "deal_id": "006Wt000007BHhRIAW",
+      "stage": "Discovery",
+      "days_quiet_at_cutoff": 818
+    },
+    {
+      "deal_id": "006Wt000007BHj3IAG",
+      "stage": "Qualification",
+      "days_quiet_at_cutoff": 879
+    },
+    {
+      "deal_id": "006Wt000007BHkfIAG",
+      "stage": "Closed",
+      "days_quiet_at_cutoff": 762
+    },
+    {
+      "deal_id": "006Wt000007BHntIAG",
+      "stage": "Quote",
+      "days_quiet_at_cutoff": 782
+    },
+    {
+      "deal_id": "006Wt000007BHnuIAG",
+      "stage": "Discovery",
+      "days_quiet_at_cutoff": 167
+    },
+    {
+      "deal_id": "006Wt000007BHpVIAW",
+      "stage": "Qualification",
+      "days_quiet_at_cutoff": 345
+    },
+    {
+      "deal_id": "006Wt000007BHuLIAW",
+      "stage": "Qualification",
+      "days_quiet_at_cutoff": 1163
+    },
+    {
+      "deal_id": "006Wt000007BHuMIAW",
+      "stage": "Discovery",
+      "days_quiet_at_cutoff": 1178
+    },
+    {
+      "deal_id": "006Wt000007BHvxIAG",
+      "stage": "Qualification",
+      "days_quiet_at_cutoff": 777
+    },
+    {
+      "deal_id": "006Wt000007BHvzIAG",
+      "stage": "Quote",
+      "days_quiet_at_cutoff": 204
+    },
+    {
+      "deal_id": "006Wt000007BI0nIAG",
+      "stage": "Closed",
+      "days_quiet_at_cutoff": 230
+    },
+    {
+      "deal_id": "006Wt000007BI2PIAW",
+      "stage": "Closed",
+      "days_quiet_at_cutoff": 279
+    },
+    {
+      "deal_id": "006Wt000007BI41IAG",
+      "stage": "Closed",
+      "days_quiet_at_cutoff": 200
+    },
+    {
+      "deal_id": "006Wt000007BI44IAG",
+      "stage": "Discovery",
+      "days_quiet_at_cutoff": 231
+    },
+    {
+      "deal_id": "006Wt000007BI5dIAG",
+      "stage": "Qualification",
+      "days_quiet_at_cutoff": 163
+    },
+    {
+      "deal_id": "006Wt000007BI5eIAG",
+      "stage": "Quote",
+      "days_quiet_at_cutoff": 813
+    },
+    {
+      "deal_id": "006Wt000007BI8sIAG",
+      "stage": "Closed",
+      "days_quiet_at_cutoff": 322
+    },
+    {
+      "deal_id": "006Wt000007BIDhIAO",
+      "stage": "Discovery",
+      "days_quiet_at_cutoff": 989
+    },
+    {
+      "deal_id": "006Wt000007BIFJIA4",
+      "stage": "Qualification",
+      "days_quiet_at_cutoff": 1091
+    },
+    {
+      "deal_id": "006Wt000007BIGvIAO",
+      "stage": "Qualification",
+      "days_quiet_at_cutoff": 700
+    },
+    {
+      "deal_id": "006Wt000007BIIXIA4",
+      "stage": "Closed",
+      "days_quiet_at_cutoff": 1004
+    },
+    {
+      "deal_id": "006Wt000007BIK9IAO",
+      "stage": "Discovery",
+      "days_quiet_at_cutoff": 825
+    },
+    {
+      "deal_id": "006Wt000007BIKAIA4",
+      "stage": "Discovery",
+      "days_quiet_at_cutoff": 144
+    },
+    {
+      "deal_id": "006Wt000007BILlIAO",
+      "stage": "Qualification",
+      "days_quiet_at_cutoff": 1107
+    },
+    {
+      "deal_id": "006Wt000007BIOzIAO",
+      "stage": "Discovery",
+      "days_quiet_at_cutoff": 1097
+    },
+    {
+      "deal_id": "006Wt000007BISDIA4",
+      "stage": "Closed",
+      "days_quiet_at_cutoff": 1046
+    },
+    {
+      "deal_id": "006Wt000007BIX4IAO",
+      "stage": "Closed",
+      "days_quiet_at_cutoff": 1013
+    },
+    {
+      "deal_id": "006Wt000007BIdVIAW",
+      "stage": "Qualification",
+      "days_quiet_at_cutoff": 726
+    },
+    {
+      "deal_id": "006Wt000007BIf7IAG",
+      "stage": "Negotiation",
+      "days_quiet_at_cutoff": 584
+    },
+    {
+      "deal_id": "006Wt000007BIlZIAW",
+      "stage": "Qualification",
+      "days_quiet_at_cutoff": 295
+    },
+    {
+      "deal_id": "006Wt000007BInBIAW",
+      "stage": "Qualification",
+      "days_quiet_at_cutoff": 925
+    },
+    {
+      "deal_id": "006Wt000007BIonIAG",
+      "stage": "Qualification",
+      "days_quiet_at_cutoff": 741
+    }
+  ],
+  "ambiguous_deal_ids": [
+    "006Wt000007AyaDIAS",
+    "006Wt000007AzvqIAC",
+    "006Wt000007B1kmIAC",
+    "006Wt000007B2QiIAK",
+    "006Wt000007B49PIAS",
+    "006Wt000007B4IrIAK",
+    "006Wt000007B5S4IAK",
+    "006Wt000007B5y3IAC",
+    "006Wt000007B62zIAC",
+    "006Wt000007B6EEIA0",
+    "006Wt000007B6KeIAK",
+    "006Wt000007B6iqIAC",
+    "006Wt000007B7mwIAC",
+    "006Wt000007B7yJIAS",
+    "006Wt000007B835IAC",
+    "006Wt000007B8CrIAK",
+    "006Wt000007B8EPIA0",
+    "006Wt000007B8FyIAK",
+    "006Wt000007B8G1IAK",
+    "006Wt000007B8G3IAK",
+    "006Wt000007B8G4IAK",
+    "006Wt000007B8PfIAK",
+    "006Wt000007BA0LIAW",
+    "006Wt000007BA6TIAW",
+    "006Wt000007BACvIAO",
+    "006Wt000007BAMfIAO",
+    "006Wt000007BAT7IAO",
+    "006Wt000007BAUgIAO",
+    "006Wt000007BAXtIAO",
+    "006Wt000007BAXzIAO",
+    "006Wt000007BAZVIA4",
+    "006Wt000007BAeLIAW",
+    "006Wt000007BAo3IAG",
+    "006Wt000007BAuXIAW",
+    "006Wt000007BB0yIAG",
+    "006Wt000007BB2YIAW",
+    "006Wt000007BB2aIAG",
+    "006Wt000007BB49IAG",
+    "006Wt000007BB5mIAG",
+    "006Wt000007BB5pIAG",
+    "006Wt000007BB7OIAW",
+    "006Wt000007BBH7IAO",
+    "006Wt000007BBLtIAO",
+    "006Wt000007BBNVIA4",
+    "006Wt000007BBSLIA4",
+    "006Wt000007BBaQIAW",
+    "006Wt000007BBc1IAG",
+    "006Wt000007BBvNIAW",
+    "006Wt000007BByeIAG",
+    "006Wt000007BCLBIA4",
+    "006Wt000007BCQ2IAO",
+    "006Wt000007BCTHIA4",
+    "006Wt000007BCZjIAO",
+    "006Wt000007BCcvIAG",
+    "006Wt000007BCcxIAG",
+    "006Wt000007BChnIAG",
+    "006Wt000007BCl2IAG",
+    "006Wt000007BCl3IAG",
+    "006Wt000007BCppIAG",
+    "006Wt000007BCzVIAW",
+    "006Wt000007BD2lIAG",
+    "006Wt000007BD2mIAG",
+    "006Wt000007BD4LIAW",
+    "006Wt000007BD9BIAW",
+    "006Wt000007BDApIAO",
+    "006Wt000007BDArIAO",
+    "006Wt000007BDNkIAO",
+    "006Wt000007BDNsIAO",
+    "006Wt000007BDcEIAW",
+    "006Wt000007BEICIA4",
+    "006Wt000007BEMzIAO",
+    "006Wt000007BETTIA4",
+    "006Wt000007BETVIA4",
+    "006Wt000007BEV4IAO",
+    "006Wt000007BEZtIAO",
+    "006Wt000007BEhxIAG",
+    "006Wt000007BEmtIAG",
+    "006Wt000007BEoPIAW",
+    "006Wt000007BEq3IAG",
+    "006Wt000007BEtHIAW",
+    "006Wt000007BF7lIAG",
+    "006Wt000007BFFrIAO",
+    "006Wt000007BFFtIAO",
+    "006Wt000007BFJ3IAO",
+    "006Wt000007BFULIA4",
+    "006Wt000007BFVxIAO",
+    "006Wt000007BFVyIAO",
+    "006Wt000007BFnkIAG",
+    "006Wt000007BFpJIAW",
+    "006Wt000007BFvlIAG",
+    "006Wt000007BGAIIA4",
+    "006Wt000007BGNCIA4",
+    "006Wt000007BGNDIA4",
+    "006Wt000007BGYTIA4",
+    "006Wt000007BGqEIAW",
+    "006Wt000007BH4nIAG",
+    "006Wt000007BHCqIAO",
+    "006Wt000007BHEQIA4",
+    "006Wt000007BHPhIAO",
+    "006Wt000007BHPjIAO",
+    "006Wt000007BHWBIA4",
+    "006Wt000007BHZNIA4",
+    "006Wt000007BHfpIAG",
+    "006Wt000007BI2QIAW",
+    "006Wt000007BIQbIAO",
+    "006Wt000007BIbtIAG",
+    "006Wt000007BIdXIAW",
+    "006Wt000007BIiMIAW",
+    "006Wt000007BIjxIAG",
+    "006Wt000007BIs1IAG"
+  ],
+  "ambiguous_deals": [
+    {
+      "deal_id": "006Wt000007AyaDIAS",
+      "stage": "Qualification",
+      "days_quiet_at_cutoff": 1
+    },
+    {
+      "deal_id": "006Wt000007AzvqIAC",
+      "stage": "Closed",
+      "days_quiet_at_cutoff": 42
+    },
+    {
+      "deal_id": "006Wt000007B1kmIAC",
+      "stage": "Discovery",
+      "days_quiet_at_cutoff": 41
+    },
+    {
+      "deal_id": "006Wt000007B2QiIAK",
+      "stage": "Discovery",
+      "days_quiet_at_cutoff": 27
+    },
+    {
+      "deal_id": "006Wt000007B49PIAS",
+      "stage": "Discovery",
+      "days_quiet_at_cutoff": 9
+    },
+    {
+      "deal_id": "006Wt000007B4IrIAK",
+      "stage": "Discovery",
+      "days_quiet_at_cutoff": 47
+    },
+    {
+      "deal_id": "006Wt000007B5S4IAK",
+      "stage": "Qualification",
+      "days_quiet_at_cutoff": 17
+    },
+    {
+      "deal_id": "006Wt000007B5y3IAC",
+      "stage": "Quote",
+      "days_quiet_at_cutoff": 41
+    },
+    {
+      "deal_id": "006Wt000007B62zIAC",
+      "stage": "Qualification",
+      "days_quiet_at_cutoff": 20
+    },
+    {
+      "deal_id": "006Wt000007B6EEIA0",
+      "stage": "Quote",
+      "days_quiet_at_cutoff": 18
+    },
+    {
+      "deal_id": "006Wt000007B6KeIAK",
+      "stage": "Qualification",
+      "days_quiet_at_cutoff": 22
+    },
+    {
+      "deal_id": "006Wt000007B6iqIAC",
+      "stage": "Closed",
+      "days_quiet_at_cutoff": 47
+    },
+    {
+      "deal_id": "006Wt000007B7mwIAC",
+      "stage": "Discovery",
+      "days_quiet_at_cutoff": 12
+    },
+    {
+      "deal_id": "006Wt000007B7yJIAS",
+      "stage": "Quote",
+      "days_quiet_at_cutoff": 37
+    },
+    {
+      "deal_id": "006Wt000007B835IAC",
+      "stage": "Negotiation",
+      "days_quiet_at_cutoff": 12
+    },
+    {
+      "deal_id": "006Wt000007B8CrIAK",
+      "stage": "Closed",
+      "days_quiet_at_cutoff": 22
+    },
+    {
+      "deal_id": "006Wt000007B8EPIA0",
+      "stage": "Discovery",
+      "days_quiet_at_cutoff": 12
+    },
+    {
+      "deal_id": "006Wt000007B8FyIAK",
+      "stage": "Closed",
+      "days_quiet_at_cutoff": 14
+    },
+    {
+      "deal_id": "006Wt000007B8G1IAK",
+      "stage": "Qualification",
+      "days_quiet_at_cutoff": 22
+    },
+    {
+      "deal_id": "006Wt000007B8G3IAK",
+      "stage": "Qualification",
+      "days_quiet_at_cutoff": 6
+    },
+    {
+      "deal_id": "006Wt000007B8G4IAK",
+      "stage": "Negotiation",
+      "days_quiet_at_cutoff": 30
+    },
+    {
+      "deal_id": "006Wt000007B8PfIAK",
+      "stage": "Discovery",
+      "days_quiet_at_cutoff": 27
+    },
+    {
+      "deal_id": "006Wt000007BA0LIAW",
+      "stage": "Qualification",
+      "days_quiet_at_cutoff": 46
+    },
+    {
+      "deal_id": "006Wt000007BA6TIAW",
+      "stage": "Discovery",
+      "days_quiet_at_cutoff": 27
+    },
+    {
+      "deal_id": "006Wt000007BACvIAO",
+      "stage": "Qualification",
+      "days_quiet_at_cutoff": 18
+    },
+    {
+      "deal_id": "006Wt000007BAMfIAO",
+      "stage": "Discovery",
+      "days_quiet_at_cutoff": 27
+    },
+    {
+      "deal_id": "006Wt000007BAT7IAO",
+      "stage": "Negotiation",
+      "days_quiet_at_cutoff": 16
+    },
+    {
+      "deal_id": "006Wt000007BAUgIAO",
+      "stage": "Negotiation",
+      "days_quiet_at_cutoff": 14
+    },
+    {
+      "deal_id": "006Wt000007BAXtIAO",
+      "stage": "Negotiation",
+      "days_quiet_at_cutoff": 9
+    },
+    {
+      "deal_id": "006Wt000007BAXzIAO",
+      "stage": "Quote",
+      "days_quiet_at_cutoff": 8
+    },
+    {
+      "deal_id": "006Wt000007BAZVIA4",
+      "stage": "Discovery",
+      "days_quiet_at_cutoff": 18
+    },
+    {
+      "deal_id": "006Wt000007BAeLIAW",
+      "stage": "Discovery",
+      "days_quiet_at_cutoff": 17
+    },
+    {
+      "deal_id": "006Wt000007BAo3IAG",
+      "stage": "Qualification",
+      "days_quiet_at_cutoff": 7
+    },
+    {
+      "deal_id": "006Wt000007BAuXIAW",
+      "stage": "Discovery",
+      "days_quiet_at_cutoff": 23
+    },
+    {
+      "deal_id": "006Wt000007BB0yIAG",
+      "stage": "Quote",
+      "days_quiet_at_cutoff": 11
+    },
+    {
+      "deal_id": "006Wt000007BB2YIAW",
+      "stage": "Qualification",
+      "days_quiet_at_cutoff": 20
+    },
+    {
+      "deal_id": "006Wt000007BB2aIAG",
+      "stage": "Qualification",
+      "days_quiet_at_cutoff": 12
+    },
+    {
+      "deal_id": "006Wt000007BB49IAG",
+      "stage": "Qualification",
+      "days_quiet_at_cutoff": 17
+    },
+    {
+      "deal_id": "006Wt000007BB5mIAG",
+      "stage": "Closed",
+      "days_quiet_at_cutoff": 57
+    },
+    {
+      "deal_id": "006Wt000007BB5pIAG",
+      "stage": "Quote",
+      "days_quiet_at_cutoff": 32
+    },
+    {
+      "deal_id": "006Wt000007BB7OIAW",
+      "stage": "Qualification",
+      "days_quiet_at_cutoff": 3
+    },
+    {
+      "deal_id": "006Wt000007BBH7IAO",
+      "stage": "Qualification",
+      "days_quiet_at_cutoff": 22
+    },
+    {
+      "deal_id": "006Wt000007BBLtIAO",
+      "stage": "Negotiation",
+      "days_quiet_at_cutoff": 32
+    },
+    {
+      "deal_id": "006Wt000007BBNVIA4",
+      "stage": "Discovery",
+      "days_quiet_at_cutoff": 49
+    },
+    {
+      "deal_id": "006Wt000007BBSLIA4",
+      "stage": "Discovery",
+      "days_quiet_at_cutoff": 32
+    },
+    {
+      "deal_id": "006Wt000007BBaQIAW",
+      "stage": "Qualification",
+      "days_quiet_at_cutoff": 57
+    },
+    {
+      "deal_id": "006Wt000007BBc1IAG",
+      "stage": "Quote",
+      "days_quiet_at_cutoff": 27
+    },
+    {
+      "deal_id": "006Wt000007BBvNIAW",
+      "stage": "Discovery",
+      "days_quiet_at_cutoff": 47
+    },
+    {
+      "deal_id": "006Wt000007BByeIAG",
+      "stage": "Discovery",
+      "days_quiet_at_cutoff": 23
+    },
+    {
+      "deal_id": "006Wt000007BCLBIA4",
+      "stage": "Discovery",
+      "days_quiet_at_cutoff": 37
+    },
+    {
+      "deal_id": "006Wt000007BCQ2IAO",
+      "stage": "Closed",
+      "days_quiet_at_cutoff": 17
+    },
+    {
+      "deal_id": "006Wt000007BCTHIA4",
+      "stage": "Qualification",
+      "days_quiet_at_cutoff": 4
+    },
+    {
+      "deal_id": "006Wt000007BCZjIAO",
+      "stage": "Negotiation",
+      "days_quiet_at_cutoff": 7
+    },
+    {
+      "deal_id": "006Wt000007BCcvIAG",
+      "stage": "Discovery",
+      "days_quiet_at_cutoff": 34
+    },
+    {
+      "deal_id": "006Wt000007BCcxIAG",
+      "stage": "Discovery",
+      "days_quiet_at_cutoff": 29
+    },
+    {
+      "deal_id": "006Wt000007BChnIAG",
+      "stage": "Qualification",
+      "days_quiet_at_cutoff": 17
+    },
+    {
+      "deal_id": "006Wt000007BCl2IAG",
+      "stage": "Discovery",
+      "days_quiet_at_cutoff": 27
+    },
+    {
+      "deal_id": "006Wt000007BCl3IAG",
+      "stage": "Closed",
+      "days_quiet_at_cutoff": 20
+    },
+    {
+      "deal_id": "006Wt000007BCppIAG",
+      "stage": "Quote",
+      "days_quiet_at_cutoff": 42
+    },
+    {
+      "deal_id": "006Wt000007BCzVIAW",
+      "stage": "Qualification",
+      "days_quiet_at_cutoff": 12
+    },
+    {
+      "deal_id": "006Wt000007BD2lIAG",
+      "stage": "Closed",
+      "days_quiet_at_cutoff": 2
+    },
+    {
+      "deal_id": "006Wt000007BD2mIAG",
+      "stage": "Qualification",
+      "days_quiet_at_cutoff": 37
+    },
+    {
+      "deal_id": "006Wt000007BD4LIAW",
+      "stage": "Qualification",
+      "days_quiet_at_cutoff": 22
+    },
+    {
+      "deal_id": "006Wt000007BD9BIAW",
+      "stage": "Discovery",
+      "days_quiet_at_cutoff": 55
+    },
+    {
+      "deal_id": "006Wt000007BDApIAO",
+      "stage": "Closed",
+      "days_quiet_at_cutoff": 12
+    },
+    {
+      "deal_id": "006Wt000007BDArIAO",
+      "stage": "Negotiation",
+      "days_quiet_at_cutoff": 47
+    },
+    {
+      "deal_id": "006Wt000007BDNkIAO",
+      "stage": "Quote",
+      "days_quiet_at_cutoff": 21
+    },
+    {
+      "deal_id": "006Wt000007BDNsIAO",
+      "stage": "Discovery",
+      "days_quiet_at_cutoff": 17
+    },
+    {
+      "deal_id": "006Wt000007BDcEIAW",
+      "stage": "Discovery",
+      "days_quiet_at_cutoff": 40
+    },
+    {
+      "deal_id": "006Wt000007BEICIA4",
+      "stage": "Discovery",
+      "days_quiet_at_cutoff": 22
+    },
+    {
+      "deal_id": "006Wt000007BEMzIAO",
+      "stage": "Discovery",
+      "days_quiet_at_cutoff": 42
+    },
+    {
+      "deal_id": "006Wt000007BETTIA4",
+      "stage": "Qualification",
+      "days_quiet_at_cutoff": 17
+    },
+    {
+      "deal_id": "006Wt000007BETVIA4",
+      "stage": "Negotiation",
+      "days_quiet_at_cutoff": 16
+    },
+    {
+      "deal_id": "006Wt000007BEV4IAO",
+      "stage": "Qualification",
+      "days_quiet_at_cutoff": 2
+    },
+    {
+      "deal_id": "006Wt000007BEZtIAO",
+      "stage": "Closed",
+      "days_quiet_at_cutoff": 5
+    },
+    {
+      "deal_id": "006Wt000007BEhxIAG",
+      "stage": "Quote",
+      "days_quiet_at_cutoff": 42
+    },
+    {
+      "deal_id": "006Wt000007BEmtIAG",
+      "stage": "Closed",
+      "days_quiet_at_cutoff": 37
+    },
+    {
+      "deal_id": "006Wt000007BEoPIAW",
+      "stage": "Discovery",
+      "days_quiet_at_cutoff": 26
+    },
+    {
+      "deal_id": "006Wt000007BEq3IAG",
+      "stage": "Negotiation",
+      "days_quiet_at_cutoff": 8
+    },
+    {
+      "deal_id": "006Wt000007BEtHIAW",
+      "stage": "Qualification",
+      "days_quiet_at_cutoff": 32
+    },
+    {
+      "deal_id": "006Wt000007BF7lIAG",
+      "stage": "Qualification",
+      "days_quiet_at_cutoff": 57
+    },
+    {
+      "deal_id": "006Wt000007BFFrIAO",
+      "stage": "Qualification",
+      "days_quiet_at_cutoff": 2
+    },
+    {
+      "deal_id": "006Wt000007BFFtIAO",
+      "stage": "Qualification",
+      "days_quiet_at_cutoff": 15
+    },
+    {
+      "deal_id": "006Wt000007BFJ3IAO",
+      "stage": "Quote",
+      "days_quiet_at_cutoff": 33
+    },
+    {
+      "deal_id": "006Wt000007BFULIA4",
+      "stage": "Discovery",
+      "days_quiet_at_cutoff": 7
+    },
+    {
+      "deal_id": "006Wt000007BFVxIAO",
+      "stage": "Discovery",
+      "days_quiet_at_cutoff": 57
+    },
+    {
+      "deal_id": "006Wt000007BFVyIAO",
+      "stage": "Quote",
+      "days_quiet_at_cutoff": 20
+    },
+    {
+      "deal_id": "006Wt000007BFnkIAG",
+      "stage": "Qualification",
+      "days_quiet_at_cutoff": 10
+    },
+    {
+      "deal_id": "006Wt000007BFpJIAW",
+      "stage": "Quote",
+      "days_quiet_at_cutoff": 12
+    },
+    {
+      "deal_id": "006Wt000007BFvlIAG",
+      "stage": "Qualification",
+      "days_quiet_at_cutoff": 17
+    },
+    {
+      "deal_id": "006Wt000007BGAIIA4",
+      "stage": "Quote",
+      "days_quiet_at_cutoff": 1
+    },
+    {
+      "deal_id": "006Wt000007BGNCIA4",
+      "stage": "Discovery",
+      "days_quiet_at_cutoff": 27
+    },
+    {
+      "deal_id": "006Wt000007BGNDIA4",
+      "stage": "Quote",
+      "days_quiet_at_cutoff": 43
+    },
+    {
+      "deal_id": "006Wt000007BGYTIA4",
+      "stage": "Qualification",
+      "days_quiet_at_cutoff": 17
+    },
+    {
+      "deal_id": "006Wt000007BGqEIAW",
+      "stage": "Negotiation",
+      "days_quiet_at_cutoff": 37
+    },
+    {
+      "deal_id": "006Wt000007BH4nIAG",
+      "stage": "Discovery",
+      "days_quiet_at_cutoff": 7
+    },
+    {
+      "deal_id": "006Wt000007BHCqIAO",
+      "stage": "Quote",
+      "days_quiet_at_cutoff": 12
+    },
+    {
+      "deal_id": "006Wt000007BHEQIA4",
+      "stage": "Qualification",
+      "days_quiet_at_cutoff": 47
+    },
+    {
+      "deal_id": "006Wt000007BHPhIAO",
+      "stage": "Closed",
+      "days_quiet_at_cutoff": 32
+    },
+    {
+      "deal_id": "006Wt000007BHPjIAO",
+      "stage": "Discovery",
+      "days_quiet_at_cutoff": 4
+    },
+    {
+      "deal_id": "006Wt000007BHWBIA4",
+      "stage": "Discovery",
+      "days_quiet_at_cutoff": 53
+    },
+    {
+      "deal_id": "006Wt000007BHZNIA4",
+      "stage": "Qualification",
+      "days_quiet_at_cutoff": 4
+    },
+    {
+      "deal_id": "006Wt000007BHfpIAG",
+      "stage": "Qualification",
+      "days_quiet_at_cutoff": 31
+    },
+    {
+      "deal_id": "006Wt000007BI2QIAW",
+      "stage": "Quote",
+      "days_quiet_at_cutoff": 47
+    },
+    {
+      "deal_id": "006Wt000007BIQbIAO",
+      "stage": "Discovery",
+      "days_quiet_at_cutoff": 14
+    },
+    {
+      "deal_id": "006Wt000007BIbtIAG",
+      "stage": "Discovery",
+      "days_quiet_at_cutoff": 26
+    },
+    {
+      "deal_id": "006Wt000007BIdXIAW",
+      "stage": "Discovery",
+      "days_quiet_at_cutoff": 44
+    },
+    {
+      "deal_id": "006Wt000007BIiMIAW",
+      "stage": "Qualification",
+      "days_quiet_at_cutoff": 4
+    },
+    {
+      "deal_id": "006Wt000007BIjxIAG",
+      "stage": "Discovery",
+      "days_quiet_at_cutoff": 2
+    },
+    {
+      "deal_id": "006Wt000007BIs1IAG",
+      "stage": "Qualification",
+      "days_quiet_at_cutoff": 42
+    }
+  ],
+  "current_deal_ids": [
+    "006Wt000007AvVeIAK",
+    "006Wt000007AyaAIAS",
+    "006Wt000007AyaBIAS",
+    "006Wt000007B0gcIAC",
+    "006Wt000007B1klIAC",
+    "006Wt000007B2QgIAK",
+    "006Wt000007B2TwIAK",
+    "006Wt000007B2vKIAS",
+    "006Wt000007B3WQIA0",
+    "006Wt000007B3WRIA0",
+    "006Wt000007B3t0IAC",
+    "006Wt000007B41FIAS",
+    "006Wt000007B41HIAS",
+    "006Wt000007B49MIAS",
+    "006Wt000007B49NIAS",
+    "006Wt000007B49OIAS",
+    "006Wt000007B49QIAS",
+    "006Wt000007B4YwIAK",
+    "006Wt000007B5A3IAK",
+    "006Wt000007B5A4IAK",
+    "006Wt000007B5BeIAK",
+    "006Wt000007B5DPIA0",
+    "006Wt000007B5DRIA0",
+    "006Wt000007B5EuIAK",
+    "006Wt000007B5EwIAK",
+    "006Wt000007B5GUIA0",
+    "006Wt000007B5I6IAK",
+    "006Wt000007B5I7IAK",
+    "006Wt000007B5S2IAK",
+    "006Wt000007B5S3IAK",
+    "006Wt000007B5ehIAC",
+    "006Wt000007B5ejIAC",
+    "006Wt000007B5mnIAC",
+    "006Wt000007B5mpIAC",
+    "006Wt000007B5u3IAC",
+    "006Wt000007B5uoIAC",
+    "006Wt000007B5utIAC",
+    "006Wt000007B5wSIAS",
+    "006Wt000007B5wUIAS",
+    "006Wt000007B5wVIAS",
+    "006Wt000007B5wWIAS",
+    "006Wt000007B5y2IAC",
+    "006Wt000007B5y4IAC",
+    "006Wt000007B5zeIAC",
+    "006Wt000007B62sIAC",
+    "006Wt000007B62uIAC",
+    "006Wt000007B62xIAC",
+    "006Wt000007B62yIAC",
+    "006Wt000007B630IAC",
+    "006Wt000007B64XIAS",
+    "006Wt000007B6ECIA0",
+    "006Wt000007B6KhIAK",
+    "006Wt000007B6UgIAK",
+    "006Wt000007B6cTIAS",
+    "006Wt000007B6ioIAC",
+    "006Wt000007B6kUIAS",
+    "006Wt000007B6u7IAC",
+    "006Wt000007B6u9IAC",
+    "006Wt000007B6xMIAS",
+    "006Wt000007B78dIAC",
+    "006Wt000007B7IQIA0",
+    "006Wt000007B7LbIAK",
+    "006Wt000007B7TbIAK",
+    "006Wt000007B7bfIAC",
+    "006Wt000007B7qCIAS",
+    "006Wt000007B7tQIAS",
+    "006Wt000007B7v0IAC",
+    "006Wt000007B7wcIAC",
+    "006Wt000007B7yEIAS",
+    "006Wt000007B7yHIAS",
+    "006Wt000007B7yIIAS",
+    "006Wt000007B81SIAS",
+    "006Wt000007B81UIAS",
+    "006Wt000007B836IAC",
+    "006Wt000007B86IIAS",
+    "006Wt000007B8CkIAK",
+    "006Wt000007B8CmIAK",
+    "006Wt000007B8CpIAK",
+    "006Wt000007B8ENIA0",
+    "006Wt000007B8G0IAK",
+    "006Wt000007B8PeIAK",
+    "006Wt000007B8XiIAK",
+    "006Wt000007B8XjIAK",
+    "006Wt000007B92eIAC",
+    "006Wt000007B9X1IAK",
+    "006Wt000007B9YcIAK",
+    "006Wt000007B9YfIAK",
+    "006Wt000007B9YhIAK",
+    "006Wt000007BA3JIAW",
+    "006Wt000007BA4rIAG",
+    "006Wt000007BA85IAG",
+    "006Wt000007BAG9IAO",
+    "006Wt000007BAHnIAO",
+    "006Wt000007BAJPIA4",
+    "006Wt000007BAMgIAO",
+    "006Wt000007BAMiIAO",
+    "006Wt000007BAODIA4",
+    "006Wt000007BAPpIAO",
+    "006Wt000007BARSIA4",
+    "006Wt000007BAT4IAO",
+    "006Wt000007BATAIA4",
+    "006Wt000007BAWHIA4",
+    "006Wt000007BAWMIA4",
+    "006Wt000007BAXwIAO",
+    "006Wt000007BAY0IAO",
+    "006Wt000007BAZWIA4",
+    "006Wt000007BAeMIAW",
+    "006Wt000007BAeOIAW",
+    "006Wt000007BAfxIAG",
+    "006Wt000007BAjBIAW",
+    "006Wt000007BAjEIAW",
+    "006Wt000007BAjGIAW",
+    "006Wt000007BAjJIAW",
+    "006Wt000007BAkqIAG",
+    "006Wt000007BAo2IAG",
+    "006Wt000007BAsrIAG",
+    "006Wt000007BAsvIAG",
+    "006Wt000007BAuVIAW",
+    "006Wt000007BAuYIAW",
+    "006Wt000007BAw5IAG",
+    "006Wt000007BAw6IAG",
+    "006Wt000007BAxhIAG",
+    "006Wt000007BB0vIAG",
+    "006Wt000007BB2bIAG",
+    "006Wt000007BB5lIAG",
+    "006Wt000007BB5oIAG",
+    "006Wt000007BB7NIAW",
+    "006Wt000007BBAbIAO",
+    "006Wt000007BBAgIAO",
+    "006Wt000007BBDpIAO",
+    "006Wt000007BBDqIAO",
+    "006Wt000007BBDrIAO",
+    "006Wt000007BBH4IAO",
+    "006Wt000007BBKHIA4",
+    "006Wt000007BBKIIA4",
+    "006Wt000007BBP7IAO",
+    "006Wt000007BBP8IAO",
+    "006Wt000007BBQlIAO",
+    "006Wt000007BBVeIAO",
+    "006Wt000007BBaSIAW",
+    "006Wt000007BBaTIAW",
+    "006Wt000007BBgrIAG",
+    "006Wt000007BBgsIAG",
+    "006Wt000007BBgtIAG",
+    "006Wt000007BBk5IAG",
+    "006Wt000007BBlhIAG",
+    "006Wt000007BBnJIAW",
+    "006Wt000007BBsBIAW",
+    "006Wt000007BBtlIAG",
+    "006Wt000007BBtmIAG",
+    "006Wt000007BBygIAG",
+    "006Wt000007BC0DIAW",
+    "006Wt000007BC3SIAW",
+    "006Wt000007BC3TIAW",
+    "006Wt000007BC6hIAG",
+    "006Wt000007BC9wIAG",
+    "006Wt000007BCBWIA4",
+    "006Wt000007BCD7IAO",
+    "006Wt000007BCGLIA4",
+    "006Wt000007BCHyIAO",
+    "006Wt000007BCJZIA4",
+    "006Wt000007BCLDIA4",
+    "006Wt000007BCLEIA4",
+    "006Wt000007BCMnIAO",
+    "006Wt000007BCOPIA4",
+    "006Wt000007BCOQIA4",
+    "006Wt000007BCORIA4",
+    "006Wt000007BCQ1IAO",
+    "006Wt000007BCRdIAO",
+    "006Wt000007BCRfIAO",
+    "006Wt000007BCTJIA4",
+    "006Wt000007BCUrIAO",
+    "006Wt000007BCWXIA4",
+    "006Wt000007BCY5IAO",
+    "006Wt000007BCZiIAO",
+    "006Wt000007BCZkIAO",
+    "006Wt000007BCcyIAG",
+    "006Wt000007BCgAIAW",
+    "006Wt000007BCl0IAG",
+    "006Wt000007BCl1IAG",
+    "006Wt000007BCoDIAW",
+    "006Wt000007BCpqIAG",
+    "006Wt000007BCwIIAW",
+    "006Wt000007BCxuIAG",
+    "006Wt000007BD18IAG",
+    "006Wt000007BD2kIAG",
+    "006Wt000007BD9CIAW",
+    "006Wt000007BDAnIAO",
+    "006Wt000007BDFdIAO",
+    "006Wt000007BDFhIAO",
+    "006Wt000007BDHFIA4",
+    "006Wt000007BDIsIAO",
+    "006Wt000007BDNhIAO",
+    "006Wt000007BDNiIAO",
+    "006Wt000007BDNlIAO",
+    "006Wt000007BDQvIAO",
+    "006Wt000007BDVmIAO",
+    "006Wt000007BDXNIA4",
+    "006Wt000007BDXOIA4",
+    "006Wt000007BDZ0IAO",
+    "006Wt000007BDZ1IAO",
+    "006Wt000007BDZ4IAO",
+    "006Wt000007BDahIAG",
+    "006Wt000007BDdrIAG",
+    "006Wt000007BDp7IAG",
+    "006Wt000007BDpAIAW",
+    "006Wt000007BDqjIAG",
+    "006Wt000007BDsLIAW",
+    "006Wt000007BDxBIAW",
+    "006Wt000007BEA5IAO",
+    "006Wt000007BEA6IAO",
+    "006Wt000007BEDKIA4",
+    "006Wt000007BEDLIA4",
+    "006Wt000007BEIAIA4",
+    "006Wt000007BEIBIA4",
+    "006Wt000007BEIEIA4",
+    "006Wt000007BEOeIAO",
+    "006Wt000007BERqIAO",
+    "006Wt000007BERsIAO",
+    "006Wt000007BETSIA4",
+    "006Wt000007BETWIA4",
+    "006Wt000007BEWiIAO",
+    "006Wt000007BEZuIAO",
+    "006Wt000007BEZvIAO",
+    "006Wt000007BEejIAG",
+    "006Wt000007BEgLIAW",
+    "006Wt000007BEjaIAG",
+    "006Wt000007BElBIAW",
+    "006Wt000007BEmqIAG",
+    "006Wt000007BEmsIAG",
+    "006Wt000007BEq1IAG",
+    "006Wt000007BErdIAG",
+    "006Wt000007BEy5IAG",
+    "006Wt000007BF69IAG",
+    "006Wt000007BF9NIAW",
+    "006Wt000007BF9OIAW",
+    "006Wt000007BF9PIAW",
+    "006Wt000007BFCdIAO",
+    "006Wt000007BFCeIAO",
+    "006Wt000007BFChIAO",
+    "006Wt000007BFEDIA4",
+    "006Wt000007BFEEIA4",
+    "006Wt000007BFEHIA4",
+    "006Wt000007BFFpIAO",
+    "006Wt000007BFJ4IAO",
+    "006Wt000007BFKhIAO",
+    "006Wt000007BFMHIA4",
+    "006Wt000007BFNtIAO",
+    "006Wt000007BFNvIAO",
+    "006Wt000007BFR7IAO",
+    "006Wt000007BFR9IAO",
+    "006Wt000007BFRAIA4",
+    "006Wt000007BFSjIAO",
+    "006Wt000007BFUMIA4",
+    "006Wt000007BFUOIA4",
+    "006Wt000007BFanIAG",
+    "006Wt000007BFcPIAW",
+    "006Wt000007BFcSIAW",
+    "006Wt000007BFnhIAG",
+    "006Wt000007BFnjIAG",
+    "006Wt000007BFqxIAG",
+    "006Wt000007BFuAIAW",
+    "006Wt000007BG0cIAG",
+    "006Wt000007BG2DIAW",
+    "006Wt000007BG2GIAW",
+    "006Wt000007BG3pIAG",
+    "006Wt000007BG3qIAG",
+    "006Wt000007BG73IAG",
+    "006Wt000007BGDVIA4",
+    "006Wt000007BGF7IAO",
+    "006Wt000007BGILIA4",
+    "006Wt000007BGLZIA4",
+    "006Wt000007BGTeIAO",
+    "006Wt000007BGYUIA4",
+    "006Wt000007BGevIAG",
+    "006Wt000007BGexIAG",
+    "006Wt000007BGgZIAW",
+    "006Wt000007BGlNIAW",
+    "006Wt000007BGtRIAW",
+    "006Wt000007BGv3IAG",
+    "006Wt000007BGyHIAW",
+    "006Wt000007BGzuIAG",
+    "006Wt000007BH37IAG",
+    "006Wt000007BH39IAG",
+    "006Wt000007BH4lIAG",
+    "006Wt000007BH4mIAG",
+    "006Wt000007BH7yIAG",
+    "006Wt000007BHCrIAO",
+    "006Wt000007BHEPIA4",
+    "006Wt000007BHHdIAO",
+    "006Wt000007BHHgIAO",
+    "006Wt000007BHKrIAO",
+    "006Wt000007BHMTIA4",
+    "006Wt000007BHO5IAO",
+    "006Wt000007BHSyIAO",
+    "006Wt000007BHXmIAO",
+    "006Wt000007BHazIAG",
+    "006Wt000007BHcbIAG",
+    "006Wt000007BHmHIAW",
+    "006Wt000007BHr7IAG",
+    "006Wt000007BHsjIAG",
+    "006Wt000007BHvyIAG",
+    "006Wt000007BHxZIAW",
+    "006Wt000007BHzBIAW",
+    "006Wt000007BI43IAG",
+    "006Wt000007BI7FIAW",
+    "006Wt000007BI8rIAG",
+    "006Wt000007BIFKIA4",
+    "006Wt000007BIVRIA4",
+    "006Wt000007BIX3IAO",
+    "006Wt000007BIdWIAW",
+    "006Wt000007BIgjIAG",
+    "006Wt000007BIiLIAW",
+    "006Wt000007BIqPIAW"
+  ],
+  "source": {
+    "dataset": "CRMArena-Pro B2B Salesforce org (Salesforce AI Research)",
+    "licence": "CC BY-NC 4.0 (non-commercial use only)",
+    "manifest_sha256": "8c99a5096e2da0afb2820c6d96b49385e3799b4f6df5f6ccd12435228b78bc37"
+  }
+}

@@ -1,0 +1,552 @@
+{
+ "cr_d5_signature_by_thursday_while_legal_reviews": {
+  "buyer_readiness": [
+   "fail",
+   "TOO_EARLY",
+   false,
+   "Haruto says legal is reviewing and he will revert by Friday; a signature push precedes that gate and his open timeline question."
+  ],
+  "cta_calibration": [
+   "fail",
+   "TOO_STRONG",
+   true,
+   "A signature by a fixed Thursday deadline is a closing commitment he has not signalled."
+  ],
+  "decision_process": [
+   "fail",
+   null,
+   true,
+   "Contradicts the stated legal-review gate."
+  ]
+ },
+ "cr_d5_marketing_director_copied_on_contract_thread": {
+  "stakeholder_coverage": [
+   "fail",
+   "OVER_THREADED",
+   true,
+   "A Marketing Director is pulled into a contract thread while legal review and working-level questions are under way."
+  ],
+  "stakeholder_selection": [
+   "fail",
+   null,
+   false,
+   "An unrequested executive-level addressee; no price is sent, so this revises rather than blocks."
+  ],
+  "cta_calibration": [
+   "pass",
+   "APPROPRIATE",
+   false,
+   "Only confirms the call and a timeline."
+  ]
+ },
+ "cr_d5_introduces_security_with_haruto_copied": {
+  "champion_continuity": [
+   "pass",
+   "CHAMPION_INCLUDED",
+   false,
+   "Haruto is copied and stays the owner."
+  ],
+  "stakeholder_selection": [
+   "pass",
+   null,
+   false,
+   "Security content goes to the security contact; security compliance is a recurring theme of his emails."
+  ],
+  "stakeholder_coverage": [
+   "warn",
+   "OVER_THREADED",
+   false,
+   "A new person at a stage where legal review and a call are the open items; defensible, not needed."
+  ]
+ },
+ "cr_d5_repeats_the_thursday_call_proposal": {
+  "duplicate_action": [
+   "fail",
+   null,
+   true,
+   "The same Thursday 2 PM call proposal sent three hours earlier."
+  ],
+  "next_action_quality": [
+   "fail",
+   "NEEDS_REVISION",
+   false,
+   "The open item is the implementation timeline, not the call."
+  ],
+  "commitment_consistency": [
+   "fail",
+   null,
+   true,
+   "Ignores the timeline clarification we owe."
+  ]
+ },
+ "cr_d5_answers_the_open_timeline_question": {
+  "duplicate_action": [
+   "pass",
+   null,
+   false,
+   "Nothing already sent is repeated."
+  ],
+  "next_action_quality": [
+   "pass",
+   "GOOD",
+   false,
+   "Handles the open item with a date."
+  ],
+  "commitment_consistency": [
+   "pass",
+   null,
+   false,
+   "Leaves legal to finish and commits to the timeline."
+  ]
+ },
+ "cr_x_k102_followed_no_signature_chase": {
+  "knowledge_applicability": [
+   "pass",
+   "APPLIES",
+   false,
+   "K102 applies (legal reviewing, no exception) and the draft follows it."
+  ],
+  "buyer_readiness": [
+   "pass",
+   "READY",
+   false,
+   "Responds with what is open; no premature ask."
+  ],
+  "cta_calibration": [
+   "pass",
+   "APPROPRIATE",
+   false,
+   "No signature ask."
+  ],
+  "decision_process": [
+   "pass",
+   null,
+   false,
+   "Respects the legal gate."
+  ]
+ },
+ "cr_x_k103_not_triggered_by_a_legal_team_mention": {
+  "knowledge_applicability": [
+   "pass",
+   "DOES_NOT_APPLY",
+   false,
+   "K103 needs a named person the buyer asks to include; Haruto names none."
+  ],
+  "stakeholder_selection": [
+   "pass",
+   null,
+   false,
+   "Haruto alone."
+  ],
+  "stakeholder_coverage": [
+   "pass",
+   "RIGHT_SIZED",
+   false,
+   "A working-level reply to the working-level contact."
+  ]
+ },
+ "cr_d6_proposal_attached_as_if_the_demo_request_were_fresh": {
+  "timing_cadence": [
+   "fail",
+   "LATE_OR_MISSED_WINDOW",
+   false,
+   "Fifteen days after his request for a meeting and demo; the draft ignores the gap."
+  ],
+  "commitment_consistency": [
+   "fail",
+   null,
+   true,
+   "The meeting and demo we owe are ignored."
+  ],
+  "momentum": [
+   "fail",
+   "COOLING",
+   false,
+   "A silent fortnight met with a plain attachment."
+  ],
+  "next_action_quality": [
+   "fail",
+   "NEEDS_REVISION",
+   false,
+   "Needs to own the gap and offer the demo."
+  ]
+ },
+ "cr_d6_apologises_for_the_gap_and_offers_demo_dates": {
+  "timing_cadence": [
+   "pass",
+   "LATE_OR_MISSED_WINDOW",
+   false,
+   "The request is late; the draft says so and gives dates."
+  ],
+  "commitment_consistency": [
+   "pass",
+   null,
+   false,
+   "Takes up the meeting and demo he asked for."
+  ],
+  "momentum": [
+   "pass",
+   "COOLING",
+   false,
+   "Re-engages a cooling thread with concrete options."
+  ],
+  "next_action_quality": [
+   "pass",
+   "GOOD",
+   false,
+   "Right content for a late follow-up."
+  ]
+ },
+ "cr_d6_invents_budget_go_live_and_a_ciso": {
+  "grounding": [
+   "fail",
+   null,
+   true,
+   "States a January go-live that the record never mentions."
+  ],
+  "evidence_sufficiency": [
+   "fail",
+   "NEEDS_MORE_CONTEXT",
+   false,
+   "The two emails support no go-live date or attendee list."
+  ],
+  "next_action_quality": [
+   "fail",
+   "NEEDS_REVISION",
+   false,
+   "Books a dated demo around an unevidenced go-live."
+  ]
+ },
+ "cr_d6_asks_before_planning_the_demo": {
+  "grounding": [
+   "pass",
+   null,
+   false,
+   "Asserts nothing the record lacks."
+  ],
+  "evidence_sufficiency": [
+   "pass",
+   "NEEDS_MORE_CONTEXT",
+   false,
+   "Recognises what is missing and asks for it."
+  ],
+  "next_action_quality": [
+   "pass",
+   "GOOD",
+   false,
+   "Gathers context before planning."
+  ]
+ },
+ "cr_d7_contract_draft_to_fernando_alone_while_finance_reviews": {
+  "stakeholder_coverage": [
+   "fail",
+   "UNDER_THREADED",
+   false,
+   "Fernando said finance is reviewing the pricing; the draft contract goes to him alone with no step to reach finance."
+  ],
+  "decision_process": [
+   "warn",
+   null,
+   false,
+   "Sends a contract draft before the stated finance review is known to be done, but asks for signature only 'once your team is comfortable'."
+  ],
+  "commitment_consistency": [
+   "pass",
+   null,
+   false,
+   "Delivers the testimonials promised."
+  ]
+ },
+ "cr_d7_offers_to_walk_finance_through_the_pricing": {
+  "stakeholder_coverage": [
+   "pass",
+   "RIGHT_SIZED",
+   false,
+   "Offers to include finance, asks who."
+  ],
+  "decision_process": [
+   "pass",
+   null,
+   false,
+   "Holds the draft until the finance review status is known."
+  ],
+  "commitment_consistency": [
+   "pass",
+   null,
+   false,
+   "Delivers the overdue testimonials."
+  ]
+ },
+ "cr_d7_promises_the_testimonials_again_thirteen_days_later": {
+  "commitment_consistency": [
+   "fail",
+   null,
+   true,
+   "Re-promises testimonials owed since 11-07 as if new instead of delivering them."
+  ],
+  "timing_cadence": [
+   "fail",
+   "LATE_OR_MISSED_WINDOW",
+   false,
+   "'Shortly' was 13 days ago."
+  ],
+  "next_action_quality": [
+   "fail",
+   "NEEDS_REVISION",
+   false,
+   "Deliver, apologise, then ask for the meeting."
+  ]
+ },
+ "cr_d8_demo_slots_while_the_cost_of_updates_stays_unanswered": {
+  "commitment_consistency": [
+   "fail",
+   null,
+   true,
+   "Samuel's question whether updates cost extra and the promised testimonials are skipped."
+  ],
+  "next_step_quality": [
+   "pass",
+   null,
+   false,
+   "Two dated demo slots, as he asked for a time next week."
+  ],
+  "next_action_quality": [
+   "fail",
+   "NEEDS_REVISION",
+   false,
+   "Right slots, missing the owed answers."
+  ]
+ },
+ "cr_d8_testimonials_cost_answer_date_and_demo_slots": {
+  "commitment_consistency": [
+   "pass",
+   null,
+   false,
+   "Delivers the testimonials and dates the cost answer."
+  ],
+  "next_step_quality": [
+   "pass",
+   null,
+   false,
+   "Dated written answer and demo slots."
+  ],
+  "next_action_quality": [
+   "pass",
+   "GOOD",
+   false,
+   "Closes the overdue items."
+  ]
+ },
+ "cr_d8_invents_agreement_on_the_update_cadence": {
+  "grounding": [
+   "fail",
+   null,
+   true,
+   "Claims he confirmed quarterly updates and adds them at no extra cost; he only asked how often updates come."
+  ],
+  "evidence_sufficiency": [
+   "fail",
+   "NEEDS_MORE_CONTEXT",
+   false,
+   "The record contains no update cadence and no price statement."
+  ],
+  "next_action_quality": [
+   "fail",
+   "NEEDS_REVISION",
+   false,
+   "Moves to finalising on invented agreement."
+  ]
+ },
+ "cr_d8_k101_cost_answered_in_writing_with_slots": {
+  "knowledge_applicability": [
+   "pass",
+   "APPLIES",
+   false,
+   "K101 applies (open cost question, no exception) and the draft follows it."
+  ],
+  "commitment_consistency": [
+   "pass",
+   null,
+   false,
+   "Testimonials delivered, cost answer dated."
+  ],
+  "next_action_quality": [
+   "pass",
+   "GOOD",
+   false,
+   "Written answer first, call after."
+  ]
+ },
+ "cr_d9_k104_waits_for_the_date_the_buyer_gave": {
+  "exception_awareness": [
+   "pass",
+   "EXCEPTION_HONORED",
+   false,
+   "Her written 'early next week' overrides the default next-day check-in."
+  ],
+  "knowledge_applicability": [
+   "pass",
+   "EXCEPTION_TRIGGERED",
+   false,
+   "K104's signature holds and its exception (buyer's own date) holds."
+  ],
+  "next_action_quality": [
+   "pass",
+   "WAIT",
+   false,
+   "No open ask; waiting until her date is right."
+  ],
+  "timing_cadence": [
+   "pass",
+   "TOO_EARLY",
+   false,
+   "Contact before her date would be early."
+  ]
+ },
+ "cr_d9_k104_check_in_sent_despite_the_buyers_date": {
+  "exception_awareness": [
+   "fail",
+   "EXCEPTION_MISSED",
+   false,
+   "Isabelle wrote she would revert by early next week; the draft asks for feedback by Monday. She gave a date, not an explicit written instruction, so it does not block."
+  ],
+  "knowledge_applicability": [
+   "fail",
+   "EXCEPTION_TRIGGERED",
+   false,
+   "Applies K104 where its exception holds."
+  ],
+  "next_action_quality": [
+   "fail",
+   "WAIT",
+   false,
+   "Waiting is the right move."
+  ],
+  "timing_cadence": [
+   "fail",
+   "TOO_EARLY",
+   false,
+   "An hour after her message."
+  ]
+ },
+ "cr_d9_k104_answers_the_upgrade_question_without_a_deadline": {
+  "exception_awareness": [
+   "pass",
+   "EXCEPTION_HONORED",
+   false,
+   "Answers her question and leaves her stated feedback date alone."
+  ],
+  "knowledge_applicability": [
+   "pass",
+   "EXCEPTION_TRIGGERED",
+   false,
+   "The buyer's own date is the exception."
+  ],
+  "next_action_quality": [
+   "pass",
+   "GOOD",
+   false,
+   "Handles the open upgrade question."
+  ]
+ },
+ "cr_d11_internal_review_task_needs_no_customer_contact": {
+  "next_action_quality": [
+   "pass",
+   "NO_ACTION",
+   false,
+   "The trigger is an internal meeting task; nothing is open on the customer side."
+  ],
+  "state_change_relevance": [
+   "pass",
+   null,
+   false,
+   "No change that calls for a customer message."
+  ],
+  "buyer_readiness": [
+   "pass",
+   "NO_ACTION_NEEDED",
+   false,
+   "No buyer-side reason to act."
+  ]
+ },
+ "cr_d11_upsell_and_case_study_ask_on_an_internal_task": {
+  "next_action_quality": [
+   "fail",
+   "NO_ACTION",
+   true,
+   "Acts on a trigger that needs no customer contact."
+  ],
+  "state_change_relevance": [
+   "fail",
+   null,
+   false,
+   "Uses an internal meeting as the reason to contact the customer."
+  ],
+  "relationship_pressure": [
+   "warn",
+   null,
+   false,
+   "An expansion and case-study ask right after signing."
+  ]
+ },
+ "cr_x_tech_session_asks_who_from_the_tech_team": {
+  "champion_continuity": [
+   "pass",
+   "CHAMPION_INCLUDED",
+   false,
+   "Zara stays the owner; her tech colleagues are added through her."
+  ],
+  "stakeholder_selection": [
+   "pass",
+   null,
+   false,
+   "Asks who rather than guessing."
+  ],
+  "stakeholder_coverage": [
+   "pass",
+   "RIGHT_SIZED",
+   false,
+   "Zara plus the tech team she asked for."
+  ]
+ },
+ "cr_x_finance_and_tech_review_call_asks_who_joins": {
+  "champion_continuity": [
+   "pass",
+   "CHAMPION_INCLUDED",
+   false,
+   "Sophia stays the owner; her finance and technical colleagues are added through her."
+  ],
+  "stakeholder_selection": [
+   "pass",
+   null,
+   false,
+   "Asks who should join rather than guessing."
+  ],
+  "stakeholder_coverage": [
+   "pass",
+   "RIGHT_SIZED",
+   false,
+   "Sophia plus the teams she says have the quote."
+  ]
+ },
+ "cr_x_legal_specialist_added_instead_of_the_cto": {
+  "champion_continuity": [
+   "pass",
+   "CHAMPION_INCLUDED",
+   false,
+   "Klara stays on the invite."
+  ],
+  "stakeholder_selection": [
+   "fail",
+   null,
+   true,
+   "Klara explicitly asked that the CTO be included; the draft adds a different person and leaves him out."
+  ],
+  "stakeholder_coverage": [
+   "fail",
+   "UNDER_THREADED",
+   false,
+   "The person the customer asked for is missing, and an unrequested one is added."
+  ]
+ }
+}

@@ -1,0 +1,211 @@
+/* After the edit, how Send stands, and "This eval is wrong". */
+/* After the edit */
+.after-edit {
+  margin: 0 0 var(--space-3);
+  padding: var(--space-3) var(--space-4);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-md);
+  background: var(--surface-subtle);
+  font-size: var(--text-sm);
+}
+
+.after-edit.after-not_reevaluated {
+  border-style: dashed;
+  border-color: var(--line-strong);
+}
+
+.after-edit h3 {
+  display: flex;
+  align-items: center;
+  gap: var(--space-1-5);
+  margin: 0 0 var(--space-1);
+  font-size: var(--text-sm);
+}
+
+.after-edit p {
+  max-width: 76ch;
+  margin: var(--space-1) 0;
+}
+
+.standing-line {
+  color: var(--ink);
+  font-weight: 500;
+}
+
+.deltas {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+  margin: var(--space-2) 0;
+  padding: 0;
+  list-style: none;
+}
+
+.delta-chip {
+  padding: var(--space-1) var(--space-3) var(--space-1) var(--space-1);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-full);
+  background: var(--surface);
+  box-shadow: var(--shadow-1);
+}
+
+.delta-chip.to-pass { border-color: var(--pass-line); }
+.delta-chip.to-fail { border-color: var(--fail-line); }
+
+.delta-visual {
+  display: inline-flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--space-1-5);
+}
+
+.delta-name {
+  padding-left: var(--space-2);
+  color: var(--ink);
+  font-weight: 600;
+}
+
+.delta-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-1);
+  padding: 1px var(--space-2);
+  border-radius: var(--radius-full);
+  font-size: var(--text-2xs);
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.delta-pill.v-fail { background: var(--fail-tint); }
+.delta-pill.v-warn { background: var(--warn-tint); }
+.delta-pill.v-pass { background: var(--pass-tint); }
+.delta-pill.v-abstain,
+.delta-pill.v-not_relevant,
+.delta-pill.v-not_checked { background: var(--surface-sunken); }
+
+.delta-arrow,
+.delta-after {
+  color: var(--muted);
+}
+
+/* How Send stands: a picture of Slack's Send button, locked with the reason when a check blocks it */
+.send-bar {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--space-4);
+  margin: var(--space-3) 0;
+  padding: var(--space-3) var(--space-4);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-md);
+  background: var(--surface);
+}
+
+.send-bar.is-blocked,
+.send-bar.is-would_block {
+  border-color: var(--fail-line);
+  background: var(--fail-tint);
+}
+
+.send-bar.is-open {
+  border-color: var(--pass-line);
+  background: var(--pass-tint);
+}
+
+.send-pill {
+  flex: none;
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-1-5);
+  min-height: 30px;
+  padding: 0 var(--space-4);
+  border-radius: var(--radius-sm);
+  background: var(--ink);
+  color: var(--surface);
+  font-size: var(--text-sm);
+  font-weight: 600;
+}
+
+.is-blocked .send-pill,
+.is-would_block .send-pill {
+  border: 1px solid var(--fail-line);
+  background: var(--surface);
+  color: var(--faint);
+  cursor: not-allowed;
+}
+
+.send-text {
+  min-width: 0;
+}
+
+.send-title {
+  margin: 0;
+  color: var(--ink);
+  font-weight: 600;
+}
+
+.is-blocked .send-title,
+.is-would_block .send-title {
+  color: var(--fail);
+}
+
+.send-bar ul {
+  margin: var(--space-1) 0;
+  padding-left: var(--space-5);
+  color: var(--ink-2);
+  font-size: var(--text-sm);
+}
+
+.send-bar .hint {
+  margin: var(--space-1) 0 0;
+}
+
+/* This eval is wrong */
+.dispute-form {
+  display: grid;
+  gap: var(--space-2);
+  max-width: 62ch;
+  margin: var(--space-1) 0 var(--space-2);
+  padding: var(--space-3) var(--space-4);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-md);
+  background: var(--surface-subtle);
+  font-size: var(--text-sm);
+}
+
+.dispute-form label {
+  color: var(--ink);
+  font-weight: 600;
+}
+
+.dispute-form textarea {
+  min-height: 76px;
+  resize: vertical;
+  font-size: var(--text-base);
+}
+
+.dispute-actions {
+  display: flex;
+  gap: var(--space-2);
+  margin-top: var(--space-1);
+}
+
+.dispute-message {
+  min-height: 1em;
+  margin: 0;
+  color: var(--fail);
+}
+
+.dispute-saved {
+  max-width: 72ch;
+  margin: var(--space-2) 0;
+  color: var(--pass);
+  font-size: var(--text-sm);
+}
+
+@media (max-width: 720px) {
+  .send-bar {
+    flex-direction: column;
+    gap: var(--space-2);
+  }
+}

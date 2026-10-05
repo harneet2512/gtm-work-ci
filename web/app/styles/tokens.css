@@ -1,0 +1,165 @@
+/* Ghost design tokens. Every surface reads these; no component carries a raw color, size or shadow.
+ *
+ * Direction: an instrument, not a dashboard. Cool neutrals, near-black ink, one Ghost accent (iris) for
+ * Ghost's own voice and for focus, and four restrained verdict tones that only ever appear next to their
+ * word. Text pairs meet WCAG AA (pinned by web/tests/design-tokens.test.ts). Body copy is 14px for a dense
+ * operator UI; text a person reads to decide (reasons, quotes, email bodies) is 15px.
+ */
+:root {
+  color-scheme: light;
+
+  /* Type */
+  --font-sans: var(--font-geist-sans), ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
+  --font-mono: var(--font-geist-mono), ui-monospace, "SFMono-Regular", Menlo, Consolas, monospace;
+  --text-2xs: 0.6875rem; /* 11px: letterspaced caps labels only */
+  --text-xs: 0.75rem; /* 12px */
+  --text-sm: 0.8125rem; /* 13px */
+  --text-base: 0.875rem; /* 14px */
+  --text-md: 0.9375rem; /* 15px: reading text */
+  --text-lg: 1.0625rem; /* 17px */
+  --text-xl: 1.25rem; /* 20px */
+  --text-2xl: 1.625rem; /* 26px */
+  --text-3xl: 2rem; /* 32px */
+  --leading-tight: 1.2;
+  --leading-snug: 1.4;
+  --leading-normal: 1.55;
+  --tracking-tight: -0.018em;
+  --tracking-caps: 0.07em;
+
+  /* Neutrals */
+  --canvas: #f7f7f8;
+  --surface: #ffffff;
+  --surface-subtle: #fafafb;
+  --surface-sunken: #f1f2f4;
+  --surface-hover: #f4f4f6;
+  --ink: #0f1115;
+  --ink-2: #3d4250;
+  --muted: #5f6472;
+  --faint: #8a8f9c; /* icons, rules and decoration only, never text */
+  --line: #e5e6ea;
+  --line-strong: #d3d5db;
+
+  /* Ghost accent: Ghost's own voice (its pick, its links) and focus */
+  --brand: #5a55d6;
+  --brand-text: #4a45c0;
+  --brand-tint: #f1f0fe;
+  --brand-line: #d4d2fa;
+  --on-brand: #ffffff;
+
+  /* The human's decision reads in ink */
+  --human: #0f1115;
+  --human-tint: #eeeff2;
+
+  /* Verdicts: text on tint, a solid for marks, a line for rails */
+  --fail: #b42318;
+  --fail-solid: #d92d20;
+  --fail-tint: #fef3f2;
+  --fail-line: #fecdca;
+  --warn: #a5430a;
+  --warn-solid: #c4620a;
+  --warn-tint: #fffaeb;
+  --warn-line: #fedf89;
+  --pass: #067647;
+  --pass-solid: #079455;
+  --pass-tint: #ecfdf3;
+  --pass-line: #abefc6;
+  --unsure: #475467;
+  --unsure-tint: #f2f4f7;
+  --unsure-line: #d0d5dd;
+  --nr: #5f6472;
+  --nr-tint: #f7f7f8;
+  --nr-line: #e5e6ea;
+
+  /* Graph and diff marks (account map, replay) */
+  --added: var(--pass);
+  --changed: var(--warn);
+  --removed: var(--fail);
+
+  /* Space (4px grid) */
+  --space-0-5: 2px;
+  --space-1: 4px;
+  --space-1-5: 6px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-5: 20px;
+  --space-6: 24px;
+  --space-8: 32px;
+  --space-10: 40px;
+  --space-12: 48px;
+
+  /* Shape and depth */
+  --radius-xs: 4px;
+  --radius-sm: 6px;
+  --radius-md: 8px;
+  --radius-lg: 12px;
+  --radius-full: 999px;
+  --shadow-1: 0 1px 2px rgb(15 17 21 / 0.05);
+  --shadow-2: 0 1px 2px rgb(15 17 21 / 0.04), 0 4px 12px -6px rgb(15 17 21 / 0.1);
+  --shadow-3: 0 2px 6px rgb(15 17 21 / 0.06), 0 16px 36px -12px rgb(15 17 21 / 0.24);
+  --focus-ring: 0 0 0 2px var(--surface), 0 0 0 4px var(--brand);
+
+  /* Layers and layout */
+  --z-sticky: 10;
+  --z-header: 40;
+  --z-pop: 60;
+  --header-h: 52px;
+  --page-max: 1320px;
+  --page-pad: var(--space-6);
+
+  /* Motion: fast, ease-out, transform and opacity only */
+  --ease-out: cubic-bezier(0.23, 1, 0.32, 1);
+  --ease-in-out: cubic-bezier(0.77, 0, 0.175, 1);
+  --dur-1: 120ms;
+  --dur-2: 180ms;
+  --dur-3: 240ms;
+}
+
+/* Dark is token-ready, opt-in (data-theme="dark" on <html>); light is the default and the tested one. */
+[data-theme="dark"] {
+  color-scheme: dark;
+  --canvas: #0c0d10;
+  --surface: #141519;
+  --surface-subtle: #17181d;
+  --surface-sunken: #1c1d22;
+  --surface-hover: #1f2026;
+  --ink: #ededf0;
+  --ink-2: #c4c6ce;
+  --muted: #9a9eab;
+  --faint: #6b6f7b;
+  --line: #26272e;
+  --line-strong: #33353d;
+  --brand: #8b87f0;
+  --brand-text: #a9a6f6;
+  --brand-tint: #1c1b33;
+  --brand-line: #34316b;
+  --human: #ededf0;
+  --human-tint: #23242a;
+  --fail: #ff8b80;
+  --fail-solid: #f04438;
+  --fail-tint: #2a1513;
+  --fail-line: #5c2420;
+  --warn: #fdb35b;
+  --warn-solid: #f79009;
+  --warn-tint: #2a1d0b;
+  --warn-line: #5a3a10;
+  --pass: #6ce9a6;
+  --pass-solid: #17b26a;
+  --pass-tint: #0d2219;
+  --pass-line: #17462e;
+  --unsure: #c4c6ce;
+  --unsure-tint: #1f2026;
+  --unsure-line: #33353d;
+  --nr: #9a9eab;
+  --nr-tint: #17181d;
+  --nr-line: #26272e;
+  --shadow-1: 0 1px 2px rgb(0 0 0 / 0.4);
+  --shadow-2: 0 1px 2px rgb(0 0 0 / 0.4), 0 4px 12px -6px rgb(0 0 0 / 0.6);
+  --shadow-3: 0 2px 6px rgb(0 0 0 / 0.5), 0 16px 36px -12px rgb(0 0 0 / 0.7);
+}
+
+@media (max-width: 720px) {
+  :root {
+    --page-pad: var(--space-4);
+  }
+}

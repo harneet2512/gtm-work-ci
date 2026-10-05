@@ -1,0 +1,57 @@
+{
+  "id": "0e9e0000-0000-4000-8000-000000000a01",
+  "agent_run_id": "0f0a0000-0000-4000-8000-000000000601",
+  "account_id": "0a0c0000-0000-4000-8000-000000000001",
+  "account_name": "Acme Corp",
+  "opportunity_id": "0a0f0000-0000-4000-8000-000000000002",
+  "strategy_set_id": "05e70000-0000-4000-8000-000000000b01",
+  "status": "decided",
+  "final_status": "sent",
+  "triggering_event": {
+    "activity_id": "0ac70000-0000-4000-8000-000000000101",
+    "source_event_id": "0e5e0000-0000-4000-8000-000000000101",
+    "activity_type": "EmailReceived",
+    "source_system": "email",
+    "occurred_at": "2026-09-29T14:02:00Z",
+    "summary": "Marco asks for the security documents before the pilot expands",
+    "trigger_activity_count": 1
+  },
+  "run": {
+    "id": "0f0a0000-0000-4000-8000-000000000601",
+    "status": "awaiting_human",
+    "phase": "published",
+    "state_version": 7,
+    "model": "deepseek-v4-flash"
+  },
+  "recommended_action": {
+    "candidate_id": "0ca00000-0000-4000-8000-0000000000a1",
+    "ranking": 1,
+    "strategy_type": "propose_review_call",
+    "title": "Propose a security call",
+    "action_type": "send_email",
+    "preferred_by_agent": true
+  },
+  "selected_action": {
+    "candidate_id": "0ca00000-0000-4000-8000-0000000000a2",
+    "ranking": 2,
+    "strategy_type": "package_then_buyer_timing",
+    "title": "Send package, buyer sets timing",
+    "action_type": "send_email",
+    "preferred_by_agent": false
+  },
+  "human_outcome": {
+    "agreement": "overrode",
+    "human_action": "APPROVE_WITH_EDIT",
+    "send_decision": "send",
+    "edited": true,
+    "actor_label": "Dana Kim",
+    "chosen_at": "2026-09-29T15:55:00Z",
+    "send_decided_at": "2026-09-29T16:10:00Z"
+  },
+  "judgment_status": "confirmed",
+  "replay": {
+    "manifest_id": "0de00000-0000-4000-8000-000000000001",
+    "position": 12
+  },
+  "created_at": "2026-09-29T15:20:00Z"
+}

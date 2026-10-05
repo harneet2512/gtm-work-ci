@@ -1,0 +1,15 @@
+{
+  "event_id": "0e7e0000-0000-4000-8000-000000000002",
+  "provenance": {
+    "origin": "dataset",
+    "provenance": "crmarena-pro:b2b",
+    "source": {
+      "source_system": "email",
+      "source_object_id": "<marco-soc2@acme.example>"
+    },
+    "source_event_key": "received"
+  },
+  "payload_sha256": "5f0c1d7a6b8e4a39c2d1f0e7b6a59483726150f4e3d2c1b0a9f8e7d6c5b4a392",
+  "occurred_at": "2026-09-29T15:42:00Z",
+  "replay_position": 2
+}

@@ -1,0 +1,373 @@
+{
+  "summary": {
+    "model": "openrouter/deepseek/deepseek-v4-flash",
+    "repeats": 5,
+    "situations": {
+      "acme_unguided": {
+        "runs": 5,
+        "errors": {
+          "ungrounded_proposal": 1,
+          "provider_error": 3
+        },
+        "actions": {
+          "send_email": 1
+        },
+        "checks": {
+          "priya_included": "1/1",
+          "marco_included": "1/1"
+        }
+      },
+      "acme_guided_k17": {
+        "runs": 5,
+        "errors": {},
+        "actions": {
+          "send_email": 5
+        },
+        "checks": {
+          "priya_included": "5/5",
+          "marco_included": "5/5",
+          "k17_cited": "5/5"
+        }
+      },
+      "acme_guided_wait_until_tuesday": {
+        "runs": 5,
+        "errors": {
+          "ungrounded_proposal": 2
+        },
+        "actions": {
+          "wait": 3
+        },
+        "checks": {
+          "waited": "3/3",
+          "knowledge_kept": "3/3"
+        }
+      },
+      "beta_non_material": {
+        "runs": 5,
+        "errors": {
+          "provider_error": 1
+        },
+        "actions": {
+          "wait": 2,
+          "no_action": 2
+        },
+        "checks": {
+          "no_action": "2/4"
+        }
+      },
+      "northstar_delegation_exception": {
+        "runs": 5,
+        "errors": {
+          "provider_error": 3
+        },
+        "actions": {
+          "send_email": 2
+        },
+        "checks": {
+          "sam_included": "2/2",
+          "elena_not_forced": "2/2",
+          "k17_not_cited": "2/2"
+        }
+      }
+    }
+  },
+  "raw": {
+    "acme_unguided": [
+      {
+        "error": "ungrounded_proposal",
+        "message": "decision person(s) not returned by the people/state tools: 0b0e0000-0000-4000-8000-000000000001",
+        "seconds": 20.8,
+        "pulled": [
+          "/internal/ctx/state",
+          "/internal/ctx/state",
+          "/internal/ctx/state",
+          "/internal/ctx/state",
+          "/internal/ctx/state",
+          "/internal/ctx/state"
+        ]
+      },
+      {
+        "error": "provider_error",
+        "message": "overall deadline exceeded waiting for openrouter/deepseek/deepseek-v4-flash",
+        "seconds": 128.0,
+        "pulled": [
+          "/internal/ctx/state",
+          "/internal/ctx/activities",
+          "/internal/ctx/people",
+          "/internal/ctx/commitments",
+          "/internal/ctx/evidence",
+          "/internal/ctx/recent_diffs"
+        ]
+      },
+      {
+        "error": "provider_error",
+        "message": "skill left out someone the decision says to involve",
+        "seconds": 73.2,
+        "pulled": [
+          "/internal/ctx/state",
+          "/internal/ctx/activities",
+          "/internal/ctx/people",
+          "/internal/ctx/commitments",
+          "/internal/ctx/evidence",
+          "/internal/ctx/state"
+        ]
+      },
+      {
+        "error": "provider_error",
+        "message": "overall deadline exceeded waiting for openrouter/deepseek/deepseek-v4-flash",
+        "seconds": 129.5,
+        "pulled": [
+          "/internal/ctx/state",
+          "/internal/ctx/activities",
+          "/internal/ctx/people",
+          "/internal/ctx/commitments",
+          "/internal/ctx/evidence",
+          "/internal/ctx/state"
+        ]
+      },
+      {
+        "action": "send_email",
+        "recipients": {
+          "0b0e0000-0000-4000-8000-000000000018": "to",
+          "0b0e0000-0000-4000-8000-000000000017": "cc",
+          "0b0e0000-0000-4000-8000-000000000001": "cc"
+        },
+        "seconds": 95.1,
+        "knowledge": [],
+        "used_guidance": false,
+        "tool_calls": 6
+      }
+    ],
+    "acme_guided_k17": [
+      {
+        "action": "send_email",
+        "recipients": {
+          "0b0e0000-0000-4000-8000-000000000018": "to",
+          "0b0e0000-0000-4000-8000-000000000017": "cc"
+        },
+        "seconds": 89.8,
+        "knowledge": [
+          "0c17c000-0000-4000-8000-000000000017"
+        ],
+        "used_guidance": true,
+        "tool_calls": 6
+      },
+      {
+        "action": "send_email",
+        "recipients": {
+          "0b0e0000-0000-4000-8000-000000000018": "to",
+          "0b0e0000-0000-4000-8000-000000000017": "cc"
+        },
+        "seconds": 48.5,
+        "knowledge": [
+          "0c17c000-0000-4000-8000-000000000017"
+        ],
+        "used_guidance": true,
+        "tool_calls": 6
+      },
+      {
+        "action": "send_email",
+        "recipients": {
+          "0b0e0000-0000-4000-8000-000000000018": "to",
+          "0b0e0000-0000-4000-8000-000000000017": "to"
+        },
+        "seconds": 60.8,
+        "knowledge": [
+          "0c17c000-0000-4000-8000-000000000017"
+        ],
+        "used_guidance": true,
+        "tool_calls": 6
+      },
+      {
+        "action": "send_email",
+        "recipients": {
+          "0b0e0000-0000-4000-8000-000000000018": "to",
+          "0b0e0000-0000-4000-8000-000000000017": "cc"
+        },
+        "seconds": 45.5,
+        "knowledge": [
+          "0c17c000-0000-4000-8000-000000000017"
+        ],
+        "used_guidance": true,
+        "tool_calls": 6
+      },
+      {
+        "action": "send_email",
+        "recipients": {
+          "0b0e0000-0000-4000-8000-000000000018": "to",
+          "0b0e0000-0000-4000-8000-000000000017": "cc"
+        },
+        "seconds": 28.8,
+        "knowledge": [
+          "0c17c000-0000-4000-8000-000000000017"
+        ],
+        "used_guidance": true,
+        "tool_calls": 6
+      }
+    ],
+    "acme_guided_wait_until_tuesday": [
+      {
+        "action": "wait",
+        "recipients": {},
+        "seconds": 15.3,
+        "knowledge": [
+          "0c17c000-0000-4000-8000-000000000021"
+        ],
+        "used_guidance": true,
+        "tool_calls": 6
+      },
+      {
+        "action": "wait",
+        "recipients": {},
+        "seconds": 43.3,
+        "knowledge": [
+          "0c17c000-0000-4000-8000-000000000021"
+        ],
+        "used_guidance": true,
+        "tool_calls": 6
+      },
+      {
+        "error": "ungrounded_proposal",
+        "message": "decision person(s) not returned by the people/state tools: 0b0e0000-0000-4000-8000-000000000018",
+        "seconds": 15.1,
+        "pulled": [
+          "/internal/ctx/state",
+          "/internal/ctx/state",
+          "/internal/ctx/state",
+          "/internal/ctx/state",
+          "/internal/ctx/state",
+          "/internal/ctx/state"
+        ]
+      },
+      {
+        "action": "wait",
+        "recipients": {},
+        "seconds": 18.2,
+        "knowledge": [
+          "0c17c000-0000-4000-8000-000000000021"
+        ],
+        "used_guidance": true,
+        "tool_calls": 6
+      },
+      {
+        "error": "ungrounded_proposal",
+        "message": "decision person(s) not returned by the people/state tools: 0b0e0000-0000-4000-8000-000000000018",
+        "seconds": 7.9,
+        "pulled": [
+          "/internal/ctx/state",
+          "/internal/ctx/state",
+          "/internal/ctx/state",
+          "/internal/ctx/state",
+          "/internal/ctx/state",
+          "/internal/ctx/state"
+        ]
+      }
+    ],
+    "beta_non_material": [
+      {
+        "action": "wait",
+        "recipients": {},
+        "seconds": 28.5,
+        "knowledge": [],
+        "used_guidance": false,
+        "tool_calls": 6
+      },
+      {
+        "error": "provider_error",
+        "message": "overall deadline exceeded waiting for openrouter/deepseek/deepseek-v4-flash",
+        "seconds": 94.5,
+        "pulled": [
+          "/internal/ctx/state",
+          "/internal/ctx/activities",
+          "/internal/ctx/people",
+          "/internal/ctx/commitments",
+          "/internal/ctx/evidence",
+          "/internal/ctx/recent_diffs"
+        ]
+      },
+      {
+        "action": "no_action",
+        "recipients": {},
+        "seconds": 11.9,
+        "knowledge": [],
+        "used_guidance": false,
+        "tool_calls": 6
+      },
+      {
+        "action": "no_action",
+        "recipients": {},
+        "seconds": 14.4,
+        "knowledge": [],
+        "used_guidance": false,
+        "tool_calls": 6
+      },
+      {
+        "action": "wait",
+        "recipients": {},
+        "seconds": 11.0,
+        "knowledge": [],
+        "used_guidance": false,
+        "tool_calls": 6
+      }
+    ],
+    "northstar_delegation_exception": [
+      {
+        "action": "send_email",
+        "recipients": {
+          "0b0e0000-0000-4000-8000-000000000042": "to"
+        },
+        "seconds": 32.0,
+        "knowledge": [],
+        "used_guidance": false,
+        "tool_calls": 5
+      },
+      {
+        "error": "provider_error",
+        "message": "model output is not valid JSON",
+        "seconds": 57.0,
+        "pulled": [
+          "/internal/ctx/state",
+          "/internal/ctx/people",
+          "/internal/ctx/activities",
+          "/internal/ctx/commitments",
+          "/internal/ctx/evidence"
+        ]
+      },
+      {
+        "action": "send_email",
+        "recipients": {
+          "0b0e0000-0000-4000-8000-000000000042": "to"
+        },
+        "seconds": 58.1,
+        "knowledge": [],
+        "used_guidance": false,
+        "tool_calls": 6
+      },
+      {
+        "error": "provider_error",
+        "message": "model output is not valid JSON",
+        "seconds": 40.8,
+        "pulled": [
+          "/internal/ctx/state",
+          "/internal/ctx/people",
+          "/internal/ctx/activities",
+          "/internal/ctx/evidence",
+          "/internal/ctx/commitments"
+        ]
+      },
+      {
+        "error": "provider_error",
+        "message": "overall deadline exceeded waiting for openrouter/deepseek/deepseek-v4-flash",
+        "seconds": 93.1,
+        "pulled": [
+          "/internal/ctx/state",
+          "/internal/ctx/state",
+          "/internal/ctx/state",
+          "/internal/ctx/state",
+          "/internal/ctx/people",
+          "/internal/ctx/activities"
+        ]
+      }
+    ]
+  }
+}

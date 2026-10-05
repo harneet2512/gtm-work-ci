@@ -1,0 +1,150 @@
+{
+  "id": "acme_budget_approved_signature_push_too_soon",
+  "case_type": "too_soon_cta",
+  "title": "Acme 09-03: Priya asks for an order-form walkthrough; candidate asks her to sign by Friday instead",
+  "should_pass": false,
+  "difficulty": "medium",
+  "slice_tags": {
+    "account": "acme",
+    "origin": "world_moment",
+    "motion": "expansion",
+    "stage": "discovery",
+    "champion_status": "active",
+    "economic_buyer": "unknown",
+    "risk": "low",
+    "candidate": "flawed",
+    "expected_action": "schedule_meeting",
+    "extra": ["signature_ask"]
+  },
+  "based_on": {
+    "kind": "world_moment",
+    "account": "acme",
+    "after_event_file": "world/accounts/acme/events/019_email_priya_budget_approved.json",
+    "checkpoint": 2,
+    "changed_fields": ["stage", "blockers", "decision_process", "next_milestone", "commercial_issue"],
+    "change": null
+  },
+  "context": {
+    "now": "2026-09-03T10:30:00Z",
+    "state": {
+      "account_id": "0a0c0000-0000-4000-8000-000000000001",
+      "account_name": "Acme Corp",
+      "opportunity_id": "0c0f0000-0000-4000-8000-000000000004",
+      "fields": {
+        "stage": "Discovery",
+        "health": "on_track",
+        "motion": "expansion",
+        "champion": "0b0e0000-0000-4000-8000-000000000017",
+        "champion_status": "active",
+        "economic_buyer": "unknown",
+        "relationship_risk": "low",
+        "blockers": [{"text": "EU budget line needs finance approval in the Q3 planning cycle", "status": "resolved"}],
+        "next_milestone": "Walk through the order form together"
+      },
+      "buying_group": [
+        {
+          "person_id": "0b0e0000-0000-4000-8000-000000000017",
+          "display_name": "Priya Shah",
+          "title": "Director of Operations",
+          "roles": ["champion"],
+          "status": "active",
+          "delegated_to_person_id": null,
+          "last_engaged_at": null,
+          "evidence_refs": []
+        },
+        {
+          "person_id": "0b0e0000-0000-4000-8000-000000000019",
+          "display_name": "Tom Becker",
+          "title": "EU Operations Manager",
+          "roles": ["user"],
+          "status": "active",
+          "delegated_to_person_id": null,
+          "last_engaged_at": null,
+          "evidence_refs": []
+        }
+      ],
+      "coverage_gaps": ["economic_buyer"]
+    },
+    "recent_changes": {
+      "summary": "Priya: finance approved the EU budget line; budget no longer a blocker; asks to walk through the order form next Wednesday.",
+      "material_diff_fields": ["blockers", "next_milestone"],
+      "signals": ["blocker_resolved", "customer_replied"]
+    },
+    "trigger": {
+      "activity_id": "0ac70000-0000-4000-8000-0000000a0019",
+      "activity_type": "EmailReply",
+      "occurred_at": "2026-09-03T10:15:00Z",
+      "actor_person_id": "0b0e0000-0000-4000-8000-000000000017",
+      "event_file": "world/accounts/acme/events/019_email_priya_budget_approved.json",
+      "synthetic": false,
+      "text": "Hi Dana,\nSorry for the slow reply - it was planning week. Good news: finance approved the EU budget line this morning, so budget is no longer a blocker. Can we walk through the order form together next Wednesday?\nPriya"
+    },
+    "supporting_activities": [],
+    "commitments": [],
+    "timeline_facts": {
+      "last_inbound_at": "2026-09-03T10:15:00Z",
+      "last_inbound_from_person_id": "0b0e0000-0000-4000-8000-000000000017",
+      "last_outbound_at": "2026-08-28T15:00:00Z",
+      "stated_timing": "Priya proposed walking through the order form next Wednesday (Sep 9)"
+    },
+    "offered_knowledge": []
+  },
+  "candidate_action": {
+    "proposed_action_type": "send_email",
+    "recipients": [{"person_id": "0b0e0000-0000-4000-8000-000000000017", "role": "to", "why": "Champion"}],
+    "finished_artifact": {
+      "channel": "email",
+      "subject": "Re: Acme EU rollout - proposal",
+      "body": "Hi Priya,\n\nFantastic news on the budget! Since finance has approved, could you sign the order form by Friday so we can lock in Berlin and Rotterdam? Happy to send DocuSign today.\n\nBest,\nDana"
+    },
+    "crm_next_step_intent": {"next_step": "Order form signature by Friday", "due_at": "2026-09-04T17:00:00Z", "stage_change": null},
+    "reason": "Budget approved; move straight to signature.",
+    "evidence_refs": [
+      {
+        "activity_id": "0ac70000-0000-4000-8000-0000000a0019",
+        "quote": "finance approved the EU budget line this morning, so budget is no longer a blocker",
+        "speaker_person_id": "0b0e0000-0000-4000-8000-000000000017",
+        "occurred_at": "2026-09-03T10:15:00Z"
+      }
+    ],
+    "knowledge_refs_used": [],
+    "wait_until": null
+  },
+  "expected": [
+    {
+      "eval_type": "buyer_readiness",
+      "verdict": "fail",
+      "label": "TOO_EARLY",
+      "diagnostics": ["too_early"],
+      "blocking": false,
+      "rationale": "Priya asked to walk through the order form first; legal and the EU entity wording are not settled, so a signature ask skips her stated next step.",
+      "evidence_class": "methodology",
+      "state_refs": ["next_milestone"]
+    },
+    {
+      "eval_type": "cta_calibration",
+      "verdict": "fail",
+      "label": "TOO_STRONG",
+      "diagnostics": ["ask_too_strong"],
+      "blocking": true,
+      "rationale": "Signature-by-Friday is a closing ask; the buyer asked for a working session.",
+      "evidence_class": "methodology"
+    },
+    {
+      "eval_type": "next_step_quality",
+      "verdict": "fail",
+      "label": null,
+      "diagnostics": ["no_mutual_next_step"],
+      "blocking": false,
+      "rationale": "Ignores the mutual next step the buyer proposed (Wednesday walkthrough).",
+      "evidence_class": "deal_data"
+    }
+  ],
+  "expected_best_action": {
+    "action": "schedule_meeting",
+    "why": "Accept Priya's proposal: book the order-form walkthrough for Wednesday Sep 9.",
+    "recipients": [{"person_id": "0b0e0000-0000-4000-8000-000000000017", "role": "to"}],
+    "channel": "email"
+  },
+  "notes": "Real world: Dana booked the Sep 9 walkthrough (020). The fail here is blocking on the ask itself (cta_calibration)."
+}
