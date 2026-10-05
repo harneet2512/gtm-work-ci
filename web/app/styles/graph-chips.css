@@ -1,0 +1,72 @@
+/* Evidence chips in the inspector (who said it, the source record, the standing) and the status marks in the
+ * graph legend. Status always pairs its colour with a glyph and a word. */
+.chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-1);
+  margin: var(--space-1-5) 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.chip {
+  display: inline-block;
+  padding: 1px var(--space-2);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-full);
+  background: var(--surface-sunken);
+  color: var(--ink-2);
+  font-size: var(--text-xs);
+  line-height: 1.6;
+}
+
+.chip-warn {
+  border-color: var(--warn-line);
+  background: var(--warn-tint);
+  color: var(--warn);
+}
+
+.prov-facts dd.chip {
+  justify-self: start;
+}
+
+.source-details {
+  margin-top: var(--space-1-5);
+}
+
+.source-details summary {
+  color: var(--muted);
+  font-size: var(--text-xs);
+  cursor: pointer;
+}
+
+.source-details summary:focus-visible {
+  outline: none;
+  box-shadow: var(--focus-ring);
+}
+
+.gx-status {
+  color: var(--ink-2);
+}
+
+.gx-badge {
+  display: inline-grid;
+  place-items: center;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  color: var(--graph-canvas);
+  font: 700 9px / 1 var(--font-sans);
+}
+
+.gx-status.tone-added .gx-badge {
+  background: var(--pass-solid);
+}
+
+.gx-status.tone-changed .gx-badge {
+  background: var(--warn-solid);
+}
+
+.gx-status.tone-removed .gx-badge {
+  background: var(--fail-solid);
+}

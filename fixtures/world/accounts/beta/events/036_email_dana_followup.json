@@ -1,0 +1,25 @@
+{
+  "source_system": "email",
+  "source_object_id": "<ghost-dana-2026-09-17@ghostvendor.com>",
+  "source_event_key": "sent",
+  "occurred_at": "2026-09-17T16:00:00Z",
+  "connector": "gmail",
+  "connector_version": "0.1.0",
+  "payload": {
+    "kind": "email",
+    "direction": "outbound",
+    "message_id": "<ghost-dana-2026-09-17@ghostvendor.com>",
+    "thread_id": "thr-beta-support-rollout",
+    "in_reply_to": "<BETA-hl-2026-09-16@beta.io>",
+    "from": {"email": "dana@ghostvendor.com", "name": "Dana Kim"},
+    "to": [
+      {"email": "hannah.lee@beta.io", "name": "Hannah Lee"},
+      {"email": "ravi.menon@beta.io", "name": "Ravi Menon"}
+    ],
+    "cc": [],
+    "date": "2026-09-17T16:00:00Z",
+    "subject": "Re: Relay for the Beta support org",
+    "body_text": "Hi Hannah and Ravi,\nThanks for Tuesday's session and for the clarification on SSO. Ravi, good to meet you - let us know what you need from us on EU data residency and we'll get it to you.\nBest,\nDana",
+    "crm_opportunity_ref": "opp:BE-7-EXP"
+  }
+}

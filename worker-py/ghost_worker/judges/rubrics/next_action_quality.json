@@ -1,0 +1,99 @@
+{
+  "eval_type": "next_action_quality",
+  "version": 1,
+  "title": "Next-action quality",
+  "har97_refs": [
+    {
+      "line": 1237,
+      "text": "## 5.8 Next-action quality"
+    }
+  ],
+  "l2_dimension": null,
+  "questions": [
+    {
+      "section": "§5.8",
+      "text": "Of the possible actions available, is this actually the best next move?"
+    }
+  ],
+  "inputs": [
+    "the trigger and what changed",
+    "open requests and commitments",
+    "the candidate action type and content"
+  ],
+  "criteria": [
+    {
+      "id": "best_of_choices",
+      "kind": "evaluate",
+      "text": "the candidate is the best of the available moves",
+      "guide": "Compare the candidate with the candidate choices, including wait and no action.",
+      "har97": null,
+      "output": "finding",
+      "before": null,
+      "after": null
+    },
+    {
+      "id": "answers_request",
+      "kind": "check",
+      "text": "an open customer request is answered, not withheld",
+      "guide": "If the customer asked for something now, a move that withholds or replaces it is not the best.",
+      "har97": null,
+      "output": "finding",
+      "before": null,
+      "after": null
+    }
+  ],
+  "failure_examples": [],
+  "counter_failures": [],
+  "known_exceptions": [],
+  "candidate_choices": [
+    "send email",
+    "schedule meeting",
+    "send requested document",
+    "update CRM only",
+    "ask internal owner",
+    "escalate",
+    "wait",
+    "no action"
+  ],
+  "principles": [
+    "The evaluator must be allowed to say `WAIT` or `NO_ACTION`.",
+    "Abstention is a first-class success mode: WAIT or NO_ACTION can be the correct answer."
+  ],
+  "labels": [
+    {
+      "label": "GOOD",
+      "when": "The candidate is the best next move."
+    },
+    {
+      "label": "NEEDS_REVISION",
+      "when": "Right kind of move, but its content or form must change."
+    },
+    {
+      "label": "ACT_NOW",
+      "when": "The best move is to act now (the candidate waited, did nothing, or only noted internally)."
+    },
+    {
+      "label": "WAIT",
+      "when": "The best move is to wait."
+    },
+    {
+      "label": "NO_ACTION",
+      "when": "The best move is no action at all."
+    }
+  ],
+  "pass_label": "GOOD",
+  "diagnostics": [],
+  "routing": {
+    "actions": [
+      "send_email",
+      "schedule_meeting",
+      "share_document",
+      "internal_note",
+      "wait",
+      "no_action"
+    ],
+    "when_all": [],
+    "when_any": []
+  },
+  "uses_rep_profile": false
+}

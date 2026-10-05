@@ -1,0 +1,114 @@
+{
+  "eval_type": "rep_style",
+  "version": 1,
+  "title": "Personalization / rep style",
+  "har97_refs": [
+    {
+      "line": 1300,
+      "text": "## 5.13 Personalization / rep style"
+    }
+  ],
+  "l2_dimension": null,
+  "questions": [
+    {
+      "section": "§5.13",
+      "text": "Is the output consistent with the rep’s actual communication style without changing strategic content?"
+    }
+  ],
+  "inputs": [
+    "the rep profile (how this rep writes)",
+    "the finished artifact"
+  ],
+  "criteria": [
+    {
+      "id": "brevity",
+      "kind": "evaluate",
+      "text": "brevity",
+      "guide": "Compare the draft's length and density against the rep's usual messages. Report direction (below / matches / above the rep's profile) and magnitude (none / slight / large) with a concrete phrase from the draft; never a numeric personality score.",
+      "har97": {
+        "line": 2078,
+        "text": "* brevity"
+      },
+      "output": "direction_magnitude",
+      "before": "Hi <name>, I hope you are well and that the week is treating you kindly. Following up on our conversation, I wanted to share a few thoughts and also attach the two documents you asked for, which I think you will find useful...",
+      "after": "Hi <name>, the two documents you asked for are attached. Best, <rep>"
+    },
+    {
+      "id": "formality",
+      "kind": "evaluate",
+      "text": "formality",
+      "guide": "Compare the draft's register (greeting, sign-off, vocabulary) against the rep's own. Report direction (below / matches / above the rep's profile) and magnitude (none / slight / large) with a concrete phrase from the draft; never a numeric personality score.",
+      "har97": {
+        "line": 2079,
+        "text": "* formality"
+      },
+      "output": "direction_magnitude",
+      "before": "Dear Sir or Madam, please find enclosed herewith the requested documentation for your kind perusal.",
+      "after": "Hi <name>, here are the documents you asked for."
+    },
+    {
+      "id": "directness",
+      "kind": "evaluate",
+      "text": "directness",
+      "guide": "Compare how plainly the draft states its ask or point against how plainly the rep usually does. Report direction (below / matches / above the rep's profile) and magnitude (none / slight / large) with a concrete phrase from the draft; never a numeric personality score.",
+      "har97": {
+        "line": 2080,
+        "text": "* directness"
+      },
+      "output": "direction_magnitude",
+      "before": "I was wondering whether it might perhaps be possible, if convenient, to maybe find a moment at some point?",
+      "after": "Could you share a 30-minute slot next week?"
+    },
+    {
+      "id": "warmth",
+      "kind": "evaluate",
+      "text": "warmth",
+      "guide": "Compare the draft's personal tone against the rep's usual tone. Report direction (below / matches / above the rep's profile) and magnitude (none / slight / large) with a concrete phrase from the draft; never a numeric personality score.",
+      "har97": {
+        "line": 2081,
+        "text": "* warmth"
+      },
+      "output": "direction_magnitude",
+      "before": "Documents attached.",
+      "after": "Thanks for pulling this together so quickly - the documents are attached."
+    },
+    {
+      "id": "pressure_level",
+      "kind": "evaluate",
+      "text": "pressure level",
+      "guide": "Compare the draft's urgency of wording against the rep's usual pressure. Report direction (below / matches / above the rep's profile) and magnitude (none / slight / large) with a concrete phrase from the draft; never a numeric personality score.",
+      "har97": {
+        "line": 2082,
+        "text": "* pressure level"
+      },
+      "output": "direction_magnitude",
+      "before": "We need your signature by Friday at the latest or we lose the slot.",
+      "after": "Whenever your review is done, I'm happy to walk through any questions."
+    }
+  ],
+  "failure_examples": [],
+  "counter_failures": [],
+  "known_exceptions": [],
+  "candidate_choices": [],
+  "principles": [
+    "Keep style separate from strategic company knowledge.",
+    "Strategic learning and style learning are not the same: judge HOW it is said, never who is addressed, what is asked or when (§24).",
+    "Use direction/magnitude and concrete before/after examples rather than fake personality scores."
+  ],
+  "labels": [],
+  "pass_label": null,
+  "diagnostics": [],
+  "routing": {
+    "actions": [
+      "send_email",
+      "schedule_meeting",
+      "share_document"
+    ],
+    "when_all": [
+      "has_rep_profile",
+      "written_message"
+    ],
+    "when_any": []
+  },
+  "uses_rep_profile": true
+}

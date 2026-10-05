@@ -1,0 +1,69 @@
+{
+  "source_system": "call",
+  "source_object_id": "call-acme-0924",
+  "source_event_key": "transcript_ready",
+  "occurred_at": "2026-09-24T14:47:00Z",
+  "connector": "recorder",
+  "connector_version": "0.1.0",
+  "payload": {
+    "kind": "call",
+    "call_id": "call-acme-0924",
+    "calendar_event_id": "gcal:acme-signature-0924",
+    "started_at": "2026-09-24T14:01:00Z",
+    "ended_at": "2026-09-24T14:47:00Z",
+    "speakers": [
+      {"label": "speaker_01", "email": "dana@ghostvendor.com", "name": "Dana Kim"},
+      {"label": "speaker_02", "email": "priya.shah@acme.com", "name": "Priya Shah"},
+      {"label": "speaker_03", "email": "marco.ruiz@acme.com", "name": "Marco Ruiz"},
+      {"label": "speaker_04", "email": "tom.becker@acme.com", "name": "Tom Becker"},
+      {"label": "speaker_05", "email": "leo@ghostvendor.com", "name": "Leo Park"}
+    ],
+    "transcript": [
+      {
+        "speaker": "speaker_01",
+        "offset_s": 0,
+        "text": "Thanks for joining, everyone. Marco, welcome - good to have you here."
+      },
+      {
+        "speaker": "speaker_03",
+        "offset_s": 5,
+        "text": "Marco Ruiz, I run security at Acme. Priya asked me to join because the EU rollout moves warehouse data for our EU entity."
+      },
+      {
+        "speaker": "speaker_03",
+        "offset_s": 16,
+        "text": "For any vendor touching that data I need to see your SOC2 Type II report and your latest pen-test summary before I can sign off."
+      },
+      {
+        "speaker": "speaker_05",
+        "offset_s": 29,
+        "text": "We can share both as soon as the mutual NDA is countersigned."
+      },
+      {
+        "speaker": "speaker_03",
+        "offset_s": 36,
+        "text": "Fine. Once my team has gone through them, we can talk about a review session."
+      },
+      {
+        "speaker": "speaker_02",
+        "offset_s": 44,
+        "text": "Commercially we're ready; security sign-off is the last gate before signature."
+      },
+      {
+        "speaker": "speaker_04",
+        "offset_s": 52,
+        "text": "Berlin is still targeting go-live before the January peak, so timing matters for us."
+      },
+      {
+        "speaker": "speaker_01",
+        "offset_s": 60,
+        "text": "Understood. I'll send the NDA over tomorrow morning and get the security package to Marco as soon as it's signed."
+      },
+      {
+        "speaker": "speaker_02",
+        "offset_s": 69,
+        "text": "And please keep me on the thread - I'm still your point of contact for the commercial side."
+      }
+    ]
+  }
+}
