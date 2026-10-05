@@ -1,0 +1,111 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://ghost.local/contracts/episode_summary.v1.json",
+  "title": "EpisodeSummary",
+  "description": "HAR-145: the header of one DecisionEpisode in the Ghost Eval Control Plane: the account, the event that triggered the agent, the run and its generation phase, how far the episode got, the action Ghost recommended and the one the human selected, and the human's outcome. Read-only and derived from existing rows (decision_episodes, agent_runs, activities, strategy_candidates, human_strategy_decisions, judgment_inferences, demo_episodes); nothing here is computed by an eval. Every nullable field is null because the stage has not happened yet, never because it was not looked up.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "id", "agent_run_id", "account_id", "account_name", "opportunity_id", "strategy_set_id", "status", "final_status",
+    "triggering_event", "run", "recommended_action", "selected_action", "human_outcome", "judgment_status", "replay", "created_at"
+  ],
+  "properties": {
+    "id": { "$ref": "common.v1.json#/$defs/uuid", "description": "The DecisionEpisode id (the id of every /episodes/{id} read)." },
+    "agent_run_id": { "$ref": "common.v1.json#/$defs/uuid", "description": "The run that produced the episode; also the id of its EvalRun." },
+    "account_id": { "$ref": "common.v1.json#/$defs/uuid" },
+    "account_name": { "type": "string" },
+    "opportunity_id": { "oneOf": [{ "$ref": "common.v1.json#/$defs/uuid" }, { "type": "null" }] },
+    "strategy_set_id": { "oneOf": [{ "$ref": "common.v1.json#/$defs/uuid" }, { "type": "null" }], "description": "Null for an episode recorded before strategy sets existed." },
+    "status": { "enum": ["awaiting_choice", "chosen", "decided", "judged"], "description": "The decision_episodes.status stage, as stored." },
+    "final_status": {
+      "enum": ["awaiting_choice", "awaiting_send", "send_recorded", "sent", "discarded", "decided"],
+      "description": "How far the human side got, in one word. awaiting_choice: no candidate chosen. awaiting_send: chosen, send not yet decided. send_recorded: the human decided to send and the run is a dry run, so the decision is recorded and nothing left the system. sent: the same decision on a live run. discarded: the human discarded the draft. decided: decided without the strategy chooser (an episode recorded through the older run decision)."
+    },
+    "triggering_event": {
+      "description": "The first trigger activity of the run (its earliest by occurred_at); null only when the run's trigger activities cannot be read.",
+      "oneOf": [
+        { "type": "null" },
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["activity_id", "source_event_id", "activity_type", "source_system", "occurred_at", "summary", "trigger_activity_count"],
+          "properties": {
+            "activity_id": { "$ref": "common.v1.json#/$defs/uuid" },
+            "source_event_id": { "$ref": "common.v1.json#/$defs/uuid" },
+            "activity_type": { "$ref": "common.v1.json#/$defs/activityType" },
+            "source_system": { "$ref": "common.v1.json#/$defs/sourceSystem" },
+            "occurred_at": { "$ref": "common.v1.json#/$defs/timestamp" },
+            "summary": { "type": ["string", "null"] },
+            "trigger_activity_count": { "type": "integer", "minimum": 1 }
+          }
+        }
+      ]
+    },
+    "run": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id", "status", "phase", "state_version", "model"],
+      "properties": {
+        "id": { "$ref": "common.v1.json#/$defs/uuid" },
+        "status": { "$ref": "agent_run.v1.json#/properties/status" },
+        "phase": { "$ref": "agent_run.v1.json#/properties/generation/properties/phase" },
+        "state_version": { "type": ["integer", "null"] },
+        "model": { "type": ["string", "null"] }
+      }
+    },
+    "recommended_action": { "oneOf": [{ "type": "null" }, { "$ref": "#/$defs/actionRef" }], "description": "Ghost's preferred candidate (ranking 1); null while no strategy set exists." },
+    "selected_action": { "oneOf": [{ "type": "null" }, { "$ref": "#/$defs/actionRef" }], "description": "The candidate the human selected; null until the human chooses." },
+    "human_outcome": {
+      "description": "What the human did; null until a candidate is chosen.",
+      "oneOf": [
+        { "type": "null" },
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["agreement", "human_action", "send_decision", "edited", "actor_label", "chosen_at", "send_decided_at"],
+          "properties": {
+            "agreement": { "enum": ["agreed", "overrode"], "description": "Whether the chosen candidate is the one Ghost preferred." },
+            "human_action": { "enum": ["APPROVE_UNCHANGED", "APPROVE_WITH_EDIT", "REJECT", "IGNORE", "MANUAL_REPLACEMENT", null], "description": "decision_episodes.human_action; null until the send decision is recorded." },
+            "send_decision": { "enum": ["pending", "send", "discard"] },
+            "edited": { "type": "boolean", "description": "The human edited the chosen candidate before deciding to send." },
+            "actor_label": { "type": "string" },
+            "chosen_at": { "$ref": "common.v1.json#/$defs/timestamp" },
+            "send_decided_at": { "oneOf": [{ "$ref": "common.v1.json#/$defs/timestamp" }, { "type": "null" }] }
+          }
+        }
+      ]
+    },
+    "judgment_status": { "enum": ["none", "pending", "confirmed", "corrected"], "description": "The human's verdict on Ghost's inference of why they chose it; none while no inference exists." },
+    "replay": {
+      "description": "Where the episode sits in a demo replay; null for an episode that did not come from one.",
+      "oneOf": [
+        { "type": "null" },
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["manifest_id", "position"],
+          "properties": {
+            "manifest_id": { "$ref": "common.v1.json#/$defs/uuid" },
+            "position": { "type": "integer", "minimum": 1 }
+          }
+        }
+      ]
+    },
+    "created_at": { "$ref": "common.v1.json#/$defs/timestamp" }
+  },
+  "$defs": {
+    "actionRef": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["candidate_id", "ranking", "strategy_type", "title", "action_type", "preferred_by_agent"],
+      "properties": {
+        "candidate_id": { "$ref": "common.v1.json#/$defs/uuid" },
+        "ranking": { "type": "integer", "minimum": 1, "maximum": 3 },
+        "strategy_type": { "type": "string" },
+        "title": { "type": "string" },
+        "action_type": { "type": "string" },
+        "preferred_by_agent": { "type": "boolean" }
+      }
+    }
+  }
+}

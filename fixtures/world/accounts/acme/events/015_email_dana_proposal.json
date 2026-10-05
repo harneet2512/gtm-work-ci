@@ -1,0 +1,23 @@
+{
+  "source_system": "email",
+  "source_object_id": "<ghost-dana-2026-08-28@vendor.example>",
+  "source_event_key": "sent",
+  "occurred_at": "2026-08-28T15:00:00Z",
+  "connector": "gmail",
+  "connector_version": "0.1.0",
+  "payload": {
+    "kind": "email",
+    "direction": "outbound",
+    "message_id": "<ghost-dana-2026-08-28@vendor.example>",
+    "thread_id": "thr-acme-proposal",
+    "in_reply_to": null,
+    "from": {"email": "dana@vendor.example", "name": "Dana Kim"},
+    "to": [{"email": "priya.shah@acme.com", "name": "Priya Shah"}],
+    "cc": [{"email": "tom.becker@acme.com", "name": "Tom Becker"}],
+    "date": "2026-08-28T15:00:00Z",
+    "subject": "Acme EU rollout - proposal",
+    "body_text": "Hi Priya,\nAs promised, attached is our proposal for 120 Relay seats across Berlin and Rotterdam ($156,000 per year). Tom, copying you so you have the seat breakdown. Let me know what finance needs from us for the planning cycle.\nBest,\nDana",
+    "attachments": ["Acme_EU_Rollout_Proposal.pdf"],
+    "crm_opportunity_ref": "opp:AC-4-EXP"
+  }
+}

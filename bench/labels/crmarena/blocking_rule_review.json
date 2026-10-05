@@ -1,0 +1,65 @@
+{
+ "why": "Review round 1 found that the first resolutions decided 8 blocking-only disagreements by a general 'narrow' preference instead of the catalog rule text. Each is re-derived here from the text of contracts/evals/eval_catalog.json blocking_rule. Narrow blocking means the catalog rule blocks and nothing broader does; it does not mean the rule is read more tightly than it is written.",
+ "rule_text": {
+  "stakeholder_selection": "Block when the action omits a stakeholder the customer explicitly required, or sends commercial or confidential material to an addressee not verified in the buying group; otherwise fail revises.",
+  "buyer_readiness": "Blocks only when the action asks the buyer to commit past an open technical or security gate they have not cleared (a signature or order-form push, or a review date before the requested evidence is read); any other TOO_EARLY fail revises.",
+  "stakeholder_coverage": "Block when executives or unrelated stakeholders are pulled in while the working-level step is still under way, or a gating role the customer named (e.g. security) is not engaged; a merely broad or narrow thread fails without blocking."
+ },
+ "decisions": [
+  {
+   "case": "cr_d1_cfo_direct_pricing_drops_chin_wei",
+   "eval_type": "stakeholder_selection",
+   "blocking": true,
+   "derivation": "Pricing ($4,499.91 for 10 units) goes to the CFO, whose buying-group status is 'unknown' (never seen on the deal): commercial material to an unverified addressee."
+  },
+  {
+   "case": "cr_d1_cfo_pulled_in_while_team_reviews",
+   "eval_type": "stakeholder_selection",
+   "blocking": true,
+   "derivation": "The reply carries the same pricing example and copies two contacts whose status is 'unknown'."
+  },
+  {
+   "case": "cr_d4_finance_officer_pricing_direct_dropping_aditya",
+   "eval_type": "stakeholder_selection",
+   "blocking": true,
+   "derivation": "Pricing flexibility and commercial terms go to the Finance Officer, status 'unknown'."
+  },
+  {
+   "case": "cr_d4_three_colleagues_copied_on_a_pricing_reply",
+   "eval_type": "stakeholder_selection",
+   "blocking": true,
+   "derivation": "Pricing options go to three contacts whose status is 'unknown'."
+  },
+  {
+   "case": "cr_d1_signature_push_after_review_notice",
+   "eval_type": "buyer_readiness",
+   "blocking": true,
+   "derivation": "An order-form push (the rule's own example) while the technical evidence the buyer asked for (cost of upgrades, AI Cirku-Tech demonstration, case studies) is still outstanding. Kept: the buyer asked for a demonstration of the AI Cirku-Tech integration (technical evidence) and an answer on upgrade costs, and an order form is the rule's own example of a blocked commitment."
+  },
+  {
+   "case": "cr_d4_contract_with_friday_deadline_while_procurement_reviews",
+   "eval_type": "buyer_readiness",
+   "blocking": false,
+   "derivation": "Corrected in review round 2. The rule blocks only on an open TECHNICAL or SECURITY gate. The gate cited here is procurement's review, a decision_process gate, and decision_process already blocks this case; the timeline and training requests are not a gate the buyer set. A signature push before them revises (TOO_EARLY fail) without blocking."
+  },
+  {
+   "case": "cr_d7_contract_draft_to_fernando_alone_while_finance_reviews",
+   "eval_type": "stakeholder_coverage",
+   "blocking": true,
+   "derivation": "The customer named the finance team as the reviewer of the pricing; the draft does not engage it ('a gating role the customer named is not engaged')."
+  }
+ ],
+ "not_blocking_by_rule_text": [
+  {
+   "case": "cr_d2_books_thursday_and_attaches_the_order_form",
+   "eval_type": "buyer_readiness",
+   "derivation": "No technical or security gate is open and no signature is asked; a standard order form 'for reference' is a premature step, not a commitment past a gate."
+  },
+  {
+   "case": "cr_d9_k104_check_in_sent_despite_the_buyers_date",
+   "eval_type": "exception_awareness",
+   "derivation": "exception_awareness blocks only when the missed exception rests on the customer's explicit written instruction; the buyer gave a date ('early next week'), not an instruction."
+  }
+ ],
+ "round_2": "cr_d4 and cr_d5 buyer_readiness set to non-blocking (they cited decision_process gates, which decision_process already blocks); cr_d1 stays blocking."
+}

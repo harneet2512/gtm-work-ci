@@ -1,0 +1,1664 @@
+{
+  "report_version": 1,
+  "date": "2026-10-03",
+  "rule_set_version": "transition_rules:v1",
+  "gold_files": [
+    "fixtures/gold/transitions/scenarios.json",
+    "fixtures/gold/transitions/blind.json"
+  ],
+  "data_basis": "spec_derived_transition_gold",
+  "caveat": "Spec-derived gold on synthetic account states (no company or person names), labelled from the HAR-97 pitch before the detector ran: one set by the detector's author, one by a separate author who saw only the pitch. It measures whether the detector reproduces the product spec on the cases we could think of; it is not evidence about real accounts. The independent gold the metrics registry names (HAR-130 CRMArena deals plus the HAR-131 labelled synthetic layer) does not exist on main: CRMArena has no people changes and HAR-131 is an open PR.",
+  "headline_uncontested": {
+    "steps": 91,
+    "scenarios": 70,
+    "status_accuracy": {
+      "num": 84,
+      "den": 91,
+      "value": 0.923
+    },
+    "status_and_target_accuracy": {
+      "num": 84,
+      "den": 91,
+      "value": 0.923
+    },
+    "transition_detection_any_status": {
+      "tp": 58,
+      "fp": 1,
+      "fn": 2,
+      "precision": 0.983,
+      "recall": 0.967
+    },
+    "transition_detection_status_and_target": {
+      "tp": 54,
+      "fp": 5,
+      "fn": 6,
+      "precision": 0.915,
+      "recall": 0.9
+    },
+    "per_status": {
+      "CANDIDATE": {
+        "tp": 33,
+        "fp": 4,
+        "fn": 2,
+        "precision": 0.892,
+        "recall": 0.943
+      },
+      "CONFIRMED": {
+        "tp": 14,
+        "fp": 1,
+        "fn": 3,
+        "precision": 0.933,
+        "recall": 0.824
+      },
+      "REJECTED": {
+        "tp": 2,
+        "fp": 0,
+        "fn": 1,
+        "precision": 1,
+        "recall": 0.667
+      },
+      "UNRESOLVED": {
+        "tp": 5,
+        "fp": 0,
+        "fn": 0,
+        "precision": 1,
+        "recall": 1
+      }
+    },
+    "confusion_gold_to_predicted": {
+      "CANDIDATE": {
+        "CANDIDATE": 33,
+        "NONE": 2
+      },
+      "CONFIRMED": {
+        "CANDIDATE": 3,
+        "CONFIRMED": 14
+      },
+      "NONE": {
+        "CONFIRMED": 1,
+        "NONE": 30
+      },
+      "REJECTED": {
+        "CANDIDATE": 1,
+        "REJECTED": 2
+      },
+      "UNRESOLVED": {
+        "UNRESOLVED": 5
+      }
+    },
+    "premature_promotion": {
+      "num": 1,
+      "den": 15,
+      "value": 0.067
+    },
+    "uncertainty_marking": {
+      "num": 38,
+      "den": 40,
+      "value": 0.95
+    },
+    "relationship_state_accuracy": {
+      "num": 88,
+      "den": 91,
+      "value": 0.967
+    },
+    "supporting_required_facts": {
+      "tp": 101,
+      "fp": 2,
+      "fn": 0,
+      "precision": 0.981,
+      "recall": 1
+    },
+    "contradicting_facts_preserved": {
+      "tp": 5,
+      "fp": 0,
+      "fn": 0,
+      "precision": 1,
+      "recall": 1
+    },
+    "stale_closure": {
+      "num": 1,
+      "den": 1,
+      "value": 1
+    },
+    "disagreements": [
+      {
+        "scenario": "confirmed_bundle_minus_need",
+        "step": "single evaluation",
+        "slice": "blind",
+        "gold_status": "CANDIDATE",
+        "gold_to_state": "EXPANSION",
+        "predicted_status": "NONE",
+        "why": "the detector recorded nothing where the gold expects CANDIDATE"
+      },
+      {
+        "scenario": "exp_need_91d_outside",
+        "step": "single evaluation",
+        "slice": "blind",
+        "gold_status": "CANDIDATE",
+        "gold_to_state": "EXPANSION",
+        "predicted_status": "NONE",
+        "why": "the detector recorded nothing where the gold expects CANDIDATE"
+      },
+      {
+        "scenario": "lifecycle_demo_unknown_reorg_candidate_confirmed_expansion",
+        "step": "champion moved, motion paused",
+        "slice": "blind",
+        "gold_status": "CONFIRMED",
+        "gold_to_state": "REORG",
+        "predicted_status": "CANDIDATE",
+        "predicted_to_state": "REORG",
+        "why": "status differs"
+      },
+      {
+        "scenario": "lifecycle_demo_unknown_reorg_candidate_confirmed_expansion",
+        "step": "routine reply only",
+        "slice": "blind",
+        "gold_status": "NONE",
+        "predicted_status": "CONFIRMED",
+        "predicted_to_state": "REORG",
+        "fact_differences": [
+          "unexpected:org_change_stated",
+          "unexpected:owner_responsibility_changed"
+        ],
+        "why": "the detector recorded CONFIRMED where the gold expects nothing"
+      },
+      {
+        "scenario": "lifecycle_expansion_candidate_rejected_new_owner_moves",
+        "step": "new owner moves away",
+        "slice": "blind",
+        "gold_status": "REJECTED",
+        "gold_to_state": "EXPANSION",
+        "predicted_status": "CANDIDATE",
+        "predicted_to_state": "EXPANSION",
+        "why": "status differs"
+      },
+      {
+        "scenario": "reorg_confirmed_champion_role_change_stated",
+        "step": "single evaluation",
+        "slice": "blind",
+        "gold_status": "CONFIRMED",
+        "gold_to_state": "REORG",
+        "predicted_status": "CANDIDATE",
+        "predicted_to_state": "REORG",
+        "why": "status differs"
+      },
+      {
+        "scenario": "reorg_window_29d_inside",
+        "step": "single evaluation",
+        "slice": "blind",
+        "gold_status": "CONFIRMED",
+        "gold_to_state": "REORG",
+        "predicted_status": "CANDIDATE",
+        "predicted_to_state": "REORG",
+        "why": "status differs"
+      }
+    ]
+  },
+  "authored_uncontested": {
+    "steps": 55,
+    "scenarios": 43,
+    "status_accuracy": {
+      "num": 55,
+      "den": 55,
+      "value": 1
+    },
+    "status_and_target_accuracy": {
+      "num": 55,
+      "den": 55,
+      "value": 1
+    },
+    "transition_detection_any_status": {
+      "tp": 36,
+      "fp": 0,
+      "fn": 0,
+      "precision": 1,
+      "recall": 1
+    },
+    "transition_detection_status_and_target": {
+      "tp": 36,
+      "fp": 0,
+      "fn": 0,
+      "precision": 1,
+      "recall": 1
+    },
+    "per_status": {
+      "CANDIDATE": {
+        "tp": 22,
+        "fp": 0,
+        "fn": 0,
+        "precision": 1,
+        "recall": 1
+      },
+      "CONFIRMED": {
+        "tp": 7,
+        "fp": 0,
+        "fn": 0,
+        "precision": 1,
+        "recall": 1
+      },
+      "REJECTED": {
+        "tp": 2,
+        "fp": 0,
+        "fn": 0,
+        "precision": 1,
+        "recall": 1
+      },
+      "UNRESOLVED": {
+        "tp": 5,
+        "fp": 0,
+        "fn": 0,
+        "precision": 1,
+        "recall": 1
+      }
+    },
+    "confusion_gold_to_predicted": {
+      "CANDIDATE": {
+        "CANDIDATE": 22
+      },
+      "CONFIRMED": {
+        "CONFIRMED": 7
+      },
+      "NONE": {
+        "NONE": 19
+      },
+      "REJECTED": {
+        "REJECTED": 2
+      },
+      "UNRESOLVED": {
+        "UNRESOLVED": 5
+      }
+    },
+    "premature_promotion": {
+      "num": 0,
+      "den": 7,
+      "value": 0
+    },
+    "uncertainty_marking": {
+      "num": 27,
+      "den": 27,
+      "value": 1
+    },
+    "relationship_state_accuracy": {
+      "num": 55,
+      "den": 55,
+      "value": 1
+    },
+    "supporting_required_facts": {
+      "tp": 101,
+      "fp": 0,
+      "fn": 0,
+      "precision": 1,
+      "recall": 1
+    },
+    "contradicting_facts_preserved": {
+      "tp": 5,
+      "fp": 0,
+      "fn": 0,
+      "precision": 1,
+      "recall": 1
+    },
+    "stale_closure": {
+      "num": 1,
+      "den": 1,
+      "value": 1
+    },
+    "disagreements": []
+  },
+  "blind_uncontested": {
+    "steps": 36,
+    "scenarios": 27,
+    "status_accuracy": {
+      "num": 29,
+      "den": 36,
+      "value": 0.806
+    },
+    "status_and_target_accuracy": {
+      "num": 29,
+      "den": 36,
+      "value": 0.806
+    },
+    "transition_detection_any_status": {
+      "tp": 22,
+      "fp": 1,
+      "fn": 2,
+      "precision": 0.957,
+      "recall": 0.917
+    },
+    "transition_detection_status_and_target": {
+      "tp": 18,
+      "fp": 5,
+      "fn": 6,
+      "precision": 0.783,
+      "recall": 0.75
+    },
+    "per_status": {
+      "CANDIDATE": {
+        "tp": 11,
+        "fp": 4,
+        "fn": 2,
+        "precision": 0.733,
+        "recall": 0.846
+      },
+      "CONFIRMED": {
+        "tp": 7,
+        "fp": 1,
+        "fn": 3,
+        "precision": 0.875,
+        "recall": 0.7
+      },
+      "REJECTED": {
+        "tp": 0,
+        "fp": 0,
+        "fn": 1,
+        "precision": null,
+        "recall": 0
+      },
+      "UNRESOLVED": {
+        "tp": 0,
+        "fp": 0,
+        "fn": 0,
+        "precision": null,
+        "recall": null
+      }
+    },
+    "confusion_gold_to_predicted": {
+      "CANDIDATE": {
+        "CANDIDATE": 11,
+        "NONE": 2
+      },
+      "CONFIRMED": {
+        "CANDIDATE": 3,
+        "CONFIRMED": 7
+      },
+      "NONE": {
+        "CONFIRMED": 1,
+        "NONE": 11
+      },
+      "REJECTED": {
+        "CANDIDATE": 1
+      }
+    },
+    "premature_promotion": {
+      "num": 1,
+      "den": 8,
+      "value": 0.125
+    },
+    "uncertainty_marking": {
+      "num": 11,
+      "den": 13,
+      "value": 0.846
+    },
+    "relationship_state_accuracy": {
+      "num": 33,
+      "den": 36,
+      "value": 0.917
+    },
+    "supporting_required_facts": {
+      "tp": 0,
+      "fp": 2,
+      "fn": 0,
+      "precision": 0,
+      "recall": null
+    },
+    "contradicting_facts_preserved": {
+      "tp": 0,
+      "fp": 0,
+      "fn": 0,
+      "precision": null,
+      "recall": null
+    },
+    "stale_closure": {
+      "num": 0,
+      "den": 0,
+      "value": null
+    },
+    "disagreements": [
+      {
+        "scenario": "confirmed_bundle_minus_need",
+        "step": "single evaluation",
+        "slice": "blind",
+        "gold_status": "CANDIDATE",
+        "gold_to_state": "EXPANSION",
+        "predicted_status": "NONE",
+        "why": "the detector recorded nothing where the gold expects CANDIDATE"
+      },
+      {
+        "scenario": "exp_need_91d_outside",
+        "step": "single evaluation",
+        "slice": "blind",
+        "gold_status": "CANDIDATE",
+        "gold_to_state": "EXPANSION",
+        "predicted_status": "NONE",
+        "why": "the detector recorded nothing where the gold expects CANDIDATE"
+      },
+      {
+        "scenario": "lifecycle_demo_unknown_reorg_candidate_confirmed_expansion",
+        "step": "champion moved, motion paused",
+        "slice": "blind",
+        "gold_status": "CONFIRMED",
+        "gold_to_state": "REORG",
+        "predicted_status": "CANDIDATE",
+        "predicted_to_state": "REORG",
+        "why": "status differs"
+      },
+      {
+        "scenario": "lifecycle_demo_unknown_reorg_candidate_confirmed_expansion",
+        "step": "routine reply only",
+        "slice": "blind",
+        "gold_status": "NONE",
+        "predicted_status": "CONFIRMED",
+        "predicted_to_state": "REORG",
+        "fact_differences": [
+          "unexpected:org_change_stated",
+          "unexpected:owner_responsibility_changed"
+        ],
+        "why": "the detector recorded CONFIRMED where the gold expects nothing"
+      },
+      {
+        "scenario": "lifecycle_expansion_candidate_rejected_new_owner_moves",
+        "step": "new owner moves away",
+        "slice": "blind",
+        "gold_status": "REJECTED",
+        "gold_to_state": "EXPANSION",
+        "predicted_status": "CANDIDATE",
+        "predicted_to_state": "EXPANSION",
+        "why": "status differs"
+      },
+      {
+        "scenario": "reorg_confirmed_champion_role_change_stated",
+        "step": "single evaluation",
+        "slice": "blind",
+        "gold_status": "CONFIRMED",
+        "gold_to_state": "REORG",
+        "predicted_status": "CANDIDATE",
+        "predicted_to_state": "REORG",
+        "why": "status differs"
+      },
+      {
+        "scenario": "reorg_window_29d_inside",
+        "step": "single evaluation",
+        "slice": "blind",
+        "gold_status": "CONFIRMED",
+        "gold_to_state": "REORG",
+        "predicted_status": "CANDIDATE",
+        "predicted_to_state": "REORG",
+        "why": "status differs"
+      }
+    ]
+  },
+  "contested_only": {
+    "steps": 24,
+    "scenarios": 16,
+    "status_accuracy": {
+      "num": 11,
+      "den": 24,
+      "value": 0.458
+    },
+    "status_and_target_accuracy": {
+      "num": 11,
+      "den": 24,
+      "value": 0.458
+    },
+    "transition_detection_any_status": {
+      "tp": 8,
+      "fp": 0,
+      "fn": 11,
+      "precision": 1,
+      "recall": 0.421
+    },
+    "transition_detection_status_and_target": {
+      "tp": 6,
+      "fp": 2,
+      "fn": 13,
+      "precision": 0.75,
+      "recall": 0.316
+    },
+    "per_status": {
+      "CANDIDATE": {
+        "tp": 4,
+        "fp": 1,
+        "fn": 3,
+        "precision": 0.8,
+        "recall": 0.571
+      },
+      "CONFIRMED": {
+        "tp": 2,
+        "fp": 0,
+        "fn": 1,
+        "precision": 1,
+        "recall": 0.667
+      },
+      "REJECTED": {
+        "tp": 0,
+        "fp": 0,
+        "fn": 1,
+        "precision": null,
+        "recall": 0
+      },
+      "UNRESOLVED": {
+        "tp": 0,
+        "fp": 1,
+        "fn": 8,
+        "precision": 0,
+        "recall": 0
+      }
+    },
+    "confusion_gold_to_predicted": {
+      "CANDIDATE": {
+        "CANDIDATE": 4,
+        "NONE": 3
+      },
+      "CONFIRMED": {
+        "CANDIDATE": 1,
+        "CONFIRMED": 2
+      },
+      "NONE": {
+        "NONE": 5
+      },
+      "REJECTED": {
+        "UNRESOLVED": 1
+      },
+      "UNRESOLVED": {
+        "NONE": 8
+      }
+    },
+    "premature_promotion": {
+      "num": 0,
+      "den": 2,
+      "value": 0
+    },
+    "uncertainty_marking": {
+      "num": 4,
+      "den": 15,
+      "value": 0.267
+    },
+    "relationship_state_accuracy": {
+      "num": 23,
+      "den": 24,
+      "value": 0.958
+    },
+    "supporting_required_facts": {
+      "tp": 5,
+      "fp": 0,
+      "fn": 1,
+      "precision": 1,
+      "recall": 0.833
+    },
+    "contradicting_facts_preserved": {
+      "tp": 0,
+      "fp": 0,
+      "fn": 0,
+      "precision": null,
+      "recall": null
+    },
+    "stale_closure": {
+      "num": 0,
+      "den": 2,
+      "value": 0
+    },
+    "disagreements": [
+      {
+        "scenario": "champion_departed_with_no_org_change_claim",
+        "step": "departed only",
+        "slice": "contested",
+        "gold_status": "CANDIDATE",
+        "gold_to_state": "REORG",
+        "predicted_status": "NONE",
+        "why": "the detector recorded nothing where the gold expects CANDIDATE"
+      },
+      {
+        "scenario": "lifecycle_reorg_candidate_rejected_restructure_called_off",
+        "step": "restructure called off",
+        "slice": "blind",
+        "gold_status": "REJECTED",
+        "gold_to_state": "REORG",
+        "predicted_status": "UNRESOLVED",
+        "why": "status differs"
+      },
+      {
+        "scenario": "lifecycle_unresolved_contradicted_never_rejected",
+        "step": "graph changed, target unclear",
+        "slice": "blind",
+        "gold_status": "UNRESOLVED",
+        "predicted_status": "NONE",
+        "why": "the detector recorded nothing where the gold expects UNRESOLVED"
+      },
+      {
+        "scenario": "lifecycle_unresolved_contradicted_never_rejected",
+        "step": "champion re-engages",
+        "slice": "blind",
+        "gold_status": "UNRESOLVED",
+        "predicted_status": "NONE",
+        "why": "the detector recorded nothing where the gold expects UNRESOLVED"
+      },
+      {
+        "scenario": "lifecycle_unresolved_contradicted_never_rejected",
+        "step": "stale",
+        "slice": "blind",
+        "gold_status": "UNRESOLVED",
+        "predicted_status": "NONE",
+        "why": "the detector recorded nothing where the gold expects UNRESOLVED"
+      },
+      {
+        "scenario": "lifecycle_unresolved_resolves_to_reorg",
+        "step": "graph changed, target unclear",
+        "slice": "blind",
+        "gold_status": "UNRESOLVED",
+        "predicted_status": "NONE",
+        "why": "the detector recorded nothing where the gold expects UNRESOLVED"
+      },
+      {
+        "scenario": "lifecycle_unresolved_resolves_to_reorg",
+        "step": "champion states role change",
+        "slice": "blind",
+        "gold_status": "CONFIRMED",
+        "gold_to_state": "REORG",
+        "predicted_status": "CANDIDATE",
+        "predicted_to_state": "REORG",
+        "why": "status differs"
+      },
+      {
+        "scenario": "lifecycle_unresolved_stale_closure",
+        "step": "graph changed, target unclear",
+        "slice": "blind",
+        "gold_status": "UNRESOLVED",
+        "predicted_status": "NONE",
+        "why": "the detector recorded nothing where the gold expects UNRESOLVED"
+      },
+      {
+        "scenario": "lifecycle_unresolved_stale_closure",
+        "step": "29 days without support",
+        "slice": "blind",
+        "gold_status": "UNRESOLVED",
+        "predicted_status": "NONE",
+        "why": "the detector recorded nothing where the gold expects UNRESOLVED"
+      },
+      {
+        "scenario": "lifecycle_unresolved_stale_closure",
+        "step": "31 days without support",
+        "slice": "blind",
+        "gold_status": "UNRESOLVED",
+        "predicted_status": "NONE",
+        "why": "the detector recorded nothing where the gold expects UNRESOLVED"
+      },
+      {
+        "scenario": "org_change_alone_with_the_champion_unaffected",
+        "step": "org change only",
+        "slice": "contested",
+        "gold_status": "CANDIDATE",
+        "gold_to_state": "REORG",
+        "predicted_status": "NONE",
+        "fact_differences": [
+          "missing:org_change_stated"
+        ],
+        "why": "the detector recorded nothing where the gold expects CANDIDATE"
+      },
+      {
+        "scenario": "pitch_activity_example_security_takeover",
+        "step": "single evaluation",
+        "slice": "blind",
+        "gold_status": "CANDIDATE",
+        "gold_to_state": "EXPANSION",
+        "predicted_status": "NONE",
+        "why": "the detector recorded nothing where the gold expects CANDIDATE"
+      },
+      {
+        "scenario": "unresolved_champion_fading_new_participant",
+        "step": "single evaluation",
+        "slice": "blind",
+        "gold_status": "UNRESOLVED",
+        "predicted_status": "NONE",
+        "why": "the detector recorded nothing where the gold expects UNRESOLVED"
+      }
+    ]
+  },
+  "per_slice": {
+    "blind": {
+      "steps": 36,
+      "scenarios": 27,
+      "status_accuracy": {
+        "num": 29,
+        "den": 36,
+        "value": 0.806
+      },
+      "status_and_target_accuracy": {
+        "num": 29,
+        "den": 36,
+        "value": 0.806
+      },
+      "transition_detection_any_status": {
+        "tp": 22,
+        "fp": 1,
+        "fn": 2,
+        "precision": 0.957,
+        "recall": 0.917
+      },
+      "transition_detection_status_and_target": {
+        "tp": 18,
+        "fp": 5,
+        "fn": 6,
+        "precision": 0.783,
+        "recall": 0.75
+      },
+      "per_status": {
+        "CANDIDATE": {
+          "tp": 11,
+          "fp": 4,
+          "fn": 2,
+          "precision": 0.733,
+          "recall": 0.846
+        },
+        "CONFIRMED": {
+          "tp": 7,
+          "fp": 1,
+          "fn": 3,
+          "precision": 0.875,
+          "recall": 0.7
+        },
+        "REJECTED": {
+          "tp": 0,
+          "fp": 0,
+          "fn": 1,
+          "precision": null,
+          "recall": 0
+        },
+        "UNRESOLVED": {
+          "tp": 0,
+          "fp": 0,
+          "fn": 0,
+          "precision": null,
+          "recall": null
+        }
+      },
+      "confusion_gold_to_predicted": {
+        "CANDIDATE": {
+          "CANDIDATE": 11,
+          "NONE": 2
+        },
+        "CONFIRMED": {
+          "CANDIDATE": 3,
+          "CONFIRMED": 7
+        },
+        "NONE": {
+          "CONFIRMED": 1,
+          "NONE": 11
+        },
+        "REJECTED": {
+          "CANDIDATE": 1
+        }
+      },
+      "premature_promotion": {
+        "num": 1,
+        "den": 8,
+        "value": 0.125
+      },
+      "uncertainty_marking": {
+        "num": 11,
+        "den": 13,
+        "value": 0.846
+      },
+      "relationship_state_accuracy": {
+        "num": 33,
+        "den": 36,
+        "value": 0.917
+      },
+      "supporting_required_facts": {
+        "tp": 0,
+        "fp": 2,
+        "fn": 0,
+        "precision": 0,
+        "recall": null
+      },
+      "contradicting_facts_preserved": {
+        "tp": 0,
+        "fp": 0,
+        "fn": 0,
+        "precision": null,
+        "recall": null
+      },
+      "stale_closure": {
+        "num": 0,
+        "den": 0,
+        "value": null
+      },
+      "disagreements": [
+        {
+          "scenario": "confirmed_bundle_minus_need",
+          "step": "single evaluation",
+          "slice": "blind",
+          "gold_status": "CANDIDATE",
+          "gold_to_state": "EXPANSION",
+          "predicted_status": "NONE",
+          "why": "the detector recorded nothing where the gold expects CANDIDATE"
+        },
+        {
+          "scenario": "exp_need_91d_outside",
+          "step": "single evaluation",
+          "slice": "blind",
+          "gold_status": "CANDIDATE",
+          "gold_to_state": "EXPANSION",
+          "predicted_status": "NONE",
+          "why": "the detector recorded nothing where the gold expects CANDIDATE"
+        },
+        {
+          "scenario": "lifecycle_demo_unknown_reorg_candidate_confirmed_expansion",
+          "step": "champion moved, motion paused",
+          "slice": "blind",
+          "gold_status": "CONFIRMED",
+          "gold_to_state": "REORG",
+          "predicted_status": "CANDIDATE",
+          "predicted_to_state": "REORG",
+          "why": "status differs"
+        },
+        {
+          "scenario": "lifecycle_demo_unknown_reorg_candidate_confirmed_expansion",
+          "step": "routine reply only",
+          "slice": "blind",
+          "gold_status": "NONE",
+          "predicted_status": "CONFIRMED",
+          "predicted_to_state": "REORG",
+          "fact_differences": [
+            "unexpected:org_change_stated",
+            "unexpected:owner_responsibility_changed"
+          ],
+          "why": "the detector recorded CONFIRMED where the gold expects nothing"
+        },
+        {
+          "scenario": "lifecycle_expansion_candidate_rejected_new_owner_moves",
+          "step": "new owner moves away",
+          "slice": "blind",
+          "gold_status": "REJECTED",
+          "gold_to_state": "EXPANSION",
+          "predicted_status": "CANDIDATE",
+          "predicted_to_state": "EXPANSION",
+          "why": "status differs"
+        },
+        {
+          "scenario": "reorg_confirmed_champion_role_change_stated",
+          "step": "single evaluation",
+          "slice": "blind",
+          "gold_status": "CONFIRMED",
+          "gold_to_state": "REORG",
+          "predicted_status": "CANDIDATE",
+          "predicted_to_state": "REORG",
+          "why": "status differs"
+        },
+        {
+          "scenario": "reorg_window_29d_inside",
+          "step": "single evaluation",
+          "slice": "blind",
+          "gold_status": "CONFIRMED",
+          "gold_to_state": "REORG",
+          "predicted_status": "CANDIDATE",
+          "predicted_to_state": "REORG",
+          "why": "status differs"
+        }
+      ]
+    },
+    "boundary": {
+      "steps": 9,
+      "scenarios": 9,
+      "status_accuracy": {
+        "num": 9,
+        "den": 9,
+        "value": 1
+      },
+      "status_and_target_accuracy": {
+        "num": 9,
+        "den": 9,
+        "value": 1
+      },
+      "transition_detection_any_status": {
+        "tp": 4,
+        "fp": 0,
+        "fn": 0,
+        "precision": 1,
+        "recall": 1
+      },
+      "transition_detection_status_and_target": {
+        "tp": 4,
+        "fp": 0,
+        "fn": 0,
+        "precision": 1,
+        "recall": 1
+      },
+      "per_status": {
+        "CANDIDATE": {
+          "tp": 3,
+          "fp": 0,
+          "fn": 0,
+          "precision": 1,
+          "recall": 1
+        },
+        "CONFIRMED": {
+          "tp": 1,
+          "fp": 0,
+          "fn": 0,
+          "precision": 1,
+          "recall": 1
+        },
+        "REJECTED": {
+          "tp": 0,
+          "fp": 0,
+          "fn": 0,
+          "precision": null,
+          "recall": null
+        },
+        "UNRESOLVED": {
+          "tp": 0,
+          "fp": 0,
+          "fn": 0,
+          "precision": null,
+          "recall": null
+        }
+      },
+      "confusion_gold_to_predicted": {
+        "CANDIDATE": {
+          "CANDIDATE": 3
+        },
+        "CONFIRMED": {
+          "CONFIRMED": 1
+        },
+        "NONE": {
+          "NONE": 5
+        }
+      },
+      "premature_promotion": {
+        "num": 0,
+        "den": 1,
+        "value": 0
+      },
+      "uncertainty_marking": {
+        "num": 3,
+        "den": 3,
+        "value": 1
+      },
+      "relationship_state_accuracy": {
+        "num": 9,
+        "den": 9,
+        "value": 1
+      },
+      "supporting_required_facts": {
+        "tp": 16,
+        "fp": 0,
+        "fn": 0,
+        "precision": 1,
+        "recall": 1
+      },
+      "contradicting_facts_preserved": {
+        "tp": 0,
+        "fp": 0,
+        "fn": 0,
+        "precision": null,
+        "recall": null
+      },
+      "stale_closure": {
+        "num": 0,
+        "den": 0,
+        "value": null
+      },
+      "disagreements": []
+    },
+    "contested": {
+      "steps": 0,
+      "scenarios": 0,
+      "status_accuracy": {
+        "num": 0,
+        "den": 0,
+        "value": null
+      },
+      "status_and_target_accuracy": {
+        "num": 0,
+        "den": 0,
+        "value": null
+      },
+      "transition_detection_any_status": {
+        "tp": 0,
+        "fp": 0,
+        "fn": 0,
+        "precision": null,
+        "recall": null
+      },
+      "transition_detection_status_and_target": {
+        "tp": 0,
+        "fp": 0,
+        "fn": 0,
+        "precision": null,
+        "recall": null
+      },
+      "per_status": {
+        "CANDIDATE": {
+          "tp": 0,
+          "fp": 0,
+          "fn": 0,
+          "precision": null,
+          "recall": null
+        },
+        "CONFIRMED": {
+          "tp": 0,
+          "fp": 0,
+          "fn": 0,
+          "precision": null,
+          "recall": null
+        },
+        "REJECTED": {
+          "tp": 0,
+          "fp": 0,
+          "fn": 0,
+          "precision": null,
+          "recall": null
+        },
+        "UNRESOLVED": {
+          "tp": 0,
+          "fp": 0,
+          "fn": 0,
+          "precision": null,
+          "recall": null
+        }
+      },
+      "confusion_gold_to_predicted": {},
+      "premature_promotion": {
+        "num": 0,
+        "den": 0,
+        "value": null
+      },
+      "uncertainty_marking": {
+        "num": 0,
+        "den": 0,
+        "value": null
+      },
+      "relationship_state_accuracy": {
+        "num": 0,
+        "den": 0,
+        "value": null
+      },
+      "supporting_required_facts": {
+        "tp": 0,
+        "fp": 0,
+        "fn": 0,
+        "precision": null,
+        "recall": null
+      },
+      "contradicting_facts_preserved": {
+        "tp": 0,
+        "fp": 0,
+        "fn": 0,
+        "precision": null,
+        "recall": null
+      },
+      "stale_closure": {
+        "num": 0,
+        "den": 0,
+        "value": null
+      },
+      "disagreements": []
+    },
+    "contradiction": {
+      "steps": 5,
+      "scenarios": 4,
+      "status_accuracy": {
+        "num": 5,
+        "den": 5,
+        "value": 1
+      },
+      "status_and_target_accuracy": {
+        "num": 5,
+        "den": 5,
+        "value": 1
+      },
+      "transition_detection_any_status": {
+        "tp": 4,
+        "fp": 0,
+        "fn": 0,
+        "precision": 1,
+        "recall": 1
+      },
+      "transition_detection_status_and_target": {
+        "tp": 4,
+        "fp": 0,
+        "fn": 0,
+        "precision": 1,
+        "recall": 1
+      },
+      "per_status": {
+        "CANDIDATE": {
+          "tp": 2,
+          "fp": 0,
+          "fn": 0,
+          "precision": 1,
+          "recall": 1
+        },
+        "CONFIRMED": {
+          "tp": 1,
+          "fp": 0,
+          "fn": 0,
+          "precision": 1,
+          "recall": 1
+        },
+        "REJECTED": {
+          "tp": 1,
+          "fp": 0,
+          "fn": 0,
+          "precision": 1,
+          "recall": 1
+        },
+        "UNRESOLVED": {
+          "tp": 0,
+          "fp": 0,
+          "fn": 0,
+          "precision": null,
+          "recall": null
+        }
+      },
+      "confusion_gold_to_predicted": {
+        "CANDIDATE": {
+          "CANDIDATE": 2
+        },
+        "CONFIRMED": {
+          "CONFIRMED": 1
+        },
+        "NONE": {
+          "NONE": 1
+        },
+        "REJECTED": {
+          "REJECTED": 1
+        }
+      },
+      "premature_promotion": {
+        "num": 0,
+        "den": 1,
+        "value": 0
+      },
+      "uncertainty_marking": {
+        "num": 2,
+        "den": 2,
+        "value": 1
+      },
+      "relationship_state_accuracy": {
+        "num": 5,
+        "den": 5,
+        "value": 1
+      },
+      "supporting_required_facts": {
+        "tp": 15,
+        "fp": 0,
+        "fn": 0,
+        "precision": 1,
+        "recall": 1
+      },
+      "contradicting_facts_preserved": {
+        "tp": 3,
+        "fp": 0,
+        "fn": 0,
+        "precision": 1,
+        "recall": 1
+      },
+      "stale_closure": {
+        "num": 0,
+        "den": 0,
+        "value": null
+      },
+      "disagreements": []
+    },
+    "lifecycle": {
+      "steps": 14,
+      "scenarios": 5,
+      "status_accuracy": {
+        "num": 14,
+        "den": 14,
+        "value": 1
+      },
+      "status_and_target_accuracy": {
+        "num": 14,
+        "den": 14,
+        "value": 1
+      },
+      "transition_detection_any_status": {
+        "tp": 14,
+        "fp": 0,
+        "fn": 0,
+        "precision": 1,
+        "recall": 1
+      },
+      "transition_detection_status_and_target": {
+        "tp": 14,
+        "fp": 0,
+        "fn": 0,
+        "precision": 1,
+        "recall": 1
+      },
+      "per_status": {
+        "CANDIDATE": {
+          "tp": 7,
+          "fp": 0,
+          "fn": 0,
+          "precision": 1,
+          "recall": 1
+        },
+        "CONFIRMED": {
+          "tp": 1,
+          "fp": 0,
+          "fn": 0,
+          "precision": 1,
+          "recall": 1
+        },
+        "REJECTED": {
+          "tp": 1,
+          "fp": 0,
+          "fn": 0,
+          "precision": 1,
+          "recall": 1
+        },
+        "UNRESOLVED": {
+          "tp": 5,
+          "fp": 0,
+          "fn": 0,
+          "precision": 1,
+          "recall": 1
+        }
+      },
+      "confusion_gold_to_predicted": {
+        "CANDIDATE": {
+          "CANDIDATE": 7
+        },
+        "CONFIRMED": {
+          "CONFIRMED": 1
+        },
+        "REJECTED": {
+          "REJECTED": 1
+        },
+        "UNRESOLVED": {
+          "UNRESOLVED": 5
+        }
+      },
+      "premature_promotion": {
+        "num": 0,
+        "den": 1,
+        "value": 0
+      },
+      "uncertainty_marking": {
+        "num": 12,
+        "den": 12,
+        "value": 1
+      },
+      "relationship_state_accuracy": {
+        "num": 14,
+        "den": 14,
+        "value": 1
+      },
+      "supporting_required_facts": {
+        "tp": 23,
+        "fp": 0,
+        "fn": 0,
+        "precision": 1,
+        "recall": 1
+      },
+      "contradicting_facts_preserved": {
+        "tp": 2,
+        "fp": 0,
+        "fn": 0,
+        "precision": 1,
+        "recall": 1
+      },
+      "stale_closure": {
+        "num": 1,
+        "den": 1,
+        "value": 1
+      },
+      "disagreements": []
+    },
+    "pitch_bundle": {
+      "steps": 10,
+      "scenarios": 10,
+      "status_accuracy": {
+        "num": 10,
+        "den": 10,
+        "value": 1
+      },
+      "status_and_target_accuracy": {
+        "num": 10,
+        "den": 10,
+        "value": 1
+      },
+      "transition_detection_any_status": {
+        "tp": 8,
+        "fp": 0,
+        "fn": 0,
+        "precision": 1,
+        "recall": 1
+      },
+      "transition_detection_status_and_target": {
+        "tp": 8,
+        "fp": 0,
+        "fn": 0,
+        "precision": 1,
+        "recall": 1
+      },
+      "per_status": {
+        "CANDIDATE": {
+          "tp": 6,
+          "fp": 0,
+          "fn": 0,
+          "precision": 1,
+          "recall": 1
+        },
+        "CONFIRMED": {
+          "tp": 2,
+          "fp": 0,
+          "fn": 0,
+          "precision": 1,
+          "recall": 1
+        },
+        "REJECTED": {
+          "tp": 0,
+          "fp": 0,
+          "fn": 0,
+          "precision": null,
+          "recall": null
+        },
+        "UNRESOLVED": {
+          "tp": 0,
+          "fp": 0,
+          "fn": 0,
+          "precision": null,
+          "recall": null
+        }
+      },
+      "confusion_gold_to_predicted": {
+        "CANDIDATE": {
+          "CANDIDATE": 6
+        },
+        "CONFIRMED": {
+          "CONFIRMED": 2
+        },
+        "NONE": {
+          "NONE": 2
+        }
+      },
+      "premature_promotion": {
+        "num": 0,
+        "den": 2,
+        "value": 0
+      },
+      "uncertainty_marking": {
+        "num": 6,
+        "den": 6,
+        "value": 1
+      },
+      "relationship_state_accuracy": {
+        "num": 10,
+        "den": 10,
+        "value": 1
+      },
+      "supporting_required_facts": {
+        "tp": 34,
+        "fp": 0,
+        "fn": 0,
+        "precision": 1,
+        "recall": 1
+      },
+      "contradicting_facts_preserved": {
+        "tp": 0,
+        "fp": 0,
+        "fn": 0,
+        "precision": null,
+        "recall": null
+      },
+      "stale_closure": {
+        "num": 0,
+        "den": 0,
+        "value": null
+      },
+      "disagreements": []
+    },
+    "probe": {
+      "steps": 12,
+      "scenarios": 12,
+      "status_accuracy": {
+        "num": 12,
+        "den": 12,
+        "value": 1
+      },
+      "status_and_target_accuracy": {
+        "num": 12,
+        "den": 12,
+        "value": 1
+      },
+      "transition_detection_any_status": {
+        "tp": 1,
+        "fp": 0,
+        "fn": 0,
+        "precision": 1,
+        "recall": 1
+      },
+      "transition_detection_status_and_target": {
+        "tp": 1,
+        "fp": 0,
+        "fn": 0,
+        "precision": 1,
+        "recall": 1
+      },
+      "per_status": {
+        "CANDIDATE": {
+          "tp": 1,
+          "fp": 0,
+          "fn": 0,
+          "precision": 1,
+          "recall": 1
+        },
+        "CONFIRMED": {
+          "tp": 0,
+          "fp": 0,
+          "fn": 0,
+          "precision": null,
+          "recall": null
+        },
+        "REJECTED": {
+          "tp": 0,
+          "fp": 0,
+          "fn": 0,
+          "precision": null,
+          "recall": null
+        },
+        "UNRESOLVED": {
+          "tp": 0,
+          "fp": 0,
+          "fn": 0,
+          "precision": null,
+          "recall": null
+        }
+      },
+      "confusion_gold_to_predicted": {
+        "CANDIDATE": {
+          "CANDIDATE": 1
+        },
+        "NONE": {
+          "NONE": 11
+        }
+      },
+      "premature_promotion": {
+        "num": 0,
+        "den": 0,
+        "value": null
+      },
+      "uncertainty_marking": {
+        "num": 1,
+        "den": 1,
+        "value": 1
+      },
+      "relationship_state_accuracy": {
+        "num": 12,
+        "den": 12,
+        "value": 1
+      },
+      "supporting_required_facts": {
+        "tp": 4,
+        "fp": 0,
+        "fn": 0,
+        "precision": 1,
+        "recall": 1
+      },
+      "contradicting_facts_preserved": {
+        "tp": 0,
+        "fp": 0,
+        "fn": 0,
+        "precision": null,
+        "recall": null
+      },
+      "stale_closure": {
+        "num": 0,
+        "den": 0,
+        "value": null
+      },
+      "disagreements": []
+    },
+    "reorg_entry": {
+      "steps": 5,
+      "scenarios": 3,
+      "status_accuracy": {
+        "num": 5,
+        "den": 5,
+        "value": 1
+      },
+      "status_and_target_accuracy": {
+        "num": 5,
+        "den": 5,
+        "value": 1
+      },
+      "transition_detection_any_status": {
+        "tp": 5,
+        "fp": 0,
+        "fn": 0,
+        "precision": 1,
+        "recall": 1
+      },
+      "transition_detection_status_and_target": {
+        "tp": 5,
+        "fp": 0,
+        "fn": 0,
+        "precision": 1,
+        "recall": 1
+      },
+      "per_status": {
+        "CANDIDATE": {
+          "tp": 3,
+          "fp": 0,
+          "fn": 0,
+          "precision": 1,
+          "recall": 1
+        },
+        "CONFIRMED": {
+          "tp": 2,
+          "fp": 0,
+          "fn": 0,
+          "precision": 1,
+          "recall": 1
+        },
+        "REJECTED": {
+          "tp": 0,
+          "fp": 0,
+          "fn": 0,
+          "precision": null,
+          "recall": null
+        },
+        "UNRESOLVED": {
+          "tp": 0,
+          "fp": 0,
+          "fn": 0,
+          "precision": null,
+          "recall": null
+        }
+      },
+      "confusion_gold_to_predicted": {
+        "CANDIDATE": {
+          "CANDIDATE": 3
+        },
+        "CONFIRMED": {
+          "CONFIRMED": 2
+        }
+      },
+      "premature_promotion": {
+        "num": 0,
+        "den": 2,
+        "value": 0
+      },
+      "uncertainty_marking": {
+        "num": 3,
+        "den": 3,
+        "value": 1
+      },
+      "relationship_state_accuracy": {
+        "num": 5,
+        "den": 5,
+        "value": 1
+      },
+      "supporting_required_facts": {
+        "tp": 9,
+        "fp": 0,
+        "fn": 0,
+        "precision": 1,
+        "recall": 1
+      },
+      "contradicting_facts_preserved": {
+        "tp": 0,
+        "fp": 0,
+        "fn": 0,
+        "precision": null,
+        "recall": null
+      },
+      "stale_closure": {
+        "num": 0,
+        "den": 0,
+        "value": null
+      },
+      "disagreements": []
+    }
+  },
+  "state_transition_support_check": {
+    "supported_records_passed": {
+      "num": 54,
+      "den": 54,
+      "value": 1
+    },
+    "unsupported_records_caught": {
+      "num": 207,
+      "den": 207,
+      "value": 1
+    },
+    "caught_by_mutation": {
+      "contradiction_dropped": {
+        "num": 5,
+        "den": 5,
+        "value": 1
+      },
+      "demoted_to_candidate": {
+        "num": 14,
+        "den": 14,
+        "value": 1
+      },
+      "evidence_fabricated": {
+        "num": 54,
+        "den": 54,
+        "value": 1
+      },
+      "fact_not_earned_added": {
+        "num": 45,
+        "den": 45,
+        "value": 1
+      },
+      "promoted_to_confirmed": {
+        "num": 40,
+        "den": 40,
+        "value": 1
+      },
+      "retargeted": {
+        "num": 49,
+        "den": 49,
+        "value": 1
+      }
+    },
+    "false_alarms": [],
+    "missed": []
+  },
+  "command": "go run ./cmd/ghostctl transitions-eval --date 2026-10-03 --out \u003creport.json\u003e  (from core-go)"
+}

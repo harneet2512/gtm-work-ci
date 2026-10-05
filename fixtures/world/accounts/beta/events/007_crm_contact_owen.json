@@ -1,0 +1,25 @@
+{
+  "source_system": "crm",
+  "source_object_id": "contact:907",
+  "source_event_key": "created",
+  "occurred_at": "2026-08-20T11:30:00Z",
+  "connector": "salesforce",
+  "connector_version": "0.1.0",
+  "payload": {
+    "kind": "crm_change",
+    "object_type": "Contact",
+    "record_id": "contact:907",
+    "account_record_id": "account:BE-7",
+    "changed_at": "2026-08-20T11:30:00Z",
+    "changed_by": "dana@vendor.example",
+    "created": true,
+    "fields": {
+      "FirstName": {"new": "Owen"},
+      "LastName": {"new": "Clarke"},
+      "Email": {"new": "owen.clarke@beta.io"},
+      "Title": {"new": "Chief Financial Officer"},
+      "AccountId": {"new": "account:BE-7"},
+      "Role__c": {"new": "Economic buyer"}
+    }
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "source_system": "slack",
+  "source_object_id": "#deal-northstar:1789988400.000100",
+  "source_event_key": "posted",
+  "occurred_at": "2026-09-21T11:00:00Z",
+  "connector": "slack",
+  "connector_version": "0.1.0",
+  "payload": {
+    "kind": "slack_message",
+    "channel": "#deal-northstar",
+    "ts": "1789988400.000100",
+    "thread_ts": null,
+    "user": "U02RACHEL",
+    "user_email": "rachel@vendor.example",
+    "text": "Decision: for Northstar, Leo is the technical owner for Sam's security review, and we offer our standard BAA without redlines.",
+    "is_decision": true
+  }
+}

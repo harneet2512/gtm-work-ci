@@ -1,0 +1,22 @@
+{
+  "source_system": "email",
+  "source_object_id": "<BETA-rm-2026-09-24@beta.io>",
+  "source_event_key": "received",
+  "occurred_at": "2026-09-24T11:05:00Z",
+  "connector": "gmail",
+  "connector_version": "0.1.0",
+  "payload": {
+    "kind": "email",
+    "direction": "inbound",
+    "message_id": "<BETA-rm-2026-09-24@beta.io>",
+    "thread_id": "thr-beta-support-rollout",
+    "in_reply_to": "<ghost-dana-2026-09-17@vendor.example>",
+    "from": {"email": "ravi.menon@beta.io", "name": "Ravi Menon"},
+    "to": [{"email": "dana@vendor.example", "name": "Dana Kim"}],
+    "cc": [{"email": "hannah.lee@beta.io", "name": "Hannah Lee"}],
+    "date": "2026-09-24T11:05:00Z",
+    "subject": "Re: Relay for the Beta support org",
+    "body_text": "Hi Dana - thanks. Before we go further I need to confirm where EU ticket data is stored and processed, and whether it ever leaves the EU. Could you send your data residency documentation and your sub-processor list? I'm not ready to schedule a review session until I've read them. Hannah is still driving the rollout on our side.\nRavi",
+    "crm_opportunity_ref": "opp:BE-7-EXP"
+  }
+}

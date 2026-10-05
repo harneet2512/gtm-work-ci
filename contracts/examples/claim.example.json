@@ -1,0 +1,18 @@
+{
+  "id": "0c1a0000-0000-4000-8000-000000000201",
+  "account_id": "0a0c0000-0000-4000-8000-000000000001",
+  "opportunity_id": "0c0f0000-0000-4000-8000-000000000004",
+  "subject_person_id": null,
+  "field_path": "blockers",
+  "value": "Security review: SOC2 Type II report and pen-test summary required",
+  "standing": "first_party_ai",
+  "confidence": 0.92,
+  "source_activity_id": "0ac70000-0000-4000-8000-000000000101",
+  "speaker_person_id": "0b0e0000-0000-4000-8000-000000000018",
+  "evidence_quote": "Before we can sign off on the EU rollout we'll need your SOC2 Type II report and the pen-test summary.",
+  "occurred_at": "2026-09-29T15:42:00Z",
+  "extractor": "llm:deepseek-v4-flash@extract-v1",
+  "status": "active",
+  "superseded_by": null,
+  "expires_at": "2026-11-28T15:42:00Z"
+}

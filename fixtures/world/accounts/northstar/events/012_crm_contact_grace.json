@@ -1,0 +1,25 @@
+{
+  "source_system": "crm",
+  "source_object_id": "contact:1211",
+  "source_event_key": "created",
+  "occurred_at": "2026-08-28T09:00:00Z",
+  "connector": "salesforce",
+  "connector_version": "0.1.0",
+  "payload": {
+    "kind": "crm_change",
+    "object_type": "Contact",
+    "record_id": "contact:1211",
+    "account_record_id": "account:NS-2",
+    "changed_at": "2026-08-28T09:00:00Z",
+    "changed_by": "dana@vendor.example",
+    "created": true,
+    "fields": {
+      "FirstName": {"new": "Grace"},
+      "LastName": {"new": "Liu"},
+      "Email": {"new": "grace.liu@northstar.health"},
+      "Title": {"new": "VP Finance"},
+      "AccountId": {"new": "account:NS-2"},
+      "Role__c": {"new": "Economic buyer"}
+    }
+  }
+}

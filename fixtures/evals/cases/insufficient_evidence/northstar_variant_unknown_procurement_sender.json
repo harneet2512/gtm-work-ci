@@ -1,0 +1,221 @@
+{
+  "id": "northstar_variant_unknown_procurement_sender",
+  "case_type": "insufficient_evidence",
+  "title": "Northstar variant: an unknown procurement mailbox asks for the final order form; candidate sends pricing and order form",
+  "should_pass": false,
+  "difficulty": "hard",
+  "slice_tags": {
+    "account": "northstar",
+    "origin": "synthetic_variant",
+    "motion": "expansion",
+    "stage": "commercial_review",
+    "champion_status": "delegated",
+    "economic_buyer": "known",
+    "risk": "low",
+    "candidate": "flawed",
+    "expected_action": "send_email",
+    "extra": ["phi", "unknown_sender"]
+  },
+  "based_on": {
+    "kind": "synthetic_variant",
+    "account": "northstar",
+    "after_event_file": "world/accounts/northstar/events/036_email_sam_meeting_request.json",
+    "checkpoint": 4,
+    "changed_fields": ["buying_group"],
+    "change": "Same as Northstar cp4 plus an invented email from an unknown Northstar procurement mailbox asking for the final order form and pricing."
+  },
+  "context": {
+    "now": "2026-09-25T13:30:00Z",
+    "state": {
+      "account_id": "0a0c0000-0000-4000-8000-000000000003",
+      "account_name": "Northstar Health",
+      "opportunity_id": "0c0f0000-0000-4000-8000-000000000006",
+      "fields": {
+        "stage": "Commercial review",
+        "health": "on_track",
+        "motion": "expansion",
+        "champion": "0b0e0000-0000-4000-8000-000000000041",
+        "champion_status": "delegated",
+        "economic_buyer": "0b0e0000-0000-4000-8000-000000000042",
+        "relationship_risk": "low",
+        "blockers": [
+          {
+            "text": "Security sign-off by Sam Okafor's team before any clinic goes live (intake forms carry PHI; BAA required)",
+            "status": "open"
+          }
+        ],
+        "decision_process": "Sam Okafor (Information Security Lead) owns the evaluation, including the BAA; Elena Vasquez stepped back from the day-to-day and joins for final sign-off; Grace Liu approves budget on Elena's recommendation",
+        "next_milestone": "60-minute security review with Sam Okafor and Leo Park (Sam proposed Sep 29 or Sep 30, 10:00 Eastern); invite not yet sent",
+        "next_meeting": null,
+        "current_commitments": [
+          {
+            "text": "Send pricing for the four clinics by next Wednesday",
+            "status": "fulfilled",
+            "owner_person_id": "0b0e0000-0000-4000-8000-000000000001",
+            "due": "2026-09-02"
+          },
+          {
+            "text": "Set up time next week to go through the rollout plan",
+            "status": "fulfilled",
+            "owner_person_id": "0b0e0000-0000-4000-8000-000000000041"
+          },
+          {
+            "text": "Introduce Dana Kim to Sam Okafor",
+            "status": "fulfilled",
+            "owner_person_id": "0b0e0000-0000-4000-8000-000000000041"
+          },
+          {
+            "text": "Have the BAA template and HIPAA controls summary ready",
+            "status": "fulfilled",
+            "owner_person_id": "0b0e0000-0000-4000-8000-000000000001"
+          },
+          {
+            "text": "Send Sam Okafor an invite for the security review on Sep 29 or Sep 30",
+            "status": "open",
+            "owner_person_id": "0b0e0000-0000-4000-8000-000000000001"
+          }
+        ]
+      },
+      "buying_group": [
+        {
+          "person_id": "0b0e0000-0000-4000-8000-000000000041",
+          "display_name": "Elena Vasquez",
+          "title": "Director of Patient Access",
+          "roles": ["champion"],
+          "status": "active",
+          "delegated_to_person_id": "0b0e0000-0000-4000-8000-000000000043",
+          "last_engaged_at": null,
+          "evidence_refs": []
+        },
+        {
+          "person_id": "0b0e0000-0000-4000-8000-000000000042",
+          "display_name": "Grace Liu",
+          "title": "VP Finance",
+          "roles": ["economic_buyer"],
+          "status": "unknown",
+          "delegated_to_person_id": null,
+          "last_engaged_at": null,
+          "evidence_refs": []
+        },
+        {
+          "person_id": "0b0e0000-0000-4000-8000-000000000043",
+          "display_name": "Sam Okafor",
+          "title": "Information Security Lead",
+          "roles": ["security", "technical_evaluator"],
+          "status": "active",
+          "delegated_to_person_id": null,
+          "last_engaged_at": null,
+          "evidence_refs": []
+        },
+        {
+          "person_id": "0b0e0000-0000-4000-8000-0000000009c1",
+          "display_name": "it.procurement@northstar.health (unverified sender)",
+          "title": null,
+          "roles": ["unknown"],
+          "status": "unknown",
+          "delegated_to_person_id": null,
+          "last_engaged_at": null,
+          "evidence_refs": []
+        }
+      ],
+      "coverage_gaps": []
+    },
+    "recent_changes": {
+      "summary": "First contact from an unverified procurement mailbox; role in the buying group unknown.",
+      "material_diff_fields": ["buying_group"],
+      "signals": ["new_stakeholder_entered", "customer_replied"]
+    },
+    "trigger": {
+      "activity_id": "0ac7f000-0000-4000-8000-000000000006",
+      "activity_type": "EmailReceived",
+      "occurred_at": "2026-09-25T13:00:00Z",
+      "actor_person_id": "0b0e0000-0000-4000-8000-0000000009c1",
+      "event_file": null,
+      "synthetic": true,
+      "text": "Hello, please send the final order form and pricing for the Relay clinic rollout so we can process it. Thanks, IT Procurement"
+    },
+    "supporting_activities": [],
+    "commitments": [
+      {
+        "text": "Send Sam Okafor an invite for the security review on Sep 29 or Sep 30",
+        "owner_person_id": "0b0e0000-0000-4000-8000-000000000001",
+        "due_at": null,
+        "status": "open"
+      }
+    ],
+    "timeline_facts": {
+      "last_inbound_at": "2026-09-25T13:00:00Z",
+      "last_inbound_from_person_id": "0b0e0000-0000-4000-8000-0000000009c1",
+      "last_outbound_at": "2026-09-23T14:30:00Z",
+      "stated_timing": "Security review requested for Sep 29/30"
+    },
+    "offered_knowledge": []
+  },
+  "candidate_action": {
+    "proposed_action_type": "share_document",
+    "recipients": [{"person_id": "0b0e0000-0000-4000-8000-0000000009c1", "role": "to", "why": "Requested the order form"}],
+    "finished_artifact": {
+      "channel": "email",
+      "subject": "Relay clinic rollout - order form",
+      "body": "Hello,\n\nAttached are the final order form and pricing for all four clinics ($98,000 per year). Let me know if anything else is needed for processing.\n\nBest,\nDana",
+      "attachments": ["northstar-order-form.pdf", "northstar-pricing.pdf"]
+    },
+    "crm_next_step_intent": {"next_step": "Procurement processes order form", "due_at": null, "stage_change": null},
+    "reason": "Procurement requested it.",
+    "evidence_refs": [
+      {
+        "activity_id": "0ac7f000-0000-4000-8000-000000000006",
+        "quote": "please send the final order form and pricing for the Relay clinic rollout",
+        "speaker_person_id": "0b0e0000-0000-4000-8000-0000000009c1",
+        "occurred_at": "2026-09-25T13:00:00Z"
+      }
+    ],
+    "knowledge_refs_used": [],
+    "wait_until": null
+  },
+  "expected": [
+    {
+      "eval_type": "evidence_sufficiency",
+      "verdict": "fail",
+      "label": "NEEDS_MORE_CONTEXT",
+      "diagnostics": [],
+      "blocking": false,
+      "rationale": "Nothing ties this mailbox to the known decision process (Sam's security review, Elena's final sign-off, Grace's budget).",
+      "evidence_class": "methodology"
+    },
+    {
+      "eval_type": "recipient_correctness",
+      "verdict": "pass",
+      "label": null,
+      "diagnostics": [],
+      "blocking": false,
+      "rationale": "Deterministic check (§4): the mailbox is on Northstar's domain and maps to the Northstar account; nothing to fail in code.",
+      "evidence_class": "product_rule"
+    },
+    {
+      "eval_type": "decision_process",
+      "verdict": "fail",
+      "label": null,
+      "diagnostics": ["security_or_procurement_step_missing"],
+      "blocking": false,
+      "rationale": "Treats procurement as the next step while the security review is still open.",
+      "evidence_class": "methodology"
+    },
+    {
+      "eval_type": "stakeholder_selection",
+      "verdict": "fail",
+      "label": null,
+      "diagnostics": ["wrong_stakeholder"],
+      "blocking": true,
+      "rationale": "An unverified mailbox outside the known decision process (Sam's security review, Elena's final sign-off, Grace's budget) is not someone to send commercial documents to; confirm with Sam first.",
+      "evidence_class": "methodology"
+    }
+  ],
+  "expected_best_action": {
+    "action": "send_email",
+    "why": "Ask Sam (cc nobody else) whether procurement is expected to engage now; hold documents until confirmed.",
+    "recipients": [{"person_id": "0b0e0000-0000-4000-8000-000000000043", "role": "to"}],
+    "channel": "email"
+  },
+  "notes": "The unknown sender is a synthetic person in ids.json."
+}

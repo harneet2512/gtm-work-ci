@@ -1,0 +1,87 @@
+{
+ "S5eea": {
+  "knowledge_applicability": [
+   "pass",
+   "APPLIES",
+   false
+  ],
+  "commitment_consistency": [
+   "pass",
+   null,
+   false
+  ],
+  "next_action_quality": [
+   "pass",
+   "GOOD",
+   false
+  ]
+ },
+ "S945d": {
+  "stakeholder_selection": [
+   "pass",
+   null,
+   false
+  ],
+  "champion_continuity": [
+   "pass",
+   "CHAMPION_INCLUDED",
+   false
+  ],
+  "stakeholder_coverage": [
+   "pass",
+   "RIGHT_SIZED",
+   false
+  ]
+ },
+ "S42b1": {
+  "next_step_quality": [
+   "pass",
+   null,
+   false
+  ],
+  "stakeholder_selection": [
+   "fail",
+   null,
+   true
+  ],
+  "stakeholder_coverage": [
+   "fail",
+   "UNDER_THREADED",
+   false
+  ]
+ },
+ "S5ff5": {
+  "next_action_quality": [
+   "fail",
+   "NEEDS_REVISION",
+   false
+  ],
+  "commitment_consistency": [
+   "fail",
+   null,
+   true
+  ],
+  "timing_cadence": [
+   "fail",
+   "LATE_OR_MISSED_WINDOW",
+   true
+  ]
+ },
+ "S3ed4": {
+  "decision_process": [
+   "fail",
+   null,
+   true
+  ],
+  "buyer_readiness": [
+   "fail",
+   "TOO_EARLY",
+   false
+  ],
+  "cta_calibration": [
+   "fail",
+   "TOO_STRONG",
+   true
+  ]
+ }
+}

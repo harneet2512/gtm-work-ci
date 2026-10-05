@@ -1,0 +1,26 @@
+{
+  "source_system": "crm",
+  "source_object_id": "opp:AC-4-EXP",
+  "source_event_key": "field:StageName:Discovery",
+  "occurred_at": "2026-08-18T14:05:00Z",
+  "connector": "salesforce",
+  "connector_version": "0.1.0",
+  "payload": {
+    "kind": "crm_change",
+    "object_type": "Opportunity",
+    "record_id": "opp:AC-4-EXP",
+    "account_record_id": "account:AC-4",
+    "changed_at": "2026-08-18T14:05:00Z",
+    "changed_by": "dana@vendor.example",
+    "created": true,
+    "fields": {
+      "Name": {"new": "Acme - EU rollout expansion"},
+      "Type": {"new": "Expansion"},
+      "StageName": {"new": "Discovery"},
+      "Amount": {"new": 156000},
+      "CloseDate": {"new": "2026-10-30"},
+      "OwnerEmail": {"new": "dana@vendor.example"},
+      "AccountId": {"new": "account:AC-4"}
+    }
+  }
+}

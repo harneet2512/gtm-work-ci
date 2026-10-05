@@ -1,0 +1,24 @@
+{
+  "source_system": "crm",
+  "source_object_id": "contact:903",
+  "source_event_key": "created",
+  "occurred_at": "2026-08-18T15:10:00Z",
+  "connector": "salesforce",
+  "connector_version": "0.1.0",
+  "payload": {
+    "kind": "crm_change",
+    "object_type": "Contact",
+    "record_id": "contact:903",
+    "account_record_id": "account:BE-7",
+    "changed_at": "2026-08-18T15:10:00Z",
+    "changed_by": "dana@vendor.example",
+    "created": true,
+    "fields": {
+      "FirstName": {"new": "Hannah"},
+      "LastName": {"new": "Lee"},
+      "Email": {"new": "hannah.lee@beta.io"},
+      "Title": {"new": "VP Customer Operations"},
+      "AccountId": {"new": "account:BE-7"}
+    }
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "source_system": "crm",
+  "source_object_id": "contact:1219",
+  "source_event_key": "field:Role__c:Evaluation owner",
+  "occurred_at": "2026-09-22T09:00:00Z",
+  "connector": "salesforce",
+  "connector_version": "0.1.0",
+  "payload": {
+    "kind": "crm_change",
+    "object_type": "Contact",
+    "record_id": "contact:1219",
+    "account_record_id": "account:NS-2",
+    "changed_at": "2026-09-22T09:00:00Z",
+    "changed_by": "dana@vendor.example",
+    "created": false,
+    "fields": {"Role__c": {"old": null, "new": "Evaluation owner"}}
+  }
+}
