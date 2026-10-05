@@ -1,0 +1,42 @@
+{
+  "accounts": 3,
+  "deals": 26,
+  "deals_per_account": 8.67,
+  "claims": 78,
+  "open_deals": 19,
+  "account_wide_before": {
+    "owner": {
+      "match": 3,
+      "of": 26,
+      "rate": 0.1154
+    },
+    "stage": {
+      "match": 7,
+      "of": 26,
+      "rate": 0.2692
+    }
+  },
+  "per_deal_after": {
+    "owner": {
+      "match": 26,
+      "of": 26,
+      "rate": 1
+    },
+    "stage": {
+      "match": 26,
+      "of": 26,
+      "rate": 1
+    },
+    "amount": {
+      "match": 26,
+      "of": 26,
+      "rate": 1
+    }
+  },
+  "account_headline_matches_its_primary_deal": {
+    "match": 3,
+    "of": 3,
+    "rate": 1
+  },
+  "accounts_without_open_deal": 0
+}

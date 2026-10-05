@@ -1,0 +1,86 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://ghost.local/contracts/eval_result.v1.json",
+  "title": "EvalResult",
+  "description": "One grader's structured judgment of one draft of an AgentRun (HAR-97 §3). Not one score: verdict + categorical label + diagnostics + the state/evidence/knowledge it relied on.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "id", "agent_run_id", "draft_index", "eval_type", "eval_version", "kind", "verdict",
+    "blocking", "reason", "state_refs", "evidence_refs", "knowledge_refs", "evidence_class", "created_at"
+  ],
+  "properties": {
+    "id": { "$ref": "common.v1.json#/$defs/uuid" },
+    "agent_run_id": { "$ref": "common.v1.json#/$defs/uuid" },
+    "draft_index": { "type": "integer", "minimum": 1 },
+    "eval_type": { "$ref": "#/$defs/evalType" },
+    "eval_version": {
+      "description": "'<eval_type>:v<N>' — every evaluator is versioned (HAR-97 §21).",
+      "type": "string", "pattern": "^[a-z_]+:v[0-9]+$"
+    },
+    "kind": { "type": "string", "enum": ["deterministic", "semantic", "trace", "human_delta"] },
+    "verdict": { "type": "string", "enum": ["pass", "warn", "fail", "abstain"] },
+    "label": {
+      "description": "Categorical result where a category is clearer than pass/fail (e.g. TOO_EARLY, OVER_THREADED_TOO_EARLY, WAIT).",
+      "type": ["string", "null"], "pattern": "^[A-Z][A-Z_]*$"
+    },
+    "diagnostics": { "type": "array", "items": { "$ref": "#/$defs/diagnostic" }, "uniqueItems": true },
+    "score": { "type": ["number", "null"], "description": "Only when a number is genuinely meaningful." },
+    "blocking": { "type": "boolean", "description": "A blocking failure stops the action or forces revision before human review." },
+    "reason": { "type": "string", "minLength": 1, "maxLength": 2000 },
+    "state_refs": {
+      "description": "AccountState fields the judgment relied on.",
+      "type": "array", "items": { "type": "string" }
+    },
+    "activity_refs": { "type": "array", "items": { "$ref": "common.v1.json#/$defs/uuid" } },
+    "evidence_refs": { "type": "array", "items": { "$ref": "common.v1.json#/$defs/evidenceRef" } },
+    "knowledge_refs": { "type": "array", "items": { "$ref": "common.v1.json#/$defs/uuid" } },
+    "suggested_correction": { "type": ["string", "null"], "maxLength": 2000 },
+    "confidence": { "type": ["number", "null"], "minimum": 0, "maximum": 1 },
+    "evidence_class": {
+      "description": "What supports this eval as GTM practice (HAR-97 §15): observed deal data, enterprise-sales methodology, CS operations, or a hard product/policy rule.",
+      "type": "string", "enum": ["deal_data", "methodology", "cs_ops", "product_rule"]
+    },
+    "model": { "type": ["string", "null"] },
+    "created_at": { "$ref": "common.v1.json#/$defs/timestamp" }
+  },
+  "allOf": [
+    {
+      "description": "Deterministic evals never use a model.",
+      "if": { "properties": { "kind": { "const": "deterministic" } } },
+      "then": { "properties": { "model": { "type": "null" } } }
+    },
+    {
+      "description": "Only failures can block.",
+      "if": { "properties": { "blocking": { "const": true } } },
+      "then": { "properties": { "verdict": { "const": "fail" } } }
+    }
+  ],
+  "$defs": {
+    "evalType": {
+      "type": "string",
+      "enum": [
+        "recipient_correctness", "date_commitment_consistency", "pricing_integrity", "crm_writeback",
+        "duplicate_action", "provenance_coverage", "permission_policy", "state_transition_support",
+        "buyer_readiness", "cta_calibration", "next_step_quality", "stakeholder_selection",
+        "stakeholder_coverage", "economic_buyer_coverage", "champion_strength", "champion_continuity",
+        "decision_process", "business_case", "momentum", "action_stage_fit", "expansion_readiness",
+        "customer_risk_sensitivity", "relationship_pressure", "timing_cadence", "next_action_quality",
+        "grounding", "commitment_consistency", "state_change_relevance", "channel_appropriateness",
+        "rep_style", "knowledge_applicability", "exception_awareness", "evidence_sufficiency",
+        "trajectory", "human_delta"
+      ]
+    },
+    "diagnostic": {
+      "type": "string",
+      "enum": [
+        "too_early", "ask_too_strong", "ask_too_weak", "single_threaded", "under_threaded",
+        "over_threaded_too_early", "wrong_stakeholder", "no_economic_buyer_access", "weak_champion",
+        "over_reliant_on_champion", "champion_bypassed", "no_mutual_next_step",
+        "next_step_missing_owner_or_date", "decision_process_unknown", "security_or_procurement_step_missing",
+        "weak_business_case", "no_compelling_event", "engagement_cooling", "expansion_signal_too_weak",
+        "customer_risk_conflicts_with_upsell"
+      ]
+    }
+  }
+}

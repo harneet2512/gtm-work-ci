@@ -1,0 +1,11 @@
+{
+ "cr_d2_books_thursday_and_attaches_the_order_form": {
+  "next_step_quality": ["warn", null, false, "A dated call is booked, but the stated next step (the order form read beforehand) puts a commercial step on a buyer who has only asked to talk.", "Pass 1 pass, pass 2 warn. The catalog description says 'no invented buyer commitment'; the step has a date and an owner, so it does not block."]
+ },
+ "cr_d3_fourth_negotiation_prep_email": {
+  "relationship_pressure": ["fail", null, false, "A fourth preparation email in 16 hours with no news: the repeated nudge the eval is about.", "Pass 1 warn, pass 2 fail; the eval description names repeated nudges without news, so fail (it never blocks)."]
+ },
+ "cr_d7_contract_draft_to_fernando_alone_while_finance_reviews": {
+  "stakeholder_coverage": ["fail", "UNDER_THREADED", true, "Fernando said finance is reviewing the pricing; the draft contract goes to him alone with no step to reach finance.", "Pass 1 fail without block, pass 2 fail with block. Catalog rule text: block when 'a gating role the customer named (e.g. security) is not engaged'. The customer named the finance team as the reviewer of the pricing and the draft does nothing to engage it, so it blocks. Debatable (the draft asks for signature only once his team is comfortable)."]
+ }
+}

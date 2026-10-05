@@ -1,0 +1,335 @@
+{
+ "id": "cr_d9_k104_answers_the_upgrade_question_without_a_deadline",
+ "origin": "crmarena",
+ "case_type": "explicit_exception",
+ "title": "K104 would nudge; the draft answers the upgrade question and leaves the buyer's own feedback date alone",
+ "should_pass": true,
+ "difficulty": "hard",
+ "slice_tags": {
+  "account": "001Wt00000PGtdJIAT",
+  "origin": "crmarena",
+  "motion": "unknown",
+  "stage": "unknown",
+  "champion_status": "active",
+  "economic_buyer": "unknown",
+  "risk": "unknown",
+  "candidate": "good",
+  "expected_action": "send_email",
+  "extra": [
+   "customer_stated_date",
+   "exception_honoured",
+   "inbound_email",
+   "open_question"
+  ]
+ },
+ "based_on": {
+  "kind": "crmarena_moment",
+  "account_id": "001Wt00000PGtdJIAT",
+  "deal_id": "006Wt000007BAT4IAO",
+  "trigger_kind": "inbound_email",
+  "decision_at": "2023-11-10T15:00:00Z",
+  "cutoff": "2023-11-01",
+  "deal_group": "current",
+  "events_before_decision": 8
+ },
+ "source": {
+  "dataset": "CRMArena-Pro B2B Salesforce org (Salesforce AI Research)",
+  "licence": "CC BY-NC 4.0 (non-commercial use only)",
+  "attribution": "Salesforce AI Research, CRMArena-Pro (https://github.com/SalesforceAIResearch/CRMArena, LICENSE.txt); records selected and excerpted, nothing edited",
+  "snapshot_manifest_sha256": "8fbda45c15d1806dc4c37d5230a20ac24d6619ef36a88c0efddb344792c89f03",
+  "generator": "bench/evals/crmarena_gold v1"
+ },
+ "context": {
+  "now": "2023-11-10T15:00:00Z",
+  "state": {
+   "account_id": "893cf5af-6101-5134-9dd9-a6c825f10bbe",
+   "account_name": "Quantum Innovations Inc.",
+   "opportunity_id": "8c9baeb6-d704-5f4b-bbf4-e9ad8c11323a",
+   "fields": {
+    "stage": "unknown",
+    "health": "unknown",
+    "motion": "unknown",
+    "champion": "6ba4df00-f940-54e4-87c3-d93c98010573",
+    "champion_status": "active",
+    "economic_buyer": "unknown",
+    "relationship_risk": "unknown",
+    "decision_process": "Isabelle said they will revert by early next week and, in a later email, by the end of the week; she is reviewing the terms with her team",
+    "objections": [
+     {
+      "text": "Asks whether further future upgrades are possible",
+      "status": "open"
+     }
+    ],
+    "current_commitments": [
+     {
+      "text": "Customer: feedback on the revised terms by early next week / the end of the week",
+      "status": "open"
+     },
+     {
+      "text": "Us: answer whether further future upgrades are possible (asked 2023-11-10 14:00)",
+      "status": "open"
+     }
+    ],
+    "next_milestone": "Customer's feedback on the revised terms (sent 2023-11-10)"
+   },
+   "buying_group": [
+    {
+     "person_id": "6ba4df00-f940-54e4-87c3-d93c98010573",
+     "display_name": "Isabelle Leclerc",
+     "title": "Director of Marketing (champion role inferred, not recorded)",
+     "roles": [
+      "champion"
+     ],
+     "status": "active",
+     "delegated_to_person_id": null,
+     "last_engaged_at": "2023-11-10T15:00:00Z",
+     "evidence_refs": [
+      {
+       "activity_id": "2df6793f-b2cf-5d25-9d90-6b98a2e50a8b",
+       "occurred_at": "2023-11-10T15:00:00Z"
+      }
+     ]
+    }
+   ],
+   "coverage_gaps": [
+    "economic_buyer"
+   ]
+  },
+  "recent_changes": {
+   "summary": "Isabelle wrote three times after the revised terms: feedback by early next week / the end of the week, and a question on further future upgrades.",
+   "material_diff_fields": [
+    "decision_process",
+    "objections",
+    "current_commitments"
+   ],
+   "signals": [
+    "customer_replied",
+    "expansion_interest"
+   ]
+  },
+  "trigger": {
+   "activity_id": "2df6793f-b2cf-5d25-9d90-6b98a2e50a8b",
+   "activity_type": "EmailReceived",
+   "occurred_at": "2023-11-10T15:00:00Z",
+   "actor_person_id": "6ba4df00-f940-54e4-87c3-d93c98010573",
+   "event_file": "crmarena:EmailMessage:02sWt000001zqh6IAA",
+   "synthetic": false,
+   "text": "Hi Terek,\n\nThank you for the detailed follow-up email, and for understanding Quantum Innovations Inc.'s unique workflow needs.\n\nI appreciate the flexibility TechPulse Solutions offers, especially in terms of pricing and customization options. Your team's willingness to look into more diversified feature offerings to cater to our niche needs is promising.\n\nThe insights you shared about the AI capabilities, particularly with the SecureFlow Suite, portray a significant stride towards enhancing our EDA processes. It's exciting to consider how such innovations fit within our broader growth strategy.\n\nWe will review the terms discussed and aim to have feedback by the end of the week. Let's keep the communication lines open. I look forward to our continued discussions.\n\nBest regards,\n\nIsabelle Leclerc\nQuantum Innovations Inc.",
+   "subject": "Negotiation of terms and finalizing pricing",
+   "date_semantics": "sent"
+  },
+  "supporting_activities": [
+   {
+    "activity_id": "fcc3a198-3877-50ac-91c5-e2266d01c702",
+    "activity_type": "EmailSent",
+    "occurred_at": "2023-11-10T11:15:00Z",
+    "actor_person_id": "faa8e616-82df-5db6-9cf8-eac8a6020f75",
+    "event_file": "crmarena:EmailMessage:02sWt000001zwD1IAI",
+    "synthetic": false,
+    "text": "Hi Isabelle,\n\nI hope this email finds you well. Thank you for taking the time to discuss the terms and pricing for our proposed solutions this morning. It was a pleasure to delve deeper into how TechPulse Solutions can best support Quantum Innovations Inc. in achieving its objectives.\n\nAs we discussed, our AI-powered SecureFlow Suite, QuantumPCB Modeler, and CloudLink Designer are designed to deliver powerful, innovative features that provide both reliability and scalability. Our emphasis on rapid deployment and seamless integration should align well with Quantum Innovations Inc.’s cutting-edge tools like DesignEdge Pro, enabling principled quantum simulations.",
+    "subject": "Negotiation of terms and finalizing pricing",
+    "date_semantics": "sent"
+   },
+   {
+    "activity_id": "39ff1bec-f491-5f48-b2b2-508d36cb78be",
+    "activity_type": "EmailReceived",
+    "occurred_at": "2023-11-10T13:00:00Z",
+    "actor_person_id": "6ba4df00-f940-54e4-87c3-d93c98010573",
+    "event_file": "crmarena:EmailMessage:02sWt000001zqE3IAI",
+    "synthetic": false,
+    "text": "Hi Terek,\n\nThank you for the informative discussion earlier. I’m impressed with TechPulse's dedication to innovation and how your solutions fit into our quantum computing strategy.\n\nWe appreciate the competitive pricing offer and particularly the future upgrade possibilities and customization options. This flexibility is crucial for our evolving needs. I’ll review the terms with my team and get back to you by early next week. If we have any more questions or need further clarification, I’ll reach out.\n\nLooking forward to continuing this conversation and potentially working together.",
+    "subject": "Negotiation of terms and finalizing pricing",
+    "date_semantics": "sent"
+   },
+   {
+    "activity_id": "3865aedc-07ec-54ff-87b5-c6935c8a06aa",
+    "activity_type": "EmailReceived",
+    "occurred_at": "2023-11-10T14:00:00Z",
+    "actor_person_id": "6ba4df00-f940-54e4-87c3-d93c98010573",
+    "event_file": "crmarena:EmailMessage:02sWt000001zq7bIAA",
+    "synthetic": false,
+    "text": "Hello Terek,\n\nThank you for your message and the detailed conversation earlier. I appreciate the thoughtful approach you and TechPulse Solutions are taking in tailoring the proposal to our needs at Quantum Innovations.\n\nThe customization options and enhanced data protection mentioned really align with our goals, and the pricing adjustment you’ve provided seems reasonable given our discussion. I'm particularly pleased that the solutions appear designed to handle our high-demand scenarios robustly, as you pointed out.\n\nCould we perhaps look into the possibilities for further future upgrades? Ensuring that our systems are future-ready as tech evolves is crucial for us.\n\nI will confer with our team and provide further feedback shortly. I am optimistic about the potential collaboration and how we can advance our industry-leading position in quantum computing together.\n\nThank you once again for your time and effort.\n\nBest regards,\n\nIsabelle Leclerc\nInnovation Officer\nQuantum Innovations Inc.",
+    "subject": "Negotiation of terms and finalizing pricing",
+    "date_semantics": "sent"
+   }
+  ],
+  "commitments": [
+   {
+    "text": "Customer: feedback on the revised terms by early next week / the end of the week",
+    "owner_person_id": "6ba4df00-f940-54e4-87c3-d93c98010573",
+    "due_at": null,
+    "status": "open"
+   },
+   {
+    "text": "Answer whether further future upgrades are possible",
+    "owner_person_id": "faa8e616-82df-5db6-9cf8-eac8a6020f75",
+    "due_at": null,
+    "status": "open"
+   }
+  ],
+  "timeline_facts": {
+   "last_inbound_at": "2023-11-10T15:00:00Z",
+   "last_inbound_from_person_id": "6ba4df00-f940-54e4-87c3-d93c98010573",
+   "last_outbound_at": "2023-11-10T12:00:00Z",
+   "stated_timing": null
+  },
+  "offered_knowledge": [
+   {
+    "id": "db6cb119-cf00-5146-a887-4be17e44ede4",
+    "key": "K104",
+    "title": "Check in the next business day after sending revised terms",
+    "situation_signature": [
+     {
+      "field": "next_milestone",
+      "op": "contains",
+      "value": "feedback on the revised terms"
+     }
+    ],
+    "guidance": {
+     "summary": "After revised terms go out, a short check-in the next business day keeps the thread warm.",
+     "do": [
+      "send a short check-in asking whether the team has questions"
+     ],
+     "dont": [
+      "stay silent for more than two business days"
+     ]
+    },
+    "status": "provisional",
+    "counts": {
+     "decisions": 78,
+     "positive_reactions": 0,
+     "negative_reactions": 0,
+     "outcomes_advanced": 17,
+     "counterexamples": 0
+    },
+    "supporting_decision_episode_ids": [],
+    "counterexamples": [],
+    "exceptions": [
+     {
+      "description": "The buyer stated their own date for feedback and it has not passed",
+      "conditions": [
+       {
+        "field": "decision_process",
+        "op": "contains",
+        "value": "said they will revert by"
+       }
+      ]
+     }
+    ],
+    "evidence_classes": [
+     "deal_data"
+    ],
+    "used_by_evaluators": [
+     "knowledge_applicability:v1"
+    ],
+    "provenance": {
+     "created_from": "seed_history",
+     "source_decision_episode_id": null,
+     "note": "Seeded from previous CRMArena deals (before 2023-11-01): decisions = previous deals with a matching customer email, outcomes_advanced = those with a signed contract; no reactions are recorded. Not evidence the practice works."
+    },
+    "created_at": "2023-11-01T00:00:00Z",
+    "last_validated_at": null
+   }
+  ],
+  "state_provenance": {
+   "champion": "inferred, not recorded: the only customer correspondent (3 inbound emails); CRMArena has no roles",
+   "stage": "unknown unless a field below says otherwise: the loader dates the stage at the deal's last event",
+   "decision_process": "02sWt000001zqE3IAI, 02sWt000001zqh6IAA",
+   "objections": "02sWt000001zq7bIAA",
+   "current_commitments": "02sWt000001zqE3IAI, 02sWt000001zq7bIAA, 02sWt000001zqh6IAA",
+   "buying_group roles": "inferred from each Contact's Title/Department; the record has no roles"
+  }
+ },
+ "candidate_action": {
+  "proposed_action_type": "send_email",
+  "recipients": [
+   {
+    "person_id": "6ba4df00-f940-54e4-87c3-d93c98010573",
+    "role": "to"
+   }
+  ],
+  "finished_artifact": {
+   "channel": "email",
+   "subject": "Re: Negotiation of terms and finalizing pricing",
+   "body": "Hi Isabelle,\n\nOn your question about further future upgrades: I am checking with our product team what we can include and will reply in writing by Tuesday, November 14. Take the time you need with your team; I will wait for your feedback.\n\nWarm regards,\nTerek"
+  },
+  "crm_next_step_intent": {
+   "next_step": "Written answer on future upgrades by 2023-11-14",
+   "due_at": "2023-11-14T17:00:00Z",
+   "stage_change": null
+  },
+  "reason": "She asked about upgrades; answer that, and respect her stated feedback date instead of the default check-in.",
+  "evidence_refs": [
+   {
+    "activity_id": "3865aedc-07ec-54ff-87b5-c6935c8a06aa",
+    "quote": "Could we perhaps look into the possibilities for further future upgrades?",
+    "occurred_at": "2023-11-10T14:00:00Z",
+    "speaker_person_id": "6ba4df00-f940-54e4-87c3-d93c98010573"
+   },
+   {
+    "activity_id": "2df6793f-b2cf-5d25-9d90-6b98a2e50a8b",
+    "quote": "We will review the terms discussed and aim to have feedback by the end of the week.",
+    "occurred_at": "2023-11-10T15:00:00Z",
+    "speaker_person_id": "6ba4df00-f940-54e4-87c3-d93c98010573"
+   }
+  ],
+  "knowledge_refs_used": [
+   "db6cb119-cf00-5146-a887-4be17e44ede4"
+  ],
+  "wait_until": null
+ },
+ "expected": [
+  {
+   "eval_type": "exception_awareness",
+   "verdict": "pass",
+   "label": "EXCEPTION_HONORED",
+   "diagnostics": [],
+   "blocking": false,
+   "rationale": "Answers her question and leaves her stated feedback date alone.",
+   "evidence_class": "methodology"
+  },
+  {
+   "eval_type": "knowledge_applicability",
+   "verdict": "pass",
+   "label": "EXCEPTION_TRIGGERED",
+   "diagnostics": [],
+   "blocking": false,
+   "rationale": "The buyer's own date is the exception.",
+   "evidence_class": "methodology"
+  },
+  {
+   "eval_type": "next_action_quality",
+   "verdict": "pass",
+   "label": "GOOD",
+   "diagnostics": [],
+   "blocking": false,
+   "rationale": "Handles the open upgrade question.",
+   "evidence_class": "methodology"
+  }
+ ],
+ "expected_best_action": {
+  "action": "send_email",
+  "why": "This.",
+  "recipients": [
+   {
+    "person_id": "6ba4df00-f940-54e4-87c3-d93c98010573",
+    "role": "to"
+   }
+  ],
+  "channel": "email"
+ },
+ "labelling": {
+  "label_kind": "model labels, single author, not human labels",
+  "passes": [
+   "pass_1",
+   "pass_2"
+  ],
+  "agreement": {
+   "judgments": 3,
+   "verdict_agree": 3,
+   "fail_agree": 3
+  },
+  "disagreements": []
+ },
+ "notes": ""
+}

@@ -1,0 +1,317 @@
+/* The three eval jobs (HAR-129 demo loop): intelligence-building, the decision and feedback loop, and system metrics.
+   Jobs 1 and 2 are the loop and read as peers; job 3 is quieter and collapsed. */
+.job-nav {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: var(--space-3);
+  margin: 0 0 var(--space-5);
+}
+
+.job-tile {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  align-content: start;
+  gap: var(--space-1-5) var(--space-3);
+  padding: var(--space-4) var(--space-5);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-lg);
+  background: var(--surface);
+  box-shadow: var(--shadow-1);
+  color: inherit;
+  text-decoration: none;
+  transition: border-color var(--dur-1) ease, box-shadow var(--dur-1) ease;
+}
+
+.job-tile:hover {
+  border-color: var(--line-strong);
+  box-shadow: var(--shadow-2);
+  text-decoration: none;
+}
+
+.job-tile > :not(.job-num) {
+  grid-column: 2;
+}
+
+.job-num {
+  grid-row: 1 / span 4;
+  display: grid;
+  place-items: center;
+  width: 28px;
+  height: 28px;
+  border-radius: var(--radius-sm);
+  background: var(--ink);
+  color: var(--surface);
+  font-family: var(--font-mono);
+  font-size: var(--text-sm);
+  font-weight: 600;
+}
+
+.job-tile.is-system {
+  background: var(--surface-subtle);
+  box-shadow: none;
+}
+
+.job-tile.is-system .job-num {
+  background: var(--surface-sunken);
+  color: var(--muted);
+}
+
+.job-title {
+  color: var(--ink);
+  font-size: var(--text-md);
+  font-weight: 600;
+}
+
+.job-question {
+  color: var(--ink-2);
+  font-size: var(--text-sm);
+  line-height: var(--leading-snug);
+}
+
+.job-counts {
+  color: var(--muted);
+  font-size: var(--text-xs);
+}
+
+.job-section {
+  scroll-margin-top: calc(var(--header-h) + var(--space-4));
+}
+
+.job-section > .eyebrow {
+  margin-bottom: var(--space-1);
+}
+
+.job-section > h2 {
+  margin-bottom: var(--space-2);
+  color: var(--ink);
+  font-size: var(--text-xl);
+  font-weight: 600;
+  letter-spacing: var(--tracking-tight);
+  text-transform: none;
+}
+
+.job-section .panel-head h3,
+.families-h {
+  margin: var(--space-5) 0 var(--space-2);
+  color: var(--muted);
+  font-size: var(--text-2xs);
+  font-weight: 600;
+  letter-spacing: var(--tracking-caps);
+  text-transform: uppercase;
+}
+
+.system-panel {
+  background: var(--surface-subtle);
+  box-shadow: none;
+}
+
+.system-panel > summary {
+  display: grid;
+  grid-template-columns: auto auto 1fr;
+  align-items: baseline;
+  gap: var(--space-1) var(--space-3);
+}
+
+.system-panel > summary .eyebrow {
+  margin: 0;
+}
+
+.system-title {
+  color: var(--ink);
+  font-size: var(--text-md);
+  font-weight: 600;
+}
+
+.system-panel > summary .hint {
+  grid-column: 2 / -1;
+  margin: 0;
+}
+
+.system-panel[open] > summary {
+  margin-bottom: var(--space-4);
+}
+
+.system-panel .catalog-stats {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  max-width: 640px;
+}
+
+@media (max-width: 900px) {
+  .job-nav {
+    grid-template-columns: 1fr;
+  }
+
+  .system-panel > summary {
+    grid-template-columns: auto 1fr;
+  }
+
+  .system-panel > summary .hint {
+    grid-column: 1 / -1;
+  }
+}
+
+/* On the run eval page: job 1 above the decision, a quiet divider into job 2, job 3 collapsed at the end */
+.job-band {
+  margin-bottom: var(--space-5);
+}
+
+.job-band > h2 {
+  margin: 0 0 var(--space-2);
+  color: var(--ink);
+  font-size: var(--text-lg);
+  font-weight: 600;
+  letter-spacing: var(--tracking-tight);
+  text-transform: none;
+}
+
+.band-lead {
+  max-width: 82ch;
+  margin: 0 0 var(--space-3);
+  color: var(--ink-2);
+}
+
+.understood-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: var(--space-2);
+  margin: 0 0 var(--space-2);
+  padding: 0;
+  list-style: none;
+}
+
+.understood {
+  padding: var(--space-3) var(--space-4);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-md);
+  background: var(--surface-subtle);
+}
+
+.understood-head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-1) var(--space-2);
+}
+
+.understood-label {
+  color: var(--muted);
+  font-size: var(--text-2xs);
+  font-weight: 600;
+  letter-spacing: var(--tracking-caps);
+  text-transform: uppercase;
+}
+
+.standing-chip {
+  padding: 0 var(--space-1-5);
+  border-radius: var(--radius-xs);
+  background: var(--surface-sunken);
+  color: var(--muted);
+  font-size: var(--text-2xs);
+}
+
+.understood-value {
+  margin: var(--space-1-5) 0;
+  color: var(--ink);
+  font-size: var(--text-sm);
+  line-height: var(--leading-snug);
+}
+
+.understood-value .was {
+  color: var(--muted);
+  text-decoration: line-through;
+  text-decoration-color: var(--faint);
+}
+
+.understood-value .arrow {
+  margin: 0 var(--space-1-5);
+  color: var(--muted);
+}
+
+.understood-value .now {
+  font-weight: 500;
+}
+
+.understood-delta {
+  margin: var(--space-1-5) 0;
+  padding: 0;
+  list-style: none;
+  font-size: var(--text-sm);
+  line-height: var(--leading-snug);
+}
+
+.understood-delta li {
+  position: relative;
+  padding-left: var(--space-4);
+  color: var(--ink);
+  font-weight: 500;
+}
+
+.understood-delta li::before {
+  position: absolute;
+  left: 0;
+  font-family: var(--font-mono);
+  font-weight: 600;
+}
+
+.understood-delta .is-added::before {
+  content: "+";
+  color: var(--pass);
+}
+
+.understood-delta .is-removed {
+  color: var(--muted);
+  text-decoration: line-through;
+}
+
+.understood-delta .is-removed::before {
+  content: "−";
+  color: var(--fail);
+}
+
+.understood-evidence {
+  margin: 0;
+  font-size: var(--text-xs);
+  color: var(--ink-2);
+}
+
+.understood-evidence q {
+  color: var(--ink);
+}
+
+.band-status {
+  margin-top: var(--space-3);
+  padding: var(--space-3) var(--space-4);
+  border: 1px dashed var(--line-strong);
+  border-radius: var(--radius-md);
+  font-size: var(--text-sm);
+  color: var(--ink-2);
+}
+
+.band-status p {
+  margin: 0 0 var(--space-2);
+}
+
+.family-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-1-5) var(--space-3);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  font-size: var(--text-xs);
+}
+
+.job-divider {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: var(--space-1) var(--space-3);
+  margin: var(--space-6) 0 var(--space-3);
+  padding-top: var(--space-4);
+  border-top: 1px solid var(--line-strong);
+}
+
+.job-divider p {
+  margin: 0;
+}

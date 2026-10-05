@@ -1,0 +1,88 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://ghost.local/contracts/knowledge_attribution.v1.json",
+  "title": "KnowledgeAttribution",
+  "description": "The E7 record of one run (HAR-97 E7, HAR-128), kept on the run's build_context step as detail.knowledge_attribution. Retrieval is not influence, so four things are traced separately: knowledge retrieved at the replay clock, judged applicable (no exception fired), used (cited by a candidate) and, for runs that also generated the same state with the DecisionGuidance withheld (arm A, the counterfactual; Config.KnowledgeCounterfactual), whether it changed a candidate, the ranking or the preferred action. `influence` is written at publish; the five deterministic E7 evals score it (contracts/evals/eval_registry.json E7.1-E7.5, gold in fixtures/orchestrator/e7_gold.json).",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["as_of", "retrieved", "applicable", "exception_blocked", "used"],
+  "properties": {
+    "as_of": { "description": "The replay clock the knowledge was read at.", "$ref": "common.v1.json#/$defs/timestamp" },
+    "retrieved": { "description": "Everything that existed at the replay clock and was matched against the situation.", "$ref": "#/$defs/knowledgeIds" },
+    "applicable": { "description": "Retrieved knowledge whose conditions held and whose exceptions did not fire.", "$ref": "#/$defs/knowledgeIds" },
+    "exception_blocked": { "description": "Retrieved knowledge whose conditions held but an exception overrode it.", "$ref": "#/$defs/knowledgeIds" },
+    "used": { "description": "Knowledge the final candidates cite, filled at publish.", "$ref": "#/$defs/knowledgeIds" },
+    "influence": { "$ref": "#/$defs/influence" }
+  },
+  "$defs": {
+    "knowledgeIds": { "type": "array", "uniqueItems": true, "items": { "$ref": "common.v1.json#/$defs/uuid" } },
+    "change": {
+      "description": "What knowledge changed about one candidate against arm A. matched: arm A produced a candidate of the same strategy_type (one without a match exists only because of the knowledge, or because arm A is a single sample).",
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["matched", "ranking_changed", "action_changed", "recipients_changed", "changed"],
+      "properties": {
+        "matched": { "type": "boolean" },
+        "ranking_changed": { "type": "boolean" },
+        "action_changed": { "type": "boolean" },
+        "recipients_changed": { "type": "boolean" },
+        "changed": { "type": "boolean" }
+      }
+    },
+    "influence": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["counterfactual", "candidates", "evals"],
+      "properties": {
+        "counterfactual": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["status", "ranking_changed", "preferred_action_changed"],
+          "properties": {
+            "status": {
+              "description": "not_run: the flag is off. compared: arm A was generated and compared. unavailable: arm A was attempted and was unusable. no_knowledge: nothing was retrieved, so arm A would equal the run.",
+              "enum": ["not_run", "compared", "unavailable", "no_knowledge"]
+            },
+            "reason": { "type": "string", "minLength": 1, "maxLength": 500 },
+            "ranking_changed": { "description": "Some candidate's worker ranking differs from arm A's.", "type": "boolean" },
+            "preferred_action_changed": { "description": "The worker's first-ranked candidate differs from arm A's in strategy or action.", "type": "boolean" }
+          }
+        },
+        "candidates": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": ["candidate_id", "strategy_type", "ranking", "claimed", "change"],
+            "properties": {
+              "candidate_id": { "$ref": "common.v1.json#/$defs/uuid" },
+              "strategy_type": { "type": "string", "pattern": "^[a-z][a-z0-9_]*$" },
+              "ranking": { "description": "The worker's ranking, before core re-ranks on eval failures and the transition policy.", "type": "integer", "minimum": 1 },
+              "claimed": { "description": "Knowledge the candidate cites as used.", "$ref": "#/$defs/knowledgeIds" },
+              "change": { "oneOf": [{ "type": "null" }, { "$ref": "#/$defs/change" }] }
+            }
+          }
+        },
+        "evals": {
+          "description": "E7.1 to E7.5, in order.",
+          "type": "array",
+          "minItems": 5,
+          "maxItems": 5,
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": ["eval", "verdict", "reason"],
+            "properties": {
+              "eval": { "enum": ["E7.1", "E7.2", "E7.3", "E7.4", "E7.5"] },
+              "verdict": { "enum": ["pass", "warn", "fail", "unknown"] },
+              "reason": { "type": "string", "minLength": 1, "maxLength": 500 }
+            }
+          }
+        }
+      },
+      "if": { "properties": { "counterfactual": { "properties": { "status": { "const": "compared" } }, "required": ["status"] } }, "required": ["counterfactual"] },
+      "then": { "properties": { "candidates": { "items": { "properties": { "change": { "type": "object" } } } } } },
+      "else": { "properties": { "candidates": { "items": { "properties": { "change": { "type": "null" } } } } } }
+    }
+  }
+}

@@ -1,0 +1,494 @@
+{
+  "account_id": "0a0cad00-0000-4000-8000-00000000ad01",
+  "nodes": [
+    {
+      "id": "0a0cad00-0000-4000-8000-00000000ad01",
+      "type": "Account",
+      "label": "MedTech Advances",
+      "status": "active",
+      "evidence_refs": [],
+      "source_event_ids": []
+    },
+    {
+      "id": "0c0fad00-0000-4000-8000-00000000ad01",
+      "type": "Opportunity",
+      "label": "Advanced Data Protection and Education Enhancement Deal",
+      "status": "open",
+      "evidence_refs": [
+        {
+          "activity_id": "0ac7ad00-0000-4000-8000-00000000ad01"
+        }
+      ],
+      "source_event_ids": [
+        "05e0ad00-0000-4000-8000-00000000ad01"
+      ]
+    },
+    {
+      "id": "0b0ead00-0000-4000-8000-00000000ad11",
+      "type": "Person",
+      "label": "Fatoumata Touré",
+      "status": "active",
+      "data": {
+        "title": "Supply Chain Coordinator"
+      },
+      "evidence_refs": [
+        {
+          "activity_id": "0ac7ad00-0000-4000-8000-00000000ad02"
+        }
+      ],
+      "source_event_ids": [
+        "05e0ad00-0000-4000-8000-00000000ad02"
+      ]
+    },
+    {
+      "id": "0b0ead00-0000-4000-8000-00000000ad21",
+      "type": "Person",
+      "label": "Luis Rodriguez",
+      "status": "active",
+      "evidence_refs": [],
+      "source_event_ids": []
+    },
+    {
+      "id": "0ac7ad00-0000-4000-8000-00000000ad03",
+      "type": "Activity",
+      "label": "QuoteCreated",
+      "valid_from": "2023-10-15T10:12:00Z",
+      "evidence_refs": [
+        {
+          "activity_id": "0ac7ad00-0000-4000-8000-00000000ad03"
+        }
+      ],
+      "source_event_ids": [
+        "05e0ad00-0000-4000-8000-00000000ad03"
+      ]
+    },
+    {
+      "id": "0ac7ad00-0000-4000-8000-00000000ad04",
+      "type": "Activity",
+      "label": "EmailSent",
+      "valid_from": "2023-10-31T18:00:00Z",
+      "evidence_refs": [
+        {
+          "activity_id": "0ac7ad00-0000-4000-8000-00000000ad04"
+        }
+      ],
+      "source_event_ids": [
+        "05e0ad00-0000-4000-8000-00000000ad04"
+      ]
+    },
+    {
+      "id": "0ac7ad00-0000-4000-8000-00000000ad0b",
+      "type": "Activity",
+      "label": "EmailReceived",
+      "valid_from": "2023-11-08T16:00:00Z",
+      "evidence_refs": [
+        {
+          "activity_id": "0ac7ad00-0000-4000-8000-00000000ad0b"
+        }
+      ],
+      "source_event_ids": [
+        "05e0ad00-0000-4000-8000-00000000ad0b"
+      ]
+    },
+    {
+      "id": "0ac7ad00-0000-4000-8000-00000000ad0c",
+      "type": "Activity",
+      "label": "EmailReceived",
+      "valid_from": "2023-11-08T17:30:00Z",
+      "evidence_refs": [
+        {
+          "activity_id": "0ac7ad00-0000-4000-8000-00000000ad0c"
+        }
+      ],
+      "source_event_ids": [
+        "05e0ad00-0000-4000-8000-00000000ad0c"
+      ]
+    },
+    {
+      "id": "0ac7ad00-0000-4000-8000-00000000ad0d",
+      "type": "Activity",
+      "label": "EmailReceived",
+      "valid_from": "2023-11-09T09:30:00Z",
+      "evidence_refs": [
+        {
+          "activity_id": "0ac7ad00-0000-4000-8000-00000000ad0d"
+        }
+      ],
+      "source_event_ids": [
+        "05e0ad00-0000-4000-8000-00000000ad0d"
+      ]
+    },
+    {
+      "id": "0c1aad00-0000-4000-8000-00000000ad25",
+      "type": "Claim",
+      "label": "commercial_issue",
+      "status": "active",
+      "evidence_refs": [
+        {
+          "activity_id": "0ac7ad00-0000-4000-8000-00000000ad0c"
+        }
+      ],
+      "source_event_ids": [
+        "05e0ad00-0000-4000-8000-00000000ad0c"
+      ]
+    },
+    {
+      "id": "0c1aad00-0000-4000-8000-00000000ad27",
+      "type": "Claim",
+      "label": "objections",
+      "status": "active",
+      "evidence_refs": [
+        {
+          "activity_id": "0ac7ad00-0000-4000-8000-00000000ad0d"
+        }
+      ],
+      "source_event_ids": [
+        "05e0ad00-0000-4000-8000-00000000ad0d"
+      ]
+    },
+    {
+      "id": "0c1aad00-0000-4000-8000-00000000ad28",
+      "type": "Claim",
+      "label": "next_meeting",
+      "status": "active",
+      "evidence_refs": [
+        {
+          "activity_id": "0ac7ad00-0000-4000-8000-00000000ad0d"
+        }
+      ],
+      "source_event_ids": [
+        "05e0ad00-0000-4000-8000-00000000ad0d"
+      ]
+    },
+    {
+      "id": "051aad00-0000-4000-8000-00000000ad40",
+      "type": "Signal",
+      "label": "customer_replied",
+      "status": "active",
+      "evidence_refs": [
+        {
+          "activity_id": "0ac7ad00-0000-4000-8000-00000000ad0d"
+        }
+      ],
+      "source_event_ids": [
+        "05e0ad00-0000-4000-8000-00000000ad0d"
+      ]
+    }
+  ],
+  "edges": [
+    {
+      "id": "0ed9ad00-0000-4000-8000-00000000ad01",
+      "source": "0b0ead00-0000-4000-8000-00000000ad11",
+      "target": "0a0cad00-0000-4000-8000-00000000ad01",
+      "rel_type": "WORKS_AT",
+      "status": "active",
+      "evidence_refs": [
+        {
+          "activity_id": "0ac7ad00-0000-4000-8000-00000000ad02"
+        }
+      ],
+      "source_event_ids": [
+        "05e0ad00-0000-4000-8000-00000000ad02"
+      ],
+      "standing": "crm_explicit",
+      "confidence": 1
+    },
+    {
+      "id": "0ed9ad00-0000-4000-8000-00000000ad02",
+      "source": "0c0fad00-0000-4000-8000-00000000ad01",
+      "target": "0a0cad00-0000-4000-8000-00000000ad01",
+      "rel_type": "BELONGS_TO",
+      "status": "active",
+      "evidence_refs": [
+        {
+          "activity_id": "0ac7ad00-0000-4000-8000-00000000ad01"
+        }
+      ],
+      "source_event_ids": [
+        "05e0ad00-0000-4000-8000-00000000ad01"
+      ],
+      "standing": "crm_explicit",
+      "confidence": 1
+    },
+    {
+      "id": "0ed9ad00-0000-4000-8000-00000000ad03",
+      "source": "0b0ead00-0000-4000-8000-00000000ad21",
+      "target": "0c0fad00-0000-4000-8000-00000000ad01",
+      "rel_type": "OWNS",
+      "status": "active",
+      "evidence_refs": [
+        {
+          "activity_id": "0ac7ad00-0000-4000-8000-00000000ad01"
+        }
+      ],
+      "source_event_ids": [
+        "05e0ad00-0000-4000-8000-00000000ad01"
+      ],
+      "standing": "crm_explicit",
+      "confidence": 1
+    },
+    {
+      "id": "0ed9ad00-0000-4000-8000-00000000ad04",
+      "source": "0ac7ad00-0000-4000-8000-00000000ad03",
+      "target": "0c0fad00-0000-4000-8000-00000000ad01",
+      "rel_type": "ABOUT",
+      "status": "active",
+      "evidence_refs": [
+        {
+          "activity_id": "0ac7ad00-0000-4000-8000-00000000ad03"
+        }
+      ],
+      "source_event_ids": [
+        "05e0ad00-0000-4000-8000-00000000ad03"
+      ],
+      "standing": "crm_explicit",
+      "confidence": 1
+    },
+    {
+      "id": "0ed9ad00-0000-4000-8000-00000000ad05",
+      "source": "0ac7ad00-0000-4000-8000-00000000ad04",
+      "target": "0c0fad00-0000-4000-8000-00000000ad01",
+      "rel_type": "ABOUT",
+      "status": "active",
+      "evidence_refs": [
+        {
+          "activity_id": "0ac7ad00-0000-4000-8000-00000000ad04"
+        }
+      ],
+      "source_event_ids": [
+        "05e0ad00-0000-4000-8000-00000000ad04"
+      ],
+      "standing": "first_party_record",
+      "confidence": 1
+    },
+    {
+      "id": "0ed9ad00-0000-4000-8000-00000000ad06",
+      "source": "0ac7ad00-0000-4000-8000-00000000ad04",
+      "target": "0b0ead00-0000-4000-8000-00000000ad11",
+      "rel_type": "INVOLVES",
+      "status": "active",
+      "evidence_refs": [
+        {
+          "activity_id": "0ac7ad00-0000-4000-8000-00000000ad04"
+        }
+      ],
+      "source_event_ids": [
+        "05e0ad00-0000-4000-8000-00000000ad04"
+      ],
+      "standing": "first_party_record",
+      "confidence": 1
+    },
+    {
+      "id": "0ed9ad00-0000-4000-8000-00000000ad07",
+      "source": "0ac7ad00-0000-4000-8000-00000000ad0b",
+      "target": "0c0fad00-0000-4000-8000-00000000ad01",
+      "rel_type": "ABOUT",
+      "status": "active",
+      "evidence_refs": [
+        {
+          "activity_id": "0ac7ad00-0000-4000-8000-00000000ad0b"
+        }
+      ],
+      "source_event_ids": [
+        "05e0ad00-0000-4000-8000-00000000ad0b"
+      ],
+      "standing": "first_party_record",
+      "confidence": 1
+    },
+    {
+      "id": "0ed9ad00-0000-4000-8000-00000000ad08",
+      "source": "0ac7ad00-0000-4000-8000-00000000ad0b",
+      "target": "0b0ead00-0000-4000-8000-00000000ad11",
+      "rel_type": "INVOLVES",
+      "status": "active",
+      "evidence_refs": [
+        {
+          "activity_id": "0ac7ad00-0000-4000-8000-00000000ad0b"
+        }
+      ],
+      "source_event_ids": [
+        "05e0ad00-0000-4000-8000-00000000ad0b"
+      ],
+      "standing": "first_party_record",
+      "confidence": 1
+    },
+    {
+      "id": "0ed9ad00-0000-4000-8000-00000000ad09",
+      "source": "0ac7ad00-0000-4000-8000-00000000ad0c",
+      "target": "0c0fad00-0000-4000-8000-00000000ad01",
+      "rel_type": "ABOUT",
+      "status": "active",
+      "evidence_refs": [
+        {
+          "activity_id": "0ac7ad00-0000-4000-8000-00000000ad0c"
+        }
+      ],
+      "source_event_ids": [
+        "05e0ad00-0000-4000-8000-00000000ad0c"
+      ],
+      "standing": "first_party_record",
+      "confidence": 1
+    },
+    {
+      "id": "0ed9ad00-0000-4000-8000-00000000ad0a",
+      "source": "0ac7ad00-0000-4000-8000-00000000ad0c",
+      "target": "0b0ead00-0000-4000-8000-00000000ad11",
+      "rel_type": "INVOLVES",
+      "status": "active",
+      "evidence_refs": [
+        {
+          "activity_id": "0ac7ad00-0000-4000-8000-00000000ad0c"
+        }
+      ],
+      "source_event_ids": [
+        "05e0ad00-0000-4000-8000-00000000ad0c"
+      ],
+      "standing": "first_party_record",
+      "confidence": 1
+    },
+    {
+      "id": "0ed9ad00-0000-4000-8000-00000000ad0b",
+      "source": "0c1aad00-0000-4000-8000-00000000ad25",
+      "target": "0ac7ad00-0000-4000-8000-00000000ad0c",
+      "rel_type": "SUPPORTED_BY",
+      "status": "active",
+      "evidence_refs": [
+        {
+          "activity_id": "0ac7ad00-0000-4000-8000-00000000ad0c"
+        }
+      ],
+      "source_event_ids": [
+        "05e0ad00-0000-4000-8000-00000000ad0c"
+      ]
+    },
+    {
+      "id": "0ed9ad00-0000-4000-8000-00000000ad14",
+      "source": "0ac7ad00-0000-4000-8000-00000000ad0d",
+      "target": "0c0fad00-0000-4000-8000-00000000ad01",
+      "rel_type": "ABOUT",
+      "status": "active",
+      "evidence_refs": [
+        {
+          "activity_id": "0ac7ad00-0000-4000-8000-00000000ad0d"
+        }
+      ],
+      "source_event_ids": [
+        "05e0ad00-0000-4000-8000-00000000ad0d"
+      ],
+      "standing": "first_party_record",
+      "confidence": 1
+    },
+    {
+      "id": "0ed9ad00-0000-4000-8000-00000000ad15",
+      "source": "0ac7ad00-0000-4000-8000-00000000ad0d",
+      "target": "0b0ead00-0000-4000-8000-00000000ad11",
+      "rel_type": "INVOLVES",
+      "status": "active",
+      "evidence_refs": [
+        {
+          "activity_id": "0ac7ad00-0000-4000-8000-00000000ad0d"
+        }
+      ],
+      "source_event_ids": [
+        "05e0ad00-0000-4000-8000-00000000ad0d"
+      ],
+      "standing": "first_party_record",
+      "confidence": 1
+    },
+    {
+      "id": "0ed9ad00-0000-4000-8000-00000000ad16",
+      "source": "0ac7ad00-0000-4000-8000-00000000ad0d",
+      "target": "0b0ead00-0000-4000-8000-00000000ad21",
+      "rel_type": "INVOLVES",
+      "status": "active",
+      "evidence_refs": [
+        {
+          "activity_id": "0ac7ad00-0000-4000-8000-00000000ad0d"
+        }
+      ],
+      "source_event_ids": [
+        "05e0ad00-0000-4000-8000-00000000ad0d"
+      ],
+      "standing": "first_party_record",
+      "confidence": 1
+    },
+    {
+      "id": "0ed9ad00-0000-4000-8000-00000000ad17",
+      "source": "0c1aad00-0000-4000-8000-00000000ad27",
+      "target": "0ac7ad00-0000-4000-8000-00000000ad0d",
+      "rel_type": "SUPPORTED_BY",
+      "status": "active",
+      "evidence_refs": [
+        {
+          "activity_id": "0ac7ad00-0000-4000-8000-00000000ad0d"
+        }
+      ],
+      "source_event_ids": [
+        "05e0ad00-0000-4000-8000-00000000ad0d"
+      ]
+    },
+    {
+      "id": "0ed9ad00-0000-4000-8000-00000000ad18",
+      "source": "0c1aad00-0000-4000-8000-00000000ad28",
+      "target": "0ac7ad00-0000-4000-8000-00000000ad0d",
+      "rel_type": "SUPPORTED_BY",
+      "status": "active",
+      "evidence_refs": [
+        {
+          "activity_id": "0ac7ad00-0000-4000-8000-00000000ad0d"
+        }
+      ],
+      "source_event_ids": [
+        "05e0ad00-0000-4000-8000-00000000ad0d"
+      ]
+    },
+    {
+      "id": "0ed9ad00-0000-4000-8000-00000000ad19",
+      "source": "051aad00-0000-4000-8000-00000000ad40",
+      "target": "0c1aad00-0000-4000-8000-00000000ad27",
+      "rel_type": "DERIVED_FROM",
+      "status": "active",
+      "evidence_refs": [
+        {
+          "activity_id": "0ac7ad00-0000-4000-8000-00000000ad0d"
+        }
+      ],
+      "source_event_ids": [
+        "05e0ad00-0000-4000-8000-00000000ad0d"
+      ]
+    }
+  ],
+  "sections": {
+    "account": [
+      "0a0cad00-0000-4000-8000-00000000ad01"
+    ],
+    "opportunities": [
+      "0c0fad00-0000-4000-8000-00000000ad01"
+    ],
+    "stakeholders": [
+      "0b0ead00-0000-4000-8000-00000000ad11",
+      "0b0ead00-0000-4000-8000-00000000ad21"
+    ],
+    "activities": [
+      "0ac7ad00-0000-4000-8000-00000000ad0d",
+      "0ac7ad00-0000-4000-8000-00000000ad0c",
+      "0ac7ad00-0000-4000-8000-00000000ad0b",
+      "0ac7ad00-0000-4000-8000-00000000ad04",
+      "0ac7ad00-0000-4000-8000-00000000ad03"
+    ],
+    "claims": [
+      "0c1aad00-0000-4000-8000-00000000ad28",
+      "0c1aad00-0000-4000-8000-00000000ad27",
+      "0c1aad00-0000-4000-8000-00000000ad25"
+    ],
+    "signals": [
+      "051aad00-0000-4000-8000-00000000ad40"
+    ]
+  },
+  "truncated": false,
+  "withheld": false,
+  "projection": {
+    "complete": true,
+    "projected_at": "2023-11-09T09:30:12Z"
+  }
+}

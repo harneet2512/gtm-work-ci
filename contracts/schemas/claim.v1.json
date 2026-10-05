@@ -1,0 +1,94 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://ghost.local/contracts/claim.v1.json",
+  "title": "Claim",
+  "description": "A sourced assertion about an account-state field. Competing claims coexist; the reducer selects one winner per field by standing, then recency, then confidence. Outranked claims are retained.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "id", "account_id", "field_path", "value", "standing", "confidence",
+    "source_activity_id", "occurred_at", "extractor", "status"
+  ],
+  "properties": {
+    "id": { "$ref": "common.v1.json#/$defs/uuid" },
+    "account_id": { "$ref": "common.v1.json#/$defs/uuid" },
+    "opportunity_id": {
+      "description": "Scope (ADR-0016). A uuid scopes the claim to that deal: it folds into that opportunity's state and competes only with claims of the same deal. Null scopes it to the account. Person-scoped paths (buying_group.member, delegation) are about a person and fold account-wide whatever this says.",
+      "oneOf": [{ "$ref": "common.v1.json#/$defs/uuid" }, { "type": "null" }]
+    },
+    "subject_person_id": {
+      "description": "Person the claim is about (e.g. champion, stakeholder role).",
+      "oneOf": [{ "$ref": "common.v1.json#/$defs/uuid" }, { "type": "null" }]
+    },
+    "field_path": { "$ref": "#/$defs/claimFieldPath" },
+    "value": { "description": "Field value; the string 'unknown' is legal." },
+    "standing": { "$ref": "common.v1.json#/$defs/standing" },
+    "confidence": { "type": "number", "minimum": 0, "maximum": 1 },
+    "source_activity_id": { "$ref": "common.v1.json#/$defs/uuid" },
+    "speaker_person_id": { "oneOf": [{ "$ref": "common.v1.json#/$defs/uuid" }, { "type": "null" }] },
+    "evidence_quote": { "type": ["string", "null"], "maxLength": 2000 },
+    "occurred_at": { "$ref": "common.v1.json#/$defs/timestamp" },
+    "extractor": { "type": "string", "description": "'rule:<name>@<ver>' for deterministic Go rules, 'llm:<model>@<prompt ver>' for AI, 'human:<surface>' for approvals." },
+    "status": { "type": "string", "enum": ["active", "outranked", "superseded", "expired", "rejected"] },
+    "superseded_by": { "oneOf": [{ "$ref": "common.v1.json#/$defs/uuid" }, { "type": "null" }] },
+    "expires_at": { "oneOf": [{ "$ref": "common.v1.json#/$defs/timestamp" }, { "type": "null" }] }
+  },
+  "allOf": [
+    {
+      "if": { "properties": { "standing": { "const": "first_party_ai" } } },
+      "then": { "required": ["evidence_quote"], "properties": { "evidence_quote": { "type": "string", "minLength": 1 } } }
+    },
+    {
+      "description": "A first-party record is a deterministic fact from our own systems (ADR-0009), so it must come from a rule.",
+      "if": { "properties": { "standing": { "const": "first_party_record" } } },
+      "then": { "properties": { "extractor": { "pattern": "^rule:" } } }
+    },
+    {
+      "description": "ADR-0012: an org_change names its kind and a summary; subject_person_id is whose role, remit or ownership changed (null for an account-wide change).",
+      "if": { "properties": { "field_path": { "const": "org_change" } } },
+      "then": { "properties": { "value": { "$ref": "#/$defs/orgChangeValue" } } }
+    },
+    {
+      "description": "ADR-0012: expansion needs and business value are stated in the customer's words (a non-empty text), or withdrawn: {stance: 'withdrawn', text} records 'the rollout is off' so a retraction is read as one and the old need no longer counts.",
+      "if": { "properties": { "field_path": { "enum": ["expansion_need", "business_value"] } } },
+      "then": { "properties": { "value": { "oneOf": [
+        { "type": "string", "minLength": 1, "maxLength": 1000 },
+        { "type": "object", "additionalProperties": false, "required": ["stance", "text"],
+          "properties": { "stance": { "enum": ["stated", "withdrawn"] }, "text": { "type": "string", "minLength": 1, "maxLength": 1000 } } }
+      ] } } }
+    }
+  ],
+  "$defs": {
+    "fieldPath": {
+      "description": "AccountState field a claim folds into. 'commitment' folds into current_commitments, 'buying_group.member' / 'stakeholder_role' / 'delegation' fold into buying_group; 'org_change', 'expansion_need' and 'business_value' (ADR-0012) fold into the list fields org_changes, expansion_needs and business_value; every other value folds into the field of the same name. These are the paths a model may extract from text (claim_candidate.v1.json).",
+      "type": "string",
+      "enum": [
+        "stage", "health", "owner", "motion",
+        "champion", "champion_status", "economic_buyer", "buying_group.member", "stakeholder_role",
+        "blockers", "objections", "decision_criteria", "decision_process",
+        "commitment", "next_milestone", "next_meeting", "relationship_risk",
+        "product_use_case", "commercial_issue", "delegation", "summary",
+        "org_change", "expansion_need", "business_value"
+      ]
+    },
+    "fieldPathPendingExtraction": {
+      "description": "Field paths in the contract that the extractor does not emit yet (extract-v5, WP3 / HAR-101 follow-up). Until then production cannot satisfy the transition facts that read them (ADR-0012).",
+      "type": "string",
+      "enum": ["org_change", "expansion_need", "business_value"]
+    },
+    "orgChangeValue": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["kind", "summary"],
+      "properties": {
+        "kind": { "enum": ["reorganisation", "restructure", "merger", "role_change", "remit_change", "ownership_change"] },
+        "summary": { "type": "string", "minLength": 1, "maxLength": 500 },
+        "stance": { "enum": ["stated", "withdrawn"], "description": "Absent means stated. 'withdrawn' records that the change was called off." }
+      }
+    },
+    "claimFieldPath": {
+      "description": "Every path a stored claim may carry: the extractable fieldPath values plus 'amount', which only the CRM rule emits (a number, folds into OpportunityState.fields.amount, ADR-0016). A model never proposes it.",
+      "oneOf": [{ "$ref": "#/$defs/fieldPath" }, { "const": "amount" }]
+    }
+  }
+}

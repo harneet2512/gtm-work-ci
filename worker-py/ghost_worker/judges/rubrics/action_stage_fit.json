@@ -1,0 +1,86 @@
+{
+  "eval_type": "action_stage_fit",
+  "version": 1,
+  "title": "Action-to-stage fit",
+  "har97_refs": [
+    {
+      "line": 2372,
+      "text": "## 15.9 Action-to-stage fit"
+    },
+    {
+      "line": 611,
+      "text": "action-to-state fit"
+    },
+    {
+      "line": 2961,
+      "text": "* action-to-stage fit"
+    }
+  ],
+  "l2_dimension": "action-to-stage fit",
+  "questions": [
+    {
+      "section": "§15(GTM).9",
+      "text": "Is this action appropriate for where the account actually is in the buying/expansion process?"
+    }
+  ],
+  "inputs": [
+    "stage",
+    "motion",
+    "open blockers",
+    "health and risk",
+    "the kind of action proposed"
+  ],
+  "criteria": [
+    {
+      "id": "stage_appropriate",
+      "kind": "evaluate",
+      "text": "the kind of action fits the current stage",
+      "guide": "Compare the action type and ask with the stage the evidence supports, not the CRM label alone.",
+      "har97": null,
+      "output": "finding",
+      "before": null,
+      "after": null
+    },
+    {
+      "id": "blocker_first",
+      "kind": "check",
+      "text": "the action addresses the active blocker before moving on",
+      "guide": "When a blocker (e.g. security review) is active, a step that ignores it does not fit the stage.",
+      "har97": null,
+      "output": "finding",
+      "before": null,
+      "after": null
+    }
+  ],
+  "failure_examples": [
+    "pushing pricing before technical validation",
+    "demanding executive commitment during early discovery",
+    "asking for another discovery call when security review is the active blocker",
+    "continuing commercial follow-up when the customer is in recovery/support risk"
+  ],
+  "counter_failures": [],
+  "known_exceptions": [],
+  "candidate_choices": [],
+  "principles": [],
+  "labels": [],
+  "pass_label": null,
+  "diagnostics": [
+    {
+      "name": "too_early",
+      "when": "the action belongs to a later stage"
+    }
+  ],
+  "routing": {
+    "actions": [
+      "send_email",
+      "schedule_meeting",
+      "share_document"
+    ],
+    "when_all": [],
+    "when_any": [
+      "commercial_ask",
+      "meeting_ask"
+    ]
+  },
+  "uses_rep_profile": false
+}
