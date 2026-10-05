@@ -1,0 +1,78 @@
+{
+  "$comment": "Neo4j context-graph ontology v1 (HAR-96 Architecture update, HAR-129 1B). Source of truth for what the projector may write: labels, relationship types, endpoint labels and required properties. Postgres stays authoritative; Neo4j is a rebuildable projection. core-go/internal/ctxgraph/ontology.go mirrors this file and TestOntologyMatchesContract keeps the two equal.",
+  "version": 1,
+  "id_property": "id",
+  "common_node_properties": {
+    "$comment": "Every projected node carries these. id is the Postgres canonical id (uuid text). pg_table names the authoritative row. evidence_activity_ids and source_event_ids point back to Postgres evidence (empty only for nodes that are not derived from an activity). account_id is the projection scope and is absent on global nodes (Knowledge). h is the content hash (sha256 hex over the other properties); the same Postgres state always yields the same h.",
+    "required": ["id", "pg_table", "evidence_activity_ids", "source_event_ids", "created_at", "updated_at", "h"],
+    "scoped_required": ["account_id"]
+  },
+  "common_edge_properties": {
+    "$comment": "Every projected edge carries these. id is stable and deterministic (rel:<uuid> for relationships rows, <kind>:<id>:<TYPE> for derived edges). valid_to is omitted while the edge is open. History stays queryable: a closed edge is kept with valid_to set.",
+    "required": ["id", "account_id", "valid_from", "status", "evidence_activity_ids", "source_event_ids", "created_at", "updated_at", "h"],
+    "optional": ["valid_to", "confidence", "standing"]
+  },
+  "labels": {
+    "Account": { "table": "accounts", "required": ["name", "status"] },
+    "Person": { "table": "people", "required": ["kind", "internal_only"] },
+    "Opportunity": { "table": "opportunities", "required": ["name", "motion"] },
+    "Activity": { "table": "activities", "required": ["activity_type", "source_system", "occurred_at", "visibility"] },
+    "Conversation": {
+      "table": "activities",
+      "extends": "Activity",
+      "required": ["activity_type", "source_system", "occurred_at", "visibility"],
+      "$comment": "Conversational activity types (calls, transcripts, meetings, emails, Slack). A Conversation node also carries the Activity label."
+    },
+    "Claim": { "table": "claims", "required": ["field_path", "standing", "confidence", "status", "valid_from"] },
+    "Commitment": { "table": "claims", "required": ["field_path", "standing", "confidence", "status", "valid_from"], "$comment": "A claim with field_path = commitment." },
+    "Document": {
+      "table": "source_events",
+      "global": true,
+      "required": ["source_document_id"],
+      "$comment": "A source document shared through a docs event. It has no table: its id is graph.DocumentID(source_document_id) (UUIDv5), the id the relationships table uses. Global, and independent of the account, so every account that references it projects the identical node."
+    },
+    "Signal": { "table": "signals", "required": ["signal_type", "valid_from", "rule"] },
+    "DecisionEpisode": { "table": "decision_episodes", "required": ["state_version", "valid_from"] },
+    "Knowledge": {
+      "table": "knowledge",
+      "global": true,
+      "required": ["key", "title", "status"],
+      "$comment": "Projected only when an account's decision episode touches it (evidence or use); it is global and identical from every account."
+    }
+  },
+  "relationships": {
+    "WORKS_AT": { "from": ["Person"], "to": ["Account"], "pg": "relationships.works_at", "required": ["confidence", "standing"] },
+    "BELONGS_TO": { "from": ["Opportunity"], "to": ["Account"], "pg": "relationships.belongs_to", "required": ["confidence", "standing"] },
+    "CHAMPION_FOR": { "from": ["Person"], "to": ["Opportunity"], "pg": "relationships.champion_for", "required": ["confidence", "standing"] },
+    "ECONOMIC_BUYER_FOR": { "from": ["Person"], "to": ["Opportunity"], "pg": "relationships.economic_buyer_for", "required": ["confidence", "standing"] },
+    "TECHNICAL_EVALUATOR_FOR": { "from": ["Person"], "to": ["Opportunity"], "pg": "relationships.evaluates", "required": ["confidence", "standing"] },
+    "INFLUENCES": { "from": ["Person"], "to": ["Opportunity"], "pg": "relationships.influences", "required": ["confidence", "standing"] },
+    "PARTICIPATED_IN": { "from": ["Person"], "to": ["Conversation"], "pg": "relationships.participated_in", "required": ["confidence", "standing"] },
+    "INVOLVES": { "from": ["Activity", "Conversation"], "to": ["Person"], "pg": "relationships.involves", "required": ["confidence", "standing"] },
+    "ABOUT": { "from": ["Activity", "Conversation"], "to": ["Opportunity", "Account"], "pg": "relationships.about", "required": ["confidence", "standing"] },
+    "OWNS": { "from": ["Person"], "to": ["Opportunity", "Account"], "pg": "relationships.owns", "required": ["confidence", "standing"] },
+    "SUPPORTS": { "from": ["Person"], "to": ["Opportunity"], "pg": "relationships.supports", "required": ["confidence", "standing"] },
+    "REPORTS_TO": { "from": ["Person"], "to": ["Person"], "pg": "relationships.reports_to", "required": ["confidence", "standing"] },
+    "DELEGATED_TO": { "from": ["Person"], "to": ["Person"], "pg": "relationships.delegated_to", "required": ["confidence", "standing"] },
+    "SHARED_WITH": { "from": ["Document"], "to": ["Person"], "pg": "relationships.shared_with", "required": ["confidence", "standing"] },
+    "SUPPORTED_BY": {
+      "from": ["Claim", "Knowledge"],
+      "to": ["Activity", "Conversation", "Document", "DecisionEpisode"],
+      "pg": "claims.source_activity_id | knowledge_evidence(kind = decision_episode)",
+      "required": []
+    },
+    "ABOUT_ACCOUNT": { "from": ["Claim", "Commitment", "Signal", "DecisionEpisode"], "to": ["Account"], "pg": "claims.account_id | signals.account_id | decision_episodes.account_id", "required": [] },
+    "ABOUT_PERSON": { "from": ["Claim", "Commitment", "Signal"], "to": ["Person"], "pg": "claims.subject_person_id | signals.subject_person_id", "required": [] },
+    "ABOUT_OPPORTUNITY": { "from": ["Claim", "Commitment", "Signal", "DecisionEpisode"], "to": ["Opportunity"], "pg": "claims.opportunity_id | signals.opportunity_id | agent_runs.opportunity_id", "required": [] },
+    "MADE_BY": { "from": ["Commitment"], "to": ["Person"], "pg": "claims.speaker_person_id | claims.subject_person_id", "required": [] },
+    "MADE_IN": { "from": ["Commitment"], "to": ["Conversation", "Activity"], "pg": "claims.source_activity_id", "required": [] },
+    "DERIVED_FROM": { "from": ["Signal"], "to": ["Claim", "Commitment", "Activity", "Conversation"], "pg": "signals.subject_claim_id | signals.evidence_refs", "required": [] },
+    "TRIGGERED_BY": { "from": ["DecisionEpisode"], "to": ["Signal", "Activity", "Conversation"], "pg": "decision_episodes.state_diff_id -> signals | agent_runs.trigger_activity_ids", "required": [] },
+    "USED_KNOWLEDGE": { "from": ["DecisionEpisode"], "to": ["Knowledge"], "pg": "agent_runs.knowledge_refs_used", "required": [] },
+    "APPLIES_TO": { "from": ["Knowledge"], "to": ["Account", "Opportunity"], "pg": "knowledge_evidence(decision_episode) -> decision_episodes.account_id", "required": ["basis"] }
+  },
+  "skipped_postgres_relationships": {
+    "$comment": "relationships rows the projector skips and counts, because no ontology edge fits them.",
+    "reasons": ["endpoint_type_not_in_ontology", "rel_type_not_in_ontology"]
+  }
+}

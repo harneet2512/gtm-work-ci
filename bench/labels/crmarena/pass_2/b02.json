@@ -1,0 +1,43 @@
+{
+ "Scfa7": {
+  "commitment_consistency": ["pass", null, false],
+  "next_action_quality": ["pass", "GOOD", false],
+  "duplicate_action": ["pass", null, false]
+ },
+ "S3d54": {
+  "buyer_readiness": ["fail", "TOO_EARLY", false],
+  "champion_continuity": ["fail", "CHAMPION_BYPASSED", true],
+  "stakeholder_selection": ["fail", null, true]
+ },
+ "S7c97": {
+  "next_action_quality": ["fail", "ACT_NOW", true],
+  "knowledge_applicability": ["fail", "DOES_NOT_APPLY", false],
+  "next_step_quality": ["fail", null, true]
+ },
+ "S122a": {
+  "stakeholder_coverage": ["pass", "RIGHT_SIZED", false],
+  "stakeholder_selection": ["pass", null, false],
+  "champion_continuity": ["pass", "CHAMPION_INCLUDED", false]
+ },
+ "S5ec9": {
+  "cta_calibration": ["fail", "TOO_STRONG", false],
+  "next_step_quality": ["warn", null, false],
+  "buyer_readiness": ["warn", "TOO_EARLY", false],
+  "timing_cadence": ["pass", "READY", false]
+ },
+ "Se07d": {
+  "relationship_pressure": ["warn", null, false],
+  "state_change_relevance": ["fail", null, false],
+  "next_action_quality": ["fail", "NO_ACTION", true]
+ },
+ "Sd273": {
+  "next_action_quality": ["fail", "NEEDS_REVISION", false],
+  "commitment_consistency": ["fail", null, true],
+  "duplicate_action": ["fail", null, true]
+ },
+ "S17f5": {
+  "champion_continuity": ["pass", "CHAMPION_INCLUDED", false],
+  "stakeholder_selection": ["pass", null, false],
+  "stakeholder_coverage": ["warn", "OVER_THREADED", false]
+ }
+}

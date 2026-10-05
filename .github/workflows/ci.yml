@@ -1,0 +1,141 @@
+name: ci
+
+on:
+  push:
+    branches: ['**']
+  workflow_dispatch:
+permissions:
+  contents: read
+
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  go:
+    strategy:
+      fail-fast: false
+      matrix:
+        shard: [0, 1, 2, 3, 4, 5]
+    runs-on: ubuntu-latest
+    services:
+      postgres:
+        image: postgres:17
+        env:
+          POSTGRES_USER: ghost
+          POSTGRES_PASSWORD: ghost
+          POSTGRES_DB: ghost_test
+        ports: ["5432:5432"]
+        options: >-
+          --health-cmd "pg_isready -U ghost -d ghost_test"
+          --health-interval 5s --health-timeout 5s --health-retries 20
+      # Neo4j context-graph projection (HAR-96 Architecture update). CI only: locally the tests run a
+      # pinned Neo4j Community tarball as a Java process instead (no Docker). The service is a throwaway
+      # on the runner's loopback with auth disabled, so no credential exists anywhere in this file. Keep the
+      # image on the minor line pinned in core-go/internal/ctxgraph/neo4jtest (Version).
+      neo4j:
+        image: neo4j:5.26.31-community
+        env:
+          NEO4J_AUTH: none
+          NEO4J_server_memory_heap_max__size: 512m
+          NEO4J_server_memory_pagecache_size: 256m
+        ports: ["7687:7687"]
+        options: >-
+          --health-cmd "cypher-shell 'RETURN 1'"
+          --health-interval 5s --health-timeout 10s --health-retries 30 --health-start-period 20s
+    env:
+      TEST_DATABASE_URL: postgres://ghost:ghost@localhost:5432/ghost_test?sslmode=disable
+      NEO4J_TEST_URI: bolt://localhost:7687
+      NEO4J_TEST_AUTH: none
+      # A misconfigured Neo4j job fails instead of silently skipping the graph tests.
+      GHOST_REQUIRE_NEO4J: "1"
+    defaults:
+      run:
+        working-directory: core-go
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-go@v5
+        with:
+          go-version-file: core-go/go.mod
+          cache-dependency-path: core-go/go.sum
+      - name: gofmt
+        run: test -z "$(gofmt -l .)" || (gofmt -l . && exit 1)
+      - run: go vet ./...
+      # -p 1: packages share one database, so integration tests must not run concurrently.
+      - run: go test -p 1 -race -coverprofile=coverage.out -skip '^(TestEveryAcknowledgedHAR97LineIsCovered|TestTraceabilityDocListsEveryLine)$' $(go list ./... | awk -v n=6 -v i=${{ matrix.shard }} '(NR-1) % n == i')
+      - run: go tool cover -func=coverage.out | tail -1
+      # HAR-137 section 12: the Slack surface against the fixture core (fakecore) through a fake Slack, with the
+      # same assertions as the live human-click session (<= 3 messages, in-place updates, one persisted decision,
+      # no token in any log). No Slack, no credentials.
+      - name: slack smoke (no-human)
+        run: python3 ../scripts/slack/demo_smoke.py --no-human
+
+  python:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: worker-py
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+          cache-dependency-path: worker-py/pyproject.toml
+      - run: pip install -e ".[test]"
+      - run: python -m pytest --cov=ghost_worker --cov-report=term-missing --ignore=tests/test_metrics_registry.py --ignore=tests/test_synthetic_caveats.py --ignore=tests/test_wp20_traceability.py --ignore=tests/test_judges_traceability.py --deselect tests/test_bench_crmarena_recompute.py::test_the_committed_report_is_exactly_what_the_committed_bundle_recomputes --deselect tests/test_crmarena_gold.py::test_readme_carries_the_licence_and_attribution --deselect tests/test_metric_registry_split.py::test_blocker_and_note_paths_exist_in_the_repo --deselect tests/test_metrics_harness.py::test_docs_metrics_md_is_generated_from_the_registry --deselect tests/test_metrics_harness.py::test_rerun_reproduces_the_committed_report_byte_for_byte --deselect tests/test_metrics_harness.py::test_wp5_doc_table_agrees_with_the_go_run --deselect tests/test_synthetic_leakage.py::test_scanned_locations_exist_and_contain_text
+
+  # The worker's real CoreContextClient and draft agent against the real Go core over HTTP (HAR-107).
+  # Needs Postgres, Go and Python in one job; the same test is skipped in the `go` job above.
+  core-worker:
+    runs-on: ubuntu-latest
+    services:
+      postgres:
+        image: postgres:17
+        env:
+          POSTGRES_USER: ghost
+          POSTGRES_PASSWORD: ghost
+          POSTGRES_DB: ghost_test
+        ports: ["5432:5432"]
+        options: >-
+          --health-cmd "pg_isready -U ghost -d ghost_test"
+          --health-interval 5s --health-timeout 5s --health-retries 20
+    env:
+      TEST_DATABASE_URL: postgres://ghost:ghost@localhost:5432/ghost_test?sslmode=disable
+      GHOST_WORKER_PYTHON: python
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-go@v5
+        with:
+          go-version-file: core-go/go.mod
+          cache-dependency-path: core-go/go.sum
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+          cache-dependency-path: worker-py/pyproject.toml
+      - run: pip install -e "worker-py[test]"
+      - name: worker client and draft agent against the Go core
+        working-directory: core-go
+        run: go test -p 1 -count=1 -run TestWorkerClientTalksToTheRealCore -v ./internal/api/contracttest/
+
+  # Web account map (HAR-102): types, Vitest with coverage thresholds, and Playwright against recorded core
+  # responses replayed by tests/e2e/fixture-core.mjs. No live core, no credentials.
+  web:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: web
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+          cache-dependency-path: web/package-lock.json
+      - run: npm ci
+      - run: npm run typecheck
+      - run: npm run test:coverage
+      - run: npx playwright install --with-deps chromium
+      - run: npm run test:e2e
+

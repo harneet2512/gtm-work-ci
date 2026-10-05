@@ -1,0 +1,158 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://ghost.local/fixtures/evals/crmarena/case.schema.json",
+  "title": "EvalCaseCRMArena",
+  "description": "An offline GTM eval case built from a real CRMArena-Pro B2B deal (HAR-114 gold v2). Same shape as fixtures/evals/case.schema.json so the judge benchmark reads it unchanged; the situation is the deal as of one decision time (events up to `now` only), the candidate action is an authored good or flawed draft, and the expected judgments come from the record plus the catalog rubric. Third-party synthetic data, CC BY-NC 4.0 (Salesforce AI Research, CRMArena-Pro); see fixtures/evals/crmarena/README.md. Ids are deterministic uuid5 values of 'crmarena:<kind>:<Salesforce Id>'; the Salesforce ids sit in event_file ('crmarena:<sObject>:<Id>') and in source.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "id", "origin", "case_type", "title", "should_pass", "difficulty", "slice_tags", "based_on", "source", "context",
+    "candidate_action", "expected", "expected_best_action", "labelling", "notes"
+  ],
+  "properties": {
+    "id": { "type": "string", "pattern": "^cr_[a-z][a-z0-9_]*$", "maxLength": 80 },
+    "origin": { "const": "crmarena" },
+    "case_type": { "$ref": "https://ghost.local/fixtures/evals/case.schema.json#/$defs/caseType" },
+    "title": { "type": "string", "minLength": 1, "maxLength": 200 },
+    "should_pass": { "type": "boolean" },
+    "difficulty": { "enum": ["easy", "medium", "hard"] },
+    "slice_tags": { "$ref": "#/$defs/sliceTags" },
+    "based_on": { "$ref": "#/$defs/basedOn" },
+    "source": { "$ref": "#/$defs/source" },
+    "context": { "$ref": "#/$defs/context" },
+    "candidate_action": { "$ref": "https://ghost.local/contracts/agent_run_output.v1.json" },
+    "expected": { "type": "array", "minItems": 1, "items": { "$ref": "https://ghost.local/fixtures/evals/case.schema.json#/$defs/expectedEval" } },
+    "expected_best_action": { "$ref": "https://ghost.local/fixtures/evals/case.schema.json#/$defs/bestAction" },
+    "labelling": { "$ref": "#/$defs/labelling" },
+    "evidence_gap": { "type": "string", "minLength": 10, "maxLength": 1000 },
+    "notes": { "type": "string", "maxLength": 2000 }
+  },
+  "allOf": [
+    {
+      "description": "A should-pass case has no expected fail; a flawed case has at least one.",
+      "if": { "properties": { "should_pass": { "const": true } } },
+      "then": { "properties": { "expected": { "items": { "properties": { "verdict": { "enum": ["pass", "warn", "abstain"] } } } } } },
+      "else": { "properties": { "expected": { "contains": { "properties": { "verdict": { "const": "fail" } } } } } }
+    }
+  ],
+  "$defs": {
+    "sfId": { "type": "string", "pattern": "^[a-zA-Z0-9]{15,18}$" },
+    "sliceTags": {
+      "description": "Reporting slices. The record gives no motion, stage, risk or economic buyer, so those are 'unknown' unless the case's own evidence states them.",
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["account", "origin", "motion", "stage", "champion_status", "economic_buyer", "risk", "candidate", "expected_action", "extra"],
+      "properties": {
+        "account": { "$ref": "#/$defs/sfId" },
+        "origin": { "const": "crmarena" },
+        "motion": { "enum": ["new_business", "expansion", "renewal", "unknown"] },
+        "stage": { "type": "string", "pattern": "^[a-z][a-z_]*$" },
+        "champion_status": { "enum": ["active", "new", "weakening", "inactive", "disengaged", "departed", "unknown", "delegated"] },
+        "economic_buyer": { "enum": ["known", "unknown"] },
+        "risk": { "enum": ["low", "medium", "high", "unknown"] },
+        "candidate": { "enum": ["good", "flawed"] },
+        "expected_action": { "$ref": "https://ghost.local/contracts/agent_run_output.v1.json#/properties/proposed_action_type" },
+        "extra": { "type": "array", "uniqueItems": true, "items": { "$ref": "https://ghost.local/fixtures/evals/case.schema.json#/$defs/snake" } }
+      }
+    },
+    "basedOn": {
+      "description": "The real deal, the decision point and the frozen split (bench/data/deal_split.json) it comes from. Every event in the context is dated at or before decision_at (the loader's dating: emails at MessageDate, tasks at their ActivityDate midnight UTC, quotes at CreatedDate). Stage, quote Status, Amount and CloseDate are dated at the deal's last event by the loader, so they are never in a context.",
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["kind", "account_id", "deal_id", "trigger_kind", "decision_at", "cutoff", "deal_group", "events_before_decision"],
+      "properties": {
+        "kind": { "const": "crmarena_moment" },
+        "account_id": { "$ref": "#/$defs/sfId" },
+        "deal_id": { "$ref": "#/$defs/sfId" },
+        "trigger_kind": { "enum": ["inbound_email", "outbound_email", "task_due"] },
+        "decision_at": { "$ref": "https://ghost.local/contracts/common.v1.json#/$defs/timestamp" },
+        "cutoff": { "type": "string", "format": "date" },
+        "deal_group": { "const": "current" },
+        "events_before_decision": { "type": "integer", "minimum": 1 }
+      }
+    },
+    "source": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["dataset", "licence", "attribution", "snapshot_manifest_sha256", "generator"],
+      "properties": {
+        "dataset": { "const": "CRMArena-Pro B2B Salesforce org (Salesforce AI Research)" },
+        "licence": { "const": "CC BY-NC 4.0 (non-commercial use only)" },
+        "attribution": { "type": "string", "minLength": 10 },
+        "snapshot_manifest_sha256": { "type": "string" },
+        "generator": { "type": "string" }
+      }
+    },
+    "activity": {
+      "description": "A real CRMArena record (text = verbatim leading excerpt of its body, cut at a paragraph or sentence end) dated by the loader's rule. event_file names the record ('crmarena:<sObject>:<Id>').",
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["activity_id", "activity_type", "occurred_at", "actor_person_id", "event_file", "synthetic", "text"],
+      "properties": {
+        "activity_id": { "$ref": "https://ghost.local/contracts/common.v1.json#/$defs/uuid" },
+        "activity_type": { "$ref": "https://ghost.local/contracts/common.v1.json#/$defs/activityType" },
+        "occurred_at": { "$ref": "https://ghost.local/contracts/common.v1.json#/$defs/timestamp" },
+        "actor_person_id": { "oneOf": [{ "$ref": "https://ghost.local/contracts/common.v1.json#/$defs/uuid" }, { "type": "null" }] },
+        "event_file": { "type": "string", "pattern": "^crmarena:[A-Za-z]+:[a-zA-Z0-9]{15,18}$" },
+        "synthetic": { "const": false },
+        "subject": { "type": "string", "maxLength": 300 },
+        "date_semantics": { "enum": ["sent", "task due date", "quote created", "contract signed"] },
+        "text": { "type": "string", "maxLength": 4000 }
+      }
+    },
+    "context": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["now", "state", "recent_changes", "trigger", "supporting_activities", "commitments", "timeline_facts", "offered_knowledge", "state_provenance"],
+      "properties": {
+        "now": { "$ref": "https://ghost.local/contracts/common.v1.json#/$defs/timestamp" },
+        "state": { "$ref": "https://ghost.local/fixtures/evals/case.schema.json#/$defs/state" },
+        "recent_changes": { "$ref": "https://ghost.local/fixtures/evals/case.schema.json#/$defs/context/properties/recent_changes" },
+        "trigger": { "$ref": "#/$defs/activity" },
+        "supporting_activities": { "type": "array", "items": { "$ref": "#/$defs/activity" } },
+        "commitments": { "$ref": "https://ghost.local/fixtures/evals/case.schema.json#/$defs/context/properties/commitments" },
+        "timeline_facts": { "$ref": "https://ghost.local/fixtures/evals/case.schema.json#/$defs/context/properties/timeline_facts" },
+        "offered_knowledge": { "type": "array", "items": { "$ref": "https://ghost.local/contracts/knowledge.v1.json" } },
+        "state_provenance": {
+          "description": "How the state was derived (WP6 was not run on CRMArena): per state field, the rule and the activity ids that support it. Not shown to judges.",
+          "type": "object",
+          "additionalProperties": { "type": "string", "maxLength": 500 }
+        }
+      }
+    },
+    "labelling": {
+      "description": "How the gold judgments were produced: two blind passes by the same author (single-author, same model), the self-agreement, and the judgments the two passes disagreed on. Model labels, not human labels.",
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["label_kind", "passes", "agreement", "disagreements"],
+      "properties": {
+        "label_kind": { "const": "model labels, single author, not human labels" },
+        "passes": { "const": ["pass_1", "pass_2"] },
+        "agreement": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["judgments", "verdict_agree", "fail_agree"],
+          "properties": {
+            "judgments": { "type": "integer", "minimum": 1 },
+            "verdict_agree": { "type": "integer", "minimum": 0 },
+            "fail_agree": { "type": "integer", "minimum": 0 }
+          }
+        },
+        "disagreements": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": ["eval_type", "pass_1", "pass_2", "resolution"],
+            "properties": {
+              "eval_type": { "type": "string" },
+              "pass_1": { "type": "string" },
+              "pass_2": { "type": "string" },
+              "resolution": { "type": "string", "minLength": 1, "maxLength": 600 }
+            }
+          }
+        }
+      }
+    }
+  }
+}
