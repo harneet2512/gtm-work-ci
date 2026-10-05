@@ -1,0 +1,52 @@
+{
+  "text": "What I noticed: you chose Send package, buyer sets timing over Propose a security call",
+  "blocks": [
+    {
+      "type": "header",
+      "text": {
+        "type": "plain_text",
+        "text": "What I noticed",
+        "emoji": false
+      },
+      "block_id": "ghost.judgment.header"
+    },
+    {
+      "type": "section",
+      "text": {
+        "type": "mrkdwn",
+        "text": "I noticed you changed the message to put less pressure on the buyer, the timing to follow the buyer's schedule and the ask to a smaller one.\nMy interpretation: The human preferred to deliver the documents and keep the review timing in the buyer's hands rather than propose a dated call, because Marco said he cannot commit to a date before his team reads them.",
+        "verbatim": true
+      },
+      "block_id": "ghost.judgment.choice"
+    },
+    {
+      "type": "section",
+      "text": {
+        "type": "mrkdwn",
+        "text": "*Why I think so*\n• The preferred candidate proposes Tuesday 10:00; the chosen one leaves timing to Marco and keeps Priya on cc.\n• State: “I can't commit to a review date until our team has read them.” (2026-09-29 15:42 UTC)\n• CTA calibration: my pick :x: Fail, your choice :warning: Warn (The dated call scored worse on CTA calibration.)\n• Knowledge applied: 1 knowledge item",
+        "verbatim": true
+      },
+      "block_id": "ghost.judgment.evidence"
+    },
+    {
+      "type": "section",
+      "text": {
+        "type": "mrkdwn",
+        "text": "*Corrected:* Not about timing alone: Marco's team is new to us, so Dana wants the documents read before any security call is proposed.",
+        "verbatim": true
+      },
+      "block_id": "ghost.judgment.verdict"
+    },
+    {
+      "type": "context",
+      "block_id": "ghost.judgment.note",
+      "elements": [
+        {
+          "type": "mrkdwn",
+          "text": "*Note:* Applies to security-led reviews where the reviewer has not met us before.",
+          "verbatim": true
+        }
+      ]
+    }
+  ]
+}

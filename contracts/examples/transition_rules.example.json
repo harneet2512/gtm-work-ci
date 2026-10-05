@@ -1,0 +1,440 @@
+{
+  "rule_set_version": "transition_rules:v1",
+  "description": "Example excerpt: the REORG -> EXPANSION rule with the full configuration. The full rule set is contracts/transitions/rules.v1.json.",
+  "evaluation": [
+    "Run after every recompute, for the rules whose from_states contain the account's relationship_state value ('unknown' when none), against that AccountState version, its claims (standing in claim_standings), its buying group and its signals (open per ADR-0011 for exists/not_exists). The evaluation time is that version's as_of (latest folded activity), never the wall clock. At most one transition step per evaluation.",
+    "Contradictions are recorded whenever they hold, on every status. An open CANDIDATE moves to REJECTED when a decisive contradiction (rejects=true) of its own rule holds; the account stays in from_state. An UNRESOLVED transition has no target and is never REJECTED: it becomes CANDIDATE, is CONFIRMED, or closes as stale. A contradiction with no open transition creates nothing.",
+    "A rule confirms when all its requires_all facts hold and no decisive contradiction holds. If exactly one rule confirms and the open transition (if any) has no target or the same target, the transition is CONFIRMED: confirmed_at is the as_of of the evaluated AccountState version (every activity folded into it is at or before it) and relationship_state becomes to_state with that confirmed_at. If two or more rules confirm at once, or one confirms with a different target than the open CANDIDATE, the transition is UNRESOLVED (no file order, no direct re-target).",
+    "Otherwise a rule is gated when its candidate gate holds (a requires_any fact and at least min_satisfied.threshold of the min_satisfied.of facts) and no decisive contradiction holds. Exactly one gated rule with the same target as the open transition, or none open, gives CANDIDATE. Two or more gated rules, or one whose target differs from the open CANDIDATE's, give UNRESOLVED with to_state_candidate null.",
+    "Otherwise an open CANDIDATE (its gate no longer holds) becomes UNRESOLVED with its target cleared. An UNRESOLVED keeps the supporting, missing and contradicting facts of the rule(s) it came from (HAR-97 L1).",
+    "An UNRESOLVED transition with no gate holding for unresolved_stale_days after last_updated_at is closed (closed_at, close_reason 'stale'): terminal, and it frees the account's one open slot.",
+    "CONFIRMED, REJECTED and closed transitions are terminal; every write appends to state_transition_history. Nothing else (the account agent included) writes transitions.",
+    "A signal counts as evidence for a fact only when it is first-party: it cites no claim, or at least one claim it cites has a standing in claim_standings. A signal whose only evidence is third-party enrichment never earns a state. Contradictions and not_exists tests count every signal, so third-party evidence can only hold a transition back.",
+    "Claims count only when their status is in claim_statuses (active: a superseded, outranked, expired or rejected claim never counts) and their stance matches the condition (a claim whose value says stance 'withdrawn', for example 'the rollout is off', is evidence of the opposite, never of the need), their standing is in claim_standings, they are not a first_party_ai claim below the adjudication confidence floor and they have not expired (the detector loader applies the last two).",
+    "A state.* condition inside a fact counts only when the field standing is in claim_standings (a field won by third-party enrichment never earns a state); contradictions count every field. A fact holds only if its conditions also cite evidence: a group that cites none does not satisfy the fact.",
+    "A rule with claim_scope 'deal' reads, for each open deal, that deal's claims and signals (and those of no deal) and its OpportunityState fields; with claim_scope 'account' it reads every claim and signal. A fact holds when it holds in any open deal; a contradiction when it holds in any. With no open deal the account headline is the only scope. Signals are timed by occurred_at (ADR-0015), never created_at.",
+    "A confirmed.after_candidate rule confirms only when its own CANDIDATE was recorded by an earlier evaluation: a transition is never confirmed in the evaluation that first finds its evidence.",
+    "A where {tenure} test on a buying-group role looks at every member holding the role except a departed one, whatever its engagement status, so an acting owner who never wrote directly still blocks stability."
+  ],
+  "confidence": "satisfied_required_ratio",
+  "anchors": {
+    "from_state_confirmed_at": "AccountState.relationship_state.confirmed_at: the confirmed_at of the transition into the rule's from_state, i.e. the as_of of the AccountState version that confirmed it (the latest activity folded into it, never the wall clock). 'since' evidence must be strictly after it, so the evidence that earned the from_state is never reused. An account that never confirmed a state ('unknown') has no anchor and no lower bound: every claim and signal is new."
+  },
+  "claim_standings": [
+    "human_approved",
+    "crm_explicit",
+    "first_party_record",
+    "first_party_ai"
+  ],
+  "buying_group_member_statuses": [
+    "active",
+    "new"
+  ],
+  "vocabularies": {
+    "motion": [
+      "new_business",
+      "expansion",
+      "renewal"
+    ]
+  },
+  "thresholds": {
+    "owner_stable_min_days": {
+      "value": 14,
+      "unit": "days",
+      "description": "A champion who took over after the reorg counts as a stable owner after holding the role this long, if not interim and with no open champion_weakened or champion_delegated signal."
+    },
+    "expansion_evidence_window_days": {
+      "value": 90,
+      "unit": "days",
+      "description": "How long an expansion need, new stakeholder, business value or commercial step keeps supporting an expansion transition."
+    },
+    "reorg_evidence_window_days": {
+      "value": 30,
+      "unit": "days",
+      "description": "How recent an org change (or the champion's change) must be to count as reorg evidence."
+    },
+    "candidate_min_change_facts": {
+      "value": 2,
+      "unit": "count",
+      "description": "Change facts (the candidate gate's min_satisfied.of list) a CANDIDATE needs; one change alone is never a candidate."
+    },
+    "unresolved_stale_days": {
+      "value": 30,
+      "unit": "days",
+      "description": "An UNRESOLVED transition with no candidate gate holding for this long is closed as stale."
+    }
+  },
+  "transitions": [
+    {
+      "id": "reorg_to_expansion",
+      "from_states": [
+        "REORG"
+      ],
+      "to_state": "EXPANSION",
+      "description": "After a confirmed reorg, the relationship has stabilized around a new owner and an actual expansion motion exists. Candidate evidence must be new since the reorg; it stays CANDIDATE (the agent behaves conservatively) until all five HAR-97 pitch §3 confirmed requirements hold.",
+      "har97_sections": [
+        "§3(PITCH)"
+      ],
+      "facts": [
+        {
+          "key": "owner_stabilized",
+          "required": true,
+          "description": "A champion who took over after the reorg is active, has held the role long enough, is not an interim or acting holder, and has no open weakening or delegation.",
+          "har97": "new owner/champion identified; ownership stabilized (an acting owner is not stable)",
+          "any_of": [
+            {
+              "all_of": [
+                {
+                  "path": "state.champion_status",
+                  "op": "eq",
+                  "value": "active"
+                },
+                {
+                  "path": "state.champion_since",
+                  "op": "known",
+                  "since": "from_state_confirmed_at"
+                },
+                {
+                  "path": "state.champion_since",
+                  "op": "age_days_gte",
+                  "threshold": "owner_stable_min_days"
+                },
+                {
+                  "path": "diff.champion_weakened",
+                  "op": "not_exists"
+                },
+                {
+                  "path": "diff.champion_delegated",
+                  "op": "not_exists"
+                },
+                {
+                  "path": "buying_group.champion",
+                  "op": "not_exists",
+                  "where": {
+                    "tenure": "interim"
+                  }
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "key": "expansion_need_stated",
+          "required": true,
+          "description": "Since the reorg, the customer explicitly asked for or stated a broader rollout: another team or BU, more seats, a geography or a use case beyond the current scope.",
+          "har97": "expansion need explicitly stated; explicit interest from another team / BU",
+          "any_of": [
+            {
+              "all_of": [
+                {
+                  "path": "claim.expansion_need",
+                  "op": "asserted_within_days",
+                  "threshold": "expansion_evidence_window_days",
+                  "since": "from_state_confirmed_at"
+                }
+              ]
+            },
+            {
+              "all_of": [
+                {
+                  "path": "diff.expansion_interest",
+                  "op": "fired_within_days",
+                  "threshold": "expansion_evidence_window_days",
+                  "since": "from_state_confirmed_at"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "key": "additional_stakeholder_engaged",
+          "required": true,
+          "description": "Since the reorg, a stakeholder other than the new owner (or a business unit) entered the buying group.",
+          "har97": "additional stakeholder / business unit engaged",
+          "any_of": [
+            {
+              "all_of": [
+                {
+                  "path": "claim.buying_group.member",
+                  "op": "asserted_within_days",
+                  "threshold": "expansion_evidence_window_days",
+                  "since": "from_state_confirmed_at",
+                  "about": "not_champion"
+                }
+              ]
+            },
+            {
+              "all_of": [
+                {
+                  "path": "diff.new_stakeholder_entered",
+                  "op": "fired_within_days",
+                  "threshold": "expansion_evidence_window_days",
+                  "since": "from_state_confirmed_at",
+                  "about": "not_champion"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "key": "value_signal_present",
+          "required": true,
+          "description": "Since the reorg, the customer stated an achieved or expected business value or metric, or product usage increased.",
+          "har97": "business value / usage signal present",
+          "any_of": [
+            {
+              "all_of": [
+                {
+                  "path": "claim.business_value",
+                  "op": "asserted_within_days",
+                  "threshold": "expansion_evidence_window_days",
+                  "since": "from_state_confirmed_at"
+                }
+              ]
+            },
+            {
+              "all_of": [
+                {
+                  "path": "diff.product_usage_increased",
+                  "op": "fired_within_days",
+                  "threshold": "expansion_evidence_window_days",
+                  "since": "from_state_confirmed_at"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "key": "commercial_next_step",
+          "required": true,
+          "description": "Since the reorg, a commercial step exists: the opportunity advanced, a pricing or budget conversation started, an open commercial commitment, or a known economic buyer and decision process.",
+          "har97": "concrete next step or commercial process exists",
+          "any_of": [
+            {
+              "all_of": [
+                {
+                  "path": "diff.stage_advanced",
+                  "op": "fired_within_days",
+                  "threshold": "expansion_evidence_window_days",
+                  "since": "from_state_confirmed_at"
+                }
+              ]
+            },
+            {
+              "all_of": [
+                {
+                  "path": "diff.pricing_interest",
+                  "op": "fired_within_days",
+                  "threshold": "expansion_evidence_window_days",
+                  "since": "from_state_confirmed_at"
+                }
+              ]
+            },
+            {
+              "all_of": [
+                {
+                  "path": "state.current_commitments",
+                  "op": "has_item",
+                  "value": "commercial",
+                  "since": "from_state_confirmed_at"
+                }
+              ]
+            },
+            {
+              "all_of": [
+                {
+                  "path": "state.economic_buyer",
+                  "op": "known"
+                },
+                {
+                  "path": "state.decision_process",
+                  "op": "known",
+                  "since": "from_state_confirmed_at"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "key": "new_owner_identified",
+          "required": false,
+          "description": "Since the reorg, a relationship owner (champion) is known and active, though not yet stable.",
+          "har97": "new relationship owner/champion identified",
+          "any_of": [
+            {
+              "all_of": [
+                {
+                  "path": "state.champion",
+                  "op": "known",
+                  "since": "from_state_confirmed_at"
+                },
+                {
+                  "path": "state.champion_status",
+                  "op": "eq",
+                  "value": "active"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "key": "economic_buyer_known",
+          "required": false,
+          "description": "The economic buyer is known.",
+          "har97": "economic buyer not yet known (missing in a candidate)",
+          "any_of": [
+            {
+              "all_of": [
+                {
+                  "path": "state.economic_buyer",
+                  "op": "known"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "key": "decision_process_known",
+          "required": false,
+          "description": "The budget or decision process is known.",
+          "har97": "budget / decision process still unclear (missing in a candidate)",
+          "any_of": [
+            {
+              "all_of": [
+                {
+                  "path": "state.decision_process",
+                  "op": "known"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "key": "crm_motion_expansion",
+          "required": false,
+          "description": "CRM (or a claim) reports an expansion opportunity. Supporting only: motion is not the relationship state.",
+          "har97": "CRMFieldChanged: expansion opportunity created (pitch §1)",
+          "any_of": [
+            {
+              "all_of": [
+                {
+                  "path": "state.motion",
+                  "op": "eq",
+                  "value": "expansion"
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "candidate": {
+        "requires_any": [
+          "expansion_need_stated"
+        ],
+        "min_satisfied": {
+          "threshold": "candidate_min_change_facts",
+          "of": [
+            "expansion_need_stated",
+            "additional_stakeholder_engaged",
+            "value_signal_present"
+          ]
+        }
+      },
+      "confirmed": {
+        "requires_all": [
+          "owner_stabilized",
+          "expansion_need_stated",
+          "additional_stakeholder_engaged",
+          "value_signal_present",
+          "commercial_next_step"
+        ]
+      },
+      "contradictions": [
+        {
+          "key": "expansion_withdrawn",
+          "required": false,
+          "rejects": true,
+          "description": "The customer withdrew the expansion need after the reorg (for example: the rollout is off).",
+          "any_of": [
+            {
+              "all_of": [
+                {
+                  "path": "claim.expansion_need",
+                  "op": "asserted_within_days",
+                  "threshold": "expansion_evidence_window_days",
+                  "since": "from_state_confirmed_at",
+                  "stance": "withdrawn"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "key": "support_risk_high",
+          "required": false,
+          "rejects": true,
+          "description": "Customer risk is high: recovery comes before expansion.",
+          "har97": "customer success problem may require recovery before expansion",
+          "any_of": [
+            {
+              "all_of": [
+                {
+                  "path": "state.relationship_risk",
+                  "op": "eq",
+                  "value": "high"
+                }
+              ]
+            },
+            {
+              "all_of": [
+                {
+                  "path": "diff.support_risk_spike",
+                  "op": "exists"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "key": "stage_regressed",
+          "required": false,
+          "rejects": false,
+          "description": "Since the reorg, the opportunity regressed; recorded, not decisive (the motion can resume).",
+          "har97": "commercial motion paused or uncertain",
+          "any_of": [
+            {
+              "all_of": [
+                {
+                  "path": "diff.stage_regressed",
+                  "op": "fired_within_days",
+                  "threshold": "expansion_evidence_window_days",
+                  "since": "from_state_confirmed_at"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "key": "customer_silent",
+          "required": false,
+          "rejects": false,
+          "description": "The customer went silent; recorded, not decisive.",
+          "any_of": [
+            {
+              "all_of": [
+                {
+                  "path": "diff.customer_went_silent",
+                  "op": "exists"
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "claim_scope": "deal"
+    }
+  ],
+  "claim_statuses": [
+    "active"
+  ]
+}

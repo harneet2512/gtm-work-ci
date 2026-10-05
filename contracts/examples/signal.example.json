@@ -1,0 +1,26 @@
+{
+  "id": "051a0000-0000-4000-8000-000000000401",
+  "account_id": "0a0c0000-0000-4000-8000-000000000001",
+  "opportunity_id": "0c0f0000-0000-4000-8000-000000000004",
+  "signal_type": "security_blocker_appeared",
+  "state_diff_id": "0d1f0000-0000-4000-8000-000000000301",
+  "subject_person_id": "0b0e0000-0000-4000-8000-000000000018",
+  "subject_claim_id": "0c1a0000-0000-4000-8000-000000000201",
+  "occurred_at": "2026-09-29T15:42:00Z",
+  "expires_at": null,
+  "dedupe_key": "diff:0d1f0000-0000-4000-8000-000000000301:sig.security_blocker@1:0c1a0000-0000-4000-8000-000000000201",
+  "rule": "sig.security_blocker@1",
+  "details": {
+    "blocker": "SOC2 Type II + pen-test summary"
+  },
+  "evidence_refs": [
+    {
+      "activity_id": "0ac70000-0000-4000-8000-000000000101",
+      "claim_id": "0c1a0000-0000-4000-8000-000000000201",
+      "quote": "Before we can sign off on the EU rollout we'll need your SOC2 Type II report and the pen-test summary.",
+      "speaker_person_id": "0b0e0000-0000-4000-8000-000000000018",
+      "occurred_at": "2026-09-29T15:42:00Z"
+    }
+  ],
+  "created_at": "2026-09-29T15:42:11Z"
+}

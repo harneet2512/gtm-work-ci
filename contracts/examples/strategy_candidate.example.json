@@ -1,0 +1,68 @@
+{
+  "candidate_id": "0ca00000-0000-4000-8000-0000000000a2",
+  "strategy_type": "package_then_buyer_timing",
+  "title": "Send package, buyer sets timing",
+  "description": "Send the package, keep Priya involved and leave the review timing to Marco.",
+  "ranking": 2,
+  "preferred_by_agent": false,
+  "rationale": "Marco said he cannot commit to a date before his team reads the documents, and Priya remains the commercial point of contact.",
+  "state_refs": [
+    "blockers",
+    "buying_group",
+    "next_meeting",
+    "champion_status"
+  ],
+  "evidence_refs": [
+    {
+      "activity_id": "0ac70000-0000-4000-8000-000000000101",
+      "quote": "Before we can sign off on the EU rollout we'll need your SOC2 Type II report and the pen-test summary.",
+      "speaker_person_id": "0b0e0000-0000-4000-8000-000000000018",
+      "occurred_at": "2026-09-29T15:42:00Z"
+    },
+    {
+      "activity_id": "0ac70000-0000-4000-8000-000000000101",
+      "quote": "I can't commit to a review date until our team has read them.",
+      "speaker_person_id": "0b0e0000-0000-4000-8000-000000000018",
+      "occurred_at": "2026-09-29T15:42:00Z"
+    }
+  ],
+  "knowledge_refs": [
+    "0c17c000-0000-4000-8000-000000000017"
+  ],
+  "action_type": "send_email",
+  "action_class": "REPLY",
+  "to": [
+    {
+      "person_id": "0b0e0000-0000-4000-8000-000000000018",
+      "role": "to",
+      "why": "Requested the security documents"
+    }
+  ],
+  "cc": [
+    {
+      "person_id": "0b0e0000-0000-4000-8000-000000000017",
+      "role": "cc",
+      "why": "Active champion; keep commercial continuity"
+    }
+  ],
+  "subject": "Re: Expansion to EU teams",
+  "full_action_artifact": {
+    "channel": "email",
+    "subject": "Re: Expansion to EU teams",
+    "body": "Hi Marco,\n\nThanks for jumping in. Attached are our SOC2 Type II report and the latest pen-test summary. Happy to set up time with our security team once you've reviewed - whatever timing works for you and Priya.\n\nBest,\nDana",
+    "attachments": [
+      "soc2-type2-2026.pdf",
+      "pentest-summary-2026Q3.pdf"
+    ]
+  },
+  "five_questions": {
+    "what_changed": "Marco Silva, Head of Security, joined the thread and asked for the SOC2 Type II report and the pen-test summary.",
+    "why_state_changed": "Marco wrote to us first-party in the email of 2026-09-29, and the buying group had no security member before.",
+    "what_remains_unknown": "When Marco's team can review; he said he cannot commit to a date until they have read the documents.",
+    "prior_knowledge_applies": "K17: keep the active champion involved when a new stakeholder enters during an expansion.",
+    "why_next_action": "Sending the package and leaving the timing to Marco respects his stated constraint and moves the review forward."
+  },
+  "preview": "Attached are our SOC2 Type II report and the latest pen-test summary. Happy to set up time with our security team once you've reviewed...",
+  "draft_index": 2,
+  "eval_bundle_ref": "0eb00000-0000-4000-8000-0000000000b2"
+}

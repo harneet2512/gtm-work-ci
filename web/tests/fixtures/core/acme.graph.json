@@ -1,0 +1,43 @@
+{
+  "account_id": "0a0c0000-0000-4000-8000-000000000001",
+  "nodes": [
+    { "id": "0a0c0000-0000-4000-8000-000000000001", "type": "Account", "label": "Acme Corp", "status": "active", "evidence_refs": [], "source_event_ids": [] },
+    { "id": "0c0f0000-0000-4000-8000-000000000004", "type": "Opportunity", "label": "Acme EU expansion", "status": "open", "data": { "stage": "Technical evaluation", "health": "at_risk" }, "evidence_refs": [{ "activity_id": "0ac70000-0000-4000-8000-000000000100" }], "source_event_ids": ["05e00000-0000-4000-8000-000000000100"] },
+    { "id": "0b0e0000-0000-4000-8000-000000000017", "type": "Person", "label": "Priya Shah", "status": "active", "data": { "title": "Director of Operations" }, "evidence_refs": [{ "activity_id": "0ac70000-0000-4000-8000-000000000100" }], "source_event_ids": ["05e00000-0000-4000-8000-000000000100"] },
+    { "id": "0b0e0000-0000-4000-8000-000000000018", "type": "Person", "label": "Marco Ruiz", "status": "active", "data": { "title": "Head of Security" }, "evidence_refs": [{ "activity_id": "0ac70000-0000-4000-8000-000000000100" }], "source_event_ids": ["05e00000-0000-4000-8000-000000000100"] },
+    { "id": "0b0e0000-0000-4000-8000-000000000001", "type": "Person", "label": "Dana Kim", "status": "active", "data": { "title": "Account Executive" }, "evidence_refs": [], "source_event_ids": [] },
+    { "id": "0ac70000-0000-4000-8000-000000000100", "type": "Activity", "label": "OpportunityStageChanged", "valid_from": "2026-09-20T10:00:00Z", "evidence_refs": [{ "activity_id": "0ac70000-0000-4000-8000-000000000100" }], "source_event_ids": ["05e00000-0000-4000-8000-000000000100"] },
+    { "id": "0ac70000-0000-4000-8000-000000000101", "type": "Activity", "label": "EmailReceived", "valid_from": "2026-09-29T15:42:00Z", "evidence_refs": [{ "activity_id": "0ac70000-0000-4000-8000-000000000101" }], "source_event_ids": ["05e00000-0000-4000-8000-000000000101"] },
+    { "id": "0c1a0000-0000-4000-8000-000000000200", "type": "Claim", "label": "stage", "status": "active", "evidence_refs": [{ "activity_id": "0ac70000-0000-4000-8000-000000000100" }], "source_event_ids": ["05e00000-0000-4000-8000-000000000100"] },
+    { "id": "0c1a0000-0000-4000-8000-000000000201", "type": "Claim", "label": "health", "status": "active", "evidence_refs": [{ "activity_id": "0ac70000-0000-4000-8000-000000000101" }], "source_event_ids": ["05e00000-0000-4000-8000-000000000101"] },
+    { "id": "051a0000-0000-4000-8000-000000000401", "type": "Signal", "label": "security_blocker_appeared", "status": "active", "evidence_refs": [{ "activity_id": "0ac70000-0000-4000-8000-000000000101" }], "source_event_ids": ["05e00000-0000-4000-8000-000000000101"] }
+  ],
+  "edges": [
+    { "id": "0ed90000-0000-4000-8000-000000000001", "source": "0b0e0000-0000-4000-8000-000000000017", "target": "0a0c0000-0000-4000-8000-000000000001", "rel_type": "WORKS_AT", "status": "active", "standing": "crm_explicit", "confidence": 1, "evidence_refs": [], "source_event_ids": [] },
+    { "id": "0ed90000-0000-4000-8000-000000000002", "source": "0b0e0000-0000-4000-8000-000000000018", "target": "0a0c0000-0000-4000-8000-000000000001", "rel_type": "WORKS_AT", "status": "active", "standing": "crm_explicit", "confidence": 1, "evidence_refs": [], "source_event_ids": [] },
+    { "id": "0ed90000-0000-4000-8000-000000000003", "source": "0c0f0000-0000-4000-8000-000000000004", "target": "0a0c0000-0000-4000-8000-000000000001", "rel_type": "BELONGS_TO", "status": "active", "standing": "crm_explicit", "confidence": 1, "evidence_refs": [], "source_event_ids": [] },
+    { "id": "0ed90000-0000-4000-8000-000000000004", "source": "0b0e0000-0000-4000-8000-000000000017", "target": "0c0f0000-0000-4000-8000-000000000004", "rel_type": "CHAMPION_FOR", "status": "active", "standing": "crm_explicit", "confidence": 0.9, "evidence_refs": [{ "activity_id": "0ac70000-0000-4000-8000-000000000100" }], "source_event_ids": ["05e00000-0000-4000-8000-000000000100"] },
+    { "id": "0ed90000-0000-4000-8000-000000000005", "source": "0b0e0000-0000-4000-8000-000000000018", "target": "0c0f0000-0000-4000-8000-000000000004", "rel_type": "TECHNICAL_EVALUATOR_FOR", "status": "active", "standing": "first_party_ai", "confidence": 0.7, "evidence_refs": [{ "activity_id": "0ac70000-0000-4000-8000-000000000101" }], "source_event_ids": ["05e00000-0000-4000-8000-000000000101"] },
+    { "id": "0ed90000-0000-4000-8000-000000000006", "source": "0b0e0000-0000-4000-8000-000000000001", "target": "0c0f0000-0000-4000-8000-000000000004", "rel_type": "OWNS", "status": "active", "standing": "crm_explicit", "confidence": 1, "evidence_refs": [], "source_event_ids": [] },
+    { "id": "0ed90000-0000-4000-8000-000000000007", "source": "0ac70000-0000-4000-8000-000000000100", "target": "0c0f0000-0000-4000-8000-000000000004", "rel_type": "ABOUT", "status": "active", "standing": "crm_explicit", "confidence": 1, "evidence_refs": [{ "activity_id": "0ac70000-0000-4000-8000-000000000100" }], "source_event_ids": ["05e00000-0000-4000-8000-000000000100"] },
+    { "id": "0ed90000-0000-4000-8000-000000000008", "source": "0ac70000-0000-4000-8000-000000000100", "target": "0b0e0000-0000-4000-8000-000000000017", "rel_type": "INVOLVES", "status": "active", "standing": "crm_explicit", "confidence": 1, "evidence_refs": [{ "activity_id": "0ac70000-0000-4000-8000-000000000100" }], "source_event_ids": ["05e00000-0000-4000-8000-000000000100"] },
+    { "id": "0ed90000-0000-4000-8000-000000000009", "source": "0c1a0000-0000-4000-8000-000000000200", "target": "0ac70000-0000-4000-8000-000000000100", "rel_type": "SUPPORTED_BY", "status": "active", "evidence_refs": [{ "activity_id": "0ac70000-0000-4000-8000-000000000100" }], "source_event_ids": ["05e00000-0000-4000-8000-000000000100"] },
+    { "id": "0ed90000-0000-4000-8000-000000000010", "source": "0ac70000-0000-4000-8000-000000000101", "target": "0b0e0000-0000-4000-8000-000000000018", "rel_type": "INVOLVES", "status": "active", "standing": "first_party_record", "confidence": 1, "evidence_refs": [{ "activity_id": "0ac70000-0000-4000-8000-000000000101" }], "source_event_ids": ["05e00000-0000-4000-8000-000000000101"] },
+    { "id": "0ed90000-0000-4000-8000-000000000011", "source": "0ac70000-0000-4000-8000-000000000101", "target": "0b0e0000-0000-4000-8000-000000000017", "rel_type": "INVOLVES", "status": "active", "standing": "first_party_record", "confidence": 1, "evidence_refs": [{ "activity_id": "0ac70000-0000-4000-8000-000000000101" }], "source_event_ids": ["05e00000-0000-4000-8000-000000000101"] },
+    { "id": "0ed90000-0000-4000-8000-000000000012", "source": "0ac70000-0000-4000-8000-000000000101", "target": "0b0e0000-0000-4000-8000-000000000001", "rel_type": "INVOLVES", "status": "active", "standing": "first_party_record", "confidence": 1, "evidence_refs": [{ "activity_id": "0ac70000-0000-4000-8000-000000000101" }], "source_event_ids": ["05e00000-0000-4000-8000-000000000101"] },
+    { "id": "0ed90000-0000-4000-8000-000000000013", "source": "0ac70000-0000-4000-8000-000000000101", "target": "0c0f0000-0000-4000-8000-000000000004", "rel_type": "ABOUT", "status": "active", "standing": "first_party_record", "confidence": 1, "evidence_refs": [{ "activity_id": "0ac70000-0000-4000-8000-000000000101" }], "source_event_ids": ["05e00000-0000-4000-8000-000000000101"] },
+    { "id": "0ed90000-0000-4000-8000-000000000014", "source": "0c1a0000-0000-4000-8000-000000000201", "target": "0ac70000-0000-4000-8000-000000000101", "rel_type": "SUPPORTED_BY", "status": "active", "evidence_refs": [{ "activity_id": "0ac70000-0000-4000-8000-000000000101" }], "source_event_ids": ["05e00000-0000-4000-8000-000000000101"] },
+    { "id": "0ed90000-0000-4000-8000-000000000015", "source": "051a0000-0000-4000-8000-000000000401", "target": "0c1a0000-0000-4000-8000-000000000201", "rel_type": "DERIVED_FROM", "status": "active", "evidence_refs": [{ "activity_id": "0ac70000-0000-4000-8000-000000000101" }], "source_event_ids": ["05e00000-0000-4000-8000-000000000101"] }
+  ],
+  "sections": {
+    "account": ["0a0c0000-0000-4000-8000-000000000001"],
+    "opportunities": ["0c0f0000-0000-4000-8000-000000000004"],
+    "stakeholders": ["0b0e0000-0000-4000-8000-000000000017", "0b0e0000-0000-4000-8000-000000000018", "0b0e0000-0000-4000-8000-000000000001"],
+    "activities": ["0ac70000-0000-4000-8000-000000000101", "0ac70000-0000-4000-8000-000000000100"],
+    "claims": ["0c1a0000-0000-4000-8000-000000000201", "0c1a0000-0000-4000-8000-000000000200"],
+    "signals": ["051a0000-0000-4000-8000-000000000401"]
+  },
+  "truncated": false,
+  "withheld": false,
+  "projection": { "complete": true, "projected_at": "2026-09-29T15:42:12Z" }
+}

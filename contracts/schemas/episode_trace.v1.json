@@ -1,0 +1,67 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://ghost.local/contracts/episode_trace.v1.json",
+  "title": "EpisodeTrace",
+  "description": "HAR-145: the causal trace of one DecisionEpisode as an ordered list of TraceSpans, source event -> evidence -> resolution -> graph mutation -> state -> precedents -> knowledge retrieved / applicable / cited (three separate spans, kinds knowledge_retrieved / knowledge_applicable / knowledge_used: retrieval is not influence, and neither is citation; the cited span carries influence_measured false because no measure of influence exists) -> candidates -> ranking -> Cliff message refs -> human interaction -> recomputed action -> knowledge mutation. Built by joining rows that already exist; it never recomputes an eval. Each span has a stable id (kind:primary-ref, the same on every read), refs to the underlying rows, and the ids of the EvalResults that judged that stage (eval -> family -> span mapping: contracts/evals/eval_areas.json family_spans). EvalResults of a family with no span of its own (the validation and safety families E18-E22) are listed in unassigned_eval_result_ids, so every result of the run is reachable from the trace. A TRACE is neither an EVAL nor a METRIC: operational metrics are served separately (GET /episodes/{id}/metrics).",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["episode_id", "agent_run_id", "account_id", "spans", "unassigned_eval_result_ids"],
+  "properties": {
+    "episode_id": { "$ref": "common.v1.json#/$defs/uuid" },
+    "agent_run_id": { "$ref": "common.v1.json#/$defs/uuid" },
+    "account_id": { "$ref": "common.v1.json#/$defs/uuid" },
+    "spans": {
+      "description": "In causal order; seq is 1..n without gaps. Every kind appears at least once (cliff_message once per posted or reserved message kind); a stage the platform does not record, or that has not happened yet, is still a span with the matching status, never silently dropped.",
+      "type": "array",
+      "minItems": 1,
+      "items": { "$ref": "#/$defs/traceSpan" }
+    },
+    "unassigned_eval_result_ids": { "type": "array", "uniqueItems": true, "items": { "$ref": "common.v1.json#/$defs/uuid" } }
+  },
+  "$defs": {
+    "spanKind": {
+      "enum": [
+        "source_event", "evidence", "resolution", "graph_mutation", "state", "precedents",
+        "knowledge_retrieved", "knowledge_applicable", "knowledge_used",
+        "candidates", "ranking", "cliff_message", "human_interaction", "recomputed_action", "knowledge_mutation"
+      ]
+    },
+    "refKind": {
+      "enum": [
+        "activity", "source_event", "account_change", "state_diff", "graph_diff", "trigger_evaluation", "decision_guidance",
+        "knowledge", "knowledge_evidence", "strategy_set", "strategy_candidate", "eval_bundle", "surface_message",
+        "human_strategy_decision", "human_decision", "judgment_inference", "human_delta", "customer_reaction", "run_step"
+      ]
+    },
+    "spanRef": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["kind", "id"],
+      "properties": {
+        "kind": { "$ref": "#/$defs/refKind" },
+        "id": { "type": "string", "minLength": 1, "maxLength": 200, "description": "The row's id, as text (a uuid, a bigint such as a graph diff id, or subject/surface/kind for a surface message)." }
+      }
+    },
+    "traceSpan": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id", "seq", "kind", "title", "status", "occurred_at", "summary", "refs", "eval_result_ids", "attributes"],
+      "properties": {
+        "id": { "type": "string", "pattern": "^[a-z_]+:[A-Za-z0-9._-]+$", "description": "kind:primary-ref (the first ref's id, else a fixed word); deterministic, so a deep link to a span survives a reload." },
+        "seq": { "type": "integer", "minimum": 1 },
+        "kind": { "$ref": "#/$defs/spanKind" },
+        "title": { "type": "string", "minLength": 1, "maxLength": 120 },
+        "status": {
+          "enum": ["recorded", "pending", "not_recorded"],
+          "description": "recorded: rows exist for this stage. pending: the stage has not happened yet for this episode (e.g. no human choice). not_recorded: the platform does not persist this stage (e.g. precedent retrieval, E5) or nothing was written for it; the span says so rather than inventing content."
+        },
+        "occurred_at": { "oneOf": [{ "$ref": "common.v1.json#/$defs/timestamp" }, { "type": "null" }] },
+        "summary": { "type": "string", "maxLength": 600, "description": "One factual sentence derived from the rows; never a model-written judgment." },
+        "refs": { "type": "array", "items": { "$ref": "#/$defs/spanRef" } },
+        "evidence_refs": { "type": "array", "items": { "$ref": "common.v1.json#/$defs/evidenceRef" }, "description": "The evidence behind the stage, where the stage carries any (evidence, knowledge_applicable)." },
+        "eval_result_ids": { "type": "array", "uniqueItems": true, "items": { "$ref": "common.v1.json#/$defs/uuid" } },
+        "attributes": { "type": "object", "description": "Kind-specific facts read straight from the rows (for example knowledge_ids on the three knowledge spans, from_version/to_version on state, order on ranking). Not an eval and not a metric." }
+      }
+    }
+  }
+}

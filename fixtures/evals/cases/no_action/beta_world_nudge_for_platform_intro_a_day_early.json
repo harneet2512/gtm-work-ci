@@ -1,0 +1,198 @@
+{
+  "id": "beta_world_nudge_for_platform_intro_a_day_early",
+  "case_type": "no_action",
+  "title": "Beta 09-10 (Thursday): the candidate nudges Hannah for the platform contact a day before her 'this week' window closes",
+  "should_pass": false,
+  "difficulty": "hard",
+  "slice_tags": {
+    "account": "beta",
+    "origin": "world_moment",
+    "motion": "expansion",
+    "stage": "commercial_review",
+    "champion_status": "active",
+    "economic_buyer": "known",
+    "risk": "low",
+    "candidate": "flawed",
+    "expected_action": "wait",
+    "extra": ["customer_owned_commitment", "near_boundary"]
+  },
+  "based_on": {
+    "kind": "world_moment",
+    "account": "beta",
+    "after_event_file": "world/accounts/beta/events/024_crm_opp_next_step.json",
+    "checkpoint": 2,
+    "changed_fields": [],
+    "change": null
+  },
+  "context": {
+    "now": "2026-09-10T15:00:00Z",
+    "state": {
+      "account_id": "0a0c0000-0000-4000-8000-000000000002",
+      "account_name": "Beta Inc",
+      "opportunity_id": "0c0f0000-0000-4000-8000-000000000005",
+      "fields": {
+        "stage": "Commercial review",
+        "health": "on_track",
+        "motion": "expansion",
+        "champion": "0b0e0000-0000-4000-8000-000000000031",
+        "champion_status": "active",
+        "economic_buyer": "0b0e0000-0000-4000-8000-000000000032",
+        "relationship_risk": "low",
+        "decision_process": "Owen Clarke approved the business case; the platform team must be comfortable with the integration",
+        "current_commitments": [
+          {
+            "text": "Send business case with the Austin pilot numbers by Tuesday",
+            "status": "fulfilled",
+            "owner_person_id": "0b0e0000-0000-4000-8000-000000000001",
+            "due": "2026-09-01"
+          },
+          {
+            "text": "Take the business case to Owen Clarke on Friday",
+            "status": "fulfilled",
+            "owner_person_id": "0b0e0000-0000-4000-8000-000000000031",
+            "due": "2026-09-04"
+          },
+          {
+            "text": "Loop in the right platform team person this week",
+            "status": "open",
+            "owner_person_id": "0b0e0000-0000-4000-8000-000000000031"
+          }
+        ]
+      },
+      "buying_group": [
+        {
+          "person_id": "0b0e0000-0000-4000-8000-000000000031",
+          "display_name": "Hannah Lee",
+          "title": "VP Customer Operations",
+          "roles": ["champion"],
+          "status": "active",
+          "delegated_to_person_id": null,
+          "last_engaged_at": null,
+          "evidence_refs": []
+        },
+        {
+          "person_id": "0b0e0000-0000-4000-8000-000000000032",
+          "display_name": "Owen Clarke",
+          "title": "Chief Financial Officer",
+          "roles": ["economic_buyer"],
+          "status": "unknown",
+          "delegated_to_person_id": null,
+          "last_engaged_at": null,
+          "evidence_refs": []
+        },
+        {
+          "person_id": "0b0e0000-0000-4000-8000-000000000033",
+          "display_name": "Jess Patel",
+          "title": "Support Operations Manager",
+          "roles": ["user"],
+          "status": "active",
+          "delegated_to_person_id": null,
+          "last_engaged_at": null,
+          "evidence_refs": []
+        }
+      ],
+      "coverage_gaps": []
+    },
+    "recent_changes": {
+      "summary": "Owen approved on Monday; Hannah said she would loop in the right platform person 'this week'; the rep set the CRM next step to the platform integration review.",
+      "material_diff_fields": [],
+      "signals": []
+    },
+    "trigger": {
+      "activity_id": "0ac70000-0000-4000-8000-0000000b0024",
+      "activity_type": "CRMFieldChanged",
+      "occurred_at": "2026-09-10T10:00:00Z",
+      "actor_person_id": "0b0e0000-0000-4000-8000-000000000001",
+      "event_file": "world/accounts/beta/events/024_crm_opp_next_step.json",
+      "synthetic": false,
+      "text": ""
+    },
+    "supporting_activities": [
+      {
+        "activity_id": "0ac70000-0000-4000-8000-0000000b0021",
+        "activity_type": "EmailReply",
+        "occurred_at": "2026-09-08T09:40:00Z",
+        "actor_person_id": "0b0e0000-0000-4000-8000-000000000031",
+        "event_file": "world/accounts/beta/events/021_email_hannah_owen_approved.json",
+        "synthetic": false,
+        "text": "I'll loop in the right person this week."
+      }
+    ],
+    "commitments": [
+      {
+        "text": "Loop in the right platform team person this week",
+        "owner_person_id": "0b0e0000-0000-4000-8000-000000000031",
+        "due_at": "2026-09-11T22:00:00Z",
+        "status": "open"
+      }
+    ],
+    "timeline_facts": {
+      "last_inbound_at": "2026-09-08T09:40:00Z",
+      "last_inbound_from_person_id": "0b0e0000-0000-4000-8000-000000000031",
+      "last_outbound_at": "2026-09-01T17:00:00Z",
+      "stated_timing": "Hannah: platform contact 'this week'"
+    },
+    "offered_knowledge": []
+  },
+  "candidate_action": {
+    "proposed_action_type": "send_email",
+    "recipients": [
+      {"person_id": "0b0e0000-0000-4000-8000-000000000031", "role": "to", "why": "Owes the platform contact"}
+    ],
+    "finished_artifact": {
+      "channel": "email",
+      "subject": "Platform contact",
+      "body": "Hi Hannah,\n\nJust checking in - have you had a chance to find the right person on the platform team? Happy to set up the session as soon as we have a name.\n\nBest,\nDana"
+    },
+    "crm_next_step_intent": {"next_step": "Platform contact named", "due_at": null, "stage_change": null},
+    "reason": "Keep the momentum after Owen's approval.",
+    "evidence_refs": [
+      {
+        "activity_id": "0ac70000-0000-4000-8000-0000000b0021",
+        "quote": "I'll loop in the right person this week.",
+        "speaker_person_id": "0b0e0000-0000-4000-8000-000000000031",
+        "occurred_at": "2026-09-08T09:40:00Z"
+      }
+    ],
+    "knowledge_refs_used": [],
+    "wait_until": null
+  },
+  "expected": [
+    {
+      "eval_type": "timing_cadence",
+      "verdict": "warn",
+      "label": "TOO_EARLY",
+      "diagnostics": ["too_early"],
+      "blocking": false,
+      "rationale": "Hannah committed on September 8 to identify the platform contact “this week,” with the commitment due September 11 at 22:00Z. Following up on September 10 at 15:00Z presses her before the promised window has closed.",
+      "evidence_class": "deal_data"
+    },
+    {
+      "eval_type": "next_action_quality",
+      "verdict": "fail",
+      "label": "WAIT",
+      "diagnostics": [],
+      "blocking": false,
+      "rationale": "Waiting until Friday evening is the better move.",
+      "evidence_class": "methodology",
+      "debatable": true,
+      "debate_note": "A single polite Thursday nudge is mild; some reviewers would accept it as a warn."
+    },
+    {
+      "eval_type": "commitment_consistency",
+      "verdict": "pass",
+      "label": null,
+      "diagnostics": [],
+      "blocking": false,
+      "rationale": "Refers to the customer's own commitment correctly.",
+      "evidence_class": "methodology"
+    }
+  ],
+  "expected_best_action": {
+    "action": "wait",
+    "why": "Wait until Friday evening; nudge only if no introduction has arrived.",
+    "wait_until": "2026-09-11T22:00:00Z"
+  },
+  "gold_revision": [{"revision": "gold-v2", "source": "adjudicated: 2 LLM labellers + GPT-5.6 tie-break, 2026-10-02", "label_kind": "model labels, not human labels", "changes": [{"eval_type": "timing_cadence", "from": "fail", "to": "warn"}]}],
+  "notes": "Hard flawed twin of beta_world_wait_for_platform_intro_this_week."
+}

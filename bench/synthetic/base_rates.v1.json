@@ -1,0 +1,145 @@
+{
+  "description": "Real-world base rates behind the synthetic layer event frequencies (spec section c). Each rate is sourced, or says plainly that it is assumed. Referenced by rules.v1.json#base_rates_file.",
+  "base_rates": [
+    {
+      "id": "champion_leaves_employer",
+      "quantity": "probability a buyer-side champion leaves the employer during one deal window",
+      "real_value": "median tenure with current employer 4.9 years for management, professional and related occupations (January 2026; 4.8 in January 2024)",
+      "assumed": false,
+      "source": {
+        "title": "BLS, Employee Tenure in January 2026 (released 2026-09-24)",
+        "url": "https://www.bls.gov/news.release/tenure.nr0.htm",
+        "quote": "workers in management, professional, and related occupations had the highest median tenure in January 2026 (4.9 years)"
+      },
+      "confidence": "moderate",
+      "synthetic_target": "12% of deals",
+      "amplification": 3.4,
+      "derivation": "Constant hazard ln2/4.9 = 0.141 per year gives 1 - exp(-0.141 * 0.25) = 3.5% per 90-day window. Amplified to 12% so that roughly 140 deals carry the event (statistical power). Champions are not a random sample of managers, so this is an order of magnitude, not a calibration."
+    },
+    {
+      "id": "executive_turnover",
+      "quantity": "annual CEO departures in large listed companies",
+      "real_value": "58 S&P 500 CEO departures in 2024 (11.6% of 500 companies)",
+      "assumed": false,
+      "source": {
+        "title": "Russell Reynolds Associates, Record number of CEOs left their roles in 2024",
+        "url": "https://www.russellreynolds.com/en/about/newsroom/record-number-of-ceos-left-their-roles-in-2024",
+        "quote": "The S&P 500 losing 58 CEOs last year - a 21% increase on 2023 and the second highest on record."
+      },
+      "confidence": "moderate",
+      "synthetic_target": "a new executive joins the account on 10% of deals (any executive, not only the CEO)",
+      "amplification": 3.4,
+      "derivation": "11.6% per year is 2.9% per 90-day window for the CEO alone; other officers add to it. 10% per deal window is assumed and amplified."
+    },
+    {
+      "id": "sec_8k_item_502",
+      "quantity": "frequency of officer departures and appointments disclosed on Form 8-K Item 5.02",
+      "real_value": null,
+      "assumed": true,
+      "source": {
+        "title": "SEC Form 8-K, Item 5.02 (Departure of Directors or Certain Officers; Election of Directors; Appointment of Certain Officers; Compensatory Arrangements of Certain Officers)",
+        "url": "https://www.sec.gov/files/form8-k.pdf",
+        "quote": "Unless otherwise specified, a report is to be filed or furnished within four business days after occurrence of the event."
+      },
+      "confidence": "none",
+      "synthetic_target": "not used directly",
+      "amplification": null,
+      "derivation": "Not computed. Item 5.02 is the right public base rate for officer changes, but we did not count filings per filer-year. Counting EDGAR Item 5.02 filings is an open question for the lead; the Russell Reynolds CEO rate stands in until then."
+    },
+    {
+      "id": "reorg_hazard",
+      "quantity": "probability a company runs an organisational redesign in a given period",
+      "real_value": "82% of respondents had experienced a redesign at their current company; 70% of those said the most recent one was within the past two years",
+      "assumed": false,
+      "source": {
+        "title": "McKinsey Global Survey, The secrets of successful organizational redesigns",
+        "url": "https://www.mckinsey.com/capabilities/people-and-organization/our-insights/the-secrets-of-successful-organizational-redesigns-mckinsey-global-survey-results"
+      },
+      "confidence": "low",
+      "synthetic_target": "a reorganisation touching the buying group during 22% of deals",
+      "amplification": 2.2,
+      "derivation": "0.82 * 0.70 = 57% within two years, about 0.42 per year, about 10% per 90-day window. A company-wide redesign is broader than a change touching one buying group, and the figures come from a search-result summary (our fetch of the page timed out), so confidence is low."
+    },
+    {
+      "id": "buying_group_size",
+      "quantity": "people involved in a complex B2B purchase",
+      "real_value": "six to ten decision makers",
+      "assumed": false,
+      "source": {"title": "Gartner, The B2B Buying Journey", "url": "https://www.gartner.com/en/sales/insights/b2b-buying-journey"},
+      "confidence": "moderate",
+      "synthetic_target": "every account gets one champion, one economic buyer, at most one separate decision maker, at least one technical evaluator; the rest are end users (about 9 contacts per account)",
+      "amplification": null,
+      "derivation": "Widely quoted Gartner figure; the Gartner page returned HTTP 403 to our fetch, so the number is taken as quoted, not re-read."
+    },
+    {
+      "id": "multithreading",
+      "quantity": "buyer-side people engaged in won versus lost deals",
+      "real_value": "closed-won deals often involve at least three buyer-side players; lost ones often only one",
+      "assumed": false,
+      "source": {
+        "title": "Gong, How to win mega-deals: a guide to multi-threading done right",
+        "url": "https://www.gong.io/files/gong-guide-win-more-mega-deals-multithreading.pdf",
+        "quote": "closed-won deals often involve the active participation of at least three key players from the buyer's side"
+      },
+      "confidence": "moderate",
+      "synthetic_target": "syn1_three_engaged_before_quote: prevalence 30%, odds ratio 2.0",
+      "amplification": null,
+      "derivation": "Vendor data and correlational. The planted odds ratio is assumed; only the threshold of three is taken from the source."
+    },
+    {
+      "id": "new_stakeholder_mid_deal",
+      "quantity": "share of deals where a new buyer-side person joins mid-deal",
+      "real_value": null,
+      "assumed": true,
+      "source": null,
+      "confidence": "none",
+      "synthetic_target": "45% of deals",
+      "amplification": null,
+      "derivation": "Assumed. Chosen so the champion-kept and champion-bypassed arms both have enough deals."
+    },
+    {
+      "id": "champion_internal_move",
+      "quantity": "share of deals where the champion changes role inside the account",
+      "real_value": null,
+      "assumed": true,
+      "source": null,
+      "confidence": "none",
+      "synthetic_target": "6% of deals",
+      "amplification": null,
+      "derivation": "Assumed; counted with departures for syn1_champion_gone_unreplaced when the new role is away from the deal."
+    },
+    {
+      "id": "interim_owner_share",
+      "quantity": "share of replacement owners who are acting or interim",
+      "real_value": null,
+      "assumed": true,
+      "source": null,
+      "confidence": "none",
+      "synthetic_target": "40% of replacements, acting for 30 to 90 days",
+      "amplification": null,
+      "derivation": "Assumed."
+    },
+    {
+      "id": "in_deal_reply_rate",
+      "quantity": "probability a buyer replies to an outbound email inside an active deal, where no real customer email covers that period",
+      "real_value": "2,245 of 5,177 CRMArena-Pro emails (43.4%) were sent by customers (WP31 loader, direction from the sender; the Incoming flag is false on all of them); all 507 'Re:' emails link to an earlier email",
+      "assumed": false,
+      "source": {"title": "WP31 deal-replay loader measurement (gtm-work PR #21)", "url": "https://github.com/harneet2512/gtm-work/pull/21"},
+      "confidence": "high",
+      "synthetic_target": "real customer emails are base data and are never duplicated or contradicted; synthetic replies fill only outbound emails with no real customer email before the next outbound, at 35% at neutral health (kinds 55% positive, 20% objection, 25% timing request)",
+      "amplification": null,
+      "derivation": "The 43.4% customer share is measured. The 35% fill rate and the kind mix for uncovered periods are assumed."
+    },
+    {
+      "id": "win_rate",
+      "quantity": "share of closed opportunities that are won",
+      "real_value": null,
+      "assumed": true,
+      "source": null,
+      "confidence": "none",
+      "synthetic_target": "0.33 (gate 0.28 to 0.38)",
+      "amplification": null,
+      "derivation": "Assumed for statistical power. We found no absolute B2B win-rate figure we could verify from a primary source (the Ebsta/Pavilion H1 2024 deck reports relative changes only)."
+    }
+  ]
+}
