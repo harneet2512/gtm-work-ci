@@ -1,0 +1,50 @@
+[
+  {
+    "AccountId": "001Wt00000PGdBuIAL",
+    "CompanySignedDate": "2022-12-21",
+    "ContractNumber": "00000143",
+    "ContractTerm": 12,
+    "CustomerSignedDate": "2022-12-20",
+    "Description": "Contract for TechSavvy Innovations' EDA expansion using TechPulse's AI-powered tools for enhanced design automation and verification processes, with seamless integration into existing systems.",
+    "EndDate": "2023-12-31",
+    "Id": "800Wt00000DDSn2IAH",
+    "StartDate": "2023-01-01",
+    "Status": "Activated"
+  },
+  {
+    "AccountId": "001Wt00000PHVkAIAX",
+    "CompanySignedDate": "2020-11-29",
+    "ContractNumber": "00000149",
+    "ContractTerm": 12,
+    "CustomerSignedDate": "2020-11-29",
+    "Description": "This contract establishes the integration of TechPulse AI-powered EDA solutions with SecureLink Technologies' cybersecurity platform, enhancing their existing product capabilities.",
+    "EndDate": "2021-11-30",
+    "Id": "800Wt00000DE0rzIAD",
+    "StartDate": "2020-12-01",
+    "Status": "Activated"
+  },
+  {
+    "AccountId": "001Wt00000PHVkAIAX",
+    "CompanySignedDate": "2020-11-20",
+    "ContractNumber": "00000150",
+    "ContractTerm": 24,
+    "CustomerSignedDate": "2020-11-19",
+    "Description": "This contract between TechPulse Solutions and SecureLink Technologies outlines the enhancement of EDA security capabilities leveraging AI-powered solutions. The agreement involves a comprehensive implementation plan focusing on seamless integration into existing systems and fortified data protection.",
+    "EndDate": "2022-11-30",
+    "Id": "800Wt00000DE4NfIAL",
+    "StartDate": "2020-12-01",
+    "Status": "Activated"
+  },
+  {
+    "AccountId": "001Wt00000PFj4zIAD",
+    "CompanySignedDate": "2021-12-22",
+    "ContractNumber": "00000200",
+    "ContractTerm": 12,
+    "CustomerSignedDate": "2021-12-20",
+    "Description": "This contract between TechPulse Solutions and NaviCorp Tech outlines the provision of AI-powered electronic design automation solutions to enhance NaviCorp's advanced navigation system. The agreement covers the deployment and integration of CircuitAI Innovator, OptiPower Manager, and SecureFlow Suite.",
+    "EndDate": "2022-12-31",
+    "Id": "800Wt00000DE9juIAD",
+    "StartDate": "2022-01-01",
+    "Status": "Activated"
+  }
+]

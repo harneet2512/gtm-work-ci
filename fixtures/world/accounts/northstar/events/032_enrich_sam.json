@@ -1,0 +1,19 @@
+{
+  "source_system": "enrichment",
+  "source_object_id": "peoplegraph:sam.okafor@northstar.health:2026-09-22T06:00:00Z",
+  "source_event_key": "observed",
+  "occurred_at": "2026-09-22T06:00:00Z",
+  "connector": "peoplegraph",
+  "connector_version": "0.1.0",
+  "payload": {
+    "kind": "enrichment",
+    "provider": "peoplegraph",
+    "subject": {"email": "sam.okafor@northstar.health", "domain": null},
+    "observed_at": "2026-09-22T06:00:00Z",
+    "facts": {
+      "title": "Information Security Lead",
+      "employer_domain": "northstar.health",
+      "seniority": "manager"
+    }
+  }
+}

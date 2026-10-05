@@ -1,0 +1,15 @@
+{
+  "source_system": "ghost.clock",
+  "source_object_id": "account:BE-7:customer_silence:2026-09-23",
+  "source_event_key": "tick",
+  "occurred_at": "2026-09-23T09:00:00Z",
+  "connector": "ghost_clock",
+  "connector_version": "0.1.0",
+  "payload": {
+    "kind": "clock_tick",
+    "account_ref": "account:BE-7",
+    "rule": "customer_silence",
+    "observed_at": "2026-09-23T09:00:00Z",
+    "details": {"last_customer_activity_at": "2026-09-16T09:10:00Z", "silent_days": 7}
+  }
+}

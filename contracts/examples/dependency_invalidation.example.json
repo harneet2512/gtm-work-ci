@@ -1,0 +1,44 @@
+{
+  "run_id": "0f0a0000-0000-4000-8000-000000000601",
+  "decision_episode_id": "0e9e0000-0000-4000-8000-000000000a01",
+  "human_delta_id": "0de10000-0000-4000-8000-000000000f01",
+  "status": "reevaluated",
+  "edited": true,
+  "semantic_labels": ["removed_unnecessary_stakeholders"],
+  "account_state": { "account_id": "0a0c0000-0000-4000-8000-000000000001", "version_before": 7, "version_after": 7, "preserved": true },
+  "entries": [
+    {
+      "index": 0,
+      "edit": {
+        "field": "recipients", "kind": "recipient_removed",
+        "before": { "person_id": "0b0e0000-0000-4000-8000-000000000017", "role": "cc" },
+        "after": null, "semantic_class": "stakeholder_change"
+      },
+      "invalidated": [
+        { "kind": "artifact_field", "ref_id": "0ca00000-0000-4000-8000-0000000000a2", "field": "recipients", "label": "Recipients of the chosen action", "reason": "The human removed a recipient from the draft.", "verdict": null, "replaces": null },
+        { "kind": "eval_result", "ref_id": "0e1a0000-0000-4000-8000-000000000a01", "field": "recipients", "label": "recipient_correctness", "reason": "recipient_correctness reads the recipients, which this edit changed: its verdict on the old draft no longer applies.", "verdict": "pass", "replaces": null },
+        { "kind": "eval_result", "ref_id": "0e1a0000-0000-4000-8000-000000000911", "field": "recipients", "label": "champion_continuity", "reason": "champion_continuity reads the recipients, which this edit changed: its verdict on the old draft no longer applies.", "verdict": "pass", "replaces": null },
+        { "kind": "ranking_rationale", "ref_id": "0ca00000-0000-4000-8000-0000000000a2", "field": null, "label": "Why this candidate ranked 2", "reason": "The ranking rested on eval verdicts of the old draft that this edit invalidated.", "verdict": null, "replaces": null },
+        { "kind": "knowledge_use_claim", "ref_id": "0c17c000-0000-4000-8000-000000000017", "field": "recipients", "label": "Applies company knowledge", "reason": "The claim that the draft applies this knowledge was made about the old draft.", "verdict": null, "replaces": null }
+      ],
+      "recomputed": [
+        { "kind": "final_artifact", "ref_id": "05d00000-0000-4000-8000-000000000c02", "field": null, "label": "Final artifact as sent", "reason": "Re-evaluated at send time at the run's replay clock.", "verdict": null, "replaces": null },
+        { "kind": "eval_result", "ref_id": "0e1a0000-0000-4000-8000-000000000a11", "field": "recipients", "label": "recipient_correctness", "reason": "Re-run on the final artifact at send time.", "verdict": "pass", "replaces": "0e1a0000-0000-4000-8000-000000000a01" }
+      ],
+      "not_recomputed": [
+        { "kind": "eval_result", "ref_id": "0e1a0000-0000-4000-8000-000000000911", "field": "recipients", "label": "champion_continuity", "reason": "Semantic evals are not re-run at send time; the old verdict is stale and no new one exists.", "verdict": "pass", "replaces": null },
+        { "kind": "ranking_rationale", "ref_id": "0ca00000-0000-4000-8000-0000000000a2", "field": null, "label": "Why this candidate ranked 2", "reason": "The strategy set is not re-ranked after a send.", "verdict": null, "replaces": null },
+        { "kind": "knowledge_use_claim", "ref_id": "0c17c000-0000-4000-8000-000000000017", "field": "recipients", "label": "Applies company knowledge", "reason": "Knowledge use is not re-judged at send time.", "verdict": null, "replaces": null }
+      ],
+      "preserved": [
+        { "kind": "account_state", "ref_id": "0a0c0000-0000-4000-8000-000000000001", "field": null, "label": "Account state v7", "reason": "An edit never writes account state; the send-time evaluation read the same version (v7) and the same content (sha-256) the run read.", "verdict": null, "replaces": null },
+        { "kind": "eval_result", "ref_id": "0e1a0000-0000-4000-8000-000000000912", "field": null, "label": "cta_calibration", "reason": "Declared independent of the recipients.", "verdict": "warn", "replaces": null }
+      ]
+    }
+  ],
+  "preserved_overall": [
+    { "kind": "account_state", "ref_id": "0a0c0000-0000-4000-8000-000000000001", "field": null, "label": "Account state v7", "reason": "An edit never writes account state; the send-time evaluation read the same version (v7) and the same content (sha-256) the run read.", "verdict": null, "replaces": null },
+    { "kind": "eval_result", "ref_id": "0e1a0000-0000-4000-8000-000000000912", "field": null, "label": "cta_calibration", "reason": "No edit touches a field this eval reads.", "verdict": "warn", "replaces": null }
+  ],
+  "generated_at": "2026-10-04T15:10:00Z"
+}
