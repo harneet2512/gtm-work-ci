@@ -1,0 +1,144 @@
+{
+  "eval_type": "decision_process",
+  "version": 1,
+  "title": "Decision-process coverage",
+  "har97_refs": [
+    {
+      "line": 2311,
+      "text": "## 15.6 Decision-process coverage"
+    },
+    {
+      "line": 609,
+      "text": "decision-process coverage"
+    },
+    {
+      "line": 2958,
+      "text": "* decision-process coverage"
+    }
+  ],
+  "l2_dimension": "decision-process coverage",
+  "questions": [
+    {
+      "section": "§15(GTM).6",
+      "text": "Do we understand how this customer will actually make the decision?"
+    }
+  ],
+  "inputs": [
+    "decision_process field",
+    "blockers and their status",
+    "coverage gaps",
+    "approvals already given",
+    "the candidate's ask"
+  ],
+  "criteria": [
+    {
+      "id": "criteria_known",
+      "kind": "check",
+      "text": "decision criteria known",
+      "guide": "Does the evidence state what the customer will decide on?",
+      "har97": {
+        "line": 2319,
+        "text": "* decision criteria known"
+      },
+      "output": "finding",
+      "before": null,
+      "after": null
+    },
+    {
+      "id": "process_known",
+      "kind": "check",
+      "text": "decision process known",
+      "guide": "Does the evidence state how and by whom the decision is made?",
+      "har97": {
+        "line": 2320,
+        "text": "* decision process known"
+      },
+      "output": "finding",
+      "before": null,
+      "after": null
+    },
+    {
+      "id": "functional_steps",
+      "kind": "check",
+      "text": "security / legal / procurement / finance steps known where relevant",
+      "guide": "Are the functional gates the customer named identified, with their status?",
+      "har97": {
+        "line": 2321,
+        "text": "* security / legal / procurement / finance steps known where relevant"
+      },
+      "output": "finding",
+      "before": null,
+      "after": null
+    },
+    {
+      "id": "approval_sequence",
+      "kind": "check",
+      "text": "approval sequence known",
+      "guide": "Is the order of approvals known (who signs after whom)?",
+      "har97": {
+        "line": 2322,
+        "text": "* approval sequence known"
+      },
+      "output": "finding",
+      "before": null,
+      "after": null
+    },
+    {
+      "id": "paper_process",
+      "kind": "check",
+      "text": "paper process / contract steps understood",
+      "guide": "Are the contract steps (entity, order form, signature path) understood?",
+      "har97": {
+        "line": 2323,
+        "text": "* paper process / contract steps understood"
+      },
+      "output": "finding",
+      "before": null,
+      "after": null
+    },
+    {
+      "id": "respects_process",
+      "kind": "evaluate",
+      "text": "proposed action respects the actual process",
+      "guide": "Does the action follow the sequence the customer stated, without skipping or running a gate 'in parallel'?",
+      "har97": {
+        "line": 2324,
+        "text": "* proposed action respects the actual process"
+      },
+      "output": "finding",
+      "before": null,
+      "after": null
+    }
+  ],
+  "failure_examples": [],
+  "counter_failures": [],
+  "known_exceptions": [],
+  "candidate_choices": [],
+  "principles": [],
+  "labels": [],
+  "pass_label": null,
+  "diagnostics": [
+    {
+      "name": "decision_process_unknown",
+      "when": "how the customer decides is not established"
+    },
+    {
+      "name": "security_or_procurement_step_missing",
+      "when": "a security, legal, procurement or finance gate is skipped or unknown"
+    }
+  ],
+  "routing": {
+    "actions": [
+      "send_email",
+      "schedule_meeting",
+      "share_document"
+    ],
+    "when_all": [],
+    "when_any": [
+      "commercial_ask",
+      "meeting_ask",
+      "process_gap"
+    ]
+  },
+  "uses_rep_profile": false
+}

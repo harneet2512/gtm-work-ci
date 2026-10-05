@@ -1,0 +1,373 @@
+{
+  "episode_id": "0e9e0000-0000-4000-8000-000000000a01",
+  "agent_run_id": "0f0a0000-0000-4000-8000-000000000601",
+  "account_id": "0a0c0000-0000-4000-8000-000000000001",
+  "spans": [
+    {
+      "id": "source_event:0ac70000-0000-4000-8000-000000000101",
+      "seq": 1,
+      "kind": "source_event",
+      "title": "Source event",
+      "status": "recorded",
+      "occurred_at": "2026-09-29T14:02:00Z",
+      "summary": "email EmailReceived at 2026-09-29T14:02:00Z: Marco asks for the security documents",
+      "refs": [
+        {
+          "kind": "activity",
+          "id": "0ac70000-0000-4000-8000-000000000101"
+        },
+        {
+          "kind": "source_event",
+          "id": "0e5e0000-0000-4000-8000-000000000101"
+        }
+      ],
+      "eval_result_ids": [],
+      "attributes": {
+        "trigger_activity_count": 1
+      }
+    },
+    {
+      "id": "evidence:0",
+      "seq": 2,
+      "kind": "evidence",
+      "title": "Evidence",
+      "status": "recorded",
+      "occurred_at": "2026-09-29T14:02:00Z",
+      "summary": "1 evidence reference behind the account change",
+      "refs": [
+        {
+          "kind": "account_change",
+          "id": "0acc0000-0000-4000-8000-000000000801"
+        }
+      ],
+      "eval_result_ids": [],
+      "attributes": {},
+      "evidence_refs": [
+        {
+          "activity_id": "0ac70000-0000-4000-8000-000000000101",
+          "quote": "Could you send over your security documents?"
+        }
+      ]
+    },
+    {
+      "id": "resolution:0ac70000-0000-4000-8000-000000000101",
+      "seq": 3,
+      "kind": "resolution",
+      "title": "Resolution",
+      "status": "recorded",
+      "occurred_at": "2026-09-29T14:02:00Z",
+      "summary": "Attached to Acme Corp; 2 of 2 participants resolved to people",
+      "refs": [
+        {
+          "kind": "activity",
+          "id": "0ac70000-0000-4000-8000-000000000101"
+        }
+      ],
+      "eval_result_ids": [],
+      "attributes": {
+        "participants_total": 2,
+        "participants_resolved": 2
+      }
+    },
+    {
+      "id": "graph_mutation:41",
+      "seq": 4,
+      "kind": "graph_mutation",
+      "title": "Graph mutation",
+      "status": "recorded",
+      "occurred_at": "2026-09-29T14:02:00Z",
+      "summary": "The projection changed 3 nodes or edges for this event",
+      "refs": [
+        {
+          "kind": "graph_diff",
+          "id": "41"
+        }
+      ],
+      "eval_result_ids": [],
+      "attributes": {
+        "change_count": 3
+      }
+    },
+    {
+      "id": "state:7",
+      "seq": 5,
+      "kind": "state",
+      "title": "State",
+      "status": "recorded",
+      "occurred_at": "2026-09-29T14:02:00Z",
+      "summary": "State v6 to v7: 2 fields changed (material)",
+      "refs": [
+        {
+          "kind": "state_diff",
+          "id": "0d1f0000-0000-4000-8000-000000000701"
+        }
+      ],
+      "eval_result_ids": [],
+      "attributes": {
+        "from_version": 6,
+        "to_version": 7,
+        "is_material": true
+      }
+    },
+    {
+      "id": "precedents:0",
+      "seq": 6,
+      "kind": "precedents",
+      "title": "Precedents",
+      "status": "not_recorded",
+      "occurred_at": "2026-09-29T14:02:00Z",
+      "summary": "Precedent retrieval (E5) is not persisted yet",
+      "refs": [],
+      "eval_result_ids": [],
+      "attributes": {
+        "reason": "not_persisted"
+      }
+    },
+    {
+      "id": "knowledge_retrieved:0",
+      "seq": 7,
+      "kind": "knowledge_retrieved",
+      "title": "Knowledge retrieved",
+      "status": "recorded",
+      "occurred_at": "2026-09-29T14:02:00Z",
+      "summary": "1 knowledge object retrieved at the replay clock",
+      "refs": [
+        {
+          "kind": "knowledge",
+          "id": "0c17c000-0000-4000-8000-000000000017"
+        }
+      ],
+      "eval_result_ids": [],
+      "attributes": {
+        "knowledge_ids": [
+          "0c17c000-0000-4000-8000-000000000017"
+        ]
+      }
+    },
+    {
+      "id": "knowledge_applicable:0",
+      "seq": 8,
+      "kind": "knowledge_applicable",
+      "title": "Knowledge applicable",
+      "status": "recorded",
+      "occurred_at": "2026-09-29T14:02:00Z",
+      "summary": "1 of 1 retrieved knowledge objects applied; 0 blocked by an exception",
+      "refs": [
+        {
+          "kind": "knowledge",
+          "id": "0c17c000-0000-4000-8000-000000000017"
+        }
+      ],
+      "eval_result_ids": [],
+      "attributes": {
+        "knowledge_ids": [
+          "0c17c000-0000-4000-8000-000000000017"
+        ],
+        "exception_blocked_ids": []
+      }
+    },
+    {
+      "id": "knowledge_used:0",
+      "seq": 9,
+      "kind": "knowledge_used",
+      "title": "Knowledge used",
+      "status": "recorded",
+      "occurred_at": "2026-09-29T14:02:00Z",
+      "summary": "1 knowledge object cited by a candidate",
+      "refs": [
+        {
+          "kind": "knowledge",
+          "id": "0c17c000-0000-4000-8000-000000000017"
+        }
+      ],
+      "eval_result_ids": [],
+      "attributes": {
+        "knowledge_ids": [
+          "0c17c000-0000-4000-8000-000000000017"
+        ]
+      }
+    },
+    {
+      "id": "candidates:05e70000-0000-4000-8000-000000000b01",
+      "seq": 10,
+      "kind": "candidates",
+      "title": "Candidates",
+      "status": "recorded",
+      "occurred_at": "2026-09-29T14:02:00Z",
+      "summary": "3 candidates, 2 EvalResults across them",
+      "refs": [
+        {
+          "kind": "strategy_set",
+          "id": "05e70000-0000-4000-8000-000000000b01"
+        },
+        {
+          "kind": "strategy_candidate",
+          "id": "0ca00000-0000-4000-8000-0000000000a1"
+        },
+        {
+          "kind": "strategy_candidate",
+          "id": "0ca00000-0000-4000-8000-0000000000a2"
+        },
+        {
+          "kind": "strategy_candidate",
+          "id": "0ca00000-0000-4000-8000-0000000000a3"
+        }
+      ],
+      "eval_result_ids": [
+        "0e1a0000-0000-4000-8000-000000000911",
+        "0e1a0000-0000-4000-8000-000000000912"
+      ],
+      "attributes": {
+        "candidate_ids": [
+          "0ca00000-0000-4000-8000-0000000000a1",
+          "0ca00000-0000-4000-8000-0000000000a2",
+          "0ca00000-0000-4000-8000-0000000000a3"
+        ]
+      }
+    },
+    {
+      "id": "ranking:05e70000-0000-4000-8000-000000000b01",
+      "seq": 11,
+      "kind": "ranking",
+      "title": "Ranking",
+      "status": "recorded",
+      "occurred_at": "2026-09-29T14:02:00Z",
+      "summary": "Ghost preferred Propose a security call",
+      "refs": [
+        {
+          "kind": "strategy_set",
+          "id": "05e70000-0000-4000-8000-000000000b01"
+        }
+      ],
+      "eval_result_ids": [],
+      "attributes": {
+        "order": [
+          "0ca00000-0000-4000-8000-0000000000a1",
+          "0ca00000-0000-4000-8000-0000000000a2",
+          "0ca00000-0000-4000-8000-0000000000a3"
+        ],
+        "preferred_candidate_id": "0ca00000-0000-4000-8000-0000000000a1"
+      }
+    },
+    {
+      "id": "cliff_message:bi",
+      "seq": 12,
+      "kind": "cliff_message",
+      "title": "Cliff message: bi",
+      "status": "recorded",
+      "occurred_at": "2026-09-29T14:02:00Z",
+      "summary": "Message 1 (bi) posted on slack",
+      "refs": [
+        {
+          "kind": "surface_message",
+          "id": "0b100000-0000-4000-8000-000000000a01/slack/bi"
+        }
+      ],
+      "eval_result_ids": [],
+      "attributes": {
+        "message_kind": "bi",
+        "surface": "slack",
+        "posted": true
+      }
+    },
+    {
+      "id": "cliff_message:chooser",
+      "seq": 13,
+      "kind": "cliff_message",
+      "title": "Cliff message: chooser",
+      "status": "recorded",
+      "occurred_at": "2026-09-29T14:02:00Z",
+      "summary": "Message 2 (chooser) posted on slack",
+      "refs": [
+        {
+          "kind": "surface_message",
+          "id": "0e9e0000-0000-4000-8000-000000000a01/slack/chooser"
+        }
+      ],
+      "eval_result_ids": [],
+      "attributes": {
+        "message_kind": "chooser",
+        "surface": "slack",
+        "posted": true
+      }
+    },
+    {
+      "id": "cliff_message:judgment",
+      "seq": 14,
+      "kind": "cliff_message",
+      "title": "Cliff message: judgment",
+      "status": "pending",
+      "occurred_at": "2026-09-29T14:02:00Z",
+      "summary": "Message 3 (judgment) has no reservation yet",
+      "refs": [],
+      "eval_result_ids": [],
+      "attributes": {
+        "message_kind": "judgment",
+        "surface": "slack",
+        "posted": false
+      }
+    },
+    {
+      "id": "human_interaction:0d5d0000-0000-4000-8000-000000000c01",
+      "seq": 15,
+      "kind": "human_interaction",
+      "title": "Human interaction",
+      "status": "recorded",
+      "occurred_at": "2026-09-29T16:10:00Z",
+      "summary": "Dana Kim chose Send package, buyer sets timing over Ghost's pick, edited it and sent",
+      "refs": [
+        {
+          "kind": "human_strategy_decision",
+          "id": "0d5d0000-0000-4000-8000-000000000c01"
+        }
+      ],
+      "eval_result_ids": [],
+      "attributes": {
+        "agreement": "overrode",
+        "edits": 1,
+        "send_decision": "send"
+      }
+    },
+    {
+      "id": "recomputed_action:0d5d0000-0000-4000-8000-000000000c01",
+      "seq": 16,
+      "kind": "recomputed_action",
+      "title": "Recomputed action",
+      "status": "recorded",
+      "occurred_at": "2026-09-29T16:10:00Z",
+      "summary": "The edited draft was re-evaluated before sending",
+      "refs": [
+        {
+          "kind": "human_strategy_decision",
+          "id": "0d5d0000-0000-4000-8000-000000000c01"
+        }
+      ],
+      "eval_result_ids": [],
+      "attributes": {
+        "send_decision": "send"
+      }
+    },
+    {
+      "id": "knowledge_mutation:0c17c000-0000-4000-8000-000000000017",
+      "seq": 17,
+      "kind": "knowledge_mutation",
+      "title": "Knowledge mutation",
+      "status": "recorded",
+      "occurred_at": "2026-09-29T16:11:00Z",
+      "summary": "1 knowledge change: SUPPORT on K17",
+      "refs": [
+        {
+          "kind": "knowledge",
+          "id": "0c17c000-0000-4000-8000-000000000017"
+        }
+      ],
+      "eval_result_ids": [],
+      "attributes": {
+        "operations": [
+          "SUPPORT"
+        ]
+      }
+    }
+  ],
+  "unassigned_eval_result_ids": []
+}

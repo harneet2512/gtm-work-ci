@@ -1,0 +1,44 @@
+# Slack app manifest for Cliff, the Slack face of Ghost (HAR-138 / HAR-137 / HAR-129).
+# Single declarative source: the app is created and updated from this file via the
+# apps.manifest.* API (scripts/slack/bootstrap.py). Socket Mode is enabled, so no public
+# request URL is needed. See docs/slack-setup.md.
+display_information:
+  name: Cliff
+  description: GTM Intelligence Agent
+  background_color: "#1f2937"
+features:
+  app_home:
+    home_tab_enabled: false
+    messages_tab_enabled: true
+    messages_tab_read_only_enabled: false
+  bot_user:
+    display_name: Cliff
+    always_online: false
+oauth_config:
+  scopes:
+    bot:
+      # Runtime (HAR-137): chat.postMessage / chat.update / chat.postEphemeral. views.open needs no scope.
+      - chat:write
+      # Bootstrap only (HAR-138 step 9): resolve #ghost-demo by name, create it if missing,
+      # and join it so the bot can post. No history, user or DM scopes are requested.
+      - channels:read
+      - channels:manage
+      - channels:join
+      # Read and converse (user request 2026-10-03): read #ghost-demo history, receive @mentions
+      # and direct messages to the bot. No user, file or org scopes.
+      - channels:history
+      - app_mentions:read
+      - im:history
+      - im:read
+      - im:write
+settings:
+  event_subscriptions:
+    bot_events:
+      - app_mention
+      - message.channels
+      - message.im
+  interactivity:
+    is_enabled: true
+  org_deploy_enabled: false
+  socket_mode_enabled: true
+  token_rotation_enabled: false

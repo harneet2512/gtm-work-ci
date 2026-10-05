@@ -1,0 +1,3541 @@
+{
+  "summary": {
+    "model": "openrouter/deepseek/deepseek-v4-flash",
+    "repeats": 3,
+    "facts": 40,
+    "calls": 57,
+    "errors": 5,
+    "fact_recall": 0.7,
+    "fold_recall": 0.7,
+    "quote_recall": 0.783,
+    "recalled_every_run": 0.55,
+    "recalled_at_least_once": 0.8,
+    "claims_per_call": 4.67,
+    "dropped_per_call": 0.0,
+    "seconds_per_call": 47.01,
+    "max_seconds_per_call": 180.0,
+    "per_field_recall": {
+      "blockers": 0.889,
+      "buying_group.member": 1.0,
+      "champion": 0.381,
+      "champion_status": 1.0,
+      "commercial_issue": 1.0,
+      "commitment": 0.762,
+      "decision_criteria": 0.833,
+      "decision_process": 0.667,
+      "delegation": 0.0,
+      "economic_buyer": 1.0,
+      "next_meeting": 0.0,
+      "next_milestone": 0.556,
+      "product_use_case": 1.0,
+      "stakeholder_role": 1.0
+    },
+    "missed_as": {
+      "blockers": {
+        "stakeholder_role": 1,
+        "<no quote>": 1
+      },
+      "buying_group.member": {},
+      "champion": {
+        "<no quote>": 6,
+        "owner": 3,
+        "economic_buyer": 3,
+        "delegation": 1
+      },
+      "champion_status": {},
+      "commercial_issue": {},
+      "commitment": {
+        "<no quote>": 5
+      },
+      "decision_criteria": {
+        "<no quote>": 1
+      },
+      "decision_process": {
+        "blockers": 2,
+        "buying_group.member": 1,
+        "stakeholder_role": 1
+      },
+      "delegation": {
+        "<no quote>": 3
+      },
+      "economic_buyer": {},
+      "next_meeting": {
+        "<no quote>": 6
+      },
+      "next_milestone": {
+        "<no quote>": 4
+      },
+      "product_use_case": {},
+      "stakeholder_role": {}
+    }
+  },
+  "stats": {
+    "calls": 57,
+    "errors": 5,
+    "claims": 266,
+    "dropped": 0,
+    "seconds": 2679.657000000123,
+    "max_seconds": 180.01600000006147
+  },
+  "facts": [
+    {
+      "account": "acme",
+      "event": "world/accounts/acme/events/012_call_scope_transcript.json",
+      "field": "champion",
+      "quote": "Priya here - I run operations for the US sites and I'm sponsoring the EU rollout.",
+      "runs": 3,
+      "field_hits": 3,
+      "fold_hits": 3,
+      "quote_hits": 3,
+      "missed_as": {}
+    },
+    {
+      "account": "acme",
+      "event": "world/accounts/acme/events/012_call_scope_transcript.json",
+      "field": "blockers",
+      "quote": "The EU line item has to be approved by finance in the Q3 planning cycle, and I don't control that.",
+      "runs": 3,
+      "field_hits": 3,
+      "fold_hits": 3,
+      "quote_hits": 3,
+      "missed_as": {}
+    },
+    {
+      "account": "acme",
+      "event": "world/accounts/acme/events/014_crm_note_scoping.json",
+      "field": "economic_buyer",
+      "quote": "Economic buyer not identified - Priya says finance decides as a committee.",
+      "runs": 3,
+      "field_hits": 3,
+      "fold_hits": 3,
+      "quote_hits": 3,
+      "missed_as": {}
+    },
+    {
+      "account": "acme",
+      "event": "world/accounts/acme/events/012_call_scope_transcript.json",
+      "field": "commitment",
+      "quote": "I'll send a proposal for 120 seats by Friday",
+      "runs": 3,
+      "field_hits": 3,
+      "fold_hits": 3,
+      "quote_hits": 3,
+      "missed_as": {}
+    },
+    {
+      "account": "acme",
+      "event": "world/accounts/acme/events/012_call_scope_transcript.json",
+      "field": "product_use_case",
+      "quote": "Berlin has about 70 users and Rotterdam about 50, so roughly 120 seats.",
+      "runs": 3,
+      "field_hits": 3,
+      "fold_hits": 3,
+      "quote_hits": 3,
+      "missed_as": {}
+    },
+    {
+      "account": "acme",
+      "event": "world/accounts/acme/events/019_email_priya_budget_approved.json",
+      "field": "blockers",
+      "quote": "finance approved the EU budget line this morning, so budget is no longer a blocker",
+      "runs": 3,
+      "field_hits": 3,
+      "fold_hits": 3,
+      "quote_hits": 3,
+      "missed_as": {}
+    },
+    {
+      "account": "acme",
+      "event": "world/accounts/acme/events/025_call_commercial_transcript.json",
+      "field": "commercial_issue",
+      "quote": "We'd want the Rotterdam site invoiced separately",
+      "runs": 3,
+      "field_hits": 3,
+      "fold_hits": 3,
+      "quote_hits": 3,
+      "missed_as": {}
+    },
+    {
+      "account": "acme",
+      "event": "world/accounts/acme/events/025_call_commercial_transcript.json",
+      "field": "commitment",
+      "quote": "I'll send the revised order form with the EU entity and split invoicing by Monday the 14th.",
+      "runs": 3,
+      "field_hits": 3,
+      "fold_hits": 3,
+      "quote_hits": 3,
+      "missed_as": {}
+    },
+    {
+      "account": "acme",
+      "event": "world/accounts/acme/events/033_email_priya_security_signoff.json",
+      "field": "buying_group.member",
+      "quote": "our Head of Security, Marco Ruiz, has to sign off on the vendor",
+      "runs": 3,
+      "field_hits": 3,
+      "fold_hits": 3,
+      "quote_hits": 3,
+      "missed_as": {}
+    },
+    {
+      "account": "acme",
+      "event": "world/accounts/acme/events/040_call_signature_transcript.json",
+      "field": "blockers",
+      "quote": "For any vendor touching that data I need to see your SOC2 Type II report and your latest pen-test summary before I can sign off.",
+      "runs": 3,
+      "field_hits": 2,
+      "fold_hits": 2,
+      "quote_hits": 3,
+      "missed_as": {
+        "stakeholder_role": 1
+      }
+    },
+    {
+      "account": "acme",
+      "event": "world/accounts/acme/events/033_email_priya_security_signoff.json",
+      "field": "champion",
+      "quote": "I'm still your point of contact on the commercial side",
+      "runs": 3,
+      "field_hits": 0,
+      "fold_hits": 0,
+      "quote_hits": 0,
+      "missed_as": {
+        "<no quote>": 3
+      }
+    },
+    {
+      "account": "acme",
+      "event": "world/accounts/acme/events/040_call_signature_transcript.json",
+      "field": "commitment",
+      "quote": "We can share both as soon as the mutual NDA is countersigned.",
+      "runs": 3,
+      "field_hits": 3,
+      "fold_hits": 3,
+      "quote_hits": 3,
+      "missed_as": {}
+    },
+    {
+      "account": "acme",
+      "event": "live/acme_marco_soc2_email.json",
+      "field": "next_milestone",
+      "quote": "I can't commit to a review date until our team has read them.",
+      "runs": 3,
+      "field_hits": 0,
+      "fold_hits": 0,
+      "quote_hits": 0,
+      "missed_as": {
+        "<no quote>": 3
+      }
+    },
+    {
+      "account": "acme",
+      "event": "live/acme_marco_soc2_email.json",
+      "field": "next_meeting",
+      "quote": "I can't commit to a review date until our team has read them.",
+      "runs": 3,
+      "field_hits": 0,
+      "fold_hits": 0,
+      "quote_hits": 0,
+      "missed_as": {
+        "<no quote>": 3
+      }
+    },
+    {
+      "account": "acme",
+      "event": "live/acme_marco_soc2_email.json",
+      "field": "champion",
+      "quote": "Priya will stay the point of contact on the commercial side.",
+      "runs": 3,
+      "field_hits": 1,
+      "fold_hits": 1,
+      "quote_hits": 2,
+      "missed_as": {
+        "<no quote>": 1,
+        "delegation": 1
+      }
+    },
+    {
+      "account": "acme",
+      "event": "live/acme_marco_soc2_email.json",
+      "field": "blockers",
+      "quote": "Before we can sign off on the EU rollout we'll need your SOC2 Type II report and the pen-test summary.",
+      "runs": 3,
+      "field_hits": 3,
+      "fold_hits": 3,
+      "quote_hits": 3,
+      "missed_as": {}
+    },
+    {
+      "account": "acme",
+      "event": "live/acme_marco_soc2_email.json",
+      "field": "stakeholder_role",
+      "quote": "I lead security at Acme",
+      "runs": 3,
+      "field_hits": 3,
+      "fold_hits": 3,
+      "quote_hits": 3,
+      "missed_as": {}
+    },
+    {
+      "account": "beta",
+      "event": "world/accounts/beta/events/016_crm_note_scoping.json",
+      "field": "champion",
+      "quote": "Hannah Lee champions the support-org rollout",
+      "runs": 3,
+      "field_hits": 2,
+      "fold_hits": 2,
+      "quote_hits": 2,
+      "missed_as": {
+        "<no quote>": 1
+      }
+    },
+    {
+      "account": "beta",
+      "event": "world/accounts/beta/events/005_email_hannah_scope_reply.json",
+      "field": "economic_buyer",
+      "quote": "Owen Clarke, our CFO, signs off on anything over $100k",
+      "runs": 3,
+      "field_hits": 3,
+      "fold_hits": 3,
+      "quote_hits": 3,
+      "missed_as": {}
+    },
+    {
+      "account": "beta",
+      "event": "world/accounts/beta/events/015_call_scope_transcript.json",
+      "field": "decision_criteria",
+      "quote": "If we can show a 15 percent drop in average handle time, the business case makes itself.",
+      "runs": 3,
+      "field_hits": 2,
+      "fold_hits": 2,
+      "quote_hits": 2,
+      "missed_as": {
+        "<no quote>": 1
+      }
+    },
+    {
+      "account": "beta",
+      "event": "world/accounts/beta/events/015_call_scope_transcript.json",
+      "field": "commitment",
+      "quote": "I'll send a business case with the Austin pilot numbers by Tuesday.",
+      "runs": 3,
+      "field_hits": 2,
+      "fold_hits": 2,
+      "quote_hits": 2,
+      "missed_as": {
+        "<no quote>": 1
+      }
+    },
+    {
+      "account": "beta",
+      "event": "world/accounts/beta/events/021_email_hannah_owen_approved.json",
+      "field": "decision_process",
+      "quote": "Owen approved the business case this morning, so the budget is there for the support rollout.",
+      "runs": 3,
+      "field_hits": 3,
+      "fold_hits": 3,
+      "quote_hits": 3,
+      "missed_as": {}
+    },
+    {
+      "account": "beta",
+      "event": "world/accounts/beta/events/021_email_hannah_owen_approved.json",
+      "field": "next_milestone",
+      "quote": "Next step is making sure our platform team is comfortable with the integration",
+      "runs": 3,
+      "field_hits": 3,
+      "fold_hits": 3,
+      "quote_hits": 3,
+      "missed_as": {}
+    },
+    {
+      "account": "beta",
+      "event": "world/accounts/beta/events/032_email_hannah_residency_correction.json",
+      "field": "blockers",
+      "quote": "The real blocker is EU data residency for the Dublin team's tickets.",
+      "runs": 3,
+      "field_hits": 3,
+      "fold_hits": 3,
+      "quote_hits": 3,
+      "missed_as": {}
+    },
+    {
+      "account": "beta",
+      "event": "world/accounts/beta/events/033_call_deepdive_transcript.json",
+      "field": "buying_group.member",
+      "quote": "Ravi Menon, I lead platform engineering at Beta.",
+      "runs": 3,
+      "field_hits": 3,
+      "fold_hits": 3,
+      "quote_hits": 3,
+      "missed_as": {}
+    },
+    {
+      "account": "beta",
+      "event": "world/accounts/beta/events/039_email_ravi_residency_request.json",
+      "field": "champion",
+      "quote": "Hannah is still driving the rollout on our side.",
+      "runs": 3,
+      "field_hits": 0,
+      "fold_hits": 0,
+      "quote_hits": 3,
+      "missed_as": {
+        "owner": 3
+      }
+    },
+    {
+      "account": "beta",
+      "event": "world/accounts/beta/events/039_email_ravi_residency_request.json",
+      "field": "commitment",
+      "quote": "Could you send your data residency documentation and your sub-processor list?",
+      "runs": 3,
+      "field_hits": 0,
+      "fold_hits": 0,
+      "quote_hits": 0,
+      "missed_as": {
+        "<no quote>": 3
+      }
+    },
+    {
+      "account": "northstar",
+      "event": "world/accounts/northstar/events/013_crm_note_scoping.json",
+      "field": "champion",
+      "quote": "Elena Vasquez champions the rollout to all four clinics",
+      "runs": 3,
+      "field_hits": 2,
+      "fold_hits": 2,
+      "quote_hits": 2,
+      "missed_as": {
+        "<no quote>": 1
+      }
+    },
+    {
+      "account": "northstar",
+      "event": "world/accounts/northstar/events/011_call_scope_transcript.json",
+      "field": "economic_buyer",
+      "quote": "Grace Liu, our VP of Finance, approves the budget, but she'll follow my recommendation.",
+      "runs": 3,
+      "field_hits": 3,
+      "fold_hits": 3,
+      "quote_hits": 3,
+      "missed_as": {}
+    },
+    {
+      "account": "northstar",
+      "event": "world/accounts/northstar/events/011_call_scope_transcript.json",
+      "field": "decision_process",
+      "quote": "Anything that touches patient data also needs a security review by Sam Okafor's team, because intake forms carry PHI.",
+      "runs": 3,
+      "field_hits": 1,
+      "fold_hits": 1,
+      "quote_hits": 3,
+      "missed_as": {
+        "blockers": 2,
+        "buying_group.member": 1,
+        "stakeholder_role": 1
+      }
+    },
+    {
+      "account": "northstar",
+      "event": "world/accounts/northstar/events/011_call_scope_transcript.json",
+      "field": "commitment",
+      "quote": "I'll send pricing for the four clinics by next Wednesday.",
+      "runs": 3,
+      "field_hits": 3,
+      "fold_hits": 3,
+      "quote_hits": 3,
+      "missed_as": {}
+    },
+    {
+      "account": "northstar",
+      "event": "world/accounts/northstar/events/011_call_scope_transcript.json",
+      "field": "decision_criteria",
+      "quote": "Open enrollment starts November 2, so that's our real deadline.",
+      "runs": 3,
+      "field_hits": 3,
+      "fold_hits": 3,
+      "quote_hits": 3,
+      "missed_as": {}
+    },
+    {
+      "account": "northstar",
+      "event": "world/accounts/northstar/events/023_call_plan_transcript.json",
+      "field": "blockers",
+      "quote": "Sam's team has to sign off before any clinic goes live, because the intake forms carry PHI.",
+      "runs": 3,
+      "field_hits": 2,
+      "fold_hits": 2,
+      "quote_hits": 2,
+      "missed_as": {
+        "<no quote>": 1
+      }
+    },
+    {
+      "account": "northstar",
+      "event": "world/accounts/northstar/events/023_call_plan_transcript.json",
+      "field": "commitment",
+      "quote": "Let me introduce you to Sam - he'll want to set the agenda himself.",
+      "runs": 3,
+      "field_hits": 2,
+      "fold_hits": 2,
+      "quote_hits": 2,
+      "missed_as": {
+        "<no quote>": 1
+      }
+    },
+    {
+      "account": "northstar",
+      "event": "world/accounts/northstar/events/029_email_elena_delegation.json",
+      "field": "delegation",
+      "quote": "Please work directly with Sam on this",
+      "runs": 3,
+      "field_hits": 0,
+      "fold_hits": 0,
+      "quote_hits": 0,
+      "missed_as": {
+        "<no quote>": 3
+      }
+    },
+    {
+      "account": "northstar",
+      "event": "world/accounts/northstar/events/029_email_elena_delegation.json",
+      "field": "buying_group.member",
+      "quote": "Sam Okafor leads information security here and will own the evaluation from now on, including the BAA.",
+      "runs": 3,
+      "field_hits": 3,
+      "fold_hits": 3,
+      "quote_hits": 3,
+      "missed_as": {}
+    },
+    {
+      "account": "northstar",
+      "event": "world/accounts/northstar/events/029_email_elena_delegation.json",
+      "field": "champion_status",
+      "quote": "I'm stepping back from the day-to-day",
+      "runs": 3,
+      "field_hits": 3,
+      "fold_hits": 3,
+      "quote_hits": 3,
+      "missed_as": {}
+    },
+    {
+      "account": "northstar",
+      "event": "world/accounts/northstar/events/029_email_elena_delegation.json",
+      "field": "champion",
+      "quote": "Sam will bring me in for final sign-off",
+      "runs": 3,
+      "field_hits": 0,
+      "fold_hits": 0,
+      "quote_hits": 3,
+      "missed_as": {
+        "economic_buyer": 3
+      }
+    },
+    {
+      "account": "northstar",
+      "event": "world/accounts/northstar/events/036_email_sam_meeting_request.json",
+      "field": "next_milestone",
+      "quote": "I'd like to book a 60-minute security review with you and Leo next week",
+      "runs": 3,
+      "field_hits": 2,
+      "fold_hits": 2,
+      "quote_hits": 2,
+      "missed_as": {
+        "<no quote>": 1
+      }
+    },
+    {
+      "account": "northstar",
+      "event": "world/accounts/northstar/events/036_email_sam_meeting_request.json",
+      "field": "next_meeting",
+      "quote": "Please send an invite for whichever suits you.",
+      "runs": 3,
+      "field_hits": 0,
+      "fold_hits": 0,
+      "quote_hits": 0,
+      "missed_as": {
+        "<no quote>": 3
+      }
+    }
+  ],
+  "raw": {
+    "live/acme_marco_soc2_email.json": [
+      {
+        "claims": [
+          {
+            "field_path": "buying_group.member",
+            "value": "Marco Ruiz",
+            "confidence": 1.0,
+            "evidence_quote": "I lead security at Acme.",
+            "speaker_identity": "marco.ruiz@acme.com",
+            "subject_identity": "marco.ruiz@acme.com",
+            "role": "security",
+            "due_at": null
+          },
+          {
+            "field_path": "stakeholder_role",
+            "value": "security reviewer",
+            "confidence": 1.0,
+            "evidence_quote": "I lead security at Acme.",
+            "speaker_identity": "marco.ruiz@acme.com",
+            "subject_identity": "marco.ruiz@acme.com",
+            "role": "security",
+            "due_at": null
+          },
+          {
+            "field_path": "blockers",
+            "value": "need SOC2 Type II report and pen-test summary before sign-off",
+            "confidence": 1.0,
+            "evidence_quote": "Before we can sign off on the EU rollout we'll need your SOC2 Type II report and the pen-test summary.",
+            "speaker_identity": "marco.ruiz@acme.com",
+            "subject_identity": null,
+            "role": null,
+            "due_at": null
+          }
+        ],
+        "seconds": 33.3
+      },
+      {
+        "claims": [
+          {
+            "field_path": "buying_group.member",
+            "value": "Marco Ruiz",
+            "confidence": 0.95,
+            "evidence_quote": "Priya looped me in; I lead security at Acme.",
+            "speaker_identity": "marco.ruiz@acme.com",
+            "subject_identity": "marco.ruiz@acme.com",
+            "role": "security",
+            "due_at": null
+          },
+          {
+            "field_path": "stakeholder_role",
+            "value": "security lead",
+            "confidence": 0.95,
+            "evidence_quote": "Priya looped me in; I lead security at Acme.",
+            "speaker_identity": "marco.ruiz@acme.com",
+            "subject_identity": "marco.ruiz@acme.com",
+            "role": "security",
+            "due_at": null
+          },
+          {
+            "field_path": "blockers",
+            "value": "SOC2 Type II report and pen-test summary",
+            "confidence": 0.95,
+            "evidence_quote": "Before we can sign off on the EU rollout we'll need your SOC2 Type II report and the pen-test summary.",
+            "speaker_identity": "marco.ruiz@acme.com",
+            "subject_identity": null,
+            "role": null,
+            "due_at": null
+          },
+          {
+            "field_path": "delegation",
+            "value": "Priya Shah for commercial side",
+            "confidence": 0.9,
+            "evidence_quote": "Priya will stay the point of contact on the commercial side.",
+            "speaker_identity": "marco.ruiz@acme.com",
+            "subject_identity": "marco.ruiz@acme.com",
+            "role": null,
+            "due_at": null
+          }
+        ],
+        "seconds": 36.0
+      },
+      {
+        "claims": [
+          {
+            "field_path": "buying_group.member",
+            "value": "Marco Ruiz",
+            "confidence": 0.9,
+            "evidence_quote": "I lead security at Acme.",
+            "speaker_identity": "marco.ruiz@acme.com",
+            "subject_identity": "marco.ruiz@acme.com",
+            "role": "security",
+            "due_at": null
+          },
+          {
+            "field_path": "stakeholder_role",
+            "value": "security lead",
+            "confidence": 0.9,
+            "evidence_quote": "I lead security at Acme.",
+            "speaker_identity": "marco.ruiz@acme.com",
+            "subject_identity": "marco.ruiz@acme.com",
+            "role": "security",
+            "due_at": null
+          },
+          {
+            "field_path": "stakeholder_role",
+            "value": "commercial point of contact",
+            "confidence": 0.9,
+            "evidence_quote": "Priya will stay the point of contact on the commercial side.",
+            "speaker_identity": "marco.ruiz@acme.com",
+            "subject_identity": "priya.shah@acme.com",
+            "role": "unknown",
+            "due_at": null
+          },
+          {
+            "field_path": "blockers",
+            "value": "SOC2 Type II report and pen-test summary",
+            "confidence": 0.95,
+            "evidence_quote": "Before we can sign off on the EU rollout we'll need your SOC2 Type II report and the pen-test summary.",
+            "speaker_identity": "marco.ruiz@acme.com",
+            "subject_identity": null,
+            "role": null,
+            "due_at": null
+          },
+          {
+            "field_path": "product_use_case",
+            "value": "EU rollout",
+            "confidence": 0.8,
+            "evidence_quote": "the EU rollout",
+            "speaker_identity": "marco.ruiz@acme.com",
+            "subject_identity": null,
+            "role": null,
+            "due_at": null
+          }
+        ],
+        "seconds": 31.1
+      }
+    ],
+    "world/accounts/acme/events/012_call_scope_transcript.json": [
+      {
+        "claims": [
+          {
+            "field_path": "buying_group.member",
+            "value": "Priya Shah",
+            "confidence": 1.0,
+            "evidence_quote": "Priya here - I run operations for the US sites and I'm sponsoring the EU rollout.",
+            "speaker_identity": "priya.shah@acme.com",
+            "subject_identity": "priya.shah@acme.com",
+            "role": "executive_sponsor",
+            "due_at": null
+          },
+          {
+            "field_path": "stakeholder_role",
+            "value": "sponsor of EU rollout",
+            "confidence": 1.0,
+            "evidence_quote": "Priya here - I run operations for the US sites and I'm sponsoring the EU rollout.",
+            "speaker_identity": "priya.shah@acme.com",
+            "subject_identity": "priya.shah@acme.com",
+            "role": "executive_sponsor",
+            "due_at": null
+          },
+          {
+            "field_path": "buying_group.member",
+            "value": "Tom Becker",
+            "confidence": 1.0,
+            "evidence_quote": "Tom Becker, I manage EU operations out of Berlin.",
+            "speaker_identity": "tom.becker@acme.com",
+            "subject_identity": "tom.becker@acme.com",
+            "role": "user",
+            "due_at": null
+          },
+          {
+            "field_path": "stakeholder_role",
+            "value": "EU operations manager",
+            "confidence": 1.0,
+            "evidence_quote": "Tom Becker, I manage EU operations out of Berlin.",
+            "speaker_identity": "tom.becker@acme.com",
+            "subject_identity": "tom.becker@acme.com",
+            "role": "user",
+            "due_at": null
+          },
+          {
+            "field_path": "decision_criteria",
+            "value": "EU sites live on Relay before the January peak",
+            "confidence": 1.0,
+            "evidence_quote": "Berlin and Rotterdam live on Relay before the January peak.",
+            "speaker_identity": "priya.shah@acme.com",
+            "subject_identity": null,
+            "role": null,
+            "due_at": null
+          },
+          {
+            "field_path": "decision_criteria",
+            "value": "EU sites run same workflows as US sites",
+            "confidence": 1.0,
+            "evidence_quote": "What matters most to us is that the EU sites run the same workflows as the US sites.",
+            "speaker_identity": "priya.shah@acme.com",
+            "subject_identity": null,
+            "role": null,
+            "due_at": null
+          },
+          {
+            "field_path": "product_use_case",
+            "value": "Berlin 70 users, Rotterdam 50 users, total 120 seats",
+            "confidence": 1.0,
+            "evidence_quote": "Berlin has about 70 users and Rotterdam about 50, so roughly 120 seats.",
+            "speaker_identity": "tom.becker@acme.com",
+            "subject_identity": null,
+            "role": null,
+            "due_at": null
+          },
+          {
+            "field_path": "blockers",
+            "value": "budget approval by finance in Q3 planning cycle",
+            "confidence": 1.0,
+            "evidence_quote": "The EU line item has to be approved by finance in the Q3 planning cycle, and I don't control that.",
+            "speaker_identity": "priya.shah@acme.com",
+            "subject_identity": null,
+            "role": null,
+            "due_at": null
+          },
+          {
+            "field_path": "economic_buyer",
+            "value": "unknown",
+            "confidence": 1.0,
+            "evidence_quote": "Finance decides as a committee; I'll take the proposal in myself.",
+            "speaker_identity": "priya.shah@acme.com",
+            "subject_identity": null,
+            "role": null,
+            "due_at": null
+          },
+          {
+            "field_path": "commitment",
+            "value": "Priya will take the proposal to finance",
+            "confidence": 1.0,
+            "evidence_quote": "I'll take the proposal in myself.",
+            "speaker_identity": "priya.shah@acme.com",
+            "subject_identity": "priya.shah@acme.com",
+            "role": null,
+            "due_at": null
+          },
+          {
+            "field_path": "commitment",
+            "value": "Dana will send proposal for 120 seats by Friday",
+            "confidence": 1.0,
+            "evidence_quote": "Then I'll send a proposal for 120 seats by Friday so you have it for the planning cycle.",
+            "speaker_identity": "dana@ghostvendor.com",
+            "subject_identity": "dana@ghostvendor.com",
+            "role": null,
+            "due_at": null
+          },
+          {
+            "field_path": "champion",
+            "value": "Priya Shah",
+            "confidence": 1.0,
+            "evidence_quote": "I'm sponsoring the EU rollout.",
+            "speaker_identity": "priya.shah@acme.com",
+            "subject_identity": "priya.shah@acme.com",
+            "role": null,
+            "due_at": null
+          }
+        ],
+        "seconds": 61.3
+      },
+      {
+        "claims": [
+          {
+            "field_path": "buying_group.member",
+            "value": "Priya Shah",
+            "confidence": 1.0,
+            "evidence_quote": "Priya here - I run operations for the US sites and I'm sponsoring the EU rollout.",
+            "speaker_identity": "priya.shah@acme.com",
+            "subject_identity": "priya.shah@acme.com",
+            "role": "executive_sponsor",
+            "due_at": null
+          },
+          {
+            "field_path": "stakeholder_role",
+            "value": "sponsor",
+            "confidence": 1.0,
+            "evidence_quote": "Priya here - I run operations for the US sites and I'm sponsoring the EU rollout.",
+            "speaker_identity": "priya.shah@acme.com",
+            "subject_identity": "priya.shah@acme.com",
+            "role": "executive_sponsor",
+            "due_at": null
+          },
+          {
+            "field_path": "buying_group.member",
+            "value": "Tom Becker",
+            "confidence": 1.0,
+            "evidence_quote": "Tom Becker, I manage EU operations out of Berlin.",
+            "speaker_identity": "tom.becker@acme.com",
+            "subject_identity": "tom.becker@acme.com",
+            "role": "user",
+            "due_at": null
+          },
+          {
+            "field_path": "stakeholder_role",
+            "value": "EU operations manager",
+            "confidence": 1.0,
+            "evidence_quote": "Tom Becker, I manage EU operations out of Berlin.",
+            "speaker_identity": "tom.becker@acme.com",
+            "subject_identity": "tom.becker@acme.com",
+            "role": "user",
+            "due_at": null
+          },
+          {
+            "field_path": "decision_criteria",
+            "value": "EU sites run same workflows as US sites, live before January peak",
+            "confidence": 1.0,
+            "evidence_quote": "Berlin and Rotterdam live on Relay before the January peak. What matters most to us is that the EU sites run the same workflows as the US sites.",
+            "speaker_identity": "priya.shah@acme.com",
+            "subject_identity": null,
+            "role": null,
+            "due_at": null
+          },
+          {
+            "field_path": "product_use_case",
+            "value": "Berlin 70 users, Rotterdam 50 users, total 120 seats",
+            "confidence": 1.0,
+            "evidence_quote": "Berlin has about 70 users and Rotterdam about 50, so roughly 120 seats.",
+            "speaker_identity": "tom.becker@acme.com",
+            "subject_identity": null,
+            "role": null,
+            "due_at": null
+          },
+          {
+            "field_path": "blockers",
+            "value": "budget approval by finance in Q3 planning cycle",
+            "confidence": 1.0,
+            "evidence_quote": "The EU line item has to be approved by finance in the Q3 planning cycle, and I don't control that.",
+            "speaker_identity": "priya.shah@acme.com",
+            "subject_identity": null,
+            "role": null,
+            "due_at": null
+          },
+          {
+            "field_path": "economic_buyer",
+            "value": "unknown",
+            "confidence": 1.0,
+            "evidence_quote": "Finance decides as a committee; I'll take the proposal in myself.",
+            "speaker_identity": "priya.shah@acme.com",
+            "subject_identity": null,
+            "role": null,
+            "due_at": null
+          },
+          {
+            "field_path": "decision_process",
+            "value": "finance committee decides",
+            "confidence": 1.0,
+            "evidence_quote": "Finance decides as a committee; I'll take the proposal in myself.",
+            "speaker_identity": "priya.shah@acme.com",
+            "subject_identity": null,
+            "role": null,
+            "due_at": null
+          },
+          {
+            "field_path": "commitment",
+            "value": "send proposal for 120 seats by Friday",
+            "confidence": 1.0,
+            "evidence_quote": "Then I'll send a proposal for 120 seats by Friday so you have it for the planning cycle.",
+            "speaker_identity": "dana@ghostvendor.com",
+            "subject_identity": "dana@ghostvendor.com",
+            "role": null,
+            "due_at": null
+          },
+          {
+            "field_path": "champion",
+            "value": "Priya Shah",
+            "confidence": 1.0,
+            "evidence_quote": "Priya here - I run operations for the US sites and I'm sponsoring the EU rollout.",
+            "speaker_identity": "priya.shah@acme.com",
+            "subject_identity": "priya.shah@acme.com",
+            "role": null,
+            "due_at": null
+          }
+        ],
+        "seconds": 49.2
+      },
+      {
+        "claims": [
+          {
+            "field_path": "champion",
+            "value": "Priya Shah",
+            "confidence": 1.0,
+            "evidence_quote": "Priya here - I run operations for the US sites and I'm sponsoring the EU rollout.",
+            "speaker_identity": "priya.shah@acme.com",
+            "subject_identity": "priya.shah@acme.com",
+            "role": null,
+            "due_at": null
+          },
+          {
+            "field_path": "buying_group.member",
+            "value": "Priya Shah",
+            "confidence": 1.0,
+            "evidence_quote": "Priya here - I run operations for the US sites and I'm sponsoring the EU rollout.",
+            "speaker_identity": "priya.shah@acme.com",
+            "subject_identity": "priya.shah@acme.com",
+            "role": "champion",
+            "due_at": null
+          },
+          {
+            "field_path": "stakeholder_role",
+            "value": "sponsor of EU rollout",
+            "confidence": 1.0,
+            "evidence_quote": "Priya here - I run operations for the US sites and I'm sponsoring the EU rollout.",
+            "speaker_identity": "priya.shah@acme.com",
+            "subject_identity": "priya.shah@acme.com",
+            "role": "champion",
+            "due_at": null
+          },
+          {
+            "field_path": "buying_group.member",
+            "value": "Tom Becker",
+            "confidence": 1.0,
+            "evidence_quote": "Tom Becker, I manage EU operations out of Berlin.",
+            "speaker_identity": "call:call-acme-0825:speaker_03",
+            "subject_identity": "call:call-acme-0825:speaker_03",
+            "role": "user",
+            "due_at": null
+          },
+          {
+            "field_path": "stakeholder_role",
+            "value": "EU operations manager",
+            "confidence": 1.0,
+            "evidence_quote": "Tom Becker, I manage EU operations out of Berlin.",
+            "speaker_identity": "call:call-acme-0825:speaker_03",
+            "subject_identity": "call:call-acme-0825:speaker_03",
+            "role": "user",
+            "due_at": null
+          },
+          {
+            "field_path": "product_use_case",
+            "value": "120 seats for EU rollout (Berlin 70, Rotterdam 50)",
+            "confidence": 1.0,
+            "evidence_quote": "Berlin has about 70 users and Rotterdam about 50, so roughly 120 seats.",
+            "speaker_identity": "call:call-acme-0825:speaker_03",
+            "subject_identity": null,
+            "role": null,
+            "due_at": null
+          },
+          {
+            "field_path": "decision_criteria",
+            "value": "go-live before January peak",
+            "confidence": 1.0,
+            "evidence_quote": "Berlin and Rotterdam live on Relay before the January peak.",
+            "speaker_identity": "priya.shah@acme.com",
+            "subject_identity": null,
+            "role": null,
+            "due_at": null
+          },
+          {
+            "field_path": "decision_criteria",
+            "value": "EU sites run same workflows as US sites",
+            "confidence": 1.0,
+            "evidence_quote": "What matters most to us is that the EU sites run the same workflows as the US sites.",
+            "speaker_identity": "priya.shah@acme.com",
+            "subject_identity": null,
+            "role": null,
+            "due_at": null
+          },
+          {
+            "field_path": "blockers",
+            "value": "budget approval by finance in Q3 planning cycle",
+            "confidence": 1.0,
+            "evidence_quote": "The EU line item has to be approved by finance in the Q3 planning cycle",
+            "speaker_identity": "priya.shah@acme.com",
+            "subject_identity": null,
+            "role": null,
+            "due_at": null
+          },
+          {
+            "field_path": "economic_buyer",
+            "value": "unknown",
+            "confidence": 1.0,
+            "evidence_quote": "Finance decides as a committee",
+            "speaker_identity": "priya.shah@acme.com",
+            "subject_identity": null,
+            "role": null,
+            "due_at": null
+          },
+          {
+            "field_path": "commitment",
+            "value": "Priya will present the proposal to the finance committee",
+            "confidence": 1.0,
+            "evidence_quote": "I'll take the proposal in myself.",
+            "speaker_identity": "priya.shah@acme.com",
+            "subject_identity": "priya.shah@acme.com",
+            "role": null,
+            "due_at": null
+          },
+          {
+            "field_path": "commitment",
+            "value": "Dana will send a proposal for 120 seats by Friday",
+            "confidence": 1.0,
+            "evidence_quote": "I'll send a proposal for 120 seats by Friday so you have it for the planning cycle.",
+            "speaker_identity": "call:call-acme-0825:speaker_01",
+            "subject_identity": "call:call-acme-0825:speaker_01",
+            "role": null,
+            "due_at": null
+          },
+          {
+            "field_path": "next_milestone",
+            "value": "send proposal for 120 seats by Friday",
+            "confidence": 1.0,
+            "evidence_quote": "I'll send a proposal for 120 seats by Friday so you have it for the planning cycle.",
+            "speaker_identity": "call:call-acme-0825:speaker_01",
+            "subject_identity": null,
+            "role": null,
+            "due_at": null
+          }
+        ],
+        "seconds": 75.8
+      }
+    ],
+    "world/accounts/acme/events/014_crm_note_scoping.json": [
+      {
+        "claims": [
+          {
+            "field_path": "champion",
+            "value": "Priya Shah",
+            "confidence": 1.0,
+            "evidence_quote": "Priya Shah is sponsoring the EU rollout (Berlin ~70 users, Rotterdam ~50).",
+            "speaker_identity": null,
+            "subject_identity": "priya.shah@acme.com",
+            "role": null,
+            "due_at": null
+          },
+          {
+            "field_path": "product_use_case",
+            "value": "EU rollout: Berlin ~70 users, Rotterdam ~50",
+            "confidence": 1.0,
+            "evidence_quote": "Priya Shah is sponsoring the EU rollout (Berlin ~70 users, Rotterdam ~50).",
+            "speaker_identity": null,
+            "subject_identity": null,
+            "role": null,
+            "due_at": null
+          },
+          {
+            "field_path": "blockers",
+            "value": "EU budget line needs finance approval in Q3 planning cycle",
+            "confidence": 1.0,
+            "evidence_quote": "Open blocker: the EU budget line needs finance approval in the Q3 planning cycle.",
+            "speaker_identity": null,
+            "subject_identity": null,
+            "role": null,
+            "due_at": null
+          },
+          {
+            "field_path": "economic_buyer",
+            "value": "unknown",
+            "confidence": 1.0,
+            "evidence_quote": "Economic buyer not identified - Priya says finance decides as a committee.",
+            "speaker_identity": null,
+            "subject_identity": null,
+            "role": null,
+            "due_at": null
+          },
+          {
+            "field_path": "decision_process",
+            "value": "finance decides as a committee",
+            "confidence": 1.0,
+            "evidence_quote": "Economic buyer not identified - Priya says finance decides as a committee.",
+            "speaker_identity": null,
+            "subject_identity": null,
+            "role": null,
+            "due_at": null
+          }
+        ],
+        "seconds": 34.3
+      },
+      {
+        "claims": [
+          {
+            "field_path": "champion",
+            "value": "Priya Shah",
+            "confidence": 1.0,
+            "evidence_quote": "Priya Shah is sponsoring the EU rollout (Berlin ~70 users, Rotterdam ~50).",
+            "speaker_identity": null,
+            "subject_identity": "priya.shah@acme.com",
+            "role": null,
+            "due_at": null
+          },
+          {
+            "field_path": "product_use_case",
+            "value": "Berlin ~70 users, Rotterdam ~50",
+            "confidence": 1.0,
+            "evidence_quote": "Berlin ~70 users, Rotterdam ~50",
+            "speaker_identity": null,
+            "subject_identity": null,
+            "role": null,
+            "due_at": null
+          },
+          {
+            "field_path": "blockers",
+            "value": "EU budget line finance approval in Q3 planning cycle",
+            "confidence": 1.0,
+            "evidence_quote": "the EU budget line needs finance approval in the Q3 planning cycle",
+            "speaker_identity": null,
+            "subject_identity": null,
+            "role": null,
+            "due_at": null
+          },
+          {
+            "field_path": "economic_buyer",
+            "value": "unknown",
+            "confidence": 1.0,
+            "evidence_quote": "Economic buyer not identified - Priya says finance decides as a committee.",
+            "speaker_identity": null,
+            "subject_identity": "priya.shah@acme.com",
+            "role": null,
+            "due_at": null
+          }
+        ],
+        "seconds": 20.0
+      },
+      {
+        "claims": [
+          {
+            "field_path": "champion",
+            "value": "Priya Shah",
+            "confidence": 1.0,
+            "evidence_quote": "Priya Shah is sponsoring the EU rollout",
+            "speaker_identity": null,
+            "subject_identity": "priya.shah@acme.com",
+            "role": null,
+            "due_at": null
+          },
+          {
+            "field_path": "product_use_case",
+            "value": "EU rollout: Berlin ~70 users, Rotterdam ~50",
+            "confidence": 1.0,
+            "evidence_quote": "Priya Shah is sponsoring the EU rollout (Berlin ~70 users, Rotterdam ~50)",
+            "speaker_identity": null,
+            "subject_identity": null,
+            "role": null,
+            "due_at": null
+          },
+          {
+            "field_path": "blockers",
+            "value": "EU budget line needs finance approval in Q3 planning cycle",
+            "confidence": 1.0,
+            "evidence_quote": "Open blocker: the EU budget line needs finance approval in the Q3 planning cycle",
+            "speaker_identity": null,
+            "subject_identity": null,
+            "role": null,
+            "due_at": null
+          },
+          {
+            "field_path": "economic_buyer",
+            "value": "unknown",
+            "confidence": 1.0,
+            "evidence_quote": "Economic buyer not identified - Priya says finance decides as a committee.",
+            "speaker_identity": "priya.shah@acme.com",
+            "subject_identity": null,
+            "role": null,
+            "due_at": null
+          },
+          {
+            "field_path": "decision_process",
+            "value": "finance committee decides",
+            "confidence": 1.0,
+            "evidence_quote": "Economic buyer not identified - Priya says finance decides as a committee.",
+            "speaker_identity": "priya.shah@acme.com",
+            "subject_identity": null,
+            "role": null,
+            "due_at": null
+          }
+        ],
+        "seconds": 25.3
+      }
+    ],
+    "world/accounts/acme/events/019_email_priya_budget_approved.json": [
+      {
+        "claims": [
+          {
+            "field_path": "blockers",
+            "value": "resolved: budget blocker",
+            "confidence": 1.0,
+            "evidence_quote": "finance approved the EU budget line this morning, so budget is no longer a blocker.",
+            "speaker_identity": "priya.shah@acme.com",
+            "subject_identity": null,
+            "role": null,
+            "due_at": null
+          },
+          {
+            "field_path": "next_meeting",
+            "value": "walk through order form next Wednesday (proposed)",
+            "confidence": 1.0,
+            "evidence_quote": "Can we walk through the order form together next Wednesday?",
+            "speaker_identity": "priya.shah@acme.com",
+            "subject_identity": null,
+            "role": null,
+            "due_at": null
+          }
+        ],
+        "seconds": 16.0
+      },
+      {
+        "claims": [
+          {
+            "field_path": "blockers",
+            "value": "resolved: budget approval",
+            "confidence": 1.0,
+            "evidence_quote": "finance approved the EU budget line this morning, so budget is no longer a blocker.",
+            "speaker_identity": "priya.shah@acme.com",
+            "subject_identity": null,
+            "role": null,
+            "due_at": null
+          },
+          {
+            "field_path": "next_meeting",
+            "value": "walk through order form next Wednesday (proposed)",
+            "confidence": 1.0,
+            "evidence_quote": "Can we walk through the order form together next Wednesday?",
+            "speaker_identity": "priya.shah@acme.com",
+            "subject_identity": null,
+            "role": null,
+            "due_at": null
+          }
+        ],
+        "seconds": 12.1
+      },
+      {
+        "claims": [
+          {
+            "field_path": "blockers",
+            "value": "resolved: budget approval",
+            "confidence": 1.0,
+            "evidence_quote": "finance approved the EU budget line this morning, so budget is no longer a blocker.",
+            "speaker_identity": "priya.shah@acme.com",
+            "subject_identity": null,
+            "role": null,
+            "due_at": null
+          },
+          {
+            "field_path": "decision_process",
+            "value": "EU budget line approved by finance",
+            "confidence": 1.0,
+            "evidence_quote": "finance approved the EU budget line this morning, so budget is no longer a blocker.",
+            "speaker_identity": "priya.shah@acme.com",
+            "subject_identity": null,
+            "role": null,
+            "due_at": null
+          },
+          {
+            "field_path": "next_meeting",
+            "value": "walk through order form next Wednesday (proposed)",
+            "confidence": 1.0,
+            "evidence_quote": "Can we walk through the order form together next Wednesday?",
+            "speaker_identity": "priya.shah@acme.com",
+            "subject_identity": null,
+            "role": null,
+            "due_at": null
+          },
+          {
+            "field_path": "next_milestone",
+            "value": "walk through order form next Wednesday",
+            "confidence": 1.0,
+            "evidence_quote": "Can we walk through the order form together next Wednesday?",
+            "speaker_identity": "priya.shah@acme.com",
+            "subject_identity": null,
+            "role": null,
+            "due_at": null
+          }
+        ],
+        "seconds": 32.2
+      }
+    ],
+    "world/accounts/acme/events/025_call_commercial_transcript.json": [
+      {
+        "claims": [
+          {
+            "field_path": "stage",
+            "value": "Negotiation",
+            "confidence": 1.0,
+            "evidence_quote": "From my side we're basically in negotiation now",
+            "speaker_identity": "priya.shah@acme.com",
+            "subject_identity": null,
+            "role": null,
+            "due_at": null
+          },
+          {
+            "field_path": "commercial_issue",
+            "value": "order form wording to match EU entity Acme Logistics B.V.",
+            "confidence": 1.0,
+            "evidence_quote": "I just want the order form wording to match our EU entity, Acme Logistics B.V.",
+            "speaker_identity": "priya.shah@acme.com",
+            "subject_identity": null,
+            "role": null,
+            "due_at": null
+          },
+          {
+            "field_path": "commercial_issue",
+            "value": "Rotterdam site invoiced separately",
+            "confidence": 1.0,
+            "evidence_quote": "We'd want the Rotterdam site invoiced separately, because it runs on its own cost centre.",
+            "speaker_identity": "priya.shah@acme.com",
+            "subject_identity": null,
+            "role": null,
+            "due_at": null
+          },
+          {
+            "field_path": "commitment",
+            "value": "send the revised order form with the EU entity and split invoicing by Monday the 14th",
+            "confidence": 1.0,
+            "evidence_quote": "I'll send the revised order form with the EU entity and split invoicing by Monday the 14th.",
+            "speaker_identity": "dana@ghostvendor.com",
+            "subject_identity": null,
+            "role": null,
+            "due_at": "2026-09-14T23:59:59Z"
+          }
+        ],
+        "seconds": 8.8
+      },
+      {
+        "claims": [
+          {
+            "field_path": "stage",
+            "value": "Negotiation",
+            "confidence": 1.0,
+            "evidence_quote": "From my side we're basically in negotiation now",
+            "speaker_identity": "call:call-acme-0909:speaker_02",
+            "subject_identity": null,
+            "role": null,
+            "due_at": null
+          },
+          {
+            "field_path": "commercial_issue",
+            "value": "Rotterdam site invoiced separately",
+            "confidence": 1.0,
+            "evidence_quote": "We'd want the Rotterdam site invoiced separately, because it runs on its own cost centre.",
+            "speaker_identity": "call:call-acme-0909:speaker_02",
+            "subject_identity": null,
+            "role": null,
+            "due_at": null
+          },
+          {
+            "field_path": "commitment",
+            "value": "send revised order form with EU entity and split invoicing by Monday 14th",
+            "confidence": 1.0,
+            "evidence_quote": "I'll send the revised order form with the EU entity and split invoicing by Monday the 14th.",
+            "speaker_identity": "call:call-acme-0909:speaker_01",
+            "subject_identity": "call:call-acme-0909:speaker_01",
+            "role": null,
+            "due_at": "2026-09-14T00:00:00Z"
+          }
+        ],
+        "seconds": 28.5
+      },
+      {
+        "claims": [
+          {
+            "field_path": "stage",
+            "value": "Negotiation",
+            "confidence": 1.0,
+            "evidence_quote": "From my side we're basically in negotiation now",
+            "speaker_identity": "call:call-acme-0909:speaker_02",
+            "subject_identity": null,
+            "role": null,
+            "due_at": null
+          },
+          {
+            "field_path": "commercial_issue",
+            "value": "Rotterdam site invoiced separately",
+            "confidence": 1.0,
+            "evidence_quote": "We'd want the Rotterdam site invoiced separately, because it runs on its own cost centre.",
+            "speaker_identity": "call:call-acme-0909:speaker_02",
+            "subject_identity": null,
+            "role": null,
+            "due_at": null
+          },
+          {
+            "field_path": "commitment",
+            "value": "send revised order form with EU entity and split invoicing by Monday the 14th",
+            "confidence": 1.0,
+            "evidence_quote": "I'll send the revised order form with the EU entity and split invoicing by Monday the 14th.",
+            "speaker_identity": "call:call-acme-0909:speaker_01",
+            "subject_identity": "call:call-acme-0909:speaker_01",
+            "role": null,
+            "due_at": "2026-09-14T00:00:00Z"
+          }
+        ],
+        "seconds": 25.2
+      }
+    ],
+    "world/accounts/acme/events/033_email_priya_security_signoff.json": [
+      {
+        "claims": [
+          {
+            "field_path": "blockers",
+            "value": "resolved: legal review of order form",
+            "confidence": 1.0,
+            "evidence_quote": "Legal is fine with the order form.",
+            "speaker_identity": "priya.shah@acme.com",
+            "subject_identity": null,
+            "role": null,
+            "due_at": null
+          },
+          {
+            "field_path": "blockers",
+            "value": "Marco Ruiz sign-off on vendor",
+            "confidence": 1.0,
+            "evidence_quote": "our Head of Security, Marco Ruiz, has to sign off on the vendor.",
+            "speaker_identity": "priya.shah@acme.com",
+            "subject_identity": "marco.ruiz@acme.com",
+            "role": null,
+            "due_at": null
+          },
+          {
+            "field_path": "buying_group.member",
+            "value": "Marco Ruiz",
+            "confidence": 1.0,
+            "evidence_quote": "our Head of Security, Marco Ruiz, has to sign off on the vendor.",
+            "speaker_identity": "priya.shah@acme.com",
+            "subject_identity": "marco.ruiz@acme.com",
+            "role": "security",
+            "due_at": null
+          },
+          {
+            "field_path": "stakeholder_role",
+            "value": "security sign-off",
+            "confidence": 1.0,
+            "evidence_quote": "our Head of Security, Marco Ruiz, has to sign off on the vendor.",
+            "speaker_identity": "priya.shah@acme.com",
+            "subject_identity": "marco.ruiz@acme.com",
+            "role": "security",
+            "due_at": null
+          },
+          {
+            "field_path": "next_meeting",
+            "value": "Thursday's call (scheduled)",
+            "confidence": 1.0,
+            "evidence_quote": "I've added him to Thursday's call.",
+            "speaker_identity": "priya.shah@acme.com",
+            "subject_identity": null,
+            "role": null,
+            "due_at": null
+          }
+        ],
+        "seconds": 32.6
+      },
+      {
+        "claims": [
+          {
+            "field_path": "blockers",
+            "value": "resolved: legal review of the order form",
+            "confidence": 0.95,
+            "evidence_quote": "Legal is fine with the order form.",
+            "speaker_identity": "priya.shah@acme.com",
+            "subject_identity": null,
+            "role": null,
+            "due_at": null
+          },
+          {
+            "field_path": "blockers",
+            "value": "security sign-off from Marco Ruiz",
+            "confidence": 0.95,
+            "evidence_quote": "One more step before signature: because the EU rollout moves warehouse data for our EU entity, our Head of Security, Marco Ruiz, has to sign off on the vendor.",
+            "speaker_identity": "priya.shah@acme.com",
+            "subject_identity": null,
+            "role": null,
+            "due_at": null
+          },
+          {
+            "field_path": "buying_group.member",
+            "value": "Marco Ruiz",
+            "confidence": 0.95,
+            "evidence_quote": "One more step before signature: because the EU rollout moves warehouse data for our EU entity, our Head of Security, Marco Ruiz, has to sign off on the vendor.",
+            "speaker_identity": "priya.shah@acme.com",
+            "subject_identity": "marco.ruiz@acme.com",
+            "role": "security",
+            "due_at": null
+          },
+          {
+            "field_path": "stakeholder_role",
+            "value": "security sign-off authority",
+            "confidence": 0.95,
+            "evidence_quote": "One more step before signature: because the EU rollout moves warehouse data for our EU entity, our Head of Security, Marco Ruiz, has to sign off on the vendor.",
+            "speaker_identity": "priya.shah@acme.com",
+            "subject_identity": "marco.ruiz@acme.com",
+            "role": "security",
+            "due_at": null
+          },
+          {
+            "field_path": "next_milestone",
+            "value": "security sign-off from Marco Ruiz",
+            "confidence": 0.95,
+            "evidence_quote": "One more step before signature: because the EU rollout moves warehouse data for our EU entity, our Head of Security, Marco Ruiz, has to sign off on the vendor.",
+            "speaker_identity": "priya.shah@acme.com",
+            "subject_identity": null,
+            "role": null,
+            "due_at": null
+          },
+          {
+            "field_path": "product_use_case",
+            "value": "warehouse data for EU entity",
+            "confidence": 0.95,
+            "evidence_quote": "because the EU rollout moves warehouse data for our EU entity",
+            "speaker_identity": "priya.shah@acme.com",
+            "subject_identity": null,
+            "role": null,
+            "due_at": null
+          }
+        ],
+        "seconds": 31.8
+      },
+      {
+        "claims": [
+          {
+            "field_path": "decision_process",
+            "value": "legal approved the order form",
+            "confidence": 1.0,
+            "evidence_quote": "Legal is fine with the order form.",
+            "speaker_identity": "priya.shah@acme.com",
+            "subject_identity": null,
+            "role": null,
+            "due_at": null
+          },
+          {
+            "field_path": "blockers",
+            "value": "Marco Ruiz (Head of Security) sign-off on vendor",
+            "confidence": 1.0,
+            "evidence_quote": "One more step before signature: because the EU rollout moves warehouse data for our EU entity, our Head of Security, Marco Ruiz, has to sign off on the vendor.",
+            "speaker_identity": "priya.shah@acme.com",
+            "subject_identity": null,
+            "role": null,
+            "due_at": null
+          },
+          {
+            "field_path": "next_milestone",
+            "value": "Marco Ruiz sign-off before signature",
+            "confidence": 1.0,
+            "evidence_quote": "One more step before signature: because the EU rollout moves warehouse data for our EU entity, our Head of Security, Marco Ruiz, has to sign off on the vendor.",
+            "speaker_identity": "priya.shah@acme.com",
+            "subject_identity": null,
+            "role": null,
+            "due_at": null
+          },
+          {
+            "field_path": "buying_group.member",
+            "value": "Marco Ruiz",
+            "confidence": 1.0,
+            "evidence_quote": "One more step before signature: because the EU rollout moves warehouse data for our EU entity, our Head of Security, Marco Ruiz, has to sign off on the vendor.",
+            "speaker_identity": "priya.shah@acme.com",
+            "subject_identity": "marco.ruiz@acme.com",
+            "role": "security",
+            "due_at": null
+          },
+          {
+            "field_path": "stakeholder_role",
+            "value": "security sign-off authority",
+            "confidence": 1.0,
+            "evidence_quote": "One more step before signature: because the EU rollout moves warehouse data for our EU entity, our Head of Security, Marco Ruiz, has to sign off on the vendor.",
+            "speaker_identity": "priya.shah@acme.com",
+            "subject_identity": "marco.ruiz@acme.com",
+            "role": "security",
+            "due_at": null
+          },
+          {
+            "field_path": "product_use_case",
+            "value": "EU rollout moving warehouse data for EU entity",
+            "confidence": 1.0,
+            "evidence_quote": "One more step before signature: because the EU rollout moves warehouse data for our EU entity, our Head of Security, Marco Ruiz, has to sign off on the vendor.",
+            "speaker_identity": "priya.shah@acme.com",
+            "subject_identity": null,
+            "role": null,
+            "due_at": null
+          },
+          {
+            "field_path": "next_meeting",
+            "value": "Thursday's call (Marco Ruiz added)",
+            "confidence": 1.0,
+            "evidence_quote": "I've added him to Thursday's call.",
+            "speaker_identity": "priya.shah@acme.com",
+            "subject_identity": null,
+            "role": null,
+            "due_at": null
+          }
+        ],
+        "seconds": 44.6
+      }
+    ],
+    "world/accounts/acme/events/040_call_signature_transcript.json": [
+      {
+        "claims": [
+          {
+            "field_path": "buying_group.member",
+            "value": "Marco Ruiz",
+            "confidence": 1.0,
+            "evidence_quote": "Marco Ruiz, I run security at Acme.",
+            "speaker_identity": "call:call-acme-0924:speaker_03",
+            "subject_identity": "call:call-acme-0924:speaker_03",
+            "role": "security",
+            "due_at": null
+          },
+          {
+            "field_path": "stakeholder_role",
+            "value": "security reviewer",
+            "confidence": 1.0,
+            "evidence_quote": "For any vendor touching that data I need to see your SOC2 Type II report and your latest pen-test summary before I can sign off.",
+            "speaker_identity": "call:call-acme-0924:speaker_03",
+            "subject_identity": "call:call-acme-0924:speaker_03",
+            "role": "security",
+            "due_at": null
+          },
+          {
+            "field_path": "blockers",
+            "value": "security sign-off",
+            "confidence": 1.0,
+            "evidence_quote": "security sign-off is the last gate before signature.",
+            "speaker_identity": "call:call-acme-0924:speaker_02",
+            "subject_identity": null,
+            "role": null,
+            "due_at": null
+          },
+          {
+            "field_path": "blockers",
+            "value": "mutual NDA countersignature",
+            "confidence": 1.0,
+            "evidence_quote": "We can share both as soon as the mutual NDA is countersigned.",
+            "speaker_identity": "call:call-acme-0924:speaker_05",
+            "subject_identity": null,
+            "role": null,
+            "due_at": null
+          },
+          {
+            "field_path": "commitment",
+            "value": "send NDA tomorrow morning",
+            "confidence": 1.0,
+            "evidence_quote": "I'll send the NDA over tomorrow morning",
+            "speaker_identity": "call:call-acme-0924:speaker_01",
+            "subject_identity": "call:call-acme-0924:speaker_01",
+            "role": null,
+            "due_at": null
+          },
+          {
+            "field_path": "commitment",
+            "value": "share SOC2 and pen-test after NDA countersigned",
+            "confidence": 1.0,
+            "evidence_quote": "We can share both as soon as the mutual NDA is countersigned.",
+            "speaker_identity": "call:call-acme-0924:speaker_05",
+            "subject_identity": "call:call-acme-0924:speaker_05",
+            "role": null,
+            "due_at": null
+          },
+          {
+            "field_path": "next_milestone",
+            "value": "review session after security review",
+            "confidence": 1.0,
+            "evidence_quote": "Once my team has gone through them, we can talk about a review session.",
+            "speaker_identity": "call:call-acme-0924:speaker_03",
+            "subject_identity": null,
+            "role": null,
+            "due_at": null
+          },
+          {
+            "field_path": "decision_criteria",
+            "value": "go-live before January peak",
+            "confidence": 1.0,
+            "evidence_quote": "Berlin is still targeting go-live before the January peak, so timing matters for us.",
+            "speaker_identity": "call:call-acme-0924:speaker_04",
+            "subject_identity": null,
+            "role": null,
+            "due_at": null
+          },
+          {
+            "field_path": "stakeholder_role",
+            "value": "commercial point of contact",
+            "confidence": 1.0,
+            "evidence_quote": "please keep me on the thread - I'm still your point of contact for the commercial side.",
+            "speaker_identity": "call:call-acme-0924:speaker_02",
+            "subject_identity": "call:call-acme-0924:speaker_02",
+            "role": "unknown",
+            "due_at": null
+          },
+          {
+            "field_path": "product_use_case",
+            "value": "EU warehouse data for EU entity",
+            "confidence": 1.0,
+            "evidence_quote": "the EU rollout moves warehouse data for our EU entity.",
+            "speaker_identity": "call:call-acme-0924:speaker_03",
+            "subject_identity": null,
+            "role": null,
+            "due_at": null
+          }
+        ],
+        "seconds": 107.4
+      },
+      {
+        "claims": [
+          {
+            "field_path": "buying_group.member",
+            "value": "Marco Ruiz",
+            "confidence": 1.0,
+            "evidence_quote": "Marco Ruiz, I run security at Acme.",
+            "speaker_identity": "call:call-acme-0924:speaker_03",
+            "subject_identity": "call:call-acme-0924:speaker_03",
+            "role": "security",
+            "due_at": null
+          },
+          {
+            "field_path": "stakeholder_role",
+            "value": "security",
+            "confidence": 1.0,
+            "evidence_quote": "Marco Ruiz, I run security at Acme.",
+            "speaker_identity": "call:call-acme-0924:speaker_03",
+            "subject_identity": "call:call-acme-0924:speaker_03",
+            "role": "security",
+            "due_at": null
+          },
+          {
+            "field_path": "blockers",
+            "value": "SOC2 Type II report and pen-test summary review",
+            "confidence": 1.0,
+            "evidence_quote": "For any vendor touching that data I need to see your SOC2 Type II report and your latest pen-test summary before I can sign off.",
+            "speaker_identity": "call:call-acme-0924:speaker_03",
+            "subject_identity": null,
+            "role": null,
+            "due_at": null
+          },
+          {
+            "field_path": "commitment",
+            "value": "share SOC2 and pen-test summary after NDA countersigned",
+            "confidence": 1.0,
+            "evidence_quote": "We can share both as soon as the mutual NDA is countersigned.",
+            "speaker_identity": "call:call-acme-0924:speaker_05",
+            "subject_identity": "call:call-acme-0924:speaker_05",
+            "role": null,
+            "due_at": null
+          },
+          {
+            "field_path": "next_milestone",
+            "value": "review session after security document review",
+            "confidence": 1.0,
+            "evidence_quote": "Once my team has gone through them, we can talk about a review session.",
+            "speaker_identity": "call:call-acme-0924:speaker_03",
+            "subject_identity": null,
+            "role": null,
+            "due_at": null
+          },
+          {
+            "field_path": "blockers",
+            "value": "security sign-off is the last gate before signature",
+            "confidence": 1.0,
+            "evidence_quote": "security sign-off is the last gate before signature.",
+            "speaker_identity": "call:call-acme-0924:speaker_02",
+            "subject_identity": null,
+            "role": null,
+            "due_at": null
+          },
+          {
+            "field_path": "decision_criteria",
+            "value": "go-live before January peak",
+            "confidence": 1.0,
+            "evidence_quote": "Berlin is still targeting go-live before the January peak, so timing matters for us.",
+            "speaker_identity": "call:call-acme-0924:speaker_04",
+            "subject_identity": null,
+            "role": null,
+            "due_at": null
+          },
+          {
+            "field_path": "commitment",
+            "value": "send NDA tomorrow morning and security package after signed",
+            "confidence": 1.0,
+            "evidence_quote": "I'll send the NDA over tomorrow morning and get the security package to Marco as soon as it's signed.",
+            "speaker_identity": "call:call-acme-0924:speaker_01",
+            "subject_identity": "call:call-acme-0924:speaker_01",
+            "role": null,
+            "due_at": "2026-09-25T00:00:00Z"
+          }
+        ],
+        "seconds": 49.1
+      },
+      {
+        "claims": [
+          {
+            "field_path": "buying_group.member",
+            "value": "Marco Ruiz",
+            "confidence": 1.0,
+            "evidence_quote": "Priya asked me to join because the EU rollout moves warehouse data for our EU entity.",
+            "speaker_identity": "call:call-acme-0924:speaker_03",
+            "subject_identity": "call:call-acme-0924:speaker_03",
+            "role": "security",
+            "due_at": null
+          },
+          {
+            "field_path": "stakeholder_role",
+            "value": "security reviewer",
+            "confidence": 1.0,
+            "evidence_quote": "Marco Ruiz, I run security at Acme.",
+            "speaker_identity": "call:call-acme-0924:speaker_03",
+            "subject_identity": "call:call-acme-0924:speaker_03",
+            "role": "security",
+            "due_at": null
+          },
+          {
+            "field_path": "blockers",
+            "value": "SOC2 Type II report and pen-test summary review",
+            "confidence": 1.0,
+            "evidence_quote": "For any vendor touching that data I need to see your SOC2 Type II report and your latest pen-test summary before I can sign off.",
+            "speaker_identity": "call:call-acme-0924:speaker_03",
+            "subject_identity": null,
+            "role": null,
+            "due_at": null
+          },
+          {
+            "field_path": "commitment",
+            "value": "share SOC2 and pen-test summary once NDA is countersigned",
+            "confidence": 1.0,
+            "evidence_quote": "We can share both as soon as the mutual NDA is countersigned.",
+            "speaker_identity": "call:call-acme-0924:speaker_05",
+            "subject_identity": null,
+            "role": null,
+            "due_at": null
+          },
+          {
+            "field_path": "next_milestone",
+            "value": "review session after security document review",
+            "confidence": 0.8,
+            "evidence_quote": "Once my team has gone through them, we can talk about a review session.",
+            "speaker_identity": "call:call-acme-0924:speaker_03",
+            "subject_identity": null,
+            "role": null,
+            "due_at": null
+          },
+          {
+            "field_path": "blockers",
+            "value": "security sign-off",
+            "confidence": 1.0,
+            "evidence_quote": "Commercially we're ready; security sign-off is the last gate before signature.",
+            "speaker_identity": "call:call-acme-0924:speaker_02",
+            "subject_identity": null,
+            "role": null,
+            "due_at": null
+          },
+          {
+            "field_path": "decision_criteria",
+            "value": "go-live before January peak",
+            "confidence": 1.0,
+            "evidence_quote": "Berlin is still targeting go-live before the January peak, so timing matters for us.",
+            "speaker_identity": "call:call-acme-0924:speaker_04",
+            "subject_identity": null,
+            "role": null,
+            "due_at": null
+          },
+          {
+            "field_path": "commitment",
+            "value": "send NDA tomorrow morning and security package after signed",
+            "confidence": 1.0,
+            "evidence_quote": "I'll send the NDA over tomorrow morning and get the security package to Marco as soon as it's signed.",
+            "speaker_identity": "call:call-acme-0924:speaker_01",
+            "subject_identity": null,
+            "role": null,
+            "due_at": null
+          }
+        ],
+        "seconds": 49.5
+      }
+    ],
+    "world/accounts/beta/events/005_email_hannah_scope_reply.json": [
+      {
+        "claims": [
+          {
+            "field_path": "product_use_case",
+            "value": "whole support org, about 140 agents across Austin and Dublin",
+            "confidence": 1.0,
+            "evidence_quote": "we want the whole support org on Relay: about 140 agents across Austin and Dublin",
+            "speaker_identity": "hannah.lee@beta.io",
+            "subject_identity": null,
+            "role": null,
+            "due_at": null
+          },
+          {
+            "field_path": "economic_buyer",
+            "value": "Owen Clarke",
+            "confidence": 1.0,
+            "evidence_quote": "Owen Clarke, our CFO, signs off on anything over $100k, so we'll need a clear business case for him",
+            "speaker_identity": "hannah.lee@beta.io",
+            "subject_identity": null,
+            "role": null,
+            "due_at": null
+          },
+          {
+            "field_path": "next_meeting",
+            "value": "scoping call Wednesday the 26th at 11:00 Central",
+            "confidence": 1.0,
+            "evidence_quote": "Wednesday the 26th at 11:00 Central works for a scoping call",
+            "speaker_identity": "hannah.lee@beta.io",
+            "subject_identity": null,
+            "role": null,
+            "due_at": null
+          }
+        ],
+        "seconds": 9.2
+      },
+      {
+        "claims": [
+          {
+            "field_path": "economic_buyer",
+            "value": "Owen Clarke",
+            "confidence": 1.0,
+            "evidence_quote": "Owen Clarke, our CFO, signs off on anything over $100k",
+            "speaker_identity": "hannah.lee@beta.io",
+            "subject_identity": "owen.clarke@beta.io",
+            "role": null,
+            "due_at": null
+          },
+          {
+            "field_path": "buying_group.member",
+            "value": "Owen Clarke",
+            "confidence": 1.0,
+            "evidence_quote": "Owen Clarke, our CFO, signs off on anything over $100k",
+            "speaker_identity": "hannah.lee@beta.io",
+            "subject_identity": "owen.clarke@beta.io",
+            "role": "economic_buyer",
+            "due_at": null
+          },
+          {
+            "field_path": "decision_criteria",
+            "value": "clear business case for CFO approval",
+            "confidence": 1.0,
+            "evidence_quote": "so we'll need a clear business case for him",
+            "speaker_identity": "hannah.lee@beta.io",
+            "subject_identity": null,
+            "role": null,
+            "due_at": null
+          },
+          {
+            "field_path": "product_use_case",
+            "value": "support org, 140 agents across Austin and Dublin",
+            "confidence": 1.0,
+            "evidence_quote": "yes, we want the whole support org on Relay: about 140 agents across Austin and Dublin",
+            "speaker_identity": "hannah.lee@beta.io",
+            "subject_identity": null,
+            "role": null,
+            "due_at": null
+          },
+          {
+            "field_path": "next_milestone",
+            "value": "scoping call on Wednesday 26th at 11:00 Central",
+            "confidence": 1.0,
+            "evidence_quote": "Wednesday the 26th at 11:00 Central works for a scoping call",
+            "speaker_identity": "hannah.lee@beta.io",
+            "subject_identity": null,
+            "role": null,
+            "due_at": "2026-08-26T16:00:00Z"
+          },
+          {
+            "field_path": "next_meeting",
+            "value": "scoping call Wednesday 26th 11:00 Central (proposed)",
+            "confidence": 1.0,
+            "evidence_quote": "Wednesday the 26th at 11:00 Central works for a scoping call",
+            "speaker_identity": "hannah.lee@beta.io",
+            "subject_identity": null,
+            "role": null,
+            "due_at": "2026-08-26T16:00:00Z"
+          }
+        ],
+        "seconds": 82.9
+      },
+      {
+        "claims": [
+          {
+            "field_path": "product_use_case",
+            "value": "whole support org, about 140 agents across Austin and Dublin",
+            "confidence": 1.0,
+            "evidence_quote": "yes, we want the whole support org on Relay: about 140 agents across Austin and Dublin.",
+            "speaker_identity": "hannah.lee@beta.io",
+            "subject_identity": null,
+            "role": null,
+            "due_at": null
+          },
+          {
+            "field_path": "economic_buyer",
+            "value": "Owen Clarke",
+            "confidence": 1.0,
+            "evidence_quote": "Owen Clarke, our CFO, signs off on anything over $100k",
+            "speaker_identity": "hannah.lee@beta.io",
+            "subject_identity": "owen.clarke@beta.io",
+            "role": null,
+            "due_at": null
+          },
+          {
+            "field_path": "decision_criteria",
+            "value": "clear business case for CFO",
+            "confidence": 1.0,
+            "evidence_quote": "we'll need a clear business case for him.",
+            "speaker_identity": "hannah.lee@beta.io",
+            "subject_identity": null,
+            "role": null,
+            "due_at": null
+          },
+          {
+            "field_path": "next_meeting",
+            "value": "scoping call Wednesday 26th at 11:00 Central",
+            "confidence": 1.0,
+            "evidence_quote": "Wednesday the 26th at 11:00 Central works for a scoping call.",
+            "speaker_identity": "hannah.lee@beta.io",
+            "subject_identity": null,
+            "role": null,
+            "due_at": "2026-08-26T11:00:00-05:00"
+          },
+          {
+            "field_path": "next_milestone",
+            "value": "scoping call on Wednesday 26th",
+            "confidence": 1.0,
+            "evidence_quote": "Wednesday the 26th at 11:00 Central works for a scoping call.",
+            "speaker_identity": "hannah.lee@beta.io",
+            "subject_identity": null,
+            "role": null,
+            "due_at": "2026-08-26T11:00:00-05:00"
+          }
+        ],
+        "seconds": 26.8
+      }
+    ],
+    "world/accounts/beta/events/015_call_scope_transcript.json": [
+      {
+        "claims": [
+          {
+            "field_path": "decision_criteria",
+            "value": "15% drop in average handle time from Austin pilot",
+            "confidence": 1.0,
+            "evidence_quote": "If we can show a 15 percent drop in average handle time, the business case makes itself.",
+            "speaker_identity": "call:call-beta-0826:speaker_02",
+            "subject_identity": null,
+            "role": null,
+            "due_at": null
+          },
+          {
+            "field_path": "product_use_case",
+            "value": "Dublin agents handling EU customer tickets",
+            "confidence": 1.0,
+            "evidence_quote": "the Dublin agents work all of our EU customer tickets",
+            "speaker_identity": "call:call-beta-0826:speaker_03",
+            "subject_identity": null,
+            "role": null,
+            "due_at": null
+          },
+          {
+            "field_path": "next_milestone",
+            "value": "go-live before December ticket surge",
+            "confidence": 1.0,
+            "evidence_quote": "We'd like to be live before the December ticket surge.",
+            "speaker_identity": "call:call-beta-0826:speaker_02",
+            "subject_identity": null,
+            "role": null,
+            "due_at": null
+          },
+          {
+            "field_path": "commitment",
+            "value": "send business case with Austin pilot numbers by Tuesday",
+            "confidence": 1.0,
+            "evidence_quote": "I'll send a business case with the Austin pilot numbers by Tuesday.",
+            "speaker_identity": "call:call-beta-0826:speaker_01",
+            "subject_identity": null,
+            "role": null,
+            "due_at": null
+          },
+          {
+            "field_path": "commitment",
+            "value": "take the business case to Owen",
+            "confidence": 1.0,
+            "evidence_quote": "I'll take it to Owen myself.",
+            "speaker_identity": "call:call-beta-0826:speaker_02",
+            "subject_identity": null,
+            "role": null,
+            "due_at": null
+          }
+        ],
+        "seconds": 30.8
+      },
+      {
+        "claims": [
+          {
+            "field_path": "decision_criteria",
+            "value": "15% drop in average handle time from Austin pilot",
+            "confidence": 1.0,
+            "evidence_quote": "If we can show a 15 percent drop in average handle time, the business case makes itself.",
+            "speaker_identity": "hannah.lee@beta.io",
+            "subject_identity": "owen.clarke@beta.io",
+            "role": null,
+            "due_at": null
+          },
+          {
+            "field_path": "decision_criteria",
+            "value": "live before December ticket surge",
+            "confidence": 1.0,
+            "evidence_quote": "We'd like to be live before the December ticket surge.",
+            "speaker_identity": "hannah.lee@beta.io",
+            "subject_identity": null,
+            "role": null,
+            "due_at": null
+          },
+          {
+            "field_path": "commitment",
+            "value": "send business case with Austin pilot numbers by Tuesday",
+            "confidence": 1.0,
+            "evidence_quote": "I'll send a business case with the Austin pilot numbers by Tuesday.",
+            "speaker_identity": "dana@ghostvendor.com",
+            "subject_identity": "dana@ghostvendor.com",
+            "role": null,
+            "due_at": null
+          },
+          {
+            "field_path": "commitment",
+            "value": "take business case to Owen",
+            "confidence": 1.0,
+            "evidence_quote": "I'll take it to Owen myself.",
+            "speaker_identity": "hannah.lee@beta.io",
+            "subject_identity": "hannah.lee@beta.io",
+            "role": null,
+            "due_at": null
+          }
+        ],
+        "seconds": 35.4
+      },
+      {
+        "claims": [],
+        "seconds": 180.0
+      }
+    ],
+    "world/accounts/beta/events/016_crm_note_scoping.json": [
+      {
+        "claims": [],
+        "seconds": 180.0
+      },
+      {
+        "claims": [
+          {
+            "field_path": "champion",
+            "value": "Hannah Lee",
+            "confidence": 1.0,
+            "evidence_quote": "Hannah Lee champions the support-org rollout",
+            "speaker_identity": null,
+            "subject_identity": "hannah.lee@beta.io",
+            "role": null,
+            "due_at": null
+          },
+          {
+            "field_path": "economic_buyer",
+            "value": "Owen Clarke",
+            "confidence": 1.0,
+            "evidence_quote": "Owen Clarke (CFO) is the economic buyer",
+            "speaker_identity": null,
+            "subject_identity": "owen.clarke@beta.io",
+            "role": null,
+            "due_at": null
+          },
+          {
+            "field_path": "decision_criteria",
+            "value": "business case built on Austin pilot handle-time savings",
+            "confidence": 1.0,
+            "evidence_quote": "needs a business case built on the Austin pilot handle-time savings",
+            "speaker_identity": null,
+            "subject_identity": "owen.clarke@beta.io",
+            "role": null,
+            "due_at": null
+          },
+          {
+            "field_path": "decision_criteria",
+            "value": "live before December ticket surge",
+            "confidence": 1.0,
+            "evidence_quote": "Target: live before the December ticket surge",
+            "speaker_identity": null,
+            "subject_identity": null,
+            "role": null,
+            "due_at": null
+          },
+          {
+            "field_path": "product_use_case",
+            "value": "support-org rollout, ~140 agents, Austin + Dublin",
+            "confidence": 1.0,
+            "evidence_quote": "support-org rollout (~140 agents, Austin + Dublin)",
+            "speaker_identity": null,
+            "subject_identity": null,
+            "role": null,
+            "due_at": null
+          }
+        ],
+        "seconds": 39.5
+      },
+      {
+        "claims": [
+          {
+            "field_path": "champion",
+            "value": "Hannah Lee",
+            "confidence": 1.0,
+            "evidence_quote": "Hannah Lee champions the support-org rollout (~140 agents, Austin + Dublin).",
+            "speaker_identity": null,
+            "subject_identity": "hannah.lee@beta.io",
+            "role": null,
+            "due_at": null
+          },
+          {
+            "field_path": "economic_buyer",
+            "value": "Owen Clarke",
+            "confidence": 1.0,
+            "evidence_quote": "Owen Clarke (CFO) is the economic buyer and needs a business case built on the Austin pilot handle-time savings.",
+            "speaker_identity": null,
+            "subject_identity": "owen.clarke@beta.io",
+            "role": null,
+            "due_at": null
+          },
+          {
+            "field_path": "decision_criteria",
+            "value": "business case built on Austin pilot handle-time savings",
+            "confidence": 1.0,
+            "evidence_quote": "Owen Clarke (CFO) is the economic buyer and needs a business case built on the Austin pilot handle-time savings.",
+            "speaker_identity": null,
+            "subject_identity": null,
+            "role": null,
+            "due_at": null
+          },
+          {
+            "field_path": "decision_criteria",
+            "value": "live before the December ticket surge",
+            "confidence": 1.0,
+            "evidence_quote": "Target: live before the December ticket surge.",
+            "speaker_identity": null,
+            "subject_identity": null,
+            "role": null,
+            "due_at": null
+          },
+          {
+            "field_path": "product_use_case",
+            "value": "support-org rollout, ~140 agents, Austin + Dublin",
+            "confidence": 1.0,
+            "evidence_quote": "Hannah Lee champions the support-org rollout (~140 agents, Austin + Dublin).",
+            "speaker_identity": null,
+            "subject_identity": null,
+            "role": null,
+            "due_at": null
+          }
+        ],
+        "seconds": 47.1
+      }
+    ],
+    "world/accounts/beta/events/021_email_hannah_owen_approved.json": [
+      {
+        "claims": [
+          {
+            "field_path": "decision_process",
+            "value": "business case approved by Owen",
+            "confidence": 1.0,
+            "evidence_quote": "Owen approved the business case this morning",
+            "speaker_identity": "hannah.lee@beta.io",
+            "subject_identity": "owen.clarke@beta.io",
+            "role": null,
+            "due_at": null
+          },
+          {
+            "field_path": "next_milestone",
+            "value": "platform team comfort check on integration",
+            "confidence": 1.0,
+            "evidence_quote": "Next step is making sure our platform team is comfortable with the integration",
+            "speaker_identity": "hannah.lee@beta.io",
+            "subject_identity": null,
+            "role": null,
+            "due_at": null
+          },
+          {
+            "field_path": "commitment",
+            "value": "Hannah will loop in the right person this week",
+            "confidence": 1.0,
+            "evidence_quote": "I'll loop in the right person this week",
+            "speaker_identity": "hannah.lee@beta.io",
+            "subject_identity": "hannah.lee@beta.io",
+            "role": null,
+            "due_at": null
+          }
+        ],
+        "seconds": 19.5
+      },
+      {
+        "claims": [
+          {
+            "field_path": "decision_process",
+            "value": "business case approved",
+            "confidence": 1.0,
+            "evidence_quote": "Owen approved the business case this morning",
+            "speaker_identity": "hannah.lee@beta.io",
+            "subject_identity": null,
+            "role": null,
+            "due_at": null
+          },
+          {
+            "field_path": "next_milestone",
+            "value": "platform team comfortable with integration",
+            "confidence": 1.0,
+            "evidence_quote": "Next step is making sure our platform team is comfortable with the integration",
+            "speaker_identity": "hannah.lee@beta.io",
+            "subject_identity": null,
+            "role": null,
+            "due_at": null
+          },
+          {
+            "field_path": "commitment",
+            "value": "loop in the right person this week",
+            "confidence": 1.0,
+            "evidence_quote": "I'll loop in the right person this week",
+            "speaker_identity": "hannah.lee@beta.io",
+            "subject_identity": "hannah.lee@beta.io",
+            "role": null,
+            "due_at": null
+          }
+        ],
+        "seconds": 18.9
+      },
+      {
+        "claims": [
+          {
+            "field_path": "decision_process",
+            "value": "business case approved by Owen",
+            "confidence": 1.0,
+            "evidence_quote": "Owen approved the business case this morning",
+            "speaker_identity": "hannah.lee@beta.io",
+            "subject_identity": "owen.clarke@beta.io",
+            "role": null,
+            "due_at": null
+          },
+          {
+            "field_path": "next_milestone",
+            "value": "platform team comfortable with integration",
+            "confidence": 1.0,
+            "evidence_quote": "Next step is making sure our platform team is comfortable with the integration",
+            "speaker_identity": "hannah.lee@beta.io",
+            "subject_identity": null,
+            "role": null,
+            "due_at": null
+          },
+          {
+            "field_path": "commitment",
+            "value": "Hannah will loop in the right person this week",
+            "confidence": 1.0,
+            "evidence_quote": "I'll loop in the right person this week",
+            "speaker_identity": "hannah.lee@beta.io",
+            "subject_identity": "hannah.lee@beta.io",
+            "role": null,
+            "due_at": null
+          }
+        ],
+        "seconds": 12.3
+      }
+    ],
+    "world/accounts/beta/events/032_email_hannah_residency_correction.json": [
+      {
+        "claims": [
+          {
+            "field_path": "blockers",
+            "value": "SSO is not a blocker",
+            "confidence": 1.0,
+            "evidence_quote": "SSO is fine with your SAML support, so it's not a blocker.",
+            "speaker_identity": "hannah.lee@beta.io",
+            "subject_identity": null,
+            "role": null,
+            "due_at": null
+          },
+          {
+            "field_path": "blockers",
+            "value": "EU data residency for the Dublin team's tickets",
+            "confidence": 1.0,
+            "evidence_quote": "The real blocker is EU data residency for the Dublin team's tickets.",
+            "speaker_identity": "hannah.lee@beta.io",
+            "subject_identity": null,
+            "role": null,
+            "due_at": null
+          },
+          {
+            "field_path": "blockers",
+            "value": "Ravi needs to confirm where EU ticket data is stored",
+            "confidence": 1.0,
+            "evidence_quote": "Ravi needs to confirm where EU ticket data is stored before we go further.",
+            "speaker_identity": "hannah.lee@beta.io",
+            "subject_identity": "ravi.menon@beta.io",
+            "role": null,
+            "due_at": null
+          }
+        ],
+        "seconds": 6.8
+      },
+      {
+        "claims": [
+          {
+            "field_path": "blockers",
+            "value": "resolved: SSO with SAML support",
+            "confidence": 1.0,
+            "evidence_quote": "SSO is fine with your SAML support, so it's not a blocker.",
+            "speaker_identity": "hannah.lee@beta.io",
+            "subject_identity": null,
+            "role": null,
+            "due_at": null
+          },
+          {
+            "field_path": "blockers",
+            "value": "EU data residency for the Dublin team's tickets",
+            "confidence": 1.0,
+            "evidence_quote": "The real blocker is EU data residency for the Dublin team's tickets.",
+            "speaker_identity": "hannah.lee@beta.io",
+            "subject_identity": null,
+            "role": null,
+            "due_at": null
+          }
+        ],
+        "seconds": 12.2
+      },
+      {
+        "claims": [
+          {
+            "field_path": "blockers",
+            "value": "EU data residency for the Dublin team's tickets",
+            "confidence": 1.0,
+            "evidence_quote": "The real blocker is EU data residency for the Dublin team's tickets.",
+            "speaker_identity": "hannah.lee@beta.io",
+            "subject_identity": null,
+            "role": null,
+            "due_at": null
+          }
+        ],
+        "seconds": 49.9
+      }
+    ],
+    "world/accounts/beta/events/033_call_deepdive_transcript.json": [
+      {
+        "claims": [
+          {
+            "field_path": "buying_group.member",
+            "value": "Ravi Menon",
+            "confidence": 1.0,
+            "evidence_quote": "Sure - Ravi Menon, I lead platform engineering at Beta. My job is to make sure anything we roll out fits our identity and data setup.",
+            "speaker_identity": "call:call-beta-0915:speaker_03",
+            "subject_identity": "ravi.menon@beta.io",
+            "role": "technical_evaluator",
+            "due_at": null
+          },
+          {
+            "field_path": "stakeholder_role",
+            "value": "platform engineering lead, ensures identity and data fit",
+            "confidence": 1.0,
+            "evidence_quote": "Sure - Ravi Menon, I lead platform engineering at Beta. My job is to make sure anything we roll out fits our identity and data setup.",
+            "speaker_identity": "call:call-beta-0915:speaker_03",
+            "subject_identity": "ravi.menon@beta.io",
+            "role": "technical_evaluator",
+            "due_at": null
+          },
+          {
+            "field_path": "decision_criteria",
+            "value": "SAML SSO against Okta for all 140 agents",
+            "confidence": 1.0,
+            "evidence_quote": "We'll need SAML SSO against our Okta tenant for all 140 agents.",
+            "speaker_identity": "call:call-beta-0915:speaker_03",
+            "subject_identity": null,
+            "role": null,
+            "due_at": null
+          },
+          {
+            "field_path": "blockers",
+            "value": "SSO is the main open item",
+            "confidence": 1.0,
+            "evidence_quote": "I think SSO is the main open item from our side.",
+            "speaker_identity": "call:call-beta-0915:speaker_02",
+            "subject_identity": null,
+            "role": null,
+            "due_at": null
+          },
+          {
+            "field_path": "blockers",
+            "value": "understand data flows for Dublin team before sign off",
+            "confidence": 1.0,
+            "evidence_quote": "I'll also want to understand the data flows for the Dublin team before I sign off.",
+            "speaker_identity": "call:call-beta-0915:speaker_03",
+            "subject_identity": null,
+            "role": null,
+            "due_at": null
+          },
+          {
+            "field_path": "commitment",
+            "value": "follow up with documentation needed",
+            "confidence": 1.0,
+            "evidence_quote": "We'll follow up with whatever documentation you need.",
+            "speaker_identity": "call:call-beta-0915:speaker_01",
+            "subject_identity": "call:call-beta-0915:speaker_01",
+            "role": null,
+            "due_at": null
+          }
+        ],
+        "seconds": 43.7
+      },
+      {
+        "claims": [
+          {
+            "field_path": "buying_group.member",
+            "value": "Ravi Menon",
+            "confidence": 1.0,
+            "evidence_quote": "Ravi Menon, I lead platform engineering at Beta.",
+            "speaker_identity": "call:call-beta-0915:speaker_03",
+            "subject_identity": "call:call-beta-0915:speaker_03",
+            "role": "technical_evaluator",
+            "due_at": null
+          },
+          {
+            "field_path": "stakeholder_role",
+            "value": "platform engineering lead",
+            "confidence": 1.0,
+            "evidence_quote": "Ravi Menon, I lead platform engineering at Beta.",
+            "speaker_identity": "call:call-beta-0915:speaker_03",
+            "subject_identity": "call:call-beta-0915:speaker_03",
+            "role": "technical_evaluator",
+            "due_at": null
+          },
+          {
+            "field_path": "decision_criteria",
+            "value": "SAML SSO against Okta for all 140 agents",
+            "confidence": 1.0,
+            "evidence_quote": "We'll need SAML SSO against our Okta tenant for all 140 agents.",
+            "speaker_identity": "call:call-beta-0915:speaker_03",
+            "subject_identity": null,
+            "role": null,
+            "due_at": null
+          },
+          {
+            "field_path": "blockers",
+            "value": "understand data flows for Dublin team before sign-off",
+            "confidence": 1.0,
+            "evidence_quote": "I'll also want to understand the data flows for the Dublin team before I sign off.",
+            "speaker_identity": "call:call-beta-0915:speaker_03",
+            "subject_identity": null,
+            "role": null,
+            "due_at": null
+          },
+          {
+            "field_path": "commitment",
+            "value": "follow up with documentation",
+            "confidence": 1.0,
+            "evidence_quote": "We'll follow up with whatever documentation you need.",
+            "speaker_identity": "call:call-beta-0915:speaker_01",
+            "subject_identity": "call:call-beta-0915:speaker_01",
+            "role": null,
+            "due_at": null
+          }
+        ],
+        "seconds": 30.8
+      },
+      {
+        "claims": [
+          {
+            "field_path": "buying_group.member",
+            "value": "Ravi Menon",
+            "confidence": 1.0,
+            "evidence_quote": "Ravi Menon, I lead platform engineering at Beta.",
+            "speaker_identity": "call:call-beta-0915:speaker_03",
+            "subject_identity": "call:call-beta-0915:speaker_03",
+            "role": "technical_evaluator",
+            "due_at": null
+          },
+          {
+            "field_path": "stakeholder_role",
+            "value": "platform engineering lead",
+            "confidence": 1.0,
+            "evidence_quote": "My job is to make sure anything we roll out fits our identity and data setup.",
+            "speaker_identity": "call:call-beta-0915:speaker_03",
+            "subject_identity": "call:call-beta-0915:speaker_03",
+            "role": "technical_evaluator",
+            "due_at": null
+          },
+          {
+            "field_path": "decision_criteria",
+            "value": "SAML SSO against Okta tenant for all 140 agents",
+            "confidence": 1.0,
+            "evidence_quote": "We'll need SAML SSO against our Okta tenant for all 140 agents.",
+            "speaker_identity": "call:call-beta-0915:speaker_03",
+            "subject_identity": null,
+            "role": null,
+            "due_at": null
+          },
+          {
+            "field_path": "product_use_case",
+            "value": "Dublin agents handle EU customer tickets",
+            "confidence": 1.0,
+            "evidence_quote": "From the support side, the Dublin agents handle every EU customer ticket.",
+            "speaker_identity": "call:call-beta-0915:speaker_05",
+            "subject_identity": null,
+            "role": null,
+            "due_at": null
+          },
+          {
+            "field_path": "blockers",
+            "value": "understand data flows for Dublin team before sign-off",
+            "confidence": 1.0,
+            "evidence_quote": "I'll also want to understand the data flows for the Dublin team before I sign off.",
+            "speaker_identity": "call:call-beta-0915:speaker_03",
+            "subject_identity": null,
+            "role": null,
+            "due_at": null
+          },
+          {
+            "field_path": "commitment",
+            "value": "follow up with documentation needed",
+            "confidence": 1.0,
+            "evidence_quote": "We'll follow up with whatever documentation you need.",
+            "speaker_identity": "call:call-beta-0915:speaker_01",
+            "subject_identity": null,
+            "role": null,
+            "due_at": null
+          }
+        ],
+        "seconds": 37.8
+      }
+    ],
+    "world/accounts/beta/events/039_email_ravi_residency_request.json": [
+      {
+        "claims": [
+          {
+            "field_path": "blockers",
+            "value": "data residency documentation and sub-processor list review",
+            "confidence": 0.9,
+            "evidence_quote": "I'm not ready to schedule a review session until I've read them.",
+            "speaker_identity": "ravi.menon@beta.io",
+            "subject_identity": null,
+            "role": null,
+            "due_at": null
+          },
+          {
+            "field_path": "owner",
+            "value": "Hannah Lee",
+            "confidence": 0.9,
+            "evidence_quote": "Hannah is still driving the rollout on our side.",
+            "speaker_identity": "ravi.menon@beta.io",
+            "subject_identity": "hannah.lee@beta.io",
+            "role": null,
+            "due_at": null
+          }
+        ],
+        "seconds": 30.3
+      },
+      {
+        "claims": [
+          {
+            "field_path": "blockers",
+            "value": "data residency documentation and sub-processor list needed before review session",
+            "confidence": 1.0,
+            "evidence_quote": "I'm not ready to schedule a review session until I've read them.",
+            "speaker_identity": "ravi.menon@beta.io",
+            "subject_identity": null,
+            "role": null,
+            "due_at": null
+          },
+          {
+            "field_path": "owner",
+            "value": "Hannah Lee",
+            "confidence": 1.0,
+            "evidence_quote": "Hannah is still driving the rollout on our side.",
+            "speaker_identity": "ravi.menon@beta.io",
+            "subject_identity": "hannah.lee@beta.io",
+            "role": null,
+            "due_at": null
+          }
+        ],
+        "seconds": 17.0
+      },
+      {
+        "claims": [
+          {
+            "field_path": "owner",
+            "value": "Hannah Lee",
+            "confidence": 1.0,
+            "evidence_quote": "Hannah is still driving the rollout on our side.",
+            "speaker_identity": "ravi.menon@beta.io",
+            "subject_identity": "hannah.lee@beta.io",
+            "role": null,
+            "due_at": null
+          },
+          {
+            "field_path": "blockers",
+            "value": "review session pending receipt of data residency documentation and sub-processor list",
+            "confidence": 1.0,
+            "evidence_quote": "I'm not ready to schedule a review session until I've read them.",
+            "speaker_identity": "ravi.menon@beta.io",
+            "subject_identity": null,
+            "role": null,
+            "due_at": null
+          },
+          {
+            "field_path": "next_milestone",
+            "value": "review session",
+            "confidence": 1.0,
+            "evidence_quote": "I'm not ready to schedule a review session until I've read them.",
+            "speaker_identity": "ravi.menon@beta.io",
+            "subject_identity": null,
+            "role": null,
+            "due_at": null
+          }
+        ],
+        "seconds": 23.5
+      }
+    ],
+    "world/accounts/northstar/events/011_call_scope_transcript.json": [
+      {
+        "claims": [
+          {
+            "field_path": "economic_buyer",
+            "value": "Grace Liu",
+            "confidence": 1.0,
+            "evidence_quote": "Grace Liu, our VP of Finance, approves the budget",
+            "speaker_identity": "elena.vasquez@northstar.health",
+            "subject_identity": "grace.liu@northstar.health",
+            "role": null,
+            "due_at": null
+          },
+          {
+            "field_path": "buying_group.member",
+            "value": "Grace Liu",
+            "confidence": 1.0,
+            "evidence_quote": "Grace Liu, our VP of Finance, approves the budget",
+            "speaker_identity": "elena.vasquez@northstar.health",
+            "subject_identity": "grace.liu@northstar.health",
+            "role": "economic_buyer",
+            "due_at": null
+          },
+          {
+            "field_path": "stakeholder_role",
+            "value": "budget approver",
+            "confidence": 1.0,
+            "evidence_quote": "Grace Liu, our VP of Finance, approves the budget",
+            "speaker_identity": "elena.vasquez@northstar.health",
+            "subject_identity": "grace.liu@northstar.health",
+            "role": "economic_buyer",
+            "due_at": null
+          },
+          {
+            "field_path": "blockers",
+            "value": "security review by Sam Okafor's team",
+            "confidence": 1.0,
+            "evidence_quote": "security review by Sam Okafor's team",
+            "speaker_identity": "elena.vasquez@northstar.health",
+            "subject_identity": null,
+            "role": null,
+            "due_at": null
+          },
+          {
+            "field_path": "buying_group.member",
+            "value": "Sam Okafor",
+            "confidence": 1.0,
+            "evidence_quote": "Sam Okafor",
+            "speaker_identity": "elena.vasquez@northstar.health",
+            "subject_identity": "sam.okafor@northstar.health",
+            "role": "security",
+            "due_at": null
+          },
+          {
+            "field_path": "stakeholder_role",
+            "value": "security reviewer",
+            "confidence": 1.0,
+            "evidence_quote": "security review by Sam Okafor's team",
+            "speaker_identity": "elena.vasquez@northstar.health",
+            "subject_identity": "sam.okafor@northstar.health",
+            "role": "security",
+            "due_at": null
+          },
+          {
+            "field_path": "blockers",
+            "value": "BAA in place",
+            "confidence": 1.0,
+            "evidence_quote": "We'll need a BAA in place",
+            "speaker_identity": "leo@ghostvendor.com",
+            "subject_identity": null,
+            "role": null,
+            "due_at": null
+          },
+          {
+            "field_path": "commitment",
+            "value": "share our HIPAA controls summary",
+            "confidence": 1.0,
+            "evidence_quote": "we can share our HIPAA controls summary",
+            "speaker_identity": "leo@ghostvendor.com",
+            "subject_identity": "leo@ghostvendor.com",
+            "role": null,
+            "due_at": null
+          },
+          {
+            "field_path": "commitment",
+            "value": "send pricing for the four clinics by next Wednesday",
+            "confidence": 1.0,
+            "evidence_quote": "I'll send pricing for the four clinics by next Wednesday",
+            "speaker_identity": "dana@ghostvendor.com",
+            "subject_identity": "dana@ghostvendor.com",
+            "role": null,
+            "due_at": "2026-09-02T00:00:00Z"
+          },
+          {
+            "field_path": "decision_criteria",
+            "value": "open enrollment deadline November 2",
+            "confidence": 1.0,
+            "evidence_quote": "Open enrollment starts November 2, so that's our real deadline.",
+            "speaker_identity": "elena.vasquez@northstar.health",
+            "subject_identity": null,
+            "role": null,
+            "due_at": null
+          }
+        ],
+        "seconds": 60.8
+      },
+      {
+        "claims": [
+          {
+            "field_path": "economic_buyer",
+            "value": "Grace Liu",
+            "confidence": 1.0,
+            "evidence_quote": "Grace Liu, our VP of Finance, approves the budget, but she'll follow my recommendation.",
+            "speaker_identity": "elena.vasquez@northstar.health",
+            "subject_identity": "grace.liu@northstar.health",
+            "role": null,
+            "due_at": null
+          },
+          {
+            "field_path": "buying_group.member",
+            "value": "Grace Liu",
+            "confidence": 1.0,
+            "evidence_quote": "Grace Liu, our VP of Finance, approves the budget, but she'll follow my recommendation.",
+            "speaker_identity": "elena.vasquez@northstar.health",
+            "subject_identity": "grace.liu@northstar.health",
+            "role": "economic_buyer",
+            "due_at": null
+          },
+          {
+            "field_path": "blockers",
+            "value": "security review by Sam Okafor's team",
+            "confidence": 1.0,
+            "evidence_quote": "Anything that touches patient data also needs a security review by Sam Okafor's team, because intake forms carry PHI.",
+            "speaker_identity": "elena.vasquez@northstar.health",
+            "subject_identity": null,
+            "role": null,
+            "due_at": null
+          },
+          {
+            "field_path": "commitment",
+            "value": "share HIPAA controls summary",
+            "confidence": 1.0,
+            "evidence_quote": "we can share our HIPAA controls summary.",
+            "speaker_identity": "leo@ghostvendor.com",
+            "subject_identity": null,
+            "role": null,
+            "due_at": null
+          },
+          {
+            "field_path": "commitment",
+            "value": "send pricing for the four clinics by next Wednesday",
+            "confidence": 1.0,
+            "evidence_quote": "I'll send pricing for the four clinics by next Wednesday.",
+            "speaker_identity": "dana@ghostvendor.com",
+            "subject_identity": null,
+            "role": null,
+            "due_at": null
+          },
+          {
+            "field_path": "decision_criteria",
+            "value": "solution must be live by November 2 for open enrollment",
+            "confidence": 1.0,
+            "evidence_quote": "Open enrollment starts November 2, so that's our real deadline.",
+            "speaker_identity": "elena.vasquez@northstar.health",
+            "subject_identity": null,
+            "role": null,
+            "due_at": null
+          }
+        ],
+        "seconds": 39.9
+      },
+      {
+        "claims": [
+          {
+            "field_path": "economic_buyer",
+            "value": "Grace Liu",
+            "confidence": 1.0,
+            "evidence_quote": "Grace Liu, our VP of Finance, approves the budget, but she'll follow my recommendation.",
+            "speaker_identity": "elena.vasquez@northstar.health",
+            "subject_identity": "grace.liu@northstar.health",
+            "role": null,
+            "due_at": null
+          },
+          {
+            "field_path": "buying_group.member",
+            "value": "Grace Liu",
+            "confidence": 1.0,
+            "evidence_quote": "Grace Liu, our VP of Finance, approves the budget, but she'll follow my recommendation.",
+            "speaker_identity": "elena.vasquez@northstar.health",
+            "subject_identity": "grace.liu@northstar.health",
+            "role": "economic_buyer",
+            "due_at": null
+          },
+          {
+            "field_path": "stakeholder_role",
+            "value": "budget approver",
+            "confidence": 1.0,
+            "evidence_quote": "Grace Liu, our VP of Finance, approves the budget, but she'll follow my recommendation.",
+            "speaker_identity": "elena.vasquez@northstar.health",
+            "subject_identity": "grace.liu@northstar.health",
+            "role": "economic_buyer",
+            "due_at": null
+          },
+          {
+            "field_path": "decision_process",
+            "value": "security review by Sam Okafor's team",
+            "confidence": 1.0,
+            "evidence_quote": "Anything that touches patient data also needs a security review by Sam Okafor's team, because intake forms carry PHI.",
+            "speaker_identity": "elena.vasquez@northstar.health",
+            "subject_identity": null,
+            "role": null,
+            "due_at": null
+          },
+          {
+            "field_path": "buying_group.member",
+            "value": "Sam Okafor",
+            "confidence": 1.0,
+            "evidence_quote": "Anything that touches patient data also needs a security review by Sam Okafor's team, because intake forms carry PHI.",
+            "speaker_identity": "elena.vasquez@northstar.health",
+            "subject_identity": "sam.okafor@northstar.health",
+            "role": "security",
+            "due_at": null
+          },
+          {
+            "field_path": "stakeholder_role",
+            "value": "security reviewer",
+            "confidence": 1.0,
+            "evidence_quote": "Anything that touches patient data also needs a security review by Sam Okafor's team, because intake forms carry PHI.",
+            "speaker_identity": "elena.vasquez@northstar.health",
+            "subject_identity": "sam.okafor@northstar.health",
+            "role": "security",
+            "due_at": null
+          },
+          {
+            "field_path": "commercial_issue",
+            "value": "BAA required",
+            "confidence": 1.0,
+            "evidence_quote": "We'll need a BAA in place",
+            "speaker_identity": "leo@ghostvendor.com",
+            "subject_identity": null,
+            "role": null,
+            "due_at": null
+          },
+          {
+            "field_path": "commitment",
+            "value": "share HIPAA controls summary",
+            "confidence": 1.0,
+            "evidence_quote": "we can share our HIPAA controls summary",
+            "speaker_identity": "leo@ghostvendor.com",
+            "subject_identity": null,
+            "role": null,
+            "due_at": null
+          },
+          {
+            "field_path": "commitment",
+            "value": "send pricing for the four clinics by next Wednesday",
+            "confidence": 1.0,
+            "evidence_quote": "I'll send pricing for the four clinics by next Wednesday.",
+            "speaker_identity": "dana@ghostvendor.com",
+            "subject_identity": null,
+            "role": null,
+            "due_at": "2026-09-02T00:00:00Z"
+          },
+          {
+            "field_path": "decision_criteria",
+            "value": "solution must be live by November 2 (open enrollment start)",
+            "confidence": 1.0,
+            "evidence_quote": "Open enrollment starts November 2, so that's our real deadline.",
+            "speaker_identity": "elena.vasquez@northstar.health",
+            "subject_identity": null,
+            "role": null,
+            "due_at": null
+          }
+        ],
+        "seconds": 67.4
+      }
+    ],
+    "world/accounts/northstar/events/013_crm_note_scoping.json": [
+      {
+        "claims": [
+          {
+            "field_path": "champion",
+            "value": "Elena Vasquez",
+            "confidence": 0.95,
+            "evidence_quote": "Elena Vasquez champions the rollout to all four clinics",
+            "speaker_identity": null,
+            "subject_identity": "elena.vasquez@northstar.health",
+            "role": null,
+            "due_at": null
+          },
+          {
+            "field_path": "decision_criteria",
+            "value": "live before open enrollment, Nov 2",
+            "confidence": 0.9,
+            "evidence_quote": "hard deadline is open enrollment on Nov 2",
+            "speaker_identity": null,
+            "subject_identity": null,
+            "role": null,
+            "due_at": null
+          },
+          {
+            "field_path": "economic_buyer",
+            "value": "Grace Liu",
+            "confidence": 0.95,
+            "evidence_quote": "Grace Liu (VP Finance) approves budget on Elena's recommendation",
+            "speaker_identity": null,
+            "subject_identity": "grace.liu@northstar.health",
+            "role": null,
+            "due_at": null
+          },
+          {
+            "field_path": "stakeholder_role",
+            "value": "security review",
+            "confidence": 0.95,
+            "evidence_quote": "Sam Okafor's security team must review",
+            "speaker_identity": null,
+            "subject_identity": "sam.okafor@northstar.health",
+            "role": "security",
+            "due_at": null
+          },
+          {
+            "field_path": "blockers",
+            "value": "BAA and security team review",
+            "confidence": 0.95,
+            "evidence_quote": "Intake forms carry PHI, so Sam Okafor's security team must review and we need a BAA",
+            "speaker_identity": null,
+            "subject_identity": null,
+            "role": null,
+            "due_at": null
+          }
+        ],
+        "seconds": 19.2
+      },
+      {
+        "claims": [
+          {
+            "field_path": "champion",
+            "value": "Elena Vasquez",
+            "confidence": 1.0,
+            "evidence_quote": "Elena Vasquez champions the rollout to all four clinics",
+            "speaker_identity": null,
+            "subject_identity": "elena.vasquez@northstar.health",
+            "role": null,
+            "due_at": null
+          },
+          {
+            "field_path": "product_use_case",
+            "value": "rollout to all four clinics",
+            "confidence": 1.0,
+            "evidence_quote": "Elena Vasquez champions the rollout to all four clinics",
+            "speaker_identity": null,
+            "subject_identity": null,
+            "role": null,
+            "due_at": null
+          },
+          {
+            "field_path": "decision_criteria",
+            "value": "open enrollment on Nov 2",
+            "confidence": 1.0,
+            "evidence_quote": "hard deadline is open enrollment on Nov 2",
+            "speaker_identity": null,
+            "subject_identity": null,
+            "role": null,
+            "due_at": null
+          },
+          {
+            "field_path": "economic_buyer",
+            "value": "Grace Liu",
+            "confidence": 1.0,
+            "evidence_quote": "Grace Liu (VP Finance) approves budget on Elena's recommendation.",
+            "speaker_identity": null,
+            "subject_identity": "grace.liu@northstar.health",
+            "role": null,
+            "due_at": null
+          },
+          {
+            "field_path": "decision_process",
+            "value": "budget approval by Grace Liu",
+            "confidence": 1.0,
+            "evidence_quote": "Grace Liu (VP Finance) approves budget on Elena's recommendation.",
+            "speaker_identity": null,
+            "subject_identity": null,
+            "role": null,
+            "due_at": null
+          },
+          {
+            "field_path": "blockers",
+            "value": "security review by Sam Okafor's team",
+            "confidence": 1.0,
+            "evidence_quote": "Sam Okafor's security team must review",
+            "speaker_identity": null,
+            "subject_identity": null,
+            "role": null,
+            "due_at": null
+          },
+          {
+            "field_path": "stakeholder_role",
+            "value": "security reviewer",
+            "confidence": 1.0,
+            "evidence_quote": "Sam Okafor's security team must review",
+            "speaker_identity": null,
+            "subject_identity": "sam.okafor@northstar.health",
+            "role": "security",
+            "due_at": null
+          },
+          {
+            "field_path": "blockers",
+            "value": "need a BAA",
+            "confidence": 1.0,
+            "evidence_quote": "we need a BAA",
+            "speaker_identity": null,
+            "subject_identity": null,
+            "role": null,
+            "due_at": null
+          },
+          {
+            "field_path": "buying_group.member",
+            "value": "Elena Vasquez",
+            "confidence": 1.0,
+            "evidence_quote": "Elena Vasquez champions the rollout to all four clinics",
+            "speaker_identity": null,
+            "subject_identity": "elena.vasquez@northstar.health",
+            "role": "champion",
+            "due_at": null
+          },
+          {
+            "field_path": "buying_group.member",
+            "value": "Grace Liu",
+            "confidence": 1.0,
+            "evidence_quote": "Grace Liu (VP Finance) approves budget on Elena's recommendation.",
+            "speaker_identity": null,
+            "subject_identity": "grace.liu@northstar.health",
+            "role": "economic_buyer",
+            "due_at": null
+          },
+          {
+            "field_path": "buying_group.member",
+            "value": "Sam Okafor",
+            "confidence": 1.0,
+            "evidence_quote": "Sam Okafor's security team must review",
+            "speaker_identity": null,
+            "subject_identity": "sam.okafor@northstar.health",
+            "role": "security",
+            "due_at": null
+          }
+        ],
+        "seconds": 46.7
+      },
+      {
+        "claims": [],
+        "seconds": 180.0
+      }
+    ],
+    "world/accounts/northstar/events/023_call_plan_transcript.json": [
+      {
+        "claims": [
+          {
+            "field_path": "next_milestone",
+            "value": "rollout of three clinics: Riverside, then Northgate and Cedar Hills two weeks apart",
+            "confidence": 0.95,
+            "evidence_quote": "Riverside first, then Northgate and Cedar Hills two weeks apart.",
+            "speaker_identity": "elena.vasquez@northstar.health",
+            "subject_identity": null,
+            "role": null,
+            "due_at": null
+          },
+          {
+            "field_path": "blockers",
+            "value": "Sam's team security sign-off",
+            "confidence": 0.95,
+            "evidence_quote": "Sam's team has to sign off before any clinic goes live, because the intake forms carry PHI.",
+            "speaker_identity": "elena.vasquez@northstar.health",
+            "subject_identity": null,
+            "role": null,
+            "due_at": null
+          },
+          {
+            "field_path": "blockers",
+            "value": "BAA signed",
+            "confidence": 0.95,
+            "evidence_quote": "We'll need a BAA signed as part of that review.",
+            "speaker_identity": "dana@ghostvendor.com",
+            "subject_identity": null,
+            "role": null,
+            "due_at": null
+          },
+          {
+            "field_path": "commitment",
+            "value": "Elena will introduce Dana to Sam",
+            "confidence": 0.95,
+            "evidence_quote": "Let me introduce you to Sam - he'll want to set the agenda himself.",
+            "speaker_identity": "elena.vasquez@northstar.health",
+            "subject_identity": "sam.okafor@northstar.health",
+            "role": null,
+            "due_at": null
+          },
+          {
+            "field_path": "commitment",
+            "value": "Dana will have the BAA template and HIPAA controls summary ready",
+            "confidence": 0.95,
+            "evidence_quote": "We'll have the BAA template and HIPAA controls summary ready.",
+            "speaker_identity": "dana@ghostvendor.com",
+            "subject_identity": null,
+            "role": null,
+            "due_at": null
+          }
+        ],
+        "seconds": 16.5
+      },
+      {
+        "claims": [],
+        "seconds": 180.0
+      },
+      {
+        "claims": [
+          {
+            "field_path": "next_milestone",
+            "value": "template setup and front-desk training per clinic (about a week)",
+            "confidence": 1.0,
+            "evidence_quote": "Each clinic needs about a week for template setup and front-desk training.",
+            "speaker_identity": "call:call-ns-0911:speaker_03",
+            "subject_identity": "call:call-ns-0911:speaker_03",
+            "role": null,
+            "due_at": null
+          },
+          {
+            "field_path": "blockers",
+            "value": "Sam's team security sign-off",
+            "confidence": 1.0,
+            "evidence_quote": "Sam's team has to sign off before any clinic goes live, because the intake forms carry PHI.",
+            "speaker_identity": "call:call-ns-0911:speaker_02",
+            "subject_identity": null,
+            "role": null,
+            "due_at": null
+          },
+          {
+            "field_path": "commitment",
+            "value": "introduce Dana to Sam",
+            "confidence": 1.0,
+            "evidence_quote": "Let me introduce you to Sam - he'll want to set the agenda himself.",
+            "speaker_identity": "call:call-ns-0911:speaker_02",
+            "subject_identity": "call:call-ns-0911:speaker_02",
+            "role": null,
+            "due_at": null
+          },
+          {
+            "field_path": "commitment",
+            "value": "have BAA template and HIPAA controls summary ready",
+            "confidence": 1.0,
+            "evidence_quote": "We'll have the BAA template and HIPAA controls summary ready.",
+            "speaker_identity": "call:call-ns-0911:speaker_01",
+            "subject_identity": "call:call-ns-0911:speaker_01",
+            "role": null,
+            "due_at": null
+          }
+        ],
+        "seconds": 13.2
+      }
+    ],
+    "world/accounts/northstar/events/029_email_elena_delegation.json": [
+      {
+        "claims": [
+          {
+            "field_path": "delegation",
+            "value": "Sam Okafor (information security) for the evaluation including BAA",
+            "confidence": 1.0,
+            "evidence_quote": "Sam Okafor leads information security here and will own the evaluation from now on, including the BAA.",
+            "speaker_identity": "elena.vasquez@northstar.health",
+            "subject_identity": "elena.vasquez@northstar.health",
+            "role": null,
+            "due_at": null
+          },
+          {
+            "field_path": "champion_status",
+            "value": "stepping back",
+            "confidence": 1.0,
+            "evidence_quote": "I'm stepping back from the day-to-day",
+            "speaker_identity": "elena.vasquez@northstar.health",
+            "subject_identity": "elena.vasquez@northstar.health",
+            "role": null,
+            "due_at": null
+          },
+          {
+            "field_path": "economic_buyer",
+            "value": "Elena Vasquez",
+            "confidence": 1.0,
+            "evidence_quote": "Sam will bring me in for final sign-off",
+            "speaker_identity": "elena.vasquez@northstar.health",
+            "subject_identity": "elena.vasquez@northstar.health",
+            "role": null,
+            "due_at": null
+          },
+          {
+            "field_path": "buying_group.member",
+            "value": "Sam Okafor",
+            "confidence": 1.0,
+            "evidence_quote": "Sam Okafor leads information security here and will own the evaluation from now on, including the BAA.",
+            "speaker_identity": "elena.vasquez@northstar.health",
+            "subject_identity": "sam.okafor@northstar.health",
+            "role": "security",
+            "due_at": null
+          },
+          {
+            "field_path": "stakeholder_role",
+            "value": "information security lead and evaluation owner",
+            "confidence": 1.0,
+            "evidence_quote": "Sam Okafor leads information security here and will own the evaluation from now on, including the BAA.",
+            "speaker_identity": "elena.vasquez@northstar.health",
+            "subject_identity": "sam.okafor@northstar.health",
+            "role": "security",
+            "due_at": null
+          }
+        ],
+        "seconds": 29.4
+      },
+      {
+        "claims": [
+          {
+            "field_path": "delegation",
+            "value": "Sam Okafor (owns evaluation including BAA)",
+            "confidence": 1.0,
+            "evidence_quote": "Sam Okafor leads information security here and will own the evaluation from now on, including the BAA.",
+            "speaker_identity": "elena.vasquez@northstar.health",
+            "subject_identity": "elena.vasquez@northstar.health",
+            "role": null,
+            "due_at": null
+          },
+          {
+            "field_path": "champion_status",
+            "value": "stepping back",
+            "confidence": 1.0,
+            "evidence_quote": "I'm stepping back from the day-to-day",
+            "speaker_identity": "elena.vasquez@northstar.health",
+            "subject_identity": "elena.vasquez@northstar.health",
+            "role": null,
+            "due_at": null
+          },
+          {
+            "field_path": "economic_buyer",
+            "value": "Elena Vasquez",
+            "confidence": 1.0,
+            "evidence_quote": "Sam will bring me in for final sign-off",
+            "speaker_identity": "elena.vasquez@northstar.health",
+            "subject_identity": "elena.vasquez@northstar.health",
+            "role": null,
+            "due_at": null
+          },
+          {
+            "field_path": "buying_group.member",
+            "value": "Sam Okafor",
+            "confidence": 1.0,
+            "evidence_quote": "Sam Okafor leads information security here and will own the evaluation from now on, including the BAA.",
+            "speaker_identity": "elena.vasquez@northstar.health",
+            "subject_identity": "sam.okafor@northstar.health",
+            "role": "security",
+            "due_at": null
+          },
+          {
+            "field_path": "stakeholder_role",
+            "value": "information security lead",
+            "confidence": 1.0,
+            "evidence_quote": "Sam Okafor leads information security here and will own the evaluation from now on, including the BAA.",
+            "speaker_identity": "elena.vasquez@northstar.health",
+            "subject_identity": "sam.okafor@northstar.health",
+            "role": "security",
+            "due_at": null
+          }
+        ],
+        "seconds": 25.3
+      },
+      {
+        "claims": [
+          {
+            "field_path": "delegation",
+            "value": "Sam Okafor will own the evaluation including the BAA",
+            "confidence": 1.0,
+            "evidence_quote": "Sam Okafor leads information security here and will own the evaluation from now on, including the BAA.",
+            "speaker_identity": "elena.vasquez@northstar.health",
+            "subject_identity": "sam.okafor@northstar.health",
+            "role": null,
+            "due_at": null
+          },
+          {
+            "field_path": "champion_status",
+            "value": "stepping back",
+            "confidence": 1.0,
+            "evidence_quote": "I'm stepping back from the day-to-day",
+            "speaker_identity": "elena.vasquez@northstar.health",
+            "subject_identity": "elena.vasquez@northstar.health",
+            "role": null,
+            "due_at": null
+          },
+          {
+            "field_path": "buying_group.member",
+            "value": "Sam Okafor",
+            "confidence": 1.0,
+            "evidence_quote": "Sam Okafor leads information security here and will own the evaluation from now on, including the BAA.",
+            "speaker_identity": "elena.vasquez@northstar.health",
+            "subject_identity": "sam.okafor@northstar.health",
+            "role": "security",
+            "due_at": null
+          },
+          {
+            "field_path": "stakeholder_role",
+            "value": "information security lead",
+            "confidence": 1.0,
+            "evidence_quote": "Sam Okafor leads information security here and will own the evaluation from now on, including the BAA.",
+            "speaker_identity": "elena.vasquez@northstar.health",
+            "subject_identity": "sam.okafor@northstar.health",
+            "role": "security",
+            "due_at": null
+          },
+          {
+            "field_path": "economic_buyer",
+            "value": "Elena Vasquez",
+            "confidence": 1.0,
+            "evidence_quote": "Sam will bring me in for final sign-off",
+            "speaker_identity": "elena.vasquez@northstar.health",
+            "subject_identity": "elena.vasquez@northstar.health",
+            "role": null,
+            "due_at": null
+          }
+        ],
+        "seconds": 23.0
+      }
+    ],
+    "world/accounts/northstar/events/036_email_sam_meeting_request.json": [
+      {
+        "claims": [
+          {
+            "field_path": "next_milestone",
+            "value": "security review with Dana and Leo (proposed for Sep 29 or 30)",
+            "confidence": 1.0,
+            "evidence_quote": "I'd like to book a 60-minute security review with you and Leo next week - Tuesday September 29 or Wednesday September 30 at 10:00 Eastern works on my side.",
+            "speaker_identity": "sam.okafor@northstar.health",
+            "subject_identity": null,
+            "role": null,
+            "due_at": null
+          },
+          {
+            "field_path": "next_meeting",
+            "value": "60-minute security review with Dana and Leo, proposed for Tuesday Sep 29 or Wednesday Sep 30 at 10:00 Eastern",
+            "confidence": 1.0,
+            "evidence_quote": "I'd like to book a 60-minute security review with you and Leo next week - Tuesday September 29 or Wednesday September 30 at 10:00 Eastern works on my side.",
+            "speaker_identity": "sam.okafor@northstar.health",
+            "subject_identity": null,
+            "role": null,
+            "due_at": null
+          }
+        ],
+        "seconds": 17.5
+      },
+      {
+        "claims": [],
+        "seconds": 180.0
+      },
+      {
+        "claims": [
+          {
+            "field_path": "next_meeting",
+            "value": "security review with Dana and Leo, Tuesday Sep 29 or Wednesday Sep 30 at 10:00 Eastern (proposed)",
+            "confidence": 1.0,
+            "evidence_quote": "I'd like to book a 60-minute security review with you and Leo next week - Tuesday September 29 or Wednesday September 30 at 10:00 Eastern works on my side.",
+            "speaker_identity": "sam.okafor@northstar.health",
+            "subject_identity": null,
+            "role": null,
+            "due_at": null
+          },
+          {
+            "field_path": "next_milestone",
+            "value": "security review with Dana and Leo",
+            "confidence": 1.0,
+            "evidence_quote": "I'd like to book a 60-minute security review with you and Leo next week - Tuesday September 29 or Wednesday September 30 at 10:00 Eastern works on my side.",
+            "speaker_identity": "sam.okafor@northstar.health",
+            "subject_identity": null,
+            "role": null,
+            "due_at": null
+          }
+        ],
+        "seconds": 42.0
+      }
+    ]
+  }
+}

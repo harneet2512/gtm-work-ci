@@ -1,0 +1,69 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://ghost.local/contracts/replay_world.v1.json",
+  "title": "ReplayWorld",
+  "description": "The loaded company world at one replay cursor (HAR-129 section 1, 2, 14). A computed read model: it is derived from the frozen DemoManifest and the stores, never persisted. Before Play the cursor is N-1 and the held-out event is withheld; after Play the cursor is N.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "manifest_id", "data_cutoff", "event_cursor", "entities", "current_state_refs",
+    "previous_deal_knowledge_boundary", "provenance_manifest_ref", "computed_at"
+  ],
+  "properties": {
+    "manifest_id": { "$ref": "common.v1.json#/$defs/uuid" },
+    "data_cutoff": {
+      "description": "Every event up to and including this time is materialized; later ones are not visible.",
+      "$ref": "common.v1.json#/$defs/timestamp"
+    },
+    "event_cursor": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["replay_position", "last_event_id", "held_out_event_id"],
+      "properties": {
+        "replay_position": { "description": "Position of the last released event; 0 means none.", "type": "integer", "minimum": 0 },
+        "last_event_id": { "oneOf": [{ "$ref": "common.v1.json#/$defs/uuid" }, { "type": "null" }] },
+        "held_out_event_id": {
+          "description": "The event still withheld; null once it has been released.",
+          "oneOf": [{ "$ref": "common.v1.json#/$defs/uuid" }, { "type": "null" }]
+        }
+      }
+    },
+    "entities": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["account_ids", "person_ids", "opportunity_ids"],
+      "properties": {
+        "account_ids": { "type": "array", "minItems": 1, "items": { "$ref": "common.v1.json#/$defs/uuid" } },
+        "person_ids": { "type": "array", "items": { "$ref": "common.v1.json#/$defs/uuid" } },
+        "opportunity_ids": { "type": "array", "items": { "$ref": "common.v1.json#/$defs/uuid" } }
+      }
+    },
+    "current_state_refs": {
+      "description": "The current materialized state: the account roll-up and each opportunity state the case covers.",
+      "type": "array",
+      "minItems": 1,
+      "items": { "$ref": "common.v1.json#/$defs/stateRef" }
+    },
+    "previous_deal_knowledge_boundary": {
+      "description": "Company knowledge may be learned only from deals that closed before this boundary; the current deal and ambiguous deals never feed it (HAR-130 previous/current split).",
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["closed_before", "previous_opportunity_ids"],
+      "properties": {
+        "closed_before": { "$ref": "common.v1.json#/$defs/timestamp" },
+        "previous_opportunity_ids": { "type": "array", "items": { "$ref": "common.v1.json#/$defs/uuid" } }
+      }
+    },
+    "provenance_manifest_ref": {
+      "description": "The frozen manifest that lists the base-vs-synthetic provenance of every event, with its content hash.",
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["manifest_id", "content_sha256"],
+      "properties": {
+        "manifest_id": { "$ref": "common.v1.json#/$defs/uuid" },
+        "content_sha256": { "type": "string", "pattern": "^[0-9a-f]{64}$" }
+      }
+    },
+    "computed_at": { "$ref": "common.v1.json#/$defs/timestamp" }
+  }
+}

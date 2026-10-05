@@ -1,0 +1,196 @@
+{
+  "id": "beta_cp1_wait_for_owen_outcome",
+  "case_type": "insufficient_evidence",
+  "title": "Beta cp1: CRM stage change while the CFO review is happening today; candidate waits for the outcome",
+  "should_pass": true,
+  "difficulty": "medium",
+  "slice_tags": {
+    "account": "beta",
+    "origin": "checkpoint",
+    "motion": "expansion",
+    "stage": "commercial_review",
+    "champion_status": "active",
+    "economic_buyer": "known",
+    "risk": "low",
+    "candidate": "good",
+    "expected_action": "wait",
+    "extra": ["pending_decision"]
+  },
+  "based_on": {
+    "kind": "checkpoint",
+    "account": "beta",
+    "after_event_file": "world/accounts/beta/events/020_crm_opp_stage_commercial_review.json",
+    "checkpoint": 1,
+    "changed_fields": [],
+    "change": null
+  },
+  "context": {
+    "now": "2026-09-04T10:15:00Z",
+    "state": {
+      "account_id": "0a0c0000-0000-4000-8000-000000000002",
+      "account_name": "Beta Inc",
+      "opportunity_id": "0c0f0000-0000-4000-8000-000000000005",
+      "fields": {
+        "stage": "Commercial review",
+        "health": "on_track",
+        "motion": "expansion",
+        "champion": "0b0e0000-0000-4000-8000-000000000031",
+        "champion_status": "active",
+        "economic_buyer": "0b0e0000-0000-4000-8000-000000000032",
+        "relationship_risk": "low",
+        "blockers": "unknown",
+        "next_milestone": "Owen Clarke reviews the business case",
+        "current_commitments": [
+          {
+            "text": "Send business case with the Austin pilot numbers by Tuesday",
+            "status": "fulfilled",
+            "owner_person_id": "0b0e0000-0000-4000-8000-000000000001",
+            "due": "2026-09-01"
+          },
+          {
+            "text": "Take the business case to Owen Clarke on Friday",
+            "status": "open",
+            "owner_person_id": "0b0e0000-0000-4000-8000-000000000031",
+            "due": "2026-09-04"
+          }
+        ]
+      },
+      "buying_group": [
+        {
+          "person_id": "0b0e0000-0000-4000-8000-000000000031",
+          "display_name": "Hannah Lee",
+          "title": "VP Customer Operations",
+          "roles": ["champion"],
+          "status": "active",
+          "delegated_to_person_id": null,
+          "last_engaged_at": null,
+          "evidence_refs": []
+        },
+        {
+          "person_id": "0b0e0000-0000-4000-8000-000000000032",
+          "display_name": "Owen Clarke",
+          "title": "Chief Financial Officer",
+          "roles": ["economic_buyer"],
+          "status": "unknown",
+          "delegated_to_person_id": null,
+          "last_engaged_at": null,
+          "evidence_refs": []
+        },
+        {
+          "person_id": "0b0e0000-0000-4000-8000-000000000033",
+          "display_name": "Jess Patel",
+          "title": "Support Operations Manager",
+          "roles": ["user"],
+          "status": "active",
+          "delegated_to_person_id": null,
+          "last_engaged_at": null,
+          "evidence_refs": []
+        }
+      ],
+      "coverage_gaps": []
+    },
+    "recent_changes": {
+      "summary": "CRM stage moved to Commercial review; Hannah is presenting the business case to Owen today.",
+      "material_diff_fields": [
+        "stage",
+        "health",
+        "owner",
+        "motion",
+        "champion",
+        "champion_status",
+        "economic_buyer",
+        "decision_criteria",
+        "decision_process",
+        "current_commitments",
+        "next_milestone",
+        "next_meeting",
+        "relationship_risk",
+        "product_use_case",
+        "buying_group"
+      ],
+      "signals": ["customer_replied", "expansion_interest", "meeting_accepted", "new_stakeholder_entered", "stage_advanced"]
+    },
+    "trigger": {
+      "activity_id": "0ac70000-0000-4000-8000-0000000b0020",
+      "activity_type": "OpportunityStageChanged",
+      "occurred_at": "2026-09-04T10:00:00Z",
+      "actor_person_id": null,
+      "event_file": "world/accounts/beta/events/020_crm_opp_stage_commercial_review.json",
+      "synthetic": false,
+      "text": ""
+    },
+    "supporting_activities": [],
+    "commitments": [
+      {
+        "text": "Take the business case to Owen Clarke on Friday",
+        "owner_person_id": "0b0e0000-0000-4000-8000-000000000031",
+        "due_at": "2026-09-04T23:59:00Z",
+        "status": "open"
+      }
+    ],
+    "timeline_facts": {
+      "last_inbound_at": "2026-09-02T13:15:00Z",
+      "last_inbound_from_person_id": "0b0e0000-0000-4000-8000-000000000031",
+      "last_outbound_at": "2026-09-01T17:00:00Z",
+      "stated_timing": "Hannah takes the business case to Owen on Friday (today)"
+    },
+    "offered_knowledge": []
+  },
+  "candidate_action": {
+    "proposed_action_type": "wait",
+    "recipients": [],
+    "finished_artifact": {"channel": "none", "subject": null, "body": ""},
+    "crm_next_step_intent": {"next_step": "Hannah reports Owen's decision", "due_at": null, "stage_change": null},
+    "reason": "Blockers unknown and the CFO review is today; nothing to act on yet.",
+    "evidence_refs": [
+      {
+        "activity_id": "0ac70000-0000-4000-8000-0000000b0019",
+        "quote": "I'm taking it to him on Friday.",
+        "speaker_person_id": "0b0e0000-0000-4000-8000-000000000031",
+        "occurred_at": "2026-09-02T13:15:00Z"
+      }
+    ],
+    "knowledge_refs_used": [],
+    "wait_until": "2026-09-08T15:00:00Z"
+  },
+  "expected": [
+    {
+      "eval_type": "evidence_sufficiency",
+      "verdict": "pass",
+      "label": "NEEDS_MORE_CONTEXT",
+      "diagnostics": [],
+      "blocking": false,
+      "rationale": "Blockers and objections are unknown and the decision is pending today; the candidate does not invent a next step.",
+      "evidence_class": "methodology"
+    },
+    {
+      "eval_type": "next_action_quality",
+      "verdict": "pass",
+      "label": "WAIT",
+      "diagnostics": [],
+      "blocking": false,
+      "rationale": "Waiting for the champion's report is correct.",
+      "evidence_class": "methodology"
+    },
+    {
+      "eval_type": "state_change_relevance",
+      "verdict": "pass",
+      "label": null,
+      "diagnostics": [],
+      "blocking": false,
+      "rationale": "An internal stage update is not a reason to contact the buyer.",
+      "evidence_class": "methodology"
+    },
+    {
+      "eval_type": "momentum",
+      "verdict": "pass",
+      "label": "STABLE",
+      "diagnostics": [],
+      "blocking": false,
+      "rationale": "Hannah's meeting with Owen is still pending and nothing has cooled; waiting matches a stable deal.",
+      "evidence_class": "deal_data"
+    }
+  ],
+  "expected_best_action": {"action": "wait", "why": "Wait for Hannah's report on Owen's decision.", "wait_until": "2026-09-08T15:00:00Z"},
+  "notes": "Should-pass control: abstaining correctly on thin evidence."
+}

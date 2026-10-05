@@ -1,0 +1,53 @@
+{
+  "classification": "metric",
+  "agent_run_id": "0f0a0000-0000-4000-8000-000000000601",
+  "decision_episode_id": "0e9e0000-0000-4000-8000-000000000a01",
+  "measured": true,
+  "usage_source": "live",
+  "model_calls": 5,
+  "input_tokens": 18420,
+  "output_tokens": 2310,
+  "cached_input_tokens": 9000,
+  "reasoning_tokens": 640,
+  "tool_calls": 3,
+  "context_pulls": 3,
+  "retries": 1,
+  "cost_usd": 0.0123,
+  "latency": {
+    "worker_call_ms": 21400,
+    "model_ms": 19800
+  },
+  "models": [
+    "deepseek-v4-flash"
+  ],
+  "stages": [
+    {
+      "stage": "strategies",
+      "worker_calls": 1,
+      "model_calls": 3,
+      "input_tokens": 12000,
+      "output_tokens": 1500,
+      "cached_input_tokens": 6000,
+      "reasoning_tokens": 400,
+      "tool_calls": 3,
+      "retries": 1,
+      "cost_usd": 0.008,
+      "worker_call_ms": 14000,
+      "model_ms": 13000
+    },
+    {
+      "stage": "judge",
+      "worker_calls": 1,
+      "model_calls": 2,
+      "input_tokens": 6420,
+      "output_tokens": 810,
+      "cached_input_tokens": 3000,
+      "reasoning_tokens": 240,
+      "tool_calls": 0,
+      "retries": 0,
+      "cost_usd": 0.0043,
+      "worker_call_ms": 7400,
+      "model_ms": 6800
+    }
+  ]
+}
