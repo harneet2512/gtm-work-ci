@@ -1,0 +1,24 @@
+{
+  "source_system": "crm",
+  "source_object_id": "contact:829",
+  "source_event_key": "created",
+  "occurred_at": "2026-08-19T13:05:00Z",
+  "connector": "salesforce",
+  "connector_version": "0.1.0",
+  "payload": {
+    "kind": "crm_change",
+    "object_type": "Contact",
+    "record_id": "contact:829",
+    "account_record_id": "account:AC-4",
+    "changed_at": "2026-08-19T13:05:00Z",
+    "changed_by": "dana@vendor.example",
+    "created": true,
+    "fields": {
+      "FirstName": {"new": "Tom"},
+      "LastName": {"new": "Becker"},
+      "Email": {"new": "tom.becker@acme.com"},
+      "Title": {"new": "EU Operations Manager"},
+      "AccountId": {"new": "account:AC-4"}
+    }
+  }
+}

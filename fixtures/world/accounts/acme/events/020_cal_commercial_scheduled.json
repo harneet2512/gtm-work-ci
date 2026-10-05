@@ -1,0 +1,22 @@
+{
+  "source_system": "calendar",
+  "source_object_id": "gcal:acme-commercial-0909",
+  "source_event_key": "scheduled",
+  "occurred_at": "2026-09-03T11:00:00Z",
+  "connector": "google_calendar",
+  "connector_version": "0.1.0",
+  "payload": {
+    "kind": "calendar_event",
+    "event_id": "gcal:acme-commercial-0909",
+    "title": "Acme EU rollout - commercial walkthrough",
+    "start": "2026-09-09T14:00:00Z",
+    "end": "2026-09-09T14:30:00Z",
+    "status": "scheduled",
+    "organizer": {"email": "dana@vendor.example", "name": "Dana Kim"},
+    "attendees": [
+      {"email": "dana@vendor.example", "name": "Dana Kim", "response": "accepted"},
+      {"email": "priya.shah@acme.com", "name": "Priya Shah", "response": "needs_action"}
+    ],
+    "crm_opportunity_ref": "opp:AC-4-EXP"
+  }
+}

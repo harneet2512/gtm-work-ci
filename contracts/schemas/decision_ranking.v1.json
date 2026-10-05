@@ -1,0 +1,59 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://ghost.local/contracts/decision_ranking.v1.json",
+  "title": "DecisionRanking",
+  "description": "Why a StrategySet's candidates are in the order they are in, and which one is preferred. Until now the order was only the planner's output order and the core's blocking/restricted tiers, with no stored reason, so no eval could ask whether the ranking was supported (E9.1-E9.8). A DecisionRanking is written in the same transaction as its StrategySet from the tier inputs the core used and the reasons the worker's rank step gave. It judges nothing itself: the ranking evals read it. Immutable once written; choosing never changes it. abstained is true exactly when the preferred candidate is a quiet move (wait, no action, internal note) or the set has no acceptable candidate.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "id", "strategy_set_id", "decision_episode_id", "agent_run_id", "order", "preferred_candidate_id", "tier_inputs",
+    "pairwise_reasons", "abstained", "generated_at"
+  ],
+  "properties": {
+    "id": { "$ref": "common.v1.json#/$defs/uuid" },
+    "strategy_set_id": { "$ref": "common.v1.json#/$defs/uuid" },
+    "decision_episode_id": { "$ref": "common.v1.json#/$defs/uuid" },
+    "agent_run_id": { "$ref": "common.v1.json#/$defs/uuid" },
+    "order": {
+      "description": "Candidate ids, best first: the order the candidates are shown in.",
+      "type": "array", "minItems": 1, "maxItems": 3, "uniqueItems": true,
+      "items": { "$ref": "common.v1.json#/$defs/uuid" }
+    },
+    "preferred_candidate_id": {
+      "description": "The first candidate in order. It is the ordering anchor, never a recommendation when the set has no acceptable candidate.",
+      "$ref": "common.v1.json#/$defs/uuid"
+    },
+    "tier_inputs": {
+      "description": "What the core's tiering saw for each candidate, so the reasons can be checked against it (E9.8).",
+      "type": "array", "minItems": 1,
+      "items": {
+        "type": "object", "additionalProperties": false,
+        "required": ["candidate_id", "blocking", "restricted", "worker_rank"],
+        "properties": {
+          "candidate_id": { "$ref": "common.v1.json#/$defs/uuid" },
+          "blocking": { "description": "A blocking eval failed on this candidate.", "type": "boolean" },
+          "restricted": { "description": "The transition policy restricts this candidate's action class.", "type": "boolean" },
+          "worker_rank": { "description": "The rank the worker's planner gave before the core tiered.", "type": "integer", "minimum": 1 }
+        }
+      }
+    },
+    "pairwise_reasons": {
+      "description": "One reason for every adjacent pair in order, so the whole order is explained: n candidates give n - 1 reasons. A reason without evidence is a weaker reason, not an absent one.",
+      "type": "array",
+      "items": {
+        "type": "object", "additionalProperties": false,
+        "required": ["ranked_higher_id", "ranked_lower_id", "reason", "evidence_refs", "knowledge_refs"],
+        "properties": {
+          "ranked_higher_id": { "$ref": "common.v1.json#/$defs/uuid" },
+          "ranked_lower_id": { "$ref": "common.v1.json#/$defs/uuid" },
+          "reason": { "type": "string", "minLength": 1, "maxLength": 1000 },
+          "evidence_refs": { "type": "array", "items": { "$ref": "common.v1.json#/$defs/evidenceRef" } },
+          "knowledge_refs": { "type": "array", "items": { "$ref": "common.v1.json#/$defs/uuid" } }
+        }
+      }
+    },
+    "abstained": { "type": "boolean" },
+    "model": { "type": ["string", "null"] },
+    "generated_at": { "$ref": "common.v1.json#/$defs/timestamp" }
+  }
+}

@@ -1,0 +1,22 @@
+{
+  "source_system": "email",
+  "source_object_id": "<syn-beta-010@mail.beta.io>",
+  "source_event_key": "received",
+  "occurred_at": "2026-09-18T14:00:00Z",
+  "connector": "gmail",
+  "connector_version": "0.1.0",
+  "payload": {
+    "kind": "email",
+    "direction": "inbound",
+    "message_id": "<syn-beta-010@mail.beta.io>",
+    "thread_id": "thr-beta-support-rollout",
+    "in_reply_to": null,
+    "from": {"email": "hannah.lee@beta.io", "name": "Hannah Lee"},
+    "to": [{"email": "dana@vendor.example", "name": "Dana Kim"}],
+    "cc": [],
+    "date": "2026-09-18T14:00:00Z",
+    "subject": "Re: Beta support rollout",
+    "body_text": "Hi Dana - heads-up: I'm moving over to lead our APAC support build-out from October. I'll stay the sponsor for this rollout, but I'll have much less time day to day. Ravi is still working through the residency question.\nHannah",
+    "crm_opportunity_ref": "opp:BE-7-EXP"
+  }
+}

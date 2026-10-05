@@ -1,0 +1,243 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://ghost.local/contracts/source_payloads.v1.json",
+  "title": "SourcePayloads",
+  "description": "Source-native payload shapes carried in SourceEvent.payload for the connectors HAR-96 ships (fixture connectors for the seed world). Normalization rules live in contracts/normalization.md.",
+  "oneOf": [
+    { "$ref": "#/$defs/email" },
+    { "$ref": "#/$defs/calendarEvent" },
+    { "$ref": "#/$defs/call" },
+    { "$ref": "#/$defs/crmChange" },
+    { "$ref": "#/$defs/slackMessage" },
+    { "$ref": "#/$defs/enrichment" },
+    { "$ref": "#/$defs/document" },
+    { "$ref": "#/$defs/clockTick" },
+    { "$ref": "#/$defs/supportCase" },
+    { "$ref": "#/$defs/chatTranscript" }
+  ],
+  "$defs": {
+    "address": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["email"],
+      "properties": {
+        "email": { "type": "string", "format": "email" },
+        "name": { "type": "string" }
+      }
+    },
+    "email": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["kind", "message_id", "thread_id", "from", "to", "date", "subject", "body_text", "direction"],
+      "properties": {
+        "kind": { "const": "email" },
+        "message_id": { "type": "string", "minLength": 1 },
+        "thread_id": { "type": "string", "minLength": 1 },
+        "in_reply_to": { "type": ["string", "null"] },
+        "direction": { "type": "string", "enum": ["inbound", "outbound"] },
+        "from": { "$ref": "#/$defs/address" },
+        "to": { "type": "array", "minItems": 1, "items": { "$ref": "#/$defs/address" } },
+        "cc": { "type": "array", "items": { "$ref": "#/$defs/address" } },
+        "date": { "type": "string", "format": "date-time" },
+        "subject": { "type": "string" },
+        "body_text": { "type": "string" },
+        "attachments": { "type": "array", "items": { "type": "string" } },
+        "crm_opportunity_ref": { "type": ["string", "null"], "description": "Opportunity id if the email client logged it to CRM." }
+      }
+    },
+    "calendarEvent": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["kind", "event_id", "title", "start", "end", "organizer", "attendees", "status"],
+      "properties": {
+        "kind": { "const": "calendar_event" },
+        "event_id": { "type": "string", "minLength": 1 },
+        "title": { "type": "string" },
+        "start": { "type": "string", "format": "date-time" },
+        "end": { "type": "string", "format": "date-time" },
+        "status": { "type": "string", "enum": ["scheduled", "completed", "cancelled"] },
+        "organizer": { "$ref": "#/$defs/address" },
+        "attendees": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": ["email", "response"],
+            "properties": {
+              "email": { "type": "string", "format": "email" },
+              "name": { "type": "string" },
+              "response": { "type": "string", "enum": ["needs_action", "accepted", "declined", "tentative"] }
+            }
+          }
+        },
+        "description": { "type": "string" },
+        "crm_opportunity_ref": { "type": ["string", "null"] }
+      }
+    },
+    "call": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["kind", "call_id", "started_at", "speakers"],
+      "properties": {
+        "kind": { "const": "call" },
+        "call_id": { "type": "string", "minLength": 1 },
+        "calendar_event_id": { "type": ["string", "null"] },
+        "started_at": { "type": "string", "format": "date-time" },
+        "ended_at": { "type": ["string", "null"], "format": "date-time" },
+        "speakers": {
+          "description": "Speaker labels as the recorder saw them. email/name are only present when the recorder could match them; otherwise identity resolution must work from context (HAR-96 §5: 'Call speaker 02').",
+          "type": "array",
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": ["label"],
+            "properties": {
+              "label": { "type": "string", "pattern": "^speaker_[0-9]{2}$" },
+              "email": { "type": ["string", "null"], "format": "email" },
+              "name": { "type": ["string", "null"] }
+            }
+          }
+        },
+        "transcript": {
+          "description": "Present on transcript_ready events.",
+          "type": "array",
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": ["speaker", "offset_s", "text"],
+            "properties": {
+              "speaker": { "type": "string", "pattern": "^speaker_[0-9]{2}$" },
+              "offset_s": { "type": "number", "minimum": 0 },
+              "text": { "type": "string", "minLength": 1 }
+            }
+          }
+        }
+      }
+    },
+    "crmChange": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["kind", "object_type", "record_id", "changed_at", "changed_by"],
+      "properties": {
+        "kind": { "const": "crm_change" },
+        "object_type": { "type": "string", "enum": ["Account", "Contact", "Opportunity", "Note", "Task", "Quote", "Contract", "Order"] },
+        "record_id": { "type": "string", "minLength": 1, "description": "e.g. 'contact:817', 'opp:AC-4-EXP'" },
+        "account_record_id": { "type": ["string", "null"], "description": "e.g. 'account:AC-4'" },
+        "opportunity_record_id": { "type": ["string", "null"], "description": "Opportunity a Task, Quote or Contract record belongs to, e.g. 'opp:AC-4-EXP'. Never set on Opportunity records (record_id is the opportunity)." },
+        "changed_at": { "type": "string", "format": "date-time" },
+        "changed_by": { "type": "string", "description": "CRM user email or 'integration:<name>'" },
+        "created": { "type": "boolean", "default": false },
+        "fields": {
+          "description": "Changed fields: name → {old, new}. Field names follow Salesforce-style API names (StageName, Title, Email, AccountId, Role__c, ...).",
+          "type": "object",
+          "additionalProperties": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": ["new"],
+            "properties": { "old": {}, "new": {} }
+          }
+        },
+        "note_body": { "type": ["string", "null"] },
+        "description": { "type": ["string", "null"], "description": "Free text of a Task, Quote, Contract or Order record (its Description); the activity body text." }
+      }
+    },
+    "slackMessage": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["kind", "channel", "ts", "user", "text"],
+      "properties": {
+        "kind": { "const": "slack_message" },
+        "channel": { "type": "string", "description": "e.g. '#deal-acme'" },
+        "ts": { "type": "string", "pattern": "^[0-9]+\\.[0-9]+$" },
+        "thread_ts": { "type": ["string", "null"] },
+        "user": { "type": "string", "description": "Slack user id, e.g. 'U02DANA'" },
+        "user_email": { "type": ["string", "null"], "format": "email" },
+        "text": { "type": "string", "minLength": 1 },
+        "is_decision": { "type": "boolean", "default": false }
+      }
+    },
+    "enrichment": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["kind", "provider", "subject", "observed_at", "facts"],
+      "properties": {
+        "kind": { "const": "enrichment" },
+        "provider": { "type": "string" },
+        "subject": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "email": { "type": ["string", "null"], "format": "email" },
+            "domain": { "type": ["string", "null"] }
+          }
+        },
+        "observed_at": { "type": "string", "format": "date-time" },
+        "facts": {
+          "type": "object",
+          "description": "e.g. {title, employer_domain, seniority, headcount}. Always standing third_party.",
+          "additionalProperties": true
+        }
+      }
+    },
+    "document": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["kind", "document_id", "title", "shared_at", "shared_by", "shared_with"],
+      "properties": {
+        "kind": { "const": "document" },
+        "document_id": { "type": "string" },
+        "title": { "type": "string" },
+        "shared_at": { "type": "string", "format": "date-time" },
+        "shared_by": { "type": "string", "format": "email" },
+        "shared_with": { "type": "array", "items": { "type": "string", "format": "email" } }
+      }
+    },
+    "clockTick": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["kind", "account_ref", "rule", "observed_at"],
+      "properties": {
+        "kind": { "const": "clock_tick" },
+        "account_ref": { "type": "string" },
+        "rule": { "type": "string", "enum": ["customer_silence", "commitment_due", "next_meeting_missing"] },
+        "observed_at": { "type": "string", "format": "date-time" },
+        "details": { "type": "object" }
+      }
+    },
+    "supportCase": {
+      "description": "A support case (Salesforce Case). Event key 'opened' at opened_at; 'closed' at closed_at, only once the case is closed.",
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["kind", "case_id", "account_record_id", "subject", "opened_at"],
+      "properties": {
+        "kind": { "const": "support_case" },
+        "case_id": { "type": "string", "minLength": 1 },
+        "account_record_id": { "type": "string", "minLength": 1, "description": "e.g. 'account:AC-4'" },
+        "contact_record_id": { "type": ["string", "null"], "description": "CRM contact who raised the case, e.g. 'contact:817'" },
+        "owner_email": { "type": ["string", "null"], "format": "email", "description": "Our support owner" },
+        "subject": { "type": "string" },
+        "description": { "type": ["string", "null"] },
+        "priority": { "type": ["string", "null"] },
+        "origin": { "type": ["string", "null"], "description": "e.g. 'Email', 'Live Chat'" },
+        "opened_at": { "type": "string", "format": "date-time" },
+        "closed_at": { "type": ["string", "null"], "format": "date-time" }
+      }
+    },
+    "chatTranscript": {
+      "description": "A finished live-chat transcript (Salesforce LiveChatTranscript). Event key 'ended' at ended_at.",
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["kind", "transcript_id", "account_record_id", "ended_at", "body_text"],
+      "properties": {
+        "kind": { "const": "chat_transcript" },
+        "transcript_id": { "type": "string", "minLength": 1 },
+        "case_id": { "type": ["string", "null"] },
+        "account_record_id": { "type": "string", "minLength": 1 },
+        "contact_record_id": { "type": ["string", "null"] },
+        "owner_email": { "type": ["string", "null"], "format": "email", "description": "Our chat agent" },
+        "ended_at": { "type": "string", "format": "date-time" },
+        "body_text": { "type": "string", "minLength": 1, "description": "Plain-text transcript, one line per message." }
+      }
+    }
+  }
+}

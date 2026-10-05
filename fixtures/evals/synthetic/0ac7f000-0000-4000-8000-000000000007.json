@@ -1,0 +1,22 @@
+{
+  "source_system": "email",
+  "source_object_id": "<syn-beta-007@mail.beta.io>",
+  "source_event_key": "received",
+  "occurred_at": "2026-09-08T11:30:00Z",
+  "connector": "gmail",
+  "connector_version": "0.1.0",
+  "payload": {
+    "kind": "email",
+    "direction": "inbound",
+    "message_id": "<syn-beta-007@mail.beta.io>",
+    "thread_id": "thr-beta-dublin-outage",
+    "in_reply_to": null,
+    "from": {"email": "jess.patel@beta.io", "name": "Jess Patel"},
+    "to": [{"email": "dana@vendor.example", "name": "Dana Kim"}],
+    "cc": [],
+    "date": "2026-09-08T11:30:00Z",
+    "subject": "Dublin routing outage",
+    "body_text": "Hi Dana - Relay routing has been down for our Dublin queue since 7am; EU tickets are piling up and our support ticket has had no response for three hours. Please get someone on this now - we can't talk about the wider rollout until it's fixed.\nJess",
+    "crm_opportunity_ref": "opp:BE-7-EXP"
+  }
+}

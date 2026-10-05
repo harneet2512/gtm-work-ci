@@ -1,0 +1,22 @@
+{
+  "source_system": "email",
+  "source_object_id": "<syn-beta-003@mail.beta.io>",
+  "source_event_key": "received",
+  "occurred_at": "2026-09-24T13:00:00Z",
+  "connector": "gmail",
+  "connector_version": "0.1.0",
+  "payload": {
+    "kind": "email",
+    "direction": "inbound",
+    "message_id": "<syn-beta-003@mail.beta.io>",
+    "thread_id": "thr-beta-support-rollout",
+    "in_reply_to": null,
+    "from": {"email": "hannah.lee@beta.io", "name": "Hannah Lee"},
+    "to": [{"email": "dana@vendor.example", "name": "Dana Kim"}],
+    "cc": [],
+    "date": "2026-09-24T13:00:00Z",
+    "subject": "Re: Beta support rollout",
+    "body_text": "Dana - please work directly with Ravi on the technical review from here; I'll rejoin when we get to the order form.",
+    "crm_opportunity_ref": "opp:BE-7-EXP"
+  }
+}

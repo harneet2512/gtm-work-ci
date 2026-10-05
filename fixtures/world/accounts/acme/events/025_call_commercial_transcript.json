@@ -1,0 +1,57 @@
+{
+  "source_system": "call",
+  "source_object_id": "call-acme-0909",
+  "source_event_key": "transcript_ready",
+  "occurred_at": "2026-09-09T14:32:00Z",
+  "connector": "recorder",
+  "connector_version": "0.1.0",
+  "payload": {
+    "kind": "call",
+    "call_id": "call-acme-0909",
+    "calendar_event_id": "gcal:acme-commercial-0909",
+    "started_at": "2026-09-09T14:01:00Z",
+    "ended_at": "2026-09-09T14:32:00Z",
+    "speakers": [
+      {"label": "speaker_01", "email": "dana@vendor.example", "name": "Dana Kim"},
+      {"label": "speaker_02", "email": "priya.shah@acme.com", "name": "Priya Shah"}
+    ],
+    "transcript": [
+      {
+        "speaker": "speaker_01",
+        "offset_s": 0,
+        "text": "Thanks Priya. I've got the order form up - shall we walk through it?"
+      },
+      {
+        "speaker": "speaker_02",
+        "offset_s": 5,
+        "text": "Yes. From my side we're basically in negotiation now - I just want the order form wording to match our EU entity, Acme Logistics B.V."
+      },
+      {
+        "speaker": "speaker_01",
+        "offset_s": 17,
+        "text": "Easy change. Anything else on the commercial terms?"
+      },
+      {
+        "speaker": "speaker_02",
+        "offset_s": 22,
+        "text": "We'd want the Rotterdam site invoiced separately, because it runs on its own cost centre."
+      },
+      {
+        "speaker": "speaker_01",
+        "offset_s": 31,
+        "text": "That works. I'll send the revised order form with the EU entity and split invoicing by Monday the 14th."
+      },
+      {
+        "speaker": "speaker_02",
+        "offset_s": 40,
+        "text": "Great. Legal has our standard terms already, so I don't expect surprises there."
+      },
+      {
+        "speaker": "speaker_01",
+        "offset_s": 48,
+        "text": "Good to hear. Anything that could slow down signature?"
+      },
+      {"speaker": "speaker_02", "offset_s": 54, "text": "Not that I can see today."}
+    ]
+  }
+}

@@ -1,0 +1,39 @@
+{
+  "id": "0d5dad00-0000-4000-8000-00000000ad70",
+  "decision_episode_id": "0e9ead00-0000-4000-8000-00000000ad0a",
+  "agent_run_id": "0f0aad00-0000-4000-8000-00000000ad60",
+  "strategy_set_id": "05e7ad00-0000-4000-8000-00000000ad0b",
+  "selected_candidate_id": "0ca0ad00-0000-4000-8000-00000000ada2",
+  "original_agent_preference": "0ca0ad00-0000-4000-8000-00000000ada1",
+  "surface": "slack",
+  "actor_person_id": "0b0ead00-0000-4000-8000-00000000ad21",
+  "actor_label": "Luis Rodriguez",
+  "chosen_at": "2023-11-09T09:52:00Z",
+  "final_to": [
+    {
+      "person_id": "0b0ead00-0000-4000-8000-00000000ad11",
+      "role": "to",
+      "why": "Asked the cost question and for the call"
+    }
+  ],
+  "final_cc": [],
+  "final_artifact": {
+    "channel": "email",
+    "subject": "Re: Feedback request on proposal draft",
+    "body": "Hi Fatoumata,\n\nThank you for the questions. Here is how the proposal we sent on October 31 breaks down:\n\n- SecureData Nexus: 25 units at a 15% discount, $12,749.79\n- CryptGuard Module: 20 units at a 15% discount, $8,329.83\n- EduTech Lab: 10 units at a 10% discount, $3,599.91\n\nThe total is $24,679.53. I would also like to take you up on the call: would Monday, November 13 at 10:00 or Tuesday, November 14 at 14:00 suit you?\n\nBest regards,\nLuis",
+    "attachments": []
+  },
+  "edits": [
+    {
+      "kind": "cta_changed",
+      "before": "Once you have had a chance to review this with your team, I would be glad to set up a call to go through integration and support in more detail.",
+      "after": "I would also like to take you up on the call: would Monday, November 13 at 10:00 or Tuesday, November 14 at 14:00 suit you?"
+    },
+    {
+      "kind": "paragraph_edited"
+    }
+  ],
+  "send_decision": "send",
+  "send_decided_at": "2023-11-09T09:58:00Z",
+  "human_decision_id": "0decad00-0000-4000-8000-00000000ad71"
+}

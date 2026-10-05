@@ -1,0 +1,18 @@
+{
+  "source_system": "slack",
+  "source_object_id": "#deal-beta:1788883200.000100",
+  "source_event_key": "posted",
+  "occurred_at": "2026-09-08T16:00:00Z",
+  "connector": "slack",
+  "connector_version": "0.1.0",
+  "payload": {
+    "kind": "slack_message",
+    "channel": "#deal-beta",
+    "ts": "1788883200.000100",
+    "thread_ts": null,
+    "user": "U02RACHEL",
+    "user_email": "rachel@vendor.example",
+    "text": "Decision: we hold Beta at the $210k list price for the support rollout - no multi-year discount until their platform team signs off.",
+    "is_decision": true
+  }
+}

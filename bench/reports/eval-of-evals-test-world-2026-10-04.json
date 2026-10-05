@@ -1,0 +1,4568 @@
+{
+  "generated_at": "2026-10-05T02:08:41.5246998Z",
+  "reports": {
+    "crm_writeback:v1": {
+      "evaluator": "crm_writeback",
+      "version": 1,
+      "tag": "crm_writeback:v1",
+      "registered": false,
+      "status": "observed",
+      "axis_attribution": {
+        "axis": "crm_writeback",
+        "attributable": true,
+        "change_kinds": [
+          "crm_next_step_changed"
+        ],
+        "suggested_deltas": 0,
+        "n_edited_episodes": 4,
+        "n_attributed_edits": 0,
+        "attribution_share": 0,
+        "basis": "an edit is attributed to an axis by candidate_criterion.suggested_eval_type or the literal-change-kind map; an axis neither reaches is unattributable (false_pass cannot be measured)"
+      },
+      "tracked_gaps": [
+        {
+          "id": "E19.7",
+          "name": "repeated-judge variance",
+          "status": "open",
+          "reason": "identical inputs reuse the stored eval_runs id, so no pair of independent judgments exists to compare; measuring it needs a sampled re-judge pass with a live model, which this read-only report never runs",
+          "interim": "repeat_consistency.spec_replay (deterministic re-derivation of executable shadow_specs) and same-artifact re-judgments on unchanged approvals"
+        }
+      ],
+      "metrics": {
+        "human_agreement": {
+          "status": "ok",
+          "value": {
+            "n_episodes": 9,
+            "categories": {
+              "pass_other_axis": 4,
+              "true_pass": 5
+            },
+            "consistent": 5,
+            "contradicted": 0,
+            "unscored": 4,
+            "abstained": 0,
+            "warned": 0,
+            "rate": 1,
+            "abstain_rate": 0,
+            "worst_case_rate": 1,
+            "accept_unchanged": 5,
+            "accept_unchanged_rate": 0.5555555555555556
+          }
+        },
+        "false_pass_rate": {
+          "status": "n/a",
+          "reason": "no human edit attributed to crm_writeback carries a crm_writeback:v1 verdict"
+        },
+        "false_block_rate": {
+          "status": "ok",
+          "value": {
+            "n_unchanged_approvals": 5,
+            "n_fail_verdicts": 0,
+            "false_block": 0,
+            "fail_unresolved_edit": 0,
+            "rate": 0
+          }
+        },
+        "confidence_calibration": {
+          "status": "n/a",
+          "reason": "no eval_runs tagged crm_writeback:v1 carry confidence on a decided episode"
+        },
+        "repeat_consistency": {
+          "status": "n/a",
+          "reason": "no same-artifact re-judgment of crm_writeback:v1 exists (every stored judgment is unique, or every repeat followed an edit) and no replayable shadow-spec results exist — same-input consistency is unobserved"
+        },
+        "correction_category_coverage": {
+          "status": "ok",
+          "value": {
+            "semantic_labels": [
+              {
+                "label": "reduced_pressure",
+                "deltas": 1,
+                "unexplained": 1,
+                "seeded_candidates": 1,
+                "covered": true
+              },
+              {
+                "label": "increased_pressure",
+                "deltas": 0,
+                "unexplained": 0,
+                "seeded_candidates": 0,
+                "covered": false
+              },
+              {
+                "label": "kept_champion_involved",
+                "deltas": 0,
+                "unexplained": 0,
+                "seeded_candidates": 0,
+                "covered": false
+              },
+              {
+                "label": "removed_unnecessary_stakeholders",
+                "deltas": 0,
+                "unexplained": 0,
+                "seeded_candidates": 0,
+                "covered": false
+              },
+              {
+                "label": "added_missing_stakeholder",
+                "deltas": 1,
+                "unexplained": 0,
+                "seeded_candidates": 0,
+                "covered": true
+              },
+              {
+                "label": "delayed_cta",
+                "deltas": 0,
+                "unexplained": 0,
+                "seeded_candidates": 0,
+                "covered": false
+              },
+              {
+                "label": "removed_cta",
+                "deltas": 0,
+                "unexplained": 0,
+                "seeded_candidates": 0,
+                "covered": false
+              },
+              {
+                "label": "smaller_ask",
+                "deltas": 0,
+                "unexplained": 0,
+                "seeded_candidates": 0,
+                "covered": false
+              },
+              {
+                "label": "larger_ask",
+                "deltas": 0,
+                "unexplained": 0,
+                "seeded_candidates": 0,
+                "covered": false
+              },
+              {
+                "label": "changed_channel",
+                "deltas": 0,
+                "unexplained": 0,
+                "seeded_candidates": 0,
+                "covered": false
+              },
+              {
+                "label": "corrected_fact",
+                "deltas": 3,
+                "unexplained": 2,
+                "seeded_candidates": 2,
+                "covered": true
+              },
+              {
+                "label": "deferred_to_buyer_timing",
+                "deltas": 0,
+                "unexplained": 0,
+                "seeded_candidates": 0,
+                "covered": false
+              },
+              {
+                "label": "style_only",
+                "deltas": 1,
+                "unexplained": 1,
+                "seeded_candidates": 1,
+                "covered": true
+              }
+            ],
+            "unobserved_labels": [
+              "increased_pressure",
+              "kept_champion_involved",
+              "removed_unnecessary_stakeholders",
+              "delayed_cta",
+              "removed_cta",
+              "smaller_ask",
+              "larger_ask",
+              "changed_channel",
+              "deferred_to_buyer_timing"
+            ],
+            "suggested_eval_types": [
+              {
+                "axis": "evidence_sufficiency",
+                "deltas": 2,
+                "versions_seeded": 2
+              },
+              {
+                "axis": "next_action_quality",
+                "deltas": 1,
+                "versions_seeded": 1
+              }
+            ],
+            "this_version": {
+              "axis_deltas": 0,
+              "seeded_by_this_version": false
+            },
+            "basis": "footprint of the human_deltas.semantic_labels vocabulary and suggested_eval_type axes in the stored deltas: a label is covered when an existing eval explained it or a candidate version was seeded from it",
+            "limits": [
+              "unobserved_labels means unobserved in the stored deltas, not impossible",
+              "edit capture sees recipients and the artifact only: timing, CTA and CRM-only edits produce no delta and are invisible here",
+              "semantic labels come from the worker labeler; fallback deltas are unlabeled and count as no label",
+              "a send the human never edited writes no delta, so unedited approvals contribute no coverage"
+            ]
+          }
+        },
+        "edits_explained_by_evals": {
+          "status": "ok",
+          "value": {
+            "n_deltas": 4,
+            "n_explained": 1,
+            "rate": 0.25,
+            "n_explained_by_version": 0,
+            "n_explained_by_axis": 0,
+            "n_axis_attributed": 0
+          }
+        },
+        "new_criterion_discovery": {
+          "status": "ok",
+          "value": {
+            "n_episodes": 10,
+            "n_unexplained_deltas": 3,
+            "n_candidates_seeded": 3,
+            "unexplained_yield": 1,
+            "candidates_per_episode": 0.3,
+            "this_version_seeded": false
+          }
+        },
+        "repeat_semantic_correction": {
+          "status": "n/a",
+          "reason": "crm_writeback:v1 has no promotion timestamp (status observed) — promoted_at marks activation"
+        },
+        "human_vs_inference_agreement": {
+          "status": "ok",
+          "value": {
+            "n_inferences": 3,
+            "n_answered": 2,
+            "n_confirmed": 1,
+            "n_corrected": 1,
+            "n_pending": 1,
+            "n_no_learning": 0,
+            "confirm_rate": 0.5,
+            "n_verdict_rows": 3,
+            "n_revised": 1,
+            "by_agent_agreement": {
+              "agreed": {
+                "n": 1,
+                "n_answered": 1,
+                "n_confirmed": 1,
+                "confirm_rate": 1
+              },
+              "overrode": {
+                "n": 2,
+                "n_answered": 1,
+                "n_confirmed": 0,
+                "confirm_rate": 0
+              }
+            },
+            "this_version_episodes": {
+              "n": 3,
+              "n_answered": 2,
+              "n_confirmed": 1,
+              "confirm_rate": 0.5
+            },
+            "basis": "judgment_inferences are Ghost's inference of why the human chose what they chose; the human's confirmed/corrected answer (latest row of the append-only judgment_verdicts history, else the inference column) is the direct human grade of that inference. this_version_episodes slices the inferences on episodes the reported version judged. no_learning is the human opting out of learning, not a grade of the inference: it is counted in n_no_learning and leaves the confirm_rate denominator, so an inference first confirmed and later opted out stops counting as a confirmation (its history rows stay in n_verdict_rows)"
+          }
+        }
+      }
+    },
+    "crm_writeback:v6": {
+      "evaluator": "crm_writeback",
+      "version": 6,
+      "tag": "crm_writeback:v6",
+      "registered": true,
+      "status": "retired",
+      "kind": "human_delta",
+      "created_from": "manual",
+      "promoted_at": "2026-01-15T00:00:00Z",
+      "axis_attribution": {
+        "axis": "crm_writeback",
+        "attributable": true,
+        "change_kinds": [
+          "crm_next_step_changed"
+        ],
+        "suggested_deltas": 0,
+        "n_edited_episodes": 0,
+        "n_attributed_edits": 0,
+        "basis": "an edit is attributed to an axis by candidate_criterion.suggested_eval_type or the literal-change-kind map; an axis neither reaches is unattributable (false_pass cannot be measured)"
+      },
+      "tracked_gaps": [
+        {
+          "id": "E19.7",
+          "name": "repeated-judge variance",
+          "status": "open",
+          "reason": "identical inputs reuse the stored eval_runs id, so no pair of independent judgments exists to compare; measuring it needs a sampled re-judge pass with a live model, which this read-only report never runs",
+          "interim": "repeat_consistency.spec_replay (deterministic re-derivation of executable shadow_specs) and same-artifact re-judgments on unchanged approvals"
+        }
+      ],
+      "metrics": {
+        "human_agreement": {
+          "status": "n/a",
+          "reason": "no eval_runs tagged crm_writeback:v6 on a decided episode's final draft"
+        },
+        "false_pass_rate": {
+          "status": "n/a",
+          "reason": "no human edit attributed to crm_writeback carries a crm_writeback:v6 verdict"
+        },
+        "false_block_rate": {
+          "status": "n/a",
+          "reason": "crm_writeback:v6 has no pass/fail verdict on an unchanged approval and never failed a decided episode's reviewed draft"
+        },
+        "confidence_calibration": {
+          "status": "n/a",
+          "reason": "no eval_runs tagged crm_writeback:v6 carry confidence on a decided episode"
+        },
+        "repeat_consistency": {
+          "status": "n/a",
+          "reason": "no same-artifact re-judgment of crm_writeback:v6 exists (every stored judgment is unique, or every repeat followed an edit) and no replayable shadow-spec results exist — same-input consistency is unobserved"
+        },
+        "correction_category_coverage": {
+          "status": "ok",
+          "value": {
+            "semantic_labels": [
+              {
+                "label": "reduced_pressure",
+                "deltas": 1,
+                "unexplained": 1,
+                "seeded_candidates": 1,
+                "covered": true
+              },
+              {
+                "label": "increased_pressure",
+                "deltas": 0,
+                "unexplained": 0,
+                "seeded_candidates": 0,
+                "covered": false
+              },
+              {
+                "label": "kept_champion_involved",
+                "deltas": 0,
+                "unexplained": 0,
+                "seeded_candidates": 0,
+                "covered": false
+              },
+              {
+                "label": "removed_unnecessary_stakeholders",
+                "deltas": 0,
+                "unexplained": 0,
+                "seeded_candidates": 0,
+                "covered": false
+              },
+              {
+                "label": "added_missing_stakeholder",
+                "deltas": 1,
+                "unexplained": 0,
+                "seeded_candidates": 0,
+                "covered": true
+              },
+              {
+                "label": "delayed_cta",
+                "deltas": 0,
+                "unexplained": 0,
+                "seeded_candidates": 0,
+                "covered": false
+              },
+              {
+                "label": "removed_cta",
+                "deltas": 0,
+                "unexplained": 0,
+                "seeded_candidates": 0,
+                "covered": false
+              },
+              {
+                "label": "smaller_ask",
+                "deltas": 0,
+                "unexplained": 0,
+                "seeded_candidates": 0,
+                "covered": false
+              },
+              {
+                "label": "larger_ask",
+                "deltas": 0,
+                "unexplained": 0,
+                "seeded_candidates": 0,
+                "covered": false
+              },
+              {
+                "label": "changed_channel",
+                "deltas": 0,
+                "unexplained": 0,
+                "seeded_candidates": 0,
+                "covered": false
+              },
+              {
+                "label": "corrected_fact",
+                "deltas": 3,
+                "unexplained": 2,
+                "seeded_candidates": 2,
+                "covered": true
+              },
+              {
+                "label": "deferred_to_buyer_timing",
+                "deltas": 0,
+                "unexplained": 0,
+                "seeded_candidates": 0,
+                "covered": false
+              },
+              {
+                "label": "style_only",
+                "deltas": 1,
+                "unexplained": 1,
+                "seeded_candidates": 1,
+                "covered": true
+              }
+            ],
+            "unobserved_labels": [
+              "increased_pressure",
+              "kept_champion_involved",
+              "removed_unnecessary_stakeholders",
+              "delayed_cta",
+              "removed_cta",
+              "smaller_ask",
+              "larger_ask",
+              "changed_channel",
+              "deferred_to_buyer_timing"
+            ],
+            "suggested_eval_types": [
+              {
+                "axis": "evidence_sufficiency",
+                "deltas": 2,
+                "versions_seeded": 2
+              },
+              {
+                "axis": "next_action_quality",
+                "deltas": 1,
+                "versions_seeded": 1
+              }
+            ],
+            "this_version": {
+              "axis_deltas": 0,
+              "seeded_by_this_version": false
+            },
+            "basis": "footprint of the human_deltas.semantic_labels vocabulary and suggested_eval_type axes in the stored deltas: a label is covered when an existing eval explained it or a candidate version was seeded from it",
+            "limits": [
+              "unobserved_labels means unobserved in the stored deltas, not impossible",
+              "edit capture sees recipients and the artifact only: timing, CTA and CRM-only edits produce no delta and are invisible here",
+              "semantic labels come from the worker labeler; fallback deltas are unlabeled and count as no label",
+              "a send the human never edited writes no delta, so unedited approvals contribute no coverage"
+            ]
+          }
+        },
+        "edits_explained_by_evals": {
+          "status": "ok",
+          "value": {
+            "n_deltas": 4,
+            "n_explained": 1,
+            "rate": 0.25,
+            "n_explained_by_version": 0,
+            "n_explained_by_axis": 0,
+            "n_axis_attributed": 0
+          }
+        },
+        "new_criterion_discovery": {
+          "status": "ok",
+          "value": {
+            "n_episodes": 10,
+            "n_unexplained_deltas": 3,
+            "n_candidates_seeded": 3,
+            "unexplained_yield": 1,
+            "candidates_per_episode": 0.3,
+            "this_version_seeded": false
+          }
+        },
+        "repeat_semantic_correction": {
+          "status": "ok",
+          "value": {
+            "promoted_at": "2026-01-15T00:00:00Z",
+            "in_force_until": "2026-02-15T00:00:00Z",
+            "method": "spec_replay",
+            "scope": "global",
+            "seed_episode_excluded": false,
+            "basis": "a repeat is an episode where the version's executable shadow_spec FAILS the selected candidate AND PASSES the human's final draft (the human made the very correction the version encodes); a version whose spec cannot execute falls back to an exact semantic-label match with its source delta. Windows are scoped to the version's account (global versions: every account), the version's in-force period (promoted_at until retirement/supersession) and, after activation, to episodes the exact version ran on; the split is evaluator_versions.promoted_at vs the episode's human_decisions.created_at",
+            "before": {
+              "n_episodes": 6,
+              "n_unscorable": 0,
+              "n_deltas": 3,
+              "n_matching_deltas": 0,
+              "delta_rate": 0,
+              "n_matching_episodes": 0,
+              "episode_rate": 0
+            },
+            "after": {
+              "n_episodes": 0,
+              "n_unscorable": 0,
+              "n_deltas": 0,
+              "n_matching_deltas": 0,
+              "n_matching_episodes": 0
+            },
+            "axis_fail_rate": {
+              "before_n": 0,
+              "before_fail": 0,
+              "after_n": 0,
+              "after_fail": 0
+            }
+          }
+        },
+        "human_vs_inference_agreement": {
+          "status": "ok",
+          "value": {
+            "n_inferences": 3,
+            "n_answered": 2,
+            "n_confirmed": 1,
+            "n_corrected": 1,
+            "n_pending": 1,
+            "n_no_learning": 0,
+            "confirm_rate": 0.5,
+            "n_verdict_rows": 3,
+            "n_revised": 1,
+            "by_agent_agreement": {
+              "agreed": {
+                "n": 1,
+                "n_answered": 1,
+                "n_confirmed": 1,
+                "confirm_rate": 1
+              },
+              "overrode": {
+                "n": 2,
+                "n_answered": 1,
+                "n_confirmed": 0,
+                "confirm_rate": 0
+              }
+            },
+            "this_version_episodes": {
+              "n": 0,
+              "n_answered": 0,
+              "n_confirmed": 0
+            },
+            "basis": "judgment_inferences are Ghost's inference of why the human chose what they chose; the human's confirmed/corrected answer (latest row of the append-only judgment_verdicts history, else the inference column) is the direct human grade of that inference. this_version_episodes slices the inferences on episodes the reported version judged. no_learning is the human opting out of learning, not a grade of the inference: it is counted in n_no_learning and leaves the confirm_rate denominator, so an inference first confirmed and later opted out stops counting as a confirmation (its history rows stay in n_verdict_rows)"
+          }
+        }
+      }
+    },
+    "cta_calibration:v9": {
+      "evaluator": "cta_calibration",
+      "version": 9,
+      "tag": "cta_calibration:v9",
+      "registered": true,
+      "status": "candidate",
+      "kind": "semantic",
+      "created_from": "manual",
+      "axis_attribution": {
+        "axis": "cta_calibration",
+        "attributable": true,
+        "change_kinds": [
+          "cta_changed"
+        ],
+        "suggested_deltas": 0,
+        "n_edited_episodes": 0,
+        "n_attributed_edits": 0,
+        "basis": "an edit is attributed to an axis by candidate_criterion.suggested_eval_type or the literal-change-kind map; an axis neither reaches is unattributable (false_pass cannot be measured)"
+      },
+      "tracked_gaps": [
+        {
+          "id": "E19.7",
+          "name": "repeated-judge variance",
+          "status": "open",
+          "reason": "identical inputs reuse the stored eval_runs id, so no pair of independent judgments exists to compare; measuring it needs a sampled re-judge pass with a live model, which this read-only report never runs",
+          "interim": "repeat_consistency.spec_replay (deterministic re-derivation of executable shadow_specs) and same-artifact re-judgments on unchanged approvals"
+        }
+      ],
+      "metrics": {
+        "human_agreement": {
+          "status": "n/a",
+          "reason": "no eval_runs tagged cta_calibration:v9 on a decided episode's final draft"
+        },
+        "false_pass_rate": {
+          "status": "n/a",
+          "reason": "no human edit attributed to cta_calibration carries a cta_calibration:v9 verdict"
+        },
+        "false_block_rate": {
+          "status": "n/a",
+          "reason": "cta_calibration:v9 has no pass/fail verdict on an unchanged approval and never failed a decided episode's reviewed draft"
+        },
+        "confidence_calibration": {
+          "status": "n/a",
+          "reason": "no eval_runs tagged cta_calibration:v9 carry confidence on a decided episode"
+        },
+        "repeat_consistency": {
+          "status": "n/a",
+          "reason": "no same-artifact re-judgment of cta_calibration:v9 exists (every stored judgment is unique, or every repeat followed an edit) and no replayable shadow-spec results exist — same-input consistency is unobserved"
+        },
+        "correction_category_coverage": {
+          "status": "ok",
+          "value": {
+            "semantic_labels": [
+              {
+                "label": "reduced_pressure",
+                "deltas": 1,
+                "unexplained": 1,
+                "seeded_candidates": 1,
+                "covered": true
+              },
+              {
+                "label": "increased_pressure",
+                "deltas": 0,
+                "unexplained": 0,
+                "seeded_candidates": 0,
+                "covered": false
+              },
+              {
+                "label": "kept_champion_involved",
+                "deltas": 0,
+                "unexplained": 0,
+                "seeded_candidates": 0,
+                "covered": false
+              },
+              {
+                "label": "removed_unnecessary_stakeholders",
+                "deltas": 0,
+                "unexplained": 0,
+                "seeded_candidates": 0,
+                "covered": false
+              },
+              {
+                "label": "added_missing_stakeholder",
+                "deltas": 1,
+                "unexplained": 0,
+                "seeded_candidates": 0,
+                "covered": true
+              },
+              {
+                "label": "delayed_cta",
+                "deltas": 0,
+                "unexplained": 0,
+                "seeded_candidates": 0,
+                "covered": false
+              },
+              {
+                "label": "removed_cta",
+                "deltas": 0,
+                "unexplained": 0,
+                "seeded_candidates": 0,
+                "covered": false
+              },
+              {
+                "label": "smaller_ask",
+                "deltas": 0,
+                "unexplained": 0,
+                "seeded_candidates": 0,
+                "covered": false
+              },
+              {
+                "label": "larger_ask",
+                "deltas": 0,
+                "unexplained": 0,
+                "seeded_candidates": 0,
+                "covered": false
+              },
+              {
+                "label": "changed_channel",
+                "deltas": 0,
+                "unexplained": 0,
+                "seeded_candidates": 0,
+                "covered": false
+              },
+              {
+                "label": "corrected_fact",
+                "deltas": 3,
+                "unexplained": 2,
+                "seeded_candidates": 2,
+                "covered": true
+              },
+              {
+                "label": "deferred_to_buyer_timing",
+                "deltas": 0,
+                "unexplained": 0,
+                "seeded_candidates": 0,
+                "covered": false
+              },
+              {
+                "label": "style_only",
+                "deltas": 1,
+                "unexplained": 1,
+                "seeded_candidates": 1,
+                "covered": true
+              }
+            ],
+            "unobserved_labels": [
+              "increased_pressure",
+              "kept_champion_involved",
+              "removed_unnecessary_stakeholders",
+              "delayed_cta",
+              "removed_cta",
+              "smaller_ask",
+              "larger_ask",
+              "changed_channel",
+              "deferred_to_buyer_timing"
+            ],
+            "suggested_eval_types": [
+              {
+                "axis": "evidence_sufficiency",
+                "deltas": 2,
+                "versions_seeded": 2
+              },
+              {
+                "axis": "next_action_quality",
+                "deltas": 1,
+                "versions_seeded": 1
+              }
+            ],
+            "this_version": {
+              "axis_deltas": 0,
+              "seeded_by_this_version": false
+            },
+            "basis": "footprint of the human_deltas.semantic_labels vocabulary and suggested_eval_type axes in the stored deltas: a label is covered when an existing eval explained it or a candidate version was seeded from it",
+            "limits": [
+              "unobserved_labels means unobserved in the stored deltas, not impossible",
+              "edit capture sees recipients and the artifact only: timing, CTA and CRM-only edits produce no delta and are invisible here",
+              "semantic labels come from the worker labeler; fallback deltas are unlabeled and count as no label",
+              "a send the human never edited writes no delta, so unedited approvals contribute no coverage"
+            ]
+          }
+        },
+        "edits_explained_by_evals": {
+          "status": "ok",
+          "value": {
+            "n_deltas": 4,
+            "n_explained": 1,
+            "rate": 0.25,
+            "n_explained_by_version": 0,
+            "n_explained_by_axis": 0,
+            "n_axis_attributed": 0
+          }
+        },
+        "new_criterion_discovery": {
+          "status": "ok",
+          "value": {
+            "n_episodes": 10,
+            "n_unexplained_deltas": 3,
+            "n_candidates_seeded": 3,
+            "unexplained_yield": 1,
+            "candidates_per_episode": 0.3,
+            "this_version_seeded": false
+          }
+        },
+        "repeat_semantic_correction": {
+          "status": "n/a",
+          "reason": "cta_calibration:v9 has no promotion timestamp (status candidate) — promoted_at marks activation"
+        },
+        "human_vs_inference_agreement": {
+          "status": "ok",
+          "value": {
+            "n_inferences": 3,
+            "n_answered": 2,
+            "n_confirmed": 1,
+            "n_corrected": 1,
+            "n_pending": 1,
+            "n_no_learning": 0,
+            "confirm_rate": 0.5,
+            "n_verdict_rows": 3,
+            "n_revised": 1,
+            "by_agent_agreement": {
+              "agreed": {
+                "n": 1,
+                "n_answered": 1,
+                "n_confirmed": 1,
+                "confirm_rate": 1
+              },
+              "overrode": {
+                "n": 2,
+                "n_answered": 1,
+                "n_confirmed": 0,
+                "confirm_rate": 0
+              }
+            },
+            "this_version_episodes": {
+              "n": 0,
+              "n_answered": 0,
+              "n_confirmed": 0
+            },
+            "basis": "judgment_inferences are Ghost's inference of why the human chose what they chose; the human's confirmed/corrected answer (latest row of the append-only judgment_verdicts history, else the inference column) is the direct human grade of that inference. this_version_episodes slices the inferences on episodes the reported version judged. no_learning is the human opting out of learning, not a grade of the inference: it is counted in n_no_learning and leaves the confirm_rate denominator, so an inference first confirmed and later opted out stops counting as a confirmation (its history rows stay in n_verdict_rows)"
+          }
+        }
+      }
+    },
+    "date_commitment_consistency:v1": {
+      "evaluator": "date_commitment_consistency",
+      "version": 1,
+      "tag": "date_commitment_consistency:v1",
+      "registered": false,
+      "status": "observed",
+      "axis_attribution": {
+        "axis": "date_commitment_consistency",
+        "attributable": false,
+        "change_kinds": null,
+        "suggested_deltas": 0,
+        "n_edited_episodes": 4,
+        "n_attributed_edits": 0,
+        "attribution_share": 0,
+        "basis": "an edit is attributed to an axis by candidate_criterion.suggested_eval_type or the literal-change-kind map; an axis neither reaches is unattributable (false_pass cannot be measured)"
+      },
+      "tracked_gaps": [
+        {
+          "id": "E19.7",
+          "name": "repeated-judge variance",
+          "status": "open",
+          "reason": "identical inputs reuse the stored eval_runs id, so no pair of independent judgments exists to compare; measuring it needs a sampled re-judge pass with a live model, which this read-only report never runs",
+          "interim": "repeat_consistency.spec_replay (deterministic re-derivation of executable shadow_specs) and same-artifact re-judgments on unchanged approvals"
+        }
+      ],
+      "metrics": {
+        "human_agreement": {
+          "status": "ok",
+          "value": {
+            "n_episodes": 9,
+            "categories": {
+              "pass_other_axis": 3,
+              "true_block_repaired": 1,
+              "true_pass": 5
+            },
+            "consistent": 6,
+            "contradicted": 0,
+            "unscored": 3,
+            "abstained": 0,
+            "warned": 0,
+            "rate": 1,
+            "abstain_rate": 0,
+            "worst_case_rate": 1,
+            "accept_unchanged": 5,
+            "accept_unchanged_rate": 0.5555555555555556
+          }
+        },
+        "false_pass_rate": {
+          "status": "n/a",
+          "reason": "unattributable: no literal-change kind and no suggested_eval_type in the corpus attributes an edit to date_commitment_consistency, so date_commitment_consistency:v1 can never show a false pass"
+        },
+        "false_block_rate": {
+          "status": "ok",
+          "value": {
+            "n_unchanged_approvals": 5,
+            "n_fail_verdicts": 1,
+            "false_block": 0,
+            "fail_unresolved_edit": 0,
+            "rate": 0,
+            "fail_precision": 0
+          }
+        },
+        "confidence_calibration": {
+          "status": "n/a",
+          "reason": "no eval_runs tagged date_commitment_consistency:v1 carry confidence on a decided episode"
+        },
+        "repeat_consistency": {
+          "status": "n/a",
+          "reason": "no same-artifact re-judgment of date_commitment_consistency:v1 exists (every stored judgment is unique, or every repeat followed an edit) and no replayable shadow-spec results exist — same-input consistency is unobserved"
+        },
+        "correction_category_coverage": {
+          "status": "ok",
+          "value": {
+            "semantic_labels": [
+              {
+                "label": "reduced_pressure",
+                "deltas": 1,
+                "unexplained": 1,
+                "seeded_candidates": 1,
+                "covered": true
+              },
+              {
+                "label": "increased_pressure",
+                "deltas": 0,
+                "unexplained": 0,
+                "seeded_candidates": 0,
+                "covered": false
+              },
+              {
+                "label": "kept_champion_involved",
+                "deltas": 0,
+                "unexplained": 0,
+                "seeded_candidates": 0,
+                "covered": false
+              },
+              {
+                "label": "removed_unnecessary_stakeholders",
+                "deltas": 0,
+                "unexplained": 0,
+                "seeded_candidates": 0,
+                "covered": false
+              },
+              {
+                "label": "added_missing_stakeholder",
+                "deltas": 1,
+                "unexplained": 0,
+                "seeded_candidates": 0,
+                "covered": true
+              },
+              {
+                "label": "delayed_cta",
+                "deltas": 0,
+                "unexplained": 0,
+                "seeded_candidates": 0,
+                "covered": false
+              },
+              {
+                "label": "removed_cta",
+                "deltas": 0,
+                "unexplained": 0,
+                "seeded_candidates": 0,
+                "covered": false
+              },
+              {
+                "label": "smaller_ask",
+                "deltas": 0,
+                "unexplained": 0,
+                "seeded_candidates": 0,
+                "covered": false
+              },
+              {
+                "label": "larger_ask",
+                "deltas": 0,
+                "unexplained": 0,
+                "seeded_candidates": 0,
+                "covered": false
+              },
+              {
+                "label": "changed_channel",
+                "deltas": 0,
+                "unexplained": 0,
+                "seeded_candidates": 0,
+                "covered": false
+              },
+              {
+                "label": "corrected_fact",
+                "deltas": 3,
+                "unexplained": 2,
+                "seeded_candidates": 2,
+                "covered": true
+              },
+              {
+                "label": "deferred_to_buyer_timing",
+                "deltas": 0,
+                "unexplained": 0,
+                "seeded_candidates": 0,
+                "covered": false
+              },
+              {
+                "label": "style_only",
+                "deltas": 1,
+                "unexplained": 1,
+                "seeded_candidates": 1,
+                "covered": true
+              }
+            ],
+            "unobserved_labels": [
+              "increased_pressure",
+              "kept_champion_involved",
+              "removed_unnecessary_stakeholders",
+              "delayed_cta",
+              "removed_cta",
+              "smaller_ask",
+              "larger_ask",
+              "changed_channel",
+              "deferred_to_buyer_timing"
+            ],
+            "suggested_eval_types": [
+              {
+                "axis": "evidence_sufficiency",
+                "deltas": 2,
+                "versions_seeded": 2
+              },
+              {
+                "axis": "next_action_quality",
+                "deltas": 1,
+                "versions_seeded": 1
+              }
+            ],
+            "this_version": {
+              "axis_deltas": 0,
+              "seeded_by_this_version": false
+            },
+            "basis": "footprint of the human_deltas.semantic_labels vocabulary and suggested_eval_type axes in the stored deltas: a label is covered when an existing eval explained it or a candidate version was seeded from it",
+            "limits": [
+              "unobserved_labels means unobserved in the stored deltas, not impossible",
+              "edit capture sees recipients and the artifact only: timing, CTA and CRM-only edits produce no delta and are invisible here",
+              "semantic labels come from the worker labeler; fallback deltas are unlabeled and count as no label",
+              "a send the human never edited writes no delta, so unedited approvals contribute no coverage"
+            ]
+          }
+        },
+        "edits_explained_by_evals": {
+          "status": "ok",
+          "value": {
+            "n_deltas": 4,
+            "n_explained": 1,
+            "rate": 0.25,
+            "n_explained_by_version": 1,
+            "n_explained_by_axis": 1,
+            "n_axis_attributed": 0
+          }
+        },
+        "new_criterion_discovery": {
+          "status": "ok",
+          "value": {
+            "n_episodes": 10,
+            "n_unexplained_deltas": 3,
+            "n_candidates_seeded": 3,
+            "unexplained_yield": 1,
+            "candidates_per_episode": 0.3,
+            "this_version_seeded": false
+          }
+        },
+        "repeat_semantic_correction": {
+          "status": "n/a",
+          "reason": "date_commitment_consistency:v1 has no promotion timestamp (status observed) — promoted_at marks activation"
+        },
+        "human_vs_inference_agreement": {
+          "status": "ok",
+          "value": {
+            "n_inferences": 3,
+            "n_answered": 2,
+            "n_confirmed": 1,
+            "n_corrected": 1,
+            "n_pending": 1,
+            "n_no_learning": 0,
+            "confirm_rate": 0.5,
+            "n_verdict_rows": 3,
+            "n_revised": 1,
+            "by_agent_agreement": {
+              "agreed": {
+                "n": 1,
+                "n_answered": 1,
+                "n_confirmed": 1,
+                "confirm_rate": 1
+              },
+              "overrode": {
+                "n": 2,
+                "n_answered": 1,
+                "n_confirmed": 0,
+                "confirm_rate": 0
+              }
+            },
+            "this_version_episodes": {
+              "n": 3,
+              "n_answered": 2,
+              "n_confirmed": 1,
+              "confirm_rate": 0.5
+            },
+            "basis": "judgment_inferences are Ghost's inference of why the human chose what they chose; the human's confirmed/corrected answer (latest row of the append-only judgment_verdicts history, else the inference column) is the direct human grade of that inference. this_version_episodes slices the inferences on episodes the reported version judged. no_learning is the human opting out of learning, not a grade of the inference: it is counted in n_no_learning and leaves the confirm_rate denominator, so an inference first confirmed and later opted out stops counting as a confirmation (its history rows stay in n_verdict_rows)"
+          }
+        }
+      }
+    },
+    "duplicate_action:v1": {
+      "evaluator": "duplicate_action",
+      "version": 1,
+      "tag": "duplicate_action:v1",
+      "registered": false,
+      "status": "observed",
+      "axis_attribution": {
+        "axis": "duplicate_action",
+        "attributable": false,
+        "change_kinds": null,
+        "suggested_deltas": 0,
+        "n_edited_episodes": 4,
+        "n_attributed_edits": 0,
+        "attribution_share": 0,
+        "basis": "an edit is attributed to an axis by candidate_criterion.suggested_eval_type or the literal-change-kind map; an axis neither reaches is unattributable (false_pass cannot be measured)"
+      },
+      "tracked_gaps": [
+        {
+          "id": "E19.7",
+          "name": "repeated-judge variance",
+          "status": "open",
+          "reason": "identical inputs reuse the stored eval_runs id, so no pair of independent judgments exists to compare; measuring it needs a sampled re-judge pass with a live model, which this read-only report never runs",
+          "interim": "repeat_consistency.spec_replay (deterministic re-derivation of executable shadow_specs) and same-artifact re-judgments on unchanged approvals"
+        }
+      ],
+      "metrics": {
+        "human_agreement": {
+          "status": "ok",
+          "value": {
+            "n_episodes": 9,
+            "categories": {
+              "pass_other_axis": 4,
+              "true_pass": 5
+            },
+            "consistent": 5,
+            "contradicted": 0,
+            "unscored": 4,
+            "abstained": 0,
+            "warned": 0,
+            "rate": 1,
+            "abstain_rate": 0,
+            "worst_case_rate": 1,
+            "accept_unchanged": 5,
+            "accept_unchanged_rate": 0.5555555555555556
+          }
+        },
+        "false_pass_rate": {
+          "status": "n/a",
+          "reason": "unattributable: no literal-change kind and no suggested_eval_type in the corpus attributes an edit to duplicate_action, so duplicate_action:v1 can never show a false pass"
+        },
+        "false_block_rate": {
+          "status": "ok",
+          "value": {
+            "n_unchanged_approvals": 5,
+            "n_fail_verdicts": 0,
+            "false_block": 0,
+            "fail_unresolved_edit": 0,
+            "rate": 0
+          }
+        },
+        "confidence_calibration": {
+          "status": "n/a",
+          "reason": "no eval_runs tagged duplicate_action:v1 carry confidence on a decided episode"
+        },
+        "repeat_consistency": {
+          "status": "n/a",
+          "reason": "no same-artifact re-judgment of duplicate_action:v1 exists (every stored judgment is unique, or every repeat followed an edit) and no replayable shadow-spec results exist — same-input consistency is unobserved"
+        },
+        "correction_category_coverage": {
+          "status": "ok",
+          "value": {
+            "semantic_labels": [
+              {
+                "label": "reduced_pressure",
+                "deltas": 1,
+                "unexplained": 1,
+                "seeded_candidates": 1,
+                "covered": true
+              },
+              {
+                "label": "increased_pressure",
+                "deltas": 0,
+                "unexplained": 0,
+                "seeded_candidates": 0,
+                "covered": false
+              },
+              {
+                "label": "kept_champion_involved",
+                "deltas": 0,
+                "unexplained": 0,
+                "seeded_candidates": 0,
+                "covered": false
+              },
+              {
+                "label": "removed_unnecessary_stakeholders",
+                "deltas": 0,
+                "unexplained": 0,
+                "seeded_candidates": 0,
+                "covered": false
+              },
+              {
+                "label": "added_missing_stakeholder",
+                "deltas": 1,
+                "unexplained": 0,
+                "seeded_candidates": 0,
+                "covered": true
+              },
+              {
+                "label": "delayed_cta",
+                "deltas": 0,
+                "unexplained": 0,
+                "seeded_candidates": 0,
+                "covered": false
+              },
+              {
+                "label": "removed_cta",
+                "deltas": 0,
+                "unexplained": 0,
+                "seeded_candidates": 0,
+                "covered": false
+              },
+              {
+                "label": "smaller_ask",
+                "deltas": 0,
+                "unexplained": 0,
+                "seeded_candidates": 0,
+                "covered": false
+              },
+              {
+                "label": "larger_ask",
+                "deltas": 0,
+                "unexplained": 0,
+                "seeded_candidates": 0,
+                "covered": false
+              },
+              {
+                "label": "changed_channel",
+                "deltas": 0,
+                "unexplained": 0,
+                "seeded_candidates": 0,
+                "covered": false
+              },
+              {
+                "label": "corrected_fact",
+                "deltas": 3,
+                "unexplained": 2,
+                "seeded_candidates": 2,
+                "covered": true
+              },
+              {
+                "label": "deferred_to_buyer_timing",
+                "deltas": 0,
+                "unexplained": 0,
+                "seeded_candidates": 0,
+                "covered": false
+              },
+              {
+                "label": "style_only",
+                "deltas": 1,
+                "unexplained": 1,
+                "seeded_candidates": 1,
+                "covered": true
+              }
+            ],
+            "unobserved_labels": [
+              "increased_pressure",
+              "kept_champion_involved",
+              "removed_unnecessary_stakeholders",
+              "delayed_cta",
+              "removed_cta",
+              "smaller_ask",
+              "larger_ask",
+              "changed_channel",
+              "deferred_to_buyer_timing"
+            ],
+            "suggested_eval_types": [
+              {
+                "axis": "evidence_sufficiency",
+                "deltas": 2,
+                "versions_seeded": 2
+              },
+              {
+                "axis": "next_action_quality",
+                "deltas": 1,
+                "versions_seeded": 1
+              }
+            ],
+            "this_version": {
+              "axis_deltas": 0,
+              "seeded_by_this_version": false
+            },
+            "basis": "footprint of the human_deltas.semantic_labels vocabulary and suggested_eval_type axes in the stored deltas: a label is covered when an existing eval explained it or a candidate version was seeded from it",
+            "limits": [
+              "unobserved_labels means unobserved in the stored deltas, not impossible",
+              "edit capture sees recipients and the artifact only: timing, CTA and CRM-only edits produce no delta and are invisible here",
+              "semantic labels come from the worker labeler; fallback deltas are unlabeled and count as no label",
+              "a send the human never edited writes no delta, so unedited approvals contribute no coverage"
+            ]
+          }
+        },
+        "edits_explained_by_evals": {
+          "status": "ok",
+          "value": {
+            "n_deltas": 4,
+            "n_explained": 1,
+            "rate": 0.25,
+            "n_explained_by_version": 0,
+            "n_explained_by_axis": 0,
+            "n_axis_attributed": 0
+          }
+        },
+        "new_criterion_discovery": {
+          "status": "ok",
+          "value": {
+            "n_episodes": 10,
+            "n_unexplained_deltas": 3,
+            "n_candidates_seeded": 3,
+            "unexplained_yield": 1,
+            "candidates_per_episode": 0.3,
+            "this_version_seeded": false
+          }
+        },
+        "repeat_semantic_correction": {
+          "status": "n/a",
+          "reason": "duplicate_action:v1 has no promotion timestamp (status observed) — promoted_at marks activation"
+        },
+        "human_vs_inference_agreement": {
+          "status": "ok",
+          "value": {
+            "n_inferences": 3,
+            "n_answered": 2,
+            "n_confirmed": 1,
+            "n_corrected": 1,
+            "n_pending": 1,
+            "n_no_learning": 0,
+            "confirm_rate": 0.5,
+            "n_verdict_rows": 3,
+            "n_revised": 1,
+            "by_agent_agreement": {
+              "agreed": {
+                "n": 1,
+                "n_answered": 1,
+                "n_confirmed": 1,
+                "confirm_rate": 1
+              },
+              "overrode": {
+                "n": 2,
+                "n_answered": 1,
+                "n_confirmed": 0,
+                "confirm_rate": 0
+              }
+            },
+            "this_version_episodes": {
+              "n": 3,
+              "n_answered": 2,
+              "n_confirmed": 1,
+              "confirm_rate": 0.5
+            },
+            "basis": "judgment_inferences are Ghost's inference of why the human chose what they chose; the human's confirmed/corrected answer (latest row of the append-only judgment_verdicts history, else the inference column) is the direct human grade of that inference. this_version_episodes slices the inferences on episodes the reported version judged. no_learning is the human opting out of learning, not a grade of the inference: it is counted in n_no_learning and leaves the confirm_rate denominator, so an inference first confirmed and later opted out stops counting as a confirmation (its history rows stay in n_verdict_rows)"
+          }
+        }
+      }
+    },
+    "evidence_sufficiency:v1": {
+      "evaluator": "evidence_sufficiency",
+      "version": 1,
+      "tag": "evidence_sufficiency:v1",
+      "registered": true,
+      "status": "active",
+      "kind": "semantic",
+      "created_from": "seed",
+      "account_id": "4794d442-a659-4109-a5e2-604589de4429",
+      "promoted_at": "2026-02-01T12:00:00Z",
+      "axis_attribution": {
+        "axis": "evidence_sufficiency",
+        "attributable": true,
+        "change_kinds": [
+          "attachment_added",
+          "attachment_removed",
+          "paragraph_added"
+        ],
+        "suggested_deltas": 2,
+        "n_edited_episodes": 4,
+        "n_attributed_edits": 3,
+        "attribution_share": 0.75,
+        "basis": "an edit is attributed to an axis by candidate_criterion.suggested_eval_type or the literal-change-kind map; an axis neither reaches is unattributable (false_pass cannot be measured)"
+      },
+      "tracked_gaps": [
+        {
+          "id": "E19.7",
+          "name": "repeated-judge variance",
+          "status": "open",
+          "reason": "identical inputs reuse the stored eval_runs id, so no pair of independent judgments exists to compare; measuring it needs a sampled re-judge pass with a live model, which this read-only report never runs",
+          "interim": "repeat_consistency.spec_replay (deterministic re-derivation of executable shadow_specs) and same-artifact re-judgments on unchanged approvals"
+        }
+      ],
+      "metrics": {
+        "human_agreement": {
+          "status": "ok",
+          "value": {
+            "n_episodes": 9,
+            "categories": {
+              "fail_unresolved_edit": 1,
+              "false_block": 1,
+              "false_pass": 2,
+              "pass_other_axis": 1,
+              "true_pass": 4
+            },
+            "consistent": 4,
+            "contradicted": 3,
+            "unscored": 2,
+            "abstained": 0,
+            "warned": 0,
+            "rate": 0.5714285714285714,
+            "abstain_rate": 0,
+            "worst_case_rate": 0.5714285714285714,
+            "accept_unchanged": 4,
+            "accept_unchanged_rate": 0.4444444444444444
+          }
+        },
+        "false_pass_rate": {
+          "status": "ok",
+          "value": {
+            "n_axis_edits_evaluated": 3,
+            "false_pass": 2,
+            "true_detection": 0,
+            "fail_not_cited": 1,
+            "rate": 0.6666666666666666,
+            "basis": "a delta is attributed to an axis by its candidate_criterion.suggested_eval_type or by the literal-change-kind axis map (mirrors the seed-time fallbackCriterion heuristic); a false pass is an attributed edit where no stored judgment of the version ever failed the draft (explanation-cited fails are true detections)"
+          }
+        },
+        "false_block_rate": {
+          "status": "ok",
+          "value": {
+            "n_unchanged_approvals": 5,
+            "n_fail_verdicts": 2,
+            "false_block": 1,
+            "fail_unresolved_edit": 1,
+            "rate": 0.2,
+            "fail_precision": 0.5
+          }
+        },
+        "confidence_calibration": {
+          "status": "n/a",
+          "reason": "no eval_runs tagged evidence_sufficiency:v1 carry confidence on a decided episode"
+        },
+        "repeat_consistency": {
+          "status": "ok",
+          "value": {
+            "n_repeated_groups": 1,
+            "n_skipped_input_changed": 0,
+            "n_agreeing": 1,
+            "rate": 1,
+            "spec_replay": {
+              "n_replayable": 9,
+              "n_matching": 9,
+              "rate": 1,
+              "n_excluded": 1,
+              "excluded": [
+                {
+                  "eval_run_id": "52ead6f4-bd98-5af9-95ca-6bbfde4e620d",
+                  "reason": "stored fail, replay passes on an edited episode: the row judged a draft the human's edit later replaced (a refused send, repaired and re-sent) and the stored final no longer holds it"
+                }
+              ]
+            },
+            "basis": "stored eval_runs grouped by (agent_run, draft_index, tag, kind): only APPROVE_UNCHANGED re-judgments score (the artifact is provably identical); spec_replay re-runs executable shadow_specs on the stored draft and compares verdicts"
+          }
+        },
+        "correction_category_coverage": {
+          "status": "ok",
+          "value": {
+            "semantic_labels": [
+              {
+                "label": "reduced_pressure",
+                "deltas": 1,
+                "unexplained": 1,
+                "seeded_candidates": 1,
+                "covered": true
+              },
+              {
+                "label": "increased_pressure",
+                "deltas": 0,
+                "unexplained": 0,
+                "seeded_candidates": 0,
+                "covered": false
+              },
+              {
+                "label": "kept_champion_involved",
+                "deltas": 0,
+                "unexplained": 0,
+                "seeded_candidates": 0,
+                "covered": false
+              },
+              {
+                "label": "removed_unnecessary_stakeholders",
+                "deltas": 0,
+                "unexplained": 0,
+                "seeded_candidates": 0,
+                "covered": false
+              },
+              {
+                "label": "added_missing_stakeholder",
+                "deltas": 1,
+                "unexplained": 0,
+                "seeded_candidates": 0,
+                "covered": true
+              },
+              {
+                "label": "delayed_cta",
+                "deltas": 0,
+                "unexplained": 0,
+                "seeded_candidates": 0,
+                "covered": false
+              },
+              {
+                "label": "removed_cta",
+                "deltas": 0,
+                "unexplained": 0,
+                "seeded_candidates": 0,
+                "covered": false
+              },
+              {
+                "label": "smaller_ask",
+                "deltas": 0,
+                "unexplained": 0,
+                "seeded_candidates": 0,
+                "covered": false
+              },
+              {
+                "label": "larger_ask",
+                "deltas": 0,
+                "unexplained": 0,
+                "seeded_candidates": 0,
+                "covered": false
+              },
+              {
+                "label": "changed_channel",
+                "deltas": 0,
+                "unexplained": 0,
+                "seeded_candidates": 0,
+                "covered": false
+              },
+              {
+                "label": "corrected_fact",
+                "deltas": 3,
+                "unexplained": 2,
+                "seeded_candidates": 2,
+                "covered": true
+              },
+              {
+                "label": "deferred_to_buyer_timing",
+                "deltas": 0,
+                "unexplained": 0,
+                "seeded_candidates": 0,
+                "covered": false
+              },
+              {
+                "label": "style_only",
+                "deltas": 1,
+                "unexplained": 1,
+                "seeded_candidates": 1,
+                "covered": true
+              }
+            ],
+            "unobserved_labels": [
+              "increased_pressure",
+              "kept_champion_involved",
+              "removed_unnecessary_stakeholders",
+              "delayed_cta",
+              "removed_cta",
+              "smaller_ask",
+              "larger_ask",
+              "changed_channel",
+              "deferred_to_buyer_timing"
+            ],
+            "suggested_eval_types": [
+              {
+                "axis": "evidence_sufficiency",
+                "deltas": 2,
+                "versions_seeded": 2
+              },
+              {
+                "axis": "next_action_quality",
+                "deltas": 1,
+                "versions_seeded": 1
+              }
+            ],
+            "this_version": {
+              "axis_deltas": 3,
+              "seeded_by_this_version": false
+            },
+            "basis": "footprint of the human_deltas.semantic_labels vocabulary and suggested_eval_type axes in the stored deltas: a label is covered when an existing eval explained it or a candidate version was seeded from it",
+            "limits": [
+              "unobserved_labels means unobserved in the stored deltas, not impossible",
+              "edit capture sees recipients and the artifact only: timing, CTA and CRM-only edits produce no delta and are invisible here",
+              "semantic labels come from the worker labeler; fallback deltas are unlabeled and count as no label",
+              "a send the human never edited writes no delta, so unedited approvals contribute no coverage"
+            ]
+          }
+        },
+        "edits_explained_by_evals": {
+          "status": "ok",
+          "value": {
+            "n_deltas": 4,
+            "n_explained": 1,
+            "rate": 0.25,
+            "n_explained_by_version": 0,
+            "n_explained_by_axis": 0,
+            "n_axis_attributed": 3
+          }
+        },
+        "new_criterion_discovery": {
+          "status": "ok",
+          "value": {
+            "n_episodes": 10,
+            "n_unexplained_deltas": 3,
+            "n_candidates_seeded": 3,
+            "unexplained_yield": 1,
+            "candidates_per_episode": 0.3,
+            "this_version_seeded": false
+          }
+        },
+        "repeat_semantic_correction": {
+          "status": "ok",
+          "value": {
+            "promoted_at": "2026-02-01T12:00:00Z",
+            "method": "spec_replay",
+            "scope": "account 4794d442-a659-4109-a5e2-604589de4429",
+            "seed_episode_excluded": false,
+            "basis": "a repeat is an episode where the version's executable shadow_spec FAILS the selected candidate AND PASSES the human's final draft (the human made the very correction the version encodes); a version whose spec cannot execute falls back to an exact semantic-label match with its source delta. Windows are scoped to the version's account (global versions: every account), the version's in-force period (promoted_at until retirement/supersession) and, after activation, to episodes the exact version ran on; the split is evaluator_versions.promoted_at vs the episode's human_decisions.created_at",
+            "before": {
+              "n_episodes": 6,
+              "n_unscorable": 0,
+              "n_deltas": 3,
+              "n_matching_deltas": 1,
+              "delta_rate": 0.3333333333333333,
+              "n_matching_episodes": 1,
+              "episode_rate": 0.16666666666666666
+            },
+            "after": {
+              "n_episodes": 4,
+              "n_unscorable": 0,
+              "n_deltas": 1,
+              "n_matching_deltas": 1,
+              "delta_rate": 1,
+              "n_matching_episodes": 1,
+              "episode_rate": 0.25
+            },
+            "axis_fail_rate": {
+              "before_n": 6,
+              "before_fail": 3,
+              "before_rate": 0.5,
+              "after_n": 4,
+              "after_fail": 0,
+              "after_rate": 0
+            }
+          }
+        },
+        "human_vs_inference_agreement": {
+          "status": "ok",
+          "value": {
+            "n_inferences": 3,
+            "n_answered": 2,
+            "n_confirmed": 1,
+            "n_corrected": 1,
+            "n_pending": 1,
+            "n_no_learning": 0,
+            "confirm_rate": 0.5,
+            "n_verdict_rows": 3,
+            "n_revised": 1,
+            "by_agent_agreement": {
+              "agreed": {
+                "n": 1,
+                "n_answered": 1,
+                "n_confirmed": 1,
+                "confirm_rate": 1
+              },
+              "overrode": {
+                "n": 2,
+                "n_answered": 1,
+                "n_confirmed": 0,
+                "confirm_rate": 0
+              }
+            },
+            "this_version_episodes": {
+              "n": 3,
+              "n_answered": 2,
+              "n_confirmed": 1,
+              "confirm_rate": 0.5
+            },
+            "basis": "judgment_inferences are Ghost's inference of why the human chose what they chose; the human's confirmed/corrected answer (latest row of the append-only judgment_verdicts history, else the inference column) is the direct human grade of that inference. this_version_episodes slices the inferences on episodes the reported version judged. no_learning is the human opting out of learning, not a grade of the inference: it is counted in n_no_learning and leaves the confirm_rate denominator, so an inference first confirmed and later opted out stops counting as a confirmation (its history rows stay in n_verdict_rows)"
+          }
+        }
+      }
+    },
+    "evidence_sufficiency:v2": {
+      "evaluator": "evidence_sufficiency",
+      "version": 2,
+      "tag": "evidence_sufficiency:v2",
+      "registered": true,
+      "status": "candidate",
+      "kind": "semantic",
+      "created_from": "human_delta",
+      "account_id": "4794d442-a659-4109-a5e2-604589de4429",
+      "source_human_delta_id": "bd014460-4fcb-4083-ab17-7d4b919d9e8e",
+      "axis_attribution": {
+        "axis": "evidence_sufficiency",
+        "attributable": true,
+        "change_kinds": [
+          "attachment_added",
+          "attachment_removed",
+          "paragraph_added"
+        ],
+        "suggested_deltas": 2,
+        "n_edited_episodes": 0,
+        "n_attributed_edits": 0,
+        "basis": "an edit is attributed to an axis by candidate_criterion.suggested_eval_type or the literal-change-kind map; an axis neither reaches is unattributable (false_pass cannot be measured)"
+      },
+      "tracked_gaps": [
+        {
+          "id": "E19.7",
+          "name": "repeated-judge variance",
+          "status": "open",
+          "reason": "identical inputs reuse the stored eval_runs id, so no pair of independent judgments exists to compare; measuring it needs a sampled re-judge pass with a live model, which this read-only report never runs",
+          "interim": "repeat_consistency.spec_replay (deterministic re-derivation of executable shadow_specs) and same-artifact re-judgments on unchanged approvals"
+        }
+      ],
+      "metrics": {
+        "human_agreement": {
+          "status": "n/a",
+          "reason": "no eval_runs tagged evidence_sufficiency:v2 on a decided episode's final draft"
+        },
+        "false_pass_rate": {
+          "status": "n/a",
+          "reason": "no human edit attributed to evidence_sufficiency carries a evidence_sufficiency:v2 verdict"
+        },
+        "false_block_rate": {
+          "status": "n/a",
+          "reason": "evidence_sufficiency:v2 has no pass/fail verdict on an unchanged approval and never failed a decided episode's reviewed draft"
+        },
+        "confidence_calibration": {
+          "status": "n/a",
+          "reason": "no eval_runs tagged evidence_sufficiency:v2 carry confidence on a decided episode"
+        },
+        "repeat_consistency": {
+          "status": "n/a",
+          "reason": "no same-artifact re-judgment of evidence_sufficiency:v2 exists (every stored judgment is unique, or every repeat followed an edit) and no replayable shadow-spec results exist — same-input consistency is unobserved"
+        },
+        "correction_category_coverage": {
+          "status": "ok",
+          "value": {
+            "semantic_labels": [
+              {
+                "label": "reduced_pressure",
+                "deltas": 1,
+                "unexplained": 1,
+                "seeded_candidates": 1,
+                "covered": true
+              },
+              {
+                "label": "increased_pressure",
+                "deltas": 0,
+                "unexplained": 0,
+                "seeded_candidates": 0,
+                "covered": false
+              },
+              {
+                "label": "kept_champion_involved",
+                "deltas": 0,
+                "unexplained": 0,
+                "seeded_candidates": 0,
+                "covered": false
+              },
+              {
+                "label": "removed_unnecessary_stakeholders",
+                "deltas": 0,
+                "unexplained": 0,
+                "seeded_candidates": 0,
+                "covered": false
+              },
+              {
+                "label": "added_missing_stakeholder",
+                "deltas": 1,
+                "unexplained": 0,
+                "seeded_candidates": 0,
+                "covered": true
+              },
+              {
+                "label": "delayed_cta",
+                "deltas": 0,
+                "unexplained": 0,
+                "seeded_candidates": 0,
+                "covered": false
+              },
+              {
+                "label": "removed_cta",
+                "deltas": 0,
+                "unexplained": 0,
+                "seeded_candidates": 0,
+                "covered": false
+              },
+              {
+                "label": "smaller_ask",
+                "deltas": 0,
+                "unexplained": 0,
+                "seeded_candidates": 0,
+                "covered": false
+              },
+              {
+                "label": "larger_ask",
+                "deltas": 0,
+                "unexplained": 0,
+                "seeded_candidates": 0,
+                "covered": false
+              },
+              {
+                "label": "changed_channel",
+                "deltas": 0,
+                "unexplained": 0,
+                "seeded_candidates": 0,
+                "covered": false
+              },
+              {
+                "label": "corrected_fact",
+                "deltas": 3,
+                "unexplained": 2,
+                "seeded_candidates": 2,
+                "covered": true
+              },
+              {
+                "label": "deferred_to_buyer_timing",
+                "deltas": 0,
+                "unexplained": 0,
+                "seeded_candidates": 0,
+                "covered": false
+              },
+              {
+                "label": "style_only",
+                "deltas": 1,
+                "unexplained": 1,
+                "seeded_candidates": 1,
+                "covered": true
+              }
+            ],
+            "unobserved_labels": [
+              "increased_pressure",
+              "kept_champion_involved",
+              "removed_unnecessary_stakeholders",
+              "delayed_cta",
+              "removed_cta",
+              "smaller_ask",
+              "larger_ask",
+              "changed_channel",
+              "deferred_to_buyer_timing"
+            ],
+            "suggested_eval_types": [
+              {
+                "axis": "evidence_sufficiency",
+                "deltas": 2,
+                "versions_seeded": 2
+              },
+              {
+                "axis": "next_action_quality",
+                "deltas": 1,
+                "versions_seeded": 1
+              }
+            ],
+            "this_version": {
+              "axis_deltas": 3,
+              "seeded_by_this_version": true
+            },
+            "basis": "footprint of the human_deltas.semantic_labels vocabulary and suggested_eval_type axes in the stored deltas: a label is covered when an existing eval explained it or a candidate version was seeded from it",
+            "limits": [
+              "unobserved_labels means unobserved in the stored deltas, not impossible",
+              "edit capture sees recipients and the artifact only: timing, CTA and CRM-only edits produce no delta and are invisible here",
+              "semantic labels come from the worker labeler; fallback deltas are unlabeled and count as no label",
+              "a send the human never edited writes no delta, so unedited approvals contribute no coverage"
+            ]
+          }
+        },
+        "edits_explained_by_evals": {
+          "status": "ok",
+          "value": {
+            "n_deltas": 4,
+            "n_explained": 1,
+            "rate": 0.25,
+            "n_explained_by_version": 0,
+            "n_explained_by_axis": 0,
+            "n_axis_attributed": 3
+          }
+        },
+        "new_criterion_discovery": {
+          "status": "ok",
+          "value": {
+            "n_episodes": 10,
+            "n_unexplained_deltas": 3,
+            "n_candidates_seeded": 3,
+            "unexplained_yield": 1,
+            "candidates_per_episode": 0.3,
+            "this_version_seeded": true
+          }
+        },
+        "repeat_semantic_correction": {
+          "status": "n/a",
+          "reason": "evidence_sufficiency:v2 has no promotion timestamp (status candidate) — promoted_at marks activation"
+        },
+        "human_vs_inference_agreement": {
+          "status": "ok",
+          "value": {
+            "n_inferences": 3,
+            "n_answered": 2,
+            "n_confirmed": 1,
+            "n_corrected": 1,
+            "n_pending": 1,
+            "n_no_learning": 0,
+            "confirm_rate": 0.5,
+            "n_verdict_rows": 3,
+            "n_revised": 1,
+            "by_agent_agreement": {
+              "agreed": {
+                "n": 1,
+                "n_answered": 1,
+                "n_confirmed": 1,
+                "confirm_rate": 1
+              },
+              "overrode": {
+                "n": 2,
+                "n_answered": 1,
+                "n_confirmed": 0,
+                "confirm_rate": 0
+              }
+            },
+            "this_version_episodes": {
+              "n": 0,
+              "n_answered": 0,
+              "n_confirmed": 0
+            },
+            "basis": "judgment_inferences are Ghost's inference of why the human chose what they chose; the human's confirmed/corrected answer (latest row of the append-only judgment_verdicts history, else the inference column) is the direct human grade of that inference. this_version_episodes slices the inferences on episodes the reported version judged. no_learning is the human opting out of learning, not a grade of the inference: it is counted in n_no_learning and leaves the confirm_rate denominator, so an inference first confirmed and later opted out stops counting as a confirmation (its history rows stay in n_verdict_rows)"
+          }
+        }
+      }
+    },
+    "evidence_sufficiency:v3": {
+      "evaluator": "evidence_sufficiency",
+      "version": 3,
+      "tag": "evidence_sufficiency:v3",
+      "registered": true,
+      "status": "candidate",
+      "kind": "semantic",
+      "created_from": "human_delta",
+      "account_id": "4794d442-a659-4109-a5e2-604589de4429",
+      "source_human_delta_id": "39c25049-469b-47a5-b1c6-457e9bbf3e64",
+      "axis_attribution": {
+        "axis": "evidence_sufficiency",
+        "attributable": true,
+        "change_kinds": [
+          "attachment_added",
+          "attachment_removed",
+          "paragraph_added"
+        ],
+        "suggested_deltas": 2,
+        "n_edited_episodes": 0,
+        "n_attributed_edits": 0,
+        "basis": "an edit is attributed to an axis by candidate_criterion.suggested_eval_type or the literal-change-kind map; an axis neither reaches is unattributable (false_pass cannot be measured)"
+      },
+      "tracked_gaps": [
+        {
+          "id": "E19.7",
+          "name": "repeated-judge variance",
+          "status": "open",
+          "reason": "identical inputs reuse the stored eval_runs id, so no pair of independent judgments exists to compare; measuring it needs a sampled re-judge pass with a live model, which this read-only report never runs",
+          "interim": "repeat_consistency.spec_replay (deterministic re-derivation of executable shadow_specs) and same-artifact re-judgments on unchanged approvals"
+        }
+      ],
+      "metrics": {
+        "human_agreement": {
+          "status": "n/a",
+          "reason": "no eval_runs tagged evidence_sufficiency:v3 on a decided episode's final draft"
+        },
+        "false_pass_rate": {
+          "status": "n/a",
+          "reason": "no human edit attributed to evidence_sufficiency carries a evidence_sufficiency:v3 verdict"
+        },
+        "false_block_rate": {
+          "status": "n/a",
+          "reason": "evidence_sufficiency:v3 has no pass/fail verdict on an unchanged approval and never failed a decided episode's reviewed draft"
+        },
+        "confidence_calibration": {
+          "status": "n/a",
+          "reason": "no eval_runs tagged evidence_sufficiency:v3 carry confidence on a decided episode"
+        },
+        "repeat_consistency": {
+          "status": "n/a",
+          "reason": "no same-artifact re-judgment of evidence_sufficiency:v3 exists (every stored judgment is unique, or every repeat followed an edit) and no replayable shadow-spec results exist — same-input consistency is unobserved"
+        },
+        "correction_category_coverage": {
+          "status": "ok",
+          "value": {
+            "semantic_labels": [
+              {
+                "label": "reduced_pressure",
+                "deltas": 1,
+                "unexplained": 1,
+                "seeded_candidates": 1,
+                "covered": true
+              },
+              {
+                "label": "increased_pressure",
+                "deltas": 0,
+                "unexplained": 0,
+                "seeded_candidates": 0,
+                "covered": false
+              },
+              {
+                "label": "kept_champion_involved",
+                "deltas": 0,
+                "unexplained": 0,
+                "seeded_candidates": 0,
+                "covered": false
+              },
+              {
+                "label": "removed_unnecessary_stakeholders",
+                "deltas": 0,
+                "unexplained": 0,
+                "seeded_candidates": 0,
+                "covered": false
+              },
+              {
+                "label": "added_missing_stakeholder",
+                "deltas": 1,
+                "unexplained": 0,
+                "seeded_candidates": 0,
+                "covered": true
+              },
+              {
+                "label": "delayed_cta",
+                "deltas": 0,
+                "unexplained": 0,
+                "seeded_candidates": 0,
+                "covered": false
+              },
+              {
+                "label": "removed_cta",
+                "deltas": 0,
+                "unexplained": 0,
+                "seeded_candidates": 0,
+                "covered": false
+              },
+              {
+                "label": "smaller_ask",
+                "deltas": 0,
+                "unexplained": 0,
+                "seeded_candidates": 0,
+                "covered": false
+              },
+              {
+                "label": "larger_ask",
+                "deltas": 0,
+                "unexplained": 0,
+                "seeded_candidates": 0,
+                "covered": false
+              },
+              {
+                "label": "changed_channel",
+                "deltas": 0,
+                "unexplained": 0,
+                "seeded_candidates": 0,
+                "covered": false
+              },
+              {
+                "label": "corrected_fact",
+                "deltas": 3,
+                "unexplained": 2,
+                "seeded_candidates": 2,
+                "covered": true
+              },
+              {
+                "label": "deferred_to_buyer_timing",
+                "deltas": 0,
+                "unexplained": 0,
+                "seeded_candidates": 0,
+                "covered": false
+              },
+              {
+                "label": "style_only",
+                "deltas": 1,
+                "unexplained": 1,
+                "seeded_candidates": 1,
+                "covered": true
+              }
+            ],
+            "unobserved_labels": [
+              "increased_pressure",
+              "kept_champion_involved",
+              "removed_unnecessary_stakeholders",
+              "delayed_cta",
+              "removed_cta",
+              "smaller_ask",
+              "larger_ask",
+              "changed_channel",
+              "deferred_to_buyer_timing"
+            ],
+            "suggested_eval_types": [
+              {
+                "axis": "evidence_sufficiency",
+                "deltas": 2,
+                "versions_seeded": 2
+              },
+              {
+                "axis": "next_action_quality",
+                "deltas": 1,
+                "versions_seeded": 1
+              }
+            ],
+            "this_version": {
+              "axis_deltas": 3,
+              "seeded_by_this_version": true
+            },
+            "basis": "footprint of the human_deltas.semantic_labels vocabulary and suggested_eval_type axes in the stored deltas: a label is covered when an existing eval explained it or a candidate version was seeded from it",
+            "limits": [
+              "unobserved_labels means unobserved in the stored deltas, not impossible",
+              "edit capture sees recipients and the artifact only: timing, CTA and CRM-only edits produce no delta and are invisible here",
+              "semantic labels come from the worker labeler; fallback deltas are unlabeled and count as no label",
+              "a send the human never edited writes no delta, so unedited approvals contribute no coverage"
+            ]
+          }
+        },
+        "edits_explained_by_evals": {
+          "status": "ok",
+          "value": {
+            "n_deltas": 4,
+            "n_explained": 1,
+            "rate": 0.25,
+            "n_explained_by_version": 0,
+            "n_explained_by_axis": 0,
+            "n_axis_attributed": 3
+          }
+        },
+        "new_criterion_discovery": {
+          "status": "ok",
+          "value": {
+            "n_episodes": 10,
+            "n_unexplained_deltas": 3,
+            "n_candidates_seeded": 3,
+            "unexplained_yield": 1,
+            "candidates_per_episode": 0.3,
+            "this_version_seeded": true
+          }
+        },
+        "repeat_semantic_correction": {
+          "status": "n/a",
+          "reason": "evidence_sufficiency:v3 has no promotion timestamp (status candidate) — promoted_at marks activation"
+        },
+        "human_vs_inference_agreement": {
+          "status": "ok",
+          "value": {
+            "n_inferences": 3,
+            "n_answered": 2,
+            "n_confirmed": 1,
+            "n_corrected": 1,
+            "n_pending": 1,
+            "n_no_learning": 0,
+            "confirm_rate": 0.5,
+            "n_verdict_rows": 3,
+            "n_revised": 1,
+            "by_agent_agreement": {
+              "agreed": {
+                "n": 1,
+                "n_answered": 1,
+                "n_confirmed": 1,
+                "confirm_rate": 1
+              },
+              "overrode": {
+                "n": 2,
+                "n_answered": 1,
+                "n_confirmed": 0,
+                "confirm_rate": 0
+              }
+            },
+            "this_version_episodes": {
+              "n": 0,
+              "n_answered": 0,
+              "n_confirmed": 0
+            },
+            "basis": "judgment_inferences are Ghost's inference of why the human chose what they chose; the human's confirmed/corrected answer (latest row of the append-only judgment_verdicts history, else the inference column) is the direct human grade of that inference. this_version_episodes slices the inferences on episodes the reported version judged. no_learning is the human opting out of learning, not a grade of the inference: it is counted in n_no_learning and leaves the confirm_rate denominator, so an inference first confirmed and later opted out stops counting as a confirmation (its history rows stay in n_verdict_rows)"
+          }
+        }
+      }
+    },
+    "grounding:v1": {
+      "evaluator": "grounding",
+      "version": 1,
+      "tag": "grounding:v1",
+      "registered": false,
+      "status": "observed",
+      "axis_attribution": {
+        "axis": "grounding",
+        "attributable": true,
+        "change_kinds": [
+          "paragraph_added",
+          "paragraph_edited",
+          "paragraph_removed"
+        ],
+        "suggested_deltas": 0,
+        "n_edited_episodes": 1,
+        "n_attributed_edits": 1,
+        "attribution_share": 1,
+        "basis": "an edit is attributed to an axis by candidate_criterion.suggested_eval_type or the literal-change-kind map; an axis neither reaches is unattributable (false_pass cannot be measured)"
+      },
+      "tracked_gaps": [
+        {
+          "id": "E19.7",
+          "name": "repeated-judge variance",
+          "status": "open",
+          "reason": "identical inputs reuse the stored eval_runs id, so no pair of independent judgments exists to compare; measuring it needs a sampled re-judge pass with a live model, which this read-only report never runs",
+          "interim": "repeat_consistency.spec_replay (deterministic re-derivation of executable shadow_specs) and same-artifact re-judgments on unchanged approvals"
+        }
+      ],
+      "metrics": {
+        "human_agreement": {
+          "status": "ok",
+          "value": {
+            "n_episodes": 5,
+            "categories": {
+              "false_pass": 1,
+              "true_block_reject": 1,
+              "true_pass": 3
+            },
+            "consistent": 4,
+            "contradicted": 1,
+            "unscored": 0,
+            "abstained": 0,
+            "warned": 0,
+            "rate": 0.8,
+            "abstain_rate": 0,
+            "worst_case_rate": 0.8,
+            "accept_unchanged": 3,
+            "accept_unchanged_rate": 0.6
+          }
+        },
+        "false_pass_rate": {
+          "status": "ok",
+          "value": {
+            "n_axis_edits_evaluated": 1,
+            "false_pass": 1,
+            "true_detection": 0,
+            "fail_not_cited": 0,
+            "rate": 1,
+            "basis": "a delta is attributed to an axis by its candidate_criterion.suggested_eval_type or by the literal-change-kind axis map (mirrors the seed-time fallbackCriterion heuristic); a false pass is an attributed edit where no stored judgment of the version ever failed the draft (explanation-cited fails are true detections)"
+          }
+        },
+        "false_block_rate": {
+          "status": "ok",
+          "value": {
+            "n_unchanged_approvals": 3,
+            "n_fail_verdicts": 1,
+            "false_block": 0,
+            "fail_unresolved_edit": 0,
+            "rate": 0,
+            "fail_precision": 0
+          }
+        },
+        "confidence_calibration": {
+          "status": "ok",
+          "value": {
+            "n_confidence_rows": 2,
+            "n_scored_rows": 0,
+            "buckets": [
+              {
+                "range": "[0,0.5]",
+                "n": 1,
+                "mean_confidence": 0.4,
+                "observed_correct": 1
+              },
+              {
+                "range": "[0.7,0.9]",
+                "n": 1,
+                "mean_confidence": 0.8,
+                "observed_correct": 1
+              }
+            ],
+            "rejections": {
+              "axis_scoped": 1,
+              "unscoped": 0
+            },
+            "ece": 0.39999999999999997,
+            "basis": "binned eval_runs.confidence vs the human-confirmed correctness of the same verdict on the decided episode's final draft (expected calibration error over populated bins)"
+          }
+        },
+        "repeat_consistency": {
+          "status": "n/a",
+          "reason": "no same-artifact re-judgment of grounding:v1 exists (every stored judgment is unique, or every repeat followed an edit) and no replayable shadow-spec results exist — same-input consistency is unobserved"
+        },
+        "correction_category_coverage": {
+          "status": "ok",
+          "value": {
+            "semantic_labels": [
+              {
+                "label": "reduced_pressure",
+                "deltas": 1,
+                "unexplained": 1,
+                "seeded_candidates": 1,
+                "covered": true
+              },
+              {
+                "label": "increased_pressure",
+                "deltas": 0,
+                "unexplained": 0,
+                "seeded_candidates": 0,
+                "covered": false
+              },
+              {
+                "label": "kept_champion_involved",
+                "deltas": 0,
+                "unexplained": 0,
+                "seeded_candidates": 0,
+                "covered": false
+              },
+              {
+                "label": "removed_unnecessary_stakeholders",
+                "deltas": 0,
+                "unexplained": 0,
+                "seeded_candidates": 0,
+                "covered": false
+              },
+              {
+                "label": "added_missing_stakeholder",
+                "deltas": 1,
+                "unexplained": 0,
+                "seeded_candidates": 0,
+                "covered": true
+              },
+              {
+                "label": "delayed_cta",
+                "deltas": 0,
+                "unexplained": 0,
+                "seeded_candidates": 0,
+                "covered": false
+              },
+              {
+                "label": "removed_cta",
+                "deltas": 0,
+                "unexplained": 0,
+                "seeded_candidates": 0,
+                "covered": false
+              },
+              {
+                "label": "smaller_ask",
+                "deltas": 0,
+                "unexplained": 0,
+                "seeded_candidates": 0,
+                "covered": false
+              },
+              {
+                "label": "larger_ask",
+                "deltas": 0,
+                "unexplained": 0,
+                "seeded_candidates": 0,
+                "covered": false
+              },
+              {
+                "label": "changed_channel",
+                "deltas": 0,
+                "unexplained": 0,
+                "seeded_candidates": 0,
+                "covered": false
+              },
+              {
+                "label": "corrected_fact",
+                "deltas": 3,
+                "unexplained": 2,
+                "seeded_candidates": 2,
+                "covered": true
+              },
+              {
+                "label": "deferred_to_buyer_timing",
+                "deltas": 0,
+                "unexplained": 0,
+                "seeded_candidates": 0,
+                "covered": false
+              },
+              {
+                "label": "style_only",
+                "deltas": 1,
+                "unexplained": 1,
+                "seeded_candidates": 1,
+                "covered": true
+              }
+            ],
+            "unobserved_labels": [
+              "increased_pressure",
+              "kept_champion_involved",
+              "removed_unnecessary_stakeholders",
+              "delayed_cta",
+              "removed_cta",
+              "smaller_ask",
+              "larger_ask",
+              "changed_channel",
+              "deferred_to_buyer_timing"
+            ],
+            "suggested_eval_types": [
+              {
+                "axis": "evidence_sufficiency",
+                "deltas": 2,
+                "versions_seeded": 2
+              },
+              {
+                "axis": "next_action_quality",
+                "deltas": 1,
+                "versions_seeded": 1
+              }
+            ],
+            "this_version": {
+              "axis_deltas": 1,
+              "seeded_by_this_version": false
+            },
+            "basis": "footprint of the human_deltas.semantic_labels vocabulary and suggested_eval_type axes in the stored deltas: a label is covered when an existing eval explained it or a candidate version was seeded from it",
+            "limits": [
+              "unobserved_labels means unobserved in the stored deltas, not impossible",
+              "edit capture sees recipients and the artifact only: timing, CTA and CRM-only edits produce no delta and are invisible here",
+              "semantic labels come from the worker labeler; fallback deltas are unlabeled and count as no label",
+              "a send the human never edited writes no delta, so unedited approvals contribute no coverage"
+            ]
+          }
+        },
+        "edits_explained_by_evals": {
+          "status": "ok",
+          "value": {
+            "n_deltas": 4,
+            "n_explained": 1,
+            "rate": 0.25,
+            "n_explained_by_version": 0,
+            "n_explained_by_axis": 0,
+            "n_axis_attributed": 1
+          }
+        },
+        "new_criterion_discovery": {
+          "status": "ok",
+          "value": {
+            "n_episodes": 10,
+            "n_unexplained_deltas": 3,
+            "n_candidates_seeded": 3,
+            "unexplained_yield": 1,
+            "candidates_per_episode": 0.3,
+            "this_version_seeded": false
+          }
+        },
+        "repeat_semantic_correction": {
+          "status": "n/a",
+          "reason": "grounding:v1 has no promotion timestamp (status observed) — promoted_at marks activation"
+        },
+        "human_vs_inference_agreement": {
+          "status": "ok",
+          "value": {
+            "n_inferences": 3,
+            "n_answered": 2,
+            "n_confirmed": 1,
+            "n_corrected": 1,
+            "n_pending": 1,
+            "n_no_learning": 0,
+            "confirm_rate": 0.5,
+            "n_verdict_rows": 3,
+            "n_revised": 1,
+            "by_agent_agreement": {
+              "agreed": {
+                "n": 1,
+                "n_answered": 1,
+                "n_confirmed": 1,
+                "confirm_rate": 1
+              },
+              "overrode": {
+                "n": 2,
+                "n_answered": 1,
+                "n_confirmed": 0,
+                "confirm_rate": 0
+              }
+            },
+            "this_version_episodes": {
+              "n": 2,
+              "n_answered": 2,
+              "n_confirmed": 1,
+              "confirm_rate": 0.5
+            },
+            "basis": "judgment_inferences are Ghost's inference of why the human chose what they chose; the human's confirmed/corrected answer (latest row of the append-only judgment_verdicts history, else the inference column) is the direct human grade of that inference. this_version_episodes slices the inferences on episodes the reported version judged. no_learning is the human opting out of learning, not a grade of the inference: it is counted in n_no_learning and leaves the confirm_rate denominator, so an inference first confirmed and later opted out stops counting as a confirmation (its history rows stay in n_verdict_rows)"
+          }
+        }
+      }
+    },
+    "next_action_quality:v1": {
+      "evaluator": "next_action_quality",
+      "version": 1,
+      "tag": "next_action_quality:v1",
+      "registered": false,
+      "status": "observed",
+      "axis_attribution": {
+        "axis": "next_action_quality",
+        "attributable": true,
+        "change_kinds": [
+          "action_type_changed",
+          "cta_changed",
+          "paragraph_added",
+          "paragraph_edited",
+          "paragraph_removed",
+          "subject_changed",
+          "timing_changed"
+        ],
+        "suggested_deltas": 1,
+        "n_edited_episodes": 1,
+        "n_attributed_edits": 1,
+        "attribution_share": 1,
+        "basis": "an edit is attributed to an axis by candidate_criterion.suggested_eval_type or the literal-change-kind map; an axis neither reaches is unattributable (false_pass cannot be measured)"
+      },
+      "tracked_gaps": [
+        {
+          "id": "E19.7",
+          "name": "repeated-judge variance",
+          "status": "open",
+          "reason": "identical inputs reuse the stored eval_runs id, so no pair of independent judgments exists to compare; measuring it needs a sampled re-judge pass with a live model, which this read-only report never runs",
+          "interim": "repeat_consistency.spec_replay (deterministic re-derivation of executable shadow_specs) and same-artifact re-judgments on unchanged approvals"
+        }
+      ],
+      "metrics": {
+        "human_agreement": {
+          "status": "ok",
+          "value": {
+            "n_episodes": 1,
+            "categories": {
+              "false_pass": 1
+            },
+            "consistent": 0,
+            "contradicted": 1,
+            "unscored": 0,
+            "abstained": 0,
+            "warned": 0,
+            "rate": 0,
+            "abstain_rate": 0,
+            "worst_case_rate": 0,
+            "accept_unchanged": 0,
+            "accept_unchanged_rate": 0
+          }
+        },
+        "false_pass_rate": {
+          "status": "ok",
+          "value": {
+            "n_axis_edits_evaluated": 1,
+            "false_pass": 1,
+            "true_detection": 0,
+            "fail_not_cited": 0,
+            "rate": 1,
+            "basis": "a delta is attributed to an axis by its candidate_criterion.suggested_eval_type or by the literal-change-kind axis map (mirrors the seed-time fallbackCriterion heuristic); a false pass is an attributed edit where no stored judgment of the version ever failed the draft (explanation-cited fails are true detections)"
+          }
+        },
+        "false_block_rate": {
+          "status": "n/a",
+          "reason": "next_action_quality:v1 has no pass/fail verdict on an unchanged approval and never failed a decided episode's reviewed draft"
+        },
+        "confidence_calibration": {
+          "status": "n/a",
+          "reason": "no eval_runs tagged next_action_quality:v1 carry confidence on a decided episode"
+        },
+        "repeat_consistency": {
+          "status": "n/a",
+          "reason": "no same-artifact re-judgment of next_action_quality:v1 exists (every stored judgment is unique, or every repeat followed an edit) and no replayable shadow-spec results exist — same-input consistency is unobserved"
+        },
+        "correction_category_coverage": {
+          "status": "ok",
+          "value": {
+            "semantic_labels": [
+              {
+                "label": "reduced_pressure",
+                "deltas": 1,
+                "unexplained": 1,
+                "seeded_candidates": 1,
+                "covered": true
+              },
+              {
+                "label": "increased_pressure",
+                "deltas": 0,
+                "unexplained": 0,
+                "seeded_candidates": 0,
+                "covered": false
+              },
+              {
+                "label": "kept_champion_involved",
+                "deltas": 0,
+                "unexplained": 0,
+                "seeded_candidates": 0,
+                "covered": false
+              },
+              {
+                "label": "removed_unnecessary_stakeholders",
+                "deltas": 0,
+                "unexplained": 0,
+                "seeded_candidates": 0,
+                "covered": false
+              },
+              {
+                "label": "added_missing_stakeholder",
+                "deltas": 1,
+                "unexplained": 0,
+                "seeded_candidates": 0,
+                "covered": true
+              },
+              {
+                "label": "delayed_cta",
+                "deltas": 0,
+                "unexplained": 0,
+                "seeded_candidates": 0,
+                "covered": false
+              },
+              {
+                "label": "removed_cta",
+                "deltas": 0,
+                "unexplained": 0,
+                "seeded_candidates": 0,
+                "covered": false
+              },
+              {
+                "label": "smaller_ask",
+                "deltas": 0,
+                "unexplained": 0,
+                "seeded_candidates": 0,
+                "covered": false
+              },
+              {
+                "label": "larger_ask",
+                "deltas": 0,
+                "unexplained": 0,
+                "seeded_candidates": 0,
+                "covered": false
+              },
+              {
+                "label": "changed_channel",
+                "deltas": 0,
+                "unexplained": 0,
+                "seeded_candidates": 0,
+                "covered": false
+              },
+              {
+                "label": "corrected_fact",
+                "deltas": 3,
+                "unexplained": 2,
+                "seeded_candidates": 2,
+                "covered": true
+              },
+              {
+                "label": "deferred_to_buyer_timing",
+                "deltas": 0,
+                "unexplained": 0,
+                "seeded_candidates": 0,
+                "covered": false
+              },
+              {
+                "label": "style_only",
+                "deltas": 1,
+                "unexplained": 1,
+                "seeded_candidates": 1,
+                "covered": true
+              }
+            ],
+            "unobserved_labels": [
+              "increased_pressure",
+              "kept_champion_involved",
+              "removed_unnecessary_stakeholders",
+              "delayed_cta",
+              "removed_cta",
+              "smaller_ask",
+              "larger_ask",
+              "changed_channel",
+              "deferred_to_buyer_timing"
+            ],
+            "suggested_eval_types": [
+              {
+                "axis": "evidence_sufficiency",
+                "deltas": 2,
+                "versions_seeded": 2
+              },
+              {
+                "axis": "next_action_quality",
+                "deltas": 1,
+                "versions_seeded": 1
+              }
+            ],
+            "this_version": {
+              "axis_deltas": 2,
+              "seeded_by_this_version": false
+            },
+            "basis": "footprint of the human_deltas.semantic_labels vocabulary and suggested_eval_type axes in the stored deltas: a label is covered when an existing eval explained it or a candidate version was seeded from it",
+            "limits": [
+              "unobserved_labels means unobserved in the stored deltas, not impossible",
+              "edit capture sees recipients and the artifact only: timing, CTA and CRM-only edits produce no delta and are invisible here",
+              "semantic labels come from the worker labeler; fallback deltas are unlabeled and count as no label",
+              "a send the human never edited writes no delta, so unedited approvals contribute no coverage"
+            ]
+          }
+        },
+        "edits_explained_by_evals": {
+          "status": "ok",
+          "value": {
+            "n_deltas": 4,
+            "n_explained": 1,
+            "rate": 0.25,
+            "n_explained_by_version": 0,
+            "n_explained_by_axis": 0,
+            "n_axis_attributed": 2
+          }
+        },
+        "new_criterion_discovery": {
+          "status": "ok",
+          "value": {
+            "n_episodes": 10,
+            "n_unexplained_deltas": 3,
+            "n_candidates_seeded": 3,
+            "unexplained_yield": 1,
+            "candidates_per_episode": 0.3,
+            "this_version_seeded": false
+          }
+        },
+        "repeat_semantic_correction": {
+          "status": "n/a",
+          "reason": "next_action_quality:v1 has no promotion timestamp (status observed) — promoted_at marks activation"
+        },
+        "human_vs_inference_agreement": {
+          "status": "ok",
+          "value": {
+            "n_inferences": 3,
+            "n_answered": 2,
+            "n_confirmed": 1,
+            "n_corrected": 1,
+            "n_pending": 1,
+            "n_no_learning": 0,
+            "confirm_rate": 0.5,
+            "n_verdict_rows": 3,
+            "n_revised": 1,
+            "by_agent_agreement": {
+              "agreed": {
+                "n": 1,
+                "n_answered": 1,
+                "n_confirmed": 1,
+                "confirm_rate": 1
+              },
+              "overrode": {
+                "n": 2,
+                "n_answered": 1,
+                "n_confirmed": 0,
+                "confirm_rate": 0
+              }
+            },
+            "this_version_episodes": {
+              "n": 0,
+              "n_answered": 0,
+              "n_confirmed": 0
+            },
+            "basis": "judgment_inferences are Ghost's inference of why the human chose what they chose; the human's confirmed/corrected answer (latest row of the append-only judgment_verdicts history, else the inference column) is the direct human grade of that inference. this_version_episodes slices the inferences on episodes the reported version judged. no_learning is the human opting out of learning, not a grade of the inference: it is counted in n_no_learning and leaves the confirm_rate denominator, so an inference first confirmed and later opted out stops counting as a confirmation (its history rows stay in n_verdict_rows)"
+          }
+        }
+      }
+    },
+    "next_action_quality:v2": {
+      "evaluator": "next_action_quality",
+      "version": 2,
+      "tag": "next_action_quality:v2",
+      "registered": true,
+      "status": "candidate",
+      "kind": "semantic",
+      "created_from": "human_delta",
+      "account_id": "4794d442-a659-4109-a5e2-604589de4429",
+      "source_human_delta_id": "3cd9a0f5-16b3-47c2-9f1f-b4d85801a45c",
+      "axis_attribution": {
+        "axis": "next_action_quality",
+        "attributable": true,
+        "change_kinds": [
+          "action_type_changed",
+          "cta_changed",
+          "paragraph_added",
+          "paragraph_edited",
+          "paragraph_removed",
+          "subject_changed",
+          "timing_changed"
+        ],
+        "suggested_deltas": 1,
+        "n_edited_episodes": 0,
+        "n_attributed_edits": 0,
+        "basis": "an edit is attributed to an axis by candidate_criterion.suggested_eval_type or the literal-change-kind map; an axis neither reaches is unattributable (false_pass cannot be measured)"
+      },
+      "tracked_gaps": [
+        {
+          "id": "E19.7",
+          "name": "repeated-judge variance",
+          "status": "open",
+          "reason": "identical inputs reuse the stored eval_runs id, so no pair of independent judgments exists to compare; measuring it needs a sampled re-judge pass with a live model, which this read-only report never runs",
+          "interim": "repeat_consistency.spec_replay (deterministic re-derivation of executable shadow_specs) and same-artifact re-judgments on unchanged approvals"
+        }
+      ],
+      "metrics": {
+        "human_agreement": {
+          "status": "n/a",
+          "reason": "no eval_runs tagged next_action_quality:v2 on a decided episode's final draft"
+        },
+        "false_pass_rate": {
+          "status": "n/a",
+          "reason": "no human edit attributed to next_action_quality carries a next_action_quality:v2 verdict"
+        },
+        "false_block_rate": {
+          "status": "n/a",
+          "reason": "next_action_quality:v2 has no pass/fail verdict on an unchanged approval and never failed a decided episode's reviewed draft"
+        },
+        "confidence_calibration": {
+          "status": "n/a",
+          "reason": "no eval_runs tagged next_action_quality:v2 carry confidence on a decided episode"
+        },
+        "repeat_consistency": {
+          "status": "n/a",
+          "reason": "no same-artifact re-judgment of next_action_quality:v2 exists (every stored judgment is unique, or every repeat followed an edit) and no replayable shadow-spec results exist — same-input consistency is unobserved"
+        },
+        "correction_category_coverage": {
+          "status": "ok",
+          "value": {
+            "semantic_labels": [
+              {
+                "label": "reduced_pressure",
+                "deltas": 1,
+                "unexplained": 1,
+                "seeded_candidates": 1,
+                "covered": true
+              },
+              {
+                "label": "increased_pressure",
+                "deltas": 0,
+                "unexplained": 0,
+                "seeded_candidates": 0,
+                "covered": false
+              },
+              {
+                "label": "kept_champion_involved",
+                "deltas": 0,
+                "unexplained": 0,
+                "seeded_candidates": 0,
+                "covered": false
+              },
+              {
+                "label": "removed_unnecessary_stakeholders",
+                "deltas": 0,
+                "unexplained": 0,
+                "seeded_candidates": 0,
+                "covered": false
+              },
+              {
+                "label": "added_missing_stakeholder",
+                "deltas": 1,
+                "unexplained": 0,
+                "seeded_candidates": 0,
+                "covered": true
+              },
+              {
+                "label": "delayed_cta",
+                "deltas": 0,
+                "unexplained": 0,
+                "seeded_candidates": 0,
+                "covered": false
+              },
+              {
+                "label": "removed_cta",
+                "deltas": 0,
+                "unexplained": 0,
+                "seeded_candidates": 0,
+                "covered": false
+              },
+              {
+                "label": "smaller_ask",
+                "deltas": 0,
+                "unexplained": 0,
+                "seeded_candidates": 0,
+                "covered": false
+              },
+              {
+                "label": "larger_ask",
+                "deltas": 0,
+                "unexplained": 0,
+                "seeded_candidates": 0,
+                "covered": false
+              },
+              {
+                "label": "changed_channel",
+                "deltas": 0,
+                "unexplained": 0,
+                "seeded_candidates": 0,
+                "covered": false
+              },
+              {
+                "label": "corrected_fact",
+                "deltas": 3,
+                "unexplained": 2,
+                "seeded_candidates": 2,
+                "covered": true
+              },
+              {
+                "label": "deferred_to_buyer_timing",
+                "deltas": 0,
+                "unexplained": 0,
+                "seeded_candidates": 0,
+                "covered": false
+              },
+              {
+                "label": "style_only",
+                "deltas": 1,
+                "unexplained": 1,
+                "seeded_candidates": 1,
+                "covered": true
+              }
+            ],
+            "unobserved_labels": [
+              "increased_pressure",
+              "kept_champion_involved",
+              "removed_unnecessary_stakeholders",
+              "delayed_cta",
+              "removed_cta",
+              "smaller_ask",
+              "larger_ask",
+              "changed_channel",
+              "deferred_to_buyer_timing"
+            ],
+            "suggested_eval_types": [
+              {
+                "axis": "evidence_sufficiency",
+                "deltas": 2,
+                "versions_seeded": 2
+              },
+              {
+                "axis": "next_action_quality",
+                "deltas": 1,
+                "versions_seeded": 1
+              }
+            ],
+            "this_version": {
+              "axis_deltas": 2,
+              "seeded_by_this_version": true
+            },
+            "basis": "footprint of the human_deltas.semantic_labels vocabulary and suggested_eval_type axes in the stored deltas: a label is covered when an existing eval explained it or a candidate version was seeded from it",
+            "limits": [
+              "unobserved_labels means unobserved in the stored deltas, not impossible",
+              "edit capture sees recipients and the artifact only: timing, CTA and CRM-only edits produce no delta and are invisible here",
+              "semantic labels come from the worker labeler; fallback deltas are unlabeled and count as no label",
+              "a send the human never edited writes no delta, so unedited approvals contribute no coverage"
+            ]
+          }
+        },
+        "edits_explained_by_evals": {
+          "status": "ok",
+          "value": {
+            "n_deltas": 4,
+            "n_explained": 1,
+            "rate": 0.25,
+            "n_explained_by_version": 0,
+            "n_explained_by_axis": 0,
+            "n_axis_attributed": 2
+          }
+        },
+        "new_criterion_discovery": {
+          "status": "ok",
+          "value": {
+            "n_episodes": 10,
+            "n_unexplained_deltas": 3,
+            "n_candidates_seeded": 3,
+            "unexplained_yield": 1,
+            "candidates_per_episode": 0.3,
+            "this_version_seeded": true
+          }
+        },
+        "repeat_semantic_correction": {
+          "status": "n/a",
+          "reason": "next_action_quality:v2 has no promotion timestamp (status candidate) — promoted_at marks activation"
+        },
+        "human_vs_inference_agreement": {
+          "status": "ok",
+          "value": {
+            "n_inferences": 3,
+            "n_answered": 2,
+            "n_confirmed": 1,
+            "n_corrected": 1,
+            "n_pending": 1,
+            "n_no_learning": 0,
+            "confirm_rate": 0.5,
+            "n_verdict_rows": 3,
+            "n_revised": 1,
+            "by_agent_agreement": {
+              "agreed": {
+                "n": 1,
+                "n_answered": 1,
+                "n_confirmed": 1,
+                "confirm_rate": 1
+              },
+              "overrode": {
+                "n": 2,
+                "n_answered": 1,
+                "n_confirmed": 0,
+                "confirm_rate": 0
+              }
+            },
+            "this_version_episodes": {
+              "n": 0,
+              "n_answered": 0,
+              "n_confirmed": 0
+            },
+            "basis": "judgment_inferences are Ghost's inference of why the human chose what they chose; the human's confirmed/corrected answer (latest row of the append-only judgment_verdicts history, else the inference column) is the direct human grade of that inference. this_version_episodes slices the inferences on episodes the reported version judged. no_learning is the human opting out of learning, not a grade of the inference: it is counted in n_no_learning and leaves the confirm_rate denominator, so an inference first confirmed and later opted out stops counting as a confirmation (its history rows stay in n_verdict_rows)"
+          }
+        }
+      }
+    },
+    "next_step_quality:v1": {
+      "evaluator": "next_step_quality",
+      "version": 1,
+      "tag": "next_step_quality:v1",
+      "registered": false,
+      "status": "observed",
+      "axis_attribution": {
+        "axis": "next_step_quality",
+        "attributable": true,
+        "change_kinds": [
+          "crm_next_step_changed",
+          "subject_changed"
+        ],
+        "suggested_deltas": 0,
+        "n_edited_episodes": 0,
+        "n_attributed_edits": 0,
+        "basis": "an edit is attributed to an axis by candidate_criterion.suggested_eval_type or the literal-change-kind map; an axis neither reaches is unattributable (false_pass cannot be measured)"
+      },
+      "tracked_gaps": [
+        {
+          "id": "E19.7",
+          "name": "repeated-judge variance",
+          "status": "open",
+          "reason": "identical inputs reuse the stored eval_runs id, so no pair of independent judgments exists to compare; measuring it needs a sampled re-judge pass with a live model, which this read-only report never runs",
+          "interim": "repeat_consistency.spec_replay (deterministic re-derivation of executable shadow_specs) and same-artifact re-judgments on unchanged approvals"
+        }
+      ],
+      "metrics": {
+        "human_agreement": {
+          "status": "ok",
+          "value": {
+            "n_episodes": 1,
+            "categories": {
+              "pass_rejected": 1
+            },
+            "consistent": 0,
+            "contradicted": 1,
+            "unscored": 0,
+            "abstained": 0,
+            "warned": 0,
+            "rate": 0,
+            "abstain_rate": 0,
+            "worst_case_rate": 0,
+            "accept_unchanged": 0,
+            "accept_unchanged_rate": 0
+          }
+        },
+        "false_pass_rate": {
+          "status": "n/a",
+          "reason": "no human edit attributed to next_step_quality carries a next_step_quality:v1 verdict"
+        },
+        "false_block_rate": {
+          "status": "n/a",
+          "reason": "next_step_quality:v1 has no pass/fail verdict on an unchanged approval and never failed a decided episode's reviewed draft"
+        },
+        "confidence_calibration": {
+          "status": "n/a",
+          "reason": "the only confidence rows of next_step_quality:v1 sit on rejected episodes whose rejection reason does not point at next_step_quality (1 rows dropped)"
+        },
+        "repeat_consistency": {
+          "status": "n/a",
+          "reason": "no same-artifact re-judgment of next_step_quality:v1 exists (every stored judgment is unique, or every repeat followed an edit) and no replayable shadow-spec results exist — same-input consistency is unobserved"
+        },
+        "correction_category_coverage": {
+          "status": "ok",
+          "value": {
+            "semantic_labels": [
+              {
+                "label": "reduced_pressure",
+                "deltas": 1,
+                "unexplained": 1,
+                "seeded_candidates": 1,
+                "covered": true
+              },
+              {
+                "label": "increased_pressure",
+                "deltas": 0,
+                "unexplained": 0,
+                "seeded_candidates": 0,
+                "covered": false
+              },
+              {
+                "label": "kept_champion_involved",
+                "deltas": 0,
+                "unexplained": 0,
+                "seeded_candidates": 0,
+                "covered": false
+              },
+              {
+                "label": "removed_unnecessary_stakeholders",
+                "deltas": 0,
+                "unexplained": 0,
+                "seeded_candidates": 0,
+                "covered": false
+              },
+              {
+                "label": "added_missing_stakeholder",
+                "deltas": 1,
+                "unexplained": 0,
+                "seeded_candidates": 0,
+                "covered": true
+              },
+              {
+                "label": "delayed_cta",
+                "deltas": 0,
+                "unexplained": 0,
+                "seeded_candidates": 0,
+                "covered": false
+              },
+              {
+                "label": "removed_cta",
+                "deltas": 0,
+                "unexplained": 0,
+                "seeded_candidates": 0,
+                "covered": false
+              },
+              {
+                "label": "smaller_ask",
+                "deltas": 0,
+                "unexplained": 0,
+                "seeded_candidates": 0,
+                "covered": false
+              },
+              {
+                "label": "larger_ask",
+                "deltas": 0,
+                "unexplained": 0,
+                "seeded_candidates": 0,
+                "covered": false
+              },
+              {
+                "label": "changed_channel",
+                "deltas": 0,
+                "unexplained": 0,
+                "seeded_candidates": 0,
+                "covered": false
+              },
+              {
+                "label": "corrected_fact",
+                "deltas": 3,
+                "unexplained": 2,
+                "seeded_candidates": 2,
+                "covered": true
+              },
+              {
+                "label": "deferred_to_buyer_timing",
+                "deltas": 0,
+                "unexplained": 0,
+                "seeded_candidates": 0,
+                "covered": false
+              },
+              {
+                "label": "style_only",
+                "deltas": 1,
+                "unexplained": 1,
+                "seeded_candidates": 1,
+                "covered": true
+              }
+            ],
+            "unobserved_labels": [
+              "increased_pressure",
+              "kept_champion_involved",
+              "removed_unnecessary_stakeholders",
+              "delayed_cta",
+              "removed_cta",
+              "smaller_ask",
+              "larger_ask",
+              "changed_channel",
+              "deferred_to_buyer_timing"
+            ],
+            "suggested_eval_types": [
+              {
+                "axis": "evidence_sufficiency",
+                "deltas": 2,
+                "versions_seeded": 2
+              },
+              {
+                "axis": "next_action_quality",
+                "deltas": 1,
+                "versions_seeded": 1
+              }
+            ],
+            "this_version": {
+              "axis_deltas": 1,
+              "seeded_by_this_version": false
+            },
+            "basis": "footprint of the human_deltas.semantic_labels vocabulary and suggested_eval_type axes in the stored deltas: a label is covered when an existing eval explained it or a candidate version was seeded from it",
+            "limits": [
+              "unobserved_labels means unobserved in the stored deltas, not impossible",
+              "edit capture sees recipients and the artifact only: timing, CTA and CRM-only edits produce no delta and are invisible here",
+              "semantic labels come from the worker labeler; fallback deltas are unlabeled and count as no label",
+              "a send the human never edited writes no delta, so unedited approvals contribute no coverage"
+            ]
+          }
+        },
+        "edits_explained_by_evals": {
+          "status": "ok",
+          "value": {
+            "n_deltas": 4,
+            "n_explained": 1,
+            "rate": 0.25,
+            "n_explained_by_version": 0,
+            "n_explained_by_axis": 0,
+            "n_axis_attributed": 1
+          }
+        },
+        "new_criterion_discovery": {
+          "status": "ok",
+          "value": {
+            "n_episodes": 10,
+            "n_unexplained_deltas": 3,
+            "n_candidates_seeded": 3,
+            "unexplained_yield": 1,
+            "candidates_per_episode": 0.3,
+            "this_version_seeded": false
+          }
+        },
+        "repeat_semantic_correction": {
+          "status": "n/a",
+          "reason": "next_step_quality:v1 has no promotion timestamp (status observed) — promoted_at marks activation"
+        },
+        "human_vs_inference_agreement": {
+          "status": "ok",
+          "value": {
+            "n_inferences": 3,
+            "n_answered": 2,
+            "n_confirmed": 1,
+            "n_corrected": 1,
+            "n_pending": 1,
+            "n_no_learning": 0,
+            "confirm_rate": 0.5,
+            "n_verdict_rows": 3,
+            "n_revised": 1,
+            "by_agent_agreement": {
+              "agreed": {
+                "n": 1,
+                "n_answered": 1,
+                "n_confirmed": 1,
+                "confirm_rate": 1
+              },
+              "overrode": {
+                "n": 2,
+                "n_answered": 1,
+                "n_confirmed": 0,
+                "confirm_rate": 0
+              }
+            },
+            "this_version_episodes": {
+              "n": 0,
+              "n_answered": 0,
+              "n_confirmed": 0
+            },
+            "basis": "judgment_inferences are Ghost's inference of why the human chose what they chose; the human's confirmed/corrected answer (latest row of the append-only judgment_verdicts history, else the inference column) is the direct human grade of that inference. this_version_episodes slices the inferences on episodes the reported version judged. no_learning is the human opting out of learning, not a grade of the inference: it is counted in n_no_learning and leaves the confirm_rate denominator, so an inference first confirmed and later opted out stops counting as a confirmation (its history rows stay in n_verdict_rows)"
+          }
+        }
+      }
+    },
+    "permission_policy:v1": {
+      "evaluator": "permission_policy",
+      "version": 1,
+      "tag": "permission_policy:v1",
+      "registered": false,
+      "status": "observed",
+      "axis_attribution": {
+        "axis": "permission_policy",
+        "attributable": false,
+        "change_kinds": null,
+        "suggested_deltas": 0,
+        "n_edited_episodes": 4,
+        "n_attributed_edits": 0,
+        "attribution_share": 0,
+        "basis": "an edit is attributed to an axis by candidate_criterion.suggested_eval_type or the literal-change-kind map; an axis neither reaches is unattributable (false_pass cannot be measured)"
+      },
+      "tracked_gaps": [
+        {
+          "id": "E19.7",
+          "name": "repeated-judge variance",
+          "status": "open",
+          "reason": "identical inputs reuse the stored eval_runs id, so no pair of independent judgments exists to compare; measuring it needs a sampled re-judge pass with a live model, which this read-only report never runs",
+          "interim": "repeat_consistency.spec_replay (deterministic re-derivation of executable shadow_specs) and same-artifact re-judgments on unchanged approvals"
+        }
+      ],
+      "metrics": {
+        "human_agreement": {
+          "status": "ok",
+          "value": {
+            "n_episodes": 9,
+            "categories": {
+              "pass_other_axis": 4,
+              "true_pass": 5
+            },
+            "consistent": 5,
+            "contradicted": 0,
+            "unscored": 4,
+            "abstained": 0,
+            "warned": 0,
+            "rate": 1,
+            "abstain_rate": 0,
+            "worst_case_rate": 1,
+            "accept_unchanged": 5,
+            "accept_unchanged_rate": 0.5555555555555556
+          }
+        },
+        "false_pass_rate": {
+          "status": "n/a",
+          "reason": "unattributable: no literal-change kind and no suggested_eval_type in the corpus attributes an edit to permission_policy, so permission_policy:v1 can never show a false pass"
+        },
+        "false_block_rate": {
+          "status": "ok",
+          "value": {
+            "n_unchanged_approvals": 5,
+            "n_fail_verdicts": 0,
+            "false_block": 0,
+            "fail_unresolved_edit": 0,
+            "rate": 0
+          }
+        },
+        "confidence_calibration": {
+          "status": "n/a",
+          "reason": "no eval_runs tagged permission_policy:v1 carry confidence on a decided episode"
+        },
+        "repeat_consistency": {
+          "status": "n/a",
+          "reason": "no same-artifact re-judgment of permission_policy:v1 exists (every stored judgment is unique, or every repeat followed an edit) and no replayable shadow-spec results exist — same-input consistency is unobserved"
+        },
+        "correction_category_coverage": {
+          "status": "ok",
+          "value": {
+            "semantic_labels": [
+              {
+                "label": "reduced_pressure",
+                "deltas": 1,
+                "unexplained": 1,
+                "seeded_candidates": 1,
+                "covered": true
+              },
+              {
+                "label": "increased_pressure",
+                "deltas": 0,
+                "unexplained": 0,
+                "seeded_candidates": 0,
+                "covered": false
+              },
+              {
+                "label": "kept_champion_involved",
+                "deltas": 0,
+                "unexplained": 0,
+                "seeded_candidates": 0,
+                "covered": false
+              },
+              {
+                "label": "removed_unnecessary_stakeholders",
+                "deltas": 0,
+                "unexplained": 0,
+                "seeded_candidates": 0,
+                "covered": false
+              },
+              {
+                "label": "added_missing_stakeholder",
+                "deltas": 1,
+                "unexplained": 0,
+                "seeded_candidates": 0,
+                "covered": true
+              },
+              {
+                "label": "delayed_cta",
+                "deltas": 0,
+                "unexplained": 0,
+                "seeded_candidates": 0,
+                "covered": false
+              },
+              {
+                "label": "removed_cta",
+                "deltas": 0,
+                "unexplained": 0,
+                "seeded_candidates": 0,
+                "covered": false
+              },
+              {
+                "label": "smaller_ask",
+                "deltas": 0,
+                "unexplained": 0,
+                "seeded_candidates": 0,
+                "covered": false
+              },
+              {
+                "label": "larger_ask",
+                "deltas": 0,
+                "unexplained": 0,
+                "seeded_candidates": 0,
+                "covered": false
+              },
+              {
+                "label": "changed_channel",
+                "deltas": 0,
+                "unexplained": 0,
+                "seeded_candidates": 0,
+                "covered": false
+              },
+              {
+                "label": "corrected_fact",
+                "deltas": 3,
+                "unexplained": 2,
+                "seeded_candidates": 2,
+                "covered": true
+              },
+              {
+                "label": "deferred_to_buyer_timing",
+                "deltas": 0,
+                "unexplained": 0,
+                "seeded_candidates": 0,
+                "covered": false
+              },
+              {
+                "label": "style_only",
+                "deltas": 1,
+                "unexplained": 1,
+                "seeded_candidates": 1,
+                "covered": true
+              }
+            ],
+            "unobserved_labels": [
+              "increased_pressure",
+              "kept_champion_involved",
+              "removed_unnecessary_stakeholders",
+              "delayed_cta",
+              "removed_cta",
+              "smaller_ask",
+              "larger_ask",
+              "changed_channel",
+              "deferred_to_buyer_timing"
+            ],
+            "suggested_eval_types": [
+              {
+                "axis": "evidence_sufficiency",
+                "deltas": 2,
+                "versions_seeded": 2
+              },
+              {
+                "axis": "next_action_quality",
+                "deltas": 1,
+                "versions_seeded": 1
+              }
+            ],
+            "this_version": {
+              "axis_deltas": 0,
+              "seeded_by_this_version": false
+            },
+            "basis": "footprint of the human_deltas.semantic_labels vocabulary and suggested_eval_type axes in the stored deltas: a label is covered when an existing eval explained it or a candidate version was seeded from it",
+            "limits": [
+              "unobserved_labels means unobserved in the stored deltas, not impossible",
+              "edit capture sees recipients and the artifact only: timing, CTA and CRM-only edits produce no delta and are invisible here",
+              "semantic labels come from the worker labeler; fallback deltas are unlabeled and count as no label",
+              "a send the human never edited writes no delta, so unedited approvals contribute no coverage"
+            ]
+          }
+        },
+        "edits_explained_by_evals": {
+          "status": "ok",
+          "value": {
+            "n_deltas": 4,
+            "n_explained": 1,
+            "rate": 0.25,
+            "n_explained_by_version": 0,
+            "n_explained_by_axis": 0,
+            "n_axis_attributed": 0
+          }
+        },
+        "new_criterion_discovery": {
+          "status": "ok",
+          "value": {
+            "n_episodes": 10,
+            "n_unexplained_deltas": 3,
+            "n_candidates_seeded": 3,
+            "unexplained_yield": 1,
+            "candidates_per_episode": 0.3,
+            "this_version_seeded": false
+          }
+        },
+        "repeat_semantic_correction": {
+          "status": "n/a",
+          "reason": "permission_policy:v1 has no promotion timestamp (status observed) — promoted_at marks activation"
+        },
+        "human_vs_inference_agreement": {
+          "status": "ok",
+          "value": {
+            "n_inferences": 3,
+            "n_answered": 2,
+            "n_confirmed": 1,
+            "n_corrected": 1,
+            "n_pending": 1,
+            "n_no_learning": 0,
+            "confirm_rate": 0.5,
+            "n_verdict_rows": 3,
+            "n_revised": 1,
+            "by_agent_agreement": {
+              "agreed": {
+                "n": 1,
+                "n_answered": 1,
+                "n_confirmed": 1,
+                "confirm_rate": 1
+              },
+              "overrode": {
+                "n": 2,
+                "n_answered": 1,
+                "n_confirmed": 0,
+                "confirm_rate": 0
+              }
+            },
+            "this_version_episodes": {
+              "n": 3,
+              "n_answered": 2,
+              "n_confirmed": 1,
+              "confirm_rate": 0.5
+            },
+            "basis": "judgment_inferences are Ghost's inference of why the human chose what they chose; the human's confirmed/corrected answer (latest row of the append-only judgment_verdicts history, else the inference column) is the direct human grade of that inference. this_version_episodes slices the inferences on episodes the reported version judged. no_learning is the human opting out of learning, not a grade of the inference: it is counted in n_no_learning and leaves the confirm_rate denominator, so an inference first confirmed and later opted out stops counting as a confirmation (its history rows stay in n_verdict_rows)"
+          }
+        }
+      }
+    },
+    "pricing_integrity:v1": {
+      "evaluator": "pricing_integrity",
+      "version": 1,
+      "tag": "pricing_integrity:v1",
+      "registered": false,
+      "status": "observed",
+      "axis_attribution": {
+        "axis": "pricing_integrity",
+        "attributable": false,
+        "change_kinds": null,
+        "suggested_deltas": 0,
+        "n_edited_episodes": 4,
+        "n_attributed_edits": 0,
+        "attribution_share": 0,
+        "basis": "an edit is attributed to an axis by candidate_criterion.suggested_eval_type or the literal-change-kind map; an axis neither reaches is unattributable (false_pass cannot be measured)"
+      },
+      "tracked_gaps": [
+        {
+          "id": "E19.7",
+          "name": "repeated-judge variance",
+          "status": "open",
+          "reason": "identical inputs reuse the stored eval_runs id, so no pair of independent judgments exists to compare; measuring it needs a sampled re-judge pass with a live model, which this read-only report never runs",
+          "interim": "repeat_consistency.spec_replay (deterministic re-derivation of executable shadow_specs) and same-artifact re-judgments on unchanged approvals"
+        }
+      ],
+      "metrics": {
+        "human_agreement": {
+          "status": "ok",
+          "value": {
+            "n_episodes": 9,
+            "categories": {
+              "pass_other_axis": 4,
+              "true_pass": 5
+            },
+            "consistent": 5,
+            "contradicted": 0,
+            "unscored": 4,
+            "abstained": 0,
+            "warned": 0,
+            "rate": 1,
+            "abstain_rate": 0,
+            "worst_case_rate": 1,
+            "accept_unchanged": 5,
+            "accept_unchanged_rate": 0.5555555555555556
+          }
+        },
+        "false_pass_rate": {
+          "status": "n/a",
+          "reason": "unattributable: no literal-change kind and no suggested_eval_type in the corpus attributes an edit to pricing_integrity, so pricing_integrity:v1 can never show a false pass"
+        },
+        "false_block_rate": {
+          "status": "ok",
+          "value": {
+            "n_unchanged_approvals": 5,
+            "n_fail_verdicts": 0,
+            "false_block": 0,
+            "fail_unresolved_edit": 0,
+            "rate": 0
+          }
+        },
+        "confidence_calibration": {
+          "status": "n/a",
+          "reason": "no eval_runs tagged pricing_integrity:v1 carry confidence on a decided episode"
+        },
+        "repeat_consistency": {
+          "status": "n/a",
+          "reason": "no same-artifact re-judgment of pricing_integrity:v1 exists (every stored judgment is unique, or every repeat followed an edit) and no replayable shadow-spec results exist — same-input consistency is unobserved"
+        },
+        "correction_category_coverage": {
+          "status": "ok",
+          "value": {
+            "semantic_labels": [
+              {
+                "label": "reduced_pressure",
+                "deltas": 1,
+                "unexplained": 1,
+                "seeded_candidates": 1,
+                "covered": true
+              },
+              {
+                "label": "increased_pressure",
+                "deltas": 0,
+                "unexplained": 0,
+                "seeded_candidates": 0,
+                "covered": false
+              },
+              {
+                "label": "kept_champion_involved",
+                "deltas": 0,
+                "unexplained": 0,
+                "seeded_candidates": 0,
+                "covered": false
+              },
+              {
+                "label": "removed_unnecessary_stakeholders",
+                "deltas": 0,
+                "unexplained": 0,
+                "seeded_candidates": 0,
+                "covered": false
+              },
+              {
+                "label": "added_missing_stakeholder",
+                "deltas": 1,
+                "unexplained": 0,
+                "seeded_candidates": 0,
+                "covered": true
+              },
+              {
+                "label": "delayed_cta",
+                "deltas": 0,
+                "unexplained": 0,
+                "seeded_candidates": 0,
+                "covered": false
+              },
+              {
+                "label": "removed_cta",
+                "deltas": 0,
+                "unexplained": 0,
+                "seeded_candidates": 0,
+                "covered": false
+              },
+              {
+                "label": "smaller_ask",
+                "deltas": 0,
+                "unexplained": 0,
+                "seeded_candidates": 0,
+                "covered": false
+              },
+              {
+                "label": "larger_ask",
+                "deltas": 0,
+                "unexplained": 0,
+                "seeded_candidates": 0,
+                "covered": false
+              },
+              {
+                "label": "changed_channel",
+                "deltas": 0,
+                "unexplained": 0,
+                "seeded_candidates": 0,
+                "covered": false
+              },
+              {
+                "label": "corrected_fact",
+                "deltas": 3,
+                "unexplained": 2,
+                "seeded_candidates": 2,
+                "covered": true
+              },
+              {
+                "label": "deferred_to_buyer_timing",
+                "deltas": 0,
+                "unexplained": 0,
+                "seeded_candidates": 0,
+                "covered": false
+              },
+              {
+                "label": "style_only",
+                "deltas": 1,
+                "unexplained": 1,
+                "seeded_candidates": 1,
+                "covered": true
+              }
+            ],
+            "unobserved_labels": [
+              "increased_pressure",
+              "kept_champion_involved",
+              "removed_unnecessary_stakeholders",
+              "delayed_cta",
+              "removed_cta",
+              "smaller_ask",
+              "larger_ask",
+              "changed_channel",
+              "deferred_to_buyer_timing"
+            ],
+            "suggested_eval_types": [
+              {
+                "axis": "evidence_sufficiency",
+                "deltas": 2,
+                "versions_seeded": 2
+              },
+              {
+                "axis": "next_action_quality",
+                "deltas": 1,
+                "versions_seeded": 1
+              }
+            ],
+            "this_version": {
+              "axis_deltas": 0,
+              "seeded_by_this_version": false
+            },
+            "basis": "footprint of the human_deltas.semantic_labels vocabulary and suggested_eval_type axes in the stored deltas: a label is covered when an existing eval explained it or a candidate version was seeded from it",
+            "limits": [
+              "unobserved_labels means unobserved in the stored deltas, not impossible",
+              "edit capture sees recipients and the artifact only: timing, CTA and CRM-only edits produce no delta and are invisible here",
+              "semantic labels come from the worker labeler; fallback deltas are unlabeled and count as no label",
+              "a send the human never edited writes no delta, so unedited approvals contribute no coverage"
+            ]
+          }
+        },
+        "edits_explained_by_evals": {
+          "status": "ok",
+          "value": {
+            "n_deltas": 4,
+            "n_explained": 1,
+            "rate": 0.25,
+            "n_explained_by_version": 0,
+            "n_explained_by_axis": 0,
+            "n_axis_attributed": 0
+          }
+        },
+        "new_criterion_discovery": {
+          "status": "ok",
+          "value": {
+            "n_episodes": 10,
+            "n_unexplained_deltas": 3,
+            "n_candidates_seeded": 3,
+            "unexplained_yield": 1,
+            "candidates_per_episode": 0.3,
+            "this_version_seeded": false
+          }
+        },
+        "repeat_semantic_correction": {
+          "status": "n/a",
+          "reason": "pricing_integrity:v1 has no promotion timestamp (status observed) — promoted_at marks activation"
+        },
+        "human_vs_inference_agreement": {
+          "status": "ok",
+          "value": {
+            "n_inferences": 3,
+            "n_answered": 2,
+            "n_confirmed": 1,
+            "n_corrected": 1,
+            "n_pending": 1,
+            "n_no_learning": 0,
+            "confirm_rate": 0.5,
+            "n_verdict_rows": 3,
+            "n_revised": 1,
+            "by_agent_agreement": {
+              "agreed": {
+                "n": 1,
+                "n_answered": 1,
+                "n_confirmed": 1,
+                "confirm_rate": 1
+              },
+              "overrode": {
+                "n": 2,
+                "n_answered": 1,
+                "n_confirmed": 0,
+                "confirm_rate": 0
+              }
+            },
+            "this_version_episodes": {
+              "n": 3,
+              "n_answered": 2,
+              "n_confirmed": 1,
+              "confirm_rate": 0.5
+            },
+            "basis": "judgment_inferences are Ghost's inference of why the human chose what they chose; the human's confirmed/corrected answer (latest row of the append-only judgment_verdicts history, else the inference column) is the direct human grade of that inference. this_version_episodes slices the inferences on episodes the reported version judged. no_learning is the human opting out of learning, not a grade of the inference: it is counted in n_no_learning and leaves the confirm_rate denominator, so an inference first confirmed and later opted out stops counting as a confirmation (its history rows stay in n_verdict_rows)"
+          }
+        }
+      }
+    },
+    "provenance_coverage:v1": {
+      "evaluator": "provenance_coverage",
+      "version": 1,
+      "tag": "provenance_coverage:v1",
+      "registered": false,
+      "status": "observed",
+      "axis_attribution": {
+        "axis": "provenance_coverage",
+        "attributable": true,
+        "change_kinds": [
+          "attachment_added",
+          "attachment_removed"
+        ],
+        "suggested_deltas": 0,
+        "n_edited_episodes": 4,
+        "n_attributed_edits": 3,
+        "attribution_share": 0.75,
+        "basis": "an edit is attributed to an axis by candidate_criterion.suggested_eval_type or the literal-change-kind map; an axis neither reaches is unattributable (false_pass cannot be measured)"
+      },
+      "tracked_gaps": [
+        {
+          "id": "E19.7",
+          "name": "repeated-judge variance",
+          "status": "open",
+          "reason": "identical inputs reuse the stored eval_runs id, so no pair of independent judgments exists to compare; measuring it needs a sampled re-judge pass with a live model, which this read-only report never runs",
+          "interim": "repeat_consistency.spec_replay (deterministic re-derivation of executable shadow_specs) and same-artifact re-judgments on unchanged approvals"
+        }
+      ],
+      "metrics": {
+        "human_agreement": {
+          "status": "ok",
+          "value": {
+            "n_episodes": 9,
+            "categories": {
+              "false_pass": 3,
+              "pass_other_axis": 1,
+              "true_pass": 5
+            },
+            "consistent": 5,
+            "contradicted": 3,
+            "unscored": 1,
+            "abstained": 0,
+            "warned": 0,
+            "rate": 0.625,
+            "abstain_rate": 0,
+            "worst_case_rate": 0.625,
+            "accept_unchanged": 5,
+            "accept_unchanged_rate": 0.5555555555555556
+          }
+        },
+        "false_pass_rate": {
+          "status": "ok",
+          "value": {
+            "n_axis_edits_evaluated": 3,
+            "false_pass": 3,
+            "true_detection": 0,
+            "fail_not_cited": 0,
+            "rate": 1,
+            "basis": "a delta is attributed to an axis by its candidate_criterion.suggested_eval_type or by the literal-change-kind axis map (mirrors the seed-time fallbackCriterion heuristic); a false pass is an attributed edit where no stored judgment of the version ever failed the draft (explanation-cited fails are true detections)"
+          }
+        },
+        "false_block_rate": {
+          "status": "ok",
+          "value": {
+            "n_unchanged_approvals": 5,
+            "n_fail_verdicts": 0,
+            "false_block": 0,
+            "fail_unresolved_edit": 0,
+            "rate": 0
+          }
+        },
+        "confidence_calibration": {
+          "status": "n/a",
+          "reason": "no eval_runs tagged provenance_coverage:v1 carry confidence on a decided episode"
+        },
+        "repeat_consistency": {
+          "status": "n/a",
+          "reason": "no same-artifact re-judgment of provenance_coverage:v1 exists (every stored judgment is unique, or every repeat followed an edit) and no replayable shadow-spec results exist — same-input consistency is unobserved"
+        },
+        "correction_category_coverage": {
+          "status": "ok",
+          "value": {
+            "semantic_labels": [
+              {
+                "label": "reduced_pressure",
+                "deltas": 1,
+                "unexplained": 1,
+                "seeded_candidates": 1,
+                "covered": true
+              },
+              {
+                "label": "increased_pressure",
+                "deltas": 0,
+                "unexplained": 0,
+                "seeded_candidates": 0,
+                "covered": false
+              },
+              {
+                "label": "kept_champion_involved",
+                "deltas": 0,
+                "unexplained": 0,
+                "seeded_candidates": 0,
+                "covered": false
+              },
+              {
+                "label": "removed_unnecessary_stakeholders",
+                "deltas": 0,
+                "unexplained": 0,
+                "seeded_candidates": 0,
+                "covered": false
+              },
+              {
+                "label": "added_missing_stakeholder",
+                "deltas": 1,
+                "unexplained": 0,
+                "seeded_candidates": 0,
+                "covered": true
+              },
+              {
+                "label": "delayed_cta",
+                "deltas": 0,
+                "unexplained": 0,
+                "seeded_candidates": 0,
+                "covered": false
+              },
+              {
+                "label": "removed_cta",
+                "deltas": 0,
+                "unexplained": 0,
+                "seeded_candidates": 0,
+                "covered": false
+              },
+              {
+                "label": "smaller_ask",
+                "deltas": 0,
+                "unexplained": 0,
+                "seeded_candidates": 0,
+                "covered": false
+              },
+              {
+                "label": "larger_ask",
+                "deltas": 0,
+                "unexplained": 0,
+                "seeded_candidates": 0,
+                "covered": false
+              },
+              {
+                "label": "changed_channel",
+                "deltas": 0,
+                "unexplained": 0,
+                "seeded_candidates": 0,
+                "covered": false
+              },
+              {
+                "label": "corrected_fact",
+                "deltas": 3,
+                "unexplained": 2,
+                "seeded_candidates": 2,
+                "covered": true
+              },
+              {
+                "label": "deferred_to_buyer_timing",
+                "deltas": 0,
+                "unexplained": 0,
+                "seeded_candidates": 0,
+                "covered": false
+              },
+              {
+                "label": "style_only",
+                "deltas": 1,
+                "unexplained": 1,
+                "seeded_candidates": 1,
+                "covered": true
+              }
+            ],
+            "unobserved_labels": [
+              "increased_pressure",
+              "kept_champion_involved",
+              "removed_unnecessary_stakeholders",
+              "delayed_cta",
+              "removed_cta",
+              "smaller_ask",
+              "larger_ask",
+              "changed_channel",
+              "deferred_to_buyer_timing"
+            ],
+            "suggested_eval_types": [
+              {
+                "axis": "evidence_sufficiency",
+                "deltas": 2,
+                "versions_seeded": 2
+              },
+              {
+                "axis": "next_action_quality",
+                "deltas": 1,
+                "versions_seeded": 1
+              }
+            ],
+            "this_version": {
+              "axis_deltas": 3,
+              "seeded_by_this_version": false
+            },
+            "basis": "footprint of the human_deltas.semantic_labels vocabulary and suggested_eval_type axes in the stored deltas: a label is covered when an existing eval explained it or a candidate version was seeded from it",
+            "limits": [
+              "unobserved_labels means unobserved in the stored deltas, not impossible",
+              "edit capture sees recipients and the artifact only: timing, CTA and CRM-only edits produce no delta and are invisible here",
+              "semantic labels come from the worker labeler; fallback deltas are unlabeled and count as no label",
+              "a send the human never edited writes no delta, so unedited approvals contribute no coverage"
+            ]
+          }
+        },
+        "edits_explained_by_evals": {
+          "status": "ok",
+          "value": {
+            "n_deltas": 4,
+            "n_explained": 1,
+            "rate": 0.25,
+            "n_explained_by_version": 0,
+            "n_explained_by_axis": 0,
+            "n_axis_attributed": 3
+          }
+        },
+        "new_criterion_discovery": {
+          "status": "ok",
+          "value": {
+            "n_episodes": 10,
+            "n_unexplained_deltas": 3,
+            "n_candidates_seeded": 3,
+            "unexplained_yield": 1,
+            "candidates_per_episode": 0.3,
+            "this_version_seeded": false
+          }
+        },
+        "repeat_semantic_correction": {
+          "status": "n/a",
+          "reason": "provenance_coverage:v1 has no promotion timestamp (status observed) — promoted_at marks activation"
+        },
+        "human_vs_inference_agreement": {
+          "status": "ok",
+          "value": {
+            "n_inferences": 3,
+            "n_answered": 2,
+            "n_confirmed": 1,
+            "n_corrected": 1,
+            "n_pending": 1,
+            "n_no_learning": 0,
+            "confirm_rate": 0.5,
+            "n_verdict_rows": 3,
+            "n_revised": 1,
+            "by_agent_agreement": {
+              "agreed": {
+                "n": 1,
+                "n_answered": 1,
+                "n_confirmed": 1,
+                "confirm_rate": 1
+              },
+              "overrode": {
+                "n": 2,
+                "n_answered": 1,
+                "n_confirmed": 0,
+                "confirm_rate": 0
+              }
+            },
+            "this_version_episodes": {
+              "n": 3,
+              "n_answered": 2,
+              "n_confirmed": 1,
+              "confirm_rate": 0.5
+            },
+            "basis": "judgment_inferences are Ghost's inference of why the human chose what they chose; the human's confirmed/corrected answer (latest row of the append-only judgment_verdicts history, else the inference column) is the direct human grade of that inference. this_version_episodes slices the inferences on episodes the reported version judged. no_learning is the human opting out of learning, not a grade of the inference: it is counted in n_no_learning and leaves the confirm_rate denominator, so an inference first confirmed and later opted out stops counting as a confirmation (its history rows stay in n_verdict_rows)"
+          }
+        }
+      }
+    },
+    "recipient_correctness:v1": {
+      "evaluator": "recipient_correctness",
+      "version": 1,
+      "tag": "recipient_correctness:v1",
+      "registered": false,
+      "status": "observed",
+      "axis_attribution": {
+        "axis": "recipient_correctness",
+        "attributable": true,
+        "change_kinds": [
+          "recipient_added",
+          "recipient_removed",
+          "recipient_role_changed"
+        ],
+        "suggested_deltas": 0,
+        "n_edited_episodes": 4,
+        "n_attributed_edits": 1,
+        "attribution_share": 0.25,
+        "basis": "an edit is attributed to an axis by candidate_criterion.suggested_eval_type or the literal-change-kind map; an axis neither reaches is unattributable (false_pass cannot be measured)"
+      },
+      "tracked_gaps": [
+        {
+          "id": "E19.7",
+          "name": "repeated-judge variance",
+          "status": "open",
+          "reason": "identical inputs reuse the stored eval_runs id, so no pair of independent judgments exists to compare; measuring it needs a sampled re-judge pass with a live model, which this read-only report never runs",
+          "interim": "repeat_consistency.spec_replay (deterministic re-derivation of executable shadow_specs) and same-artifact re-judgments on unchanged approvals"
+        }
+      ],
+      "metrics": {
+        "human_agreement": {
+          "status": "ok",
+          "value": {
+            "n_episodes": 9,
+            "categories": {
+              "false_block": 1,
+              "pass_other_axis": 3,
+              "true_block_repaired": 1,
+              "true_pass": 4
+            },
+            "consistent": 5,
+            "contradicted": 1,
+            "unscored": 3,
+            "abstained": 0,
+            "warned": 0,
+            "rate": 0.8333333333333334,
+            "abstain_rate": 0,
+            "worst_case_rate": 0.8333333333333334,
+            "accept_unchanged": 4,
+            "accept_unchanged_rate": 0.4444444444444444
+          }
+        },
+        "false_pass_rate": {
+          "status": "ok",
+          "value": {
+            "n_axis_edits_evaluated": 1,
+            "false_pass": 0,
+            "true_detection": 1,
+            "fail_not_cited": 0,
+            "rate": 0,
+            "basis": "a delta is attributed to an axis by its candidate_criterion.suggested_eval_type or by the literal-change-kind axis map (mirrors the seed-time fallbackCriterion heuristic); a false pass is an attributed edit where no stored judgment of the version ever failed the draft (explanation-cited fails are true detections)"
+          }
+        },
+        "false_block_rate": {
+          "status": "ok",
+          "value": {
+            "n_unchanged_approvals": 5,
+            "n_fail_verdicts": 2,
+            "false_block": 1,
+            "fail_unresolved_edit": 0,
+            "rate": 0.2,
+            "fail_precision": 0.5
+          }
+        },
+        "confidence_calibration": {
+          "status": "ok",
+          "value": {
+            "n_confidence_rows": 2,
+            "n_scored_rows": 0,
+            "buckets": [
+              {
+                "range": "[0.7,0.9]",
+                "n": 1,
+                "mean_confidence": 0.7,
+                "observed_correct": 0
+              },
+              {
+                "range": "[0.9,1]",
+                "n": 1,
+                "mean_confidence": 0.9,
+                "observed_correct": 1
+              }
+            ],
+            "rejections": {
+              "axis_scoped": 0,
+              "unscoped": 0
+            },
+            "ece": 0.39999999999999997,
+            "basis": "binned eval_runs.confidence vs the human-confirmed correctness of the same verdict on the decided episode's final draft (expected calibration error over populated bins)"
+          }
+        },
+        "repeat_consistency": {
+          "status": "ok",
+          "value": {
+            "n_repeated_groups": 2,
+            "n_skipped_input_changed": 1,
+            "n_agreeing": 1,
+            "rate": 0.5,
+            "basis": "stored eval_runs grouped by (agent_run, draft_index, tag, kind): only APPROVE_UNCHANGED re-judgments score (the artifact is provably identical); spec_replay re-runs executable shadow_specs on the stored draft and compares verdicts"
+          }
+        },
+        "correction_category_coverage": {
+          "status": "ok",
+          "value": {
+            "semantic_labels": [
+              {
+                "label": "reduced_pressure",
+                "deltas": 1,
+                "unexplained": 1,
+                "seeded_candidates": 1,
+                "covered": true
+              },
+              {
+                "label": "increased_pressure",
+                "deltas": 0,
+                "unexplained": 0,
+                "seeded_candidates": 0,
+                "covered": false
+              },
+              {
+                "label": "kept_champion_involved",
+                "deltas": 0,
+                "unexplained": 0,
+                "seeded_candidates": 0,
+                "covered": false
+              },
+              {
+                "label": "removed_unnecessary_stakeholders",
+                "deltas": 0,
+                "unexplained": 0,
+                "seeded_candidates": 0,
+                "covered": false
+              },
+              {
+                "label": "added_missing_stakeholder",
+                "deltas": 1,
+                "unexplained": 0,
+                "seeded_candidates": 0,
+                "covered": true
+              },
+              {
+                "label": "delayed_cta",
+                "deltas": 0,
+                "unexplained": 0,
+                "seeded_candidates": 0,
+                "covered": false
+              },
+              {
+                "label": "removed_cta",
+                "deltas": 0,
+                "unexplained": 0,
+                "seeded_candidates": 0,
+                "covered": false
+              },
+              {
+                "label": "smaller_ask",
+                "deltas": 0,
+                "unexplained": 0,
+                "seeded_candidates": 0,
+                "covered": false
+              },
+              {
+                "label": "larger_ask",
+                "deltas": 0,
+                "unexplained": 0,
+                "seeded_candidates": 0,
+                "covered": false
+              },
+              {
+                "label": "changed_channel",
+                "deltas": 0,
+                "unexplained": 0,
+                "seeded_candidates": 0,
+                "covered": false
+              },
+              {
+                "label": "corrected_fact",
+                "deltas": 3,
+                "unexplained": 2,
+                "seeded_candidates": 2,
+                "covered": true
+              },
+              {
+                "label": "deferred_to_buyer_timing",
+                "deltas": 0,
+                "unexplained": 0,
+                "seeded_candidates": 0,
+                "covered": false
+              },
+              {
+                "label": "style_only",
+                "deltas": 1,
+                "unexplained": 1,
+                "seeded_candidates": 1,
+                "covered": true
+              }
+            ],
+            "unobserved_labels": [
+              "increased_pressure",
+              "kept_champion_involved",
+              "removed_unnecessary_stakeholders",
+              "delayed_cta",
+              "removed_cta",
+              "smaller_ask",
+              "larger_ask",
+              "changed_channel",
+              "deferred_to_buyer_timing"
+            ],
+            "suggested_eval_types": [
+              {
+                "axis": "evidence_sufficiency",
+                "deltas": 2,
+                "versions_seeded": 2
+              },
+              {
+                "axis": "next_action_quality",
+                "deltas": 1,
+                "versions_seeded": 1
+              }
+            ],
+            "this_version": {
+              "axis_deltas": 1,
+              "seeded_by_this_version": false
+            },
+            "basis": "footprint of the human_deltas.semantic_labels vocabulary and suggested_eval_type axes in the stored deltas: a label is covered when an existing eval explained it or a candidate version was seeded from it",
+            "limits": [
+              "unobserved_labels means unobserved in the stored deltas, not impossible",
+              "edit capture sees recipients and the artifact only: timing, CTA and CRM-only edits produce no delta and are invisible here",
+              "semantic labels come from the worker labeler; fallback deltas are unlabeled and count as no label",
+              "a send the human never edited writes no delta, so unedited approvals contribute no coverage"
+            ]
+          }
+        },
+        "edits_explained_by_evals": {
+          "status": "ok",
+          "value": {
+            "n_deltas": 4,
+            "n_explained": 1,
+            "rate": 0.25,
+            "n_explained_by_version": 1,
+            "n_explained_by_axis": 1,
+            "n_axis_attributed": 1
+          }
+        },
+        "new_criterion_discovery": {
+          "status": "ok",
+          "value": {
+            "n_episodes": 10,
+            "n_unexplained_deltas": 3,
+            "n_candidates_seeded": 3,
+            "unexplained_yield": 1,
+            "candidates_per_episode": 0.3,
+            "this_version_seeded": false
+          }
+        },
+        "repeat_semantic_correction": {
+          "status": "n/a",
+          "reason": "recipient_correctness:v1 has no promotion timestamp (status observed) — promoted_at marks activation"
+        },
+        "human_vs_inference_agreement": {
+          "status": "ok",
+          "value": {
+            "n_inferences": 3,
+            "n_answered": 2,
+            "n_confirmed": 1,
+            "n_corrected": 1,
+            "n_pending": 1,
+            "n_no_learning": 0,
+            "confirm_rate": 0.5,
+            "n_verdict_rows": 3,
+            "n_revised": 1,
+            "by_agent_agreement": {
+              "agreed": {
+                "n": 1,
+                "n_answered": 1,
+                "n_confirmed": 1,
+                "confirm_rate": 1
+              },
+              "overrode": {
+                "n": 2,
+                "n_answered": 1,
+                "n_confirmed": 0,
+                "confirm_rate": 0
+              }
+            },
+            "this_version_episodes": {
+              "n": 3,
+              "n_answered": 2,
+              "n_confirmed": 1,
+              "confirm_rate": 0.5
+            },
+            "basis": "judgment_inferences are Ghost's inference of why the human chose what they chose; the human's confirmed/corrected answer (latest row of the append-only judgment_verdicts history, else the inference column) is the direct human grade of that inference. this_version_episodes slices the inferences on episodes the reported version judged. no_learning is the human opting out of learning, not a grade of the inference: it is counted in n_no_learning and leaves the confirm_rate denominator, so an inference first confirmed and later opted out stops counting as a confirmation (its history rows stay in n_verdict_rows)"
+          }
+        }
+      }
+    },
+    "timing_cadence:v7": {
+      "evaluator": "timing_cadence",
+      "version": 7,
+      "tag": "timing_cadence:v7",
+      "registered": true,
+      "status": "active",
+      "kind": "human_delta",
+      "created_from": "manual",
+      "promoted_at": "2026-02-01T00:00:00Z",
+      "spec_error": "learning: invalid shadow spec: json: cannot unmarshal string into Go struct field Spec.literal_changes of type []learning.LiteralChange",
+      "axis_attribution": {
+        "axis": "timing_cadence",
+        "attributable": true,
+        "change_kinds": [
+          "timing_changed"
+        ],
+        "suggested_deltas": 0,
+        "n_edited_episodes": 0,
+        "n_attributed_edits": 0,
+        "basis": "an edit is attributed to an axis by candidate_criterion.suggested_eval_type or the literal-change-kind map; an axis neither reaches is unattributable (false_pass cannot be measured)"
+      },
+      "tracked_gaps": [
+        {
+          "id": "E19.7",
+          "name": "repeated-judge variance",
+          "status": "open",
+          "reason": "identical inputs reuse the stored eval_runs id, so no pair of independent judgments exists to compare; measuring it needs a sampled re-judge pass with a live model, which this read-only report never runs",
+          "interim": "repeat_consistency.spec_replay (deterministic re-derivation of executable shadow_specs) and same-artifact re-judgments on unchanged approvals"
+        }
+      ],
+      "metrics": {
+        "human_agreement": {
+          "status": "n/a",
+          "reason": "no eval_runs tagged timing_cadence:v7 on a decided episode's final draft"
+        },
+        "false_pass_rate": {
+          "status": "n/a",
+          "reason": "no human edit attributed to timing_cadence carries a timing_cadence:v7 verdict"
+        },
+        "false_block_rate": {
+          "status": "n/a",
+          "reason": "timing_cadence:v7 has no pass/fail verdict on an unchanged approval and never failed a decided episode's reviewed draft"
+        },
+        "confidence_calibration": {
+          "status": "n/a",
+          "reason": "no eval_runs tagged timing_cadence:v7 carry confidence on a decided episode"
+        },
+        "repeat_consistency": {
+          "status": "n/a",
+          "reason": "no same-artifact re-judgment of timing_cadence:v7 exists (every stored judgment is unique, or every repeat followed an edit) and no replayable shadow-spec results exist — same-input consistency is unobserved; spec replay is n/a because the version's shadow_spec is malformed (learning: invalid shadow spec: json: cannot unmarshal string into Go struct field Spec.literal_changes of type []learning.LiteralChange)"
+        },
+        "correction_category_coverage": {
+          "status": "ok",
+          "value": {
+            "semantic_labels": [
+              {
+                "label": "reduced_pressure",
+                "deltas": 1,
+                "unexplained": 1,
+                "seeded_candidates": 1,
+                "covered": true
+              },
+              {
+                "label": "increased_pressure",
+                "deltas": 0,
+                "unexplained": 0,
+                "seeded_candidates": 0,
+                "covered": false
+              },
+              {
+                "label": "kept_champion_involved",
+                "deltas": 0,
+                "unexplained": 0,
+                "seeded_candidates": 0,
+                "covered": false
+              },
+              {
+                "label": "removed_unnecessary_stakeholders",
+                "deltas": 0,
+                "unexplained": 0,
+                "seeded_candidates": 0,
+                "covered": false
+              },
+              {
+                "label": "added_missing_stakeholder",
+                "deltas": 1,
+                "unexplained": 0,
+                "seeded_candidates": 0,
+                "covered": true
+              },
+              {
+                "label": "delayed_cta",
+                "deltas": 0,
+                "unexplained": 0,
+                "seeded_candidates": 0,
+                "covered": false
+              },
+              {
+                "label": "removed_cta",
+                "deltas": 0,
+                "unexplained": 0,
+                "seeded_candidates": 0,
+                "covered": false
+              },
+              {
+                "label": "smaller_ask",
+                "deltas": 0,
+                "unexplained": 0,
+                "seeded_candidates": 0,
+                "covered": false
+              },
+              {
+                "label": "larger_ask",
+                "deltas": 0,
+                "unexplained": 0,
+                "seeded_candidates": 0,
+                "covered": false
+              },
+              {
+                "label": "changed_channel",
+                "deltas": 0,
+                "unexplained": 0,
+                "seeded_candidates": 0,
+                "covered": false
+              },
+              {
+                "label": "corrected_fact",
+                "deltas": 3,
+                "unexplained": 2,
+                "seeded_candidates": 2,
+                "covered": true
+              },
+              {
+                "label": "deferred_to_buyer_timing",
+                "deltas": 0,
+                "unexplained": 0,
+                "seeded_candidates": 0,
+                "covered": false
+              },
+              {
+                "label": "style_only",
+                "deltas": 1,
+                "unexplained": 1,
+                "seeded_candidates": 1,
+                "covered": true
+              }
+            ],
+            "unobserved_labels": [
+              "increased_pressure",
+              "kept_champion_involved",
+              "removed_unnecessary_stakeholders",
+              "delayed_cta",
+              "removed_cta",
+              "smaller_ask",
+              "larger_ask",
+              "changed_channel",
+              "deferred_to_buyer_timing"
+            ],
+            "suggested_eval_types": [
+              {
+                "axis": "evidence_sufficiency",
+                "deltas": 2,
+                "versions_seeded": 2
+              },
+              {
+                "axis": "next_action_quality",
+                "deltas": 1,
+                "versions_seeded": 1
+              }
+            ],
+            "this_version": {
+              "axis_deltas": 0,
+              "seeded_by_this_version": false
+            },
+            "basis": "footprint of the human_deltas.semantic_labels vocabulary and suggested_eval_type axes in the stored deltas: a label is covered when an existing eval explained it or a candidate version was seeded from it",
+            "limits": [
+              "unobserved_labels means unobserved in the stored deltas, not impossible",
+              "edit capture sees recipients and the artifact only: timing, CTA and CRM-only edits produce no delta and are invisible here",
+              "semantic labels come from the worker labeler; fallback deltas are unlabeled and count as no label",
+              "a send the human never edited writes no delta, so unedited approvals contribute no coverage"
+            ]
+          }
+        },
+        "edits_explained_by_evals": {
+          "status": "ok",
+          "value": {
+            "n_deltas": 4,
+            "n_explained": 1,
+            "rate": 0.25,
+            "n_explained_by_version": 0,
+            "n_explained_by_axis": 0,
+            "n_axis_attributed": 0
+          }
+        },
+        "new_criterion_discovery": {
+          "status": "ok",
+          "value": {
+            "n_episodes": 10,
+            "n_unexplained_deltas": 3,
+            "n_candidates_seeded": 3,
+            "unexplained_yield": 1,
+            "candidates_per_episode": 0.3,
+            "this_version_seeded": false
+          }
+        },
+        "repeat_semantic_correction": {
+          "status": "n/a",
+          "reason": "timing_cadence:v7 has a malformed shadow_spec (learning: invalid shadow spec: json: cannot unmarshal string into Go struct field Spec.literal_changes of type []learning.LiteralChange) — its repeat correction cannot be measured"
+        },
+        "human_vs_inference_agreement": {
+          "status": "ok",
+          "value": {
+            "n_inferences": 3,
+            "n_answered": 2,
+            "n_confirmed": 1,
+            "n_corrected": 1,
+            "n_pending": 1,
+            "n_no_learning": 0,
+            "confirm_rate": 0.5,
+            "n_verdict_rows": 3,
+            "n_revised": 1,
+            "by_agent_agreement": {
+              "agreed": {
+                "n": 1,
+                "n_answered": 1,
+                "n_confirmed": 1,
+                "confirm_rate": 1
+              },
+              "overrode": {
+                "n": 2,
+                "n_answered": 1,
+                "n_confirmed": 0,
+                "confirm_rate": 0
+              }
+            },
+            "this_version_episodes": {
+              "n": 0,
+              "n_answered": 0,
+              "n_confirmed": 0
+            },
+            "basis": "judgment_inferences are Ghost's inference of why the human chose what they chose; the human's confirmed/corrected answer (latest row of the append-only judgment_verdicts history, else the inference column) is the direct human grade of that inference. this_version_episodes slices the inferences on episodes the reported version judged. no_learning is the human opting out of learning, not a grade of the inference: it is counted in n_no_learning and leaves the confirm_rate denominator, so an inference first confirmed and later opted out stops counting as a confirmation (its history rows stay in n_verdict_rows)"
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,259 @@
+/* Eval marks (eval design spec 4b-3): one tone per verdict, always beside its word; the strip of verdicts side
+   by side (never a score); tags; Ghost's pick in the Ghost accent, the human's choice in ink; the lead card. */
+.verdict {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-1-5);
+  font-size: var(--text-2xs);
+  font-weight: 600;
+  letter-spacing: var(--tracking-caps);
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+.verdict-icon {
+  flex: none;
+}
+
+.verdict-icon .disc {
+  fill: currentColor;
+  fill-opacity: 0.12;
+}
+
+.v-fail { color: var(--fail); }
+.v-warn { color: var(--warn); }
+.v-abstain { color: var(--unsure); }
+.v-pass { color: var(--pass); }
+.v-not_relevant,
+.v-not_checked { color: var(--nr); }
+
+/* The run page's plain counts ("2 fail · 1 pass") */
+.verdict-counts {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-1) var(--space-4);
+  margin: 0 0 var(--space-2);
+  font-size: var(--text-sm);
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+}
+
+.verdict-counts .count {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-1-5);
+}
+
+/* The segmented strip: fail · warn · pass side by side, zeros muted */
+.verdict-strip {
+  display: inline-flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--space-2);
+}
+
+.strip-segments {
+  display: inline-flex;
+  border: 1px solid var(--line);
+  border-radius: var(--radius-sm);
+  background: var(--surface);
+  overflow: hidden;
+}
+
+.strip-seg {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-1);
+  padding: 3px var(--space-2);
+  font-size: var(--text-xs);
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
+
+.strip-seg + .strip-seg {
+  border-left: 1px solid var(--line);
+}
+
+.strip-seg.v-fail:not(.is-zero) { background: var(--fail-tint); }
+.strip-seg.v-warn:not(.is-zero) { background: var(--warn-tint); }
+.strip-seg.v-abstain:not(.is-zero) { background: var(--unsure-tint); }
+.strip-seg.v-pass:not(.is-zero) { background: var(--pass-tint); }
+
+.strip-seg.is-zero {
+  color: var(--faint);
+  font-weight: 500;
+}
+
+.seg-word {
+  font-weight: 500;
+}
+
+.verdict-strip.compact .strip-seg {
+  padding: 1px var(--space-1-5);
+  font-size: var(--text-2xs);
+}
+
+.verdict-strip.compact .verdict-icon {
+  width: 13px;
+  height: 13px;
+}
+
+.strip-nr {
+  color: var(--muted);
+  font-size: var(--text-xs);
+}
+
+/* Tags and marks */
+.blocks {
+  padding: 1px var(--space-1-5);
+  border-radius: var(--radius-xs);
+  background: var(--fail-solid);
+  color: var(--on-brand);
+  font-size: var(--text-2xs);
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+.evidence-tag {
+  padding: 0 var(--space-1-5);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-xs);
+  background: var(--surface-subtle);
+  color: var(--muted);
+  font-size: var(--text-2xs);
+  font-weight: 500;
+  white-space: nowrap;
+}
+
+.mark {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-1);
+  padding: 1px var(--space-2);
+  border-radius: var(--radius-full);
+  font-size: var(--text-2xs);
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+.mark.ghost-pick {
+  color: var(--brand-text);
+  background: var(--brand-tint);
+  box-shadow: inset 0 0 0 1px var(--brand-line);
+}
+
+.mark.chosen {
+  color: var(--human);
+  background: var(--human-tint);
+  box-shadow: inset 0 0 0 1px var(--line-strong);
+}
+
+.option-marks {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--space-1-5);
+  margin: var(--space-1-5) 0 0;
+}
+
+.option-letter {
+  flex: none;
+  display: inline-grid;
+  place-items: center;
+  width: 20px;
+  height: 20px;
+  border-radius: var(--radius-xs);
+  background: var(--ink);
+  color: var(--surface);
+  font-family: var(--font-mono);
+  font-size: var(--text-2xs);
+  font-weight: 600;
+}
+
+.held {
+  color: var(--warn);
+  font-weight: 600;
+}
+
+/* The lead card: the judgment first */
+.verdict-banner {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr) auto;
+  gap: var(--space-4);
+  align-items: start;
+  margin: 0 0 var(--space-4);
+  padding: var(--space-5) var(--space-6);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-lg);
+  background: var(--surface);
+  box-shadow: var(--shadow-2), inset 3px 0 0 var(--nr-line);
+}
+
+.verdict-banner.v-fail { box-shadow: var(--shadow-2), inset 3px 0 0 var(--fail-solid); background: linear-gradient(90deg, var(--fail-tint), var(--surface) 55%); }
+.verdict-banner.v-warn { box-shadow: var(--shadow-2), inset 3px 0 0 var(--warn-solid); background: linear-gradient(90deg, var(--warn-tint), var(--surface) 55%); }
+.verdict-banner.v-pass { box-shadow: var(--shadow-2), inset 3px 0 0 var(--pass-solid); background: linear-gradient(90deg, var(--pass-tint), var(--surface) 55%); }
+.verdict-banner.v-abstain { box-shadow: var(--shadow-2), inset 3px 0 0 var(--unsure); }
+
+.banner-icon .verdict-icon {
+  width: 26px;
+  height: 26px;
+}
+
+.verdict-banner h2 {
+  margin: 0 0 var(--space-1-5);
+  color: var(--ink);
+  font-size: var(--text-xl);
+  font-weight: 600;
+  line-height: var(--leading-tight);
+  letter-spacing: var(--tracking-tight);
+  text-transform: none;
+}
+
+.banner-detail {
+  max-width: 68ch;
+  margin: 0 0 var(--space-3);
+  color: var(--ink);
+  font-size: var(--text-md);
+  line-height: var(--leading-normal);
+}
+
+.banner-quote {
+  max-width: 68ch;
+  margin: 0 0 var(--space-3);
+  padding: var(--space-1) 0 var(--space-1) var(--space-3);
+  border-left: 2px solid var(--line-strong);
+}
+
+.banner-quote blockquote {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  color: var(--ink-2);
+  font-size: var(--text-md);
+}
+
+.banner-quote figcaption {
+  margin-top: var(--space-1);
+  color: var(--muted);
+  font-size: var(--text-xs);
+}
+
+.banner-context {
+  margin: 0;
+  color: var(--muted);
+  font-size: var(--text-sm);
+}
+
+@media (max-width: 720px) {
+  .verdict-banner {
+    grid-template-columns: auto minmax(0, 1fr);
+    padding: var(--space-4);
+  }
+
+  .banner-side {
+    grid-column: 1 / -1;
+  }
+}

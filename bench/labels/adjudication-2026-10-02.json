@@ -1,0 +1,853 @@
+{
+ "record_id": "adjudication-2026-10-02",
+ "refs": [
+  "HAR-114",
+  "HAR-97"
+ ],
+ "label_kind": "model labels, NOT human labels",
+ "source": "adjudicated: 2 LLM labellers + GPT-5.6 tie-break, 2026-10-02",
+ "labellers": {
+  "A": "Claude Opus, blind",
+  "B": "Claude Sonnet, blind",
+  "gold": "legacy single-author gold (fixtures/evals, 87 cases)",
+  "C": "openai/gpt-5.6-sol-pro, blind tie-breaker on the 38 disputed judgments"
+ },
+ "rule": "Take the fail/non-fail majority of {A, B, gold, C}; on a 2-2 tie C decides. The new verdict and label are C's.",
+ "blocking_policy": "Blocking stays narrow: only the catalog blocking_rule blocks. The labellers' broader blocks are not imported; each corrected judgment's blocking flag was re-derived from the rule.",
+ "human_agreement": "None of this is human agreement. HAR-97 L5 (human agreement) stays blocked until a human labels the gold.",
+ "counts": {
+  "disputed": 38,
+  "overturned_by_rule": 14,
+  "kept_by_exception": 2,
+  "applied": 11,
+  "gold_confirmed": 24,
+  "rejected_by_review": 1,
+  "note": "14 overturned by the rule; 2 kept by exception; 1 rejected after review (false premises); 11 applied"
+ },
+ "pairwise_agreement_329_judgments": {
+  "A-B": {
+   "n": 329,
+   "fail_agree": 0.933,
+   "fail_kappa": 0.864,
+   "verdict4_agree": 0.909,
+   "label_agree": 0.901,
+   "n_label": 191,
+   "block_agree": 0.927
+  },
+  "A-G": {
+   "n": 329,
+   "fail_agree": 0.93,
+   "fail_kappa": 0.859,
+   "verdict4_agree": 0.906,
+   "label_agree": 0.89,
+   "n_label": 191,
+   "block_agree": 0.79
+  },
+  "A-J": {
+   "n": 301,
+   "fail_agree": 0.91,
+   "fail_kappa": 0.816,
+   "verdict4_agree": 0.884,
+   "label_agree": 0.836,
+   "n_label": 177,
+   "block_agree": 0.87
+  },
+  "B-G": {
+   "n": 329,
+   "fail_agree": 0.906,
+   "fail_kappa": 0.808,
+   "verdict4_agree": 0.872,
+   "label_agree": 0.885,
+   "n_label": 191,
+   "block_agree": 0.802
+  },
+  "B-J": {
+   "n": 301,
+   "fail_agree": 0.917,
+   "fail_kappa": 0.825,
+   "verdict4_agree": 0.87,
+   "label_agree": 0.842,
+   "n_label": 177,
+   "block_agree": 0.87
+  },
+  "G-J": {
+   "n": 301,
+   "fail_agree": 0.917,
+   "fail_kappa": 0.828,
+   "verdict4_agree": 0.904,
+   "label_agree": 0.831,
+   "n_label": 177,
+   "block_agree": 0.884
+  }
+ },
+ "applied": [
+  {
+   "case": "acme_cp2_single_threaded_signature_push",
+   "eval_type": "stakeholder_coverage",
+   "votes": {
+    "A_opus": "warn",
+    "B_sonnet": "warn",
+    "gold": "fail",
+    "C_gpt56": "warn"
+   },
+   "majority_fail_vs_nonfail": "nonfail",
+   "gold_before": {
+    "verdict": "fail",
+    "label": "SINGLE_THREADED_RISK",
+    "diagnostics": [
+     "single_threaded",
+     "no_economic_buyer_access"
+    ],
+    "blocking": false,
+    "rationale": "The deal runs through one contact; the economic buyer was never identified and nobody knows who signs for Acme Logistics B.V."
+   },
+   "applied": {
+    "verdict": "warn",
+    "label": "SINGLE_THREADED_RISK",
+    "diagnostics": [
+     "single_threaded"
+    ],
+    "blocking": false,
+    "rationale": "Replying only to Priya is defensible because she explicitly said she would get the form signed, but at the signature stage the signer and approval path remain unknown and the economic buyer is uncovered. No named gating stakeholder is being omitted, so this does not meet the blocking rule.",
+    "c_rationale": "Replying only to Priya is defensible because she explicitly said she would get the form signed, but at the signature stage the signer and approval path remain unknown and the economic buyer is uncovered. No named gating stakeholder is being omitted, so this does not meet the blocking rule."
+   },
+   "should_pass_before": false
+  },
+  {
+   "case": "acme_cp4_claims_cfo_signed_off",
+   "eval_type": "evidence_sufficiency",
+   "votes": {
+    "A_opus": "pass",
+    "B_sonnet": "pass",
+    "gold": "fail",
+    "C_gpt56": "pass"
+   },
+   "majority_fail_vs_nonfail": "nonfail",
+   "gold_before": {
+    "verdict": "fail",
+    "label": "UNKNOWN",
+    "diagnostics": [],
+    "blocking": false,
+    "rationale": "Finance approved a budget line 'as a committee'; no CFO was ever named. The claim has no evidence."
+   },
+   "applied": {
+    "verdict": "pass",
+    "label": "SUFFICIENT",
+    "diagnostics": [],
+    "blocking": false,
+    "rationale": "Direct customer emails confirm the NDA is countersigned and Marco requires the SOC2 Type II report and pen-test summary, providing sufficient evidence to send them to Marco with Priya copied. The specific CFO claim is not established by the cited finance-approval evidence, but that is a grounding issue rather than a lack of context for deciding whether to act.",
+    "c_rationale": "Direct customer emails confirm the NDA is countersigned and Marco requires the SOC2 Type II report and pen-test summary, providing sufficient evidence to send them to Marco with Priya copied. The specific CFO claim is not established by the cited finance-approval evidence, but that is a grounding issue rather than a lack of context for deciding whether to act."
+   },
+   "should_pass_before": false
+  },
+  {
+   "case": "acme_cp4_draft1_champion_bypass",
+   "eval_type": "grounding",
+   "votes": {
+    "A_opus": "fail",
+    "B_sonnet": "fail",
+    "gold": "pass",
+    "C_gpt56": "fail"
+   },
+   "majority_fail_vs_nonfail": "fail",
+   "gold_before": {
+    "verdict": "pass",
+    "label": null,
+    "diagnostics": [],
+    "blocking": false,
+    "rationale": "Attachments match what Marco requested."
+   },
+   "applied": {
+    "verdict": "fail",
+    "label": null,
+    "diagnostics": [],
+    "blocking": false,
+    "rationale": "Sending the requested documents is grounded, but pushing a 60-minute review this Thursday or Friday and recording a meeting this week as the next step conflicts with Marco’s explicit statement that he cannot commit to a review date until his team has read them. The claimed need to keep the rollout “on schedule” is also unsupported by the account evidence.",
+    "c_rationale": "Sending the requested documents is grounded, but pushing a 60-minute review this Thursday or Friday and recording a meeting this week as the next step conflicts with Marco’s explicit statement that he cannot commit to a review date until his team has read them. The claimed need to keep the rollout “on schedule” is also unsupported by the account evidence."
+   },
+   "should_pass_before": false
+  },
+  {
+   "case": "acme_cp4_review_date_ask_too_soon",
+   "eval_type": "grounding",
+   "votes": {
+    "A_opus": "fail",
+    "B_sonnet": "fail",
+    "gold": "pass",
+    "C_gpt56": "fail"
+   },
+   "majority_fail_vs_nonfail": "fail",
+   "gold_before": {
+    "verdict": "pass",
+    "label": null,
+    "diagnostics": [],
+    "blocking": false,
+    "rationale": "The documents sent are exactly the ones Marco asked for."
+   },
+   "applied": {
+    "verdict": "fail",
+    "label": null,
+    "diagnostics": [],
+    "blocking": false,
+    "rationale": "Sending the requested SOC2 and pen-test documents to Marco and copying Priya is grounded. However, the action records a security review with Marco on Oct. 1 despite Marco explicitly saying he cannot commit to a review date until his team has read the package, making the asserted next step unsupported and contradictory.",
+    "c_rationale": "Sending the requested SOC2 and pen-test documents to Marco and copying Priya is grounded. However, the action records a security review with Marco on Oct. 1 despite Marco explicitly saying he cannot commit to a review date until his team has read the package, making the asserted next step unsupported and contradictory."
+   },
+   "blocking_note": "C marked this blocking; not imported. The recorded review date is a proposed next step, not a stated fact, and the catalog grounding rule blocks only a fact the evidence contradicts or lacks. buyer_readiness already carries the block.",
+   "should_pass_before": false
+  },
+  {
+   "case": "acme_order_form_walkthrough_reply_late",
+   "eval_type": "momentum",
+   "votes": {
+    "A_opus": "fail",
+    "B_sonnet": "fail",
+    "gold": "warn",
+    "C_gpt56": "fail"
+   },
+   "majority_fail_vs_nonfail": "fail",
+   "gold_before": {
+    "verdict": "warn",
+    "label": "COOLING",
+    "diagnostics": [
+     "engagement_cooling"
+    ],
+    "blocking": false,
+    "rationale": "Customer-initiated progress was left hanging for a week."
+   },
+   "applied": {
+    "verdict": "fail",
+    "label": "COOLING",
+    "diagnostics": [
+     "engagement_cooling"
+    ],
+    "blocking": false,
+    "rationale": "The account has gone silent for seven days and Priya’s proposed Sep 9 walkthrough date has already passed. Replying “Wednesday works—talk then” treats momentum as active and scheduled rather than acknowledging the missed timing and re-establishing a date.",
+    "c_rationale": "The account has gone silent for seven days and Priya’s proposed Sep 9 walkthrough date has already passed. Replying “Wednesday works—talk then” treats momentum as active and scheduled rather than acknowledging the missed timing and re-establishing a date."
+   },
+   "should_pass_before": false
+  },
+  {
+   "case": "beta_cp4_nonmaterial_fyi_no_action",
+   "eval_type": "next_action_quality",
+   "votes": {
+    "A_opus": "pass",
+    "B_sonnet": "fail",
+    "gold": "pass",
+    "C_gpt56": "fail"
+   },
+   "majority_fail_vs_nonfail": "fail",
+   "gold_before": {
+    "verdict": "pass",
+    "label": "NO_ACTION",
+    "diagnostics": [],
+    "blocking": false,
+    "rationale": "No customer-facing action is warranted by this event."
+   },
+   "applied": {
+    "verdict": "fail",
+    "label": "ACT_NOW",
+    "diagnostics": [],
+    "blocking": true,
+    "rationale": "Although the Slack trigger itself needs no response, Ravi’s September 24 inbound request for data residency documentation and the sub-processor list remains an open seller commitment, and he is waiting for those materials before scheduling the review. NO_ACTION therefore withholds what the customer asked for now.",
+    "c_rationale": "Although the Slack trigger itself needs no response, Ravi’s September 24 inbound request for data residency documentation and the sub-processor list remains an open seller commitment, and he is waiting for those materials before scheduling the review. NO_ACTION therefore withholds what the customer asked for now."
+   },
+   "blocking_note": "Catalog rule met on the adjudicated reading: no_action withholds what the customer asked for now (ACT_NOW).",
+   "should_pass_before": true,
+   "vote_note": "A pass, B fail, G pass, C fail; 2-2 tie broken by C",
+   "contested": true,
+   "contested_reason": "This tie-broken correction reverses the original rule that the open residency commitment belongs to the cp3 run, not to this internal-FYI trigger. Kept per the pre-registered rule; a human should decide."
+  },
+  {
+   "case": "beta_variant_sev1_outage_upsell_pitch",
+   "eval_type": "stakeholder_selection",
+   "votes": {
+    "A_opus": "warn",
+    "B_sonnet": "warn",
+    "gold": "fail",
+    "C_gpt56": "pass"
+   },
+   "majority_fail_vs_nonfail": "nonfail",
+   "gold_before": {
+    "verdict": "fail",
+    "label": null,
+    "diagnostics": [
+     "wrong_stakeholder"
+    ],
+    "blocking": false,
+    "rationale": "Jess, who raised the outage, is not addressed."
+   },
+   "applied": {
+    "verdict": "pass",
+    "label": null,
+    "diagnostics": [],
+    "blocking": false,
+    "rationale": "The email goes only to Hannah, the verified active champion in the buying group, so it neither bypasses her nor sends commercial material to an unverified addressee. The outage and platform-team issues may make the action poorly timed or incomplete, but they do not make the selected recipient wrong.",
+    "c_rationale": "The email goes only to Hannah, the verified active champion in the buying group, so it neither bypasses her nor sends commercial material to an unverified addressee. The outage and platform-team issues may make the action poorly timed or incomplete, but they do not make the selected recipient wrong."
+   },
+   "should_pass_before": false
+  },
+  {
+   "case": "beta_world_nudge_for_platform_intro_a_day_early",
+   "eval_type": "timing_cadence",
+   "votes": {
+    "A_opus": "fail",
+    "B_sonnet": "warn",
+    "gold": "fail",
+    "C_gpt56": "warn"
+   },
+   "majority_fail_vs_nonfail": "nonfail",
+   "gold_before": {
+    "verdict": "fail",
+    "label": "TOO_EARLY",
+    "diagnostics": [],
+    "blocking": false,
+    "rationale": "Hannah's window ('this week') has not closed; the nudge comes a day early."
+   },
+   "applied": {
+    "verdict": "warn",
+    "label": "TOO_EARLY",
+    "diagnostics": [
+     "too_early"
+    ],
+    "blocking": false,
+    "rationale": "Hannah committed on September 8 to identify the platform contact “this week,” with the commitment due September 11 at 22:00Z. Following up on September 10 at 15:00Z presses her before the promised window has closed.",
+    "c_rationale": "Hannah committed on September 8 to identify the platform contact “this week,” with the commitment due September 11 at 22:00Z. Following up on September 10 at 15:00Z presses her before the promised window has closed."
+   },
+   "should_pass_before": false
+  },
+  {
+   "case": "northstar_cp3_review_slots_offered_with_documents",
+   "eval_type": "cta_calibration",
+   "votes": {
+    "A_opus": "pass",
+    "B_sonnet": "pass",
+    "gold": "fail",
+    "C_gpt56": "pass"
+   },
+   "majority_fail_vs_nonfail": "nonfail",
+   "gold_before": {
+    "verdict": "fail",
+    "label": "TOO_STRONG",
+    "diagnostics": [
+     "ask_too_strong"
+    ],
+    "blocking": false,
+    "rationale": "Proposes dates before the reviewer has read anything, although Elena said Sam will want to set the agenda himself.",
+    "debate_note": "The slots are explicitly optional ('no need to decide now'); reviewers who weigh tone over form would pass it."
+   },
+   "applied": {
+    "verdict": "pass",
+    "label": "APPROPRIATE",
+    "diagnostics": [],
+    "blocking": false,
+    "rationale": "Sam is a new stakeholder who now owns the security evaluation and was expected to set the agenda himself. Sending the relevant documents and offering an optional review after he reads them is appropriately low-pressure and aligned to the next milestone.",
+    "c_rationale": "Sam is a new stakeholder who now owns the security evaluation and was expected to set the agenda himself. Sending the relevant documents and offering an optional review after he reads them is appropriately low-pressure and aligned to the next milestone."
+   },
+   "should_pass_before": false
+  },
+  {
+   "case": "northstar_cp4_email_asks_which_day_instead_of_invite",
+   "eval_type": "next_step_quality",
+   "votes": {
+    "A_opus": "fail",
+    "B_sonnet": "warn",
+    "gold": "warn",
+    "C_gpt56": "fail"
+   },
+   "majority_fail_vs_nonfail": "fail",
+   "gold_before": {
+    "verdict": "warn",
+    "label": null,
+    "diagnostics": [
+     "next_step_missing_owner_or_date"
+    ],
+    "blocking": false,
+    "rationale": "Adds a round trip; date still unset."
+   },
+   "applied": {
+    "verdict": "fail",
+    "label": null,
+    "diagnostics": [],
+    "blocking": false,
+    "rationale": "Sam explicitly said either offered slot works and asked Dana to send whichever invite suits her, so asking him to choose invents an unnecessary buyer commitment and does not fulfill the open invite commitment. It does state a next step—Sam confirming the day—so the narrow blocking rule is not met.",
+    "c_rationale": "Sam explicitly said either offered slot works and asked Dana to send whichever invite suits her, so asking him to choose invents an unnecessary buyer commitment and does not fulfill the open invite commitment. It does state a next step—Sam confirming the day—so the narrow blocking rule is not met."
+   },
+   "should_pass_before": false
+  },
+  {
+   "case": "northstar_cp4_k17_misapplied_cc_elena",
+   "eval_type": "stakeholder_coverage",
+   "votes": {
+    "A_opus": "warn",
+    "B_sonnet": "pass",
+    "gold": "fail",
+    "C_gpt56": "warn"
+   },
+   "majority_fail_vs_nonfail": "nonfail",
+   "gold_before": {
+    "verdict": "fail",
+    "label": "OVER_THREADED",
+    "diagnostics": [
+     "wrong_stakeholder"
+    ],
+    "blocking": false,
+    "rationale": "Elena asked to step back from the day-to-day and is not part of the review Sam asked for; one extra cc is revisable, unlike pulling the CFO in (northstar_cp4_review_invite_whole_buying_group)."
+   },
+   "applied": {
+    "verdict": "warn",
+    "label": "OVER_THREADED_TOO_EARLY",
+    "diagnostics": [
+     "over_threaded_too_early"
+    ],
+    "blocking": false,
+    "rationale": "Sam requested a working-level security review with Dana and Leo, while Elena explicitly delegated day-to-day ownership and only joins for final sign-off. Copying Elena is broader than needed at this step, but she is a relevant champion rather than an unrelated stakeholder, so it does not meet the blocking rule.",
+    "c_rationale": "Sam requested a working-level security review with Dana and Leo, while Elena explicitly delegated day-to-day ownership and only joins for final sign-off. Copying Elena is broader than needed at this step, but she is a relevant champion rather than an unrelated stakeholder, so it does not meet the blocking rule."
+   },
+   "should_pass_before": false
+  }
+ ],
+ "kept_by_exception": [
+  {
+   "case": "acme_cp4_k17_offered_but_ignored",
+   "eval_type": "knowledge_applicability",
+   "votes": {
+    "A_opus": "fail",
+    "B_sonnet": "warn",
+    "gold": "fail",
+    "C_gpt56": "pass"
+   },
+   "majority_fail_vs_nonfail": "nonfail",
+   "gold_before": {
+    "verdict": "fail",
+    "label": "APPLIES",
+    "blocking": false
+   },
+   "reason": "C answered 'does K17 apply?' rather than 'did the action handle it correctly'; the gold is kept (lead decision, 2026-10-02)."
+  },
+  {
+   "case": "beta_cp3_ravi_only_thread",
+   "eval_type": "knowledge_applicability",
+   "votes": {
+    "A_opus": "fail",
+    "B_sonnet": "warn",
+    "gold": "fail",
+    "C_gpt56": "pass"
+   },
+   "majority_fail_vs_nonfail": "nonfail",
+   "gold_before": {
+    "verdict": "fail",
+    "label": "APPLIES",
+    "blocking": false
+   },
+   "reason": "C answered 'does K17 apply?' rather than 'did the action handle it correctly'; the gold is kept (lead decision, 2026-10-02)."
+  }
+ ],
+ "gold_confirmed": [
+  {
+   "case": "acme_cp2_single_threaded_signature_push",
+   "eval_type": "decision_process",
+   "votes": {
+    "A_opus": "warn",
+    "B_sonnet": "warn",
+    "gold": "fail",
+    "C_gpt56": "fail"
+   },
+   "majority_fail_vs_nonfail": "fail"
+  },
+  {
+   "case": "acme_cp2_single_threaded_signature_push",
+   "eval_type": "economic_buyer_coverage",
+   "votes": {
+    "A_opus": "fail",
+    "B_sonnet": "warn",
+    "gold": "warn",
+    "C_gpt56": "warn"
+   },
+   "majority_fail_vs_nonfail": "nonfail"
+  },
+  {
+   "case": "acme_cp4_draft1_champion_bypass",
+   "eval_type": "buyer_readiness",
+   "votes": {
+    "A_opus": "fail",
+    "B_sonnet": "warn",
+    "gold": "fail",
+    "C_gpt56": "fail"
+   },
+   "majority_fail_vs_nonfail": "fail"
+  },
+  {
+   "case": "acme_cp4_k17_offered_but_ignored",
+   "eval_type": "champion_continuity",
+   "votes": {
+    "A_opus": "fail",
+    "B_sonnet": "warn",
+    "gold": "fail",
+    "C_gpt56": "fail"
+   },
+   "majority_fail_vs_nonfail": "fail"
+  },
+  {
+   "case": "acme_cp4_k21_budget_already_approved_trap",
+   "eval_type": "economic_buyer_coverage",
+   "votes": {
+    "A_opus": "fail",
+    "B_sonnet": "fail",
+    "gold": "warn",
+    "C_gpt56": "warn"
+   },
+   "majority_fail_vs_nonfail": "nonfail"
+  },
+  {
+   "case": "acme_cp4_review_date_ask_too_soon",
+   "eval_type": "buyer_readiness",
+   "votes": {
+    "A_opus": "fail",
+    "B_sonnet": "warn",
+    "gold": "fail",
+    "C_gpt56": "fail"
+   },
+   "majority_fail_vs_nonfail": "fail"
+  },
+  {
+   "case": "acme_variant_new_business_k17_cited",
+   "eval_type": "knowledge_applicability",
+   "votes": {
+    "A_opus": "warn",
+    "B_sonnet": "warn",
+    "gold": "fail",
+    "C_gpt56": "fail"
+   },
+   "majority_fail_vs_nonfail": "fail"
+  },
+  {
+   "case": "acme_variant_renewal_open_tickets_seat_upsell",
+   "eval_type": "stakeholder_selection",
+   "votes": {
+    "A_opus": "fail",
+    "B_sonnet": "warn",
+    "gold": "fail",
+    "C_gpt56": "fail"
+   },
+   "majority_fail_vs_nonfail": "fail"
+  },
+  {
+   "case": "beta_cp3_review_invite_too_soon",
+   "eval_type": "buyer_readiness",
+   "votes": {
+    "A_opus": "fail",
+    "B_sonnet": "warn",
+    "gold": "fail",
+    "C_gpt56": "fail"
+   },
+   "majority_fail_vs_nonfail": "fail"
+  },
+  {
+   "case": "beta_cp3_review_invite_too_soon",
+   "eval_type": "next_action_quality",
+   "votes": {
+    "A_opus": "fail",
+    "B_sonnet": "warn",
+    "gold": "fail",
+    "C_gpt56": "fail"
+   },
+   "majority_fail_vs_nonfail": "fail"
+  },
+  {
+   "case": "beta_enrichment_headcount_congrats_email",
+   "eval_type": "grounding",
+   "votes": {
+    "A_opus": "fail",
+    "B_sonnet": "warn",
+    "gold": "fail",
+    "C_gpt56": "fail"
+   },
+   "majority_fail_vs_nonfail": "fail"
+  },
+  {
+   "case": "beta_owen_approval_congrats_two_weeks_late",
+   "eval_type": "timing_cadence",
+   "votes": {
+    "A_opus": "warn",
+    "B_sonnet": "fail",
+    "gold": "fail",
+    "C_gpt56": "fail"
+   },
+   "majority_fail_vs_nonfail": "fail"
+  },
+  {
+   "case": "beta_world_nudge_for_platform_intro_a_day_early",
+   "eval_type": "commitment_consistency",
+   "votes": {
+    "A_opus": "fail",
+    "B_sonnet": "warn",
+    "gold": "pass",
+    "C_gpt56": "pass"
+   },
+   "majority_fail_vs_nonfail": "nonfail"
+  },
+  {
+   "case": "beta_world_nudge_for_platform_intro_a_day_early",
+   "eval_type": "next_action_quality",
+   "votes": {
+    "A_opus": "fail",
+    "B_sonnet": "warn",
+    "gold": "fail",
+    "C_gpt56": "fail"
+   },
+   "majority_fail_vs_nonfail": "fail"
+  },
+  {
+   "case": "northstar_cp1_direct_to_grace",
+   "eval_type": "economic_buyer_coverage",
+   "votes": {
+    "A_opus": "fail",
+    "B_sonnet": "fail",
+    "gold": "warn",
+    "C_gpt56": "warn"
+   },
+   "majority_fail_vs_nonfail": "nonfail"
+  },
+  {
+   "case": "northstar_cp2_security_team_never_engaged",
+   "eval_type": "stakeholder_coverage",
+   "votes": {
+    "A_opus": "warn",
+    "B_sonnet": "warn",
+    "gold": "fail",
+    "C_gpt56": "fail"
+   },
+   "majority_fail_vs_nonfail": "fail"
+  },
+  {
+   "case": "northstar_cp3_handoff_drops_final_signoff",
+   "eval_type": "champion_continuity",
+   "votes": {
+    "A_opus": "fail",
+    "B_sonnet": "warn",
+    "gold": "pass",
+    "C_gpt56": "pass"
+   },
+   "majority_fail_vs_nonfail": "nonfail"
+  },
+  {
+   "case": "northstar_cp4_email_asks_which_day_instead_of_invite",
+   "eval_type": "channel_appropriateness",
+   "votes": {
+    "A_opus": "warn",
+    "B_sonnet": "warn",
+    "gold": "fail",
+    "C_gpt56": "fail"
+   },
+   "majority_fail_vs_nonfail": "fail"
+  },
+  {
+   "case": "northstar_cp4_go_live_before_security_signoff",
+   "eval_type": "customer_risk_sensitivity",
+   "votes": {
+    "A_opus": "fail",
+    "B_sonnet": "warn",
+    "gold": "fail",
+    "C_gpt56": "fail"
+   },
+   "majority_fail_vs_nonfail": "fail"
+  },
+  {
+   "case": "northstar_cp4_go_live_before_security_signoff",
+   "eval_type": "timing_cadence",
+   "votes": {
+    "A_opus": "fail",
+    "B_sonnet": "fail",
+    "gold": "pass",
+    "C_gpt56": "pass"
+   },
+   "majority_fail_vs_nonfail": "nonfail"
+  },
+  {
+   "case": "northstar_cp4_k17_misapplied_cc_elena",
+   "eval_type": "exception_awareness",
+   "votes": {
+    "A_opus": "fail",
+    "B_sonnet": "warn",
+    "gold": "fail",
+    "C_gpt56": "fail"
+   },
+   "majority_fail_vs_nonfail": "fail"
+  },
+  {
+   "case": "northstar_cp4_k17_misapplied_cc_elena",
+   "eval_type": "knowledge_applicability",
+   "votes": {
+    "A_opus": "fail",
+    "B_sonnet": "warn",
+    "gold": "fail",
+    "C_gpt56": "fail"
+   },
+   "majority_fail_vs_nonfail": "fail"
+  },
+  {
+   "case": "northstar_sam_invite_after_slots_passed",
+   "eval_type": "momentum",
+   "votes": {
+    "A_opus": "fail",
+    "B_sonnet": "fail",
+    "gold": "warn",
+    "C_gpt56": "warn"
+   },
+   "majority_fail_vs_nonfail": "nonfail"
+  },
+  {
+   "case": "northstar_variant_new_business_inflated_roi",
+   "eval_type": "champion_continuity",
+   "votes": {
+    "A_opus": "fail",
+    "B_sonnet": "warn",
+    "gold": "pass",
+    "C_gpt56": "pass"
+   },
+   "majority_fail_vs_nonfail": "nonfail"
+  }
+ ],
+ "rejected_by_review": [
+  {
+   "case": "beta_cp3_residency_docs_light_ask",
+   "eval_type": "grounding",
+   "votes": {
+    "A_opus": "fail",
+    "B_sonnet": "warn",
+    "gold": "pass",
+    "C_gpt56": "fail"
+   },
+   "gold_before": {
+    "verdict": "pass",
+    "label": null,
+    "blocking": false
+   },
+   "reason": "Both fail votes rest on false premises: C says the email 'invents Leo', but Leo Park is the vendor SE (fixtures/gold/beta/cp3.json) and was only missing from this case's context (now added); A's reason (the Frankfurt claim) is contradicted by the case's own evidence (world event 034). The gold (pass) is kept.",
+   "c_rationale_dropped": true
+  }
+ ],
+ "case_edits": {
+  "northstar_cp3_review_slots_offered_with_documents": [
+   {
+    "path": "title",
+    "before": "Northstar cp3: documents to Sam plus two optional review slots before he has read them - almost the right draft",
+    "after": "Northstar cp3: documents to Sam plus two optional review slots before he has read them - near-boundary, adjudicated acceptable"
+   },
+   {
+    "path": "notes",
+    "before": "Near-boundary CTA: one sentence away from the should-pass northstar_cp3_work_directly_with_sam.",
+    "after": "Near-boundary CTA, one sentence away from northstar_cp3_work_directly_with_sam. Gold v2: originally a flawed too-soon ask; the adjudication (2 LLM labellers + GPT-5.6) judged the optional slots appropriate, so it is now a should-pass near-boundary control."
+   },
+   {
+    "path": "expected_best_action.why",
+    "before": "The same email without the slots; let Sam set the review timing.",
+    "after": "This email: documents first, optional slots clearly marked as not needing a decision."
+   },
+   {
+    "path": "judgment:cta_calibration.debate_note",
+    "before": "The slots are explicitly optional ('no need to decide now'); reviewers who weigh tone over form would pass it.",
+    "after": "The slots are explicitly optional ('no need to decide now'); a strict reviewer fails it as too strong because Sam wanted to set the agenda himself. Adjudicated 2026-10-02: passes."
+   }
+  ]
+ },
+ "context_edits": [
+  {
+   "case": "beta_cp3_residency_docs_light_ask",
+   "path": "context.timeline_facts.notes",
+   "before": null,
+   "after": "Vendor SE for reviews and technical sessions: Leo Park (vendor.example).",
+   "why": "Leo Park is the vendor SE (gold cp3); the case context did not name him, which is what made the draft look like it invented him."
+  }
+ ],
+ "base_ref": "7ad8e24",
+ "base_canonical_sha256": {
+  "acme_budget_approved_signature_push_too_soon": "a099771024b3eb44118c3d4a531706a031d86665e66c06e7bca74ce2b601dd5d",
+  "acme_cp1_follow_up_thirty_minutes_after_proposal": "ef8be155bc06c4ab4c94182c6ecd3841c99a11294a4533df278f6f34c241bad4",
+  "acme_cp2_crm_note_respects_explicit_stage": "205081252e1aadb81d6a22bb0a48a31e0c5406c14111f0153b8e68cbf15b9324",
+  "acme_cp2_crm_writeback_negotiation": "be3bf807aaa282d80033bbf1497063a324282d9a5ffc060154df5faa3f78cfc0",
+  "acme_cp2_single_threaded_signature_push": "a74addac0569aa3ec3f409ede9ade6e0a2206a216a3b7f5f91977f8488eb9012",
+  "acme_cp3_rep_already_replied_wait": "d16b01d38fc66a50d8f0e7e2b24ebefac1cc5d9067d0cedcccaf9cab55a444a5",
+  "acme_cp3_repeat_oct1_review_ask_same_day": "60bea12df4705af319fc4c4c6fe98416216a97b85831d8d08665a21c296374d5",
+  "acme_cp3_soc2_link_posted_to_slack": "b2503663e829f0749576f71f0b2dc1717b1a70bc816fb2ddb4e582fea44d9cad",
+  "acme_cp4_claims_cfo_signed_off": "46efb7b2e032c3dc4a70593e8b5a9bf2da80348c59c366f635d8d3ec4ce7a54f",
+  "acme_cp4_crm_note_instead_of_reply": "dbadc597a1854a34c8cdead6fb34ce626baf0a02b009c592c5a47608cef5e4c3",
+  "acme_cp4_docs_not_duplicate_of_0926_email": "c4b06b6eb8f7fc138c98753156b0bcdb49e530377224f7d41933fbe38a17bc4f",
+  "acme_cp4_draft1_champion_bypass": "2c334e7e5558434c66a92c86384d835b49518fd0a2c41395f1b7cff68c415600",
+  "acme_cp4_exec_and_user_added_to_security_thread": "5d07c501a42705fdf46c28caad55dc583eadf8a3284ee7ad464f8046e7c6692e",
+  "acme_cp4_k17_applied_draft2": "7972d81e1c8ff10395eb089461cb58e55466d0d42ba772aa94d9c1aab49cdc60",
+  "acme_cp4_k17_offered_but_ignored": "4b5d0394c6adc22b113b414bbf9820429b0e0168a592089344b55ee654b91349",
+  "acme_cp4_k21_budget_already_approved_trap": "9b4f8c302b5753f92960cf2d7ac4a7a3a5dbbe6e271f3618fd7bd58f27c57f51",
+  "acme_cp4_review_date_ask_too_soon": "eed8e5787fe82b5b89595c6287002ff7e6079a71893c36d2ee4ea6eb3ac0f847",
+  "acme_cp4_sign_now_security_in_parallel": "b319cc552452bd8465460f2b5aee30adfb3c659e680175a8475d5dfd23d9fcf0",
+  "acme_cp4_treats_oct1_review_as_booked": "f0d373d2d414590069974358dacc6f54efbd608900a2015bcdc351a3147468c1",
+  "acme_order_form_walkthrough_reply_late": "a4c83e26d948290823fa467fb17cca75fe4ad6530644e7ca4f12db907d2a95c7",
+  "acme_resends_fulfilled_order_form_promise": "0e541c732705d673943d775d1862dd699f73c011e701b23c3756709e221ba2da",
+  "acme_silence_k05_light_checkin": "64a111b11d0af93d01f07a877032d7d83d248d9fd58542d9d43f7c4ab69a599b",
+  "acme_variant_ambiguous_pause_discount_offer": "a080ca92e0cdd90f70e2f1a919065c633c7f69127498bedfe925aa9fb1cd8b64",
+  "acme_variant_docs_already_sent_by_se": "769e82edb95000aa11e0ef391013dc2f5866fb209766d2bf8a92e24d8bd48d75",
+  "acme_variant_new_business_k17_cited": "348909a1d260c18a8d969ba79fbe8404927e2683c74a457240ffd9cdb8875be4",
+  "acme_variant_priya_departed_direct_to_marco": "244b23d29f910eac7e6b013c4c417892f466ab12a48a3c6cf8a38916c5a96fe8",
+  "acme_variant_priya_departed_k17_trap": "13f7efbdfc53682537486f5fd7746573100743d4b6bd6386ea41d60fa8918802",
+  "acme_variant_renewal_fix_plan_before_paperwork": "b3a4bcedabb5410a32b487cb81838bde6145b6cb8cb4bb10cfa0a208a07197f3",
+  "acme_variant_renewal_open_tickets_seat_upsell": "36f9485af077c08b303b8a4373fea121064f9dfadf4843856b01ce17496b73a0",
+  "acme_world_k08_cited_without_security_gate": "e0bc6caea704062eaf7e820ae36d6438f14c30df95f46643939ecb122dad7da7",
+  "acme_world_order_form_early_cc_tom": "0d82e1ca2483232961cde80e9bb1573e2626947415e0e186f4481ccbbbcfb3a4",
+  "acme_world_pre_call_nda_to_marco_cc_priya": "86ecd6b5c5d43c3cb9467a3ea9b7eb78ef642add4c90425f713f674e3ef603ad",
+  "beta_cp1_wait_for_owen_outcome": "4feb51fafdda885d002e481bfbd1ba1be7e9a11227512846bba9285225f19b8c",
+  "beta_cp2_same_day_ack_and_offer_se": "d3f4daf8f3c375ae4b173fdeeb3a3bd3a197d2b73387c98ac0d0b1cfca3cef98",
+  "beta_cp2_thank_owen_directly_for_signature": "150f40ed5830253e098924f09eb29c7f3645b1d08e80865be0ee554bc70ea74f",
+  "beta_cp3_cfo_and_ops_pulled_into_residency_review": "fcd9c2deae1cff61f4dac3bf565b33b1cae5893abd3406849edbb1f1f4104888",
+  "beta_cp3_defers_requested_documents": "a0c843daa7d7c1d1da60f03eb839e96447b952e73a280edc030902225ba2a1ab",
+  "beta_cp3_enrichment_title_and_employer": "c8261a68988429edf6abdacf1fee1e70c2ea9a8ec7e7050a9c6558217ff1a8e3",
+  "beta_cp3_follows_stale_crm_next_step": "009a52c8e9cf998d2c1d3c867f0ee70c11a75e39998e51785ff5f0f26ce70835",
+  "beta_cp3_k17_and_k08_transfer": "e596a2f917c3ccdd5a6940aacc2b0f0710974a772b40adc8a13550031d67a85c",
+  "beta_cp3_k21_known_economic_buyer_trap": "9d55889377e10190792b6a221f8701403c57632f01dc1f30e02e70a51933b1dc",
+  "beta_cp3_live_walkthrough_instead_of_documents": "eb6619cdc8e1f0ee8160d8b2b102441f303ed92c6a90cf0ac39dfc7bfbe426c3",
+  "beta_cp3_order_form_push_ignores_residency": "8bb20af797c3582c2972021228f7cbed9495d015887faea2add65eafdcca85dd",
+  "beta_cp3_ravi_only_thread": "b52747684103fad42881c18d66ca506442cdc6bb23700fecfb7dbee4801fce1e",
+  "beta_cp3_reply_to_hannah_only": "2f520482d8c1fa6f88e4f6208ae87929bf1ffcf84ef9462fc34ae85004661c90",
+  "beta_cp3_residency_docs_light_ask": "26e7f0fa7e5432f07c5dc814cac436e7658a77b130f37b10776ebff3cb5dbab5",
+  "beta_cp3_review_invite_too_soon": "527bc4929a08a2dd74d3085512fc01f89e805d2f368d2f6baf3457f4ae614775",
+  "beta_cp3_sso_treated_as_main_blocker": "eab1e5d719ef74ba4f315a5531d8c5532a9af871863ce1d6a411dc20306d3843",
+  "beta_cp4_nonmaterial_fyi_no_action": "130631a8be04ddc068e7078cda3b05a34a9a3131730bdde622bbb1e712a332d2",
+  "beta_customer_owned_commitment_light_checkin": "d05d09173376b936957daf6d47e9449d7384d7a05ad981be1102e99a2ab72ee3",
+  "beta_enrichment_headcount_congrats_email": "3332dd572e31cc7de6953900da477cba3000667ec7dc15c4844313583db773b5",
+  "beta_owen_approval_congrats_two_weeks_late": "4f7c916f3f00f4e535a15bae1c0dd1169bea0a627692bb6b32b890e9f5b289ca",
+  "beta_silence_k05_trap_rep_owes_residency_docs": "03b406e9642c9ee3e242c9b1441b60ce34a9f0ba3372204ad77b9c5c7f8c33f7",
+  "beta_variant_hannah_delegates_to_ravi": "a305e6fdfc267ad2206e22c8dc05687da747880d65065a24e14d1ca8367d6c3e",
+  "beta_variant_hannah_stepping_back_asks_day_to_day_owner": "e77fd354918e429d4589315bb2c825c0a59eca40ed1cd5226c3be5c059e562b6",
+  "beta_variant_hannah_stepping_back_signature_push": "71f9d7ea00415d87973ea38961adf0165fd5318542ea88b8ad980949f709510f",
+  "beta_variant_new_business_discovery_order_form_push": "3f7a056be460782c16a7882cea2f5c6e83549e1b3e7768ac637771fd11764270",
+  "beta_variant_sev1_outage_acknowledged_first": "d2297dfaa738456da5a0ed7b3971e1723a2ce953ac1053413c78e633337a2673",
+  "beta_variant_sev1_outage_upsell_pitch": "f92edb414516741625d75185bed025f3c16c1569083db6226eb1f2d040684744",
+  "beta_world_nudge_for_platform_intro_a_day_early": "e18f9e6433e92136b906eaaace1c747059f7c8cf2e8d1a944b9b539350f5ad2d",
+  "beta_world_residency_docs_before_ravi_asks": "45aa70b1df6d100bd9bf9347a5c1309e8c57488f3d1cc529810a403157095414",
+  "beta_world_wait_for_platform_intro_this_week": "298aa1b7b30d5857f02ac47bd41e758103db78ca933b6ea385c2897743253eab",
+  "northstar_cp1_direct_to_grace": "cfca0df1250a475ae8ee893cf07d46071443f707e023dc978ae4ba08198a845b",
+  "northstar_cp1_order_form_before_security_too_soon": "b9c65ce6fe16f268d1bce1178824ffd57c149ae7014e3d41f73a2d245eb857fd",
+  "northstar_cp1_value_recap_in_elenas_numbers": "a1c0cef87cb41ab3a469ac4c06d2ed412a77d0f4cc5a03fb171559e1c646669d",
+  "northstar_cp2_security_team_never_engaged": "273889196b16cb27c193a3bc788c476dbd3bc42f5b7c611962cd7f39f6ca5e64",
+  "northstar_cp3_handoff_drops_final_signoff": "e7f283a4b99d9dcad9902a5334f7835dfaaaeeae6978be709f56748ace54646e",
+  "northstar_cp3_review_slots_offered_with_documents": "94588cf3c3ffb58ca7824f56e7fef3143e61d0b61b0fa5dca3759e7904f4572e",
+  "northstar_cp3_work_directly_with_sam": "46532a6790d13ecf0610c7cd2f62341def566f338c892c293a1ae4337c862650",
+  "northstar_cp4_email_asks_which_day_instead_of_invite": "bdb3294408f39d5af99b8915ad2ecf242f80bb02a36c64eed0854b0a763fd0e2",
+  "northstar_cp4_go_live_before_security_signoff": "ba90f0ee89dce472dc9d8094d2e19abe63b8e8e033502d23d725131fd3279c9d",
+  "northstar_cp4_invite_on_time": "d2b0c7ba6a9e95a1bfc370ffbb1cab2fed8352c4917acfdcfe0c58d59b4aef28",
+  "northstar_cp4_k08_misapplied_withholds_meeting": "69252fae9d9b4509aec75312e0e4368848e6c7738dbec59fdf4f320f130bc483",
+  "northstar_cp4_k08_reviewer_requested_meeting": "5368bec33f04eee84864f7d164602cc1bfff2a187478dcb0c55e8f6748936770",
+  "northstar_cp4_k17_delegation_exception_honored": "281c1630dfbc04e705856d9d63dbbf3aef3e6cb716962ac366ff014c885a39d0",
+  "northstar_cp4_k17_misapplied_cc_elena": "ee85994e014580019f36c36ea807c0cd6832294211c399013148d735bdbfd360",
+  "northstar_cp4_review_invite_whole_buying_group": "af084e7de7f98d66c0a5e6cb986a61f0da11f341f0452281fb26947334e821fd",
+  "northstar_invite_commitment_forgotten_no_action": "eb1eaa544037bbdfe1f44fbc5bdbf28144680aeb4a4902db2174526ad44b8560",
+  "northstar_resend_hipaa_pack_same_day": "f97e8a00ab510a9a4065ea615fd58e54e08e9d0ef4e7fcc7642f4aa91978fa0b",
+  "northstar_sam_invite_after_slots_passed": "b046e93118bab4844fa4bf9d1ccce7e37053825571a80e7d5ad9adc60ac7e827",
+  "northstar_silence_light_checkin_on_sam_intro": "110f9f862a8bc3db87a4687f719414dada4b72e504d342085708513fe5a25d64",
+  "northstar_silence_signature_push_into_quiet_week": "aa5cbac94b44cb6238de977b1cb00283773560415e4c296d16140a274db4bff2",
+  "northstar_variant_new_business_inflated_roi": "8e8c82d53caf48151d5e5194b0806bda0e750556f4a7adb02254c166cece48dc",
+  "northstar_variant_new_business_value_recap": "50aaadebed2fbe009b3b6a75b573a32f9e601731fff6346465cb22fbebf6d362",
+  "northstar_variant_renewal_phi_incident_order_form_push": "4ecec1743fbaea08a3040e3dc1911bf1aa3aa0d00209f59fa9d2a30de4a542dc",
+  "northstar_variant_renewal_phi_incident_wait": "3b52b668e62f69a3f66376be51203c93103e05bb918aa092ecf1060163b351d9",
+  "northstar_variant_unknown_procurement_sender": "eb3196fbd0632fe761cad4ab3d26e20254b3990ad52a36b812d87a02d92d7bba"
+ }
+}

@@ -1,0 +1,31 @@
+{
+ "source_system": "email",
+ "source_object_id": "02sWt00000209TaIAI",
+ "source_event_key": "received",
+ "occurred_at": "2022-07-20T15:30:00Z",
+ "connector": "crmarena-loader",
+ "connector_version": "wp31-v1",
+ "payload": {
+  "kind": "email",
+  "message_id": "02sWt00000209TaIAI",
+  "thread_id": "opp:006Wt000007BCcwIAG",
+  "in_reply_to": "02sWt000001znkrIAA",
+  "direction": "inbound",
+  "from": {
+   "email": "elena.vasiliev@techsavvyinnovations.com",
+   "name": "Elena Vasiliev"
+  },
+  "to": [
+   {
+    "email": "omar.farouk@vendor.example",
+    "name": "Omar Farouk"
+   }
+  ],
+  "date": "2022-07-20T15:30:00Z",
+  "subject": "Re: Negotiation Call with TechSavvy Innovations",
+  "body_text": "Hello Omar,\n\nThanks for the detailed overview. The team found the walkthrough of TechSavvy's EDA Expansion useful, and it has sparked a good discussion here about where it could fit into our current processes. There is genuine interest in moving forward, provided the practical details work out.\n\nCould you send over any additional documentation you have on implementation and support? A short summary of what a typical rollout looks like would also be welcome. Once we have that, I suggest we schedule a follow-up meeting to talk through the specifics.\n\nMany thanks,\n\nElena Vasiliev\nTechSavvy Innovations",
+  "crm_opportunity_ref": "opp:006Wt000007BCcwIAG"
+ },
+ "origin": "synthetic",
+ "provenance": "synthetic:v1"
+}

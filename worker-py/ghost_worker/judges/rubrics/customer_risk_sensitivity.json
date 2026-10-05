@@ -1,0 +1,96 @@
+{
+  "eval_type": "customer_risk_sensitivity",
+  "version": 1,
+  "title": "Customer-risk sensitivity",
+  "har97_refs": [
+    {
+      "line": 2405,
+      "text": "## 15.11 Customer-risk sensitivity"
+    },
+    {
+      "line": 613,
+      "text": "customer-risk sensitivity"
+    },
+    {
+      "line": 2963,
+      "text": "* customer-risk sensitivity"
+    }
+  ],
+  "l2_dimension": "customer-risk sensitivity",
+  "questions": [
+    {
+      "section": "§15(GTM).11",
+      "text": "Is the proposed commercial action appropriate given current customer risk?"
+    }
+  ],
+  "inputs": [
+    "health and relationship risk",
+    "open support, security or compliance issues",
+    "holds the customer requested",
+    "the candidate's ask"
+  ],
+  "criteria": [
+    {
+      "id": "risk_suppresses_upsell",
+      "kind": "check",
+      "text": "an unresolved severe issue suppresses the commercial push",
+      "guide": "Severe open support or compliance issues come before commercial asks.",
+      "har97": null,
+      "output": "finding",
+      "before": null,
+      "after": null
+    },
+    {
+      "id": "channel_pressure_adjusted",
+      "kind": "evaluate",
+      "text": "deterioration changes channel and pressure",
+      "guide": "When the relationship deteriorates, the action lowers pressure or changes channel.",
+      "har97": null,
+      "output": "finding",
+      "before": null,
+      "after": null
+    },
+    {
+      "id": "recovery_first",
+      "kind": "evaluate",
+      "text": "recovery comes before expansion where needed",
+      "guide": "A customer-success problem may require a recovery step before any expansion.",
+      "har97": null,
+      "output": "finding",
+      "before": null,
+      "after": null
+    }
+  ],
+  "failure_examples": [],
+  "counter_failures": [],
+  "known_exceptions": [],
+  "candidate_choices": [],
+  "principles": [
+    "unresolved severe support issue should suppress aggressive upsell",
+    "relationship deterioration should change channel/pressure",
+    "customer success problem may require recovery before expansion"
+  ],
+  "labels": [],
+  "pass_label": null,
+  "diagnostics": [
+    {
+      "name": "customer_risk_conflicts_with_upsell",
+      "when": "the action sells into open customer risk"
+    }
+  ],
+  "routing": {
+    "actions": [
+      "send_email",
+      "schedule_meeting",
+      "share_document",
+      "wait",
+      "no_action"
+    ],
+    "when_all": [],
+    "when_any": [
+      "risk_elevated",
+      "open_blocker"
+    ]
+  },
+  "uses_rep_profile": false
+}

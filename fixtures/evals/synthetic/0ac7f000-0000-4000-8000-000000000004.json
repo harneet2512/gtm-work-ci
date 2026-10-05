@@ -1,0 +1,22 @@
+{
+  "source_system": "email",
+  "source_object_id": "<syn-acme-004@vendor.example>",
+  "source_event_key": "sent",
+  "occurred_at": "2026-09-29T16:30:00Z",
+  "connector": "gmail",
+  "connector_version": "0.1.0",
+  "payload": {
+    "kind": "email",
+    "direction": "outbound",
+    "message_id": "<syn-acme-004@vendor.example>",
+    "thread_id": "thr-acme-eu-expansion",
+    "in_reply_to": null,
+    "from": {"email": "leo@vendor.example", "name": "Leo Park"},
+    "to": [{"email": "marco.ruiz@acme.com", "name": "Marco Ruiz"}],
+    "cc": [{"email": "priya.shah@acme.com", "name": "Priya Shah"}],
+    "date": "2026-09-29T16:30:00Z",
+    "subject": "Re: Expansion to EU teams",
+    "body_text": "Hi Marco, as promised here are our SOC2 Type II report and the latest pen-test summary. Priya, copying you. - Leo",
+    "crm_opportunity_ref": "opp:AC-4-EXP"
+  }
+}

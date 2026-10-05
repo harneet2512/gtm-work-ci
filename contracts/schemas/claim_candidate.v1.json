@@ -1,0 +1,26 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://ghost.local/contracts/claim_candidate.v1.json",
+  "title": "ClaimCandidate",
+  "description": "Output of the graph-maintenance extractor (POST /v1/extract). Core resolves identities, assigns standing first_party_ai (or third_party for enrichment) and adjudicates. evidence_quote must be a verbatim substring of the activity text.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["field_path", "value", "confidence", "evidence_quote"],
+  "properties": {
+    "field_path": { "$ref": "claim.v1.json#/$defs/fieldPath" },
+    "value": {},
+    "confidence": { "type": "number", "minimum": 0, "maximum": 1 },
+    "evidence_quote": { "type": "string", "minLength": 1, "maxLength": 2000 },
+    "speaker_identity": { "type": ["string", "null"], "description": "Raw identity of who said it (email or speaker label)." },
+    "subject_identity": { "type": ["string", "null"], "description": "Raw identity of the person the claim is about." },
+    "role": {
+      "type": ["string", "null"],
+      "description": "For stakeholder_role / buying_group.member claims.",
+      "enum": [
+        "champion", "economic_buyer", "technical_evaluator", "security", "legal",
+        "executive_sponsor", "user", "influencer", "blocker", "procurement", "unknown", null
+      ]
+    },
+    "due_at": { "oneOf": [{ "$ref": "common.v1.json#/$defs/timestamp" }, { "type": "null" }] }
+  }
+}

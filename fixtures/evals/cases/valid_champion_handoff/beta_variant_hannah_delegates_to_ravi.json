@@ -1,0 +1,242 @@
+{
+  "id": "beta_variant_hannah_delegates_to_ravi",
+  "case_type": "valid_champion_handoff",
+  "title": "Beta variant: Hannah delegates the technical review; candidate sends Ravi the documents without cc'ing her",
+  "should_pass": true,
+  "difficulty": "medium",
+  "slice_tags": {
+    "account": "beta",
+    "origin": "synthetic_variant",
+    "motion": "expansion",
+    "stage": "technical_evaluation",
+    "champion_status": "delegated",
+    "economic_buyer": "known",
+    "risk": "medium",
+    "candidate": "good",
+    "expected_action": "send_email",
+    "extra": ["data_residency", "delegation"]
+  },
+  "based_on": {
+    "kind": "synthetic_variant",
+    "account": "beta",
+    "after_event_file": "world/accounts/beta/events/039_email_ravi_residency_request.json",
+    "checkpoint": 3,
+    "changed_fields": ["champion_status", "buying_group", "decision_process"],
+    "change": "Same as Beta cp3 plus an invented email from Hannah delegating the technical review to Ravi."
+  },
+  "context": {
+    "now": "2026-09-24T13:10:00Z",
+    "state": {
+      "account_id": "0a0c0000-0000-4000-8000-000000000002",
+      "account_name": "Beta Inc",
+      "opportunity_id": "0c0f0000-0000-4000-8000-000000000005",
+      "fields": {
+        "stage": "Technical evaluation",
+        "health": "at_risk",
+        "motion": "expansion",
+        "champion": "0b0e0000-0000-4000-8000-000000000031",
+        "champion_status": "delegated",
+        "economic_buyer": "0b0e0000-0000-4000-8000-000000000032",
+        "relationship_risk": "medium",
+        "blockers": [
+          {
+            "text": "EU data residency for the Dublin team's ticket data (where EU ticket data is stored and processed)",
+            "status": "open"
+          }
+        ],
+        "decision_process": "Ravi Menon owns the technical review (delegated by Hannah Lee, who rejoins at the order form); Owen Clarke already approved the budget",
+        "next_milestone": "Platform team integration review",
+        "next_meeting": null,
+        "current_commitments": [
+          {
+            "text": "Send business case with the Austin pilot numbers by Tuesday",
+            "status": "fulfilled",
+            "owner_person_id": "0b0e0000-0000-4000-8000-000000000001",
+            "due": "2026-09-01"
+          },
+          {
+            "text": "Take the business case to Owen Clarke on Friday",
+            "status": "fulfilled",
+            "owner_person_id": "0b0e0000-0000-4000-8000-000000000031",
+            "due": "2026-09-04"
+          },
+          {
+            "text": "Loop in the right platform team person this week",
+            "status": "fulfilled",
+            "owner_person_id": "0b0e0000-0000-4000-8000-000000000031"
+          },
+          {
+            "text": "Send data residency documentation and sub-processor list to Ravi Menon",
+            "status": "open",
+            "owner_person_id": "0b0e0000-0000-4000-8000-000000000001"
+          }
+        ]
+      },
+      "buying_group": [
+        {
+          "person_id": "0b0e0000-0000-4000-8000-000000000031",
+          "display_name": "Hannah Lee",
+          "title": "VP Customer Operations",
+          "roles": ["champion"],
+          "status": "active",
+          "delegated_to_person_id": "0b0e0000-0000-4000-8000-000000000034",
+          "last_engaged_at": null,
+          "evidence_refs": []
+        },
+        {
+          "person_id": "0b0e0000-0000-4000-8000-000000000032",
+          "display_name": "Owen Clarke",
+          "title": "Chief Financial Officer",
+          "roles": ["economic_buyer"],
+          "status": "unknown",
+          "delegated_to_person_id": null,
+          "last_engaged_at": null,
+          "evidence_refs": []
+        },
+        {
+          "person_id": "0b0e0000-0000-4000-8000-000000000033",
+          "display_name": "Jess Patel",
+          "title": "Support Operations Manager",
+          "roles": ["user"],
+          "status": "active",
+          "delegated_to_person_id": null,
+          "last_engaged_at": null,
+          "evidence_refs": []
+        },
+        {
+          "person_id": "0b0e0000-0000-4000-8000-000000000034",
+          "display_name": "Ravi Menon",
+          "title": "Head of Platform Engineering",
+          "roles": ["technical_evaluator"],
+          "status": "active",
+          "delegated_to_person_id": null,
+          "last_engaged_at": null,
+          "evidence_refs": []
+        }
+      ],
+      "coverage_gaps": [],
+      "conflicts": [
+        {
+          "field": "next_milestone",
+          "winner_value": "Platform team integration review",
+          "winner_standing": "crm_explicit",
+          "winner_event_file": "world/accounts/beta/events/024_crm_opp_next_step.json",
+          "contradicting_value": "Ravi Menon reads the data residency documentation and sub-processor list; review session not yet scheduled",
+          "contradicting_standing": "first_party_ai",
+          "contradicting_event_file": "world/accounts/beta/events/039_email_ravi_residency_request.json",
+          "contradicting_quote": "I'm not ready to schedule a review session until I've read them."
+        }
+      ]
+    },
+    "recent_changes": {
+      "summary": "Hannah delegated the technical review to Ravi in writing.",
+      "material_diff_fields": ["champion_status", "decision_process", "buying_group"],
+      "signals": ["champion_delegated", "customer_replied"]
+    },
+    "trigger": {
+      "activity_id": "0ac7f000-0000-4000-8000-000000000003",
+      "activity_type": "EmailReceived",
+      "occurred_at": "2026-09-24T13:00:00Z",
+      "actor_person_id": "0b0e0000-0000-4000-8000-000000000031",
+      "event_file": null,
+      "synthetic": true,
+      "text": "Dana - please work directly with Ravi on the technical review from here; I'll rejoin when we get to the order form."
+    },
+    "supporting_activities": [
+      {
+        "activity_id": "0ac70000-0000-4000-8000-0000000b0039",
+        "activity_type": "EmailReply",
+        "occurred_at": "2026-09-24T11:05:00Z",
+        "actor_person_id": "0b0e0000-0000-4000-8000-000000000034",
+        "event_file": "world/accounts/beta/events/039_email_ravi_residency_request.json",
+        "synthetic": false,
+        "text": "Could you send your data residency documentation and your sub-processor list?"
+      }
+    ],
+    "commitments": [
+      {
+        "text": "Send data residency documentation and sub-processor list to Ravi Menon",
+        "owner_person_id": "0b0e0000-0000-4000-8000-000000000001",
+        "due_at": null,
+        "status": "open"
+      }
+    ],
+    "timeline_facts": {
+      "last_inbound_at": "2026-09-24T13:00:00Z",
+      "last_inbound_from_person_id": "0b0e0000-0000-4000-8000-000000000031",
+      "last_outbound_at": "2026-09-17T16:00:00Z",
+      "stated_timing": "Ravi will not schedule a review until he has read the documents"
+    },
+    "offered_knowledge": []
+  },
+  "candidate_action": {
+    "proposed_action_type": "send_email",
+    "recipients": [
+      {
+        "person_id": "0b0e0000-0000-4000-8000-000000000034",
+        "role": "to",
+        "why": "Owns the technical review (delegated)"
+      }
+    ],
+    "finished_artifact": {
+      "channel": "email",
+      "subject": "Re: Relay for the Beta support org",
+      "body": "Hi Ravi,\n\nAs Hannah suggested, I'll work with you directly on the technical review. Attached are our EU data residency addendum and sub-processor list. Once you've read them, happy to set up time with Leo if useful.\n\nBest,\nDana",
+      "attachments": ["eu-data-residency-addendum.pdf", "sub-processors-2026.pdf"]
+    },
+    "crm_next_step_intent": {"next_step": "Ravi reviews residency docs", "due_at": null, "stage_change": null},
+    "reason": "Hannah delegated the technical review to Ravi.",
+    "evidence_refs": [
+      {
+        "activity_id": "0ac70000-0000-4000-8000-0000000b0039",
+        "quote": "Could you send your data residency documentation and your sub-processor list?",
+        "speaker_person_id": "0b0e0000-0000-4000-8000-000000000034",
+        "occurred_at": "2026-09-24T11:05:00Z"
+      },
+      {
+        "activity_id": "0ac7f000-0000-4000-8000-000000000003",
+        "quote": "please work directly with Ravi on the technical review from here",
+        "speaker_person_id": "0b0e0000-0000-4000-8000-000000000031",
+        "occurred_at": "2026-09-24T13:00:00Z"
+      }
+    ],
+    "knowledge_refs_used": [],
+    "wait_until": null
+  },
+  "expected": [
+    {
+      "eval_type": "champion_continuity",
+      "verdict": "pass",
+      "label": "VALID_HANDOFF",
+      "diagnostics": [],
+      "blocking": false,
+      "rationale": "Written delegation scoped to the technical review; omitting Hannah here is valid.",
+      "evidence_class": "methodology"
+    },
+    {
+      "eval_type": "buyer_readiness",
+      "verdict": "pass",
+      "label": "READY",
+      "diagnostics": [],
+      "blocking": false,
+      "rationale": "Documents first; Ravi sets review timing.",
+      "evidence_class": "methodology"
+    },
+    {
+      "eval_type": "exception_awareness",
+      "verdict": "pass",
+      "label": "EXCEPTION_HONORED",
+      "diagnostics": [],
+      "blocking": false,
+      "rationale": "Treats the delegation as an exception to keeping the champion on every thread.",
+      "evidence_class": "methodology"
+    }
+  ],
+  "expected_best_action": {
+    "action": "send_email",
+    "why": "Documents to Ravi directly.",
+    "recipients": [{"person_id": "0b0e0000-0000-4000-8000-000000000034", "role": "to"}],
+    "channel": "email"
+  },
+  "notes": "Synthetic counterpart of beta_cp3_ravi_only_thread: identical recipients, opposite verdict because of the delegation."
+}

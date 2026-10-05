@@ -1,0 +1,871 @@
+{
+  "strategy_set": {
+    "id": "05e7ad00-0000-4000-8000-00000000ad0b",
+    "decision_episode_id": "0e9ead00-0000-4000-8000-00000000ad0a",
+    "agent_run_id": "0f0aad00-0000-4000-8000-00000000ad60",
+    "account_id": "0a0cad00-0000-4000-8000-00000000ad01",
+    "opportunity_id": "0c0fad00-0000-4000-8000-00000000ad01",
+    "generated_at": "2023-11-09T09:31:30Z",
+    "state_ref": {
+      "account_id": "0a0cad00-0000-4000-8000-00000000ad01",
+      "opportunity_id": "0c0fad00-0000-4000-8000-00000000ad01",
+      "version": 108
+    },
+    "state_diff_id": "0d1fad00-0000-4000-8000-00000000ad30",
+    "trigger_activity_ids": [
+      "0ac7ad00-0000-4000-8000-00000000ad0d"
+    ],
+    "decision_guidance_id": "06d1ad00-0000-4000-8000-00000000adc1",
+    "no_acceptable_candidate": false,
+    "candidates": [
+      {
+        "candidate_id": "0ca0ad00-0000-4000-8000-00000000ada1",
+        "strategy_type": "propose_call_with_cost_breakdown",
+        "title": "Book the call, bring the cost model",
+        "description": "Offer two times for the call Fatoumata asked for, and send the long-term cost breakdown ahead of it.",
+        "ranking": 1,
+        "preferred_by_agent": true,
+        "rationale": "Fatoumata asked for a call and called a clear view of future commitments crucial; offering times answers the ask, and the breakdown sent first makes the call about decisions rather than discovery.",
+        "state_refs": [
+          "objections",
+          "decision_criteria",
+          "next_meeting",
+          "commercial_issue"
+        ],
+        "evidence_refs": [
+          {
+            "activity_id": "0ac7ad00-0000-4000-8000-00000000ad0d",
+            "quote": "That said, I have some questions regarding the long-term cost implications of integrating both the EduTech Lab and the SecureData Nexus into our existing systems.",
+            "speaker_person_id": "0b0ead00-0000-4000-8000-00000000ad11",
+            "occurred_at": "2023-11-09T09:30:00Z"
+          },
+          {
+            "activity_id": "0ac7ad00-0000-4000-8000-00000000ad0d",
+            "quote": "Could we schedule a follow-up call to discuss these points in more detail?",
+            "speaker_person_id": "0b0ead00-0000-4000-8000-00000000ad11",
+            "occurred_at": "2023-11-09T09:30:00Z"
+          }
+        ],
+        "knowledge_refs": [],
+        "action_type": "send_email",
+        "action_class": "REPLY",
+        "to": [
+          {
+            "person_id": "0b0ead00-0000-4000-8000-00000000ad11",
+            "role": "to",
+            "why": "Asked the cost question and for the call"
+          }
+        ],
+        "cc": [],
+        "subject": "Re: Feedback request on proposal draft",
+        "full_action_artifact": {
+          "channel": "email",
+          "subject": "Re: Feedback request on proposal draft",
+          "body": "Hi Fatoumata,\n\nThank you for the questions. A call is a good idea: would Monday, November 13 at 10:00 or Tuesday, November 14 at 14:00 suit you?\n\nBefore the call I will send a breakdown of the long-term costs of running EduTech Lab and SecureData Nexus alongside your existing systems, so we can spend the time on your questions rather than the numbers. I can also bring our implementation lead to cover the onboarding support your team mentioned.\n\nBest regards,\nLuis",
+          "attachments": []
+        },
+        "five_questions": {
+          "what_changed": "Fatoumata asked about the long-term cost of integrating EduTech Lab and SecureData Nexus, and for a follow-up call.",
+          "why_state_changed": "She wrote it first-party on Nov 9, 2023; the deal had no open cost objection and no next meeting before.",
+          "what_remains_unknown": "Who owns the budget at MedTech, and what the ongoing costs are for her setup.",
+          "prior_knowledge_applies": "No company knowledge applies to this situation yet.",
+          "why_next_action": "A dated call answers her request; the written breakdown answers the cost question before it."
+        },
+        "preview": "Thank you for the questions. A call is a good idea: would Monday, November 13 at 10:00 or Tuesday, November 14 at 14:00 suit you?…",
+        "draft_index": 1,
+        "eval_bundle_ref": "0eb0ad00-0000-4000-8000-00000000adb1"
+      },
+      {
+        "candidate_id": "0ca0ad00-0000-4000-8000-00000000ada2",
+        "strategy_type": "written_answer_then_call",
+        "title": "Put the costs in writing first",
+        "description": "Answer the cost question in writing now, from the proposal figures, and offer the call once she has read it.",
+        "ranking": 2,
+        "preferred_by_agent": false,
+        "rationale": "Fatoumata said pricing transparency matters to her team and that clarity on future commitments is crucial; the figures in writing give her something to share internally before a call.",
+        "state_refs": [
+          "objections",
+          "decision_criteria",
+          "next_meeting",
+          "commercial_issue"
+        ],
+        "evidence_refs": [
+          {
+            "activity_id": "0ac7ad00-0000-4000-8000-00000000ad0d",
+            "quote": "Ensuring that we have a clear understanding of future financial commitments is crucial for us.",
+            "speaker_person_id": "0b0ead00-0000-4000-8000-00000000ad11",
+            "occurred_at": "2023-11-09T09:30:00Z"
+          },
+          {
+            "activity_id": "0ac7ad00-0000-4000-8000-00000000ad0b",
+            "quote": "Transparency in terms of pricing is indeed something we value highly.",
+            "speaker_person_id": "0b0ead00-0000-4000-8000-00000000ad11",
+            "occurred_at": "2023-11-08T16:00:00Z"
+          }
+        ],
+        "knowledge_refs": [],
+        "action_type": "send_email",
+        "action_class": "REPLY",
+        "to": [
+          {
+            "person_id": "0b0ead00-0000-4000-8000-00000000ad11",
+            "role": "to",
+            "why": "Asked the cost question and for the call"
+          }
+        ],
+        "cc": [],
+        "subject": "Re: Feedback request on proposal draft",
+        "full_action_artifact": {
+          "channel": "email",
+          "subject": "Re: Feedback request on proposal draft",
+          "body": "Hi Fatoumata,\n\nThank you for the questions. Here is how the proposal we sent on October 31 breaks down:\n\n- SecureData Nexus: 25 units at a 15% discount, $12,749.79\n- CryptGuard Module: 20 units at a 15% discount, $8,329.83\n- EduTech Lab: 10 units at a 10% discount, $3,599.91\n\nThe total is $24,679.53. Once you have had a chance to review this with your team, I would be glad to set up a call to go through integration and support in more detail.\n\nBest regards,\nLuis",
+          "attachments": []
+        },
+        "five_questions": {
+          "what_changed": "Fatoumata asked about the long-term cost of integrating EduTech Lab and SecureData Nexus, and for a follow-up call.",
+          "why_state_changed": "She wrote it first-party on Nov 9, 2023; the deal had no open cost objection and no next meeting before.",
+          "what_remains_unknown": "Whether the one-time proposal prices are the long-term costs she means.",
+          "prior_knowledge_applies": "No company knowledge applies to this situation yet.",
+          "why_next_action": "Written figures give her team something concrete before the call."
+        },
+        "preview": "Thank you for the questions. Here is how the proposal we sent on October 31 breaks down:…",
+        "draft_index": 2,
+        "eval_bundle_ref": "0eb0ad00-0000-4000-8000-00000000adb2"
+      },
+      {
+        "candidate_id": "0ca0ad00-0000-4000-8000-00000000ada3",
+        "strategy_type": "competitive_concession",
+        "title": "Match Quantum Circuits on onboarding",
+        "description": "Answer the competitor: offer free onboarding support and an extra 5% off if MedTech confirms the order this month.",
+        "ranking": 3,
+        "preferred_by_agent": false,
+        "rationale": "Fatoumata named Quantum Circuits' initial pricing and onboarding as an option she is weighing; matching it could keep the deal from slipping.",
+        "state_refs": [
+          "objections",
+          "decision_criteria",
+          "next_meeting",
+          "commercial_issue"
+        ],
+        "evidence_refs": [
+          {
+            "activity_id": "0ac7ad00-0000-4000-8000-00000000ad0c",
+            "quote": "Quantum Circuits Inc. offers competitive initial pricing with comprehensive onboarding, and we are considering all options that maximize our long-term value.",
+            "speaker_person_id": "0b0ead00-0000-4000-8000-00000000ad11",
+            "occurred_at": "2023-11-08T17:30:00Z"
+          }
+        ],
+        "knowledge_refs": [],
+        "action_type": "send_email",
+        "action_class": "REPLY",
+        "to": [
+          {
+            "person_id": "0b0ead00-0000-4000-8000-00000000ad11",
+            "role": "to",
+            "why": "Asked the cost question and for the call"
+          }
+        ],
+        "cc": [],
+        "subject": "Re: Feedback request on proposal draft",
+        "full_action_artifact": {
+          "channel": "email",
+          "subject": "Re: Feedback request on proposal draft",
+          "body": "Hi Fatoumata,\n\nThank you for being open about the alternatives you are weighing. To make the decision easier, we can include onboarding support for your team at no extra cost and take an additional 5% off the proposal if you confirm the order by November 30.\n\nWould that work for you?\n\nBest regards,\nLuis",
+          "attachments": []
+        },
+        "five_questions": {
+          "what_changed": "Fatoumata asked about the long-term cost of integrating EduTech Lab and SecureData Nexus, and for a follow-up call.",
+          "why_state_changed": "She wrote it first-party on Nov 9, 2023; the deal had no open cost objection and no next meeting before.",
+          "what_remains_unknown": "Whether a further discount or free onboarding can be approved.",
+          "prior_knowledge_applies": "No company knowledge applies to this situation yet.",
+          "why_next_action": "Matching the competitor's onboarding removes the reason to switch."
+        },
+        "preview": "Thank you for being open about the alternatives you are weighing. To make the decision easier, we can include onboarding support for your team at no e…",
+        "draft_index": 3,
+        "eval_bundle_ref": "0eb0ad00-0000-4000-8000-00000000adb3"
+      }
+    ]
+  },
+  "eval_bundles": [
+    {
+      "id": "0eb0ad00-0000-4000-8000-00000000adb1",
+      "agent_run_id": "0f0aad00-0000-4000-8000-00000000ad60",
+      "draft_index": 1,
+      "strategy_candidate_id": "0ca0ad00-0000-4000-8000-00000000ada1",
+      "generated_at": "2023-11-09T09:31:12Z",
+      "items": [
+        {
+          "eval_type": "state_change_relevance",
+          "relevance_reason": "Event 13 raised a new cost question and asked for a call.",
+          "verdict": "pass",
+          "result": {
+            "id": "0e1aad00-0000-4000-8000-00000000ada1",
+            "agent_run_id": "0f0aad00-0000-4000-8000-00000000ad60",
+            "draft_index": 1,
+            "eval_type": "state_change_relevance",
+            "eval_version": "state_change_relevance:v1",
+            "kind": "semantic",
+            "verdict": "pass",
+            "label": null,
+            "diagnostics": [],
+            "score": null,
+            "blocking": false,
+            "reason": "It answers both things Fatoumata raised on Nov 9: the long-term cost question and the request for a call.",
+            "state_refs": [
+              "objections",
+              "next_meeting"
+            ],
+            "activity_refs": [
+              "0ac7ad00-0000-4000-8000-00000000ad0d"
+            ],
+            "evidence_refs": [
+              {
+                "activity_id": "0ac7ad00-0000-4000-8000-00000000ad0d",
+                "quote": "That said, I have some questions regarding the long-term cost implications of integrating both the EduTech Lab and the SecureData Nexus into our existing systems.",
+                "speaker_person_id": "0b0ead00-0000-4000-8000-00000000ad11",
+                "occurred_at": "2023-11-09T09:30:00Z"
+              },
+              {
+                "activity_id": "0ac7ad00-0000-4000-8000-00000000ad0d",
+                "quote": "Could we schedule a follow-up call to discuss these points in more detail?",
+                "speaker_person_id": "0b0ead00-0000-4000-8000-00000000ad11",
+                "occurred_at": "2023-11-09T09:30:00Z"
+              }
+            ],
+            "knowledge_refs": [],
+            "suggested_correction": null,
+            "confidence": null,
+            "evidence_class": "methodology",
+            "model": "qwen/qwen3.8-flash",
+            "created_at": "2023-11-09T09:31:10Z",
+            "judged_object": {
+              "type": "StrategyCandidate",
+              "id": "0ca0ad00-0000-4000-8000-00000000ada1"
+            },
+            "span_id": "candidates:0f0aad00-0000-4000-8000-00000000ad60"
+          }
+        },
+        {
+          "eval_type": "cta_calibration",
+          "relevance_reason": "The draft asks for a meeting.",
+          "verdict": "pass",
+          "result": {
+            "id": "0e1aad00-0000-4000-8000-00000000ada2",
+            "agent_run_id": "0f0aad00-0000-4000-8000-00000000ad60",
+            "draft_index": 1,
+            "eval_type": "cta_calibration",
+            "eval_version": "cta_calibration:v1",
+            "kind": "semantic",
+            "verdict": "pass",
+            "label": "APPROPRIATE",
+            "diagnostics": [],
+            "score": null,
+            "blocking": false,
+            "reason": "Fatoumata asked for a follow-up call, so offering two times is the size of ask she invited.",
+            "state_refs": [
+              "next_meeting"
+            ],
+            "activity_refs": [
+              "0ac7ad00-0000-4000-8000-00000000ad0d"
+            ],
+            "evidence_refs": [
+              {
+                "activity_id": "0ac7ad00-0000-4000-8000-00000000ad0d",
+                "quote": "Could we schedule a follow-up call to discuss these points in more detail?",
+                "speaker_person_id": "0b0ead00-0000-4000-8000-00000000ad11",
+                "occurred_at": "2023-11-09T09:30:00Z"
+              }
+            ],
+            "knowledge_refs": [],
+            "suggested_correction": null,
+            "confidence": null,
+            "evidence_class": "methodology",
+            "model": "qwen/qwen3.8-flash",
+            "created_at": "2023-11-09T09:31:10Z",
+            "judged_object": {
+              "type": "StrategyCandidate",
+              "id": "0ca0ad00-0000-4000-8000-00000000ada1"
+            },
+            "span_id": "candidates:0f0aad00-0000-4000-8000-00000000ad60"
+          }
+        },
+        {
+          "eval_type": "stakeholder_coverage",
+          "relevance_reason": "The action is about budget, and one buyer contact is on the deal.",
+          "verdict": "warn",
+          "result": {
+            "id": "0e1aad00-0000-4000-8000-00000000ada3",
+            "agent_run_id": "0f0aad00-0000-4000-8000-00000000ad60",
+            "draft_index": 1,
+            "eval_type": "stakeholder_coverage",
+            "eval_version": "stakeholder_coverage:v1",
+            "kind": "semantic",
+            "verdict": "warn",
+            "label": "SINGLE_THREADED_RISK",
+            "diagnostics": [
+              "single_threaded"
+            ],
+            "score": null,
+            "blocking": false,
+            "reason": "Long-term cost is a budget question, but only Fatoumata is on the thread and nobody who owns the budget has appeared in the deal.",
+            "state_refs": [
+              "objections"
+            ],
+            "activity_refs": [
+              "0ac7ad00-0000-4000-8000-00000000ad0d"
+            ],
+            "evidence_refs": [
+              {
+                "activity_id": "0ac7ad00-0000-4000-8000-00000000ad0d",
+                "quote": "Ensuring that we have a clear understanding of future financial commitments is crucial for us.",
+                "speaker_person_id": "0b0ead00-0000-4000-8000-00000000ad11",
+                "occurred_at": "2023-11-09T09:30:00Z"
+              }
+            ],
+            "knowledge_refs": [],
+            "suggested_correction": "Ask Fatoumata whether someone who owns the budget should join the call.",
+            "confidence": null,
+            "evidence_class": "deal_data",
+            "model": "qwen/qwen3.8-flash",
+            "created_at": "2023-11-09T09:31:10Z",
+            "judged_object": {
+              "type": "StrategyCandidate",
+              "id": "0ca0ad00-0000-4000-8000-00000000ada1"
+            },
+            "span_id": "candidates:0f0aad00-0000-4000-8000-00000000ad60"
+          }
+        },
+        {
+          "eval_type": "next_step_quality",
+          "relevance_reason": "The customer asked for a next step.",
+          "verdict": "pass",
+          "result": {
+            "id": "0e1aad00-0000-4000-8000-00000000ada4",
+            "agent_run_id": "0f0aad00-0000-4000-8000-00000000ad60",
+            "draft_index": 1,
+            "eval_type": "next_step_quality",
+            "eval_version": "next_step_quality:v1",
+            "kind": "semantic",
+            "verdict": "pass",
+            "label": null,
+            "diagnostics": [],
+            "score": null,
+            "blocking": false,
+            "reason": "The next step is a call at one of two named times, owned by Luis, with the cost breakdown sent first.",
+            "state_refs": [
+              "next_meeting",
+              "next_milestone"
+            ],
+            "activity_refs": [
+              "0ac7ad00-0000-4000-8000-00000000ad0d"
+            ],
+            "evidence_refs": [
+              {
+                "activity_id": "0ac7ad00-0000-4000-8000-00000000ad0d",
+                "quote": "Please let me know your availability.",
+                "speaker_person_id": "0b0ead00-0000-4000-8000-00000000ad11",
+                "occurred_at": "2023-11-09T09:30:00Z"
+              }
+            ],
+            "knowledge_refs": [],
+            "suggested_correction": null,
+            "confidence": null,
+            "evidence_class": "deal_data",
+            "model": "qwen/qwen3.8-flash",
+            "created_at": "2023-11-09T09:31:10Z",
+            "judged_object": {
+              "type": "StrategyCandidate",
+              "id": "0ca0ad00-0000-4000-8000-00000000ada1"
+            },
+            "span_id": "candidates:0f0aad00-0000-4000-8000-00000000ad60"
+          }
+        },
+        {
+          "eval_type": "grounding",
+          "relevance_reason": "The draft restates what the customer asked.",
+          "verdict": "pass",
+          "result": {
+            "id": "0e1aad00-0000-4000-8000-00000000ada5",
+            "agent_run_id": "0f0aad00-0000-4000-8000-00000000ad60",
+            "draft_index": 1,
+            "eval_type": "grounding",
+            "eval_version": "grounding:v1",
+            "kind": "semantic",
+            "verdict": "pass",
+            "label": null,
+            "diagnostics": [],
+            "score": null,
+            "blocking": false,
+            "reason": "Every point repeats what Fatoumata wrote: the cost question on Nov 9 and the implementation support her team asked about on Nov 8.",
+            "state_refs": [
+              "objections",
+              "decision_criteria"
+            ],
+            "activity_refs": [
+              "0ac7ad00-0000-4000-8000-00000000ad0d",
+              "0ac7ad00-0000-4000-8000-00000000ad0c"
+            ],
+            "evidence_refs": [
+              {
+                "activity_id": "0ac7ad00-0000-4000-8000-00000000ad0d",
+                "quote": "That said, I have some questions regarding the long-term cost implications of integrating both the EduTech Lab and the SecureData Nexus into our existing systems.",
+                "speaker_person_id": "0b0ead00-0000-4000-8000-00000000ad11",
+                "occurred_at": "2023-11-09T09:30:00Z"
+              },
+              {
+                "activity_id": "0ac7ad00-0000-4000-8000-00000000ad0c",
+                "quote": "Our team would also like to discuss the potential for additional support during the initial implementation phase, to streamline the transition effectively.",
+                "speaker_person_id": "0b0ead00-0000-4000-8000-00000000ad11",
+                "occurred_at": "2023-11-08T17:30:00Z"
+              }
+            ],
+            "knowledge_refs": [],
+            "suggested_correction": null,
+            "confidence": null,
+            "evidence_class": "deal_data",
+            "model": "qwen/qwen3.8-flash",
+            "created_at": "2023-11-09T09:31:10Z",
+            "judged_object": {
+              "type": "StrategyCandidate",
+              "id": "0ca0ad00-0000-4000-8000-00000000ada1"
+            },
+            "span_id": "candidates:0f0aad00-0000-4000-8000-00000000ad60"
+          }
+        },
+        {
+          "eval_type": "pricing_integrity",
+          "relevance_reason": "The draft names no price or discount.",
+          "verdict": "not_relevant",
+          "result": null
+        }
+      ]
+    },
+    {
+      "id": "0eb0ad00-0000-4000-8000-00000000adb2",
+      "agent_run_id": "0f0aad00-0000-4000-8000-00000000ad60",
+      "draft_index": 2,
+      "strategy_candidate_id": "0ca0ad00-0000-4000-8000-00000000ada2",
+      "generated_at": "2023-11-09T09:31:12Z",
+      "items": [
+        {
+          "eval_type": "pricing_integrity",
+          "relevance_reason": "The draft states prices and discounts.",
+          "verdict": "pass",
+          "result": {
+            "id": "0e1aad00-0000-4000-8000-00000000adb1",
+            "agent_run_id": "0f0aad00-0000-4000-8000-00000000ad60",
+            "draft_index": 2,
+            "eval_type": "pricing_integrity",
+            "eval_version": "pricing_integrity:v1",
+            "kind": "deterministic",
+            "verdict": "pass",
+            "label": null,
+            "diagnostics": [],
+            "score": null,
+            "blocking": false,
+            "reason": "Every price and discount matches the proposal of Oct 31, and the total matches the quote of Oct 15 ($24,679.53).",
+            "state_refs": [],
+            "activity_refs": [
+              "0ac7ad00-0000-4000-8000-00000000ad03",
+              "0ac7ad00-0000-4000-8000-00000000ad04",
+              "0ac7ad00-0000-4000-8000-00000000ad09"
+            ],
+            "evidence_refs": [
+              {
+                "activity_id": "0ac7ad00-0000-4000-8000-00000000ad09",
+                "quote": "Our total proposal amount of $24,679.53 reflects competitive pricing with thoughtful considerations, including discounts on CryptGuard Module and SecureData Nexus.",
+                "speaker_person_id": "0b0ead00-0000-4000-8000-00000000ad21",
+                "occurred_at": "2023-11-08T15:00:00Z"
+              }
+            ],
+            "knowledge_refs": [],
+            "suggested_correction": null,
+            "confidence": null,
+            "evidence_class": "product_rule",
+            "model": null,
+            "created_at": "2023-11-09T09:31:10Z",
+            "judged_object": {
+              "type": "StrategyCandidate",
+              "id": "0ca0ad00-0000-4000-8000-00000000ada2"
+            },
+            "span_id": "candidates:0f0aad00-0000-4000-8000-00000000ad60"
+          }
+        },
+        {
+          "eval_type": "state_change_relevance",
+          "relevance_reason": "Event 13 raised a new cost question.",
+          "verdict": "warn",
+          "result": {
+            "id": "0e1aad00-0000-4000-8000-00000000adb2",
+            "agent_run_id": "0f0aad00-0000-4000-8000-00000000ad60",
+            "draft_index": 2,
+            "eval_type": "state_change_relevance",
+            "eval_version": "state_change_relevance:v1",
+            "kind": "semantic",
+            "verdict": "warn",
+            "label": null,
+            "diagnostics": [],
+            "score": null,
+            "blocking": false,
+            "reason": "Fatoumata asked about the long-term cost of integrating EduTech Lab and SecureData Nexus; the draft restates the one-time proposal prices and says nothing about ongoing or integration costs.",
+            "state_refs": [
+              "objections"
+            ],
+            "activity_refs": [
+              "0ac7ad00-0000-4000-8000-00000000ad0d"
+            ],
+            "evidence_refs": [
+              {
+                "activity_id": "0ac7ad00-0000-4000-8000-00000000ad0d",
+                "quote": "That said, I have some questions regarding the long-term cost implications of integrating both the EduTech Lab and the SecureData Nexus into our existing systems.",
+                "speaker_person_id": "0b0ead00-0000-4000-8000-00000000ad11",
+                "occurred_at": "2023-11-09T09:30:00Z"
+              }
+            ],
+            "knowledge_refs": [],
+            "suggested_correction": "Add what running and integrating the two products costs over time, or say when that will follow.",
+            "confidence": null,
+            "evidence_class": "methodology",
+            "model": "qwen/qwen3.8-flash",
+            "created_at": "2023-11-09T09:31:10Z",
+            "judged_object": {
+              "type": "StrategyCandidate",
+              "id": "0ca0ad00-0000-4000-8000-00000000ada2"
+            },
+            "span_id": "candidates:0f0aad00-0000-4000-8000-00000000ad60"
+          }
+        },
+        {
+          "eval_type": "cta_calibration",
+          "relevance_reason": "The draft defers the meeting the customer asked for.",
+          "verdict": "warn",
+          "result": {
+            "id": "0e1aad00-0000-4000-8000-00000000adb3",
+            "agent_run_id": "0f0aad00-0000-4000-8000-00000000ad60",
+            "draft_index": 2,
+            "eval_type": "cta_calibration",
+            "eval_version": "cta_calibration:v1",
+            "kind": "semantic",
+            "verdict": "warn",
+            "label": "TOO_WEAK",
+            "diagnostics": [
+              "ask_too_weak"
+            ],
+            "score": null,
+            "blocking": false,
+            "reason": "She asked for a call on Nov 9; this puts the call off until after a written review she did not ask for.",
+            "state_refs": [
+              "next_meeting"
+            ],
+            "activity_refs": [
+              "0ac7ad00-0000-4000-8000-00000000ad0d"
+            ],
+            "evidence_refs": [
+              {
+                "activity_id": "0ac7ad00-0000-4000-8000-00000000ad0d",
+                "quote": "Could we schedule a follow-up call to discuss these points in more detail?",
+                "speaker_person_id": "0b0ead00-0000-4000-8000-00000000ad11",
+                "occurred_at": "2023-11-09T09:30:00Z"
+              }
+            ],
+            "knowledge_refs": [],
+            "suggested_correction": "Offer two times for the call alongside the figures.",
+            "confidence": null,
+            "evidence_class": "methodology",
+            "model": "qwen/qwen3.8-flash",
+            "created_at": "2023-11-09T09:31:10Z",
+            "judged_object": {
+              "type": "StrategyCandidate",
+              "id": "0ca0ad00-0000-4000-8000-00000000ada2"
+            },
+            "span_id": "candidates:0f0aad00-0000-4000-8000-00000000ad60"
+          }
+        },
+        {
+          "eval_type": "stakeholder_coverage",
+          "relevance_reason": "The figures are for a team decision, and one buyer contact is on the deal.",
+          "verdict": "warn",
+          "result": {
+            "id": "0e1aad00-0000-4000-8000-00000000adb4",
+            "agent_run_id": "0f0aad00-0000-4000-8000-00000000ad60",
+            "draft_index": 2,
+            "eval_type": "stakeholder_coverage",
+            "eval_version": "stakeholder_coverage:v1",
+            "kind": "semantic",
+            "verdict": "warn",
+            "label": "SINGLE_THREADED_RISK",
+            "diagnostics": [
+              "single_threaded"
+            ],
+            "score": null,
+            "blocking": false,
+            "reason": "The figures go to Fatoumata alone, though she said on Nov 8 that she would gather feedback from her team.",
+            "state_refs": [
+              "current_commitments"
+            ],
+            "activity_refs": [
+              "0ac7ad00-0000-4000-8000-00000000ad0b"
+            ],
+            "evidence_refs": [
+              {
+                "activity_id": "0ac7ad00-0000-4000-8000-00000000ad0b",
+                "quote": "I’ll coordinate internally to gather any additional feedback from my team regarding specific feature requests or adjustments.",
+                "speaker_person_id": "0b0ead00-0000-4000-8000-00000000ad11",
+                "occurred_at": "2023-11-08T16:00:00Z"
+              }
+            ],
+            "knowledge_refs": [],
+            "suggested_correction": "Offer to walk her team through the figures on the call.",
+            "confidence": null,
+            "evidence_class": "deal_data",
+            "model": "qwen/qwen3.8-flash",
+            "created_at": "2023-11-09T09:31:10Z",
+            "judged_object": {
+              "type": "StrategyCandidate",
+              "id": "0ca0ad00-0000-4000-8000-00000000ada2"
+            },
+            "span_id": "candidates:0f0aad00-0000-4000-8000-00000000ad60"
+          }
+        },
+        {
+          "eval_type": "grounding",
+          "relevance_reason": "The draft states figures from the deal.",
+          "verdict": "pass",
+          "result": {
+            "id": "0e1aad00-0000-4000-8000-00000000adb5",
+            "agent_run_id": "0f0aad00-0000-4000-8000-00000000ad60",
+            "draft_index": 2,
+            "eval_type": "grounding",
+            "eval_version": "grounding:v1",
+            "kind": "semantic",
+            "verdict": "pass",
+            "label": null,
+            "diagnostics": [],
+            "score": null,
+            "blocking": false,
+            "reason": "The figures and the discounts are the ones Luis sent on Oct 31 and Nov 8; nothing is added.",
+            "state_refs": [],
+            "activity_refs": [
+              "0ac7ad00-0000-4000-8000-00000000ad04",
+              "0ac7ad00-0000-4000-8000-00000000ad09"
+            ],
+            "evidence_refs": [
+              {
+                "activity_id": "0ac7ad00-0000-4000-8000-00000000ad09",
+                "quote": "Our total proposal amount of $24,679.53 reflects competitive pricing with thoughtful considerations, including discounts on CryptGuard Module and SecureData Nexus.",
+                "speaker_person_id": "0b0ead00-0000-4000-8000-00000000ad21",
+                "occurred_at": "2023-11-08T15:00:00Z"
+              }
+            ],
+            "knowledge_refs": [],
+            "suggested_correction": null,
+            "confidence": null,
+            "evidence_class": "deal_data",
+            "model": "qwen/qwen3.8-flash",
+            "created_at": "2023-11-09T09:31:10Z",
+            "judged_object": {
+              "type": "StrategyCandidate",
+              "id": "0ca0ad00-0000-4000-8000-00000000ada2"
+            },
+            "span_id": "candidates:0f0aad00-0000-4000-8000-00000000ad60"
+          }
+        }
+      ]
+    },
+    {
+      "id": "0eb0ad00-0000-4000-8000-00000000adb3",
+      "agent_run_id": "0f0aad00-0000-4000-8000-00000000ad60",
+      "draft_index": 3,
+      "strategy_candidate_id": "0ca0ad00-0000-4000-8000-00000000ada3",
+      "generated_at": "2023-11-09T09:31:12Z",
+      "items": [
+        {
+          "eval_type": "pricing_integrity",
+          "relevance_reason": "The draft offers a new discount and free onboarding.",
+          "verdict": "fail",
+          "result": {
+            "id": "0e1aad00-0000-4000-8000-00000000adc1",
+            "agent_run_id": "0f0aad00-0000-4000-8000-00000000ad60",
+            "draft_index": 3,
+            "eval_type": "pricing_integrity",
+            "eval_version": "pricing_integrity:v1",
+            "kind": "deterministic",
+            "verdict": "fail",
+            "label": null,
+            "diagnostics": [],
+            "score": null,
+            "blocking": true,
+            "reason": "The extra 5% discount and the free onboarding are not in the quote of Oct 15, and no approval for either is on record.",
+            "state_refs": [],
+            "activity_refs": [
+              "0ac7ad00-0000-4000-8000-00000000ad03",
+              "0ac7ad00-0000-4000-8000-00000000ad09"
+            ],
+            "evidence_refs": [
+              {
+                "activity_id": "0ac7ad00-0000-4000-8000-00000000ad09",
+                "quote": "Our total proposal amount of $24,679.53 reflects competitive pricing with thoughtful considerations, including discounts on CryptGuard Module and SecureData Nexus.",
+                "speaker_person_id": "0b0ead00-0000-4000-8000-00000000ad21",
+                "occurred_at": "2023-11-08T15:00:00Z"
+              }
+            ],
+            "knowledge_refs": [],
+            "suggested_correction": "Remove the new discount and offer, or get them approved before sending.",
+            "confidence": null,
+            "evidence_class": "product_rule",
+            "model": null,
+            "created_at": "2023-11-09T09:31:10Z",
+            "judged_object": {
+              "type": "StrategyCandidate",
+              "id": "0ca0ad00-0000-4000-8000-00000000ada3"
+            },
+            "span_id": "candidates:0f0aad00-0000-4000-8000-00000000ad60"
+          }
+        },
+        {
+          "eval_type": "cta_calibration",
+          "relevance_reason": "The draft asks for an order by a fixed date.",
+          "verdict": "fail",
+          "result": {
+            "id": "0e1aad00-0000-4000-8000-00000000adc2",
+            "agent_run_id": "0f0aad00-0000-4000-8000-00000000ad60",
+            "draft_index": 3,
+            "eval_type": "cta_calibration",
+            "eval_version": "cta_calibration:v1",
+            "kind": "semantic",
+            "verdict": "fail",
+            "label": "TOO_STRONG",
+            "diagnostics": [
+              "ask_too_strong",
+              "too_early"
+            ],
+            "score": null,
+            "blocking": true,
+            "reason": "It asks Fatoumata to confirm the order by Nov 30, but she has only asked questions and for a call; she has not signalled she is ready to buy.",
+            "state_refs": [
+              "next_meeting",
+              "objections"
+            ],
+            "activity_refs": [
+              "0ac7ad00-0000-4000-8000-00000000ad0d"
+            ],
+            "evidence_refs": [
+              {
+                "activity_id": "0ac7ad00-0000-4000-8000-00000000ad0d",
+                "quote": "Could we schedule a follow-up call to discuss these points in more detail?",
+                "speaker_person_id": "0b0ead00-0000-4000-8000-00000000ad11",
+                "occurred_at": "2023-11-09T09:30:00Z"
+              }
+            ],
+            "knowledge_refs": [],
+            "suggested_correction": "Answer the cost question and offer the call; leave the order to her.",
+            "confidence": null,
+            "evidence_class": "methodology",
+            "model": "qwen/qwen3.8-flash",
+            "created_at": "2023-11-09T09:31:10Z",
+            "judged_object": {
+              "type": "StrategyCandidate",
+              "id": "0ca0ad00-0000-4000-8000-00000000ada3"
+            },
+            "span_id": "candidates:0f0aad00-0000-4000-8000-00000000ad60"
+          }
+        },
+        {
+          "eval_type": "state_change_relevance",
+          "relevance_reason": "Event 13 raised a new cost question.",
+          "verdict": "warn",
+          "result": {
+            "id": "0e1aad00-0000-4000-8000-00000000adc3",
+            "agent_run_id": "0f0aad00-0000-4000-8000-00000000ad60",
+            "draft_index": 3,
+            "eval_type": "state_change_relevance",
+            "eval_version": "state_change_relevance:v1",
+            "kind": "semantic",
+            "verdict": "warn",
+            "label": null,
+            "diagnostics": [],
+            "score": null,
+            "blocking": false,
+            "reason": "Her Nov 9 email asked about long-term cost and a call; this answers the competitor point from Nov 8 instead.",
+            "state_refs": [
+              "objections",
+              "commercial_issue"
+            ],
+            "activity_refs": [
+              "0ac7ad00-0000-4000-8000-00000000ad0d",
+              "0ac7ad00-0000-4000-8000-00000000ad0c"
+            ],
+            "evidence_refs": [
+              {
+                "activity_id": "0ac7ad00-0000-4000-8000-00000000ad0d",
+                "quote": "That said, I have some questions regarding the long-term cost implications of integrating both the EduTech Lab and the SecureData Nexus into our existing systems.",
+                "speaker_person_id": "0b0ead00-0000-4000-8000-00000000ad11",
+                "occurred_at": "2023-11-09T09:30:00Z"
+              },
+              {
+                "activity_id": "0ac7ad00-0000-4000-8000-00000000ad0c",
+                "quote": "Quantum Circuits Inc. offers competitive initial pricing with comprehensive onboarding, and we are considering all options that maximize our long-term value.",
+                "speaker_person_id": "0b0ead00-0000-4000-8000-00000000ad11",
+                "occurred_at": "2023-11-08T17:30:00Z"
+              }
+            ],
+            "knowledge_refs": [],
+            "suggested_correction": null,
+            "confidence": null,
+            "evidence_class": "methodology",
+            "model": "qwen/qwen3.8-flash",
+            "created_at": "2023-11-09T09:31:10Z",
+            "judged_object": {
+              "type": "StrategyCandidate",
+              "id": "0ca0ad00-0000-4000-8000-00000000ada3"
+            },
+            "span_id": "candidates:0f0aad00-0000-4000-8000-00000000ad60"
+          }
+        },
+        {
+          "eval_type": "grounding",
+          "relevance_reason": "The draft refers to the competitor the customer named.",
+          "verdict": "pass",
+          "result": {
+            "id": "0e1aad00-0000-4000-8000-00000000adc4",
+            "agent_run_id": "0f0aad00-0000-4000-8000-00000000ad60",
+            "draft_index": 3,
+            "eval_type": "grounding",
+            "eval_version": "grounding:v1",
+            "kind": "semantic",
+            "verdict": "pass",
+            "label": null,
+            "diagnostics": [],
+            "score": null,
+            "blocking": false,
+            "reason": "The competitor point is Fatoumata's own: she named Quantum Circuits' initial pricing and onboarding on Nov 8.",
+            "state_refs": [
+              "commercial_issue"
+            ],
+            "activity_refs": [
+              "0ac7ad00-0000-4000-8000-00000000ad0c"
+            ],
+            "evidence_refs": [
+              {
+                "activity_id": "0ac7ad00-0000-4000-8000-00000000ad0c",
+                "quote": "Quantum Circuits Inc. offers competitive initial pricing with comprehensive onboarding, and we are considering all options that maximize our long-term value.",
+                "speaker_person_id": "0b0ead00-0000-4000-8000-00000000ad11",
+                "occurred_at": "2023-11-08T17:30:00Z"
+              }
+            ],
+            "knowledge_refs": [],
+            "suggested_correction": null,
+            "confidence": null,
+            "evidence_class": "deal_data",
+            "model": "qwen/qwen3.8-flash",
+            "created_at": "2023-11-09T09:31:10Z",
+            "judged_object": {
+              "type": "StrategyCandidate",
+              "id": "0ca0ad00-0000-4000-8000-00000000ada3"
+            },
+            "span_id": "candidates:0f0aad00-0000-4000-8000-00000000ad60"
+          }
+        }
+      ]
+    }
+  ]
+}

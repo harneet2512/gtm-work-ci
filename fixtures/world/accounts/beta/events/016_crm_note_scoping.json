@@ -1,0 +1,18 @@
+{
+  "source_system": "crm",
+  "source_object_id": "note:BE-7-001",
+  "source_event_key": "created",
+  "occurred_at": "2026-08-27T09:00:00Z",
+  "connector": "salesforce",
+  "connector_version": "0.1.0",
+  "payload": {
+    "kind": "crm_change",
+    "object_type": "Note",
+    "record_id": "note:BE-7-001",
+    "account_record_id": "account:BE-7",
+    "changed_at": "2026-08-27T09:00:00Z",
+    "changed_by": "dana@vendor.example",
+    "created": true,
+    "note_body": "Scoping call 8/26: Hannah Lee champions the support-org rollout (~140 agents, Austin + Dublin). Owen Clarke (CFO) is the economic buyer and needs a business case built on the Austin pilot handle-time savings. Target: live before the December ticket surge."
+  }
+}

@@ -1,0 +1,24 @@
+{
+  "source_system": "crm",
+  "source_object_id": "account:AC-4",
+  "source_event_key": "created",
+  "occurred_at": "2026-08-18T14:00:00Z",
+  "connector": "salesforce",
+  "connector_version": "0.1.0",
+  "payload": {
+    "kind": "crm_change",
+    "object_type": "Account",
+    "record_id": "account:AC-4",
+    "account_record_id": "account:AC-4",
+    "changed_at": "2026-08-18T14:00:00Z",
+    "changed_by": "dana@vendor.example",
+    "created": true,
+    "fields": {
+      "Name": {"new": "Acme Corp"},
+      "Website": {"new": "acme.com"},
+      "Type": {"new": "Customer"},
+      "Industry": {"new": "Logistics"},
+      "OwnerEmail": {"new": "dana@vendor.example"}
+    }
+  }
+}
