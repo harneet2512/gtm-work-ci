@@ -1,0 +1,18 @@
+{
+  "source_system": "crm",
+  "source_object_id": "note:AC-4-002",
+  "source_event_key": "created",
+  "occurred_at": "2026-09-10T09:05:00Z",
+  "connector": "salesforce",
+  "connector_version": "0.1.0",
+  "payload": {
+    "kind": "crm_change",
+    "object_type": "Note",
+    "record_id": "note:AC-4-002",
+    "account_record_id": "account:AC-4",
+    "changed_at": "2026-09-10T09:05:00Z",
+    "changed_by": "dana@ghostvendor.com",
+    "created": true,
+    "note_body": "Commercial walkthrough 9/9: finance approved the EU budget. Order form to be issued on Acme Logistics B.V. with Rotterdam invoiced separately. Keeping the stage at Commercial review until the signature path is confirmed."
+  }
+}

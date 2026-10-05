@@ -1,0 +1,14 @@
+SUMMARY
+Acme Corp: 3 material changes after an inbound email "Re: Expansion to EU teams" (2026-09-29): Buying group, Blockers, Next meeting.
+
+WHAT CHANGED
+1. [stakeholder_structure] Buying group changed: added Marco Ruiz (technical_evaluator). (cites 0ac70000-0000-4000-8000-000000000101)
+2. [blockers_risk] Blockers changed from "budget approval" to "SOC2 Type II report"; "pen-test summary". (cites 0ac70000-0000-4000-8000-000000000101)
+3. [next_step_commitment] Next meeting is no longer known (was "2026-09-30"). (cites 0ac70000-0000-4000-8000-000000000101)
+
+WHY THIS MATTERS
+The buying group moved (Buying group changed: added Marco Ruiz (technical_evaluator)). Who sits at the table decides whose objections must be answered before signature, so the next message has to reach the people who just entered and not only the usual contact. The risk picture moved (Blockers moved from "budget approval" to "SOC2 Type II report"; "pen-test summary"). An open blocker or objection stands between this deal and a signature until it is answered, and every day it stays open it is cheaper for the buyer to wait. The next step moved (Next meeting no longer known, was "2026-09-30"). A deal without an agreed, dated next step drifts, so the follow-up has to re-establish what happens next and who owns it.
+
+TRANSITION
+CANDIDATE REORG -> EXPANSION (unchanged)
+- missing (required) owner_stabilized: A champion who took over after the reorg is active and has held the role long enough.

@@ -1,0 +1,315 @@
+{
+ "id": "cr_d1_answers_cost_question_and_sends_case_studies",
+ "origin": "crmarena",
+ "case_type": "correct_timing",
+ "title": "Same moment, good draft: case studies, a written answer on cost, demo dates offered",
+ "should_pass": true,
+ "difficulty": "easy",
+ "slice_tags": {
+  "account": "001Wt00000PFsmbIAD",
+  "origin": "crmarena",
+  "motion": "unknown",
+  "stage": "unknown",
+  "champion_status": "active",
+  "economic_buyer": "unknown",
+  "risk": "unknown",
+  "candidate": "good",
+  "expected_action": "send_email",
+  "extra": [
+   "good_draft",
+   "task_trigger"
+  ]
+ },
+ "based_on": {
+  "kind": "crmarena_moment",
+  "account_id": "001Wt00000PFsmbIAD",
+  "deal_id": "006Wt000007B2QgIAK",
+  "trigger_kind": "task_due",
+  "decision_at": "2024-03-24T09:00:00Z",
+  "cutoff": "2023-11-01",
+  "deal_group": "current",
+  "events_before_decision": 12
+ },
+ "source": {
+  "dataset": "CRMArena-Pro B2B Salesforce org (Salesforce AI Research)",
+  "licence": "CC BY-NC 4.0 (non-commercial use only)",
+  "attribution": "Salesforce AI Research, CRMArena-Pro (https://github.com/SalesforceAIResearch/CRMArena, LICENSE.txt); records selected and excerpted, nothing edited",
+  "snapshot_manifest_sha256": "8fbda45c15d1806dc4c37d5230a20ac24d6619ef36a88c0efddb344792c89f03",
+  "generator": "bench/evals/crmarena_gold v1"
+ },
+ "context": {
+  "now": "2024-03-24T09:00:00Z",
+  "state": {
+   "account_id": "6a24e838-9e48-5e5c-b84d-41c557a8ea20",
+   "account_name": "Innovative Robotics",
+   "opportunity_id": "87d267d1-4d92-55a5-8de8-a0dc67c9b00d",
+   "fields": {
+    "stage": "unknown",
+    "health": "unknown",
+    "motion": "unknown",
+    "champion": "53b7478d-6600-5e8a-a114-070cdc4590c9",
+    "champion_status": "active",
+    "economic_buyer": "unknown",
+    "relationship_risk": "unknown",
+    "decision_process": "Chin Wei is reviewing the proposal with the rest of her team and will send feedback; no approver or timeline is named",
+    "objections": [
+     {
+      "text": "Wants to understand additional costs related to customization or future upgrades",
+      "status": "open"
+     }
+    ],
+    "current_commitments": [
+     {
+      "text": "Customer: review the proposal with the team and give feedback 'shortly'",
+      "status": "open"
+     },
+     {
+      "text": "Us: answer the additional-cost question and send relevant case studies (asked 2024-03-22)",
+      "status": "open"
+     },
+     {
+      "text": "Us: arrange another demonstration focused on AI Cirku-Tech (asked 2024-03-23)",
+      "status": "open"
+     }
+    ],
+    "next_milestone": "Customer feedback on the proposal"
+   },
+   "buying_group": [
+    {
+     "person_id": "53b7478d-6600-5e8a-a114-070cdc4590c9",
+     "display_name": "Chin Wei",
+     "title": "Legal Compliance Coordinator (champion role inferred, not recorded)",
+     "roles": [
+      "champion"
+     ],
+     "status": "active",
+     "delegated_to_person_id": null,
+     "last_engaged_at": "2024-03-23T09:30:00Z",
+     "evidence_refs": [
+      {
+       "activity_id": "42015bbd-749b-56e3-aa29-6c0fc258ea03",
+       "occurred_at": "2024-03-23T09:30:00Z"
+      }
+     ]
+    },
+    {
+     "person_id": "fcfc6b94-899f-58e7-b7e6-086ca4c4a00f",
+     "display_name": "Liam Scott",
+     "title": "Chief Financial Officer",
+     "roles": [
+      "unknown"
+     ],
+     "status": "unknown",
+     "delegated_to_person_id": null,
+     "last_engaged_at": null,
+     "evidence_refs": []
+    },
+    {
+     "person_id": "85821c7b-88f0-55ab-9fbd-e69f6844fc53",
+     "display_name": "Tariq Ali",
+     "title": "Network Security Engineer (role inferred from department)",
+     "roles": [
+      "security"
+     ],
+     "status": "unknown",
+     "delegated_to_person_id": null,
+     "last_engaged_at": null,
+     "evidence_refs": []
+    },
+    {
+     "person_id": "594c3c4b-c795-5e3b-9830-edc1903d2897",
+     "display_name": "Mariana Santos",
+     "title": "Lead Software Developer (role inferred from department)",
+     "roles": [
+      "technical_evaluator"
+     ],
+     "status": "unknown",
+     "delegated_to_person_id": null,
+     "last_engaged_at": null,
+     "evidence_refs": []
+    }
+   ],
+   "coverage_gaps": [
+    "economic_buyer"
+   ]
+  },
+  "recent_changes": {
+   "summary": "The rep task 'Send targeted case studies' is due; Chin Wei's additional-cost question and demo request are her latest messages.",
+   "material_diff_fields": [
+    "current_commitments"
+   ],
+   "signals": []
+  },
+  "trigger": {
+   "activity_id": "029a390f-22e5-54d6-a142-2afbce432be9",
+   "activity_type": "CRMTaskLogged",
+   "occurred_at": "2024-03-24T00:00:00Z",
+   "actor_person_id": null,
+   "event_file": "crmarena:Task:00TWt000002yz2nMAA",
+   "synthetic": false,
+   "text": "Send case studies relevant to Innovative Robotics to reinforce the value proposition of our solutions.",
+   "subject": "Send targeted case studies",
+   "date_semantics": "task due date"
+  },
+  "supporting_activities": [
+   {
+    "activity_id": "2264c63b-5771-515c-9ca8-c41a5ed175d2",
+    "activity_type": "EmailReceived",
+    "occurred_at": "2024-03-22T17:30:00Z",
+    "actor_person_id": "53b7478d-6600-5e8a-a114-070cdc4590c9",
+    "event_file": "crmarena:EmailMessage:02sWt000001zplAIAQ",
+    "synthetic": false,
+    "text": "Hi Dariusz,\n\nThank you for the detailed follow-up. I appreciate the comprehensive overview of how TechPulse's products can integrate with and benefit our current systems. Your insights into future advancements and how TechPulse remains adaptable are particularly reassuring.\n\nWhile the pricing and discounts are indeed competitive, I would like to understand more about any potential additional costs related to customization or future upgrades. Ensuring long-term cost efficiency and minimizing unexpected expenses remain a priority for us.\n\nI’m also interested in any case studies or examples you can share, particularly those that demonstrate practical outcomes similar to what we aspire to achieve.\n\nThank you once again for the thoughtful discussion. I look forward to your responses and am hopeful for a beneficial partnership.\n\nBest regards,\n\nChin Wei\nInnovative Robotics",
+    "subject": "In-depth Needs Analysis Discussion",
+    "date_semantics": "sent"
+   },
+   {
+    "activity_id": "a4cd8a7b-1d0f-55d9-8dde-0390a97d7ea1",
+    "activity_type": "EmailReceived",
+    "occurred_at": "2024-03-23T09:30:00Z",
+    "actor_person_id": "53b7478d-6600-5e8a-a114-070cdc4590c9",
+    "event_file": "crmarena:EmailMessage:02sWt000001zpGXIAY",
+    "synthetic": false,
+    "text": "Hi Dariusz,\n\nThank you for the follow-up and the detailed discussion we had earlier today. I appreciated your team's approach to understanding our needs and fine-tuning your offerings to align with our strategic direction.\n\nThe emphasis on AI-powered scalability is precisely what we're looking for, and your SecureFlow Suite seems to be a strong contender for enhancing our processes. The competitive pricing of your solutions, coupled with the scalability features, gives you an edge over other options we've considered.\n\nI will review the proposal with my team and get back to you with any feedback or questions. I'm particularly interested in exploring how your roadmap aligns with our projected needs over the next few years. \n\nLooking forward to the final proposal version. Thanks again for the comprehensive session.\n\nBest,\n\nChin Wei\nInnovative Robotics",
+    "subject": "In-depth Needs Analysis Discussion",
+    "date_semantics": "sent"
+   },
+   {
+    "activity_id": "42015bbd-749b-56e3-aa29-6c0fc258ea03",
+    "activity_type": "EmailReceived",
+    "occurred_at": "2024-03-23T09:30:00Z",
+    "actor_person_id": "53b7478d-6600-5e8a-a114-070cdc4590c9",
+    "event_file": "crmarena:EmailMessage:02sWt000001zpGYIAY",
+    "synthetic": false,
+    "text": "Hi Dariusz,\n\nThank you for the summary and for taking the time to discuss our needs in such detail. It was indeed a productive meeting. We're impressed by TechPulse's commitment to customer support and the innovation embedded into your AI-driven EDA solutions.\n\nThe discussion around the CircuitMaster Analyzer and SecureFlow Suite was particularly intriguing. I can see how these products could be real game-changers in our robustness and efficiency, fundamental for our continued growth and adaptation in the industry.\n\nRegarding pricing, the alignment with expected ROI is clear, and we appreciate the transparent approach. We're currently reviewing the proposal with the rest of the team and will provide feedback shortly. It would be helpful to have another demonstration focused on the AI Cirku-Tech, as it seems poised to integrate well with our DesignWave system, and I believe it has much potential for us.\n\nThank you once more for your thorough follow-up. Looking forward to exploring further possibilities with TechPulse.\n\nBest,\n\nChin Wei\nInnovative Robotics",
+    "subject": "In-depth Needs Analysis Discussion",
+    "date_semantics": "sent"
+   }
+  ],
+  "commitments": [
+   {
+    "text": "Answer the additional-cost question and send case studies",
+    "owner_person_id": "ae4786b7-b52b-5e1d-a2a0-487e5fd789bf",
+    "due_at": "2024-03-24T00:00:00Z",
+    "status": "open"
+   }
+  ],
+  "timeline_facts": {
+   "last_inbound_at": "2024-03-23T09:30:00Z",
+   "last_inbound_from_person_id": "53b7478d-6600-5e8a-a114-070cdc4590c9",
+   "last_outbound_at": "2024-03-22T17:00:00Z",
+   "stated_timing": null
+  },
+  "offered_knowledge": [],
+  "state_provenance": {
+   "champion": "inferred, not recorded: the only customer correspondent (3 inbound emails); CRMArena has no roles",
+   "stage": "unknown unless a field below says otherwise: the loader dates the stage at the deal's last event",
+   "decision_process": "02sWt000001zpGXIAY, 02sWt000001zpGYIAY",
+   "objections": "02sWt000001zplAIAQ",
+   "current_commitments": "02sWt000001zplAIAQ, 02sWt000001zpGYIAY",
+   "buying_group roles": "inferred from each Contact's Title/Department; the record has no roles"
+  }
+ },
+ "candidate_action": {
+  "proposed_action_type": "send_email",
+  "recipients": [
+   {
+    "person_id": "53b7478d-6600-5e8a-a114-070cdc4590c9",
+    "role": "to"
+   }
+  ],
+  "finished_artifact": {
+   "channel": "email",
+   "subject": "Case studies and your cost question",
+   "body": "Hi Chin Wei,\n\nThanks for the questions. I have attached case studies from similar engineering teams. On additional costs: the prices in our proposal are the ones we quoted (for example PulseSim Pro at $4,499.91 for 10 units after the 10% discount). For customization and future upgrades I would rather give you a written answer than a guess, so I will confirm what applies and send it by Friday, March 29. I will also look for dates for the AI Cirku-Tech demonstration you asked for; would early next week suit your team?\n\nBest,\nDariusz",
+   "attachments": [
+    "Case_studies_engineering_teams.pdf"
+   ]
+  },
+  "crm_next_step_intent": {
+   "next_step": "Send written answer on customization and upgrade costs; propose AI Cirku-Tech demo dates",
+   "due_at": "2024-03-29T17:00:00Z",
+   "stage_change": null
+  },
+  "reason": "Answers the two open customer questions and the demo request; no ask the buyer has not signalled.",
+  "evidence_refs": [
+   {
+    "activity_id": "2264c63b-5771-515c-9ca8-c41a5ed175d2",
+    "quote": "I would like to understand more about any potential additional costs related to customization or future upgrades.",
+    "occurred_at": "2024-03-22T17:30:00Z",
+    "speaker_person_id": "53b7478d-6600-5e8a-a114-070cdc4590c9"
+   },
+   {
+    "activity_id": "42015bbd-749b-56e3-aa29-6c0fc258ea03",
+    "quote": "It would be helpful to have another demonstration focused on the AI Cirku-Tech",
+    "occurred_at": "2024-03-23T09:30:00Z",
+    "speaker_person_id": "53b7478d-6600-5e8a-a114-070cdc4590c9"
+   }
+  ],
+  "knowledge_refs_used": [],
+  "wait_until": null
+ },
+ "expected": [
+  {
+   "eval_type": "timing_cadence",
+   "verdict": "pass",
+   "label": "READY",
+   "diagnostics": [],
+   "blocking": false,
+   "rationale": "The task is due and the buyer's questions are a day old.",
+   "evidence_class": "deal_data"
+  },
+  {
+   "eval_type": "buyer_readiness",
+   "verdict": "pass",
+   "label": "READY",
+   "diagnostics": [],
+   "blocking": false,
+   "rationale": "She asked for case studies, a cost answer and a demo; answering is exactly what is due.",
+   "evidence_class": "methodology"
+  },
+  {
+   "eval_type": "cta_calibration",
+   "verdict": "pass",
+   "label": "APPROPRIATE",
+   "diagnostics": [],
+   "blocking": false,
+   "rationale": "Only offers demo dates she asked for.",
+   "evidence_class": "methodology"
+  },
+  {
+   "eval_type": "grounding",
+   "verdict": "pass",
+   "label": null,
+   "diagnostics": [],
+   "blocking": false,
+   "rationale": "The PulseSim Pro price and discount come from the rep's own 03-22 email; no cost figure is invented for customization.",
+   "evidence_class": "deal_data"
+  }
+ ],
+ "expected_best_action": {
+  "action": "send_email",
+  "why": "Answer the cost question, send the case studies and offer demo dates; leave the team's review to finish.",
+  "recipients": [
+   {
+    "person_id": "53b7478d-6600-5e8a-a114-070cdc4590c9",
+    "role": "to"
+   }
+  ],
+  "channel": "email"
+ },
+ "labelling": {
+  "label_kind": "model labels, single author, not human labels",
+  "passes": [
+   "pass_1",
+   "pass_2"
+  ],
+  "agreement": {
+   "judgments": 4,
+   "verdict_agree": 4,
+   "fail_agree": 4
+  },
+  "disagreements": []
+ },
+ "notes": ""
+}

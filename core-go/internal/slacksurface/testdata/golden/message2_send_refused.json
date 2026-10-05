@@ -1,0 +1,169 @@
+{
+  "text": "You selected B. Send package, buyer sets timing - Re: Expansion to EU teams",
+  "blocks": [
+    {
+      "type": "header",
+      "text": {
+        "type": "plain_text",
+        "text": "You selected B. Send package, buyer sets timing",
+        "emoji": false
+      },
+      "block_id": "ghost.selected.header"
+    },
+    {
+      "type": "context",
+      "block_id": "ghost.selected.pick",
+      "elements": [
+        {
+          "type": "mrkdwn",
+          "text": "I recommended A. Propose a security call.",
+          "verbatim": true
+        }
+      ]
+    },
+    {
+      "type": "section",
+      "text": {
+        "type": "mrkdwn",
+        "text": "Send the package, keep Priya involved and leave the review timing to Marco.",
+        "verbatim": true
+      },
+      "block_id": "ghost.selected.intent"
+    },
+    {
+      "type": "section",
+      "block_id": "ghost.selected.recipients",
+      "fields": [
+        {
+          "type": "mrkdwn",
+          "text": "*To*\nMarco \u0026lt;marco@acme.example.test\u0026gt;",
+          "verbatim": true
+        },
+        {
+          "type": "mrkdwn",
+          "text": "*CC*\nPriya \u0026lt;priya@acme.example.test\u0026gt;",
+          "verbatim": true
+        }
+      ]
+    },
+    {
+      "type": "section",
+      "block_id": "ghost.selected.subject",
+      "fields": [
+        {
+          "type": "mrkdwn",
+          "text": "*Subject*\nRe: Expansion to EU teams",
+          "verbatim": true
+        }
+      ]
+    },
+    {
+      "type": "section",
+      "text": {
+        "type": "mrkdwn",
+        "text": "*Full message*\n```Hi Marco,\n\nAttached are our SOC2 Type II report and pen-test summary. Once you and Priya have reviewed, let us know what timing suits you.\n\nBest,\nDana```",
+        "verbatim": true
+      },
+      "block_id": "ghost.selected.body"
+    },
+    {
+      "type": "context",
+      "block_id": "ghost.selected.edited",
+      "elements": [
+        {
+          "type": "mrkdwn",
+          "text": "_Edited before send._",
+          "verbatim": true
+        }
+      ]
+    },
+    {
+      "type": "section",
+      "text": {
+        "type": "mrkdwn",
+        "text": "*Why this strategy*\n• Marco said he cannot commit to a date before his team reads the documents, and Priya remains the commercial point of contact.\n• State used: blockers, buying_group, next_meeting, champion_status\n• Evidence: “Before we can sign off on the EU rollout we'll need your SOC2 Type II report and the pen-test summary.” (2026-09-29 15:42 UTC)\n• Evidence: “I can't commit to a review date until our team has read them.” (2026-09-29 15:42 UTC)\n• Knowledge applied: 1 knowledge item(s): 0c17c000",
+        "verbatim": true
+      },
+      "block_id": "ghost.selected.why"
+    },
+    {
+      "type": "section",
+      "text": {
+        "type": "mrkdwn",
+        "text": "*Evals*\n:warning: 1 warn · :white_check_mark: 1 pass: CTA calibration. The draft offers a call.\n:white_circle: Not re-evaluated yet: these verdicts are on my draft, not on the edited version.",
+        "verbatim": true
+      },
+      "block_id": "ghost.selected.evals"
+    },
+    {
+      "type": "actions",
+      "block_id": "ghost.selected.actions",
+      "elements": [
+        {
+          "type": "button",
+          "text": {
+            "type": "plain_text",
+            "text": "Edit",
+            "emoji": false
+          },
+          "action_id": "ghost.selected.edit",
+          "value": "{\"run_id\":\"0f0a0000-0000-4000-8000-000000000601\"}"
+        },
+        {
+          "type": "button",
+          "text": {
+            "type": "plain_text",
+            "text": "Send",
+            "emoji": false
+          },
+          "action_id": "ghost.selected.send",
+          "value": "{\"run_id\":\"0f0a0000-0000-4000-8000-000000000601\"}",
+          "confirm": {
+            "title": {
+              "type": "plain_text",
+              "text": "Send this email?",
+              "emoji": false
+            },
+            "text": {
+              "type": "mrkdwn",
+              "text": "This sends *Re: Expansion to EU teams* to Marco \u0026lt;marco@acme.example.test\u0026gt;.",
+              "verbatim": true
+            },
+            "confirm": {
+              "type": "plain_text",
+              "text": "Send",
+              "emoji": false
+            },
+            "deny": {
+              "type": "plain_text",
+              "text": "Cancel",
+              "emoji": false
+            }
+          },
+          "style": "primary"
+        },
+        {
+          "type": "button",
+          "text": {
+            "type": "plain_text",
+            "text": "Inspect evals",
+            "emoji": false
+          },
+          "action_id": "ghost.selected.view_evals",
+          "url": "https://ghost.example.test/runs/0f0a0000-0000-4000-8000-000000000601/evals?candidate=0ca00000-0000-4000-8000-0000000000a2"
+        }
+      ]
+    },
+    {
+      "type": "context",
+      "block_id": "ghost.selected.refused",
+      "elements": [
+        {
+          "type": "mrkdwn",
+          "text": "_Send was refused: a blocking eval is unresolved_",
+          "verbatim": true
+        }
+      ]
+    }
+  ]
+}

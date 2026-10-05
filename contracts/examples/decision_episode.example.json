@@ -1,0 +1,41 @@
+{
+  "id": "0e9e0000-0000-4000-8000-000000000a01",
+  "agent_run_id": "0f0a0000-0000-4000-8000-000000000601",
+  "account_id": "0a0c0000-0000-4000-8000-000000000001",
+  "status": "judged",
+  "state_version": 7,
+  "state_diff_id": "0d1f0000-0000-4000-8000-000000000301",
+  "held_out_event_id": "0e7e0000-0000-4000-8000-000000000002",
+  "account_change_id": "0acc0000-0000-4000-8000-000000000801",
+  "business_intelligence_update_id": "0b100000-0000-4000-8000-000000000a01",
+  "trigger_activity_ids": [
+    "0ac70000-0000-4000-8000-000000000101"
+  ],
+  "decision_guidance_id": "06d1de00-0000-4000-8000-000000000c01",
+  "final_draft_index": 2,
+  "eval_result_ids": [
+    "0e1a0000-0000-4000-8000-000000000901",
+    "0e1a0000-0000-4000-8000-000000000902",
+    "0e1a0000-0000-4000-8000-000000000903",
+    "0e1a0000-0000-4000-8000-000000000911",
+    "0e1a0000-0000-4000-8000-000000000912"
+  ],
+  "human_decision_id": "0dec0000-0000-4000-8000-000000000701",
+  "human_action": "APPROVE_WITH_EDIT",
+  "human_final_artifact": {
+    "channel": "email",
+    "subject": "Re: Expansion to EU teams",
+    "body": "Hi Marco,\n\nAttached are our SOC2 Type II report and pen-test summary. Once you and Priya have reviewed, let us know what timing suits you.\n\nBest,\nDana",
+    "attachments": [
+      "soc2-type2-2026.pdf",
+      "pentest-summary-2026Q3.pdf"
+    ]
+  },
+  "human_delta_id": "0de1a000-0000-4000-8000-000000000b01",
+  "learning_scope": "undetermined",
+  "customer_reaction_ids": [
+    "0eac7000-0000-4000-8000-000000000d01"
+  ],
+  "business_outcome_ids": [],
+  "created_at": "2026-09-29T16:05:00Z"
+}
