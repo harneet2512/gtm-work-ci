@@ -1,0 +1,1485 @@
+{
+ "version": 1,
+ "description": "Gold cases for the five deterministic E7 evals (HAR-97 E7, HAR-128): one trace, the eval, and the verdict a careful reviewer gives. Synthetic ids; no live data.",
+ "cases": [
+  {
+   "id": "e71_supported",
+   "eval": "E7.1",
+   "want": "pass",
+   "why": "the claimed knowledge was retrieved and applies",
+   "trace": {
+    "retrieved": [
+     "k-applicable"
+    ],
+    "applicable": [
+     "k-applicable"
+    ],
+    "exception_blocked": [],
+    "counterfactual": {
+     "status": "not_run",
+     "ranking_changed": false,
+     "preferred_action_changed": false
+    },
+    "candidates": [
+     {
+      "candidate_id": "c-a",
+      "strategy_type": "a",
+      "ranking": 1,
+      "claimed": [
+       "k-applicable"
+      ],
+      "change": null
+     },
+     {
+      "candidate_id": "c-b",
+      "strategy_type": "b",
+      "ranking": 2,
+      "claimed": [],
+      "change": null
+     },
+     {
+      "candidate_id": "c-c",
+      "strategy_type": "c",
+      "ranking": 3,
+      "claimed": [],
+      "change": null
+     }
+    ]
+   }
+  },
+  {
+   "id": "e71_no_claim",
+   "eval": "E7.1",
+   "want": "pass",
+   "why": "nothing is claimed, so there is nothing to support",
+   "trace": {
+    "retrieved": [
+     "k-applicable"
+    ],
+    "applicable": [
+     "k-applicable"
+    ],
+    "exception_blocked": [],
+    "counterfactual": {
+     "status": "not_run",
+     "ranking_changed": false,
+     "preferred_action_changed": false
+    },
+    "candidates": [
+     {
+      "candidate_id": "c-a",
+      "strategy_type": "a",
+      "ranking": 1,
+      "claimed": [],
+      "change": null
+     },
+     {
+      "candidate_id": "c-b",
+      "strategy_type": "b",
+      "ranking": 2,
+      "claimed": [],
+      "change": null
+     },
+     {
+      "candidate_id": "c-c",
+      "strategy_type": "c",
+      "ranking": 3,
+      "claimed": [],
+      "change": null
+     }
+    ]
+   }
+  },
+  {
+   "id": "e71_claims_irrelevant",
+   "eval": "E7.1",
+   "want": "fail",
+   "why": "the claim names knowledge that was retrieved but did not apply",
+   "trace": {
+    "retrieved": [
+     "k-applicable",
+     "k-irrelevant"
+    ],
+    "applicable": [
+     "k-applicable"
+    ],
+    "exception_blocked": [],
+    "counterfactual": {
+     "status": "not_run",
+     "ranking_changed": false,
+     "preferred_action_changed": false
+    },
+    "candidates": [
+     {
+      "candidate_id": "c-a",
+      "strategy_type": "a",
+      "ranking": 1,
+      "claimed": [
+       "k-irrelevant"
+      ],
+      "change": null
+     },
+     {
+      "candidate_id": "c-b",
+      "strategy_type": "b",
+      "ranking": 2,
+      "claimed": [],
+      "change": null
+     },
+     {
+      "candidate_id": "c-c",
+      "strategy_type": "c",
+      "ranking": 3,
+      "claimed": [],
+      "change": null
+     }
+    ]
+   }
+  },
+  {
+   "id": "e71_claims_blocked",
+   "eval": "E7.1",
+   "want": "fail",
+   "why": "the claim names knowledge whose exception fired",
+   "trace": {
+    "retrieved": [
+     "k-exception"
+    ],
+    "applicable": [
+     "k-exception"
+    ],
+    "exception_blocked": [
+     "k-exception"
+    ],
+    "counterfactual": {
+     "status": "not_run",
+     "ranking_changed": false,
+     "preferred_action_changed": false
+    },
+    "candidates": [
+     {
+      "candidate_id": "c-a",
+      "strategy_type": "a",
+      "ranking": 1,
+      "claimed": [
+       "k-exception"
+      ],
+      "change": null
+     },
+     {
+      "candidate_id": "c-b",
+      "strategy_type": "b",
+      "ranking": 2,
+      "claimed": [],
+      "change": null
+     },
+     {
+      "candidate_id": "c-c",
+      "strategy_type": "c",
+      "ranking": 3,
+      "claimed": [],
+      "change": null
+     }
+    ]
+   }
+  },
+  {
+   "id": "e71_claims_never_retrieved",
+   "eval": "E7.1",
+   "want": "fail",
+   "why": "the claim names knowledge that was never retrieved",
+   "trace": {
+    "retrieved": [
+     "k-applicable"
+    ],
+    "applicable": [
+     "k-applicable"
+    ],
+    "exception_blocked": [],
+    "counterfactual": {
+     "status": "not_run",
+     "ranking_changed": false,
+     "preferred_action_changed": false
+    },
+    "candidates": [
+     {
+      "candidate_id": "c-a",
+      "strategy_type": "a",
+      "ranking": 1,
+      "claimed": [
+       "k-made-up"
+      ],
+      "change": null
+     },
+     {
+      "candidate_id": "c-b",
+      "strategy_type": "b",
+      "ranking": 2,
+      "claimed": [],
+      "change": null
+     },
+     {
+      "candidate_id": "c-c",
+      "strategy_type": "c",
+      "ranking": 3,
+      "claimed": [],
+      "change": null
+     }
+    ]
+   }
+  },
+  {
+   "id": "e72_changed_and_claimed",
+   "eval": "E7.2",
+   "want": "pass",
+   "why": "the changed candidate names the knowledge",
+   "trace": {
+    "retrieved": [
+     "k-applicable"
+    ],
+    "applicable": [
+     "k-applicable"
+    ],
+    "exception_blocked": [],
+    "counterfactual": {
+     "status": "compared",
+     "ranking_changed": false,
+     "preferred_action_changed": false
+    },
+    "candidates": [
+     {
+      "candidate_id": "c-a",
+      "strategy_type": "a",
+      "ranking": 1,
+      "claimed": [
+       "k-applicable"
+      ],
+      "change": {
+       "matched": true,
+       "ranking_changed": false,
+       "action_changed": false,
+       "recipients_changed": true,
+       "changed": true
+      }
+     },
+     {
+      "candidate_id": "c-b",
+      "strategy_type": "b",
+      "ranking": 2,
+      "claimed": [],
+      "change": {
+       "matched": true,
+       "ranking_changed": false,
+       "action_changed": false,
+       "recipients_changed": false,
+       "changed": false
+      }
+     },
+     {
+      "candidate_id": "c-c",
+      "strategy_type": "c",
+      "ranking": 3,
+      "claimed": [],
+      "change": {
+       "matched": true,
+       "ranking_changed": false,
+       "action_changed": false,
+       "recipients_changed": false,
+       "changed": false
+      }
+     }
+    ]
+   }
+  },
+  {
+   "id": "e72_changed_silently",
+   "eval": "E7.2",
+   "want": "fail",
+   "why": "the candidate changed but claims no knowledge",
+   "trace": {
+    "retrieved": [
+     "k-applicable"
+    ],
+    "applicable": [
+     "k-applicable"
+    ],
+    "exception_blocked": [],
+    "counterfactual": {
+     "status": "compared",
+     "ranking_changed": false,
+     "preferred_action_changed": false
+    },
+    "candidates": [
+     {
+      "candidate_id": "c-a",
+      "strategy_type": "a",
+      "ranking": 1,
+      "claimed": [],
+      "change": {
+       "matched": true,
+       "ranking_changed": false,
+       "action_changed": true,
+       "recipients_changed": false,
+       "changed": true
+      }
+     },
+     {
+      "candidate_id": "c-b",
+      "strategy_type": "b",
+      "ranking": 2,
+      "claimed": [],
+      "change": {
+       "matched": true,
+       "ranking_changed": false,
+       "action_changed": false,
+       "recipients_changed": false,
+       "changed": false
+      }
+     },
+     {
+      "candidate_id": "c-c",
+      "strategy_type": "c",
+      "ranking": 3,
+      "claimed": [],
+      "change": {
+       "matched": true,
+       "ranking_changed": false,
+       "action_changed": false,
+       "recipients_changed": false,
+       "changed": false
+      }
+     }
+    ]
+   }
+  },
+  {
+   "id": "e72_new_strategy_silent",
+   "eval": "E7.2",
+   "want": "fail",
+   "why": "a strategy that exists only with knowledge claims none",
+   "trace": {
+    "retrieved": [
+     "k-applicable"
+    ],
+    "applicable": [
+     "k-applicable"
+    ],
+    "exception_blocked": [],
+    "counterfactual": {
+     "status": "compared",
+     "ranking_changed": false,
+     "preferred_action_changed": false
+    },
+    "candidates": [
+     {
+      "candidate_id": "c-a",
+      "strategy_type": "a",
+      "ranking": 1,
+      "claimed": [],
+      "change": {
+       "matched": false,
+       "ranking_changed": false,
+       "action_changed": false,
+       "recipients_changed": false,
+       "changed": true
+      }
+     },
+     {
+      "candidate_id": "c-b",
+      "strategy_type": "b",
+      "ranking": 2,
+      "claimed": [],
+      "change": {
+       "matched": true,
+       "ranking_changed": false,
+       "action_changed": false,
+       "recipients_changed": false,
+       "changed": false
+      }
+     },
+     {
+      "candidate_id": "c-c",
+      "strategy_type": "c",
+      "ranking": 3,
+      "claimed": [],
+      "change": {
+       "matched": true,
+       "ranking_changed": false,
+       "action_changed": false,
+       "recipients_changed": false,
+       "changed": false
+      }
+     }
+    ]
+   }
+  },
+  {
+   "id": "e72_not_compared",
+   "eval": "E7.2",
+   "want": "unknown",
+   "why": "without arm A there is no changed column",
+   "trace": {
+    "retrieved": [
+     "k-applicable"
+    ],
+    "applicable": [
+     "k-applicable"
+    ],
+    "exception_blocked": [],
+    "counterfactual": {
+     "status": "not_run",
+     "ranking_changed": false,
+     "preferred_action_changed": false
+    },
+    "candidates": [
+     {
+      "candidate_id": "c-a",
+      "strategy_type": "a",
+      "ranking": 1,
+      "claimed": [],
+      "change": null
+     },
+     {
+      "candidate_id": "c-b",
+      "strategy_type": "b",
+      "ranking": 2,
+      "claimed": [],
+      "change": null
+     },
+     {
+      "candidate_id": "c-c",
+      "strategy_type": "c",
+      "ranking": 3,
+      "claimed": [],
+      "change": null
+     }
+    ]
+   }
+  },
+  {
+   "id": "e72_unchanged",
+   "eval": "E7.2",
+   "want": "pass",
+   "why": "nothing changed, nothing to claim",
+   "trace": {
+    "retrieved": [
+     "k-applicable"
+    ],
+    "applicable": [
+     "k-applicable"
+    ],
+    "exception_blocked": [],
+    "counterfactual": {
+     "status": "compared",
+     "ranking_changed": false,
+     "preferred_action_changed": false
+    },
+    "candidates": [
+     {
+      "candidate_id": "c-a",
+      "strategy_type": "a",
+      "ranking": 1,
+      "claimed": [],
+      "change": {
+       "matched": true,
+       "ranking_changed": false,
+       "action_changed": false,
+       "recipients_changed": false,
+       "changed": false
+      }
+     },
+     {
+      "candidate_id": "c-b",
+      "strategy_type": "b",
+      "ranking": 2,
+      "claimed": [],
+      "change": {
+       "matched": true,
+       "ranking_changed": false,
+       "action_changed": false,
+       "recipients_changed": false,
+       "changed": false
+      }
+     },
+     {
+      "candidate_id": "c-c",
+      "strategy_type": "c",
+      "ranking": 3,
+      "claimed": [],
+      "change": {
+       "matched": true,
+       "ranking_changed": false,
+       "action_changed": false,
+       "recipients_changed": false,
+       "changed": false
+      }
+     }
+    ]
+   }
+  },
+  {
+   "id": "e72_no_applicable",
+   "eval": "E7.2",
+   "want": "pass",
+   "why": "no applicable knowledge could have influenced anything",
+   "trace": {
+    "retrieved": [
+     "k-irrelevant"
+    ],
+    "applicable": [],
+    "exception_blocked": [],
+    "counterfactual": {
+     "status": "compared",
+     "ranking_changed": false,
+     "preferred_action_changed": false
+    },
+    "candidates": [
+     {
+      "candidate_id": "c-a",
+      "strategy_type": "a",
+      "ranking": 1,
+      "claimed": [],
+      "change": {
+       "matched": true,
+       "ranking_changed": false,
+       "action_changed": false,
+       "recipients_changed": true,
+       "changed": true
+      }
+     },
+     {
+      "candidate_id": "c-b",
+      "strategy_type": "b",
+      "ranking": 2,
+      "claimed": [],
+      "change": {
+       "matched": true,
+       "ranking_changed": false,
+       "action_changed": false,
+       "recipients_changed": false,
+       "changed": false
+      }
+     },
+     {
+      "candidate_id": "c-c",
+      "strategy_type": "c",
+      "ranking": 3,
+      "claimed": [],
+      "change": {
+       "matched": true,
+       "ranking_changed": false,
+       "action_changed": false,
+       "recipients_changed": false,
+       "changed": false
+      }
+     }
+    ]
+   }
+  },
+  {
+   "id": "e73_unchanged",
+   "eval": "E7.3",
+   "want": "pass",
+   "why": "same ranking with and without knowledge",
+   "trace": {
+    "retrieved": [
+     "k-applicable"
+    ],
+    "applicable": [
+     "k-applicable"
+    ],
+    "exception_blocked": [],
+    "counterfactual": {
+     "status": "compared",
+     "ranking_changed": false,
+     "preferred_action_changed": false
+    },
+    "candidates": [
+     {
+      "candidate_id": "c-a",
+      "strategy_type": "a",
+      "ranking": 1,
+      "claimed": [
+       "k-applicable"
+      ],
+      "change": {
+       "matched": true,
+       "ranking_changed": false,
+       "action_changed": false,
+       "recipients_changed": false,
+       "changed": false
+      }
+     },
+     {
+      "candidate_id": "c-b",
+      "strategy_type": "b",
+      "ranking": 2,
+      "claimed": [],
+      "change": {
+       "matched": true,
+       "ranking_changed": false,
+       "action_changed": false,
+       "recipients_changed": false,
+       "changed": false
+      }
+     },
+     {
+      "candidate_id": "c-c",
+      "strategy_type": "c",
+      "ranking": 3,
+      "claimed": [],
+      "change": {
+       "matched": true,
+       "ranking_changed": false,
+       "action_changed": false,
+       "recipients_changed": false,
+       "changed": false
+      }
+     }
+    ]
+   }
+  },
+  {
+   "id": "e73_moved_and_claimed",
+   "eval": "E7.3",
+   "want": "pass",
+   "why": "the rank moved and the moved candidate cites knowledge",
+   "trace": {
+    "retrieved": [
+     "k-applicable"
+    ],
+    "applicable": [
+     "k-applicable"
+    ],
+    "exception_blocked": [],
+    "counterfactual": {
+     "status": "compared",
+     "ranking_changed": true,
+     "preferred_action_changed": false
+    },
+    "candidates": [
+     {
+      "candidate_id": "c-a",
+      "strategy_type": "a",
+      "ranking": 1,
+      "claimed": [
+       "k-applicable"
+      ],
+      "change": {
+       "matched": true,
+       "ranking_changed": true,
+       "action_changed": false,
+       "recipients_changed": false,
+       "changed": true
+      }
+     },
+     {
+      "candidate_id": "c-b",
+      "strategy_type": "b",
+      "ranking": 2,
+      "claimed": [],
+      "change": {
+       "matched": true,
+       "ranking_changed": false,
+       "action_changed": false,
+       "recipients_changed": false,
+       "changed": false
+      }
+     },
+     {
+      "candidate_id": "c-c",
+      "strategy_type": "c",
+      "ranking": 3,
+      "claimed": [],
+      "change": {
+       "matched": true,
+       "ranking_changed": false,
+       "action_changed": false,
+       "recipients_changed": false,
+       "changed": false
+      }
+     }
+    ]
+   }
+  },
+  {
+   "id": "e73_moved_unattributed",
+   "eval": "E7.3",
+   "want": "fail",
+   "why": "the rank moved and no candidate cites knowledge",
+   "trace": {
+    "retrieved": [
+     "k-applicable"
+    ],
+    "applicable": [
+     "k-applicable"
+    ],
+    "exception_blocked": [],
+    "counterfactual": {
+     "status": "compared",
+     "ranking_changed": true,
+     "preferred_action_changed": false
+    },
+    "candidates": [
+     {
+      "candidate_id": "c-a",
+      "strategy_type": "a",
+      "ranking": 1,
+      "claimed": [],
+      "change": {
+       "matched": true,
+       "ranking_changed": true,
+       "action_changed": false,
+       "recipients_changed": false,
+       "changed": true
+      }
+     },
+     {
+      "candidate_id": "c-b",
+      "strategy_type": "b",
+      "ranking": 2,
+      "claimed": [],
+      "change": {
+       "matched": true,
+       "ranking_changed": true,
+       "action_changed": false,
+       "recipients_changed": false,
+       "changed": true
+      }
+     },
+     {
+      "candidate_id": "c-c",
+      "strategy_type": "c",
+      "ranking": 3,
+      "claimed": [],
+      "change": {
+       "matched": true,
+       "ranking_changed": false,
+       "action_changed": false,
+       "recipients_changed": false,
+       "changed": false
+      }
+     }
+    ]
+   }
+  },
+  {
+   "id": "e73_claim_elsewhere",
+   "eval": "E7.3",
+   "want": "fail",
+   "why": "the knowledge is cited by a candidate whose rank did not move",
+   "trace": {
+    "retrieved": [
+     "k-applicable"
+    ],
+    "applicable": [
+     "k-applicable"
+    ],
+    "exception_blocked": [],
+    "counterfactual": {
+     "status": "compared",
+     "ranking_changed": true,
+     "preferred_action_changed": false
+    },
+    "candidates": [
+     {
+      "candidate_id": "c-a",
+      "strategy_type": "a",
+      "ranking": 1,
+      "claimed": [],
+      "change": {
+       "matched": true,
+       "ranking_changed": true,
+       "action_changed": false,
+       "recipients_changed": false,
+       "changed": true
+      }
+     },
+     {
+      "candidate_id": "c-b",
+      "strategy_type": "b",
+      "ranking": 2,
+      "claimed": [
+       "k-applicable"
+      ],
+      "change": {
+       "matched": true,
+       "ranking_changed": false,
+       "action_changed": false,
+       "recipients_changed": false,
+       "changed": false
+      }
+     },
+     {
+      "candidate_id": "c-c",
+      "strategy_type": "c",
+      "ranking": 3,
+      "claimed": [],
+      "change": {
+       "matched": true,
+       "ranking_changed": false,
+       "action_changed": false,
+       "recipients_changed": false,
+       "changed": false
+      }
+     }
+    ]
+   }
+  },
+  {
+   "id": "e73_not_compared",
+   "eval": "E7.3",
+   "want": "unknown",
+   "why": "without arm A the ranking cannot be attributed",
+   "trace": {
+    "retrieved": [
+     "k-applicable"
+    ],
+    "applicable": [
+     "k-applicable"
+    ],
+    "exception_blocked": [],
+    "counterfactual": {
+     "status": "unavailable",
+     "ranking_changed": false,
+     "preferred_action_changed": false
+    },
+    "candidates": [
+     {
+      "candidate_id": "c-a",
+      "strategy_type": "a",
+      "ranking": 1,
+      "claimed": [],
+      "change": null
+     },
+     {
+      "candidate_id": "c-b",
+      "strategy_type": "b",
+      "ranking": 2,
+      "claimed": [],
+      "change": null
+     },
+     {
+      "candidate_id": "c-c",
+      "strategy_type": "c",
+      "ranking": 3,
+      "claimed": [],
+      "change": null
+     }
+    ]
+   }
+  },
+  {
+   "id": "e74_unchanged",
+   "eval": "E7.4",
+   "want": "pass",
+   "why": "same preferred action with and without knowledge",
+   "trace": {
+    "retrieved": [
+     "k-applicable"
+    ],
+    "applicable": [
+     "k-applicable"
+    ],
+    "exception_blocked": [],
+    "counterfactual": {
+     "status": "compared",
+     "ranking_changed": false,
+     "preferred_action_changed": false
+    },
+    "candidates": [
+     {
+      "candidate_id": "c-a",
+      "strategy_type": "a",
+      "ranking": 1,
+      "claimed": [
+       "k-applicable"
+      ],
+      "change": {
+       "matched": true,
+       "ranking_changed": false,
+       "action_changed": false,
+       "recipients_changed": false,
+       "changed": false
+      }
+     },
+     {
+      "candidate_id": "c-b",
+      "strategy_type": "b",
+      "ranking": 2,
+      "claimed": [],
+      "change": {
+       "matched": true,
+       "ranking_changed": false,
+       "action_changed": false,
+       "recipients_changed": false,
+       "changed": false
+      }
+     },
+     {
+      "candidate_id": "c-c",
+      "strategy_type": "c",
+      "ranking": 3,
+      "claimed": [],
+      "change": {
+       "matched": true,
+       "ranking_changed": false,
+       "action_changed": false,
+       "recipients_changed": false,
+       "changed": false
+      }
+     }
+    ]
+   }
+  },
+  {
+   "id": "e74_changed_and_claimed",
+   "eval": "E7.4",
+   "want": "pass",
+   "why": "the preferred action changed and the preferred candidate cites knowledge",
+   "trace": {
+    "retrieved": [
+     "k-applicable"
+    ],
+    "applicable": [
+     "k-applicable"
+    ],
+    "exception_blocked": [],
+    "counterfactual": {
+     "status": "compared",
+     "ranking_changed": false,
+     "preferred_action_changed": true
+    },
+    "candidates": [
+     {
+      "candidate_id": "c-a",
+      "strategy_type": "a",
+      "ranking": 1,
+      "claimed": [
+       "k-applicable"
+      ],
+      "change": {
+       "matched": true,
+       "ranking_changed": false,
+       "action_changed": true,
+       "recipients_changed": false,
+       "changed": true
+      }
+     },
+     {
+      "candidate_id": "c-b",
+      "strategy_type": "b",
+      "ranking": 2,
+      "claimed": [],
+      "change": {
+       "matched": true,
+       "ranking_changed": false,
+       "action_changed": false,
+       "recipients_changed": false,
+       "changed": false
+      }
+     },
+     {
+      "candidate_id": "c-c",
+      "strategy_type": "c",
+      "ranking": 3,
+      "claimed": [],
+      "change": {
+       "matched": true,
+       "ranking_changed": false,
+       "action_changed": false,
+       "recipients_changed": false,
+       "changed": false
+      }
+     }
+    ]
+   }
+  },
+  {
+   "id": "e74_changed_unattributed",
+   "eval": "E7.4",
+   "want": "fail",
+   "why": "the preferred action changed and the preferred candidate cites no knowledge",
+   "trace": {
+    "retrieved": [
+     "k-applicable"
+    ],
+    "applicable": [
+     "k-applicable"
+    ],
+    "exception_blocked": [],
+    "counterfactual": {
+     "status": "compared",
+     "ranking_changed": false,
+     "preferred_action_changed": true
+    },
+    "candidates": [
+     {
+      "candidate_id": "c-a",
+      "strategy_type": "a",
+      "ranking": 1,
+      "claimed": [],
+      "change": {
+       "matched": true,
+       "ranking_changed": false,
+       "action_changed": true,
+       "recipients_changed": false,
+       "changed": true
+      }
+     },
+     {
+      "candidate_id": "c-b",
+      "strategy_type": "b",
+      "ranking": 2,
+      "claimed": [
+       "k-applicable"
+      ],
+      "change": {
+       "matched": true,
+       "ranking_changed": false,
+       "action_changed": false,
+       "recipients_changed": false,
+       "changed": false
+      }
+     },
+     {
+      "candidate_id": "c-c",
+      "strategy_type": "c",
+      "ranking": 3,
+      "claimed": [],
+      "change": {
+       "matched": true,
+       "ranking_changed": false,
+       "action_changed": false,
+       "recipients_changed": false,
+       "changed": false
+      }
+     }
+    ]
+   }
+  },
+  {
+   "id": "e74_not_compared",
+   "eval": "E7.4",
+   "want": "unknown",
+   "why": "without arm A the action cannot be attributed",
+   "trace": {
+    "retrieved": [
+     "k-applicable"
+    ],
+    "applicable": [
+     "k-applicable"
+    ],
+    "exception_blocked": [],
+    "counterfactual": {
+     "status": "not_run",
+     "ranking_changed": false,
+     "preferred_action_changed": false
+    },
+    "candidates": [
+     {
+      "candidate_id": "c-a",
+      "strategy_type": "a",
+      "ranking": 1,
+      "claimed": [],
+      "change": null
+     },
+     {
+      "candidate_id": "c-b",
+      "strategy_type": "b",
+      "ranking": 2,
+      "claimed": [],
+      "change": null
+     },
+     {
+      "candidate_id": "c-c",
+      "strategy_type": "c",
+      "ranking": 3,
+      "claimed": [],
+      "change": null
+     }
+    ]
+   }
+  },
+  {
+   "id": "e74_no_knowledge",
+   "eval": "E7.4",
+   "want": "pass",
+   "why": "nothing was retrieved, so knowledge changed nothing",
+   "trace": {
+    "retrieved": [],
+    "applicable": [],
+    "exception_blocked": [],
+    "counterfactual": {
+     "status": "no_knowledge",
+     "ranking_changed": false,
+     "preferred_action_changed": false
+    },
+    "candidates": [
+     {
+      "candidate_id": "c-a",
+      "strategy_type": "a",
+      "ranking": 1,
+      "claimed": [],
+      "change": null
+     },
+     {
+      "candidate_id": "c-b",
+      "strategy_type": "b",
+      "ranking": 2,
+      "claimed": [],
+      "change": null
+     },
+     {
+      "candidate_id": "c-c",
+      "strategy_type": "c",
+      "ranking": 3,
+      "claimed": [],
+      "change": null
+     }
+    ]
+   }
+  },
+  {
+   "id": "e74_no_candidates_ranked",
+   "eval": "E7.4",
+   "want": "unknown",
+   "why": "a changed preferred action but no candidate in the trace",
+   "trace": {
+    "retrieved": [
+     "k-applicable"
+    ],
+    "applicable": [
+     "k-applicable"
+    ],
+    "exception_blocked": [],
+    "counterfactual": {
+     "status": "compared",
+     "ranking_changed": false,
+     "preferred_action_changed": true
+    },
+    "candidates": []
+   }
+  },
+  {
+   "id": "e75_nothing_irrelevant",
+   "eval": "E7.5",
+   "want": "pass",
+   "why": "everything retrieved applies",
+   "trace": {
+    "retrieved": [
+     "k-applicable"
+    ],
+    "applicable": [
+     "k-applicable"
+    ],
+    "exception_blocked": [],
+    "counterfactual": {
+     "status": "not_run",
+     "ranking_changed": false,
+     "preferred_action_changed": false
+    },
+    "candidates": [
+     {
+      "candidate_id": "c-a",
+      "strategy_type": "a",
+      "ranking": 1,
+      "claimed": [
+       "k-applicable"
+      ],
+      "change": null
+     },
+     {
+      "candidate_id": "c-b",
+      "strategy_type": "b",
+      "ranking": 2,
+      "claimed": [],
+      "change": null
+     },
+     {
+      "candidate_id": "c-c",
+      "strategy_type": "c",
+      "ranking": 3,
+      "claimed": [],
+      "change": null
+     }
+    ]
+   }
+  },
+  {
+   "id": "e75_irrelevant_cited",
+   "eval": "E7.5",
+   "want": "fail",
+   "why": "irrelevant knowledge is cited as used",
+   "trace": {
+    "retrieved": [
+     "k-applicable",
+     "k-irrelevant"
+    ],
+    "applicable": [
+     "k-applicable"
+    ],
+    "exception_blocked": [],
+    "counterfactual": {
+     "status": "not_run",
+     "ranking_changed": false,
+     "preferred_action_changed": false
+    },
+    "candidates": [
+     {
+      "candidate_id": "c-a",
+      "strategy_type": "a",
+      "ranking": 1,
+      "claimed": [
+       "k-irrelevant"
+      ],
+      "change": null
+     },
+     {
+      "candidate_id": "c-b",
+      "strategy_type": "b",
+      "ranking": 2,
+      "claimed": [],
+      "change": null
+     },
+     {
+      "candidate_id": "c-c",
+      "strategy_type": "c",
+      "ranking": 3,
+      "claimed": [],
+      "change": null
+     }
+    ]
+   }
+  },
+  {
+   "id": "e75_blocked_cited",
+   "eval": "E7.5",
+   "want": "fail",
+   "why": "knowledge blocked by its exception is cited as used",
+   "trace": {
+    "retrieved": [
+     "k-exception"
+    ],
+    "applicable": [
+     "k-exception"
+    ],
+    "exception_blocked": [
+     "k-exception"
+    ],
+    "counterfactual": {
+     "status": "not_run",
+     "ranking_changed": false,
+     "preferred_action_changed": false
+    },
+    "candidates": [
+     {
+      "candidate_id": "c-a",
+      "strategy_type": "a",
+      "ranking": 1,
+      "claimed": [
+       "k-exception"
+      ],
+      "change": null
+     },
+     {
+      "candidate_id": "c-b",
+      "strategy_type": "b",
+      "ranking": 2,
+      "claimed": [],
+      "change": null
+     },
+     {
+      "candidate_id": "c-c",
+      "strategy_type": "c",
+      "ranking": 3,
+      "claimed": [],
+      "change": null
+     }
+    ]
+   }
+  },
+  {
+   "id": "e75_only_irrelevant_but_changed",
+   "eval": "E7.5",
+   "want": "warn",
+   "why": "only irrelevant knowledge was retrieved yet a candidate differs",
+   "trace": {
+    "retrieved": [
+     "k-irrelevant"
+    ],
+    "applicable": [],
+    "exception_blocked": [],
+    "counterfactual": {
+     "status": "compared",
+     "ranking_changed": false,
+     "preferred_action_changed": false
+    },
+    "candidates": [
+     {
+      "candidate_id": "c-a",
+      "strategy_type": "a",
+      "ranking": 1,
+      "claimed": [],
+      "change": {
+       "matched": true,
+       "ranking_changed": false,
+       "action_changed": false,
+       "recipients_changed": true,
+       "changed": true
+      }
+     },
+     {
+      "candidate_id": "c-b",
+      "strategy_type": "b",
+      "ranking": 2,
+      "claimed": [],
+      "change": {
+       "matched": true,
+       "ranking_changed": false,
+       "action_changed": false,
+       "recipients_changed": false,
+       "changed": false
+      }
+     },
+     {
+      "candidate_id": "c-c",
+      "strategy_type": "c",
+      "ranking": 3,
+      "claimed": [],
+      "change": {
+       "matched": true,
+       "ranking_changed": false,
+       "action_changed": false,
+       "recipients_changed": false,
+       "changed": false
+      }
+     }
+    ]
+   }
+  },
+  {
+   "id": "e75_only_irrelevant_stable",
+   "eval": "E7.5",
+   "want": "pass",
+   "why": "only irrelevant knowledge was retrieved and nothing moved",
+   "trace": {
+    "retrieved": [
+     "k-irrelevant"
+    ],
+    "applicable": [],
+    "exception_blocked": [],
+    "counterfactual": {
+     "status": "compared",
+     "ranking_changed": false,
+     "preferred_action_changed": false
+    },
+    "candidates": [
+     {
+      "candidate_id": "c-a",
+      "strategy_type": "a",
+      "ranking": 1,
+      "claimed": [],
+      "change": {
+       "matched": true,
+       "ranking_changed": false,
+       "action_changed": false,
+       "recipients_changed": false,
+       "changed": false
+      }
+     },
+     {
+      "candidate_id": "c-b",
+      "strategy_type": "b",
+      "ranking": 2,
+      "claimed": [],
+      "change": {
+       "matched": true,
+       "ranking_changed": false,
+       "action_changed": false,
+       "recipients_changed": false,
+       "changed": false
+      }
+     },
+     {
+      "candidate_id": "c-c",
+      "strategy_type": "c",
+      "ranking": 3,
+      "claimed": [],
+      "change": {
+       "matched": true,
+       "ranking_changed": false,
+       "action_changed": false,
+       "recipients_changed": false,
+       "changed": false
+      }
+     }
+    ]
+   }
+  },
+  {
+   "id": "e75_irrelevant_uncited_with_applicable",
+   "eval": "E7.5",
+   "want": "pass",
+   "why": "irrelevant knowledge sits beside applicable knowledge and is not cited",
+   "trace": {
+    "retrieved": [
+     "k-applicable",
+     "k-irrelevant"
+    ],
+    "applicable": [
+     "k-applicable"
+    ],
+    "exception_blocked": [],
+    "counterfactual": {
+     "status": "compared",
+     "ranking_changed": false,
+     "preferred_action_changed": false
+    },
+    "candidates": [
+     {
+      "candidate_id": "c-a",
+      "strategy_type": "a",
+      "ranking": 1,
+      "claimed": [
+       "k-applicable"
+      ],
+      "change": {
+       "matched": true,
+       "ranking_changed": false,
+       "action_changed": false,
+       "recipients_changed": true,
+       "changed": true
+      }
+     },
+     {
+      "candidate_id": "c-b",
+      "strategy_type": "b",
+      "ranking": 2,
+      "claimed": [],
+      "change": {
+       "matched": true,
+       "ranking_changed": false,
+       "action_changed": false,
+       "recipients_changed": false,
+       "changed": false
+      }
+     },
+     {
+      "candidate_id": "c-c",
+      "strategy_type": "c",
+      "ranking": 3,
+      "claimed": [],
+      "change": {
+       "matched": true,
+       "ranking_changed": false,
+       "action_changed": false,
+       "recipients_changed": false,
+       "changed": false
+      }
+     }
+    ]
+   }
+  }
+ ]
+}

@@ -1,0 +1,137 @@
+{
+  "text": "Acme (synthetic fixture) changed: Acme's security lead joined the EU expansion thread and now gates sign-off; no review date is set.",
+  "blocks": [
+    {
+      "type": "header",
+      "text": {
+        "type": "plain_text",
+        "text": "Acme (synthetic fixture) changed",
+        "emoji": false
+      },
+      "block_id": "ghost.bi.header"
+    },
+    {
+      "type": "section",
+      "text": {
+        "type": "mrkdwn",
+        "text": "Acme's security lead joined the EU expansion thread and now gates sign-off; no review date is set.",
+        "verbatim": true
+      },
+      "block_id": "ghost.bi.summary"
+    },
+    {
+      "type": "section",
+      "text": {
+        "type": "mrkdwn",
+        "text": "*What changed*",
+        "verbatim": true
+      },
+      "block_id": "ghost.bi.changes"
+    },
+    {
+      "type": "section",
+      "text": {
+        "type": "mrkdwn",
+        "text": "*1.* Marco, Acme's security lead, entered the buying group.",
+        "verbatim": true
+      },
+      "block_id": "ghost.bi.claim.1"
+    },
+    {
+      "type": "context",
+      "block_id": "ghost.bi.evidence.1",
+      "elements": [
+        {
+          "type": "mrkdwn",
+          "text": "Evidence: “I lead security at Acme” (2026-09-29 15:42 UTC)",
+          "verbatim": true
+        }
+      ]
+    },
+    {
+      "type": "section",
+      "text": {
+        "type": "mrkdwn",
+        "text": "*2.* The open blocker changed from budget approval to a security review (SOC2 Type II and pen-test summary).",
+        "verbatim": true
+      },
+      "block_id": "ghost.bi.claim.2"
+    },
+    {
+      "type": "context",
+      "block_id": "ghost.bi.evidence.2",
+      "elements": [
+        {
+          "type": "mrkdwn",
+          "text": "Evidence: “Before we can sign off on the EU rollout we'll need your SOC2 Type II report and the pen-test summary.” (2026-09-29 15:42 UTC)",
+          "verbatim": true
+        }
+      ]
+    },
+    {
+      "type": "section",
+      "text": {
+        "type": "mrkdwn",
+        "text": "*3.* The 30 September meeting is no longer on the calendar; Marco will not commit to a date before reading the documents.",
+        "verbatim": true
+      },
+      "block_id": "ghost.bi.claim.3"
+    },
+    {
+      "type": "context",
+      "block_id": "ghost.bi.evidence.3",
+      "elements": [
+        {
+          "type": "mrkdwn",
+          "text": "Evidence: “I can't commit to a review date until our team has read them.” (2026-09-29 15:42 UTC)",
+          "verbatim": true
+        }
+      ]
+    },
+    {
+      "type": "section",
+      "text": {
+        "type": "mrkdwn",
+        "text": "*Why this matters*\n• The EU rollout can no longer move on the champion's say-so; security sign-off is now the critical path, and Priya remains the commercial contact (K17 applies).\n• Relevant company knowledge: 1 knowledge item(s): 0c17c000",
+        "verbatim": true
+      },
+      "block_id": "ghost.bi.why"
+    },
+    {
+      "type": "section",
+      "text": {
+        "type": "mrkdwn",
+        "text": "*Relationship transition*\nCANDIDATE: REORG → EXPANSION\n*Still missing*\n• Owner stabilized (required): A champion who took over after the reorg is active, has held the role long enough, is not an interim or acting holder, and has no open weakening or delegation.\n• Value signal present (required): Since the reorg, the customer stated an achieved or expected business value or metric, or product usage increased.\n• Commercial next step (required): Since the reorg, a commercial step exists: the opportunity advanced, a pricing or budget conversation started, an open commercial commitment, or a known econom…\n• Economic buyer known (optional): The economic buyer is known.",
+        "verbatim": true
+      },
+      "block_id": "ghost.bi.transition"
+    },
+    {
+      "type": "actions",
+      "block_id": "ghost.bi.actions",
+      "elements": [
+        {
+          "type": "button",
+          "text": {
+            "type": "plain_text",
+            "text": "View account map",
+            "emoji": false
+          },
+          "action_id": "ghost.bi.view_map",
+          "url": "https://ghost.example.test/accounts/0a0c0000-0000-4000-8000-000000000001",
+          "value": "0b100000-0000-4000-8000-000000000a01"
+        },
+        {
+          "type": "button",
+          "text": {
+            "type": "plain_text",
+            "text": "View evals",
+            "emoji": false
+          },
+          "action_id": "ghost.bi.view_evals",
+          "url": "https://ghost.example.test/accounts/0a0c0000-0000-4000-8000-000000000001#intelligence-evals"
+        }
+      ]
+    }
+  ]
+}

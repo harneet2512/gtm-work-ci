@@ -1,0 +1,93 @@
+[
+  {
+    "AccountId": "001Wt00000PHVkAIAX",
+    "CaseNumber": "00001044",
+    "ClosedDate": null,
+    "ContactId": "003Wt00000Jqp3WIAR",
+    "CreatedDate": "2020-12-29T08:36:00.000+0000",
+    "Description": "I have noticed that I am not consistently receiving notifications about new feature updates for the SecureFlow Suite, which affects my ability to use the software to its full potential.",
+    "Id": "500Wt00000DDDtTIAX",
+    "Origin": "Email",
+    "OwnerId": "005Wt000003NJWTIA4",
+    "Priority": "Medium",
+    "Subject": "Missing Feature Update Alerts"
+  },
+  {
+    "AccountId": "001Wt00000PFj4zIAD",
+    "CaseNumber": "00001087",
+    "ClosedDate": "2022-02-03T14:46:56.000+0000",
+    "ContactId": "003Wt00000JqmtfIAB",
+    "CreatedDate": "2022-02-03T14:30:00.000+0000",
+    "Description": "I am experiencing latency issues when deploying TechPulse's OptiPower Manager within our complex existing workflows, causing workflow inefficiencies.",
+    "Id": "500Wt00000DDYdwIAH",
+    "Origin": "Live Chat",
+    "OwnerId": "005Wt000003NJbJIAW",
+    "Priority": "Medium",
+    "Subject": "Integration Latency Issue"
+  },
+  {
+    "AccountId": "001Wt00000PFj4zIAD",
+    "CaseNumber": "00001086",
+    "ClosedDate": "2023-01-04T12:19:08.000+0000",
+    "ContactId": "003Wt00000JqmtfIAB",
+    "CreatedDate": "2023-01-04T08:47:00.000+0000",
+    "Description": "I am having difficulty understanding and adhering to the evolving security compliance standards set by TechPulse Solutions.",
+    "Id": "500Wt00000DDZtKIAX",
+    "Origin": "Email",
+    "OwnerId": "005Wt000003NINVIA4",
+    "Priority": "High",
+    "Subject": "Security Compliance Concerns"
+  },
+  {
+    "AccountId": "001Wt00000PGdBuIAL",
+    "CaseNumber": "00001034",
+    "ClosedDate": "2023-01-03T18:45:59.000+0000",
+    "ContactId": "003Wt00000Jqw9sIAB",
+    "CreatedDate": "2023-01-03T10:15:00.000+0000",
+    "Description": "I am experiencing recurring problems accessing the online training modules, which is essential for our team to effectively utilize PulseSim Pro.",
+    "Id": "500Wt00000DDfx8IAD",
+    "Origin": "Email",
+    "OwnerId": "005Wt000003NJhlIAG",
+    "Priority": "High",
+    "Subject": "Training Module Access Issues"
+  },
+  {
+    "AccountId": "001Wt00000PHVkAIAX",
+    "CaseNumber": "00001046",
+    "ClosedDate": "2021-03-05T16:11:47.000+0000",
+    "ContactId": "003Wt00000Jqp3WIAR",
+    "CreatedDate": "2021-03-05T09:45:00.000+0000",
+    "Description": "I'm finding it difficult to keep up with the latest improvements in SecureFlow Suite as update alerts are not always received.",
+    "Id": "500Wt00000DDg8QIAT",
+    "Origin": "Email",
+    "OwnerId": "005Wt000003NJ0DIAW",
+    "Priority": "Low",
+    "Subject": "Feature Updates Not Communicated"
+  },
+  {
+    "AccountId": "001Wt00000PGdBuIAL",
+    "CaseNumber": "00001035",
+    "ClosedDate": "2023-02-15T14:50:12.000+0000",
+    "ContactId": "003Wt00000Jqw9sIAB",
+    "CreatedDate": "2023-02-15T14:30:00.000+0000",
+    "Description": "Our team is facing intermittent issues accessing the training modules online, which is delaying our product adoption process.",
+    "Id": "500Wt00000DDzhJIAT",
+    "Origin": "Live Chat",
+    "OwnerId": "005Wt000003NIaQIAW",
+    "Priority": "Medium",
+    "Subject": "Access Trouble to Training"
+  },
+  {
+    "AccountId": "001Wt00000PHVkAIAX",
+    "CaseNumber": "00001045",
+    "ClosedDate": "2021-02-20T14:39:47.000+0000",
+    "ContactId": "003Wt00000Jqp3WIAR",
+    "CreatedDate": "2021-02-20T14:30:00.000+0000",
+    "Description": "The lack of consistent update notifications for SecureFlow Suite is causing me to miss out on new features that are important for our compliance requirements.",
+    "Id": "500Wt00000DDzmAIAT",
+    "Origin": "Live Chat",
+    "OwnerId": "005Wt000003NJbJIAW",
+    "Priority": "High",
+    "Subject": "Uninformed on Updates"
+  }
+]

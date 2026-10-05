@@ -1,0 +1,67 @@
+{
+  "matrix_version": 1,
+  "description": "Example excerpt: one COVERED_BY, one planned REQUIRED and one NOT_APPLICABLE cell. The full matrix is contracts/evals/completeness_matrix.json.",
+  "source": {
+    "issue": "HAR-97",
+    "section": "CANONICAL EVAL STRATEGY (sections 1, 4-8, 12, 13; E1-E22, M1-M5)",
+    "fetched_on": "2026-10-03"
+  },
+  "surfaces": [
+    {
+      "id": 1,
+      "name": "source/evidence"
+    },
+    {
+      "id": 2,
+      "name": "inference boundary"
+    },
+    {
+      "id": 3,
+      "name": "entity/account resolution"
+    }
+  ],
+  "dimensions": [
+    "INTENDED_BEHAVIOR",
+    "INVARIANTS",
+    "BOUNDARIES",
+    "FAILURE_MODES",
+    "AMBIGUITY_ABSTENTION",
+    "ADVERSARIAL_GAMING",
+    "STOCHASTIC_RELIABILITY",
+    "CAUSAL_TRACE_ATTRIBUTION",
+    "REGRESSION_RISK",
+    "OBSERVABILITY"
+  ],
+  "cells": [
+    {
+      "surface": 13,
+      "dimension": "BOUNDARIES",
+      "state": "COVERED_BY",
+      "evals": [
+        "E12.4",
+        "E12.9",
+        "E12.10"
+      ]
+    },
+    {
+      "surface": 8,
+      "dimension": "CAUSAL_TRACE_ATTRIBUTION",
+      "state": "REQUIRED",
+      "status": "planned",
+      "owner": "HAR-128",
+      "evals": [
+        "E7.1",
+        "E7.2",
+        "E7.3",
+        "E7.4",
+        "E7.5"
+      ]
+    },
+    {
+      "surface": 4,
+      "dimension": "STOCHASTIC_RELIABILITY",
+      "state": "NOT_APPLICABLE",
+      "reason": "Deterministic projection code (Go, surface 4, E3.1-E3.9); no sampling."
+    }
+  ]
+}

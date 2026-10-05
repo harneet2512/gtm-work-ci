@@ -1,0 +1,101 @@
+/* Split from evals-jobs.css (imported right after it): company knowledge trace, the run's system panel, the account map job 1. */
+
+/* Company knowledge in this decision: retrieved → used → changed */
+.knowledge-trace {
+  margin-top: var(--space-4);
+}
+
+.k-steps {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: var(--space-3);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  font-size: var(--text-sm);
+}
+
+.k-steps > li {
+  display: grid;
+  align-content: start;
+  gap: var(--space-1);
+  padding: var(--space-3) var(--space-4);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-md);
+  color: var(--ink-2);
+}
+
+.k-steps > li.is-none {
+  border-style: dashed;
+  color: var(--muted);
+}
+
+.k-step {
+  color: var(--ink);
+  font-weight: 600;
+}
+
+.k-steps ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+/* The run's system panel */
+.run-system {
+  margin-top: var(--space-4);
+}
+
+.system-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: var(--space-5);
+}
+
+.system-grid h3 {
+  margin: 0 0 var(--space-2);
+  color: var(--muted);
+  font-size: var(--text-2xs);
+  letter-spacing: var(--tracking-caps);
+  text-transform: uppercase;
+}
+
+.sys-checks {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  font-size: var(--text-sm);
+}
+
+.sys-checks li {
+  padding: var(--space-1) 0 var(--space-1) var(--space-5);
+}
+
+.sys-checks .is-ok::before,
+.sys-checks .is-missing::before {
+  content: "";
+  display: inline-block;
+  width: 7px;
+  height: 7px;
+  margin: 0 var(--space-2) 1px calc(var(--space-5) * -1 + 2px);
+  border-radius: 50%;
+}
+
+.sys-checks .is-ok::before { background: var(--pass-solid); }
+.sys-checks .is-missing::before { background: var(--fail-solid); }
+
+.kv-row {
+  display: contents;
+}
+
+@media (max-width: 900px) {
+  .k-steps,
+  .system-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* The account map: job 1 beneath the workspace */
+.workspace + .job-band {
+  margin-top: var(--space-4);
+}

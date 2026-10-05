@@ -1,0 +1,109 @@
+/* /evals?view=results|compare — the operator explorer (HAR-145): a dense result table with a filter
+   toolbar, sortable columns, mono ids and verdict marks; color never carries a verdict alone. */
+
+.explorer-head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: var(--space-2) var(--space-4);
+}
+.explorer-head h1 { margin-right: auto; }
+
+.explorer .toolbar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--space-2) var(--space-3);
+  margin-bottom: var(--space-3);
+}
+.explorer .toolbar input[type="search"] {
+  font: inherit;
+  font-size: var(--text-sm);
+  padding: var(--space-1-5) var(--space-2);
+  border: 1px solid var(--line-strong);
+  border-radius: var(--radius-sm);
+  background: var(--surface);
+  min-width: 16rem;
+}
+.explorer .chipset { display: flex; flex-wrap: wrap; gap: var(--space-1); }
+.explorer .chip {
+  font: inherit;
+  font-size: var(--text-2xs);
+  padding: 2px var(--space-2);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-pill, 999px);
+  background: var(--surface);
+  color: var(--muted);
+  cursor: pointer;
+  text-transform: uppercase;
+  letter-spacing: var(--tracking-caps);
+}
+.explorer .chip.on {
+  border-color: var(--brand);
+  color: var(--brand-text);
+  background: var(--brand-tint);
+}
+.explorer .count { margin-left: auto; font-size: var(--text-xs); color: var(--faint); }
+
+.explorer-table .thsort {
+  all: unset;
+  cursor: pointer;
+  font: inherit;
+  color: inherit;
+}
+.explorer-table .thsort:hover { color: var(--ink); }
+/* all: unset above removes the browser focus ring; restore the shared one for keyboard users. */
+.explorer-table .thsort:focus-visible,
+.explorer-table .vrow:focus-visible,
+.explorer .chip:focus-visible { outline: none; box-shadow: var(--focus-ring); }
+.explorer-table .vrow { cursor: pointer; }
+.explorer-table .vrow:hover td { background: var(--surface-hover); }
+.explorer-table .vrow.selected td { background: var(--brand-tint); }
+.explorer-table .mark { width: 2.25rem; font-size: var(--text-xs); }
+.explorer-table .ename { min-width: 9rem; }
+table.dense .etype {
+  display: block;
+  font-size: var(--text-2xs);
+  color: var(--faint);
+}
+.explorer-table .cand { font-weight: 600; margin-right: var(--space-1); }
+.explorer-table .ctitle { color: var(--muted); font-size: var(--text-2xs); display: block; }
+.explorer-table .tag { color: var(--brand-text); margin-right: 2px; }
+.explorer-table .reason { max-width: 26rem; }
+.explorer-table td.empty { text-align: center; color: var(--faint); padding: var(--space-5) 0; }
+
+/* verdict marks — words accompany color everywhere */
+.vrow.st-fail .mark, .v-fail { color: var(--fail); }
+.vrow.st-warn .mark, .v-warn { color: var(--warn-solid); }
+.vrow.st-abstain .mark, .v-abstain { color: var(--unsure); }
+.vrow.st-pass .mark, .v-pass { color: var(--pass-solid); }
+.vrow.st-not_relevant .mark, .v-not_relevant, .v-not_checked { color: var(--faint); }
+.vrow.st-fail td:first-child { box-shadow: inset 2px 0 0 var(--fail); }
+
+/* run comparison */
+.compare-heads {
+  display: flex;
+  align-items: baseline;
+  gap: var(--space-6);
+  flex-wrap: wrap;
+  padding-bottom: var(--space-3);
+  border-bottom: 1px solid var(--line);
+  margin-bottom: var(--space-3);
+}
+.compare-heads .cmp-side { display: flex; flex-direction: column; gap: 1px; }
+.compare-heads .cmp-side code { font-family: var(--font-mono); font-size: var(--text-sm); }
+.compare .chipset { display: flex; flex-wrap: wrap; gap: var(--space-1); }
+.compare .chip {
+  font-size: var(--text-2xs);
+  font-family: var(--font-mono);
+  padding: 2px var(--space-2);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-pill, 999px);
+  color: var(--muted);
+  text-decoration: none;
+}
+.compare .chip.on { border-color: var(--brand); color: var(--brand-text); background: var(--brand-tint); }
+.cmp-changed td { background: var(--surface-sunken); }
+.cmp-improved td { background: var(--pass-tint); }
+.cmp-regressed td { background: var(--warn-tint, transparent); }
+.cmp-one-sided td { background: var(--surface-sunken); }

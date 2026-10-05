@@ -1,0 +1,43 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://ghost.local/contracts/account_change.v1.json",
+  "title": "AccountChange",
+  "description": "What one released event changed in the account world (HAR-129 section 3, 5, 14, 1B): the two state snapshots, the relational state diff and the graph diff of the Neo4j projection. It adds no new facts; every field points at a stored object.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "id", "account_id", "trigger_activity_ids", "previous_state_ref", "current_state_ref", "state_diff_id",
+    "graph_diff_ref", "material_change", "evidence_refs", "created_at"
+  ],
+  "properties": {
+    "id": { "$ref": "common.v1.json#/$defs/uuid" },
+    "account_id": { "$ref": "common.v1.json#/$defs/uuid" },
+    "opportunity_id": { "oneOf": [{ "$ref": "common.v1.json#/$defs/uuid" }, { "type": "null" }] },
+    "held_out_event_id": {
+      "description": "The replay event that caused the change; null when a live (non-replay) activity did.",
+      "oneOf": [{ "$ref": "common.v1.json#/$defs/uuid" }, { "type": "null" }]
+    },
+    "trigger_activity_ids": { "type": "array", "minItems": 1, "items": { "$ref": "common.v1.json#/$defs/uuid" } },
+    "previous_state_ref": {
+      "description": "Account-level snapshot at the diff's from_version. The state diff is account-level (state_diffs), so these refs are too: opportunity_id is null; the deal the change is about is this object's opportunity_id. A SQL trigger checks both versions against the diff.",
+      "allOf": [{ "$ref": "common.v1.json#/$defs/stateRef" }, { "properties": { "opportunity_id": { "type": "null" } } }]
+    },
+    "current_state_ref": {
+      "description": "Account-level snapshot at the diff's to_version.",
+      "allOf": [{ "$ref": "common.v1.json#/$defs/stateRef" }, { "properties": { "opportunity_id": { "type": "null" } } }]
+    },
+    "state_diff_id": { "$ref": "common.v1.json#/$defs/uuid" },
+    "graph_diff_ref": { "$ref": "common.v1.json#/$defs/graphDiffRef" },
+    "material_change": {
+      "description": "Equals state_diff.is_material (a composite foreign key keeps the two equal in SQL).",
+      "type": "boolean"
+    },
+    "evidence_refs": { "type": "array", "items": { "$ref": "common.v1.json#/$defs/evidenceRef" } },
+    "created_at": { "$ref": "common.v1.json#/$defs/timestamp" }
+  },
+  "if": { "properties": { "material_change": { "const": true } } },
+  "then": {
+    "description": "A material change must be traceable.",
+    "properties": { "evidence_refs": { "minItems": 1 } }
+  }
+}

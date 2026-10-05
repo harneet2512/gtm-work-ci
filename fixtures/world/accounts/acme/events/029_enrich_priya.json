@@ -1,0 +1,15 @@
+{
+  "source_system": "enrichment",
+  "source_object_id": "peoplegraph:priya.shah@acme.com:2026-09-15T06:00:00Z",
+  "source_event_key": "observed",
+  "occurred_at": "2026-09-15T06:00:00Z",
+  "connector": "peoplegraph",
+  "connector_version": "0.1.0",
+  "payload": {
+    "kind": "enrichment",
+    "provider": "peoplegraph",
+    "subject": {"email": "priya.shah@acme.com", "domain": null},
+    "observed_at": "2026-09-15T06:00:00Z",
+    "facts": {"title": "Director of Operations", "employer_domain": "acme.com", "seniority": "director"}
+  }
+}

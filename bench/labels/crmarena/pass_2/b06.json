@@ -1,0 +1,43 @@
+{
+ "S64c2": {
+  "decision_process": ["pass", null, false],
+  "stakeholder_coverage": ["pass", "RIGHT_SIZED", false],
+  "commitment_consistency": ["pass", null, false]
+ },
+ "Sa6bf": {
+  "stakeholder_selection": ["fail", null, true],
+  "champion_continuity": ["fail", "CHAMPION_BYPASSED", true],
+  "buyer_readiness": ["fail", "TOO_EARLY", false]
+ },
+ "S7bcf": {
+  "evidence_sufficiency": ["pass", "NEEDS_MORE_CONTEXT", false],
+  "next_action_quality": ["pass", "GOOD", false],
+  "grounding": ["pass", null, false]
+ },
+ "S526c": {
+  "next_action_quality": ["fail", "ACT_NOW", true],
+  "next_step_quality": ["fail", null, true],
+  "channel_appropriateness": ["fail", null, false]
+ },
+ "Sc1be": {
+  "economic_buyer_coverage": ["fail", null, false],
+  "decision_process": ["warn", null, false],
+  "grounding": ["fail", null, true]
+ },
+ "S27fc": {
+  "next_action_quality": ["fail", "NEEDS_REVISION", false],
+  "buyer_readiness": ["fail", "TOO_EARLY", true],
+  "cta_calibration": ["fail", "TOO_STRONG", true]
+ },
+ "S3bff": {
+  "next_action_quality": ["pass", "WAIT", false],
+  "knowledge_applicability": ["pass", "EXCEPTION_TRIGGERED", false],
+  "timing_cadence": ["pass", "TOO_EARLY", false],
+  "exception_awareness": ["pass", "EXCEPTION_HONORED", false]
+ },
+ "S144f": {
+  "champion_continuity": ["pass", "CHAMPION_INCLUDED", false],
+  "stakeholder_coverage": ["fail", "OVER_THREADED", true],
+  "stakeholder_selection": ["fail", null, true]
+ }
+}
