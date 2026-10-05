@@ -1,0 +1,63 @@
+{
+  "type": "modal",
+  "title": {
+    "type": "plain_text",
+    "text": "Edit interpretation",
+    "emoji": false
+  },
+  "blocks": [
+    {
+      "type": "section",
+      "text": {
+        "type": "mrkdwn",
+        "text": "Change my interpretation so it says what you meant. It is saved as your correction.",
+        "verbatim": true
+      },
+      "block_id": "ghost.correction.intro"
+    },
+    {
+      "type": "input",
+      "block_id": "ghost.input.correction",
+      "label": {
+        "type": "plain_text",
+        "text": "My interpretation",
+        "emoji": false
+      },
+      "element": {
+        "type": "plain_text_input",
+        "action_id": "value",
+        "initial_value": "The human preferred to deliver the documents and keep the review timing in the buyer's hands rather than propose a dated call, because Marco said he cannot commit to a date before his team reads them.",
+        "multiline": true,
+        "max_length": 3000
+      }
+    },
+    {
+      "type": "input",
+      "block_id": "ghost.input.note",
+      "label": {
+        "type": "plain_text",
+        "text": "Note (optional)",
+        "emoji": false
+      },
+      "element": {
+        "type": "plain_text_input",
+        "action_id": "value",
+        "multiline": true,
+        "max_length": 3000
+      },
+      "optional": true
+    }
+  ],
+  "close": {
+    "type": "plain_text",
+    "text": "Close",
+    "emoji": false
+  },
+  "submit": {
+    "type": "plain_text",
+    "text": "Save",
+    "emoji": false
+  },
+  "private_metadata": "{\"run_id\":\"0f0a0000-0000-4000-8000-000000000601\",\"episode_id\":\"0e9e0000-0000-4000-8000-000000000a01\",\"channel_id\":\"C0DRYRUN\",\"message_ts\":\"1700000000.000300\"}",
+  "callback_id": "ghost.judgment_correction_modal"
+}

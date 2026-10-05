@@ -1,0 +1,196 @@
+{
+  "id": "acme_world_k08_cited_without_security_gate",
+  "case_type": "misleading_similar_knowledge",
+  "title": "Acme 09-03: Priya asks to walk through the order form; the candidate cites K08 (documents before meetings) and holds off",
+  "should_pass": false,
+  "difficulty": "hard",
+  "slice_tags": {
+    "account": "acme",
+    "origin": "world_moment",
+    "motion": "expansion",
+    "stage": "discovery",
+    "champion_status": "active",
+    "economic_buyer": "unknown",
+    "risk": "low",
+    "candidate": "flawed",
+    "expected_action": "schedule_meeting",
+    "extra": ["k08_trap"]
+  },
+  "based_on": {
+    "kind": "world_moment",
+    "account": "acme",
+    "after_event_file": "world/accounts/acme/events/019_email_priya_budget_approved.json",
+    "checkpoint": 2,
+    "changed_fields": ["stage", "blockers", "decision_process", "next_milestone", "commercial_issue"],
+    "change": null
+  },
+  "context": {
+    "now": "2026-09-03T10:30:00Z",
+    "state": {
+      "account_id": "0a0c0000-0000-4000-8000-000000000001",
+      "account_name": "Acme Corp",
+      "opportunity_id": "0c0f0000-0000-4000-8000-000000000004",
+      "fields": {
+        "stage": "Discovery",
+        "health": "on_track",
+        "motion": "expansion",
+        "champion": "0b0e0000-0000-4000-8000-000000000017",
+        "champion_status": "active",
+        "economic_buyer": "unknown",
+        "relationship_risk": "low",
+        "blockers": [{"text": "EU budget line needs finance approval in the Q3 planning cycle", "status": "resolved"}],
+        "next_milestone": "Walk through the order form together"
+      },
+      "buying_group": [
+        {
+          "person_id": "0b0e0000-0000-4000-8000-000000000017",
+          "display_name": "Priya Shah",
+          "title": "Director of Operations",
+          "roles": ["champion"],
+          "status": "active",
+          "delegated_to_person_id": null,
+          "last_engaged_at": null,
+          "evidence_refs": []
+        },
+        {
+          "person_id": "0b0e0000-0000-4000-8000-000000000019",
+          "display_name": "Tom Becker",
+          "title": "EU Operations Manager",
+          "roles": ["user"],
+          "status": "active",
+          "delegated_to_person_id": null,
+          "last_engaged_at": null,
+          "evidence_refs": []
+        }
+      ],
+      "coverage_gaps": ["economic_buyer"]
+    },
+    "recent_changes": {
+      "summary": "Priya: finance approved the EU budget line; budget no longer a blocker; asks to walk through the order form next Wednesday.",
+      "material_diff_fields": ["blockers", "next_milestone"],
+      "signals": ["blocker_resolved", "customer_replied"]
+    },
+    "trigger": {
+      "activity_id": "0ac70000-0000-4000-8000-0000000a0019",
+      "activity_type": "EmailReply",
+      "occurred_at": "2026-09-03T10:15:00Z",
+      "actor_person_id": "0b0e0000-0000-4000-8000-000000000017",
+      "event_file": "world/accounts/acme/events/019_email_priya_budget_approved.json",
+      "synthetic": false,
+      "text": "Hi Dana,\nSorry for the slow reply - it was planning week. Good news: finance approved the EU budget line this morning, so budget is no longer a blocker. Can we walk through the order form together next Wednesday?\nPriya"
+    },
+    "supporting_activities": [],
+    "commitments": [],
+    "timeline_facts": {
+      "last_inbound_at": "2026-09-03T10:15:00Z",
+      "last_inbound_from_person_id": "0b0e0000-0000-4000-8000-000000000017",
+      "last_outbound_at": "2026-08-28T15:00:00Z",
+      "stated_timing": "Priya proposed walking through the order form next Wednesday (Sep 9)"
+    },
+    "offered_knowledge": [
+      {
+        "id": "0c17c000-0000-4000-8000-000000000108",
+        "key": "K08",
+        "title": "Send requested security or compliance documents before proposing a review meeting",
+        "situation_signature": [
+          {"field": "diff.security_blocker_appeared", "op": "exists"},
+          {"field": "next_meeting", "op": "not_exists"}
+        ],
+        "guidance": {
+          "summary": "When a security or platform reviewer asks for documents, send exactly what was asked with a light ask; let the reviewer set the review timing after reading.",
+          "do": ["send the requested documents in the reply", "leave review timing to the reviewer"],
+          "dont": [
+            "propose a specific review date in the same message",
+            "schedule a meeting before the documents are read"
+          ]
+        },
+        "status": "supported",
+        "counts": {
+          "decisions": 9,
+          "positive_reactions": 6,
+          "negative_reactions": 2,
+          "outcomes_advanced": 3,
+          "counterexamples": 1
+        },
+        "supporting_decision_episode_ids": [],
+        "counterexamples": [],
+        "exceptions": [
+          {
+            "description": "Reviewer has already read the documents and asked for a meeting",
+            "conditions": [
+              {"field": "current_commitments", "op": "contains", "value": "invite for the security review"}
+            ]
+          }
+        ],
+        "evidence_classes": ["deal_data", "methodology"],
+        "used_by_evaluators": ["buyer_readiness:v1", "cta_calibration:v1"],
+        "provenance": {
+          "created_from": "seed_history",
+          "source_decision_episode_id": null,
+          "note": "Version 2 of K08 (supersedes 0c17c000-0000-4000-8000-000000000008, created 2026-08-01): the signature matches an open security_blocker_appeared signal (ADR-0011) instead of the Acme-specific word 'security'. Synthetic seeded history; the correction was authored 2026-10-02 and is dated before the cases that offer it."
+        },
+        "created_at": "2026-09-20T00:00:00Z",
+        "last_validated_at": "2026-09-20T00:00:00Z"
+      }
+    ]
+  },
+  "candidate_action": {
+    "proposed_action_type": "send_email",
+    "recipients": [{"person_id": "0b0e0000-0000-4000-8000-000000000017", "role": "to", "why": "Champion"}],
+    "finished_artifact": {
+      "channel": "email",
+      "subject": "Re: EU budget",
+      "body": "Hi Priya,\n\nGreat news on the budget! Before we schedule anything, I'll send the order form and our security documentation so your team can review them first - let me know once you've read them and we'll find a time.\n\nBest,\nDana",
+      "attachments": ["Acme_EU_Order_Form_v1.pdf"]
+    },
+    "crm_next_step_intent": {"next_step": "Priya reviews documents", "due_at": null, "stage_change": null},
+    "reason": "K08: send documents before proposing a meeting.",
+    "evidence_refs": [
+      {
+        "activity_id": "0ac70000-0000-4000-8000-0000000a0019",
+        "quote": "Can we walk through the order form together next Wednesday?",
+        "speaker_person_id": "0b0e0000-0000-4000-8000-000000000017",
+        "occurred_at": "2026-09-03T10:15:00Z"
+      }
+    ],
+    "knowledge_refs_used": ["0c17c000-0000-4000-8000-000000000108"],
+    "wait_until": null
+  },
+  "expected": [
+    {
+      "eval_type": "knowledge_applicability",
+      "verdict": "fail",
+      "label": "DOES_NOT_APPLY",
+      "diagnostics": [],
+      "blocking": false,
+      "rationale": "K08 v2's signature fails: no security_blocker_appeared signal is open (the only blocker, the budget line, was just resolved) - a documents-before-meetings rule that looks similar but has no reviewer gate to respect.",
+      "evidence_class": "methodology",
+      "knowledge_refs": ["0c17c000-0000-4000-8000-000000000108"]
+    },
+    {
+      "eval_type": "next_action_quality",
+      "verdict": "fail",
+      "label": "NEEDS_REVISION",
+      "diagnostics": [],
+      "blocking": true,
+      "rationale": "The buyer asked for a walkthrough next Wednesday; the draft withholds it.",
+      "evidence_class": "methodology"
+    },
+    {
+      "eval_type": "cta_calibration",
+      "verdict": "fail",
+      "label": "TOO_WEAK",
+      "diagnostics": ["ask_too_weak"],
+      "blocking": false,
+      "rationale": "Defers the meeting the customer proposed.",
+      "evidence_class": "methodology"
+    }
+  ],
+  "expected_best_action": {
+    "action": "schedule_meeting",
+    "why": "Accept Wednesday's walkthrough; send the order form ahead of it.",
+    "recipients": [{"person_id": "0b0e0000-0000-4000-8000-000000000017", "role": "to"}],
+    "channel": "email"
+  },
+  "notes": "Misleadingly similar knowledge: the signature fails (DOES_NOT_APPLY), unlike the explicit-exception cases where it holds and an exception overrides it."
+}

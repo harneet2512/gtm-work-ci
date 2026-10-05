@@ -1,0 +1,250 @@
+{
+ "id": "cr_d2_books_the_thursday_call",
+ "origin": "crmarena",
+ "case_type": "correct_timing",
+ "title": "Same moment, good draft: the Thursday-afternoon call is booked and confirmed the same hour",
+ "should_pass": true,
+ "difficulty": "easy",
+ "slice_tags": {
+  "account": "001Wt00000PGb5NIAT",
+  "origin": "crmarena",
+  "motion": "unknown",
+  "stage": "unknown",
+  "champion_status": "active",
+  "economic_buyer": "unknown",
+  "risk": "unknown",
+  "candidate": "good",
+  "expected_action": "schedule_meeting",
+  "extra": [
+   "call_requested",
+   "good_draft",
+   "inbound_email"
+  ]
+ },
+ "based_on": {
+  "kind": "crmarena_moment",
+  "account_id": "001Wt00000PGb5NIAT",
+  "deal_id": "006Wt000007BAeOIAW",
+  "trigger_kind": "inbound_email",
+  "decision_at": "2023-11-14T17:00:00Z",
+  "cutoff": "2023-11-01",
+  "deal_group": "current",
+  "events_before_decision": 3
+ },
+ "source": {
+  "dataset": "CRMArena-Pro B2B Salesforce org (Salesforce AI Research)",
+  "licence": "CC BY-NC 4.0 (non-commercial use only)",
+  "attribution": "Salesforce AI Research, CRMArena-Pro (https://github.com/SalesforceAIResearch/CRMArena, LICENSE.txt); records selected and excerpted, nothing edited",
+  "snapshot_manifest_sha256": "8fbda45c15d1806dc4c37d5230a20ac24d6619ef36a88c0efddb344792c89f03",
+  "generator": "bench/evals/crmarena_gold v1"
+ },
+ "context": {
+  "now": "2023-11-14T17:00:00Z",
+  "state": {
+   "account_id": "cc9344c8-6ac9-5f5b-905a-be0bbe8ad9bd",
+   "account_name": "SkyLink Communications",
+   "opportunity_id": "bc6a383e-80df-5d8e-aa10-edcf1cc6ebfe",
+   "fields": {
+    "stage": "unknown",
+    "health": "unknown",
+    "motion": "unknown",
+    "champion": "012841d7-6b4e-57aa-b4c9-abd781df2ca7",
+    "champion_status": "active",
+    "economic_buyer": "unknown",
+    "relationship_risk": "unknown",
+    "decision_process": "unknown: no approver, timeline or review step is stated",
+    "current_commitments": [
+     {
+      "text": "Us: set up a call with Keiko; she offered Thursday afternoon (2023-11-16)",
+      "status": "open"
+     }
+    ],
+    "next_milestone": "Call with Keiko on Thursday afternoon, 2023-11-16"
+   },
+   "buying_group": [
+    {
+     "person_id": "012841d7-6b4e-57aa-b4c9-abd781df2ca7",
+     "display_name": "Keiko Matsuda",
+     "title": "IT Support Specialist (champion role inferred, not recorded)",
+     "roles": [
+      "champion"
+     ],
+     "status": "active",
+     "delegated_to_person_id": null,
+     "last_engaged_at": "2023-11-14T17:00:00Z",
+     "evidence_refs": [
+      {
+       "activity_id": "d9aca347-b835-5e99-a585-2adf01bbca91",
+       "occurred_at": "2023-11-14T17:00:00Z"
+      }
+     ]
+    },
+    {
+     "person_id": "8deeae1e-3a93-563a-b5b7-4deac072c656",
+     "display_name": "Zainab Hassan",
+     "title": "Compliance Officer (role inferred from department)",
+     "roles": [
+      "legal"
+     ],
+     "status": "unknown",
+     "delegated_to_person_id": null,
+     "last_engaged_at": null,
+     "evidence_refs": []
+    }
+   ],
+   "coverage_gaps": [
+    "economic_buyer"
+   ]
+  },
+  "recent_changes": {
+   "summary": "Keiko replied within an hour of the tailored proposal: promising, pricing transparency appreciated, and asks for a call, offering Thursday afternoon.",
+   "material_diff_fields": [
+    "current_commitments",
+    "next_milestone"
+   ],
+   "signals": [
+    "customer_replied",
+    "pricing_interest"
+   ]
+  },
+  "trigger": {
+   "activity_id": "d9aca347-b835-5e99-a585-2adf01bbca91",
+   "activity_type": "EmailReply",
+   "occurred_at": "2023-11-14T17:00:00Z",
+   "actor_person_id": "012841d7-6b4e-57aa-b4c9-abd781df2ca7",
+   "event_file": "crmarena:EmailMessage:02sWt00000200N4IAI",
+   "synthetic": false,
+   "text": "Hello Mohamed,\n\nThank you for sending over the proposal. I appreciate the effort that has gone into customizing this for SkyLink Communications. The capabilities of PulseSim Pro and SecureAnalytics Pro indeed seem promising, particularly in enhancing our security and analytic processes.\n\nI do value the emphasis on user guidance as that has been a concern raised internally, so it's encouraging to see your commitment to improving this aspect. Additionally, your pricing transparency is certainly appreciated; it's crucial for us to understand the full scope of investment and potential ROI.\n\nI'd be interested in arranging a time to discuss this further. Could we schedule a call later this week? I have some availability on Thursday afternoon.\n\nBest regards,\nKeiko Matsuda\nSkyLink Communications",
+   "subject": "Re: Tailored proposal for EDA expansion",
+   "date_semantics": "sent"
+  },
+  "supporting_activities": [
+   {
+    "activity_id": "049e9002-b9b9-5e4f-b88c-8b8a829dbc6e",
+    "activity_type": "EmailSent",
+    "occurred_at": "2023-11-14T16:00:00Z",
+    "actor_person_id": "37c78129-6b94-5fba-867f-0475a48a67e7",
+    "event_file": "crmarena:EmailMessage:02sWt000002008ZIAQ",
+    "synthetic": false,
+    "text": "Hi Keiko,\n\nI hope this message finds you well. I wanted to follow up on our previous discussions and present a tailored proposal for SkyLink Communications' EDA expansion. After our detailed assessment of your goals and challenges, we crafted a solution that aligns perfectly with your needs.\n\nWe propose integrating PulseSim Pro and SecureAnalytics Pro into your existing infrastructure. PulseSim Pro is acclaimed for its powerful simulation capabilities, ensuring accuracy and efficiency in your design processes. Complementing this, SecureAnalytics Pro offers robust data protection and real-time analysis, critical for maintaining security compliance and enhancing your data-driven decision-making.",
+    "subject": "Tailored proposal for EDA expansion",
+    "date_semantics": "sent"
+   }
+  ],
+  "commitments": [
+   {
+    "text": "Set up a call with Keiko (she offered Thursday afternoon, 2023-11-16)",
+    "owner_person_id": "37c78129-6b94-5fba-867f-0475a48a67e7",
+    "due_at": "2023-11-16T00:00:00Z",
+    "status": "open"
+   }
+  ],
+  "timeline_facts": {
+   "last_inbound_at": "2023-11-14T17:00:00Z",
+   "last_inbound_from_person_id": "012841d7-6b4e-57aa-b4c9-abd781df2ca7",
+   "last_outbound_at": "2023-11-14T16:00:00Z",
+   "stated_timing": null
+  },
+  "offered_knowledge": [],
+  "state_provenance": {
+   "champion": "inferred, not recorded: the only customer correspondent (1 inbound emails); CRMArena has no roles",
+   "stage": "unknown unless a field below says otherwise: the loader dates the stage at the deal's last event",
+   "current_commitments": "02sWt00000200N4IAI",
+   "next_milestone": "02sWt00000200N4IAI",
+   "buying_group roles": "inferred from each Contact's Title/Department; the record has no roles"
+  }
+ },
+ "candidate_action": {
+  "proposed_action_type": "schedule_meeting",
+  "recipients": [
+   {
+    "person_id": "012841d7-6b4e-57aa-b4c9-abd781df2ca7",
+    "role": "to"
+   }
+  ],
+  "finished_artifact": {
+   "channel": "email",
+   "subject": "Call on Thursday, November 16 at 2:00 PM",
+   "body": "Hi Keiko,\n\nThursday afternoon works well. I have sent an invite for Thursday, November 16 at 2:00 PM; if another time that afternoon suits you better, tell me and I will move it. I will walk you through the proposal and answer questions on setup guidance and pricing.\n\nBest regards,\nMohamed"
+  },
+  "crm_next_step_intent": {
+   "next_step": "Call on Thursday 2023-11-16 at 14:00",
+   "due_at": "2023-11-16T14:00:00Z",
+   "stage_change": null
+  },
+  "reason": "She asked for a call and offered Thursday afternoon; confirm quickly.",
+  "evidence_refs": [
+   {
+    "activity_id": "d9aca347-b835-5e99-a585-2adf01bbca91",
+    "quote": "I'd be interested in arranging a time to discuss this further. Could we schedule a call later this week? I have some availability on Thursday afternoon.",
+    "occurred_at": "2023-11-14T17:00:00Z",
+    "speaker_person_id": "012841d7-6b4e-57aa-b4c9-abd781df2ca7"
+   }
+  ],
+  "knowledge_refs_used": [],
+  "wait_until": null
+ },
+ "expected": [
+  {
+   "eval_type": "timing_cadence",
+   "verdict": "pass",
+   "label": "READY",
+   "diagnostics": [],
+   "blocking": false,
+   "rationale": "Replies the same hour to a request for a call this week.",
+   "evidence_class": "deal_data"
+  },
+  {
+   "eval_type": "buyer_readiness",
+   "verdict": "pass",
+   "label": "READY",
+   "diagnostics": [],
+   "blocking": false,
+   "rationale": "She volunteered a slot; booking it is what is due.",
+   "evidence_class": "methodology"
+  },
+  {
+   "eval_type": "cta_calibration",
+   "verdict": "pass",
+   "label": "APPROPRIATE",
+   "diagnostics": [],
+   "blocking": false,
+   "rationale": "Takes the slot she offered, with room to move it.",
+   "evidence_class": "methodology"
+  },
+  {
+   "eval_type": "next_step_quality",
+   "verdict": "pass",
+   "label": null,
+   "diagnostics": [],
+   "blocking": false,
+   "rationale": "A dated call with an agenda.",
+   "evidence_class": "deal_data"
+  }
+ ],
+ "expected_best_action": {
+  "action": "schedule_meeting",
+  "why": "This: book Thursday 2023-11-16 afternoon and confirm by email.",
+  "recipients": [
+   {
+    "person_id": "012841d7-6b4e-57aa-b4c9-abd781df2ca7",
+    "role": "to"
+   }
+  ],
+  "channel": "email"
+ },
+ "labelling": {
+  "label_kind": "model labels, single author, not human labels",
+  "passes": [
+   "pass_1",
+   "pass_2"
+  ],
+  "agreement": {
+   "judgments": 4,
+   "verdict_agree": 4,
+   "fail_agree": 4
+  },
+  "disagreements": []
+ },
+ "notes": ""
+}

@@ -1,0 +1,259 @@
+{
+  "id": "acme_variant_priya_departed_direct_to_marco",
+  "case_type": "valid_champion_handoff",
+  "title": "Acme variant: champion has left; candidate sends the security package to Marco with Tom cc'd",
+  "should_pass": true,
+  "difficulty": "medium",
+  "slice_tags": {
+    "account": "acme",
+    "origin": "synthetic_variant",
+    "motion": "expansion",
+    "stage": "technical_evaluation",
+    "champion_status": "departed",
+    "economic_buyer": "unknown",
+    "risk": "medium",
+    "candidate": "good",
+    "expected_action": "send_email",
+    "extra": ["champion_departed", "security_review"]
+  },
+  "based_on": {
+    "kind": "synthetic_variant",
+    "account": "acme",
+    "after_event_file": "live/acme_marco_soc2_email.json",
+    "checkpoint": 4,
+    "changed_fields": ["champion", "champion_status", "buying_group"],
+    "change": "Same as Acme cp4 plus an invented email from Tom on 09-30: Priya has left Acme; Marco and Tom take the rollout forward."
+  },
+  "context": {
+    "now": "2026-09-30T09:15:00Z",
+    "state": {
+      "account_id": "0a0c0000-0000-4000-8000-000000000001",
+      "account_name": "Acme Corp",
+      "opportunity_id": "0c0f0000-0000-4000-8000-000000000004",
+      "fields": {
+        "stage": "Technical evaluation",
+        "health": "at_risk",
+        "motion": "expansion",
+        "champion": "unknown",
+        "champion_status": "departed",
+        "economic_buyer": "unknown",
+        "relationship_risk": "medium",
+        "blockers": [
+          {"text": "EU budget line needs finance approval in the Q3 planning cycle", "status": "resolved"},
+          {
+            "text": "Security sign-off by the Head of Security: SOC2 Type II report and pen-test summary must be reviewed",
+            "status": "open"
+          }
+        ],
+        "decision_process": "Security sign-off by Marco Ruiz after his team has read the SOC2 Type II report and pen-test summary; no review date committed; Priya Shah stays the commercial point of contact",
+        "next_milestone": "Acme security team reads the SOC2 Type II report and pen-test summary; review date not committed",
+        "next_meeting": null,
+        "current_commitments": [
+          {
+            "text": "Send proposal for 120 seats by Friday",
+            "status": "fulfilled",
+            "owner_person_id": "0b0e0000-0000-4000-8000-000000000001",
+            "due": "2026-08-28"
+          },
+          {
+            "text": "Send revised order form on the EU entity with Rotterdam invoiced separately by Monday the 14th",
+            "status": "fulfilled",
+            "owner_person_id": "0b0e0000-0000-4000-8000-000000000001",
+            "due": "2026-09-14"
+          },
+          {
+            "text": "Send the mutual NDA the morning after the 9/24 call",
+            "status": "fulfilled",
+            "owner_person_id": "0b0e0000-0000-4000-8000-000000000001",
+            "due": "2026-09-25"
+          },
+          {
+            "text": "Share SOC2 Type II report and pen-test summary once the mutual NDA is countersigned",
+            "status": "open",
+            "owner_person_id": "0b0e0000-0000-4000-8000-000000000001",
+            "due": "2026-09-28"
+          }
+        ]
+      },
+      "buying_group": [
+        {
+          "person_id": "0b0e0000-0000-4000-8000-000000000017",
+          "display_name": "Priya Shah",
+          "title": "Director of Operations",
+          "roles": ["champion"],
+          "status": "departed",
+          "delegated_to_person_id": null,
+          "last_engaged_at": null,
+          "evidence_refs": []
+        },
+        {
+          "person_id": "0b0e0000-0000-4000-8000-000000000019",
+          "display_name": "Tom Becker",
+          "title": "EU Operations Manager",
+          "roles": ["user"],
+          "status": "active",
+          "delegated_to_person_id": null,
+          "last_engaged_at": null,
+          "evidence_refs": []
+        },
+        {
+          "person_id": "0b0e0000-0000-4000-8000-000000000018",
+          "display_name": "Marco Ruiz",
+          "title": "Head of Security",
+          "roles": ["security"],
+          "status": "active",
+          "delegated_to_person_id": null,
+          "last_engaged_at": null,
+          "evidence_refs": []
+        }
+      ],
+      "coverage_gaps": ["economic_buyer"]
+    },
+    "recent_changes": {
+      "summary": "Priya confirmed the mutual NDA is countersigned (09-28), so the SOC2 package is due. Champion departed; Tom (EU Ops) and Marco (Security) take the rollout forward.",
+      "material_diff_fields": ["champion", "champion_status", "buying_group"],
+      "signals": ["champion_weakened", "customer_replied"]
+    },
+    "trigger": {
+      "activity_id": "0ac7f000-0000-4000-8000-000000000002",
+      "activity_type": "EmailReceived",
+      "occurred_at": "2026-09-30T09:00:00Z",
+      "actor_person_id": "0b0e0000-0000-4000-8000-000000000019",
+      "event_file": null,
+      "synthetic": true,
+      "text": "Hi Dana - quick update: Priya has left Acme as of this week. Marco and I are taking the EU rollout forward; please work with us directly."
+    },
+    "supporting_activities": [
+      {
+        "activity_id": "0ac70000-0000-4000-8000-000000000102",
+        "activity_type": "EmailReply",
+        "occurred_at": "2026-09-28T09:20:00Z",
+        "actor_person_id": "0b0e0000-0000-4000-8000-000000000017",
+        "event_file": "live/acme_mnda_countersigned.json",
+        "synthetic": false,
+        "text": "The mutual NDA is countersigned - the signed copy is attached. Marco is copied so he knows the security package can come over now."
+      }
+    ],
+    "commitments": [
+      {
+        "text": "Share SOC2 Type II report and pen-test summary once the mutual NDA is countersigned",
+        "owner_person_id": "0b0e0000-0000-4000-8000-000000000001",
+        "due_at": "2026-09-28T09:20:00Z",
+        "status": "open"
+      }
+    ],
+    "timeline_facts": {
+      "last_inbound_at": "2026-09-30T09:00:00Z",
+      "last_inbound_from_person_id": "0b0e0000-0000-4000-8000-000000000019",
+      "last_outbound_at": "2026-09-26T11:00:00Z",
+      "stated_timing": "Marco: no review date until his team has read the SOC2 package"
+    },
+    "offered_knowledge": []
+  },
+  "candidate_action": {
+    "proposed_action_type": "send_email",
+    "recipients": [
+      {
+        "person_id": "0b0e0000-0000-4000-8000-000000000018",
+        "role": "to",
+        "why": "Security approver; requested the documents"
+      },
+      {"person_id": "0b0e0000-0000-4000-8000-000000000019", "role": "cc", "why": "Taking the rollout forward"}
+    ],
+    "finished_artifact": {
+      "channel": "email",
+      "subject": "Re: Expansion to EU teams",
+      "body": "Hi Marco,\n\nThanks for the update, Tom. Marco, attached are our SOC2 Type II report and the latest pen-test summary. Once your team has read them, let us know if a review session would help. Tom, who on your side will own the commercial side now that Priya has moved on?\n\nBest,\nDana",
+      "attachments": ["soc2-type2-2026.pdf", "pentest-summary-2026Q3.pdf"]
+    },
+    "crm_next_step_intent": {
+      "next_step": "Marco's team reviews SOC2 package; identify new commercial owner",
+      "due_at": null,
+      "stage_change": null
+    },
+    "reason": "Priya departed; work with Marco and Tom directly.",
+    "evidence_refs": [
+      {
+        "activity_id": "0ac70000-0000-4000-8000-000000000101",
+        "quote": "Before we can sign off on the EU rollout we'll need your SOC2 Type II report and the pen-test summary.",
+        "speaker_person_id": "0b0e0000-0000-4000-8000-000000000018",
+        "occurred_at": "2026-09-29T15:42:00Z"
+      },
+      {
+        "activity_id": "0ac7f000-0000-4000-8000-000000000002",
+        "quote": "Marco and I are taking the EU rollout forward; please work with us directly.",
+        "speaker_person_id": "0b0e0000-0000-4000-8000-000000000019",
+        "occurred_at": "2026-09-30T09:00:00Z"
+      }
+    ],
+    "knowledge_refs_used": [],
+    "wait_until": null
+  },
+  "expected": [
+    {
+      "eval_type": "champion_continuity",
+      "verdict": "pass",
+      "label": "VALID_HANDOFF",
+      "diagnostics": [],
+      "blocking": false,
+      "rationale": "The champion departed and the customer asked to work with Marco and Tom directly; this is a valid handoff.",
+      "evidence_class": "methodology",
+      "state_refs": ["champion_status"]
+    },
+    {
+      "eval_type": "champion_strength",
+      "verdict": "warn",
+      "label": null,
+      "diagnostics": ["weak_champion"],
+      "blocking": false,
+      "rationale": "No commercial champion now; the draft rightly asks who owns the commercial side.",
+      "evidence_class": "methodology"
+    },
+    {
+      "eval_type": "buyer_readiness",
+      "verdict": "pass",
+      "label": "READY",
+      "diagnostics": [],
+      "blocking": false,
+      "rationale": "Documents now; review timing left to Marco.",
+      "evidence_class": "methodology"
+    },
+    {
+      "eval_type": "cta_calibration",
+      "verdict": "pass",
+      "label": "APPROPRIATE",
+      "diagnostics": [],
+      "blocking": false,
+      "rationale": "Light ask.",
+      "evidence_class": "methodology"
+    },
+    {
+      "eval_type": "stakeholder_selection",
+      "verdict": "pass",
+      "label": null,
+      "diagnostics": [],
+      "blocking": false,
+      "rationale": "Marco (reviewer) and Tom (who sent the notice and co-owns the rollout); the departed contact is gone.",
+      "evidence_class": "methodology"
+    },
+    {
+      "eval_type": "recipient_correctness",
+      "verdict": "pass",
+      "label": null,
+      "diagnostics": [],
+      "blocking": false,
+      "rationale": "Priya is removed after her departure; both recipients are active Acme contacts.",
+      "evidence_class": "product_rule"
+    }
+  ],
+  "expected_best_action": {
+    "action": "send_email",
+    "why": "Documents to Marco with Tom cc'd and a question about the new commercial owner.",
+    "recipients": [
+      {"person_id": "0b0e0000-0000-4000-8000-000000000018", "role": "to"},
+      {"person_id": "0b0e0000-0000-4000-8000-000000000019", "role": "cc"}
+    ],
+    "channel": "email"
+  },
+  "notes": "Synthetic variant; invented text is marked synthetic in the trigger activity."
+}

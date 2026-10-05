@@ -1,0 +1,111 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://ghost.local/contracts/eval_registry.v1.json",
+  "title": "EvalRegistry",
+  "description": "Canonical eval registry (HAR-97 CANONICAL EVAL STRATEGY section 12, HAR-140 / WP36): families E1-E22 and operational M1-M5, and per eval the surfaces (1-20) and dimensions it protects. An EVAL is a judgment on one episode, span or decision; metrics aggregate evals (metric_registry.v1.json); the completeness matrix (completeness_matrix.v1.json) refers to evals by id. The instance is contracts/evals/eval_registry.json.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["registry_version", "description", "source", "families", "evals"],
+  "properties": {
+    "registry_version": {
+      "type": "integer",
+      "minimum": 1
+    },
+    "description": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 2000
+    },
+    "source": {
+      "$ref": "#/$defs/source"
+    },
+    "families": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "$ref": "#/$defs/family"
+      }
+    },
+    "evals": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "$ref": "#/$defs/eval"
+      }
+    }
+  },
+  "$defs": {
+    "source": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["issue", "section", "fetched_on"],
+      "properties": {
+        "issue": {"const": "HAR-97"},
+        "section": {"type": "string", "minLength": 1},
+        "fetched_on": {"type": "string", "format": "date"}
+      }
+    },
+    "surface": {
+      "type": "integer",
+      "minimum": 1,
+      "maximum": 20
+    },
+    "dimension": {
+      "enum": ["INTENDED_BEHAVIOR", "INVARIANTS", "BOUNDARIES", "FAILURE_MODES", "AMBIGUITY_ABSTENTION", "ADVERSARIAL_GAMING", "STOCHASTIC_RELIABILITY", "CAUSAL_TRACE_ATTRIBUTION", "REGRESSION_RISK", "OBSERVABILITY"]
+    },
+    "class": {
+      "enum": ["behavioral", "execution", "validation", "safety", "operational"]
+    },
+    "family": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id", "name", "section", "class", "job", "surfaces", "owner", "invariant"],
+      "properties": {
+        "id": {"type": "string", "pattern": "^(E(?:[1-9]|1[0-9]|2[0-2])(?:\\.[0-9]+)?|M[1-5])$"},
+        "name": {"type": "string", "minLength": 1},
+        "section": {"type": "string", "minLength": 1},
+        "class": {"$ref": "#/$defs/class"},
+        "job": {"description": "HAR-129 demo-loop clarification (2026-10-04): which of the three eval jobs the family serves. intelligence: context to trustworthy organizational intelligence (evidence fidelity, inference boundary, entity resolution, graph/state mutation, knowledge formation and applicability), shown with the business-intelligence update and the state diff. decision_loop: intelligence to decision, action, human feedback and updated knowledge (decision construction and ranking, action quality, human-judgment interpretation, edit propagation, knowledge mutation and later use). system: inward-facing engineering quality and efficiency (trace integrity, grader quality, reliability, safety, tokens, latency, cost), kept secondary in the operator view.", "enum": ["intelligence", "decision_loop", "system"]},
+        "surfaces": {"type": "array", "minItems": 1, "uniqueItems": true, "items": {"$ref": "#/$defs/surface"}},
+        "owner": {"type": "string", "pattern": "^HAR-[0-9]+$"},
+        "invariant": {"type": ["string", "null"]}
+      }
+    },
+    "eval": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id", "family", "name", "section", "surfaces", "dimensions", "class", "status", "owner", "grader", "mode", "invariant", "knowledge_mutation_allowed", "repeated_trials_required", "version", "implemented_by", "contract_status"],
+      "properties": {
+        "id": {"type": "string", "pattern": "^(E(?:[1-9]|1[0-9]|2[0-2])(?:\\.[0-9]+)?|M[1-5])$"},
+        "family": {"type": "string", "pattern": "^(E(?:[1-9]|1[0-9]|2[0-2])(?:\\.[0-9]+)?|M[1-5])$"},
+        "name": {"type": "string", "minLength": 1, "maxLength": 120},
+        "section": {"type": "string", "minLength": 1},
+        "surfaces": {"type": "array", "minItems": 1, "uniqueItems": true, "items": {"$ref": "#/$defs/surface"}},
+        "dimensions": {"type": "array", "minItems": 1, "uniqueItems": true, "items": {"$ref": "#/$defs/dimension"}},
+        "class": {"$ref": "#/$defs/class"},
+        "status": {"description": "implemented: grader or metric code and gold on main. partial: a proxy, a unit-tested mechanism or a computable-but-unreported metric. planned: nothing on main, owned by a Linear issue.", "enum": ["implemented", "partial", "planned"]},
+        "owner": {"type": "string", "pattern": "^HAR-[0-9]+$"},
+        "grader": {"enum": ["deterministic", "model", "hybrid", "outcome", null]},
+        "mode": {"enum": ["blocking", "advisory", "shadow", null]},
+        "invariant": {"type": ["string", "null"]},
+        "knowledge_mutation_allowed": {"type": "boolean"},
+        "repeated_trials_required": {"type": "boolean"},
+        "version": {"type": "integer", "minimum": 1},
+        "implemented_by": {"type": "array", "items": {"type": "string", "minLength": 1}},
+        "contract_status": {"description": "pending: the section 12 definitions (inputs, required trace fields, pass/warn/fail/unknown, failure modes, gold dataset) are written at the construction gate before implementation.", "enum": ["pending", "specified"]},
+        "purpose": {"type": "string", "minLength": 1},
+        "inputs": {"type": "array", "minItems": 1, "items": {"type": "string", "minLength": 1}},
+        "required_trace_fields": {"description": "Span ids and fields of contracts/traces/trace_schema.json the eval reads.", "type": "array", "minItems": 1, "items": {"type": "string", "minLength": 1}},
+        "pass_definition": {"type": "string", "minLength": 1},
+        "warn_definition": {"type": "string", "minLength": 1},
+        "fail_definition": {"type": "string", "minLength": 1},
+        "unknown_definition": {"type": "string", "minLength": 1},
+        "failure_modes": {"type": "array", "minItems": 1, "items": {"type": "string", "minLength": 1}},
+        "gold_dataset": {"type": "string", "minLength": 1},
+        "affected_behavior": {"type": "array", "minItems": 1, "items": {"type": "string", "minLength": 1}},
+        "definitions_ref": {"description": "Where the section 12 definitions of an implemented eval already live: eval types in contracts/evals/eval_catalog.json and the gold it is scored against.", "type": "object", "additionalProperties": false, "required": ["catalog_types", "gold"], "properties": {"catalog_types": {"type": "array", "uniqueItems": true, "items": {"type": "string", "pattern": "^[a-z_]+$"}}, "gold": {"type": "array", "uniqueItems": true, "items": {"type": "string", "pattern": "^(bench|contracts|docs|fixtures)/[A-Za-z0-9_./-]+$"}}}}
+      },
+      "allOf": [{"if": {"properties": {"status": {"const": "planned"}}}, "then": {"properties": {"grader": {"const": null}, "mode": {"const": null}, "implemented_by": {"maxItems": 0}}}}, {"if": {"properties": {"status": {"enum": ["implemented", "partial"]}}}, "then": {"properties": {"grader": {"type": "string"}, "mode": {"type": "string"}, "implemented_by": {"minItems": 1}}}}, {"if": {"properties": {"contract_status": {"const": "specified"}}}, "then": {"required": ["purpose", "inputs", "required_trace_fields", "pass_definition", "warn_definition", "fail_definition", "unknown_definition", "failure_modes", "gold_dataset", "affected_behavior"]}}, {"if": {"properties": {"status": {"const": "implemented"}}}, "then": {"required": ["definitions_ref"], "properties": {"definitions_ref": {"properties": {"gold": {"minItems": 1}}}}}}, {"if": {"properties": {"mode": {"const": "blocking"}}}, "then": {"properties": {"invariant": {"type": "string", "minLength": 1}}}}, {"if": {"properties": {"class": {"enum": ["validation", "execution", "safety", "operational"]}}}, "then": {"properties": {"knowledge_mutation_allowed": {"const": false}}}}, {"if": {"properties": {"class": {"const": "operational"}}}, "then": {"properties": {"surfaces": {"const": [20]}}}}]
+    }
+  }
+}
