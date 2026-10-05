@@ -1,0 +1,43 @@
+{
+  "as_of": "2026-09-30T14:05:00Z",
+  "retrieved": [
+    "11110000-0000-4000-8000-000000000001",
+    "11110000-0000-4000-8000-000000000002"
+  ],
+  "applicable": ["11110000-0000-4000-8000-000000000001"],
+  "exception_blocked": [],
+  "used": ["11110000-0000-4000-8000-000000000001"],
+  "influence": {
+    "counterfactual": { "status": "compared", "ranking_changed": true, "preferred_action_changed": true },
+    "candidates": [
+      {
+        "candidate_id": "22220000-0000-4000-8000-000000000001",
+        "strategy_type": "send_context_and_wait",
+        "ranking": 1,
+        "claimed": ["11110000-0000-4000-8000-000000000001"],
+        "change": { "matched": true, "ranking_changed": true, "action_changed": false, "recipients_changed": false, "changed": true }
+      },
+      {
+        "candidate_id": "22220000-0000-4000-8000-000000000002",
+        "strategy_type": "bring_in_technical_lead",
+        "ranking": 2,
+        "claimed": [],
+        "change": { "matched": true, "ranking_changed": true, "action_changed": false, "recipients_changed": false, "changed": true }
+      },
+      {
+        "candidate_id": "22220000-0000-4000-8000-000000000003",
+        "strategy_type": "ask_internal_owner",
+        "ranking": 3,
+        "claimed": [],
+        "change": { "matched": true, "ranking_changed": false, "action_changed": false, "recipients_changed": false, "changed": false }
+      }
+    ],
+    "evals": [
+      { "eval": "E7.1", "verdict": "pass", "reason": "1 claimed knowledge ids are all supported by the trace" },
+      { "eval": "E7.2", "verdict": "fail", "reason": "changed against the knowledge-withheld run but claims no knowledge: bring_in_technical_lead" },
+      { "eval": "E7.3", "verdict": "pass", "reason": "the ranking moved and a candidate whose rank moved cites the knowledge: send_context_and_wait" },
+      { "eval": "E7.4", "verdict": "pass", "reason": "the preferred action changed and the preferred candidate cites knowledge: send_context_and_wait" },
+      { "eval": "E7.5", "verdict": "pass", "reason": "irrelevant retrieved knowledge is not cited and did not move the decision" }
+    ]
+  }
+}

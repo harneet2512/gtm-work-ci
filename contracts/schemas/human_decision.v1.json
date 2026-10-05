@@ -1,0 +1,25 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://ghost.local/contracts/human_decision.v1.json",
+  "title": "HumanDecision",
+  "description": "A human's decision on an AgentRun. Identical shape whether it came from web, Slack or MCP.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["id", "agent_run_id", "decision", "surface", "actor_label", "created_at"],
+  "properties": {
+    "id": { "$ref": "common.v1.json#/$defs/uuid" },
+    "agent_run_id": { "$ref": "common.v1.json#/$defs/uuid" },
+    "decision": { "type": "string", "enum": ["approve", "edit", "reject", "ignore"] },
+    "surface": { "type": "string", "enum": ["web", "slack", "mcp", "api"] },
+    "actor_person_id": { "oneOf": [{ "$ref": "common.v1.json#/$defs/uuid" }, { "type": "null" }] },
+    "actor_label": { "type": "string", "minLength": 1, "maxLength": 200 },
+    "edited_artifact": {
+      "description": "Required when decision=edit: the human-edited version of finished_artifact.",
+      "oneOf": [{ "$ref": "agent_run_output.v1.json#/properties/finished_artifact" }, { "type": "null" }]
+    },
+    "reason": { "type": ["string", "null"], "maxLength": 2000 },
+    "created_at": { "$ref": "common.v1.json#/$defs/timestamp" }
+  },
+  "if": { "properties": { "decision": { "const": "edit" } } },
+  "then": { "required": ["edited_artifact"], "properties": { "edited_artifact": { "type": "object" } } }
+}

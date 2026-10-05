@@ -1,0 +1,148 @@
+{
+  "description": "Gold judgments for HAR-97 E11.1 (dependency invalidation correctness) and E11.8 (unrelated-state preservation) against the edit-dependency table in core-go/internal/recompute/deps.go. Each case is a sent decision with edits, the evals on the OLD artifact, and what a careful reviewer says the edits invalidate and leave alone. The judgments are written from what each eval looks at (who it is addressed to, what the text says, which channel, what is attached, the account's state), not copied from the table, so the table is measured against them. label_kind: model labels, not human labels.",
+  "label_kind": "model labels, not human labels",
+  "cases": [
+    {
+      "id": "e11_1_recipient_removed", "eval": "E11.1", "title": "Removing a cc invalidates what looks at the recipients and nothing else",
+      "edits": ["recipient_removed"],
+      "old_evals": [
+        {"eval_type": "recipient_correctness", "kind": "deterministic", "verdict": "pass"},
+        {"eval_type": "permission_policy", "kind": "deterministic", "verdict": "pass"},
+        {"eval_type": "stakeholder_selection", "kind": "semantic", "verdict": "pass"},
+        {"eval_type": "champion_continuity", "kind": "semantic", "verdict": "pass"},
+        {"eval_type": "cta_calibration", "kind": "semantic", "verdict": "warn"},
+        {"eval_type": "momentum", "kind": "semantic", "verdict": "pass"},
+        {"eval_type": "pricing_integrity", "kind": "deterministic", "verdict": "pass"}
+      ],
+      "invalidated": ["recipient_correctness", "permission_policy", "stakeholder_selection", "champion_continuity"],
+      "preserved": ["cta_calibration", "momentum", "pricing_integrity"]
+    },
+    {
+      "id": "e11_1_subject_changed", "eval": "E11.1", "title": "A new subject invalidates the evals that read the wording, not the addressing",
+      "edits": ["subject_changed"],
+      "old_evals": [
+        {"eval_type": "recipient_correctness", "kind": "deterministic", "verdict": "pass"},
+        {"eval_type": "permission_policy", "kind": "deterministic", "verdict": "pass"},
+        {"eval_type": "cta_calibration", "kind": "semantic", "verdict": "warn"},
+        {"eval_type": "grounding", "kind": "semantic", "verdict": "pass"},
+        {"eval_type": "date_commitment_consistency", "kind": "deterministic", "verdict": "pass"},
+        {"eval_type": "stakeholder_coverage", "kind": "semantic", "verdict": "pass"},
+        {"eval_type": "trajectory", "kind": "semantic", "verdict": "pass"}
+      ],
+      "invalidated": ["cta_calibration", "grounding", "date_commitment_consistency"],
+      "preserved": ["recipient_correctness", "permission_policy", "stakeholder_coverage", "trajectory"]
+    },
+    {
+      "id": "e11_1_paragraph_edited", "eval": "E11.1", "title": "Rewriting a body paragraph invalidates the text evals and the pricing and date checks",
+      "edits": ["paragraph_edited"],
+      "old_evals": [
+        {"eval_type": "pricing_integrity", "kind": "deterministic", "verdict": "pass"},
+        {"eval_type": "date_commitment_consistency", "kind": "deterministic", "verdict": "pass"},
+        {"eval_type": "next_step_quality", "kind": "semantic", "verdict": "pass"},
+        {"eval_type": "recipient_correctness", "kind": "deterministic", "verdict": "pass"},
+        {"eval_type": "permission_policy", "kind": "deterministic", "verdict": "pass"},
+        {"eval_type": "action_stage_fit", "kind": "semantic", "verdict": "pass"}
+      ],
+      "invalidated": ["pricing_integrity", "date_commitment_consistency", "next_step_quality"],
+      "preserved": ["recipient_correctness", "permission_policy", "action_stage_fit"]
+    },
+    {
+      "id": "e11_1_channel_changed", "eval": "E11.1", "title": "Moving the action to another channel invalidates channel and policy checks",
+      "edits": ["channel_changed"],
+      "old_evals": [
+        {"eval_type": "channel_appropriateness", "kind": "semantic", "verdict": "pass"},
+        {"eval_type": "permission_policy", "kind": "deterministic", "verdict": "pass"},
+        {"eval_type": "crm_writeback", "kind": "deterministic", "verdict": "pass"},
+        {"eval_type": "duplicate_action", "kind": "deterministic", "verdict": "pass"},
+        {"eval_type": "cta_calibration", "kind": "semantic", "verdict": "pass"},
+        {"eval_type": "recipient_correctness", "kind": "deterministic", "verdict": "pass"}
+      ],
+      "invalidated": ["channel_appropriateness", "permission_policy", "crm_writeback", "duplicate_action"],
+      "preserved": ["cta_calibration", "recipient_correctness"]
+    },
+    {
+      "id": "e11_1_attachment_added", "eval": "E11.1", "title": "Attaching a file invalidates pricing and permission checks only",
+      "edits": ["attachment_added"],
+      "old_evals": [
+        {"eval_type": "pricing_integrity", "kind": "deterministic", "verdict": "pass"},
+        {"eval_type": "permission_policy", "kind": "deterministic", "verdict": "pass"},
+        {"eval_type": "recipient_correctness", "kind": "deterministic", "verdict": "pass"},
+        {"eval_type": "cta_calibration", "kind": "semantic", "verdict": "pass"}
+      ],
+      "invalidated": ["pricing_integrity", "permission_policy"],
+      "preserved": ["recipient_correctness", "cta_calibration"]
+    },
+    {
+      "id": "e11_1_two_edits_union", "eval": "E11.1", "title": "Several edits invalidate the union of what each touches",
+      "edits": ["recipient_added", "subject_changed"],
+      "old_evals": [
+        {"eval_type": "recipient_correctness", "kind": "deterministic", "verdict": "pass"},
+        {"eval_type": "cta_calibration", "kind": "semantic", "verdict": "pass"},
+        {"eval_type": "pricing_integrity", "kind": "deterministic", "verdict": "pass"},
+        {"eval_type": "momentum", "kind": "semantic", "verdict": "pass"}
+      ],
+      "invalidated": ["recipient_correctness", "cta_calibration", "pricing_integrity"],
+      "preserved": ["momentum"]
+    },
+    {
+      "id": "e11_1_unknown_eval_is_conservative", "eval": "E11.1", "title": "An eval nobody declared independent is invalidated by any edit",
+      "edits": ["paragraph_added"],
+      "old_evals": [
+        {"eval_type": "a_learned_criterion_nobody_declared", "kind": "semantic", "verdict": "pass"},
+        {"eval_type": "recipient_correctness", "kind": "deterministic", "verdict": "pass"}
+      ],
+      "invalidated": ["a_learned_criterion_nobody_declared"],
+      "preserved": ["recipient_correctness"]
+    },
+    {
+      "id": "e11_8_state_judging_evals_survive_every_edit", "eval": "E11.8", "title": "Evals about the account state and trajectory are untouched by any edit of the draft",
+      "edits": ["recipient_removed", "subject_changed", "paragraph_added", "channel_changed", "attachment_removed"],
+      "old_evals": [
+        {"eval_type": "state_transition_support", "kind": "semantic", "verdict": "pass"},
+        {"eval_type": "buyer_readiness", "kind": "semantic", "verdict": "pass"},
+        {"eval_type": "champion_strength", "kind": "semantic", "verdict": "warn"},
+        {"eval_type": "momentum", "kind": "semantic", "verdict": "pass"},
+        {"eval_type": "expansion_readiness", "kind": "semantic", "verdict": "pass"},
+        {"eval_type": "trajectory", "kind": "semantic", "verdict": "pass"}
+      ],
+      "invalidated": [],
+      "preserved": ["state_transition_support", "buyer_readiness", "champion_strength", "momentum", "expansion_readiness", "trajectory"],
+      "state": "preserved"
+    },
+    {
+      "id": "e11_8_state_same_version_same_content", "eval": "E11.8", "title": "The account state is preserved only when the stored version and content match",
+      "edits": ["subject_changed"],
+      "old_evals": [{"eval_type": "momentum", "kind": "semantic", "verdict": "pass"}],
+      "invalidated": [],
+      "preserved": ["momentum"],
+      "state": "preserved"
+    },
+    {
+      "id": "e11_8_state_moved", "eval": "E11.8", "title": "A state that moved between the run and the send is reported moved, never preserved",
+      "edits": ["subject_changed"],
+      "old_evals": [{"eval_type": "momentum", "kind": "semantic", "verdict": "pass"}],
+      "invalidated": [],
+      "preserved": ["momentum"],
+      "state_after_version": 9,
+      "state": "moved"
+    },
+    {
+      "id": "e11_8_state_content_changed", "eval": "E11.8", "title": "Same version, different stored content: not preserved",
+      "edits": ["subject_changed"],
+      "old_evals": [{"eval_type": "momentum", "kind": "semantic", "verdict": "pass"}],
+      "invalidated": [],
+      "preserved": ["momentum"],
+      "state_after_hash": "different",
+      "state": "moved"
+    },
+    {
+      "id": "e11_8_state_unproven", "eval": "E11.8", "title": "No stored basis for the state the send read: unknown, nothing claimed",
+      "edits": ["subject_changed"],
+      "old_evals": [{"eval_type": "momentum", "kind": "semantic", "verdict": "pass"}],
+      "invalidated": [],
+      "preserved": ["momentum"],
+      "state_after_hash": "",
+      "state": "unknown"
+    }
+  ]
+}

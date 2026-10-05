@@ -1,0 +1,48 @@
+{
+  "id": "0d5d0000-0000-4000-8000-000000000c01",
+  "decision_episode_id": "0e9e0000-0000-4000-8000-000000000a01",
+  "agent_run_id": "0f0a0000-0000-4000-8000-000000000601",
+  "strategy_set_id": "05e70000-0000-4000-8000-000000000b01",
+  "selected_candidate_id": "0ca00000-0000-4000-8000-0000000000a2",
+  "original_agent_preference": "0ca00000-0000-4000-8000-0000000000a1",
+  "surface": "web",
+  "actor_person_id": "0b0e0000-0000-4000-8000-000000000001",
+  "actor_label": "Dana Kim",
+  "chosen_at": "2026-09-29T15:55:00Z",
+  "final_to": [
+    {
+      "person_id": "0b0e0000-0000-4000-8000-000000000018",
+      "role": "to",
+      "why": "Requested the security documents"
+    }
+  ],
+  "final_cc": [
+    {
+      "person_id": "0b0e0000-0000-4000-8000-000000000017",
+      "role": "cc",
+      "why": "Active champion; keep commercial continuity"
+    }
+  ],
+  "final_artifact": {
+    "channel": "email",
+    "subject": "Re: Expansion to EU teams",
+    "body": "Hi Marco,\n\nAttached are our SOC2 Type II report and pen-test summary. Once you and Priya have reviewed, let us know what timing suits you.\n\nBest,\nDana",
+    "attachments": [
+      "soc2-type2-2026.pdf",
+      "pentest-summary-2026Q3.pdf"
+    ]
+  },
+  "edits": [
+    {
+      "kind": "cta_changed",
+      "before": "Happy to set up time with our security team once you've reviewed",
+      "after": "let us know what timing suits you"
+    },
+    {
+      "kind": "paragraph_edited"
+    }
+  ],
+  "send_decision": "send",
+  "send_decided_at": "2026-09-29T16:05:00Z",
+  "human_decision_id": "0dec0000-0000-4000-8000-000000000701"
+}

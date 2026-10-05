@@ -1,0 +1,164 @@
+{
+  "eval_type": "buyer_readiness",
+  "version": 1,
+  "title": "Buyer readiness / compelling event (action readiness)",
+  "har97_refs": [
+    {
+      "line": 1092,
+      "text": "## 5.1 Action readiness — is it too soon to act?"
+    },
+    {
+      "line": 2207,
+      "text": "## 15.1 Buyer readiness / compelling event"
+    },
+    {
+      "line": 603,
+      "text": "buyer readiness"
+    },
+    {
+      "line": 2953,
+      "text": "* buyer readiness / compelling event"
+    }
+  ],
+  "l2_dimension": "buyer readiness / compelling event",
+  "questions": [
+    {
+      "section": "§5.1",
+      "text": "Given what the customer has actually done and said, is this action appropriate now?"
+    },
+    {
+      "section": "§15(GTM).1",
+      "text": "Is there a real buyer-side reason to act now, or are we manufacturing urgency?"
+    }
+  ],
+  "inputs": [
+    "stage",
+    "recent customer activity",
+    "latest inbound activity",
+    "explicit commitments",
+    "blockers",
+    "last outbound/inbound interaction",
+    "stated timing / buyer-stated timing",
+    "explicit deadline / compelling event",
+    "engagement trend",
+    "support / risk state",
+    "product/adoption state where relevant",
+    "recent commitments",
+    "relevant company knowledge"
+  ],
+  "criteria": [
+    {
+      "id": "buyer_side_reason",
+      "kind": "evaluate",
+      "text": "a real buyer-side reason to act now exists",
+      "guide": "Name the buyer's own words or action (request, deadline, compelling event) that makes acting now right. Urgency that exists only in our message is manufactured.",
+      "har97": null,
+      "output": "finding",
+      "before": null,
+      "after": null
+    },
+    {
+      "id": "respects_stated_timing",
+      "kind": "check",
+      "text": "the action respects the timing the buyer stated",
+      "guide": "If the buyer asked for time, set a date, or said they cannot commit yet, an ask for commitment now is too early.",
+      "har97": null,
+      "output": "finding",
+      "before": null,
+      "after": null
+    },
+    {
+      "id": "gates_cleared",
+      "kind": "check",
+      "text": "the action does not ask past an open gate",
+      "guide": "Pricing before the problem/use case is confirmed, or a commitment ask before an open technical, security or support gate is cleared, is too early.",
+      "har97": null,
+      "output": "finding",
+      "before": null,
+      "after": null
+    },
+    {
+      "id": "window_still_open",
+      "kind": "check",
+      "text": "a window the buyer opened has not already passed",
+      "guide": "A response after the buyer's window closed (stale day, passed slot) is LATE_OR_MISSED_WINDOW.",
+      "har97": null,
+      "output": "finding",
+      "before": null,
+      "after": null
+    },
+    {
+      "id": "forward_commitment_exists",
+      "kind": "check",
+      "text": "a CTA follows a real forward commitment",
+      "guide": "A next-step CTA after an interaction that produced no forward commitment is too early, or no action is needed.",
+      "har97": null,
+      "output": "finding",
+      "before": null,
+      "after": null
+    }
+  ],
+  "failure_examples": [
+    "asking for a demo immediately after a weak exploratory signal",
+    "pushing pricing before the customer has confirmed the problem/use case",
+    "sending an expansion CTA while a critical support issue is unresolved",
+    "asking for commitment immediately after the customer explicitly asked for time",
+    "following up before a promised customer-side action window has elapsed",
+    "creating a next-step CTA even though the call produced no forward commitment"
+  ],
+  "counter_failures": [],
+  "known_exceptions": [],
+  "candidate_choices": [],
+  "principles": [
+    "This is the grounded version of the earlier 'too soon for a CTA' idea (§15(GTM).1)."
+  ],
+  "labels": [
+    {
+      "label": "TOO_EARLY",
+      "when": "The buyer has not reached the point this action assumes (asked for time, gate open, no forward commitment)."
+    },
+    {
+      "label": "READY",
+      "when": "There is a real buyer-side reason to take this kind of action now."
+    },
+    {
+      "label": "LATE_OR_MISSED_WINDOW",
+      "when": "The buyer opened a window that has already passed or is about to be missed."
+    },
+    {
+      "label": "NO_ACTION_NEEDED",
+      "when": "Nothing on the buyer's side calls for an action at all."
+    },
+    {
+      "label": "INSUFFICIENT_CONTEXT",
+      "when": "The context cannot establish the buyer's readiness either way."
+    }
+  ],
+  "pass_label": "READY",
+  "diagnostics": [
+    {
+      "name": "too_early",
+      "when": "the action is ahead of the buyer"
+    },
+    {
+      "name": "no_compelling_event",
+      "when": "no buyer-side reason or deadline supports acting now"
+    },
+    {
+      "name": "security_or_procurement_step_missing",
+      "when": "the action asks past an open security, legal or procurement gate"
+    }
+  ],
+  "routing": {
+    "actions": [
+      "send_email",
+      "schedule_meeting",
+      "share_document",
+      "wait",
+      "no_action"
+    ],
+    "when_all": [],
+    "when_any": []
+  },
+  "uses_rep_profile": false
+}

@@ -1,0 +1,780 @@
+{
+ "label_kind": "model labels (one author, two passes), not human labels",
+ "human_agreement": "None exists. HAR-97 L5 (human agreement) stays blocked until people label this gold; the numbers in bench/reports/crmarena-gold-agreement-2026-10-02.json are one author's self-agreement, clustered by deal.",
+ "all_judgments_need": [
+  "an independent human label",
+  "a blind second-family LLM label"
+ ],
+ "judgments": [
+  {
+   "case": "cr_d1_cfo_direct_pricing_drops_chin_wei",
+   "eval_type": "champion_continuity",
+   "verdict": "fail",
+   "why": [
+    "it blocks (check against the catalog rule text)",
+    "debatable: depends on a role CRMArena does not record (champion or buying-group role inferred)"
+   ]
+  },
+  {
+   "case": "cr_d1_cfo_direct_pricing_drops_chin_wei",
+   "eval_type": "stakeholder_selection",
+   "verdict": "fail",
+   "why": [
+    "it blocks (check against the catalog rule text)",
+    "debatable: depends on a role CRMArena does not record (champion or buying-group role inferred)"
+   ]
+  },
+  {
+   "case": "cr_d4_finance_officer_pricing_direct_dropping_aditya",
+   "eval_type": "champion_continuity",
+   "verdict": "fail",
+   "why": [
+    "it blocks (check against the catalog rule text)",
+    "debatable: depends on a role CRMArena does not record (champion or buying-group role inferred)"
+   ]
+  },
+  {
+   "case": "cr_d4_finance_officer_pricing_direct_dropping_aditya",
+   "eval_type": "stakeholder_selection",
+   "verdict": "fail",
+   "why": [
+    "it blocks (check against the catalog rule text)",
+    "debatable: depends on a role CRMArena does not record (champion or buying-group role inferred)"
+   ]
+  },
+  {
+   "case": "cr_d5_introduces_security_with_haruto_copied",
+   "eval_type": "champion_continuity",
+   "verdict": "pass",
+   "why": [
+    "hard case",
+    "debatable: depends on a role CRMArena does not record (champion or buying-group role inferred)"
+   ]
+  },
+  {
+   "case": "cr_d5_introduces_security_with_haruto_copied",
+   "eval_type": "stakeholder_selection",
+   "verdict": "pass",
+   "why": [
+    "hard case",
+    "debatable: depends on a role CRMArena does not record (champion or buying-group role inferred)"
+   ]
+  },
+  {
+   "case": "cr_d5_introduces_security_with_haruto_copied",
+   "eval_type": "stakeholder_coverage",
+   "verdict": "warn",
+   "why": [
+    "hard case",
+    "debatable: depends on a role CRMArena does not record (champion or buying-group role inferred)"
+   ]
+  },
+  {
+   "case": "cr_d1_negotiation_invite_while_review_open",
+   "eval_type": "commitment_consistency",
+   "verdict": "fail",
+   "why": [
+    "it blocks (check against the catalog rule text)",
+    "hard case"
+   ]
+  },
+  {
+   "case": "cr_d1_negotiation_invite_while_review_open",
+   "eval_type": "buyer_readiness",
+   "verdict": "fail",
+   "why": [
+    "hard case"
+   ]
+  },
+  {
+   "case": "cr_d1_negotiation_invite_while_review_open",
+   "eval_type": "grounding",
+   "verdict": "fail",
+   "why": [
+    "hard case"
+   ]
+  },
+  {
+   "case": "cr_d4_asks_who_approves_instead_of_assuming",
+   "eval_type": "economic_buyer_coverage",
+   "verdict": "pass",
+   "why": [
+    "debatable: depends on a role CRMArena does not record (champion or buying-group role inferred)"
+   ]
+  },
+  {
+   "case": "cr_d4_treats_one_signature_title_as_fact",
+   "eval_type": "grounding",
+   "verdict": "fail",
+   "why": [
+    "it blocks (check against the catalog rule text)",
+    "hard case"
+   ]
+  },
+  {
+   "case": "cr_d4_treats_one_signature_title_as_fact",
+   "eval_type": "decision_process",
+   "verdict": "warn",
+   "why": [
+    "hard case"
+   ]
+  },
+  {
+   "case": "cr_d4_treats_one_signature_title_as_fact",
+   "eval_type": "economic_buyer_coverage",
+   "verdict": "fail",
+   "why": [
+    "hard case",
+    "debatable: depends on a role CRMArena does not record (champion or buying-group role inferred)"
+   ]
+  },
+  {
+   "case": "cr_d2_books_thursday_and_attaches_the_order_form",
+   "eval_type": "next_step_quality",
+   "verdict": "warn",
+   "why": [
+    "the two passes disagreed"
+   ]
+  },
+  {
+   "case": "cr_d1_fourth_recap_after_three_identical",
+   "eval_type": "duplicate_action",
+   "verdict": "fail",
+   "why": [
+    "it blocks (check against the catalog rule text)"
+   ]
+  },
+  {
+   "case": "cr_d1_fourth_recap_after_three_identical",
+   "eval_type": "state_change_relevance",
+   "verdict": "fail",
+   "why": [
+    "it blocks (check against the catalog rule text)"
+   ]
+  },
+  {
+   "case": "cr_d3_fourth_negotiation_prep_email",
+   "eval_type": "duplicate_action",
+   "verdict": "fail",
+   "why": [
+    "it blocks (check against the catalog rule text)"
+   ]
+  },
+  {
+   "case": "cr_d3_fourth_negotiation_prep_email",
+   "eval_type": "relationship_pressure",
+   "verdict": "fail",
+   "why": [
+    "the two passes disagreed"
+   ]
+  },
+  {
+   "case": "cr_d5_repeats_the_thursday_call_proposal",
+   "eval_type": "duplicate_action",
+   "verdict": "fail",
+   "why": [
+    "it blocks (check against the catalog rule text)"
+   ]
+  },
+  {
+   "case": "cr_d5_repeats_the_thursday_call_proposal",
+   "eval_type": "commitment_consistency",
+   "verdict": "fail",
+   "why": [
+    "it blocks (check against the catalog rule text)"
+   ]
+  },
+  {
+   "case": "cr_d9_k104_answers_the_upgrade_question_without_a_deadline",
+   "eval_type": "exception_awareness",
+   "verdict": "pass",
+   "why": [
+    "hard case"
+   ]
+  },
+  {
+   "case": "cr_d9_k104_answers_the_upgrade_question_without_a_deadline",
+   "eval_type": "knowledge_applicability",
+   "verdict": "pass",
+   "why": [
+    "hard case"
+   ]
+  },
+  {
+   "case": "cr_d9_k104_answers_the_upgrade_question_without_a_deadline",
+   "eval_type": "next_action_quality",
+   "verdict": "pass",
+   "why": [
+    "hard case"
+   ]
+  },
+  {
+   "case": "cr_d6_invents_budget_go_live_and_a_ciso",
+   "eval_type": "grounding",
+   "verdict": "fail",
+   "why": [
+    "it blocks (check against the catalog rule text)"
+   ]
+  },
+  {
+   "case": "cr_d8_invents_agreement_on_the_update_cadence",
+   "eval_type": "grounding",
+   "verdict": "fail",
+   "why": [
+    "it blocks (check against the catalog rule text)"
+   ]
+  },
+  {
+   "case": "cr_x_k101_misapplied_cost_breakdown_instead_of_the_call",
+   "eval_type": "knowledge_applicability",
+   "verdict": "fail",
+   "why": [
+    "hard case"
+   ]
+  },
+  {
+   "case": "cr_x_k101_misapplied_cost_breakdown_instead_of_the_call",
+   "eval_type": "next_step_quality",
+   "verdict": "fail",
+   "why": [
+    "it blocks (check against the catalog rule text)",
+    "hard case"
+   ]
+  },
+  {
+   "case": "cr_x_k101_misapplied_cost_breakdown_instead_of_the_call",
+   "eval_type": "next_action_quality",
+   "verdict": "fail",
+   "why": [
+    "it blocks (check against the catalog rule text)",
+    "hard case"
+   ]
+  },
+  {
+   "case": "cr_x_k102_misapplied_hold_off_on_a_requested_meeting",
+   "eval_type": "knowledge_applicability",
+   "verdict": "fail",
+   "why": [
+    "hard case"
+   ]
+  },
+  {
+   "case": "cr_x_k102_misapplied_hold_off_on_a_requested_meeting",
+   "eval_type": "grounding",
+   "verdict": "warn",
+   "why": [
+    "hard case"
+   ]
+  },
+  {
+   "case": "cr_x_k102_misapplied_hold_off_on_a_requested_meeting",
+   "eval_type": "next_action_quality",
+   "verdict": "fail",
+   "why": [
+    "it blocks (check against the catalog rule text)",
+    "hard case"
+   ]
+  },
+  {
+   "case": "cr_x_k103_not_triggered_by_a_legal_team_mention",
+   "eval_type": "knowledge_applicability",
+   "verdict": "pass",
+   "why": [
+    "hard case"
+   ]
+  },
+  {
+   "case": "cr_x_k103_not_triggered_by_a_legal_team_mention",
+   "eval_type": "stakeholder_selection",
+   "verdict": "pass",
+   "why": [
+    "hard case",
+    "debatable: depends on a role CRMArena does not record (champion or buying-group role inferred)"
+   ]
+  },
+  {
+   "case": "cr_x_k103_not_triggered_by_a_legal_team_mention",
+   "eval_type": "stakeholder_coverage",
+   "verdict": "pass",
+   "why": [
+    "hard case",
+    "debatable: depends on a role CRMArena does not record (champion or buying-group role inferred)"
+   ]
+  },
+  {
+   "case": "cr_d11_upsell_and_case_study_ask_on_an_internal_task",
+   "eval_type": "next_action_quality",
+   "verdict": "fail",
+   "why": [
+    "it blocks (check against the catalog rule text)"
+   ]
+  },
+  {
+   "case": "cr_d1_cfo_pulled_in_while_team_reviews",
+   "eval_type": "stakeholder_coverage",
+   "verdict": "fail",
+   "why": [
+    "it blocks (check against the catalog rule text)",
+    "debatable: depends on a role CRMArena does not record (champion or buying-group role inferred)"
+   ]
+  },
+  {
+   "case": "cr_d1_cfo_pulled_in_while_team_reviews",
+   "eval_type": "stakeholder_selection",
+   "verdict": "fail",
+   "why": [
+    "it blocks (check against the catalog rule text)",
+    "debatable: depends on a role CRMArena does not record (champion or buying-group role inferred)"
+   ]
+  },
+  {
+   "case": "cr_d1_cfo_pulled_in_while_team_reviews",
+   "eval_type": "champion_continuity",
+   "verdict": "pass",
+   "why": [
+    "debatable: depends on a role CRMArena does not record (champion or buying-group role inferred)"
+   ]
+  },
+  {
+   "case": "cr_d4_three_colleagues_copied_on_a_pricing_reply",
+   "eval_type": "stakeholder_coverage",
+   "verdict": "fail",
+   "why": [
+    "it blocks (check against the catalog rule text)",
+    "debatable: depends on a role CRMArena does not record (champion or buying-group role inferred)"
+   ]
+  },
+  {
+   "case": "cr_d4_three_colleagues_copied_on_a_pricing_reply",
+   "eval_type": "stakeholder_selection",
+   "verdict": "fail",
+   "why": [
+    "it blocks (check against the catalog rule text)",
+    "debatable: depends on a role CRMArena does not record (champion or buying-group role inferred)"
+   ]
+  },
+  {
+   "case": "cr_d5_marketing_director_copied_on_contract_thread",
+   "eval_type": "stakeholder_coverage",
+   "verdict": "fail",
+   "why": [
+    "it blocks (check against the catalog rule text)",
+    "debatable: depends on a role CRMArena does not record (champion or buying-group role inferred)"
+   ]
+  },
+  {
+   "case": "cr_d5_marketing_director_copied_on_contract_thread",
+   "eval_type": "stakeholder_selection",
+   "verdict": "fail",
+   "why": [
+    "debatable: depends on a role CRMArena does not record (champion or buying-group role inferred)"
+   ]
+  },
+  {
+   "case": "cr_d3_looking_forward_to_a_meeting_that_has_passed",
+   "eval_type": "commitment_consistency",
+   "verdict": "fail",
+   "why": [
+    "it blocks (check against the catalog rule text)"
+   ]
+  },
+  {
+   "case": "cr_d3_looking_forward_to_a_meeting_that_has_passed",
+   "eval_type": "timing_cadence",
+   "verdict": "fail",
+   "why": [
+    "it blocks (check against the catalog rule text)"
+   ]
+  },
+  {
+   "case": "cr_d7_promises_the_testimonials_again_thirteen_days_later",
+   "eval_type": "commitment_consistency",
+   "verdict": "fail",
+   "why": [
+    "it blocks (check against the catalog rule text)"
+   ]
+  },
+  {
+   "case": "cr_d1_just_checking_in_after_a_week_of_silence",
+   "eval_type": "commitment_consistency",
+   "verdict": "fail",
+   "why": [
+    "it blocks (check against the catalog rule text)"
+   ]
+  },
+  {
+   "case": "cr_d6_proposal_attached_as_if_the_demo_request_were_fresh",
+   "eval_type": "commitment_consistency",
+   "verdict": "fail",
+   "why": [
+    "it blocks (check against the catalog rule text)"
+   ]
+  },
+  {
+   "case": "cr_d1_signature_push_after_review_notice",
+   "eval_type": "buyer_readiness",
+   "verdict": "fail",
+   "why": [
+    "it blocks (check against the catalog rule text)"
+   ]
+  },
+  {
+   "case": "cr_d1_signature_push_after_review_notice",
+   "eval_type": "cta_calibration",
+   "verdict": "fail",
+   "why": [
+    "it blocks (check against the catalog rule text)"
+   ]
+  },
+  {
+   "case": "cr_d4_contract_with_friday_deadline_while_procurement_reviews",
+   "eval_type": "cta_calibration",
+   "verdict": "fail",
+   "why": [
+    "it blocks (check against the catalog rule text)"
+   ]
+  },
+  {
+   "case": "cr_d4_contract_with_friday_deadline_while_procurement_reviews",
+   "eval_type": "decision_process",
+   "verdict": "fail",
+   "why": [
+    "it blocks (check against the catalog rule text)"
+   ]
+  },
+  {
+   "case": "cr_d5_signature_by_thursday_while_legal_reviews",
+   "eval_type": "cta_calibration",
+   "verdict": "fail",
+   "why": [
+    "it blocks (check against the catalog rule text)"
+   ]
+  },
+  {
+   "case": "cr_d5_signature_by_thursday_while_legal_reviews",
+   "eval_type": "decision_process",
+   "verdict": "fail",
+   "why": [
+    "it blocks (check against the catalog rule text)"
+   ]
+  },
+  {
+   "case": "cr_d3_asks_for_ctos_address_and_adds_him",
+   "eval_type": "stakeholder_selection",
+   "verdict": "pass",
+   "why": [
+    "debatable: depends on a role CRMArena does not record (champion or buying-group role inferred)"
+   ]
+  },
+  {
+   "case": "cr_d3_asks_for_ctos_address_and_adds_him",
+   "eval_type": "stakeholder_coverage",
+   "verdict": "pass",
+   "why": [
+    "debatable: depends on a role CRMArena does not record (champion or buying-group role inferred)"
+   ]
+  },
+  {
+   "case": "cr_d3_cto_requested_but_not_included",
+   "eval_type": "stakeholder_selection",
+   "verdict": "fail",
+   "why": [
+    "it blocks (check against the catalog rule text)",
+    "debatable: depends on a role CRMArena does not record (champion or buying-group role inferred)"
+   ]
+  },
+  {
+   "case": "cr_d3_cto_requested_but_not_included",
+   "eval_type": "stakeholder_coverage",
+   "verdict": "fail",
+   "why": [
+    "debatable: depends on a role CRMArena does not record (champion or buying-group role inferred)"
+   ]
+  },
+  {
+   "case": "cr_d7_contract_draft_to_fernando_alone_while_finance_reviews",
+   "eval_type": "stakeholder_coverage",
+   "verdict": "fail",
+   "why": [
+    "the two passes disagreed",
+    "it blocks (check against the catalog rule text)",
+    "hard case",
+    "debatable: depends on a role CRMArena does not record (champion or buying-group role inferred)"
+   ]
+  },
+  {
+   "case": "cr_d7_contract_draft_to_fernando_alone_while_finance_reviews",
+   "eval_type": "decision_process",
+   "verdict": "warn",
+   "why": [
+    "hard case"
+   ]
+  },
+  {
+   "case": "cr_d7_contract_draft_to_fernando_alone_while_finance_reviews",
+   "eval_type": "commitment_consistency",
+   "verdict": "pass",
+   "why": [
+    "hard case"
+   ]
+  },
+  {
+   "case": "cr_d7_offers_to_walk_finance_through_the_pricing",
+   "eval_type": "stakeholder_coverage",
+   "verdict": "pass",
+   "why": [
+    "debatable: depends on a role CRMArena does not record (champion or buying-group role inferred)"
+   ]
+  },
+  {
+   "case": "cr_d1_case_studies_sent_cost_question_ignored",
+   "eval_type": "commitment_consistency",
+   "verdict": "fail",
+   "why": [
+    "it blocks (check against the catalog rule text)"
+   ]
+  },
+  {
+   "case": "cr_d8_demo_slots_while_the_cost_of_updates_stays_unanswered",
+   "eval_type": "commitment_consistency",
+   "verdict": "fail",
+   "why": [
+    "it blocks (check against the catalog rule text)"
+   ]
+  },
+  {
+   "case": "cr_x_finance_and_tech_review_call_asks_who_joins",
+   "eval_type": "champion_continuity",
+   "verdict": "pass",
+   "why": [
+    "analogue case (see evidence_gap)",
+    "debatable: depends on a role CRMArena does not record (champion or buying-group role inferred)"
+   ]
+  },
+  {
+   "case": "cr_x_finance_and_tech_review_call_asks_who_joins",
+   "eval_type": "stakeholder_selection",
+   "verdict": "pass",
+   "why": [
+    "analogue case (see evidence_gap)",
+    "debatable: depends on a role CRMArena does not record (champion or buying-group role inferred)"
+   ]
+  },
+  {
+   "case": "cr_x_finance_and_tech_review_call_asks_who_joins",
+   "eval_type": "stakeholder_coverage",
+   "verdict": "pass",
+   "why": [
+    "analogue case (see evidence_gap)",
+    "debatable: depends on a role CRMArena does not record (champion or buying-group role inferred)"
+   ]
+  },
+  {
+   "case": "cr_x_legal_specialist_added_instead_of_the_cto",
+   "eval_type": "champion_continuity",
+   "verdict": "pass",
+   "why": [
+    "analogue case (see evidence_gap)",
+    "debatable: depends on a role CRMArena does not record (champion or buying-group role inferred)"
+   ]
+  },
+  {
+   "case": "cr_x_legal_specialist_added_instead_of_the_cto",
+   "eval_type": "stakeholder_selection",
+   "verdict": "fail",
+   "why": [
+    "it blocks (check against the catalog rule text)",
+    "analogue case (see evidence_gap)",
+    "debatable: depends on a role CRMArena does not record (champion or buying-group role inferred)"
+   ]
+  },
+  {
+   "case": "cr_x_legal_specialist_added_instead_of_the_cto",
+   "eval_type": "stakeholder_coverage",
+   "verdict": "fail",
+   "why": [
+    "analogue case (see evidence_gap)",
+    "debatable: depends on a role CRMArena does not record (champion or buying-group role inferred)"
+   ]
+  },
+  {
+   "case": "cr_x_schedule_with_the_cto_to_be_added",
+   "eval_type": "champion_continuity",
+   "verdict": "pass",
+   "why": [
+    "analogue case (see evidence_gap)",
+    "debatable: depends on a role CRMArena does not record (champion or buying-group role inferred)"
+   ]
+  },
+  {
+   "case": "cr_x_schedule_with_the_cto_to_be_added",
+   "eval_type": "stakeholder_selection",
+   "verdict": "pass",
+   "why": [
+    "analogue case (see evidence_gap)",
+    "debatable: depends on a role CRMArena does not record (champion or buying-group role inferred)"
+   ]
+  },
+  {
+   "case": "cr_x_schedule_with_the_cto_to_be_added",
+   "eval_type": "stakeholder_coverage",
+   "verdict": "pass",
+   "why": [
+    "analogue case (see evidence_gap)",
+    "debatable: depends on a role CRMArena does not record (champion or buying-group role inferred)"
+   ]
+  },
+  {
+   "case": "cr_x_tech_session_asks_who_from_the_tech_team",
+   "eval_type": "champion_continuity",
+   "verdict": "pass",
+   "why": [
+    "analogue case (see evidence_gap)",
+    "debatable: depends on a role CRMArena does not record (champion or buying-group role inferred)"
+   ]
+  },
+  {
+   "case": "cr_x_tech_session_asks_who_from_the_tech_team",
+   "eval_type": "stakeholder_selection",
+   "verdict": "pass",
+   "why": [
+    "analogue case (see evidence_gap)",
+    "debatable: depends on a role CRMArena does not record (champion or buying-group role inferred)"
+   ]
+  },
+  {
+   "case": "cr_x_tech_session_asks_who_from_the_tech_team",
+   "eval_type": "stakeholder_coverage",
+   "verdict": "pass",
+   "why": [
+    "analogue case (see evidence_gap)",
+    "debatable: depends on a role CRMArena does not record (champion or buying-group role inferred)"
+   ]
+  },
+  {
+   "case": "cr_d2_crm_note_only_no_reply_to_customer",
+   "eval_type": "next_step_quality",
+   "verdict": "fail",
+   "why": [
+    "it blocks (check against the catalog rule text)"
+   ]
+  },
+  {
+   "case": "cr_d2_crm_note_only_no_reply_to_customer",
+   "eval_type": "next_action_quality",
+   "verdict": "fail",
+   "why": [
+    "it blocks (check against the catalog rule text)"
+   ]
+  },
+  {
+   "case": "cr_d2_long_email_instead_of_the_requested_call",
+   "eval_type": "next_step_quality",
+   "verdict": "fail",
+   "why": [
+    "it blocks (check against the catalog rule text)"
+   ]
+  },
+  {
+   "case": "cr_d2_long_email_instead_of_the_requested_call",
+   "eval_type": "next_action_quality",
+   "verdict": "fail",
+   "why": [
+    "it blocks (check against the catalog rule text)"
+   ]
+  },
+  {
+   "case": "cr_x_call_offered_instead_of_the_written_cost_answer",
+   "eval_type": "channel_appropriateness",
+   "verdict": "fail",
+   "why": [
+    "it blocks (check against the catalog rule text)"
+   ]
+  },
+  {
+   "case": "cr_x_call_offered_instead_of_the_written_cost_answer",
+   "eval_type": "next_action_quality",
+   "verdict": "fail",
+   "why": [
+    "it blocks (check against the catalog rule text)"
+   ]
+  }
+ ],
+ "legacy_contested": [
+  {
+   "case": "beta_cp4_nonmaterial_fyi_no_action",
+   "eval_type": "next_action_quality",
+   "why": "adjudicated 2-2 tie broken by C; reverses the original rule that this trigger's run does not own the open residency commitment"
+  }
+ ],
+ "cases_with_inferred_champion": [
+  "cr_d11_internal_review_task_needs_no_customer_contact",
+  "cr_d11_upsell_and_case_study_ask_on_an_internal_task",
+  "cr_d1_answers_cost_question_and_sends_case_studies",
+  "cr_d1_case_studies_sent_cost_question_ignored",
+  "cr_d1_cfo_direct_pricing_drops_chin_wei",
+  "cr_d1_cfo_pulled_in_while_team_reviews",
+  "cr_d1_fourth_recap_after_three_identical",
+  "cr_d1_just_checking_in_after_a_week_of_silence",
+  "cr_d1_negotiation_invite_while_review_open",
+  "cr_d1_signature_push_after_review_notice",
+  "cr_d2_books_the_thursday_call",
+  "cr_d2_books_thursday_and_attaches_the_order_form",
+  "cr_d2_crm_note_only_no_reply_to_customer",
+  "cr_d2_long_email_instead_of_the_requested_call",
+  "cr_d3_asks_for_ctos_address_and_adds_him",
+  "cr_d3_asks_whether_the_planned_meeting_took_place",
+  "cr_d3_cto_requested_but_not_included",
+  "cr_d3_fourth_negotiation_prep_email",
+  "cr_d3_looking_forward_to_a_meeting_that_has_passed",
+  "cr_d4_asks_who_approves_instead_of_assuming",
+  "cr_d4_contract_with_friday_deadline_while_procurement_reviews",
+  "cr_d4_finance_officer_pricing_direct_dropping_aditya",
+  "cr_d4_offers_two_slots_and_the_requested_material",
+  "cr_d4_three_colleagues_copied_on_a_pricing_reply",
+  "cr_d4_treats_one_signature_title_as_fact",
+  "cr_d5_answers_the_open_timeline_question",
+  "cr_d5_introduces_security_with_haruto_copied",
+  "cr_d5_marketing_director_copied_on_contract_thread",
+  "cr_d5_repeats_the_thursday_call_proposal",
+  "cr_d5_signature_by_thursday_while_legal_reviews",
+  "cr_d6_apologises_for_the_gap_and_offers_demo_dates",
+  "cr_d6_asks_before_planning_the_demo",
+  "cr_d6_invents_budget_go_live_and_a_ciso",
+  "cr_d6_proposal_attached_as_if_the_demo_request_were_fresh",
+  "cr_d7_contract_draft_to_fernando_alone_while_finance_reviews",
+  "cr_d7_offers_to_walk_finance_through_the_pricing",
+  "cr_d7_promises_the_testimonials_again_thirteen_days_later",
+  "cr_d8_demo_slots_while_the_cost_of_updates_stays_unanswered",
+  "cr_d8_invents_agreement_on_the_update_cadence",
+  "cr_d8_k101_cost_answered_in_writing_with_slots",
+  "cr_d8_testimonials_cost_answer_date_and_demo_slots",
+  "cr_d9_k104_answers_the_upgrade_question_without_a_deadline",
+  "cr_d9_k104_check_in_sent_despite_the_buyers_date",
+  "cr_d9_k104_waits_for_the_date_the_buyer_gave",
+  "cr_x_call_offered_instead_of_the_written_cost_answer",
+  "cr_x_finance_and_tech_review_call_asks_who_joins",
+  "cr_x_k101_ignored_cost_answer_deferred_to_a_call",
+  "cr_x_k101_misapplied_cost_breakdown_instead_of_the_call",
+  "cr_x_k102_followed_no_signature_chase",
+  "cr_x_k102_misapplied_hold_off_on_a_requested_meeting",
+  "cr_x_k103_not_triggered_by_a_legal_team_mention",
+  "cr_x_legal_specialist_added_instead_of_the_cto",
+  "cr_x_schedule_with_the_cto_to_be_added",
+  "cr_x_tech_session_asks_who_from_the_tech_team",
+  "cr_x_waits_while_the_buyer_reviews_the_offer"
+ ],
+ "cases_with_evidence_gap": [
+  "cr_x_finance_and_tech_review_call_asks_who_joins",
+  "cr_x_legal_specialist_added_instead_of_the_cto",
+  "cr_x_schedule_with_the_cto_to_be_added",
+  "cr_x_tech_session_asks_who_from_the_tech_team"
+ ],
+ "inferred_roles_in_the_context": "judges see 'champion role inferred, not recorded' / 'role inferred from department' in the member title (the schema has no confidence field and the judge code is unchanged)",
+ "open_items": [
+  "valid_champion_handoff has no real instance in CRMArena (no delegation, no departure); replace its four analogues with WP32 synthetic or human-built cases",
+  "champion, buying-group roles, economic buyer, stage and risk are not in the record; state fields are hand-derived from events up to the decision time (WP6 was not run on this data)",
+  "candidate actions are authored drafts, not agent output; label a sample of real agent drafts on the same moments",
+  "blocking follows the catalog rule text (bench/labels/crmarena/blocking_rule_review.json); a human should confirm each blocking judgment listed above"
+ ]
+}
