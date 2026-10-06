@@ -1,0 +1,13 @@
+{
+  "model_calls": 3,
+  "input_tokens": 12000,
+  "output_tokens": 1500,
+  "cached_input_tokens": 6000,
+  "reasoning_tokens": 400,
+  "tool_calls": 3,
+  "retries": 1,
+  "model_ms": 13000,
+  "cost_usd": 0.008,
+  "models": ["deepseek-v4-flash"],
+  "usage_source": "live"
+}

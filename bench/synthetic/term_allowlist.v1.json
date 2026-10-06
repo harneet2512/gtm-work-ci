@@ -1,0 +1,89 @@
+{
+ "description": "Exact occurrences of hidden-rule key terms that were inspected and found incidental (legacy fixture text or a judge's recorded remark), each with its file, JSON path, the normalised text that is blanked, and why it is not a confound. Only these exact snippets are blanked, only in these files. Rubric and prompt sources (worker-py/ghost_worker, contracts, PR #23 knowledge_lessons.py) and judge system prompts (request.system) can never be listed; test_synthetic_groups.py enforces it.",
+ "entries": [
+  {
+   "file": "worker-py/cassettes/judges/trial-1/9878c690dd5844e0e1185e344442b67a19b158cb4087efa39f006d9c562369d8.json",
+   "json_path": ".request.user",
+   "term": "operations person",
+   "snippet": "why eu operations person id",
+   "reason": "The judge's user message embeds the acme_cp4 over-threading eval case's candidate JSON: recipient \"why\": \"EU operations\" followed by the key \"person_id\". A field-boundary artifact, not wording about writing to operations before a quote."
+  },
+  {
+   "file": "worker-py/cassettes/judges/trial-1/c63efb7882ce4ea625e38344760e0aeb86d3870c619721a5cb6e585dce97b787.json",
+   "json_path": ".request.user",
+   "term": "operations person",
+   "snippet": "why eu operations person id",
+   "reason": "The judge's user message embeds the acme_cp4 over-threading eval case's candidate JSON: recipient \"why\": \"EU operations\" followed by the key \"person_id\". A field-boundary artifact, not wording about writing to operations before a quote."
+  },
+  {
+   "file": "worker-py/cassettes/judges/trial-1/c8af9011ea625b7893c5a43c713169879edec154a1be4e284449167f9891eb7c.json",
+   "json_path": ".request.user",
+   "term": "operations person",
+   "snippet": "why eu operations person id",
+   "reason": "The judge's user message embeds the acme_cp4 over-threading eval case's candidate JSON: recipient \"why\": \"EU operations\" followed by the key \"person_id\". A field-boundary artifact, not wording about writing to operations before a quote."
+  },
+  {
+   "file": "worker-py/cassettes/judges/trial-1/ed13b6c82669a1f3d76d03e0a2e57eee767534aa2faf356b55f082c1b9db8f4d.json",
+   "json_path": ".response.content.criteria.unknowns_respected.note",
+   "term": "price objection",
+   "snippet": "these unknowns and instead invents a price objection unknowns are not respected",
+   "reason": "Recorded judge note penalising a candidate that 'invents a price objection' the evidence does not contain (unknowns not respected). It is about grounding, not about re-pricing versus holding the price after a real objection."
+  },
+  {
+   "file": "worker-py/cassettes/judges/trial-2/88cee4e694634397531e5540d5220453c346f8b656259350b911a20f1f20cf17.json",
+   "json_path": ".response.content.criteria.audience_channel.note",
+   "term": "internal colleague",
+   "snippet": "okafor customer and cc leo park internal colleague the content is customer facing and",
+   "reason": "Recorded channel_appropriateness judge note describing who an email goes to (a customer, and a seller colleague in cc) to judge channel and audience fit. It neither tells the agent to cc a colleague nor scores cc'ing higher, and says nothing about win odds. Not a rubric or prompt."
+  },
+  {
+   "file": "worker-py/cassettes/judges/trial-2/9878c690dd5844e0e1185e344442b67a19b158cb4087efa39f006d9c562369d8.json",
+   "json_path": ".request.user",
+   "term": "operations person",
+   "snippet": "why eu operations person id",
+   "reason": "The judge's user message embeds the acme_cp4 over-threading eval case's candidate JSON: recipient \"why\": \"EU operations\" followed by the key \"person_id\". A field-boundary artifact, not wording about writing to operations before a quote."
+  },
+  {
+   "file": "worker-py/cassettes/judges/trial-2/c63efb7882ce4ea625e38344760e0aeb86d3870c619721a5cb6e585dce97b787.json",
+   "json_path": ".request.user",
+   "term": "operations person",
+   "snippet": "why eu operations person id",
+   "reason": "The judge's user message embeds the acme_cp4 over-threading eval case's candidate JSON: recipient \"why\": \"EU operations\" followed by the key \"person_id\". A field-boundary artifact, not wording about writing to operations before a quote."
+  },
+  {
+   "file": "worker-py/cassettes/judges/trial-2/c8af9011ea625b7893c5a43c713169879edec154a1be4e284449167f9891eb7c.json",
+   "json_path": ".request.user",
+   "term": "operations person",
+   "snippet": "why eu operations person id",
+   "reason": "The judge's user message embeds the acme_cp4 over-threading eval case's candidate JSON: recipient \"why\": \"EU operations\" followed by the key \"person_id\". A field-boundary artifact, not wording about writing to operations before a quote."
+  },
+  {
+   "file": "worker-py/cassettes/judges/trial-3/88cee4e694634397531e5540d5220453c346f8b656259350b911a20f1f20cf17.json",
+   "json_path": ".response.content.criteria.audience_channel.note",
+   "term": "internal colleague",
+   "snippet": "customer and cc s leo park internal colleague customer facing content uses a customer",
+   "reason": "Recorded channel_appropriateness judge note describing who an email goes to (a customer, and a seller colleague in cc) to judge channel and audience fit. It neither tells the agent to cc a colleague nor scores cc'ing higher, and says nothing about win odds. Not a rubric or prompt."
+  },
+  {
+   "file": "worker-py/cassettes/judges/trial-3/9878c690dd5844e0e1185e344442b67a19b158cb4087efa39f006d9c562369d8.json",
+   "json_path": ".request.user",
+   "term": "operations person",
+   "snippet": "why eu operations person id",
+   "reason": "The judge's user message embeds the acme_cp4 over-threading eval case's candidate JSON: recipient \"why\": \"EU operations\" followed by the key \"person_id\". A field-boundary artifact, not wording about writing to operations before a quote."
+  },
+  {
+   "file": "worker-py/cassettes/judges/trial-3/c63efb7882ce4ea625e38344760e0aeb86d3870c619721a5cb6e585dce97b787.json",
+   "json_path": ".request.user",
+   "term": "operations person",
+   "snippet": "why eu operations person id",
+   "reason": "The judge's user message embeds the acme_cp4 over-threading eval case's candidate JSON: recipient \"why\": \"EU operations\" followed by the key \"person_id\". A field-boundary artifact, not wording about writing to operations before a quote."
+  },
+  {
+   "file": "worker-py/cassettes/judges/trial-3/c8af9011ea625b7893c5a43c713169879edec154a1be4e284449167f9891eb7c.json",
+   "json_path": ".request.user",
+   "term": "operations person",
+   "snippet": "why eu operations person id",
+   "reason": "The judge's user message embeds the acme_cp4 over-threading eval case's candidate JSON: recipient \"why\": \"EU operations\" followed by the key \"person_id\". A field-boundary artifact, not wording about writing to operations before a quote."
+  }
+ ]
+}

@@ -1,0 +1,58 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://ghost.local/contracts/activity.v1.json",
+  "title": "Activity",
+  "description": "Normalized, canonical activity. First-class node of the activity graph.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "id", "idempotency_key", "activity_type", "source_system", "source_object_id", "source_event_id",
+    "occurred_at", "ingested_at", "participants", "payload_ref", "permissions", "provenance"
+  ],
+  "properties": {
+    "id": { "$ref": "common.v1.json#/$defs/uuid" },
+    "idempotency_key": {
+      "description": "hex sha256(source_system|source_object_id|source_event_key)",
+      "type": "string", "pattern": "^[0-9a-f]{64}$"
+    },
+    "activity_type": { "$ref": "common.v1.json#/$defs/activityType" },
+    "source_system": { "$ref": "common.v1.json#/$defs/sourceSystem" },
+    "source_object_id": { "type": "string", "minLength": 1 },
+    "source_event_id": { "$ref": "common.v1.json#/$defs/uuid" },
+    "occurred_at": { "$ref": "common.v1.json#/$defs/timestamp" },
+    "ingested_at": { "$ref": "common.v1.json#/$defs/timestamp" },
+    "participants": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["raw_identity", "role"],
+        "properties": {
+          "raw_identity": {
+            "description": "Identity as seen in the source: email address, 'crm:contact:817', 'call:C19:speaker:02', slack user id.",
+            "type": "string", "minLength": 1
+          },
+          "display_name": { "type": "string" },
+          "role": { "$ref": "common.v1.json#/$defs/participantRole" },
+          "person_id": {
+            "description": "Resolved Person, null until identity resolution links it.",
+            "oneOf": [{ "$ref": "common.v1.json#/$defs/uuid" }, { "type": "null" }]
+          }
+        }
+      }
+    },
+    "account_id": { "oneOf": [{ "$ref": "common.v1.json#/$defs/uuid" }, { "type": "null" }] },
+    "opportunity_id": { "oneOf": [{ "$ref": "common.v1.json#/$defs/uuid" }, { "type": "null" }] },
+    "account_hint": { "type": ["string", "null"], "description": "Domain, CRM account id or name seen in the source." },
+    "opportunity_hint": { "type": ["string", "null"] },
+    "payload_ref": { "type": "string", "description": "Pointer to the retained raw payload, e.g. 'source_events/<uuid>'." },
+    "summary": { "type": ["string", "null"], "maxLength": 1000 },
+    "permissions": { "$ref": "common.v1.json#/$defs/permissions" },
+    "provenance": { "$ref": "common.v1.json#/$defs/provenance" },
+    "caused_by_activity_id": { "oneOf": [{ "$ref": "common.v1.json#/$defs/uuid" }, { "type": "null" }] },
+    "correlation_id": {
+      "description": "Groups activities from one decision episode (meeting → transcript → draft → human edit → send → reply).",
+      "oneOf": [{ "$ref": "common.v1.json#/$defs/uuid" }, { "type": "null" }]
+    }
+  }
+}

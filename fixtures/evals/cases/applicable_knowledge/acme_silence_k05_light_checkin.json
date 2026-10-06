@@ -1,0 +1,236 @@
+{
+  "id": "acme_silence_k05_light_checkin",
+  "case_type": "applicable_knowledge",
+  "title": "Acme 09-02: a week of silence while finance decides; K05 applies and the candidate sends one light check-in",
+  "should_pass": true,
+  "difficulty": "medium",
+  "slice_tags": {
+    "account": "acme",
+    "origin": "world_moment",
+    "motion": "expansion",
+    "stage": "discovery",
+    "champion_status": "active",
+    "economic_buyer": "unknown",
+    "risk": "low",
+    "candidate": "good",
+    "expected_action": "send_email",
+    "extra": ["silence"]
+  },
+  "based_on": {
+    "kind": "world_moment",
+    "account": "acme",
+    "after_event_file": "world/accounts/acme/events/018_clock_customer_silence.json",
+    "checkpoint": 1,
+    "changed_fields": [],
+    "change": null
+  },
+  "context": {
+    "now": "2026-09-02T14:30:00Z",
+    "state": {
+      "account_id": "0a0c0000-0000-4000-8000-000000000001",
+      "account_name": "Acme Corp",
+      "opportunity_id": "0c0f0000-0000-4000-8000-000000000004",
+      "fields": {
+        "stage": "Discovery",
+        "health": "on_track",
+        "motion": "expansion",
+        "champion": "0b0e0000-0000-4000-8000-000000000017",
+        "champion_status": "active",
+        "economic_buyer": "unknown",
+        "relationship_risk": "low",
+        "blockers": [{"text": "EU budget line needs finance approval in the Q3 planning cycle", "status": "open"}],
+        "next_milestone": "Finance approval of the EU budget line",
+        "current_commitments": [
+          {
+            "text": "Send proposal for 120 seats by Friday",
+            "status": "fulfilled",
+            "owner_person_id": "0b0e0000-0000-4000-8000-000000000001",
+            "due": "2026-08-28"
+          }
+        ]
+      },
+      "buying_group": [
+        {
+          "person_id": "0b0e0000-0000-4000-8000-000000000017",
+          "display_name": "Priya Shah",
+          "title": "Director of Operations",
+          "roles": ["champion"],
+          "status": "active",
+          "delegated_to_person_id": null,
+          "last_engaged_at": null,
+          "evidence_refs": []
+        },
+        {
+          "person_id": "0b0e0000-0000-4000-8000-000000000019",
+          "display_name": "Tom Becker",
+          "title": "EU Operations Manager",
+          "roles": ["user"],
+          "status": "active",
+          "delegated_to_person_id": null,
+          "last_engaged_at": null,
+          "evidence_refs": []
+        }
+      ],
+      "coverage_gaps": ["economic_buyer"]
+    },
+    "recent_changes": {
+      "summary": "Seven days without customer activity (clock tick); finance decision on the EU budget line pending.",
+      "material_diff_fields": [],
+      "signals": ["customer_went_silent"]
+    },
+    "trigger": {
+      "activity_id": "0ac70000-0000-4000-8000-0000000a0018",
+      "activity_type": "CustomerWentSilent",
+      "occurred_at": "2026-09-02T14:00:00Z",
+      "actor_person_id": null,
+      "event_file": "world/accounts/acme/events/018_clock_customer_silence.json",
+      "synthetic": false,
+      "text": ""
+    },
+    "supporting_activities": [],
+    "commitments": [
+      {
+        "text": "Take the proposal to the finance committee in the Q3 planning cycle",
+        "owner_person_id": "0b0e0000-0000-4000-8000-000000000017",
+        "due_at": null,
+        "status": "open"
+      }
+    ],
+    "timeline_facts": {
+      "last_inbound_at": "2026-08-19T09:12:00Z",
+      "last_inbound_from_person_id": "0b0e0000-0000-4000-8000-000000000017",
+      "last_outbound_at": "2026-08-28T15:00:00Z",
+      "stated_timing": "Finance approves the EU budget line in the Q3 planning cycle"
+    },
+    "offered_knowledge": [
+      {
+        "id": "0c17c000-0000-4000-8000-000000000005",
+        "key": "K05",
+        "title": "One light check-in after a week of customer silence while the customer owes the next step",
+        "situation_signature": [
+          {"field": "diff.customer_went_silent", "op": "exists"},
+          {"field": "champion_status", "op": "eq", "value": "active"}
+        ],
+        "guidance": {
+          "summary": "When the customer owes the next step and has gone quiet for about a week, send one short, low-pressure check-in to the champion.",
+          "do": [
+            "send one short check-in to the champion",
+            "offer help with whatever the customer is waiting on internally"
+          ],
+          "dont": ["chase more than once in the same week", "add new stakeholders or escalate to their management"]
+        },
+        "status": "supported",
+        "counts": {
+          "decisions": 11,
+          "positive_reactions": 7,
+          "negative_reactions": 1,
+          "outcomes_advanced": 4,
+          "counterexamples": 0
+        },
+        "supporting_decision_episode_ids": [],
+        "counterexamples": [],
+        "exceptions": [
+          {
+            "description": "We owe the customer an open deliverable: send it instead of checking in",
+            "conditions": [{"field": "current_commitments", "op": "contains", "value": "open item owned by our rep"}]
+          },
+          {
+            "description": "Customer stated a later date for their next step",
+            "conditions": [{"field": "next_milestone", "op": "contains", "value": "customer-stated later date"}]
+          }
+        ],
+        "evidence_classes": ["methodology", "cs_ops"],
+        "used_by_evaluators": ["timing_cadence:v1", "next_action_quality:v1"],
+        "provenance": {
+          "created_from": "seed_history",
+          "source_decision_episode_id": null,
+          "note": "Seeded history (synthetic) for the WP16 eval benchmark"
+        },
+        "created_at": "2026-08-01T00:00:00Z",
+        "last_validated_at": "2026-09-20T00:00:00Z"
+      }
+    ]
+  },
+  "candidate_action": {
+    "proposed_action_type": "send_email",
+    "recipients": [
+      {
+        "person_id": "0b0e0000-0000-4000-8000-000000000017",
+        "role": "to",
+        "why": "Champion; taking the proposal to finance"
+      }
+    ],
+    "finished_artifact": {
+      "channel": "email",
+      "subject": "Re: Acme EU rollout - proposal",
+      "body": "Hi Priya,\n\nHope planning week is going smoothly. If finance needs anything from us on the EU line - a different seat ramp, a cost breakdown per site - just say and I'll turn it around quickly.\n\nBest,\nDana"
+    },
+    "crm_next_step_intent": {"next_step": "Finance decision on EU budget line", "due_at": null, "stage_change": null},
+    "reason": "A week of silence while the customer owes the next step (K05).",
+    "evidence_refs": [
+      {
+        "activity_id": "0ac70000-0000-4000-8000-0000000a0012",
+        "quote": "Finance decides as a committee; I'll take the proposal in myself.",
+        "speaker_person_id": "0b0e0000-0000-4000-8000-000000000017",
+        "occurred_at": "2026-08-25T13:46:00Z"
+      }
+    ],
+    "knowledge_refs_used": ["0c17c000-0000-4000-8000-000000000005"],
+    "wait_until": null
+  },
+  "expected": [
+    {
+      "eval_type": "knowledge_applicability",
+      "verdict": "pass",
+      "label": "APPLIES",
+      "diagnostics": [],
+      "blocking": false,
+      "rationale": "K05 conditions hold (customer_went_silent, champion active); no exception (no rep-owed deliverable, no later customer date).",
+      "evidence_class": "methodology",
+      "knowledge_refs": ["0c17c000-0000-4000-8000-000000000005"]
+    },
+    {
+      "eval_type": "timing_cadence",
+      "verdict": "pass",
+      "label": "READY",
+      "diagnostics": [],
+      "blocking": false,
+      "rationale": "First check-in after seven quiet days, five days after the proposal.",
+      "evidence_class": "deal_data"
+    },
+    {
+      "eval_type": "cta_calibration",
+      "verdict": "pass",
+      "label": "APPROPRIATE",
+      "diagnostics": [],
+      "blocking": false,
+      "rationale": "Offer of help, no pressure.",
+      "evidence_class": "methodology"
+    },
+    {
+      "eval_type": "relationship_pressure",
+      "verdict": "pass",
+      "label": null,
+      "diagnostics": [],
+      "blocking": false,
+      "rationale": "Single, low-pressure touch.",
+      "evidence_class": "cs_ops"
+    },
+    {
+      "eval_type": "momentum",
+      "verdict": "pass",
+      "label": "COOLING",
+      "diagnostics": [],
+      "blocking": false,
+      "rationale": "A week of silence during finance planning; one light, helpful check-in fits a cooling but explained pause.",
+      "evidence_class": "deal_data"
+    }
+  ],
+  "expected_best_action": {
+    "action": "send_email",
+    "why": "One light check-in to Priya.",
+    "recipients": [{"person_id": "0b0e0000-0000-4000-8000-000000000017", "role": "to"}],
+    "channel": "email"
+  },
+  "notes": "Should-pass control. Real world: Priya replied the next morning with the budget approval (019)."
+}

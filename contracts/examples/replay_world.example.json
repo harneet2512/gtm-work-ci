@@ -1,0 +1,44 @@
+{
+  "manifest_id": "0d3a0000-0000-4000-8000-000000000501",
+  "data_cutoff": "2026-09-22T09:10:00Z",
+  "event_cursor": {
+    "replay_position": 1,
+    "last_event_id": "0e7e0000-0000-4000-8000-000000000001",
+    "held_out_event_id": "0e7e0000-0000-4000-8000-000000000002"
+  },
+  "entities": {
+    "account_ids": [
+      "0a0c0000-0000-4000-8000-000000000001"
+    ],
+    "person_ids": [
+      "0b0e0000-0000-4000-8000-000000000001",
+      "0b0e0000-0000-4000-8000-000000000017"
+    ],
+    "opportunity_ids": [
+      "0c0f0000-0000-4000-8000-000000000004"
+    ]
+  },
+  "current_state_refs": [
+    {
+      "account_id": "0a0c0000-0000-4000-8000-000000000001",
+      "opportunity_id": null,
+      "version": 6
+    },
+    {
+      "account_id": "0a0c0000-0000-4000-8000-000000000001",
+      "opportunity_id": "0c0f0000-0000-4000-8000-000000000004",
+      "version": 6
+    }
+  ],
+  "previous_deal_knowledge_boundary": {
+    "closed_before": "2026-06-30T00:00:00Z",
+    "previous_opportunity_ids": [
+      "0c0f0000-0000-4000-8000-00000000000a"
+    ]
+  },
+  "provenance_manifest_ref": {
+    "manifest_id": "0d3a0000-0000-4000-8000-000000000501",
+    "content_sha256": "a3f1c0de5b7e49d2861f0c4be9a7d35e1c2b8f0a6d4e7391b5c8a2f0e6d19b74"
+  },
+  "computed_at": "2026-09-29T15:40:00Z"
+}

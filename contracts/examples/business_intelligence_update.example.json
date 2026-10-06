@@ -1,0 +1,82 @@
+{
+  "id": "0b100000-0000-4000-8000-000000000a01",
+  "account_id": "0a0c0000-0000-4000-8000-000000000001",
+  "opportunity_id": "0c0f0000-0000-4000-8000-000000000004",
+  "account_change_id": "0acc0000-0000-4000-8000-000000000801",
+  "summary": "Acme's security lead joined the EU expansion thread and now gates sign-off; no review date is set.",
+  "claims": [
+    {
+      "statement": "Marco, Acme's security lead, entered the buying group.",
+      "dimension": "stakeholder_structure",
+      "state_diff_field": "buying_group",
+      "evidence_refs": [
+        {
+          "activity_id": "0ac70000-0000-4000-8000-000000000101",
+          "quote": "I lead security at Acme",
+          "speaker_person_id": "0b0e0000-0000-4000-8000-000000000018",
+          "occurred_at": "2026-09-29T15:42:00Z"
+        }
+      ],
+      "graph_diff_items": [
+        { "kind": "node", "type": "Person", "id": "0b0e0000-0000-4000-8000-000000000018" }
+      ]
+    },
+    {
+      "statement": "The open blocker changed from budget approval to a security review (SOC2 Type II and pen-test summary).",
+      "dimension": "blockers_risk",
+      "state_diff_field": "blockers",
+      "evidence_refs": [
+        {
+          "activity_id": "0ac70000-0000-4000-8000-000000000101",
+          "quote": "Before we can sign off on the EU rollout we'll need your SOC2 Type II report and the pen-test summary.",
+          "speaker_person_id": "0b0e0000-0000-4000-8000-000000000018",
+          "occurred_at": "2026-09-29T15:42:00Z"
+        }
+      ]
+    },
+    {
+      "statement": "The 30 September meeting is no longer on the calendar; Marco will not commit to a date before reading the documents.",
+      "dimension": "next_step_commitment",
+      "state_diff_field": "next_meeting",
+      "evidence_refs": [
+        {
+          "activity_id": "0ac70000-0000-4000-8000-000000000101",
+          "quote": "I can't commit to a review date until our team has read them.",
+          "speaker_person_id": "0b0e0000-0000-4000-8000-000000000018",
+          "occurred_at": "2026-09-29T15:42:00Z"
+        }
+      ]
+    }
+  ],
+  "why_it_matters": "The EU rollout can no longer move on the champion's say-so; security sign-off is now the critical path, and Priya remains the commercial contact (K17 applies).",
+  "knowledge_refs": [
+    "0c17c000-0000-4000-8000-000000000017"
+  ],
+  "transition": {
+    "state_transition_id": "0e5a0000-0000-4000-8000-000000000002",
+    "status": "CANDIDATE",
+    "from_state": "REORG",
+    "to_state_candidate": "EXPANSION",
+    "touched_by_event": true,
+    "missing_facts": [
+      { "key": "owner_stabilized", "description": "A champion who took over after the reorg is active, has held the role long enough, is not an interim or acting holder, and has no open weakening or delegation.", "required": true },
+      { "key": "value_signal_present", "description": "Since the reorg, the customer stated an achieved or expected business value or metric, or product usage increased.", "required": true },
+      { "key": "commercial_next_step", "description": "Since the reorg, a commercial step exists: the opportunity advanced, a pricing or budget conversation started, an open commercial commitment, or a known economic buyer and decision process.", "required": true },
+      { "key": "economic_buyer_known", "description": "The economic buyer is known.", "required": false }
+    ]
+  },
+  "account_map_ref": {
+    "state_ref": {
+      "account_id": "0a0c0000-0000-4000-8000-000000000001",
+      "opportunity_id": "0c0f0000-0000-4000-8000-000000000004",
+      "version": 7
+    },
+    "graph_diff_ref": {
+      "id": "06ad0000-0000-4000-8000-000000000901",
+      "from_projection_seq": 41,
+      "to_projection_seq": 42
+    }
+  },
+  "model": "deepseek/deepseek-v4-flash",
+  "created_at": "2026-09-29T15:42:40Z"
+}

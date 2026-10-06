@@ -1,0 +1,85 @@
+{
+  "name": "gtm_ai GTM demo",
+  "image": "mcr.microsoft.com/devcontainers/base:ubuntu-24.04",
+  "hostRequirements": {
+    "cpus": 4,
+    "memory": "16gb",
+    "storage": "32gb"
+  },
+  "features": {
+    "ghcr.io/devcontainers/features/go:1": {
+      "version": "1.26.7"
+    },
+    "ghcr.io/devcontainers/features/python:1": {
+      "version": "3.12",
+      "installTools": false,
+      "installJupyterlab": false
+    },
+    "ghcr.io/devcontainers/features/node:1": {
+      "version": "22"
+    },
+    "ghcr.io/devcontainers/features/java:1": {
+      "version": "21",
+      "installMaven": "false",
+      "installGradle": "false"
+    },
+    "ghcr.io/devcontainers/features/github-cli:1": {}
+  },
+  "containerEnv": {
+    "GHOST_MODEL": "openrouter/qwen/qwen3.8-flash",
+    "GHOST_LLM_MODE": "live",
+    "NEXT_TELEMETRY_DISABLED": "1"
+  },
+  "secrets": {
+    "OPENROUTER_API_KEY": {
+      "description": "OpenRouter API key for the runtime model (qwen). Add it as a user-level Codespaces secret."
+    },
+    "SLACK_BOT_TOKEN": {
+      "description": "Slack bot token (xoxb-...) of the Cliff app. Add it as a user-level Codespaces secret."
+    },
+    "SLACK_APP_TOKEN": {
+      "description": "Slack app-level token (xapp-...) for Socket Mode. Add it as a user-level Codespaces secret."
+    },
+    "SLACK_CHANNEL_ID": {
+      "description": "Channel id (C...) of #ghost-demo. Add it as a user-level Codespaces secret."
+    }
+  },
+  "forwardPorts": [3000],
+  "portsAttributes": {
+    "3000": {
+      "label": "gtm_ai demo (web)",
+      "onAutoForward": "openBrowser",
+      "protocol": "http"
+    },
+    "8080": {
+      "label": "core API (internal, not for the demo)",
+      "onAutoForward": "ignore"
+    },
+    "8090": {
+      "label": "worker (internal)",
+      "onAutoForward": "ignore"
+    },
+    "8099": {
+      "label": "demo control service (internal)",
+      "onAutoForward": "ignore"
+    },
+    "15432": {
+      "label": "Postgres (internal)",
+      "onAutoForward": "ignore"
+    },
+    "17687": {
+      "label": "Neo4j bolt (internal)",
+      "onAutoForward": "ignore"
+    }
+  },
+  "otherPortsAttributes": {
+    "onAutoForward": "ignore"
+  },
+  "postCreateCommand": "bash scripts/codespace/post-create.sh",
+  "postStartCommand": "bash scripts/codespace/post-start.sh",
+  "customizations": {
+    "codespaces": {
+      "openFiles": ["docs/demo/codespace.md"]
+    }
+  }
+}

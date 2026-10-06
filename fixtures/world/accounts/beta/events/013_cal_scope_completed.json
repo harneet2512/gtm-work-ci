@@ -1,0 +1,24 @@
+{
+  "source_system": "calendar",
+  "source_object_id": "gcal:beta-scope-0826",
+  "source_event_key": "completed",
+  "occurred_at": "2026-08-26T16:45:00Z",
+  "connector": "google_calendar",
+  "connector_version": "0.1.0",
+  "payload": {
+    "kind": "calendar_event",
+    "event_id": "gcal:beta-scope-0826",
+    "title": "Beta support rollout scoping",
+    "start": "2026-08-26T16:00:00Z",
+    "end": "2026-08-26T16:45:00Z",
+    "status": "completed",
+    "organizer": {"email": "dana@ghostvendor.com", "name": "Dana Kim"},
+    "attendees": [
+      {"email": "dana@ghostvendor.com", "name": "Dana Kim", "response": "accepted"},
+      {"email": "leo@ghostvendor.com", "name": "Leo Park", "response": "accepted"},
+      {"email": "hannah.lee@beta.io", "name": "Hannah Lee", "response": "accepted"},
+      {"email": "jess.patel@beta.io", "name": "Jess Patel", "response": "accepted"}
+    ],
+    "crm_opportunity_ref": "opp:BE-7-EXP"
+  }
+}

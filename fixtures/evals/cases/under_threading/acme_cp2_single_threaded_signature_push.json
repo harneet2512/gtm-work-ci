@@ -1,0 +1,164 @@
+{
+  "id": "acme_cp2_single_threaded_signature_push",
+  "case_type": "under_threading",
+  "title": "Acme variant: Priya says she'll get it signed; candidate pushes for signature by Friday through Priya alone, signer unknown",
+  "should_pass": false,
+  "difficulty": "medium",
+  "slice_tags": {
+    "account": "acme",
+    "origin": "synthetic_variant",
+    "motion": "expansion",
+    "stage": "commercial_review",
+    "champion_status": "active",
+    "economic_buyer": "unknown",
+    "risk": "low",
+    "candidate": "flawed",
+    "expected_action": "send_email",
+    "extra": ["economic_buyer_unknown", "signature_ask"]
+  },
+  "based_on": {
+    "kind": "synthetic_variant",
+    "account": "acme",
+    "after_event_file": "world/accounts/acme/events/028_email_dana_order_form.json",
+    "checkpoint": 2,
+    "changed_fields": [],
+    "change": "Same as Acme cp2 plus an invented reply from Priya on 09-15 saying she will get the order form signed."
+  },
+  "context": {
+    "now": "2026-09-15T09:30:00Z",
+    "state": {
+      "account_id": "0a0c0000-0000-4000-8000-000000000001",
+      "account_name": "Acme Corp",
+      "opportunity_id": "0c0f0000-0000-4000-8000-000000000004",
+      "fields": {
+        "stage": "Commercial review",
+        "health": "on_track",
+        "motion": "expansion",
+        "champion": "0b0e0000-0000-4000-8000-000000000017",
+        "champion_status": "active",
+        "economic_buyer": "unknown",
+        "relationship_risk": "low",
+        "decision_process": "Finance approved the EU budget line; order form to be signed on Acme Logistics B.V.",
+        "next_milestone": "Order form signature"
+      },
+      "buying_group": [
+        {
+          "person_id": "0b0e0000-0000-4000-8000-000000000017",
+          "display_name": "Priya Shah",
+          "title": "Director of Operations",
+          "roles": ["champion"],
+          "status": "active",
+          "delegated_to_person_id": null,
+          "last_engaged_at": null,
+          "evidence_refs": []
+        },
+        {
+          "person_id": "0b0e0000-0000-4000-8000-000000000019",
+          "display_name": "Tom Becker",
+          "title": "EU Operations Manager",
+          "roles": ["user"],
+          "status": "active",
+          "delegated_to_person_id": null,
+          "last_engaged_at": null,
+          "evidence_refs": []
+        }
+      ],
+      "coverage_gaps": ["economic_buyer"]
+    },
+    "recent_changes": {
+      "summary": "Priya says she will get the order form signed; signer and approval path still unknown.",
+      "material_diff_fields": [],
+      "signals": ["customer_replied"]
+    },
+    "trigger": {
+      "activity_id": "0ac7f000-0000-4000-8000-000000000001",
+      "activity_type": "EmailReceived",
+      "occurred_at": "2026-09-15T09:00:00Z",
+      "actor_person_id": "0b0e0000-0000-4000-8000-000000000017",
+      "event_file": null,
+      "synthetic": true,
+      "text": "Order form looks right. I'll get it signed on our side."
+    },
+    "supporting_activities": [
+      {
+        "activity_id": "0ac70000-0000-4000-8000-0000000a0027",
+        "activity_type": "CRMNoteAdded",
+        "occurred_at": "2026-09-10T09:05:00Z",
+        "actor_person_id": "0b0e0000-0000-4000-8000-000000000001",
+        "event_file": "world/accounts/acme/events/027_crm_note_commercial.json",
+        "synthetic": false,
+        "text": "Keeping the stage at Commercial review until the signature path is confirmed."
+      }
+    ],
+    "commitments": [],
+    "timeline_facts": {
+      "last_inbound_at": "2026-09-15T09:00:00Z",
+      "last_inbound_from_person_id": "0b0e0000-0000-4000-8000-000000000017",
+      "last_outbound_at": "2026-09-14T16:00:00Z",
+      "stated_timing": null
+    },
+    "offered_knowledge": []
+  },
+  "candidate_action": {
+    "proposed_action_type": "send_email",
+    "recipients": [{"person_id": "0b0e0000-0000-4000-8000-000000000017", "role": "to", "why": "Champion"}],
+    "finished_artifact": {
+      "channel": "email",
+      "subject": "Re: Acme EU rollout - proposal",
+      "body": "Hi Priya,\n\nWonderful - could you send the signed order form back by Friday? That keeps Berlin on track for January.\n\nBest,\nDana"
+    },
+    "crm_next_step_intent": {"next_step": "Signed order form by Friday", "due_at": "2026-09-18T17:00:00Z", "stage_change": null},
+    "reason": "Priya is driving signature.",
+    "evidence_refs": [
+      {
+        "activity_id": "0ac7f000-0000-4000-8000-000000000001",
+        "quote": "I'll get it signed on our side.",
+        "speaker_person_id": "0b0e0000-0000-4000-8000-000000000017",
+        "occurred_at": "2026-09-15T09:00:00Z"
+      }
+    ],
+    "knowledge_refs_used": [],
+    "wait_until": null
+  },
+  "expected": [
+    {
+      "eval_type": "stakeholder_coverage",
+      "verdict": "warn",
+      "label": "SINGLE_THREADED_RISK",
+      "diagnostics": ["single_threaded"],
+      "blocking": false,
+      "rationale": "Replying only to Priya is defensible because she explicitly said she would get the form signed, but at the signature stage the signer and approval path remain unknown and the economic buyer is uncovered. No named gating stakeholder is being omitted, so this does not meet the blocking rule.",
+      "evidence_class": "deal_data",
+      "state_refs": ["economic_buyer", "buying_group"]
+    },
+    {
+      "eval_type": "economic_buyer_coverage",
+      "verdict": "warn",
+      "label": null,
+      "diagnostics": ["no_economic_buyer_access"],
+      "blocking": false,
+      "rationale": "The approver is still unnamed, but finance approved the spend in writing on 09-03; per the catalog rule that is a warn, not a fail (same reading as acme_cp4_k21_budget_already_approved_trap).",
+      "evidence_class": "methodology",
+      "state_refs": ["economic_buyer"]
+    },
+    {
+      "eval_type": "decision_process",
+      "verdict": "fail",
+      "label": null,
+      "diagnostics": ["decision_process_unknown"],
+      "blocking": true,
+      "rationale": "As of 09-15 the signature path is explicitly unconfirmed (CRM note 09-10: 'until the signature path is confirmed') and nobody has said who signs for Acme Logistics B.V.; a signature push that does not ask who signs or what approvals remain skips the paper process.",
+      "evidence_class": "methodology",
+      "debatable": true,
+      "debate_note": "Priya volunteered to get it signed; some reviewers would accept a champion-driven signature ask as a warn and not block it."
+    }
+  ],
+  "expected_best_action": {
+    "action": "send_email",
+    "why": "Thank Priya and ask who signs on the EU entity and whether any other approval (security, procurement) is needed before signature.",
+    "recipients": [{"person_id": "0b0e0000-0000-4000-8000-000000000017", "role": "to"}],
+    "channel": "email"
+  },
+  "gold_revision": [{"revision": "gold-v2", "source": "adjudicated: 2 LLM labellers + GPT-5.6 tie-break, 2026-10-02", "label_kind": "model labels, not human labels", "changes": [{"eval_type": "stakeholder_coverage", "from": "fail", "to": "warn"}]}],
+  "notes": "Judged only on what is known at 09-15 (no hindsight). K21 reading: spend is approved in writing, so K21 does not apply and economic_buyer_coverage is a warn; the paper process is a separate decision_process question. Same reading in acme_cp4_k21_budget_already_approved_trap."
+}

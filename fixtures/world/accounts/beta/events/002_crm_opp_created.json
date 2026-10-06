@@ -1,0 +1,26 @@
+{
+  "source_system": "crm",
+  "source_object_id": "opp:BE-7-EXP",
+  "source_event_key": "field:StageName:Discovery",
+  "occurred_at": "2026-08-18T15:05:00Z",
+  "connector": "salesforce",
+  "connector_version": "0.1.0",
+  "payload": {
+    "kind": "crm_change",
+    "object_type": "Opportunity",
+    "record_id": "opp:BE-7-EXP",
+    "account_record_id": "account:BE-7",
+    "changed_at": "2026-08-18T15:05:00Z",
+    "changed_by": "dana@ghostvendor.com",
+    "created": true,
+    "fields": {
+      "Name": {"new": "Beta - support org rollout"},
+      "Type": {"new": "Expansion"},
+      "StageName": {"new": "Discovery"},
+      "Amount": {"new": 210000},
+      "CloseDate": {"new": "2026-11-20"},
+      "OwnerEmail": {"new": "dana@ghostvendor.com"},
+      "AccountId": {"new": "account:BE-7"}
+    }
+  }
+}

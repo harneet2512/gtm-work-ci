@@ -1,0 +1,178 @@
+{
+  "eval_type": "stakeholder_coverage",
+  "version": 1,
+  "title": "Stakeholder breadth and coverage / multithreading",
+  "har97_refs": [
+    {
+      "line": 1164,
+      "text": "## 5.4 Stakeholder breadth — too many people added?"
+    },
+    {
+      "line": 2255,
+      "text": "## 15.3 Stakeholder coverage / multithreading"
+    },
+    {
+      "line": 605,
+      "text": "stakeholder coverage"
+    },
+    {
+      "line": 2955,
+      "text": "* stakeholder coverage / multithreading"
+    }
+  ],
+  "l2_dimension": "stakeholder coverage / multithreading",
+  "questions": [
+    {
+      "section": "§5.4",
+      "text": "Is the action involving more people than the situation requires?"
+    },
+    {
+      "section": "§15(GTM).3",
+      "text": "Does the opportunity have the right stakeholder coverage for its stage and complexity?"
+    }
+  ],
+  "inputs": [
+    "buying group and coverage gaps",
+    "stage and complexity",
+    "recipients of the candidate",
+    "who asked for what"
+  ],
+  "criteria": [
+    {
+      "id": "single_thread_risk",
+      "kind": "evaluate",
+      "text": "single-thread risk",
+      "guide": "Does the deal (or this step) hang on one contact although the stage needs more?",
+      "har97": {
+        "line": 2265,
+        "text": "* single-thread risk"
+      },
+      "output": "finding",
+      "before": null,
+      "after": null
+    },
+    {
+      "id": "missing_roles",
+      "kind": "evaluate",
+      "text": "missing buying-group roles",
+      "guide": "Are roles the customer's process needs (e.g. security, economic buyer) missing from coverage?",
+      "har97": {
+        "line": 2266,
+        "text": "* missing buying-group roles"
+      },
+      "output": "finding",
+      "before": null,
+      "after": null
+    },
+    {
+      "id": "appropriate_multithreading",
+      "kind": "evaluate",
+      "text": "appropriate multithreading",
+      "guide": "Are the people involved the ones this step and stage need, no more and no fewer?",
+      "har97": {
+        "line": 2267,
+        "text": "* appropriate multithreading"
+      },
+      "output": "finding",
+      "before": null,
+      "after": null
+    },
+    {
+      "id": "premature_over_threading",
+      "kind": "evaluate",
+      "text": "premature over-threading",
+      "guide": "Are senior or unrelated people pulled in before the working-level step needs them?",
+      "har97": {
+        "line": 2268,
+        "text": "* premature over-threading"
+      },
+      "output": "finding",
+      "before": null,
+      "after": null
+    },
+    {
+      "id": "concentration",
+      "kind": "evaluate",
+      "text": "stakeholder concentration around only one contact",
+      "guide": "Is all engagement concentrated on one contact while others are known and relevant?",
+      "har97": {
+        "line": 2269,
+        "text": "* stakeholder concentration around only one contact"
+      },
+      "output": "finding",
+      "before": null,
+      "after": null
+    }
+  ],
+  "failure_examples": [
+    "CCing the entire buying group on a narrow technical follow-up",
+    "adding a senior executive unnecessarily",
+    "turning a one-to-one relationship repair into a broad thread",
+    "adding every known stakeholder because the graph knows they exist"
+  ],
+  "counter_failures": [
+    "too few people when multithreading is actually necessary"
+  ],
+  "known_exceptions": [],
+  "candidate_choices": [],
+  "principles": [
+    "“more stakeholders” is not automatically better (§5.4).",
+    "This replaces simplistic “more stakeholders is better.” (§15(GTM).3)",
+    "Separate from stakeholder selection: judge breadth, not whether each person is the right one."
+  ],
+  "labels": [
+    {
+      "label": "UNDER_THREADED",
+      "when": "The action involves fewer people than this step requires (§5.4)."
+    },
+    {
+      "label": "RIGHT_SIZED",
+      "when": "The people involved fit the step and the deal's stage."
+    },
+    {
+      "label": "OVER_THREADED",
+      "when": "The action involves more people than this step requires (§5.4)."
+    },
+    {
+      "label": "SINGLE_THREADED_RISK",
+      "when": "The deal's coverage hangs on one contact for its stage (§15(GTM).3)."
+    },
+    {
+      "label": "OVER_THREADED_TOO_EARLY",
+      "when": "The deal pulls in senior or broad coverage before its stage needs it (§15(GTM).3)."
+    }
+  ],
+  "pass_label": "RIGHT_SIZED",
+  "diagnostics": [
+    {
+      "name": "single_threaded",
+      "when": "the deal or step depends on one contact"
+    },
+    {
+      "name": "under_threaded",
+      "when": "fewer people than the step needs"
+    },
+    {
+      "name": "over_threaded_too_early",
+      "when": "senior or broad involvement before the stage needs it"
+    },
+    {
+      "name": "wrong_stakeholder",
+      "when": "breadth is right but a slot is filled by the wrong person"
+    }
+  ],
+  "routing": {
+    "actions": [
+      "send_email",
+      "schedule_meeting",
+      "share_document"
+    ],
+    "when_all": [
+      "has_recipients"
+    ],
+    "when_any": [
+      "breadth_in_question"
+    ]
+  },
+  "uses_rep_profile": false
+}
