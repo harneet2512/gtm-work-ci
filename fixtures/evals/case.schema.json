@@ -1,0 +1,306 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://ghost.local/fixtures/evals/case.schema.json",
+  "title": "EvalCase",
+  "description": "One offline GTM eval case with gold human judgments (HAR-97 §20). A situation (AccountState subset, recent changes, trigger, commitments, timeline, offered knowledge) plus one candidate action, the expected EvalResult-shaped judgments for that candidate, and the best action. Enums are $refs into contracts/schemas so they cannot drift; case types, label sets, evidence classes and blocking rules per eval type come from contracts/evals/eval_catalog.json (checked by worker-py/tests/test_eval_cases.py, never copied here). Person/activity/knowledge UUIDs resolve through fixtures/evals/ids.json.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "id", "case_type", "title", "should_pass", "difficulty", "slice_tags", "based_on", "context", "candidate_action", "expected",
+    "expected_best_action", "notes"
+  ],
+  "properties": {
+    "id": { "type": "string", "pattern": "^[a-z][a-z0-9_]*$", "maxLength": 80 },
+    "case_type": { "$ref": "#/$defs/caseType" },
+    "title": { "type": "string", "minLength": 1, "maxLength": 200 },
+    "should_pass": {
+      "description": "true: the candidate is a good action and no expected judgment fails (false-block measurement). false: at least one expected judgment fails.",
+      "type": "boolean"
+    },
+    "difficulty": {
+      "description": "easy: the flaw or the right call is visible from one fact; medium: needs two facts or a timeline; hard: near the decision boundary (an almost-right CTA, a defensible cc, a window about to close, a knowledge trap).",
+      "enum": ["easy", "medium", "hard"]
+    },
+    "slice_tags": { "$ref": "#/$defs/sliceTags" },
+    "based_on": { "$ref": "#/$defs/basedOn" },
+    "context": { "$ref": "#/$defs/context" },
+    "candidate_action": { "$ref": "https://ghost.local/contracts/agent_run_output.v1.json" },
+    "expected": { "type": "array", "minItems": 1, "items": { "$ref": "#/$defs/expectedEval" } },
+    "expected_best_action": { "$ref": "#/$defs/bestAction" },
+    "notes": { "type": "string", "maxLength": 2000 },
+    "gold_revision": {
+      "description": "Versioned changes to this case's gold after it was first written (newest last). Each entry names the revision, its source and the judgments it changed. label_kind says whether the labels are model or human labels.",
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["revision", "source", "label_kind", "changes"],
+        "properties": {
+          "revision": { "type": "string", "pattern": "^gold-v[0-9]+$" },
+          "source": { "type": "string", "minLength": 1 },
+          "label_kind": { "enum": ["model labels, not human labels", "human labels"] },
+          "changes": {
+            "type": "array",
+            "minItems": 1,
+            "items": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": ["eval_type", "from", "to"],
+              "properties": {
+                "eval_type": { "$ref": "https://ghost.local/contracts/eval_result.v1.json#/$defs/evalType" },
+                "from": { "$ref": "https://ghost.local/contracts/eval_result.v1.json#/properties/verdict" },
+                "to": { "$ref": "https://ghost.local/contracts/eval_result.v1.json#/properties/verdict" },
+                "contested": { "type": "boolean", "description": "A human should decide: the correction rests on a tie broken by one model and reverses an earlier rule." }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "allOf": [
+    {
+      "description": "A should-pass case has no expected fail.",
+      "if": { "properties": { "should_pass": { "const": true } } },
+      "then": { "properties": { "expected": { "items": { "properties": { "verdict": { "enum": ["pass", "warn", "abstain"] } } } } } },
+      "else": { "properties": { "expected": { "contains": { "properties": { "verdict": { "const": "fail" } } } } } }
+    }
+  ],
+  "$defs": {
+    "caseType": {
+      "description": "A case_types key of contracts/evals/eval_catalog.json: the situations HAR-97 §20 says the benchmark must deliberately test.",
+      "$ref": "#/$defs/snake"
+    },
+    "snake": { "type": "string", "pattern": "^[a-z][a-z0-9_]*$" },
+    "itemStatus": { "$ref": "https://ghost.local/contracts/account_state.v1.json#/$defs/listField/properties/value/items/properties/status" },
+    "eventFile": {
+      "type": "string",
+      "pattern": "^(world/accounts/[a-z]+/events/[0-9]{3}_[a-z0-9_]+\\.json|live/[a-z0-9_]+\\.json)$"
+    },
+    "stateField": { "$ref": "https://ghost.local/fixtures/gold.schema.json#/properties/expected/properties/state_fields/propertyNames" },
+    "sliceTags": {
+      "description": "Account-state slices for agreement-by-slice reporting (HAR-97 §20). Derived from context.state; the test checks consistency.",
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["account", "origin", "motion", "stage", "champion_status", "economic_buyer", "risk", "candidate", "expected_action", "extra"],
+      "properties": {
+        "account": { "$ref": "https://ghost.local/fixtures/gold.schema.json#/properties/account" },
+        "origin": { "$ref": "#/$defs/basedOn/properties/kind" },
+        "motion": { "enum": ["new_business", "expansion", "renewal"] },
+        "stage": { "enum": ["discovery", "commercial_review", "technical_evaluation", "negotiation", "closed_won"] },
+        "champion_status": {
+          "description": "Buying-group engagement status of the champion, plus 'delegated' (a written delegation, CONTEXT.md).",
+          "anyOf": [
+            { "$ref": "https://ghost.local/contracts/account_state.v1.json#/properties/buying_group/items/properties/status" },
+            { "const": "delegated" }
+          ]
+        },
+        "economic_buyer": { "enum": ["known", "unknown"] },
+        "risk": { "enum": ["low", "medium", "high"] },
+        "candidate": { "enum": ["good", "flawed"] },
+        "expected_action": { "$ref": "https://ghost.local/contracts/agent_run_output.v1.json#/properties/proposed_action_type" },
+        "extra": { "type": "array", "uniqueItems": true, "items": { "$ref": "#/$defs/snake" } }
+      }
+    },
+    "basedOn": {
+      "description": "checkpoint = a gold checkpoint exactly; world_moment = the real world right after after_event_file (between checkpoints); synthetic_variant = a real moment with a described change. checkpoint names the gold state the context derives from; changed_fields lists the state fields that intentionally differ from it.",
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["kind", "account", "after_event_file", "checkpoint", "changed_fields", "change"],
+      "properties": {
+        "kind": { "enum": ["checkpoint", "world_moment", "synthetic_variant"] },
+        "account": { "$ref": "https://ghost.local/fixtures/gold.schema.json#/properties/account" },
+        "after_event_file": { "$ref": "#/$defs/eventFile" },
+        "checkpoint": { "type": ["integer", "null"], "minimum": 1, "maximum": 4 },
+        "changed_fields": {
+          "type": "array", "uniqueItems": true,
+          "items": { "anyOf": [{ "$ref": "#/$defs/stateField" }, { "enum": ["buying_group", "coverage_gaps", "conflicts"] }] }
+        },
+        "change": { "type": ["string", "null"], "maxLength": 1000 }
+      },
+      "allOf": [
+        {
+          "if": { "properties": { "kind": { "const": "checkpoint" } } },
+          "then": { "properties": { "checkpoint": { "type": "integer" }, "changed_fields": { "maxItems": 0 }, "change": { "type": "null" } } }
+        },
+        {
+          "if": { "properties": { "kind": { "const": "synthetic_variant" } } },
+          "then": { "properties": { "change": { "type": "string", "minLength": 10 } } }
+        }
+      ]
+    },
+    "activity": {
+      "description": "A real fixture activity (text = verbatim substring of its body text per contracts/normalization.md, '' for body-less events) or an invented one (synthetic = true, event_file = null, id prefix 0ac7f000-).",
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["activity_id", "activity_type", "occurred_at", "actor_person_id", "event_file", "synthetic", "text"],
+      "properties": {
+        "activity_id": { "$ref": "https://ghost.local/contracts/common.v1.json#/$defs/uuid" },
+        "activity_type": { "$ref": "https://ghost.local/contracts/common.v1.json#/$defs/activityType" },
+        "occurred_at": { "$ref": "https://ghost.local/contracts/common.v1.json#/$defs/timestamp" },
+        "actor_person_id": { "oneOf": [{ "$ref": "https://ghost.local/contracts/common.v1.json#/$defs/uuid" }, { "type": "null" }] },
+        "event_file": { "oneOf": [{ "$ref": "#/$defs/eventFile" }, { "type": "null" }] },
+        "synthetic": { "type": "boolean" },
+        "text": { "type": "string", "maxLength": 4000 }
+      },
+      "if": { "properties": { "synthetic": { "const": true } } },
+      "then": { "properties": { "event_file": { "type": "null" }, "text": { "minLength": 1 } } },
+      "else": { "properties": { "event_file": { "type": "string" } } }
+    },
+    "listItem": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["text"],
+      "properties": {
+        "text": { "type": "string", "minLength": 1 },
+        "status": { "$ref": "#/$defs/itemStatus" },
+        "owner_person_id": { "$ref": "https://ghost.local/contracts/common.v1.json#/$defs/uuid" },
+        "due": { "type": "string", "format": "date" }
+      }
+    },
+    "stateValue": {
+      "description": "Scalar, 'unknown', null (known absent) or a list of items. Person-valued fields hold a person UUID.",
+      "oneOf": [
+        { "type": ["string", "number", "boolean", "null"] },
+        { "type": "array", "items": { "$ref": "#/$defs/listItem" } }
+      ]
+    },
+    "state": {
+      "description": "AccountState-shaped subset: only the fields the case uses, plus the buying group.",
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["account_id", "account_name", "opportunity_id", "fields", "buying_group", "coverage_gaps"],
+      "properties": {
+        "account_id": { "$ref": "https://ghost.local/contracts/common.v1.json#/$defs/uuid" },
+        "account_name": { "type": "string" },
+        "opportunity_id": { "$ref": "https://ghost.local/contracts/common.v1.json#/$defs/uuid" },
+        "fields": {
+          "type": "object",
+          "propertyNames": { "$ref": "#/$defs/stateField" },
+          "required": ["stage", "health", "motion", "champion", "champion_status", "economic_buyer", "relationship_risk"],
+          "additionalProperties": { "$ref": "#/$defs/stateValue" }
+        },
+        "buying_group": { "type": "array", "items": { "$ref": "https://ghost.local/contracts/account_state.v1.json#/properties/buying_group/items" } },
+        "coverage_gaps": { "$ref": "https://ghost.local/contracts/account_state.v1.json#/properties/coverage_gaps" },
+        "conflicts": {
+          "description": "Fields whose winner is contradicted by a newer lower-standing claim (ADR-0008); mirrors gold expected.conflicts.",
+          "type": "array",
+          "items": { "$ref": "https://ghost.local/fixtures/gold.schema.json#/$defs/conflict" }
+        }
+      }
+    },
+    "context": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["now", "state", "recent_changes", "trigger", "supporting_activities", "commitments", "timeline_facts", "offered_knowledge"],
+      "properties": {
+        "now": { "$ref": "https://ghost.local/contracts/common.v1.json#/$defs/timestamp" },
+        "state": { "$ref": "#/$defs/state" },
+        "recent_changes": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["summary", "material_diff_fields", "signals"],
+          "properties": {
+            "summary": { "type": "string", "minLength": 1, "maxLength": 1000 },
+            "material_diff_fields": { "$ref": "https://ghost.local/fixtures/gold.schema.json#/properties/expected/properties/material_diff_fields" },
+            "signals": { "$ref": "https://ghost.local/fixtures/gold.schema.json#/properties/expected/properties/signals" }
+          }
+        },
+        "trigger": { "$ref": "#/$defs/activity" },
+        "supporting_activities": { "type": "array", "items": { "$ref": "#/$defs/activity" } },
+        "commitments": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": ["text", "owner_person_id", "due_at", "status"],
+            "properties": {
+              "text": { "type": "string", "minLength": 1 },
+              "owner_person_id": { "oneOf": [{ "$ref": "https://ghost.local/contracts/common.v1.json#/$defs/uuid" }, { "type": "null" }] },
+              "due_at": { "oneOf": [{ "$ref": "https://ghost.local/contracts/common.v1.json#/$defs/timestamp" }, { "type": "null" }] },
+              "status": { "$ref": "#/$defs/itemStatus" }
+            }
+          }
+        },
+        "timeline_facts": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["last_inbound_at", "last_inbound_from_person_id", "last_outbound_at", "stated_timing"],
+          "properties": {
+            "last_inbound_at": { "oneOf": [{ "$ref": "https://ghost.local/contracts/common.v1.json#/$defs/timestamp" }, { "type": "null" }] },
+            "last_inbound_from_person_id": { "oneOf": [{ "$ref": "https://ghost.local/contracts/common.v1.json#/$defs/uuid" }, { "type": "null" }] },
+            "last_outbound_at": { "oneOf": [{ "$ref": "https://ghost.local/contracts/common.v1.json#/$defs/timestamp" }, { "type": "null" }] },
+            "stated_timing": { "type": ["string", "null"], "maxLength": 500 },
+            "notes": { "type": "string", "maxLength": 1000 }
+          }
+        },
+        "offered_knowledge": { "type": "array", "items": { "$ref": "https://ghost.local/contracts/knowledge.v1.json" } },
+        "rep_profile": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["person_id", "style"],
+          "properties": {
+            "person_id": { "$ref": "https://ghost.local/contracts/common.v1.json#/$defs/uuid" },
+            "style": { "type": "string", "maxLength": 500 },
+            "notes": { "type": "string", "maxLength": 1000 }
+          }
+        }
+      }
+    },
+    "expectedEval": {
+      "description": "Gold judgment in EvalResult shape (eval_result.v1.json): verdict + categorical label + diagnostics + blocking + rationale + evidence class. The label set, the evidence class and whether the type may block come from contracts/evals/eval_catalog.json. debatable marks a judgment that reasonable reviewers could score differently; metrics report agreement with and without them.",
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["eval_type", "verdict", "label", "diagnostics", "blocking", "rationale", "evidence_class"],
+      "properties": {
+        "eval_type": { "$ref": "https://ghost.local/contracts/eval_result.v1.json#/$defs/evalType" },
+        "verdict": { "$ref": "https://ghost.local/contracts/eval_result.v1.json#/properties/verdict" },
+        "label": { "$ref": "https://ghost.local/contracts/eval_result.v1.json#/properties/label" },
+        "diagnostics": { "$ref": "https://ghost.local/contracts/eval_result.v1.json#/properties/diagnostics" },
+        "blocking": { "type": "boolean" },
+        "rationale": { "type": "string", "minLength": 1, "maxLength": 2000 },
+        "evidence_class": { "$ref": "https://ghost.local/contracts/eval_result.v1.json#/properties/evidence_class" },
+        "state_refs": { "type": "array", "items": { "anyOf": [{ "$ref": "#/$defs/stateField" }, { "enum": ["buying_group", "coverage_gaps", "conflicts"] }] } },
+        "knowledge_refs": { "type": "array", "items": { "$ref": "https://ghost.local/contracts/common.v1.json#/$defs/uuid" } },
+        "debatable": { "type": "boolean" },
+        "debate_note": { "type": "string", "minLength": 1, "maxLength": 1000 }
+      },
+      "allOf": [
+        {
+          "description": "Only failures can block (mirrors eval_result.v1.json).",
+          "if": { "properties": { "blocking": { "const": true } } },
+          "then": { "properties": { "verdict": { "const": "fail" } } }
+        },
+        {
+          "description": "A debatable judgment says what the other reading is.",
+          "if": { "properties": { "debatable": { "const": true } }, "required": ["debatable"] },
+          "then": { "required": ["debate_note"] }
+        }
+      ]
+    },
+    "bestAction": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["action", "why"],
+      "properties": {
+        "action": { "$ref": "https://ghost.local/contracts/agent_run_output.v1.json#/properties/proposed_action_type" },
+        "why": { "type": "string", "minLength": 1, "maxLength": 1000 },
+        "recipients": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": ["person_id", "role"],
+            "properties": {
+              "person_id": { "$ref": "https://ghost.local/contracts/common.v1.json#/$defs/uuid" },
+              "role": { "$ref": "https://ghost.local/contracts/agent_run_output.v1.json#/properties/recipients/items/properties/role" }
+            }
+          }
+        },
+        "channel": { "$ref": "https://ghost.local/contracts/agent_run_output.v1.json#/properties/finished_artifact/properties/channel" },
+        "wait_until": { "oneOf": [{ "$ref": "https://ghost.local/contracts/common.v1.json#/$defs/timestamp" }, { "type": "null" }] }
+      }
+    }
+  }
+}

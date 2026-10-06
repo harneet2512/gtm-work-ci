@@ -1,0 +1,54 @@
+{
+  "source_system": "call",
+  "source_object_id": "call-beta-0826",
+  "source_event_key": "transcript_ready",
+  "occurred_at": "2026-08-26T16:46:00Z",
+  "connector": "recorder",
+  "connector_version": "0.1.0",
+  "payload": {
+    "kind": "call",
+    "call_id": "call-beta-0826",
+    "calendar_event_id": "gcal:beta-scope-0826",
+    "started_at": "2026-08-26T16:01:00Z",
+    "ended_at": "2026-08-26T16:46:00Z",
+    "speakers": [
+      {"label": "speaker_01", "email": "dana@ghostvendor.com", "name": "Dana Kim"},
+      {"label": "speaker_02", "email": "hannah.lee@beta.io", "name": "Hannah Lee"},
+      {"label": "speaker_03", "email": "jess.patel@beta.io", "name": "Jess Patel"},
+      {"label": "speaker_04", "email": "leo@ghostvendor.com", "name": "Leo Park"}
+    ],
+    "transcript": [
+      {
+        "speaker": "speaker_01",
+        "offset_s": 0,
+        "text": "Thanks both. Hannah, what would make this an easy yes for Owen?"
+      },
+      {
+        "speaker": "speaker_02",
+        "offset_s": 6,
+        "text": "Owen will want to see the handle-time savings from the Austin pilot. If we can show a 15 percent drop in average handle time, the business case makes itself."
+      },
+      {
+        "speaker": "speaker_03",
+        "offset_s": 21,
+        "text": "For context, the Dublin agents work all of our EU customer tickets, so they're the bigger change."
+      },
+      {
+        "speaker": "speaker_04",
+        "offset_s": 30,
+        "text": "We can mirror the Austin routing rules for Dublin and keep separate queues per region."
+      },
+      {
+        "speaker": "speaker_02",
+        "offset_s": 39,
+        "text": "Good. We'd like to be live before the December ticket surge."
+      },
+      {
+        "speaker": "speaker_01",
+        "offset_s": 45,
+        "text": "I'll send a business case with the Austin pilot numbers by Tuesday."
+      },
+      {"speaker": "speaker_02", "offset_s": 51, "text": "Great - I'll take it to Owen myself."}
+    ]
+  }
+}

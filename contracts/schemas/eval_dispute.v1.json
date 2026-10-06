@@ -1,0 +1,61 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://ghost.local/contracts/eval_dispute.v1.json",
+  "title": "EvalDispute",
+  "description": "A human's statement that one EvalResult is wrong: the 'This eval is wrong' control on any verdict, from Slack or web (HAR-97 E19 grader validity, E19-E22 eval-of-evals). Append-only supervision: a dispute never changes the EvalResult, its bundle, the send gate or company knowledge. disputed_verdict and disputed_blocking snapshot the result at dispute time, so eval-of-evals can count false passes (a pass the human says should warn or fail) and false blocks (a blocking fail the human says should not block) without re-reading the result.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "id", "eval_result_id", "agent_run_id", "draft_index", "eval_type", "eval_version",
+    "disputed_verdict", "disputed_blocking", "expected_verdict", "reason", "surface", "actor_label", "created_at"
+  ],
+  "properties": {
+    "id": { "$ref": "common.v1.json#/$defs/uuid" },
+    "eval_result_id": { "$ref": "common.v1.json#/$defs/uuid", "description": "The EvalResult (eval_runs row) the human disputes." },
+    "agent_run_id": { "$ref": "common.v1.json#/$defs/uuid" },
+    "draft_index": { "type": "integer", "minimum": 1 },
+    "eval_type": { "$ref": "eval_result.v1.json#/$defs/evalType" },
+    "eval_version": { "type": "string", "pattern": "^[a-z_]+:v[0-9]+$" },
+    "disputed_verdict": {
+      "description": "The result's verdict when the human disputed it.",
+      "type": "string", "enum": ["pass", "warn", "fail", "unknown", "abstain"]
+    },
+    "disputed_blocking": { "type": "boolean", "description": "Whether the disputed result was a blocking failure." },
+    "expected_verdict": {
+      "description": "What the human says the verdict should have been. not_relevant: the eval should not have applied to this action. unknown (older spelling: abstain): the evidence was not enough to judge. Null when the human disputes the reasoning or the evidence without naming a verdict.",
+      "oneOf": [{ "type": "string", "enum": ["pass", "warn", "fail", "unknown", "abstain", "not_relevant"] }, { "type": "null" }]
+    },
+    "reason": {
+      "description": "In the human's words, what the eval got wrong.",
+      "type": "string", "minLength": 1, "maxLength": 2000
+    },
+    "surface": { "$ref": "human_decision.v1.json#/properties/surface" },
+    "actor_person_id": { "oneOf": [{ "$ref": "common.v1.json#/$defs/uuid" }, { "type": "null" }] },
+    "actor_label": { "type": "string", "minLength": 1, "maxLength": 200 },
+    "created_at": { "$ref": "common.v1.json#/$defs/timestamp" }
+  },
+  "allOf": [
+    {
+      "description": "Only failures can block (eval_result.v1.json).",
+      "if": { "properties": { "disputed_blocking": { "const": true } } },
+      "then": { "properties": { "disputed_verdict": { "const": "fail" } } }
+    },
+    {
+      "description": "An expected verdict differs from the disputed one; to dispute only the reasoning, leave it null.",
+      "if": { "properties": { "expected_verdict": { "const": "pass" } } },
+      "then": { "properties": { "disputed_verdict": { "not": { "const": "pass" } } } }
+    },
+    {
+      "if": { "properties": { "expected_verdict": { "const": "warn" } } },
+      "then": { "properties": { "disputed_verdict": { "not": { "const": "warn" } } } }
+    },
+    {
+      "if": { "properties": { "expected_verdict": { "const": "fail" } } },
+      "then": { "properties": { "disputed_verdict": { "not": { "const": "fail" } } } }
+    },
+    {
+      "if": { "properties": { "expected_verdict": { "enum": ["unknown", "abstain"] } } },
+      "then": { "properties": { "disputed_verdict": { "not": { "enum": ["unknown", "abstain"] } } } }
+    }
+  ]
+}

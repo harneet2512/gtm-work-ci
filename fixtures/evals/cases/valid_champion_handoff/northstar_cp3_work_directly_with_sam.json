@@ -1,0 +1,254 @@
+{
+  "id": "northstar_cp3_work_directly_with_sam",
+  "case_type": "valid_champion_handoff",
+  "title": "Northstar cp3: after Elena's written delegation, the rep writes to Sam directly with the BAA and HIPAA pack",
+  "should_pass": true,
+  "difficulty": "medium",
+  "slice_tags": {
+    "account": "northstar",
+    "origin": "checkpoint",
+    "motion": "expansion",
+    "stage": "commercial_review",
+    "champion_status": "delegated",
+    "economic_buyer": "known",
+    "risk": "low",
+    "candidate": "good",
+    "expected_action": "send_email",
+    "extra": ["delegation", "phi"]
+  },
+  "based_on": {
+    "kind": "checkpoint",
+    "account": "northstar",
+    "after_event_file": "world/accounts/northstar/events/029_email_elena_delegation.json",
+    "checkpoint": 3,
+    "changed_fields": [],
+    "change": null
+  },
+  "context": {
+    "now": "2026-09-21T10:00:00Z",
+    "state": {
+      "account_id": "0a0c0000-0000-4000-8000-000000000003",
+      "account_name": "Northstar Health",
+      "opportunity_id": "0c0f0000-0000-4000-8000-000000000006",
+      "fields": {
+        "stage": "Commercial review",
+        "health": "on_track",
+        "motion": "expansion",
+        "champion": "0b0e0000-0000-4000-8000-000000000041",
+        "champion_status": "delegated",
+        "economic_buyer": "0b0e0000-0000-4000-8000-000000000042",
+        "relationship_risk": "low",
+        "blockers": [
+          {
+            "text": "Security sign-off by Sam Okafor's team before any clinic goes live (intake forms carry PHI; BAA required)",
+            "status": "open"
+          }
+        ],
+        "decision_process": "Sam Okafor (Information Security Lead) owns the evaluation, including the BAA; Elena Vasquez stepped back from the day-to-day and joins for final sign-off; Grace Liu approves budget on Elena's recommendation",
+        "next_milestone": "Security evaluation led by Sam Okafor, including the BAA"
+      },
+      "buying_group": [
+        {
+          "person_id": "0b0e0000-0000-4000-8000-000000000041",
+          "display_name": "Elena Vasquez",
+          "title": "Director of Patient Access",
+          "roles": ["champion"],
+          "status": "active",
+          "delegated_to_person_id": "0b0e0000-0000-4000-8000-000000000043",
+          "last_engaged_at": null,
+          "evidence_refs": []
+        },
+        {
+          "person_id": "0b0e0000-0000-4000-8000-000000000042",
+          "display_name": "Grace Liu",
+          "title": "VP Finance",
+          "roles": ["economic_buyer"],
+          "status": "unknown",
+          "delegated_to_person_id": null,
+          "last_engaged_at": null,
+          "evidence_refs": []
+        },
+        {
+          "person_id": "0b0e0000-0000-4000-8000-000000000043",
+          "display_name": "Sam Okafor",
+          "title": "Information Security Lead",
+          "roles": ["security", "technical_evaluator"],
+          "status": "new",
+          "delegated_to_person_id": null,
+          "last_engaged_at": null,
+          "evidence_refs": []
+        }
+      ],
+      "coverage_gaps": []
+    },
+    "recent_changes": {
+      "summary": "Elena delegated the evaluation (including the BAA) to Sam Okafor in writing; she joins for final sign-off.",
+      "material_diff_fields": [
+        "champion_status",
+        "decision_process",
+        "current_commitments",
+        "next_milestone",
+        "buying_group",
+        "coverage_gaps"
+      ],
+      "signals": ["champion_delegated", "customer_replied", "customer_went_silent", "new_stakeholder_entered"]
+    },
+    "trigger": {
+      "activity_id": "0ac70000-0000-4000-8000-0000000c0029",
+      "activity_type": "EmailReply",
+      "occurred_at": "2026-09-21T09:30:00Z",
+      "actor_person_id": "0b0e0000-0000-4000-8000-000000000041",
+      "event_file": "world/accounts/northstar/events/029_email_elena_delegation.json",
+      "synthetic": false,
+      "text": "Hi Dana - sorry for the delay. Sam Okafor leads information security here and will own the evaluation from now on, including the BAA. Please work directly with Sam on this; I'm stepping back from the day-to-day, and Sam will bring me in for final sign-off.\nElena"
+    },
+    "supporting_activities": [],
+    "commitments": [],
+    "timeline_facts": {
+      "last_inbound_at": "2026-09-21T09:30:00Z",
+      "last_inbound_from_person_id": "0b0e0000-0000-4000-8000-000000000041",
+      "last_outbound_at": "2026-09-15T14:00:00Z",
+      "stated_timing": "Open enrollment Nov 2; Sam owns the evaluation from now on"
+    },
+    "offered_knowledge": [
+      {
+        "id": "0c17c000-0000-4000-8000-000000000009",
+        "key": "K09",
+        "title": "When the champion delegates the evaluation in writing, work directly with the delegate",
+        "situation_signature": [
+          {"field": "champion_status", "op": "eq", "value": "delegated"},
+          {"field": "diff.champion_delegated", "op": "exists"}
+        ],
+        "guidance": {
+          "summary": "Address the delegate directly for day-to-day evaluation work; bring the champion back only where they said they want to be involved (for example final sign-off).",
+          "do": ["address the delegate as the owner of the evaluation", "keep the champion's stated final role intact"],
+          "dont": ["cc the champion on day-to-day threads", "route the delegate's requests back through the champion"]
+        },
+        "status": "provisional",
+        "counts": {
+          "decisions": 3,
+          "positive_reactions": 3,
+          "negative_reactions": 0,
+          "outcomes_advanced": 1,
+          "counterexamples": 0
+        },
+        "supporting_decision_episode_ids": [],
+        "counterexamples": [],
+        "exceptions": [
+          {
+            "description": "The delegate asks to include the champion",
+            "conditions": [{"field": "decision_process", "op": "contains", "value": "delegate asked to include the champion"}]
+          }
+        ],
+        "evidence_classes": ["deal_data"],
+        "used_by_evaluators": ["champion_continuity:v1"],
+        "provenance": {
+          "created_from": "seed_history",
+          "source_decision_episode_id": null,
+          "note": "Seeded history (synthetic) for the WP16 eval benchmark"
+        },
+        "created_at": "2026-08-01T00:00:00Z",
+        "last_validated_at": "2026-09-20T00:00:00Z"
+      }
+    ]
+  },
+  "candidate_action": {
+    "proposed_action_type": "send_email",
+    "recipients": [
+      {
+        "person_id": "0b0e0000-0000-4000-8000-000000000043",
+        "role": "to",
+        "why": "Owns the evaluation, including the BAA"
+      }
+    ],
+    "finished_artifact": {
+      "channel": "email",
+      "subject": "Re: Rolling Relay out to all clinics",
+      "body": "Hi Sam,\n\nElena let me know you're leading the evaluation - great to be working with you. Our BAA template and HIPAA controls summary are attached, and Leo Park, our solutions engineer, will support the security review.\n\nBest,\nDana",
+      "attachments": ["baa-template.pdf", "hipaa-controls-summary.pdf"]
+    },
+    "crm_next_step_intent": {"next_step": "Security evaluation led by Sam Okafor", "due_at": null, "stage_change": null},
+    "reason": "Elena delegated the evaluation to Sam in writing.",
+    "evidence_refs": [
+      {
+        "activity_id": "0ac70000-0000-4000-8000-0000000c0029",
+        "quote": "Sam Okafor leads information security here and will own the evaluation from now on, including the BAA.",
+        "speaker_person_id": "0b0e0000-0000-4000-8000-000000000041",
+        "occurred_at": "2026-09-21T09:30:00Z"
+      },
+      {
+        "activity_id": "0ac70000-0000-4000-8000-0000000c0029",
+        "quote": "Please work directly with Sam on this; I'm stepping back from the day-to-day, and Sam will bring me in for final sign-off.",
+        "speaker_person_id": "0b0e0000-0000-4000-8000-000000000041",
+        "occurred_at": "2026-09-21T09:30:00Z"
+      }
+    ],
+    "knowledge_refs_used": ["0c17c000-0000-4000-8000-000000000009"],
+    "wait_until": null
+  },
+  "expected": [
+    {
+      "eval_type": "champion_continuity",
+      "verdict": "pass",
+      "label": "VALID_HANDOFF",
+      "diagnostics": [],
+      "blocking": false,
+      "rationale": "Explicit written delegation; addressing Sam without Elena is a valid handoff.",
+      "evidence_class": "methodology",
+      "state_refs": ["champion_status", "buying_group"]
+    },
+    {
+      "eval_type": "knowledge_applicability",
+      "verdict": "pass",
+      "label": "APPLIES",
+      "diagnostics": [],
+      "blocking": false,
+      "rationale": "K09 applies (champion_status delegated, champion_delegated signal) and is followed.",
+      "evidence_class": "methodology",
+      "knowledge_refs": ["0c17c000-0000-4000-8000-000000000009"]
+    },
+    {
+      "eval_type": "exception_awareness",
+      "verdict": "pass",
+      "label": "EXCEPTION_HONORED",
+      "diagnostics": [],
+      "blocking": false,
+      "rationale": "Recognises the delegation instead of applying the generic keep-the-champion rule.",
+      "evidence_class": "methodology"
+    },
+    {
+      "eval_type": "grounding",
+      "verdict": "pass",
+      "label": null,
+      "diagnostics": [],
+      "blocking": false,
+      "rationale": "Body mirrors the delegation email.",
+      "evidence_class": "deal_data"
+    },
+    {
+      "eval_type": "stakeholder_selection",
+      "verdict": "pass",
+      "label": null,
+      "diagnostics": [],
+      "blocking": false,
+      "rationale": "Sam only, as Elena asked in writing.",
+      "evidence_class": "methodology"
+    },
+    {
+      "eval_type": "decision_process",
+      "verdict": "pass",
+      "label": null,
+      "diagnostics": [],
+      "blocking": false,
+      "rationale": "Works with the delegated evaluation owner and contradicts no step of the known process (Elena's final sign-off is untouched).",
+      "evidence_class": "methodology"
+    }
+  ],
+  "expected_best_action": {
+    "action": "send_email",
+    "why": "Write to Sam directly with the BAA/HIPAA pack and introduce Leo.",
+    "recipients": [{"person_id": "0b0e0000-0000-4000-8000-000000000043", "role": "to"}],
+    "channel": "email"
+  },
+  "notes": "Mirrors the real email Dana sent on 09-23 (034). Should-pass control."
+}

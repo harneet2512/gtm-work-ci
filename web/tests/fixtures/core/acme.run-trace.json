@@ -1,0 +1,1302 @@
+{
+  "run": {
+    "id": "0f0a0000-0000-4000-8000-000000000601",
+    "account_id": "0a0c0000-0000-4000-8000-000000000001",
+    "opportunity_id": "0c0f0000-0000-4000-8000-000000000004",
+    "workflow": "post_interaction_followup",
+    "run_mode": "live",
+    "status": "executed",
+    "trigger_evaluation_id": "07e10000-0000-4000-8000-000000000501",
+    "trigger_activity_ids": [
+      "0ac70000-0000-4000-8000-000000000101"
+    ],
+    "correlation_id": "0c0c0000-0000-4000-8000-000000000801",
+    "state_version": 7,
+    "input_context_refs": [
+      {
+        "tool": "state",
+        "access_id": 101,
+        "returned_ids": [
+          "0a0c0000-0000-4000-8000-000000000001"
+        ],
+        "bytes": 3120
+      },
+      {
+        "tool": "evidence",
+        "access_id": 102,
+        "returned_ids": [
+          "0c1a0000-0000-4000-8000-000000000201"
+        ],
+        "bytes": 640
+      }
+    ],
+    "output": {
+      "proposed_action_type": "send_email",
+      "recipients": [
+        {
+          "person_id": "0b0e0000-0000-4000-8000-000000000018",
+          "role": "to",
+          "why": "Requested the security documents"
+        },
+        {
+          "person_id": "0b0e0000-0000-4000-8000-000000000017",
+          "role": "cc",
+          "why": "Active champion; keep commercial continuity"
+        }
+      ],
+      "finished_artifact": {
+        "channel": "email",
+        "subject": "Re: Expansion to EU teams",
+        "body": "Hi Marco,\n\nAttached are our SOC2 Type II report and pen-test summary. Once you and Priya have reviewed, let us know what timing suits you.\n\nBest,\nDana",
+        "attachments": [
+          "soc2-type2-2026.pdf",
+          "pentest-summary-2026Q3.pdf"
+        ]
+      },
+      "crm_next_step_intent": {
+        "next_step": "Security review of SOC2 package by Acme security (Marco)",
+        "due_at": null,
+        "stage_change": null
+      },
+      "reason": "Marco asked for SOC2 + pen-test before any review date; Priya stays commercial point of contact.",
+      "evidence_refs": [
+        {
+          "activity_id": "0ac70000-0000-4000-8000-000000000101",
+          "claim_id": "0c1a0000-0000-4000-8000-000000000201",
+          "quote": "Before we can sign off on the EU rollout we'll need your SOC2 Type II report and the pen-test summary.",
+          "speaker_person_id": "0b0e0000-0000-4000-8000-000000000018",
+          "occurred_at": "2026-09-29T15:42:00Z"
+        }
+      ],
+      "knowledge_refs_used": [],
+      "wait_until": null
+    },
+    "evidence_refs": [
+      {
+        "activity_id": "0ac70000-0000-4000-8000-000000000101",
+        "claim_id": "0c1a0000-0000-4000-8000-000000000201",
+        "quote": "Before we can sign off on the EU rollout we'll need your SOC2 Type II report and the pen-test summary.",
+        "speaker_person_id": "0b0e0000-0000-4000-8000-000000000018",
+        "occurred_at": "2026-09-29T15:42:00Z"
+      }
+    ],
+    "knowledge_refs_used": [],
+    "model": "deepseek/deepseek-v4-flash",
+    "steps": [
+      {
+        "seq": 1,
+        "step": "build_context",
+        "status": "succeeded",
+        "started_at": "2026-09-29T15:42:12Z",
+        "finished_at": "2026-09-29T15:42:13Z",
+        "external_effect_id": null,
+        "detail": {}
+      },
+      {
+        "seq": 2,
+        "step": "draft",
+        "status": "succeeded",
+        "started_at": "2026-09-29T15:42:13Z",
+        "finished_at": "2026-09-29T15:42:24Z",
+        "external_effect_id": null,
+        "detail": {}
+      },
+      {
+        "seq": 3,
+        "step": "crm_intent",
+        "status": "recorded",
+        "started_at": "2026-09-29T15:42:24Z",
+        "finished_at": "2026-09-29T15:42:24Z",
+        "external_effect_id": null,
+        "detail": {}
+      },
+      {
+        "seq": 4,
+        "step": "await_human",
+        "status": "succeeded",
+        "started_at": "2026-09-29T15:42:24Z",
+        "finished_at": "2026-09-29T16:05:00Z",
+        "external_effect_id": null,
+        "detail": {}
+      },
+      {
+        "seq": 5,
+        "step": "execute",
+        "status": "succeeded",
+        "started_at": "2026-09-29T16:05:10Z",
+        "finished_at": "2026-09-29T16:05:11Z",
+        "external_effect_id": "0ac70000-0000-4000-8000-000000000103",
+        "detail": {}
+      }
+    ],
+    "error": null,
+    "generation": {
+      "phase": "published",
+      "attempt": 1,
+      "reason": null,
+      "strategy_set_id": "05e70000-0000-4000-8000-000000000b01",
+      "decision_episode_id": "0e9e0000-0000-4000-8000-000000000a01"
+    },
+    "created_at": "2026-09-29T15:42:12Z",
+    "updated_at": "2026-09-29T15:42:24Z"
+  },
+  "trigger_activities": [
+    {
+      "id": "0ac70000-0000-4000-8000-000000000101",
+      "idempotency_key": "3f1c2a9e8b7d6c5f4e3a2b1c0d9e8f7a6b5c4d3e2f1a0b9c8d7e6f5a4b3c2d1e",
+      "activity_type": "EmailReceived",
+      "source_system": "email",
+      "source_object_id": "<CAMx9-acme-2026-09-29@mail.acme.com>",
+      "source_event_id": "05e00000-0000-4000-8000-000000000101",
+      "occurred_at": "2026-09-29T15:42:00Z",
+      "ingested_at": "2026-09-29T15:42:07Z",
+      "participants": [
+        {
+          "raw_identity": "marco.ruiz@acme.com",
+          "display_name": "Marco Ruiz",
+          "role": "from",
+          "person_id": "0b0e0000-0000-4000-8000-000000000018"
+        },
+        {
+          "raw_identity": "dana@ghostvendor.com",
+          "display_name": "Dana Kim",
+          "role": "to",
+          "person_id": "0b0e0000-0000-4000-8000-000000000001"
+        },
+        {
+          "raw_identity": "priya.shah@acme.com",
+          "display_name": "Priya Shah",
+          "role": "cc",
+          "person_id": "0b0e0000-0000-4000-8000-000000000017"
+        }
+      ],
+      "account_id": "0a0c0000-0000-4000-8000-000000000001",
+      "opportunity_id": "0c0f0000-0000-4000-8000-000000000004",
+      "account_hint": "acme.com",
+      "opportunity_hint": "thr-acme-eu-expansion",
+      "payload_ref": "source_events/05e00000-0000-4000-8000-000000000101",
+      "summary": "Marco (Acme security) requires SOC2 Type II + pen-test summary before EU rollout sign-off.",
+      "permissions": {
+        "visibility": "org"
+      },
+      "provenance": {
+        "source_system": "email",
+        "source_object_id": "<CAMx9-acme-2026-09-29@mail.acme.com>",
+        "connector": "gmail",
+        "connector_version": "0.1.0"
+      },
+      "caused_by_activity_id": "0ac70000-0000-4000-8000-000000000100",
+      "correlation_id": "0c0c0000-0000-4000-8000-000000000801"
+    }
+  ],
+  "correlated_activities": [
+    {
+      "id": "0ac70000-0000-4000-8000-000000000100",
+      "idempotency_key": "a1b2c3d4e5f60718293a4b5c6d7e8f90a1b2c3d4e5f60718293a4b5c6d7e8f90",
+      "activity_type": "OpportunityStageChanged",
+      "source_system": "crm",
+      "source_object_id": "006Acme0000EU1",
+      "source_event_id": "05e00000-0000-4000-8000-000000000100",
+      "occurred_at": "2026-09-20T10:00:00Z",
+      "ingested_at": "2026-09-20T10:00:05Z",
+      "participants": [
+        {
+          "raw_identity": "dana@ghostvendor.com",
+          "display_name": "Dana Kim",
+          "role": "actor",
+          "person_id": "0b0e0000-0000-4000-8000-000000000001"
+        }
+      ],
+      "account_id": "0a0c0000-0000-4000-8000-000000000001",
+      "opportunity_id": "0c0f0000-0000-4000-8000-000000000004",
+      "payload_ref": "source_events/05e00000-0000-4000-8000-000000000100",
+      "summary": "Opportunity moved to Technical evaluation.",
+      "permissions": {
+        "visibility": "org"
+      },
+      "provenance": {
+        "source_system": "crm",
+        "source_object_id": "006Acme0000EU1",
+        "connector": "salesforce",
+        "connector_version": "0.1.0"
+      },
+      "caused_by_activity_id": null,
+      "correlation_id": null
+    }
+  ],
+  "state_before": {
+    "account_id": "0a0c0000-0000-4000-8000-000000000001",
+    "account_name": "Acme Corp",
+    "opportunity_id": "0c0f0000-0000-4000-8000-000000000004",
+    "opportunities": [
+      {
+        "opportunity_id": "0c0f0000-0000-4000-8000-000000000004",
+        "is_open": true,
+        "is_primary": true,
+        "stage": "Technical evaluation",
+        "owner": "0b0e0000-0000-4000-8000-000000000001",
+        "amount": 120000,
+        "health": "unknown",
+        "as_of": "2026-09-20T10:00:00Z",
+        "last_activity_id": "0ac70000-0000-4000-8000-000000000100"
+      },
+      {
+        "opportunity_id": "0c0f0000-0000-4000-8000-000000000005",
+        "is_open": false,
+        "is_primary": false,
+        "stage": "Closed Won",
+        "owner": "0b0e0000-0000-4000-8000-000000000002",
+        "amount": 45000,
+        "health": "unknown",
+        "as_of": "2025-11-14T09:00:00Z",
+        "last_activity_id": "0ac70000-0000-4000-8000-000000000050"
+      }
+    ],
+    "version": 6,
+    "as_of": "2026-09-20T10:00:00Z",
+    "computed_at": "2026-09-20T10:00:05Z",
+    "last_activity_id": "0ac70000-0000-4000-8000-000000000100",
+    "fields": {
+      "stage": {
+        "value": "Technical evaluation",
+        "known": true,
+        "winning_claim_id": "0c1a0000-0000-4000-8000-000000000200",
+        "standing": "crm_explicit",
+        "confidence": 1,
+        "as_of": "2026-09-20T10:00:00Z",
+        "evidence_refs": [
+          {
+            "activity_id": "0ac70000-0000-4000-8000-000000000100",
+            "claim_id": "0c1a0000-0000-4000-8000-000000000200",
+            "occurred_at": "2026-09-20T10:00:00Z"
+          }
+        ],
+        "competing_claim_ids": [],
+        "suggested_claim_ids": [],
+        "opportunity_id": "0c0f0000-0000-4000-8000-000000000004"
+      },
+      "health": {
+        "value": "unknown",
+        "known": false,
+        "confidence": 0,
+        "as_of": null,
+        "evidence_refs": [],
+        "competing_claim_ids": [],
+        "suggested_claim_ids": [],
+        "winning_claim_id": null
+      },
+      "owner": {
+        "value": "0b0e0000-0000-4000-8000-000000000001",
+        "known": true,
+        "winning_claim_id": "0c1a0000-0000-4000-8000-000000000200",
+        "standing": "crm_explicit",
+        "confidence": 1,
+        "as_of": "2026-09-20T10:00:00Z",
+        "evidence_refs": [
+          {
+            "activity_id": "0ac70000-0000-4000-8000-000000000100",
+            "claim_id": "0c1a0000-0000-4000-8000-000000000200",
+            "occurred_at": "2026-09-20T10:00:00Z"
+          }
+        ],
+        "competing_claim_ids": [],
+        "suggested_claim_ids": [],
+        "opportunity_id": "0c0f0000-0000-4000-8000-000000000004"
+      },
+      "motion": {
+        "value": "expansion",
+        "known": true,
+        "winning_claim_id": "0c1a0000-0000-4000-8000-000000000200",
+        "standing": "crm_explicit",
+        "confidence": 1,
+        "as_of": "2026-09-20T10:00:00Z",
+        "evidence_refs": [
+          {
+            "activity_id": "0ac70000-0000-4000-8000-000000000100",
+            "claim_id": "0c1a0000-0000-4000-8000-000000000200",
+            "occurred_at": "2026-09-20T10:00:00Z"
+          }
+        ],
+        "competing_claim_ids": [],
+        "suggested_claim_ids": [],
+        "opportunity_id": "0c0f0000-0000-4000-8000-000000000004"
+      },
+      "champion": {
+        "value": "0b0e0000-0000-4000-8000-000000000017",
+        "known": true,
+        "winning_claim_id": "0c1a0000-0000-4000-8000-000000000200",
+        "standing": "crm_explicit",
+        "confidence": 1,
+        "as_of": "2026-09-20T10:00:00Z",
+        "evidence_refs": [
+          {
+            "activity_id": "0ac70000-0000-4000-8000-000000000100",
+            "claim_id": "0c1a0000-0000-4000-8000-000000000200",
+            "occurred_at": "2026-09-20T10:00:00Z"
+          }
+        ],
+        "competing_claim_ids": [],
+        "suggested_claim_ids": []
+      },
+      "champion_status": {
+        "value": "unknown",
+        "known": false,
+        "confidence": 0,
+        "as_of": null,
+        "evidence_refs": [],
+        "competing_claim_ids": [],
+        "suggested_claim_ids": [],
+        "winning_claim_id": null
+      },
+      "economic_buyer": {
+        "value": "unknown",
+        "known": false,
+        "winning_claim_id": null,
+        "standing": null,
+        "confidence": null,
+        "as_of": null,
+        "evidence_refs": [],
+        "competing_claim_ids": [],
+        "suggested_claim_ids": []
+      },
+      "blockers": {
+        "value": [],
+        "known": false,
+        "confidence": 0,
+        "as_of": null,
+        "evidence_refs": [],
+        "competing_claim_ids": [],
+        "suggested_claim_ids": [],
+        "winning_claim_id": null
+      },
+      "objections": {
+        "value": [],
+        "known": false,
+        "winning_claim_id": null,
+        "standing": null,
+        "confidence": null,
+        "as_of": null,
+        "evidence_refs": [],
+        "competing_claim_ids": [],
+        "suggested_claim_ids": []
+      },
+      "decision_criteria": {
+        "value": [],
+        "known": false,
+        "confidence": 0,
+        "as_of": null,
+        "evidence_refs": [],
+        "competing_claim_ids": [],
+        "suggested_claim_ids": [],
+        "winning_claim_id": null
+      },
+      "decision_process": {
+        "value": "unknown",
+        "known": false,
+        "confidence": 0,
+        "as_of": null,
+        "evidence_refs": [],
+        "competing_claim_ids": [],
+        "suggested_claim_ids": [],
+        "winning_claim_id": null
+      },
+      "current_commitments": {
+        "value": [],
+        "known": false,
+        "winning_claim_id": null,
+        "standing": null,
+        "confidence": null,
+        "as_of": null,
+        "evidence_refs": [],
+        "competing_claim_ids": [],
+        "suggested_claim_ids": []
+      },
+      "next_milestone": {
+        "value": "unknown",
+        "known": false,
+        "confidence": 0,
+        "as_of": null,
+        "evidence_refs": [],
+        "competing_claim_ids": [],
+        "suggested_claim_ids": [],
+        "winning_claim_id": null
+      },
+      "next_meeting": {
+        "value": "2026-09-30T16:00:00Z",
+        "known": true,
+        "winning_claim_id": "0c1a0000-0000-4000-8000-000000000203",
+        "standing": "first_party_ai",
+        "confidence": 1,
+        "as_of": "2026-09-18T14:00:00Z",
+        "evidence_refs": [
+          {
+            "activity_id": "0ac70000-0000-4000-8000-000000000090",
+            "claim_id": "0c1a0000-0000-4000-8000-000000000203",
+            "quote": "Let's hold the security review for September 30.",
+            "speaker_person_id": "0b0e0000-0000-4000-8000-000000000017",
+            "occurred_at": "2026-09-18T14:00:00Z"
+          }
+        ],
+        "competing_claim_ids": [],
+        "suggested_claim_ids": []
+      },
+      "relationship_risk": {
+        "value": "unknown",
+        "known": false,
+        "confidence": 0,
+        "as_of": null,
+        "evidence_refs": [],
+        "competing_claim_ids": [],
+        "suggested_claim_ids": [],
+        "winning_claim_id": null
+      },
+      "product_use_case": {
+        "value": "EU team rollout",
+        "known": true,
+        "winning_claim_id": "0c1a0000-0000-4000-8000-000000000200",
+        "standing": "crm_explicit",
+        "confidence": 1,
+        "as_of": "2026-09-20T10:00:00Z",
+        "evidence_refs": [
+          {
+            "activity_id": "0ac70000-0000-4000-8000-000000000100",
+            "claim_id": "0c1a0000-0000-4000-8000-000000000200",
+            "occurred_at": "2026-09-20T10:00:00Z"
+          }
+        ],
+        "competing_claim_ids": [],
+        "suggested_claim_ids": []
+      },
+      "commercial_issue": {
+        "value": "unknown",
+        "known": false,
+        "winning_claim_id": null,
+        "standing": null,
+        "confidence": null,
+        "as_of": null,
+        "evidence_refs": [],
+        "competing_claim_ids": [],
+        "suggested_claim_ids": []
+      },
+      "last_customer_interaction": {
+        "value": "unknown",
+        "known": false,
+        "confidence": 0,
+        "as_of": null,
+        "evidence_refs": [],
+        "competing_claim_ids": [],
+        "suggested_claim_ids": [],
+        "derived": true,
+        "winning_claim_id": null
+      },
+      "last_meaningful_change": {
+        "value": "unknown",
+        "known": false,
+        "confidence": 0,
+        "as_of": null,
+        "evidence_refs": [],
+        "competing_claim_ids": [],
+        "suggested_claim_ids": [],
+        "derived": true,
+        "winning_claim_id": null
+      },
+      "summary": {
+        "value": "unknown",
+        "known": false,
+        "confidence": 0,
+        "as_of": null,
+        "evidence_refs": [],
+        "competing_claim_ids": [],
+        "suggested_claim_ids": [],
+        "winning_claim_id": null
+      },
+      "champion_since": {
+        "value": "2026-09-20T10:00:00Z",
+        "known": true,
+        "winning_claim_id": null,
+        "standing": null,
+        "confidence": null,
+        "as_of": "2026-09-20T10:00:00Z",
+        "evidence_refs": [
+          {
+            "activity_id": "0ac70000-0000-4000-8000-000000000100",
+            "claim_id": "0c1a0000-0000-4000-8000-000000000200",
+            "occurred_at": "2026-09-20T10:00:00Z"
+          }
+        ],
+        "competing_claim_ids": [],
+        "suggested_claim_ids": [],
+        "derived": true
+      }
+    },
+    "buying_group": [
+      {
+        "person_id": "0b0e0000-0000-4000-8000-000000000017",
+        "display_name": "Priya Shah",
+        "title": "Director of Operations",
+        "roles": [
+          "champion"
+        ],
+        "role_source": "recorded",
+        "role_basis": "crm_explicit buying_group.member",
+        "role_provenance": [
+          {
+            "role": "champion",
+            "source": "recorded",
+            "basis": "crm_explicit buying_group.member"
+          }
+        ],
+        "status": "active",
+        "delegated_to_person_id": null,
+        "last_engaged_at": "2026-09-20T10:00:00Z",
+        "evidence_refs": [
+          {
+            "activity_id": "0ac70000-0000-4000-8000-000000000100",
+            "claim_id": "0c1a0000-0000-4000-8000-000000000200",
+            "occurred_at": "2026-09-20T10:00:00Z"
+          }
+        ]
+      }
+    ],
+    "relationship_state": {
+      "value": "REORG",
+      "transition_id": "0e5a0000-0000-4000-8000-000000000001",
+      "confirmed_at": "2026-09-15T09:00:00Z"
+    },
+    "open_transition": null,
+    "coverage_gaps": [
+      "economic_buyer"
+    ]
+  },
+  "state_at_run": {
+    "account_id": "0a0c0000-0000-4000-8000-000000000001",
+    "account_name": "Acme Corp",
+    "opportunity_id": "0c0f0000-0000-4000-8000-000000000004",
+    "opportunities": [
+      {
+        "opportunity_id": "0c0f0000-0000-4000-8000-000000000004",
+        "is_open": true,
+        "is_primary": true,
+        "stage": "Technical evaluation",
+        "owner": "0b0e0000-0000-4000-8000-000000000001",
+        "amount": 120000,
+        "health": "at_risk",
+        "as_of": "2026-09-29T15:42:00Z",
+        "last_activity_id": "0ac70000-0000-4000-8000-000000000101"
+      },
+      {
+        "opportunity_id": "0c0f0000-0000-4000-8000-000000000005",
+        "is_open": false,
+        "is_primary": false,
+        "stage": "Closed Won",
+        "owner": "0b0e0000-0000-4000-8000-000000000002",
+        "amount": 45000,
+        "health": "unknown",
+        "as_of": "2025-11-14T09:00:00Z",
+        "last_activity_id": "0ac70000-0000-4000-8000-000000000050"
+      }
+    ],
+    "version": 7,
+    "as_of": "2026-09-29T15:42:00Z",
+    "computed_at": "2026-09-29T15:42:11Z",
+    "last_activity_id": "0ac70000-0000-4000-8000-000000000101",
+    "fields": {
+      "stage": {
+        "value": "Technical evaluation",
+        "known": true,
+        "winning_claim_id": "0c1a0000-0000-4000-8000-000000000200",
+        "standing": "crm_explicit",
+        "confidence": 1,
+        "as_of": "2026-09-20T10:00:00Z",
+        "evidence_refs": [
+          {
+            "activity_id": "0ac70000-0000-4000-8000-000000000100",
+            "claim_id": "0c1a0000-0000-4000-8000-000000000200",
+            "occurred_at": "2026-09-20T10:00:00Z"
+          }
+        ],
+        "competing_claim_ids": [],
+        "suggested_claim_ids": [],
+        "opportunity_id": "0c0f0000-0000-4000-8000-000000000004"
+      },
+      "health": {
+        "value": "at_risk",
+        "known": true,
+        "winning_claim_id": "0c1a0000-0000-4000-8000-000000000201",
+        "standing": "first_party_ai",
+        "confidence": 0.7,
+        "as_of": "2026-09-29T15:42:00Z",
+        "evidence_refs": [
+          {
+            "activity_id": "0ac70000-0000-4000-8000-000000000101",
+            "claim_id": "0c1a0000-0000-4000-8000-000000000201",
+            "quote": "Before we can sign off on the EU rollout we'll need your SOC2 Type II report and the pen-test summary.",
+            "speaker_person_id": "0b0e0000-0000-4000-8000-000000000018",
+            "occurred_at": "2026-09-29T15:42:00Z"
+          }
+        ],
+        "competing_claim_ids": [],
+        "suggested_claim_ids": []
+      },
+      "owner": {
+        "value": "0b0e0000-0000-4000-8000-000000000001",
+        "known": true,
+        "winning_claim_id": "0c1a0000-0000-4000-8000-000000000200",
+        "standing": "crm_explicit",
+        "confidence": 1,
+        "as_of": "2026-09-20T10:00:00Z",
+        "evidence_refs": [
+          {
+            "activity_id": "0ac70000-0000-4000-8000-000000000100",
+            "claim_id": "0c1a0000-0000-4000-8000-000000000200",
+            "occurred_at": "2026-09-20T10:00:00Z"
+          }
+        ],
+        "competing_claim_ids": [],
+        "suggested_claim_ids": [],
+        "opportunity_id": "0c0f0000-0000-4000-8000-000000000004"
+      },
+      "motion": {
+        "value": "expansion",
+        "known": true,
+        "winning_claim_id": "0c1a0000-0000-4000-8000-000000000200",
+        "standing": "crm_explicit",
+        "confidence": 1,
+        "as_of": "2026-09-20T10:00:00Z",
+        "evidence_refs": [
+          {
+            "activity_id": "0ac70000-0000-4000-8000-000000000100",
+            "claim_id": "0c1a0000-0000-4000-8000-000000000200",
+            "occurred_at": "2026-09-20T10:00:00Z"
+          }
+        ],
+        "competing_claim_ids": [],
+        "suggested_claim_ids": [],
+        "opportunity_id": "0c0f0000-0000-4000-8000-000000000004"
+      },
+      "champion": {
+        "value": "0b0e0000-0000-4000-8000-000000000017",
+        "known": true,
+        "winning_claim_id": "0c1a0000-0000-4000-8000-000000000200",
+        "standing": "crm_explicit",
+        "confidence": 1,
+        "as_of": "2026-09-20T10:00:00Z",
+        "evidence_refs": [
+          {
+            "activity_id": "0ac70000-0000-4000-8000-000000000100",
+            "claim_id": "0c1a0000-0000-4000-8000-000000000200",
+            "occurred_at": "2026-09-20T10:00:00Z"
+          }
+        ],
+        "competing_claim_ids": [],
+        "suggested_claim_ids": []
+      },
+      "champion_status": {
+        "value": "active",
+        "known": true,
+        "winning_claim_id": "0c1a0000-0000-4000-8000-000000000201",
+        "standing": "first_party_ai",
+        "confidence": 0.92,
+        "as_of": "2026-09-29T15:42:00Z",
+        "evidence_refs": [
+          {
+            "activity_id": "0ac70000-0000-4000-8000-000000000101",
+            "claim_id": "0c1a0000-0000-4000-8000-000000000201",
+            "quote": "Priya will stay the point of contact on the commercial side.",
+            "speaker_person_id": "0b0e0000-0000-4000-8000-000000000018",
+            "occurred_at": "2026-09-29T15:42:00Z"
+          }
+        ],
+        "competing_claim_ids": [],
+        "suggested_claim_ids": []
+      },
+      "economic_buyer": {
+        "value": "unknown",
+        "known": false,
+        "winning_claim_id": null,
+        "standing": null,
+        "confidence": null,
+        "as_of": null,
+        "evidence_refs": [],
+        "competing_claim_ids": [],
+        "suggested_claim_ids": []
+      },
+      "blockers": {
+        "value": [
+          {
+            "text": "Security review: SOC2 Type II report and pen-test summary required",
+            "claim_id": "0c1a0000-0000-4000-8000-000000000201",
+            "status": "open",
+            "evidence_refs": [
+              {
+                "activity_id": "0ac70000-0000-4000-8000-000000000101",
+                "claim_id": "0c1a0000-0000-4000-8000-000000000201",
+                "quote": "Before we can sign off on the EU rollout we'll need your SOC2 Type II report and the pen-test summary.",
+                "speaker_person_id": "0b0e0000-0000-4000-8000-000000000018",
+                "occurred_at": "2026-09-29T15:42:00Z"
+              }
+            ]
+          }
+        ],
+        "known": true,
+        "winning_claim_id": null,
+        "standing": null,
+        "confidence": null,
+        "as_of": "2026-09-29T15:42:00Z",
+        "evidence_refs": [
+          {
+            "activity_id": "0ac70000-0000-4000-8000-000000000101",
+            "claim_id": "0c1a0000-0000-4000-8000-000000000201",
+            "quote": "Before we can sign off on the EU rollout we'll need your SOC2 Type II report and the pen-test summary.",
+            "speaker_person_id": "0b0e0000-0000-4000-8000-000000000018",
+            "occurred_at": "2026-09-29T15:42:00Z"
+          }
+        ],
+        "competing_claim_ids": [],
+        "suggested_claim_ids": []
+      },
+      "objections": {
+        "value": [],
+        "known": false,
+        "winning_claim_id": null,
+        "standing": null,
+        "confidence": null,
+        "as_of": null,
+        "evidence_refs": [],
+        "competing_claim_ids": [],
+        "suggested_claim_ids": []
+      },
+      "decision_criteria": {
+        "value": [
+          {
+            "text": "SOC2 Type II report",
+            "claim_id": "0c1a0000-0000-4000-8000-000000000201",
+            "status": "open",
+            "evidence_refs": [
+              {
+                "activity_id": "0ac70000-0000-4000-8000-000000000101",
+                "claim_id": "0c1a0000-0000-4000-8000-000000000201",
+                "quote": "Before we can sign off on the EU rollout we'll need your SOC2 Type II report and the pen-test summary.",
+                "speaker_person_id": "0b0e0000-0000-4000-8000-000000000018",
+                "occurred_at": "2026-09-29T15:42:00Z"
+              }
+            ]
+          }
+        ],
+        "known": true,
+        "winning_claim_id": null,
+        "standing": null,
+        "confidence": null,
+        "as_of": "2026-09-29T15:42:00Z",
+        "evidence_refs": [
+          {
+            "activity_id": "0ac70000-0000-4000-8000-000000000101",
+            "claim_id": "0c1a0000-0000-4000-8000-000000000201",
+            "quote": "Before we can sign off on the EU rollout we'll need your SOC2 Type II report and the pen-test summary.",
+            "speaker_person_id": "0b0e0000-0000-4000-8000-000000000018",
+            "occurred_at": "2026-09-29T15:42:00Z"
+          }
+        ],
+        "competing_claim_ids": [],
+        "suggested_claim_ids": []
+      },
+      "decision_process": {
+        "value": "Security sign-off required before EU rollout",
+        "known": true,
+        "winning_claim_id": "0c1a0000-0000-4000-8000-000000000201",
+        "standing": "first_party_ai",
+        "confidence": 0.92,
+        "as_of": "2026-09-29T15:42:00Z",
+        "evidence_refs": [
+          {
+            "activity_id": "0ac70000-0000-4000-8000-000000000101",
+            "claim_id": "0c1a0000-0000-4000-8000-000000000201",
+            "quote": "Before we can sign off on the EU rollout we'll need your SOC2 Type II report and the pen-test summary.",
+            "speaker_person_id": "0b0e0000-0000-4000-8000-000000000018",
+            "occurred_at": "2026-09-29T15:42:00Z"
+          }
+        ],
+        "competing_claim_ids": [],
+        "suggested_claim_ids": []
+      },
+      "current_commitments": {
+        "value": [],
+        "known": false,
+        "winning_claim_id": null,
+        "standing": null,
+        "confidence": null,
+        "as_of": null,
+        "evidence_refs": [],
+        "competing_claim_ids": [],
+        "suggested_claim_ids": []
+      },
+      "next_milestone": {
+        "value": "Security review of SOC2 package",
+        "known": true,
+        "winning_claim_id": "0c1a0000-0000-4000-8000-000000000201",
+        "standing": "first_party_ai",
+        "confidence": 0.92,
+        "as_of": "2026-09-29T15:42:00Z",
+        "evidence_refs": [
+          {
+            "activity_id": "0ac70000-0000-4000-8000-000000000101",
+            "claim_id": "0c1a0000-0000-4000-8000-000000000201",
+            "quote": "Before we can sign off on the EU rollout we'll need your SOC2 Type II report and the pen-test summary.",
+            "speaker_person_id": "0b0e0000-0000-4000-8000-000000000018",
+            "occurred_at": "2026-09-29T15:42:00Z"
+          }
+        ],
+        "competing_claim_ids": [],
+        "suggested_claim_ids": []
+      },
+      "next_meeting": {
+        "value": "unknown",
+        "known": false,
+        "winning_claim_id": null,
+        "standing": null,
+        "confidence": null,
+        "as_of": null,
+        "evidence_refs": [],
+        "competing_claim_ids": [],
+        "suggested_claim_ids": []
+      },
+      "relationship_risk": {
+        "value": "medium",
+        "known": true,
+        "winning_claim_id": "0c1a0000-0000-4000-8000-000000000201",
+        "standing": "first_party_ai",
+        "confidence": 0.7,
+        "as_of": "2026-09-29T15:42:00Z",
+        "evidence_refs": [
+          {
+            "activity_id": "0ac70000-0000-4000-8000-000000000101",
+            "claim_id": "0c1a0000-0000-4000-8000-000000000201",
+            "quote": "Before we can sign off on the EU rollout we'll need your SOC2 Type II report and the pen-test summary.",
+            "speaker_person_id": "0b0e0000-0000-4000-8000-000000000018",
+            "occurred_at": "2026-09-29T15:42:00Z"
+          }
+        ],
+        "competing_claim_ids": [],
+        "suggested_claim_ids": []
+      },
+      "product_use_case": {
+        "value": "EU team rollout",
+        "known": true,
+        "winning_claim_id": "0c1a0000-0000-4000-8000-000000000200",
+        "standing": "crm_explicit",
+        "confidence": 1,
+        "as_of": "2026-09-20T10:00:00Z",
+        "evidence_refs": [
+          {
+            "activity_id": "0ac70000-0000-4000-8000-000000000100",
+            "claim_id": "0c1a0000-0000-4000-8000-000000000200",
+            "occurred_at": "2026-09-20T10:00:00Z"
+          }
+        ],
+        "competing_claim_ids": [],
+        "suggested_claim_ids": []
+      },
+      "commercial_issue": {
+        "value": "unknown",
+        "known": false,
+        "winning_claim_id": null,
+        "standing": null,
+        "confidence": null,
+        "as_of": null,
+        "evidence_refs": [],
+        "competing_claim_ids": [],
+        "suggested_claim_ids": []
+      },
+      "last_customer_interaction": {
+        "value": "2026-09-29T15:42:00Z",
+        "known": true,
+        "winning_claim_id": null,
+        "standing": null,
+        "confidence": null,
+        "as_of": "2026-09-29T15:42:00Z",
+        "evidence_refs": [
+          {
+            "activity_id": "0ac70000-0000-4000-8000-000000000101",
+            "occurred_at": "2026-09-29T15:42:00Z"
+          }
+        ],
+        "competing_claim_ids": [],
+        "suggested_claim_ids": [],
+        "derived": true
+      },
+      "last_meaningful_change": {
+        "value": "Security blocker appeared; Marco (Security) entered buying group",
+        "known": true,
+        "winning_claim_id": null,
+        "standing": null,
+        "confidence": null,
+        "as_of": "2026-09-29T15:42:00Z",
+        "evidence_refs": [
+          {
+            "activity_id": "0ac70000-0000-4000-8000-000000000101",
+            "occurred_at": "2026-09-29T15:42:00Z"
+          }
+        ],
+        "competing_claim_ids": [],
+        "suggested_claim_ids": [],
+        "derived": true
+      },
+      "summary": {
+        "value": "Expansion to EU teams blocked on security review; Priya remains champion.",
+        "known": true,
+        "winning_claim_id": "0c1a0000-0000-4000-8000-000000000201",
+        "standing": "first_party_ai",
+        "confidence": 0.8,
+        "as_of": "2026-09-29T15:42:00Z",
+        "evidence_refs": [
+          {
+            "activity_id": "0ac70000-0000-4000-8000-000000000101",
+            "claim_id": "0c1a0000-0000-4000-8000-000000000201",
+            "quote": "Before we can sign off on the EU rollout we'll need your SOC2 Type II report and the pen-test summary.",
+            "speaker_person_id": "0b0e0000-0000-4000-8000-000000000018",
+            "occurred_at": "2026-09-29T15:42:00Z"
+          }
+        ],
+        "competing_claim_ids": [],
+        "suggested_claim_ids": []
+      },
+      "champion_since": {
+        "value": "2026-09-20T10:00:00Z",
+        "known": true,
+        "winning_claim_id": null,
+        "standing": null,
+        "confidence": null,
+        "as_of": "2026-09-20T10:00:00Z",
+        "evidence_refs": [
+          {
+            "activity_id": "0ac70000-0000-4000-8000-000000000100",
+            "claim_id": "0c1a0000-0000-4000-8000-000000000200",
+            "occurred_at": "2026-09-20T10:00:00Z"
+          }
+        ],
+        "competing_claim_ids": [],
+        "suggested_claim_ids": [],
+        "derived": true
+      }
+    },
+    "buying_group": [
+      {
+        "person_id": "0b0e0000-0000-4000-8000-000000000017",
+        "display_name": "Priya Shah",
+        "title": "Director of Operations",
+        "roles": [
+          "champion"
+        ],
+        "role_source": "recorded",
+        "role_basis": "crm_explicit buying_group.member",
+        "role_provenance": [
+          {
+            "role": "champion",
+            "source": "recorded",
+            "basis": "crm_explicit buying_group.member"
+          }
+        ],
+        "status": "active",
+        "delegated_to_person_id": null,
+        "last_engaged_at": "2026-09-29T15:42:00Z",
+        "evidence_refs": [
+          {
+            "activity_id": "0ac70000-0000-4000-8000-000000000101",
+            "claim_id": "0c1a0000-0000-4000-8000-000000000201",
+            "quote": "Priya will stay the point of contact on the commercial side.",
+            "speaker_person_id": "0b0e0000-0000-4000-8000-000000000018",
+            "occurred_at": "2026-09-29T15:42:00Z"
+          }
+        ]
+      },
+      {
+        "person_id": "0b0e0000-0000-4000-8000-000000000018",
+        "display_name": "Marco Ruiz",
+        "title": "Head of Security",
+        "roles": [
+          "security",
+          "technical_evaluator"
+        ],
+        "role_source": "inferred",
+        "role_basis": "first_party_ai stakeholder_role: \"we need your SOC2 report\"",
+        "role_provenance": [
+          {
+            "role": "security",
+            "source": "recorded",
+            "basis": "crm_explicit stakeholder_role"
+          },
+          {
+            "role": "technical_evaluator",
+            "source": "inferred",
+            "basis": "first_party_ai stakeholder_role: \"we need your SOC2 report\""
+          }
+        ],
+        "status": "new",
+        "delegated_to_person_id": null,
+        "last_engaged_at": "2026-09-29T15:42:00Z",
+        "evidence_refs": [
+          {
+            "activity_id": "0ac70000-0000-4000-8000-000000000101",
+            "claim_id": "0c1a0000-0000-4000-8000-000000000201",
+            "quote": "I lead security at Acme",
+            "speaker_person_id": "0b0e0000-0000-4000-8000-000000000018",
+            "occurred_at": "2026-09-29T15:42:00Z"
+          }
+        ]
+      }
+    ],
+    "relationship_state": {
+      "value": "REORG",
+      "transition_id": "0e5a0000-0000-4000-8000-000000000001",
+      "confirmed_at": "2026-09-15T09:00:00Z"
+    },
+    "open_transition": {
+      "transition_id": "0e5a0000-0000-4000-8000-000000000002",
+      "from_state": "REORG",
+      "to_state_candidate": "EXPANSION",
+      "status": "CANDIDATE",
+      "confidence": 0.4,
+      "missing_facts": [
+        {
+          "key": "owner_stabilized",
+          "required": true
+        },
+        {
+          "key": "value_signal_present",
+          "required": true
+        },
+        {
+          "key": "commercial_next_step",
+          "required": true
+        },
+        {
+          "key": "economic_buyer_known",
+          "required": false
+        }
+      ],
+      "last_updated_at": "2026-09-29T15:42:11Z"
+    },
+    "coverage_gaps": [
+      "economic_buyer"
+    ]
+  },
+  "state_diff": {
+    "id": "0d1f0000-0000-4000-8000-000000000301",
+    "account_id": "0a0c0000-0000-4000-8000-000000000001",
+    "from_version": 6,
+    "to_version": 7,
+    "is_material": true,
+    "changes": [
+      {
+        "field": "buying_group",
+        "op": "added",
+        "before": null,
+        "after": {
+          "person_id": "0b0e0000-0000-4000-8000-000000000018",
+          "roles": [
+            "security"
+          ]
+        },
+        "material": true,
+        "evidence_refs": [
+          {
+            "activity_id": "0ac70000-0000-4000-8000-000000000101",
+            "claim_id": "0c1a0000-0000-4000-8000-000000000201",
+            "quote": "I lead security at Acme",
+            "speaker_person_id": "0b0e0000-0000-4000-8000-000000000018",
+            "occurred_at": "2026-09-29T15:42:00Z"
+          }
+        ]
+      },
+      {
+        "field": "blockers",
+        "op": "changed",
+        "before": [],
+        "after": [
+          "Security review: SOC2 Type II report and pen-test summary required"
+        ],
+        "material": true,
+        "evidence_refs": [
+          {
+            "activity_id": "0ac70000-0000-4000-8000-000000000101",
+            "claim_id": "0c1a0000-0000-4000-8000-000000000201",
+            "quote": "Before we can sign off on the EU rollout we'll need your SOC2 Type II report and the pen-test summary.",
+            "speaker_person_id": "0b0e0000-0000-4000-8000-000000000018",
+            "occurred_at": "2026-09-29T15:42:00Z"
+          }
+        ]
+      },
+      {
+        "field": "next_meeting",
+        "op": "became_unknown",
+        "before": "2026-09-30T16:00:00Z",
+        "after": "unknown",
+        "material": true,
+        "evidence_refs": [
+          {
+            "activity_id": "0ac70000-0000-4000-8000-000000000101",
+            "claim_id": "0c1a0000-0000-4000-8000-000000000201",
+            "quote": "I can't commit to a review date until our team has read them.",
+            "speaker_person_id": "0b0e0000-0000-4000-8000-000000000018",
+            "occurred_at": "2026-09-29T15:42:00Z"
+          }
+        ]
+      }
+    ],
+    "activity_ids": [
+      "0ac70000-0000-4000-8000-000000000101"
+    ],
+    "created_at": "2026-09-29T15:42:11Z"
+  },
+  "signals": [
+    {
+      "id": "051a0000-0000-4000-8000-000000000401",
+      "account_id": "0a0c0000-0000-4000-8000-000000000001",
+      "opportunity_id": "0c0f0000-0000-4000-8000-000000000004",
+      "signal_type": "security_blocker_appeared",
+      "state_diff_id": "0d1f0000-0000-4000-8000-000000000301",
+      "subject_person_id": "0b0e0000-0000-4000-8000-000000000018",
+      "subject_claim_id": "0c1a0000-0000-4000-8000-000000000201",
+      "occurred_at": "2026-09-29T15:42:00Z",
+      "expires_at": null,
+      "dedupe_key": "diff:0d1f0000-0000-4000-8000-000000000301:sig.security_blocker@1:0c1a0000-0000-4000-8000-000000000201",
+      "rule": "sig.security_blocker@1",
+      "details": {
+        "blocker": "SOC2 Type II + pen-test summary"
+      },
+      "evidence_refs": [
+        {
+          "activity_id": "0ac70000-0000-4000-8000-000000000101",
+          "claim_id": "0c1a0000-0000-4000-8000-000000000201",
+          "quote": "Before we can sign off on the EU rollout we'll need your SOC2 Type II report and the pen-test summary.",
+          "speaker_person_id": "0b0e0000-0000-4000-8000-000000000018",
+          "occurred_at": "2026-09-29T15:42:00Z"
+        }
+      ],
+      "created_at": "2026-09-29T15:42:11Z"
+    },
+    {
+      "id": "051a0000-0000-4000-8000-000000000402",
+      "account_id": "0a0c0000-0000-4000-8000-000000000001",
+      "opportunity_id": "0c0f0000-0000-4000-8000-000000000004",
+      "signal_type": "new_stakeholder_entered",
+      "state_diff_id": "0d1f0000-0000-4000-8000-000000000301",
+      "subject_person_id": "0b0e0000-0000-4000-8000-000000000018",
+      "subject_claim_id": "0c1a0000-0000-4000-8000-000000000201",
+      "occurred_at": "2026-09-29T15:42:00Z",
+      "expires_at": "2026-10-06T15:42:00Z",
+      "dedupe_key": "diff:0d1f0000-0000-4000-8000-000000000301:sig.new_stakeholder@1:0c1a0000-0000-4000-8000-000000000201",
+      "rule": "sig.new_stakeholder@1",
+      "details": {
+        "person_id": "0b0e0000-0000-4000-8000-000000000018",
+        "role": "security"
+      },
+      "evidence_refs": [
+        {
+          "activity_id": "0ac70000-0000-4000-8000-000000000101",
+          "claim_id": "0c1a0000-0000-4000-8000-000000000201",
+          "quote": "I lead security at Acme",
+          "speaker_person_id": "0b0e0000-0000-4000-8000-000000000018",
+          "occurred_at": "2026-09-29T15:42:00Z"
+        }
+      ],
+      "created_at": "2026-09-29T15:42:11Z"
+    }
+  ],
+  "trigger_evaluation": {
+    "id": "07e10000-0000-4000-8000-000000000501",
+    "account_id": "0a0c0000-0000-4000-8000-000000000001",
+    "workflow": "post_interaction_followup",
+    "eligible": true,
+    "reason_codes": [
+      "eligible_customer_replied",
+      "eligible_stakeholder_change"
+    ],
+    "explanation": "Customer replied with a new security stakeholder and blocker; no open run.",
+    "signal_ids": [
+      "051a0000-0000-4000-8000-000000000401",
+      "051a0000-0000-4000-8000-000000000402"
+    ],
+    "state_diff_id": "0d1f0000-0000-4000-8000-000000000301",
+    "agent_run_id": "0f0a0000-0000-4000-8000-000000000601",
+    "evaluated_at": "2026-09-29T15:42:12Z"
+  },
+  "context_accesses": [
+    {
+      "access_id": 101,
+      "tool": "state",
+      "items": [
+        {
+          "id": "0a0c0000-0000-4000-8000-000000000001"
+        }
+      ],
+      "truncated": false,
+      "bytes": 3120,
+      "world_as_of": "2026-09-29T15:42:00.000001Z",
+      "limits": {
+        "max_items": 10,
+        "max_bytes": 8192
+      }
+    },
+    {
+      "access_id": 102,
+      "tool": "evidence",
+      "items": [
+        {
+          "id": "0c1a0000-0000-4000-8000-000000000201"
+        }
+      ],
+      "truncated": false,
+      "bytes": 640,
+      "world_as_of": "2026-09-29T15:42:00.000001Z",
+      "limits": {
+        "max_items": 10,
+        "max_bytes": 8192
+      }
+    }
+  ],
+  "decisions": [
+    {
+      "id": "0dec0000-0000-4000-8000-000000000701",
+      "agent_run_id": "0f0a0000-0000-4000-8000-000000000601",
+      "decision": "edit",
+      "surface": "web",
+      "actor_person_id": "0b0e0000-0000-4000-8000-000000000001",
+      "actor_label": "Dana Kim",
+      "edited_artifact": {
+        "channel": "email",
+        "subject": "Re: Expansion to EU teams",
+        "body": "Hi Marco,\n\nAttached are our SOC2 Type II report and pen-test summary. Once you and Priya have reviewed, let us know what timing suits you.\n\nBest,\nDana",
+        "attachments": [
+          "soc2-type2-2026.pdf",
+          "pentest-summary-2026Q3.pdf"
+        ]
+      },
+      "reason": "Softened the meeting ask until the docs are reviewed.",
+      "created_at": "2026-09-29T16:05:00Z"
+    }
+  ],
+  "placeholders": {
+    "eval_runs": [],
+    "customer_reactions": [
+      {
+        "id": "0eac7000-0000-4000-8000-000000000d01",
+        "account_id": "0a0c0000-0000-4000-8000-000000000001",
+        "agent_run_id": "0f0a0000-0000-4000-8000-000000000601",
+        "activity_id": "0ac70000-0000-4000-8000-000000000102",
+        "reaction_type": "replied",
+        "polarity": "positive",
+        "evidence_refs": [
+          {
+            "activity_id": "0ac70000-0000-4000-8000-000000000102",
+            "quote": "Thanks Dana - we'll review and propose a date.",
+            "speaker_person_id": "0b0e0000-0000-4000-8000-000000000018",
+            "occurred_at": "2026-09-30T09:10:00Z"
+          }
+        ],
+        "created_at": "2026-09-30T09:10:05Z"
+      }
+    ],
+    "knowledge_updates": []
+  }
+}

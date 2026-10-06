@@ -1,0 +1,93 @@
+{
+  "eval_type": "knowledge_applicability",
+  "version": 1,
+  "title": "Knowledge applicability",
+  "har97_refs": [
+    {
+      "line": 1308,
+      "text": "## 5.14 Knowledge applicability"
+    }
+  ],
+  "l2_dimension": null,
+  "questions": [
+    {
+      "section": "§5.14",
+      "text": "Does the retrieved company knowledge actually apply to this account state?"
+    }
+  ],
+  "inputs": [
+    "offered knowledge: situation signature, guidance, exceptions",
+    "account state fields, buying group, open signals",
+    "knowledge the candidate cited and followed"
+  ],
+  "criteria": [
+    {
+      "id": "signature_holds",
+      "kind": "check",
+      "text": "every signature condition holds in the current state",
+      "guide": "Check each situation_signature condition against state fields and open signals ('diff.<signal>' = an open signal).",
+      "har97": null,
+      "output": "finding",
+      "before": null,
+      "after": null
+    },
+    {
+      "id": "exception_holds",
+      "kind": "check",
+      "text": "no exception of the knowledge holds",
+      "guide": "Only when the signature holds: if any exception's conditions hold, the knowledge must not be applied.",
+      "har97": null,
+      "output": "finding",
+      "before": null,
+      "after": null
+    },
+    {
+      "id": "used_correctly",
+      "kind": "evaluate",
+      "text": "the candidate follows applicable knowledge and ignores inapplicable knowledge",
+      "guide": "Applicable guidance is followed; inapplicable or excepted guidance is neither cited nor followed.",
+      "har97": null,
+      "output": "finding",
+      "before": null,
+      "after": null
+    }
+  ],
+  "failure_examples": [],
+  "counter_failures": [],
+  "known_exceptions": [],
+  "candidate_choices": [],
+  "principles": [
+    "This protects against semantic retrieval finding a superficially similar play that should not be used."
+  ],
+  "labels": [
+    {
+      "label": "APPLIES",
+      "when": "Signature holds and no exception holds."
+    },
+    {
+      "label": "DOES_NOT_APPLY",
+      "when": "At least one signature condition fails."
+    },
+    {
+      "label": "EXCEPTION_TRIGGERED",
+      "when": "Signature holds and an exception holds."
+    }
+  ],
+  "pass_label": "APPLIES",
+  "diagnostics": [],
+  "routing": {
+    "actions": [
+      "send_email",
+      "schedule_meeting",
+      "share_document",
+      "internal_note",
+      "wait",
+      "no_action"
+    ],
+    "when_all": [],
+    "when_any": [
+      "has_offered_knowledge"
+    ]
+  },
+  "uses_rep_profile": false
+}

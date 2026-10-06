@@ -1,0 +1,564 @@
+{
+ "account_state_fill": {
+  "accounts": 94,
+  "fields": {
+   "blockers": {
+    "by_standing": {
+     "derived": 14
+    },
+    "known": 14,
+    "unknown": 80
+   },
+   "champion": {
+    "by_standing": {
+     "first_party_ai": 1
+    },
+    "known": 1,
+    "unknown": 93
+   },
+   "champion_status": {
+    "by_standing": {},
+    "known": 0,
+    "unknown": 94
+   },
+   "commercial_issue": {
+    "by_standing": {
+     "first_party_ai": 82
+    },
+    "known": 82,
+    "unknown": 12
+   },
+   "current_commitments": {
+    "by_standing": {
+     "derived": 82
+    },
+    "known": 82,
+    "unknown": 12
+   },
+   "decision_criteria": {
+    "by_standing": {
+     "derived": 82
+    },
+    "known": 82,
+    "unknown": 12
+   },
+   "decision_process": {
+    "by_standing": {
+     "first_party_ai": 29
+    },
+    "known": 29,
+    "unknown": 65
+   },
+   "economic_buyer": {
+    "by_standing": {
+     "first_party_ai": 2
+    },
+    "known": 2,
+    "unknown": 92
+   },
+   "health": {
+    "by_standing": {
+     "first_party_ai": 20
+    },
+    "known": 20,
+    "unknown": 74
+   },
+   "last_customer_interaction": {
+    "by_standing": {
+     "derived": 82
+    },
+    "known": 82,
+    "unknown": 12
+   },
+   "last_meaningful_change": {
+    "by_standing": {
+     "derived": 94
+    },
+    "known": 94,
+    "unknown": 0
+   },
+   "motion": {
+    "by_standing": {
+     "first_party_ai": 22
+    },
+    "known": 22,
+    "unknown": 72
+   },
+   "next_meeting": {
+    "by_standing": {
+     "first_party_ai": 67
+    },
+    "known": 67,
+    "unknown": 27
+   },
+   "next_milestone": {
+    "by_standing": {
+     "first_party_ai": 82
+    },
+    "known": 82,
+    "unknown": 12
+   },
+   "objections": {
+    "by_standing": {
+     "derived": 82
+    },
+    "known": 82,
+    "unknown": 12
+   },
+   "owner": {
+    "by_standing": {
+     "crm_explicit": 94
+    },
+    "known": 94,
+    "unknown": 0
+   },
+   "product_use_case": {
+    "by_standing": {
+     "first_party_ai": 76
+    },
+    "known": 76,
+    "unknown": 18
+   },
+   "relationship_risk": {
+    "by_standing": {
+     "first_party_ai": 11
+    },
+    "known": 11,
+    "unknown": 83
+   },
+   "stage": {
+    "by_standing": {
+     "crm_explicit": 94
+    },
+    "known": 94,
+    "unknown": 0
+   },
+   "summary": {
+    "by_standing": {
+     "first_party_ai": 79
+    },
+    "known": 79,
+    "unknown": 15
+   }
+  }
+ },
+ "cassettes": {
+  "aggregate_sha256": "3fac90027ffd2b51cf77bd7cfdab62874dd11262dd92bb7ec592b28e12f6032a",
+  "files": 5144,
+  "total_bytes": 99418890
+ },
+ "dataset": {
+  "exported_at": "2026-10-03T02:54:06Z",
+  "licence": "CC BY-NC 4.0 (non-commercial use only)",
+  "name": "CRMArena-Pro B2B Salesforce org (Salesforce AI Research)"
+ },
+ "entity_resolution": {
+  "all_ai_claims": 7141,
+  "by_field": {
+   "buying_group.member": {
+    "claims": 1,
+    "rate": 1.0,
+    "resolved": 1
+   },
+   "champion": {
+    "claims": 1,
+    "rate": 1.0,
+    "resolved": 1
+   },
+   "economic_buyer": {
+    "claims": 3,
+    "rate": 1.0,
+    "resolved": 3
+   },
+   "stakeholder_role": {
+    "claims": 4,
+    "rate": 1.0,
+    "resolved": 4
+   }
+  },
+  "email_participants": {
+   "from": {
+    "rate": 1.0,
+    "rows": 5177,
+    "with_person_id": 5177
+   },
+   "to": {
+    "rate": 1.0,
+    "rows": 5177,
+    "with_person_id": 5177
+   }
+  },
+  "person_claims": 9,
+  "person_claims_resolved": 9,
+  "speaker_resolved_claims": 7089,
+  "subject_resolution_rate": 1.0,
+  "unresolved_distinct_people": 0,
+  "unresolved_top": []
+ },
+ "extraction": {
+  "candidates_returned_by_worker": 7143,
+  "claims_by_extractor_standing": [
+   [
+    "llm",
+    "first_party_ai",
+    7141
+   ],
+   [
+    "rule",
+    "crm_explicit",
+    3226
+   ]
+  ],
+  "claims_by_field": {
+   "blockers": 23,
+   "buying_group.member": 1,
+   "champion": 1,
+   "commercial_issue": 1223,
+   "commitment": 1033,
+   "decision_criteria": 832,
+   "decision_process": 46,
+   "economic_buyer": 3,
+   "health": 26,
+   "motion": 38,
+   "next_meeting": 1675,
+   "next_milestone": 992,
+   "objections": 439,
+   "owner": 1,
+   "product_use_case": 323,
+   "relationship_risk": 120,
+   "stage": 94,
+   "stakeholder_role": 4,
+   "summary": 267
+  },
+  "claims_by_status": {
+   "active": 3370,
+   "outranked": 82,
+   "superseded": 3689
+  },
+  "claims_per_event": {
+   "count": 5144,
+   "max": 10,
+   "mean": 1.388,
+   "p50": 1.0,
+   "p95": 4.0
+  },
+  "claims_per_event_by_type": {
+   "EmailReceived": {
+    "count": 1811,
+    "max": 7,
+    "mean": 1.456,
+    "p50": 1.0,
+    "p95": 4.0
+   },
+   "EmailReply": {
+    "count": 420,
+    "max": 8,
+    "mean": 1.45,
+    "p50": 1.0,
+    "p95": 4.0
+   },
+   "EmailSent": {
+    "count": 2913,
+    "max": 10,
+    "mean": 1.337,
+    "p50": 1.0,
+    "p95": 4.0
+   }
+  },
+  "claims_stored": 7141,
+  "core_drop_causes": {
+   "core_validation_or_duplicate": 2
+  },
+  "core_dropped_after_worker": 2,
+  "events": 5144,
+  "events_with_zero_claims": 1449,
+  "stored_claims_with_verbatim_quote": 7141,
+  "stored_quote_pass_rate": 1.0,
+  "worker_dropped_unverifiable_quote": 94,
+  "worker_quote_pass_rate": 0.987,
+  "worker_rejected_buyer_side_owner": 0,
+  "zero_claim_rate": 0.2817
+ },
+ "ground_truth": {
+  "amount_consistency": {
+   "all_amount_bearing_fields": {
+    "chance_equals_deal_amount_rate": 0.0082,
+    "chance_in_any_deal_value_rate": 0.0972,
+    "emails": 179,
+    "equals_deal_amount": 50,
+    "equals_deal_amount_rate": 0.2793,
+    "in_any_deal_value": 128,
+    "in_any_deal_value_rate": 0.7151
+   },
+   "examples_not_in_any_deal_value": [
+    {
+     "claimed": [
+      5723.89,
+      5723.89
+     ],
+     "crm_amount": 18712.628,
+     "field": "commercial_issue"
+    },
+    {
+     "claimed": [
+      15752.19,
+      15752.19
+     ],
+     "crm_amount": 15482.1945,
+     "field": "commercial_issue"
+    },
+    {
+     "claimed": [
+      22554.61,
+      22554.61
+     ],
+     "crm_amount": 20964.635,
+     "field": "commercial_issue"
+    },
+    {
+     "claimed": [
+      55376.31,
+      55376.31
+     ],
+     "crm_amount": 53786.34,
+     "field": "commercial_issue"
+    },
+    {
+     "claimed": [
+      9059.83,
+      9059.83
+     ],
+     "crm_amount": 8309.849,
+     "field": "commercial_issue"
+    },
+    {
+     "claimed": [
+      8499.83,
+      8499.83
+     ],
+     "crm_amount": 30961.9025,
+     "field": "commercial_issue"
+    }
+   ],
+   "label": "quote<->CRM consistency check, not accuracy (the emails were generated from CRM fields); one email = one observation",
+   "per_field": {
+    "commercial_issue": {
+     "chance_equals_deal_amount_rate": 0.0082,
+     "chance_in_any_deal_value_rate": 0.0965,
+     "emails": 178,
+     "equals_deal_amount": 50,
+     "equals_deal_amount_rate": 0.2809,
+     "in_any_deal_value": 127,
+     "in_any_deal_value_rate": 0.7135
+    },
+    "commitment": {
+     "chance_equals_deal_amount_rate": 0.006,
+     "chance_in_any_deal_value_rate": 0.2481,
+     "emails": 1,
+     "equals_deal_amount": 0,
+     "equals_deal_amount_rate": 0.0,
+     "in_any_deal_value": 1,
+     "in_any_deal_value_rate": 1.0
+    },
+    "product_use_case": {
+     "chance_equals_deal_amount_rate": 0.0125,
+     "chance_in_any_deal_value_rate": 0.1379,
+     "emails": 6,
+     "equals_deal_amount": 0,
+     "equals_deal_amount_rate": 0.0,
+     "in_any_deal_value": 6,
+     "in_any_deal_value_rate": 1.0
+    }
+   },
+   "pricing_field_only": {
+    "chance_equals_deal_amount_rate": 0.0082,
+    "chance_in_any_deal_value_rate": 0.0965,
+    "emails": 178,
+    "equals_deal_amount": 50,
+    "equals_deal_amount_rate": 0.2809,
+    "field": "commercial_issue",
+    "in_any_deal_value": 127,
+    "in_any_deal_value_rate": 0.7135
+   },
+   "stated_amount_claims": 240
+  },
+  "contact_title_or_role": {
+   "agree": 0,
+   "agreement_rate": 0.0,
+   "compared": 5,
+   "disagree": 5,
+   "examples_disagree": [
+    {
+     "claimed": "procurement",
+     "crm_title": "Financial Analyst"
+    },
+    {
+     "claimed": "procurement",
+     "crm_title": "DevOps Engineer"
+    },
+    {
+     "claimed": "procurement",
+     "crm_title": "UX Designer"
+    },
+    {
+     "claimed": "procurement",
+     "crm_title": "Chief Security Officer"
+    },
+    {
+     "claimed": "{\"role\": \"influencer\"}",
+     "crm_title": "HR Business Partner"
+    }
+   ]
+  },
+  "opportunity_contact_role_ground_truth": "none: OpportunityContactRole.Role is empty on every row of the snapshot",
+  "owner": {
+   "agree": 1,
+   "agreement_rate": 1.0,
+   "compared": 1,
+   "disagree": 0,
+   "examples_disagree": []
+  },
+  "stage": {
+   "claims_without_a_stage_in_force_at_send_time": 93,
+   "examples_disagree_after_synonyms_in_force": [],
+   "final_stage_strict": {
+    "agree": 56,
+    "agreement_rate": 0.5957,
+    "compared": 94,
+    "disagree": 38
+   },
+   "final_stage_with_synonyms": {
+    "agree": 65,
+    "agreement_rate": 0.6915,
+    "compared": 94,
+    "disagree": 29
+   },
+   "final_stage_with_synonyms_same_subset": {
+    "agree": 1,
+    "agreement_rate": 1.0,
+    "compared": 1,
+    "disagree": 0
+   },
+   "in_force_stage_strict": {
+    "agree": 1,
+    "agreement_rate": 1.0,
+    "compared": 1,
+    "disagree": 0
+   },
+   "in_force_stage_with_synonyms": {
+    "agree": 1,
+    "agreement_rate": 1.0,
+    "compared": 1,
+    "disagree": 0
+   },
+   "informative": false,
+   "label": "in-force stage = the loader's DERIVED stage events (the snapshot has no real stage history; OpportunityHistory rows carry load dates)",
+   "n_stage_claims": 94
+  },
+  "state_level": {
+   "deals_per_account": {
+    "max": 15,
+    "mean": 11.58
+   },
+   "label": "POINTER CONSISTENCY, not quality: the state's stage/owner are CRM claims (crm_explicit) compared with the CRM deal the state points at; it checks the CRM against itself",
+   "owner_vs_deal_the_state_points_at": {
+    "agree": 48,
+    "agreement_rate": 0.5106,
+    "compared": 94,
+    "disagree": 46
+   },
+   "stage_vs_deal_the_state_points_at": {
+    "agree": 94,
+    "agreement_rate": 1.0,
+    "compared": 94,
+    "disagree": 0
+   },
+   "stage_winner_comes_from_the_state_deal": {
+    "agree": 94,
+    "agreement_rate": 1.0,
+    "compared": 94,
+    "disagree": 0
+   }
+  }
+ },
+ "notes": [
+  "SCOPE. The snapshot was imported in full (no --until), before PR #26 (until-cutoff ingest) merged, so it covers the full timeline. Valid for WP6 extraction metrics only; this database must not be used for any HAR-129 decision run.",
+  "PROVENANCE. The database of the paid run was lost (the local embedded Postgres re-initialises its data directory on restart). This bundle is regenerated OFFLINE: a fresh local import of the same snapshot, then the 5144 recorded cassettes replayed through bench/data/crmarena_replay_worker.py (no network, no key): 5103 exact hits and 41 approximate hits (same email, known-people block ordered or classified differently by the new import). Latency, token, cost and provider-health numbers still come from the original worker and core logs of the paid run.",
+  "ENVIRONMENT. Local embedded Postgres 17 (Windows, WIN1252-labelled; read as UTF-8 by the tools). Paid run: worker in record mode, deepseek-v4-flash via OpenRouter (answering model deepseek/deepseek-v4-flash), prompt/extractor extract-v4, 24 core coalescers, 24 concurrent worker calls. No Neon or shared database.",
+  "PILOT. 5% stratified by activity type (seed 20261002): 261 emails (EmailSent 147, EmailReceived 92, EmailReply 22) of 5177, the rest held out with empty cached answers; 260 answered. Reported cost 0.108 USD, 0.000391 USD per event, 2.02 USD projected for all 5177, far below the 10 USD cap, so the full run went ahead.",
+  "COST. Attributable cost = what OpenRouter reported in our own successful responses plus every abandoned (hung) attempt priced as a mean call (see the cost line). The shared key's meter moved 23.87 USD in the same hours, but it is not our spend: it moved 0.19 USD in one minute while all our cores were stopped, and the key later returned HTTP 402 (see COVERAGE).",
+  "COVERAGE AND PROVIDER ERRORS. From 05:27Z the provider answered the worker with HTTP 402 (payment required: the shared key ran out of credit) on and off; the worker turned each into a 502 provider_error. 32,424 such failed calls followed, because parked recompute jobs retry every 10 minutes with no circuit breaker on a persistent provider error. The 41 emails of the paid run that were never extracted (33 in this replay: 5144 of 5177 extracted) therefore failed on the provider side, not on their content; their 7 accounts' jobs parked after 5 attempts. The earlier summary 'model provider failed to produce a usable result' was the worker's public message for these 402s.",
+  "PARKING LOSES THE STATE. A job whose model call fails with a retryable error parks and writes no AccountState (the fold is skipped), so 7 of 101 accounts have no state in this replay. The paid run showed 101 because the pilot had already computed a state for every account.",
+  "ACCOUNT-LEVEL STATE. The AccountState is per account but the CRM has 11.6 deals per account (max 15), so one state folds claims from every deal; its stage/owner winner is the latest across deals.",
+  "GROUND-TRUTH CAVEATS. OpportunityContactRole.Role, Opportunity.Type and NextStep are empty, so there is no role, motion or next-step truth. The CRM stage 'Closed' has no won/lost. The snapshot has no real stage history; the in-force stage is the loader's DERIVED stage events. The CRMArena emails were generated from CRM fields, so agreement with the CRM mostly shows the dataset repeating itself."
+ ],
+ "run": {
+  "account_states": 94,
+  "activities": 15306,
+  "activities_by_type": {
+   "CRMFieldChanged": 1975,
+   "CRMTaskLogged": 4782,
+   "ChatTranscriptReady": 58,
+   "ContactAdded": 886,
+   "ContractSigned": 163,
+   "EmailReceived": 1822,
+   "EmailReply": 423,
+   "EmailSent": 2932,
+   "OpportunityStageChanged": 1170,
+   "OrderPlaced": 163,
+   "QuoteCreated": 704,
+   "SupportTicketOpened": 153,
+   "SupportTicketResolved": 75
+  },
+  "emails_never_extracted": 33,
+  "extractable_emails": 5177,
+  "extracted_events": 5144,
+  "models": {
+   "deepseek/deepseek-v4-flash@extract-v4": 5144
+  },
+  "parked_jobs": 7,
+  "pending_jobs": 7,
+  "quarantined": [],
+  "unresolved_activities": 0
+ },
+ "worker": {
+  "core_warnings_and_errors": {
+   "ERROR: coalesce: cannot list parked jobs": 94,
+   "ERROR: coalesce: drain failed": 25587,
+   "WARN: coalesce: recompute work needs an operator (ghostctl jobs)": 671
+  },
+  "cost_usd": {
+   "attributable_estimate_incl_hung_attempts": 2.0867,
+   "openrouter_meter_delta_not_ours": 23.8739,
+   "openrouter_reported_in_responses": 1.911848,
+   "per_call_reported": 0.000353,
+   "token_price_estimate": 1.0666
+  },
+  "latency_s": {
+   "count": 5413,
+   "max": 187.906,
+   "mean": 28.562,
+   "p50": 18.266,
+   "p95": 119.20939999999999
+  },
+  "log": {
+   "cached_tokens": 0,
+   "completion_tokens": 7507318,
+   "error_types": {
+    "ProviderError": 32545
+   },
+   "events": {
+    "extract_complete": 5413,
+    "hung_retry": 495,
+    "invalid_json_retry": 6,
+    "worker_error": 32545
+   },
+   "models": {
+    "deepseek/deepseek-v4-flash": 5413
+   },
+   "prompt_tokens": 23077927,
+   "reported_cost_usd": 1.911848
+  },
+  "successful_calls": 5413
+ }
+}

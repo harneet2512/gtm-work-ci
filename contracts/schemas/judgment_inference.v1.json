@@ -1,0 +1,142 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://ghost.local/contracts/judgment_inference.v1.json",
+  "title": "JudgmentInference",
+  "description": "Slack Message 3 (HAR-129 section 11, 12): Ghost's inference of why the human chose what they chose, and the human's verdict on that inference. The verdict and note are higher-quality supervision than the click alone. One human choice never becomes company knowledge directly: this record only feeds a candidate criterion that must be scoped and backtested.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "id", "decision_episode_id", "human_strategy_decision_id", "agent_preference", "human_choice", "agreement",
+    "inferred_semantic_delta", "evidence", "human_verdict", "generated_at"
+  ],
+  "properties": {
+    "id": { "$ref": "common.v1.json#/$defs/uuid" },
+    "decision_episode_id": { "$ref": "common.v1.json#/$defs/uuid" },
+    "human_strategy_decision_id": { "$ref": "common.v1.json#/$defs/uuid" },
+    "agent_preference": { "description": "Candidate Ghost ranked first.", "$ref": "common.v1.json#/$defs/uuid" },
+    "human_choice": { "description": "Candidate the human selected.", "$ref": "common.v1.json#/$defs/uuid" },
+    "agreement": {
+      "description": "agreed when the human chose Ghost's preference (the judgment is confirmed rather than contradicted), overrode otherwise; a SQL CHECK ties it to the two ids.",
+      "type": "string",
+      "enum": ["agreed", "overrode"]
+    },
+    "inferred_semantic_delta": {
+      "description": "What the human valued differently from Ghost, in words, plus labels from the HumanDelta vocabulary where they fit.",
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["statement"],
+      "properties": {
+        "statement": { "type": "string", "minLength": 1, "maxLength": 1500 },
+        "semantic_labels": { "$ref": "human_delta.v1.json#/properties/semantic_labels" },
+        "edit_class": {
+          "description": "What kind of change the human made, per class (a recipient edit is always stakeholder or recipient). A factual change labelled style would suppress learning, so the class is judged on its own (E10.3).",
+          "type": "array", "uniqueItems": true,
+          "items": { "enum": ["factual", "state", "strategy", "stakeholder", "timing", "cta", "style", "recipient", "risk", "tone", "wording", "new_info", "unknown"] }
+        },
+        "signal_strength": {
+          "description": "How much this interaction says: a click alone is at most weak; an edit is moderate; an explicit note or a corrected inference is strong (E10.4).",
+          "enum": ["weak", "moderate", "strong"]
+        },
+        "explicit_instructions": {
+          "description": "Imperative rules the human stated in a note or a correction, each with the verbatim words (E10.5). Never invented: an empty list when the human stated none.",
+          "type": "array",
+          "items": {
+            "type": "object", "additionalProperties": false, "required": ["instruction", "quote"],
+            "properties": {
+              "instruction": { "type": "string", "minLength": 1, "maxLength": 500 },
+              "quote": { "type": "string", "minLength": 1, "maxLength": 1000 }
+            }
+          }
+        },
+        "confidence": {
+          "description": "How sure the inference is of its own reading, 0 to 1. Never a probability of being right about the person: it is the producer's stated certainty, calibrated later.",
+          "type": "number", "minimum": 0, "maximum": 1
+        },
+        "unknown": {
+          "description": "True when the inference cannot say why the human chose this: the statement then says so and no label is offered (E10.6). Unknown is a correct answer for an ambiguous choice.",
+          "type": "boolean"
+        }
+      }
+    },
+    "evidence": {
+      "description": "Why Ghost inferred this (Message 3 'Why Ghost inferred this').",
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["candidate_differences", "evidence_refs", "eval_differences", "knowledge_refs", "no_applicable_knowledge"],
+      "properties": {
+        "candidate_differences": {
+          "description": "How the preferred and the chosen candidate differ.",
+          "type": "array", "items": { "type": "string", "minLength": 1, "maxLength": 500 }
+        },
+        "evidence_refs": {
+          "description": "Account-state evidence behind the inference.",
+          "type": "array", "minItems": 1, "items": { "$ref": "common.v1.json#/$defs/evidenceRef" }
+        },
+        "eval_differences": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": ["eval_type", "agent_preference_verdict", "human_choice_verdict"],
+            "properties": {
+              "eval_type": { "$ref": "eval_result.v1.json#/$defs/evalType" },
+              "agent_preference_verdict": { "$ref": "eval_bundle.v1.json#/$defs/item/properties/verdict" },
+              "human_choice_verdict": { "$ref": "eval_bundle.v1.json#/$defs/item/properties/verdict" },
+              "note": { "type": ["string", "null"], "maxLength": 500 }
+            }
+          }
+        },
+        "knowledge_refs": { "type": "array", "items": { "$ref": "common.v1.json#/$defs/uuid" } },
+        "no_applicable_knowledge": {
+          "description": "True when no company knowledge applied; the absence is part of the evidence.",
+          "type": "boolean"
+        }
+      }
+    },
+    "human_verdict": {
+      "description": "no_learning is the human's explicit opt-out (Slack \"Don't learn this\"): nothing is learned from this episode; no candidate criterion or knowledge is seeded from it and no later verdict changes that.",
+      "type": "string", "enum": ["pending", "confirmed", "corrected", "no_learning"]
+    },
+    "corrected_statement": {
+      "description": "The human's replacement for inferred_semantic_delta.statement.",
+      "type": ["string", "null"], "maxLength": 1500
+    },
+    "human_note": { "type": ["string", "null"], "maxLength": 2000 },
+    "verdict_surface": { "oneOf": [{ "$ref": "human_decision.v1.json#/properties/surface" }, { "type": "null" }] },
+    "verdict_actor_label": { "type": ["string", "null"], "maxLength": 200 },
+    "verdict_at": { "oneOf": [{ "$ref": "common.v1.json#/$defs/timestamp" }, { "type": "null" }] },
+    "model": { "type": ["string", "null"] },
+    "generated_at": { "$ref": "common.v1.json#/$defs/timestamp" }
+  },
+  "allOf": [
+    {
+      "description": "Every answered verdict is dated and attributed.",
+      "if": { "properties": { "human_verdict": { "enum": ["confirmed", "corrected", "no_learning"] } } },
+      "then": {
+        "required": ["verdict_at", "verdict_surface"],
+        "properties": {
+          "verdict_at": { "$ref": "common.v1.json#/$defs/timestamp" },
+          "verdict_surface": { "$ref": "human_decision.v1.json#/properties/surface" }
+        }
+      }
+    },
+    {
+      "description": "A correction carries the human's corrected explanation.",
+      "if": { "properties": { "human_verdict": { "const": "corrected" } } },
+      "then": {
+        "required": ["corrected_statement"],
+        "properties": { "corrected_statement": { "type": "string", "minLength": 1 } }
+      }
+    },
+    {
+      "description": "Nothing is corrected or dated before the human has answered.",
+      "if": { "properties": { "human_verdict": { "const": "pending" } } },
+      "then": { "properties": { "corrected_statement": { "type": "null" }, "verdict_at": { "type": "null" } } }
+    },
+    {
+      "description": "A confirmed or no-learning inference has nothing to correct.",
+      "if": { "properties": { "human_verdict": { "enum": ["confirmed", "no_learning"] } } },
+      "then": { "properties": { "corrected_statement": { "type": "null" } } }
+    }
+  ]
+}

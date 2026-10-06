@@ -1,0 +1,344 @@
+/* Split from shell.css (kept contiguous in the cascade; imported right after it): the page frame, buttons, segmented links, phone layout. */
+
+/* App shell: the sticky top bar, the brand, navigation, the page frame and its header, buttons. */
+.top {
+  position: sticky;
+  top: 0;
+  z-index: var(--z-header);
+  display: flex;
+  align-items: center;
+  gap: var(--space-6);
+  height: var(--header-h);
+  padding: 0 var(--page-pad);
+  background: color-mix(in srgb, var(--surface) 86%, transparent);
+  border-bottom: 1px solid var(--line);
+  backdrop-filter: saturate(1.6) blur(12px);
+  -webkit-backdrop-filter: saturate(1.6) blur(12px);
+}
+
+.brand {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  flex: none;
+  color: var(--ink);
+  font-size: var(--text-md);
+  font-weight: 600;
+  letter-spacing: var(--tracking-tight);
+  text-decoration: none;
+}
+
+.brand:hover {
+  text-decoration: none;
+}
+
+.brand-mark {
+  display: inline-grid;
+  place-items: center;
+  width: 24px;
+  height: 24px;
+  border-radius: 7px;
+  background: var(--ink);
+  color: var(--surface);
+  box-shadow: inset 0 0 0 1px rgb(255 255 255 / 0.08), var(--shadow-1);
+}
+
+.topnav {
+  display: flex;
+  align-items: center;
+  gap: var(--space-0-5);
+  min-width: 0;
+  overflow-x: auto;
+  scrollbar-width: none;
+}
+
+.topnav::-webkit-scrollbar {
+  display: none;
+}
+
+.topnav a {
+  flex: none;
+  padding: var(--space-1-5) var(--space-3);
+  border-radius: var(--radius-sm);
+  color: var(--muted);
+  font-size: var(--text-sm);
+  font-weight: 500;
+  text-decoration: none;
+  transition: color var(--dur-1) ease, background-color var(--dur-1) ease;
+}
+
+.topnav a:hover {
+  color: var(--ink);
+  background: var(--surface-hover);
+  text-decoration: none;
+}
+
+.topnav a[aria-current="page"] {
+  color: var(--ink);
+  background: var(--surface-sunken);
+}
+
+.env {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-1-5);
+  margin-left: auto;
+  flex: none;
+  padding: var(--space-0-5) var(--space-2);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-full);
+  color: var(--muted);
+  font-size: var(--text-xs);
+  font-weight: 500;
+  background: var(--surface);
+}
+
+.env::before {
+  content: "";
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--pass-solid);
+  box-shadow: 0 0 0 3px var(--pass-tint);
+}
+
+main {
+  display: block;
+}
+
+/* The skip link focuses main; a page-sized ring would only be noise. */
+main:focus-visible {
+  box-shadow: none;
+}
+
+/* The page frame and its header */
+.page {
+  max-width: var(--page-max);
+  margin: 0 auto;
+  padding: var(--space-6) var(--page-pad) var(--space-12);
+}
+
+.head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--space-3) var(--space-4);
+  margin-bottom: var(--space-5);
+}
+
+/* Page actions (toggles, filters, related links) sit at the far end; badges stay beside the title. */
+.head > .toggle,
+.head > nav,
+.head > .filters,
+.head > .head-actions {
+  margin-left: auto;
+}
+
+.eyebrow {
+  margin: 0 0 var(--space-1-5);
+  font-size: var(--text-2xs);
+  font-weight: 600;
+  letter-spacing: var(--tracking-caps);
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+.crumbs {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--space-1-5);
+  margin: 0 0 var(--space-2);
+  padding: 0;
+  list-style: none;
+  font-size: var(--text-sm);
+  color: var(--muted);
+}
+
+.crumbs li + li::before {
+  content: "/";
+  margin-right: var(--space-1-5);
+  color: var(--faint);
+}
+
+.crumbs a {
+  color: var(--muted);
+}
+
+.crumbs a:hover {
+  color: var(--ink);
+}
+
+.crumbs [aria-current="page"] {
+  color: var(--ink);
+  font-weight: 500;
+}
+
+.hint {
+  color: var(--muted);
+  font-size: var(--text-xs);
+  margin: var(--space-0-5) 0;
+}
+
+.hint.warn {
+  color: var(--warn);
+}
+
+.lead {
+  max-width: 72ch;
+  margin: 0 0 var(--space-4);
+  font-size: var(--text-md);
+  line-height: var(--leading-normal);
+  color: var(--ink-2);
+}
+
+.empty {
+  color: var(--muted);
+  font-style: normal;
+}
+
+.notices {
+  list-style: none;
+  margin: 0 0 var(--space-4);
+  padding: var(--space-3) var(--space-4);
+  border: 1px solid var(--warn-line);
+  border-radius: var(--radius-md);
+  background: var(--warn-tint);
+  color: var(--warn);
+  font-size: var(--text-sm);
+}
+
+/* Buttons and button-like links */
+.btn,
+.controls button,
+.manifest-form button,
+.filters button,
+.dispute-actions button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-1-5);
+  min-height: 32px;
+  padding: 0 var(--space-3);
+  border: 1px solid var(--line-strong);
+  border-radius: var(--radius-sm);
+  background: var(--surface);
+  color: var(--ink);
+  font: inherit;
+  font-size: var(--text-sm);
+  font-weight: 500;
+  line-height: 1;
+  text-decoration: none;
+  cursor: pointer;
+  box-shadow: var(--shadow-1);
+  touch-action: manipulation;
+  transition: background-color var(--dur-1) ease, border-color var(--dur-1) ease, transform var(--dur-1) var(--ease-out);
+}
+
+.btn:hover,
+.controls button:hover,
+.filters button:hover {
+  background: var(--surface-hover);
+  text-decoration: none;
+}
+
+.btn:active,
+.controls button:active,
+.manifest-form button:active,
+.dispute-actions button:active {
+  transform: scale(0.97);
+}
+
+.btn.primary,
+.controls button:not(.secondary),
+.manifest-form button,
+.dispute-actions button:not(.secondary) {
+  border-color: var(--ink);
+  background: var(--ink);
+  color: var(--surface);
+}
+
+.btn.primary:hover,
+.controls button:not(.secondary):hover,
+.manifest-form button:hover,
+.dispute-actions button:not(.secondary):hover {
+  background: var(--ink-2);
+  border-color: var(--ink-2);
+}
+
+.btn[disabled],
+.btn[aria-disabled="true"],
+.controls button[disabled],
+.dispute-actions button[disabled] {
+  opacity: 0.45;
+  cursor: not-allowed;
+  transform: none;
+}
+
+/* Segmented links (Before / After Play, related pages) */
+.toggle {
+  display: inline-flex;
+  flex: none;
+  padding: 2px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius-md);
+  background: var(--surface-sunken);
+}
+
+.toggle a,
+.toggle .off {
+  padding: var(--space-1) var(--space-3);
+  border-radius: var(--radius-sm);
+  color: var(--muted);
+  font-size: var(--text-sm);
+  font-weight: 500;
+  text-decoration: none;
+  transition: color var(--dur-1) ease, background-color var(--dur-1) ease;
+}
+
+.toggle a:hover {
+  color: var(--ink);
+  text-decoration: none;
+}
+
+.toggle a[aria-current="page"] {
+  background: var(--surface);
+  color: var(--ink);
+  box-shadow: var(--shadow-1);
+}
+
+.toggle .off {
+  color: var(--faint);
+}
+
+@media (max-width: 720px) {
+  .top {
+    gap: var(--space-3);
+  }
+
+  .env {
+    display: none;
+  }
+
+  h1 {
+    font-size: var(--text-xl);
+  }
+}
+
+/* Phone: no room for a side drawer, so the inspector stacks under the workspace instead of widening the page. */
+@media (max-width: 720px) {
+  .shell { grid-template-columns: 3.25rem minmax(0, 1fr); }
+  .inspector {
+    grid-column: 1 / -1;
+    position: static;
+    height: auto;
+    border-left: 0;
+    border-top: 1px solid var(--line);
+  }
+  .inspector-body {
+    width: 100%;
+    min-width: 0;
+    max-width: none;
+    resize: none;
+  }
+}

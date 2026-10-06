@@ -1,0 +1,45 @@
+{
+  "id": "0e1a0000-0000-4000-8000-000000000901",
+  "agent_run_id": "0f0a0000-0000-4000-8000-000000000601",
+  "draft_index": 1,
+  "eval_type": "champion_continuity",
+  "eval_version": "champion_continuity:v1",
+  "kind": "semantic",
+  "verdict": "fail",
+  "label": "CHAMPION_BYPASSED",
+  "diagnostics": [
+    "champion_bypassed"
+  ],
+  "score": null,
+  "blocking": true,
+  "reason": "Draft starts a direct thread with Marco and drops Priya, although Marco wrote that Priya stays the commercial point of contact and ownership was not delegated.",
+  "state_refs": [
+    "champion",
+    "champion_status",
+    "buying_group"
+  ],
+  "activity_refs": [
+    "0ac70000-0000-4000-8000-000000000101"
+  ],
+  "evidence_refs": [
+    {
+      "activity_id": "0ac70000-0000-4000-8000-000000000101",
+      "quote": "Priya will stay the point of contact on the commercial side.",
+      "speaker_person_id": "0b0e0000-0000-4000-8000-000000000018",
+      "occurred_at": "2026-09-29T15:42:00Z"
+    }
+  ],
+  "knowledge_refs": [
+    "0c17c000-0000-4000-8000-000000000017"
+  ],
+  "suggested_correction": "Keep Priya on the thread (cc) when sending the security package to Marco.",
+  "confidence": 0.86,
+  "evidence_class": "methodology",
+  "model": "deepseek/deepseek-v4-flash",
+  "created_at": "2026-09-29T15:42:20Z",
+  "judged_object": {
+    "type": "StrategyCandidate",
+    "id": "0f5c0000-0000-4000-8000-000000000a01"
+  },
+  "span_id": "candidates:0f5e0000-0000-4000-8000-000000000b01"
+}
