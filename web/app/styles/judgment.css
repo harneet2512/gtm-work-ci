@@ -1,0 +1,63 @@
+/* HAR-145 judgment loop: message chips, the six statuses, the explainer, the Judgment Episode hero and the two gate views.
+   Tokens only; verdict colors only on status pills. */
+.msg-chip { display: inline-flex; align-items: center; font-size: var(--text-2xs); font-weight: 600; letter-spacing: var(--tracking-caps); text-transform: uppercase; color: var(--brand-text); background: var(--brand-tint); border: 1px solid var(--brand-line); border-radius: var(--radius-full); padding: 0 var(--space-2); white-space: nowrap; }
+.msg-chip[data-message="system"] { color: var(--muted); background: var(--surface-sunken); border-color: var(--line); }
+.bucket-tag { font-size: var(--text-2xs); color: var(--faint); text-transform: uppercase; letter-spacing: var(--tracking-caps); }
+
+/* Statuses: NOT RUN is dashed, NOT APPLICABLE is a flat minus on a sunken pill; neither borrows the pass tone. */
+.v-not-run { font-style: normal; }
+.v-not-applicable { background: var(--surface-sunken); border-radius: var(--radius-full); padding: 0 var(--space-1); }
+.gate-pill[data-status="not_run"] .verdict-word { text-decoration: underline dashed; text-underline-offset: 3px; }
+
+/* Message sections of the Gates view */
+.message-section { margin-bottom: var(--space-2); }
+.message-section > header { display: flex; flex-wrap: wrap; align-items: baseline; gap: var(--space-2) var(--space-3); margin-bottom: var(--space-3); }
+.message-section > header h3 { margin: 0; font-size: var(--text-lg); }
+.message-section > header .hint { margin: 0; flex-basis: 100%; }
+.impact-line { margin: 0; font-size: var(--text-xs); color: var(--muted); }
+.impact-line strong { color: var(--ink); font-weight: 600; }
+
+/* Explainer popover on the mode badge (Demo mode) */
+.mode-explain { position: relative; display: inline-block; }
+.mode-explain > button { font: inherit; background: none; }
+.explain-pop { position: absolute; z-index: 5; top: calc(100% + var(--space-1)); right: 0; width: 20rem; max-width: 80vw; background: var(--surface); border: 1px solid var(--line-strong); border-radius: var(--radius-md); padding: var(--space-3); box-shadow: var(--shadow-pop, 0 4px 16px rgb(0 0 0 / 12%)); font-size: var(--text-xs); text-transform: none; letter-spacing: normal; color: var(--ink); text-align: left; }
+.explain-pop dl { margin: 0; display: grid; gap: var(--space-2); }
+.explain-pop dt { font-weight: 600; color: var(--muted); }
+.explain-pop dd { margin: 0; }
+
+/* Judgment Episode hero */
+.judgment-hero { border: 1px solid var(--line-strong); border-radius: var(--radius-md); background: var(--surface); padding: var(--space-4); margin-bottom: var(--space-4); display: grid; gap: var(--space-4); }
+.judgment-hero > header { display: flex; flex-wrap: wrap; gap: var(--space-2) var(--space-3); align-items: baseline; }
+.judgment-hero h2 { margin: 0; font-size: var(--text-lg); }
+.hero-hint { margin: 0; display: flex; gap: var(--space-2); align-items: center; font-size: var(--text-sm); color: var(--brand-text); background: var(--brand-tint); border-radius: var(--radius-md); padding: var(--space-2) var(--space-3); }
+.hero-hint button { margin-left: auto; font: inherit; font-size: var(--text-xs); }
+.hero-messages { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: var(--space-4); }
+.hero-message { border-top: 2px solid var(--brand-line); padding-top: var(--space-2); min-width: 0; }
+.hero-message h3 { margin: 0 0 var(--space-2); font-size: var(--text-sm); }
+.hero-message dl { margin: 0; display: grid; gap: var(--space-2); }
+.hero-message dt { font-size: var(--text-xs); color: var(--muted); }
+.hero-message dd { margin: 0; font-size: var(--text-sm); overflow-wrap: anywhere; }
+.hero-message dd[data-state="empty"] { color: var(--muted); font-style: italic; }
+.hero-links { display: flex; flex-wrap: wrap; gap: var(--space-3); margin-top: var(--space-2); font-size: var(--text-xs); }
+
+/* Episode protection and System Proof */
+.protection-phase { margin-bottom: var(--space-4); }
+.protection-phase h4 { margin: 0 0 var(--space-2); font-size: var(--text-xs); letter-spacing: var(--tracking-caps); color: var(--muted); }
+.protection-list { list-style: none; margin: 0; padding: 0; display: grid; gap: var(--space-2); }
+.protection-list li { display: flex; flex-wrap: wrap; align-items: baseline; gap: var(--space-2) var(--space-3); border: 1px solid var(--line); border-radius: var(--radius-md); padding: var(--space-2) var(--space-3); }
+.proof-table { border-collapse: collapse; width: 100%; font-size: var(--text-sm); }
+.proof-table th, .proof-table td { text-align: left; padding: var(--space-1) var(--space-3); border-bottom: 1px solid var(--line); }
+.proof-split { display: grid; gap: var(--space-2); }
+
+@media (max-width: 960px) { .hero-messages { grid-template-columns: 1fr; } }
+
+/* Compact Judgment Delta */
+.delta-view { display: grid; gap: var(--space-1); }
+.delta-chip { justify-self: start; }
+.delta-chip[data-classified="false"] { color: var(--muted); background: var(--surface-sunken); border-color: var(--line); }
+.delta-statement { margin: 0; }
+.delta-diff { margin: 0; font-size: var(--text-sm); line-height: var(--leading-snug); }
+.delta-diff del { color: var(--fail); background: color-mix(in srgb, var(--fail) 12%, transparent); text-decoration: line-through; }
+.delta-diff ins { color: var(--pass); background: color-mix(in srgb, var(--pass) 12%, transparent); text-decoration: underline; }
+.delta-toggle { justify-self: start; font: inherit; font-size: var(--text-xs); }
+.delta-full p { margin: var(--space-1) 0 0; font-size: var(--text-xs); color: var(--muted); }

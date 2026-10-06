@@ -1,0 +1,194 @@
+{
+  "account": "acme",
+  "checkpoint": 1,
+  "after_event_file": "world/accounts/acme/events/017_slack_proposal_sent.json",
+  "as_of": "2026-08-28T15:30:00Z",
+  "notes": "Scoping done, proposal sent; budget is the blocker; economic buyer never named (unknown). Identity puzzle: call-acme-0825 speaker_02 (no email/name) is Priya (contact:817). Duplicate delivery of the scoping transcript.",
+  "expected": {
+    "distinct_activities": 16,
+    "entities": [
+      {
+        "key": "account:acme",
+        "kind": "account",
+        "display_name": "Acme Corp",
+        "source_identities": ["crm:account:AC-4", "domain:acme.com"]
+      },
+      {
+        "key": "document:acme_proposal",
+        "kind": "document",
+        "display_name": "Acme EU Rollout Proposal",
+        "source_identities": ["docs:gdrive:acme-eu-proposal-v1"]
+      },
+      {
+        "key": "opportunity:acme_expansion",
+        "kind": "opportunity",
+        "display_name": "Acme - EU rollout expansion",
+        "source_identities": ["crm:opp:AC-4-EXP"]
+      },
+      {
+        "key": "person:dana_kim",
+        "kind": "person",
+        "display_name": "Dana Kim",
+        "source_identities": ["call:call-acme-0825:speaker_01", "email:dana@ghostvendor.com", "slack:U02DANA"]
+      },
+      {
+        "key": "person:leo_park",
+        "kind": "person",
+        "display_name": "Leo Park",
+        "source_identities": ["call:call-acme-0825:speaker_04", "email:leo@ghostvendor.com"]
+      },
+      {
+        "key": "person:priya_shah",
+        "kind": "person",
+        "display_name": "Priya Shah",
+        "source_identities": ["call:call-acme-0825:speaker_02", "crm:contact:817", "email:priya.shah@acme.com"]
+      },
+      {
+        "key": "person:tom_becker",
+        "kind": "person",
+        "display_name": "Tom Becker",
+        "source_identities": ["call:call-acme-0825:speaker_03", "crm:contact:829", "email:tom.becker@acme.com"]
+      }
+    ],
+    "edges": [
+      {"src": "opportunity:acme_expansion", "rel_type": "belongs_to", "dst": "account:acme"},
+      {"src": "person:dana_kim", "rel_type": "owns", "dst": "opportunity:acme_expansion"},
+      {"src": "person:leo_park", "rel_type": "supports", "dst": "opportunity:acme_expansion"},
+      {"src": "person:priya_shah", "rel_type": "works_at", "dst": "account:acme"},
+      {"src": "person:tom_becker", "rel_type": "works_at", "dst": "account:acme"},
+      {
+        "src": "person:priya_shah",
+        "rel_type": "champion_for",
+        "dst": "opportunity:acme_expansion"
+      },
+      {"src": "person:tom_becker", "rel_type": "influences", "dst": "opportunity:acme_expansion"},
+      {"src": "document:acme_proposal", "rel_type": "shared_with", "dst": "person:priya_shah"},
+      {"src": "document:acme_proposal", "rel_type": "shared_with", "dst": "person:tom_becker"}
+    ],
+    "state_fields": {
+      "stage": "Discovery",
+      "health": "on_track",
+      "owner": "person:dana_kim",
+      "motion": "expansion",
+      "champion": "person:priya_shah",
+      "champion_status": "active",
+      "economic_buyer": "unknown",
+      "blockers": [
+        {
+          "text": "EU budget line needs finance approval in the Q3 planning cycle",
+          "status": "open"
+        }
+      ],
+      "objections": "unknown",
+      "decision_criteria": [
+        {"text": "EU sites run the same workflows as the US sites"},
+        {"text": "Berlin and Rotterdam live before the January peak"}
+      ],
+      "decision_process": "Finance approves the EU budget line as a committee in the Q3 planning cycle; Priya Shah takes the proposal in",
+      "current_commitments": [
+        {
+          "text": "Send proposal for 120 seats by Friday",
+          "status": "fulfilled",
+          "owner": "person:dana_kim",
+          "due": "2026-08-28"
+        }
+      ],
+      "next_milestone": "Finance approval of the EU budget line",
+      "next_meeting": null,
+      "relationship_risk": "low",
+      "product_use_case": "Relay rollout to the Berlin (~70 users) and Rotterdam (~50 users) warehouses",
+      "commercial_issue": "unknown",
+      "last_customer_interaction": "2026-08-25T13:46:00Z"
+    },
+    "buying_group": [
+      {
+        "person_key": "person:priya_shah",
+        "roles": ["champion"],
+        "status": "active",
+        "title": "Director of Operations"
+      },
+      {
+        "person_key": "person:tom_becker",
+        "roles": ["user"],
+        "status": "active",
+        "title": "EU Operations Manager"
+      }
+    ],
+    "coverage_gaps": ["economic_buyer"],
+    "material_diff_fields": [
+      "stage",
+      "health",
+      "owner",
+      "motion",
+      "champion",
+      "champion_status",
+      "blockers",
+      "decision_criteria",
+      "decision_process",
+      "current_commitments",
+      "next_milestone",
+      "next_meeting",
+      "relationship_risk",
+      "product_use_case",
+      "buying_group",
+      "coverage_gaps"
+    ],
+    "signals": [
+      "customer_replied",
+      "expansion_interest",
+      "meeting_accepted",
+      "new_stakeholder_entered",
+      "stakeholder_gap"
+    ],
+    "trigger": {
+      "workflow": "post_interaction_followup",
+      "eligible": false,
+      "reason_codes": ["no_material_change"]
+    },
+    "critical_facts": [
+      {
+        "field": "champion",
+        "value": "person:priya_shah",
+        "evidence_event_file": "world/accounts/acme/events/012_call_scope_transcript.json",
+        "evidence_quote": "Priya here - I run operations for the US sites and I'm sponsoring the EU rollout."
+      },
+      {
+        "field": "blockers",
+        "value": "EU budget line needs finance approval in the Q3 planning cycle",
+        "evidence_event_file": "world/accounts/acme/events/012_call_scope_transcript.json",
+        "evidence_quote": "The EU line item has to be approved by finance in the Q3 planning cycle, and I don't control that."
+      },
+      {
+        "field": "economic_buyer",
+        "value": "unknown",
+        "evidence_event_file": "world/accounts/acme/events/014_crm_note_scoping.json",
+        "evidence_quote": "Economic buyer not identified - Priya says finance decides as a committee."
+      },
+      {
+        "field": "commitment",
+        "value": "Send proposal for 120 seats by Friday",
+        "evidence_event_file": "world/accounts/acme/events/012_call_scope_transcript.json",
+        "evidence_quote": "I'll send a proposal for 120 seats by Friday"
+      },
+      {
+        "field": "stage",
+        "value": "Discovery",
+        "evidence_event_file": "world/accounts/acme/events/002_crm_opp_created.json",
+        "evidence_quote": null
+      },
+      {
+        "field": "motion",
+        "value": "expansion",
+        "evidence_event_file": "world/accounts/acme/events/002_crm_opp_created.json",
+        "evidence_quote": null
+      },
+      {
+        "field": "product_use_case",
+        "value": "Relay rollout to the Berlin (~70 users) and Rotterdam (~50 users) warehouses",
+        "evidence_event_file": "world/accounts/acme/events/012_call_scope_transcript.json",
+        "evidence_quote": "Berlin has about 70 users and Rotterdam about 50, so roughly 120 seats."
+      }
+    ],
+    "stale_facts": []
+  }
+}

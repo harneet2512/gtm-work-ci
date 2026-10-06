@@ -1,0 +1,167 @@
+{
+  "id": "beta_owen_approval_congrats_two_weeks_late",
+  "case_type": "too_late_follow_up",
+  "title": "Beta variant: congratulating on the CFO approval two weeks later with no next step",
+  "should_pass": false,
+  "difficulty": "medium",
+  "slice_tags": {
+    "account": "beta",
+    "origin": "synthetic_variant",
+    "motion": "expansion",
+    "stage": "commercial_review",
+    "champion_status": "active",
+    "economic_buyer": "known",
+    "risk": "low",
+    "candidate": "flawed",
+    "expected_action": "send_email",
+    "extra": ["stalled"]
+  },
+  "based_on": {
+    "kind": "synthetic_variant",
+    "account": "beta",
+    "after_event_file": "world/accounts/beta/events/021_email_hannah_owen_approved.json",
+    "checkpoint": 2,
+    "changed_fields": ["current_commitments"],
+    "change": "Same as Beta cp2, but nothing happened for 14 days (no platform deep dive was scheduled); evaluated 2026-09-22."
+  },
+  "context": {
+    "now": "2026-09-22T15:00:00Z",
+    "state": {
+      "account_id": "0a0c0000-0000-4000-8000-000000000002",
+      "account_name": "Beta Inc",
+      "opportunity_id": "0c0f0000-0000-4000-8000-000000000005",
+      "fields": {
+        "stage": "Commercial review",
+        "health": "on_track",
+        "motion": "expansion",
+        "champion": "0b0e0000-0000-4000-8000-000000000031",
+        "champion_status": "active",
+        "economic_buyer": "0b0e0000-0000-4000-8000-000000000032",
+        "relationship_risk": "low",
+        "decision_process": "Owen Clarke approved the business case; the platform team must be comfortable with the integration",
+        "next_milestone": "Platform team review of the integration"
+      },
+      "buying_group": [
+        {
+          "person_id": "0b0e0000-0000-4000-8000-000000000031",
+          "display_name": "Hannah Lee",
+          "title": "VP Customer Operations",
+          "roles": ["champion"],
+          "status": "active",
+          "delegated_to_person_id": null,
+          "last_engaged_at": null,
+          "evidence_refs": []
+        },
+        {
+          "person_id": "0b0e0000-0000-4000-8000-000000000032",
+          "display_name": "Owen Clarke",
+          "title": "Chief Financial Officer",
+          "roles": ["economic_buyer"],
+          "status": "unknown",
+          "delegated_to_person_id": null,
+          "last_engaged_at": null,
+          "evidence_refs": []
+        },
+        {
+          "person_id": "0b0e0000-0000-4000-8000-000000000033",
+          "display_name": "Jess Patel",
+          "title": "Support Operations Manager",
+          "roles": ["user"],
+          "status": "active",
+          "delegated_to_person_id": null,
+          "last_engaged_at": null,
+          "evidence_refs": []
+        }
+      ],
+      "coverage_gaps": []
+    },
+    "recent_changes": {
+      "summary": "Fourteen days since Hannah's approval email; no platform contact or meeting yet.",
+      "material_diff_fields": [],
+      "signals": ["customer_went_silent"]
+    },
+    "trigger": {
+      "activity_id": "0ac70000-0000-4000-8000-0000000b0021",
+      "activity_type": "EmailReply",
+      "occurred_at": "2026-09-08T09:40:00Z",
+      "actor_person_id": "0b0e0000-0000-4000-8000-000000000031",
+      "event_file": "world/accounts/beta/events/021_email_hannah_owen_approved.json",
+      "synthetic": false,
+      "text": "Hi Dana - Owen approved the business case this morning, so the budget is there for the support rollout. Next step is making sure our platform team is comfortable with the integration; I'll loop in the right person this week.\nHannah"
+    },
+    "supporting_activities": [],
+    "commitments": [
+      {
+        "text": "Loop in the right platform team person this week",
+        "owner_person_id": "0b0e0000-0000-4000-8000-000000000031",
+        "due_at": null,
+        "status": "overdue"
+      }
+    ],
+    "timeline_facts": {
+      "last_inbound_at": "2026-09-08T09:40:00Z",
+      "last_inbound_from_person_id": "0b0e0000-0000-4000-8000-000000000031",
+      "last_outbound_at": "2026-09-01T17:00:00Z",
+      "stated_timing": "Hannah: 'I'll loop in the right person this week' (week of Sep 8)"
+    },
+    "offered_knowledge": []
+  },
+  "candidate_action": {
+    "proposed_action_type": "send_email",
+    "recipients": [{"person_id": "0b0e0000-0000-4000-8000-000000000031", "role": "to", "why": "Champion"}],
+    "finished_artifact": {
+      "channel": "email",
+      "subject": "Re: Relay for the Beta support org",
+      "body": "Hi Hannah,\n\nCongratulations on getting Owen's approval - that's a big milestone! Let me know if there's anything else you need.\n\nBest,\nDana"
+    },
+    "crm_next_step_intent": {"next_step": "Await platform team contact", "due_at": null, "stage_change": null},
+    "reason": "Owen approved the business case.",
+    "evidence_refs": [
+      {
+        "activity_id": "0ac70000-0000-4000-8000-0000000b0021",
+        "quote": "Owen approved the business case this morning, so the budget is there for the support rollout.",
+        "speaker_person_id": "0b0e0000-0000-4000-8000-000000000031",
+        "occurred_at": "2026-09-08T09:40:00Z"
+      }
+    ],
+    "knowledge_refs_used": [],
+    "wait_until": null
+  },
+  "expected": [
+    {
+      "eval_type": "timing_cadence",
+      "verdict": "fail",
+      "label": "LATE_OR_MISSED_WINDOW",
+      "diagnostics": [],
+      "blocking": false,
+      "rationale": "The approval was two weeks ago and Hannah's own 'this week' commitment is overdue; a congratulation now misses the window.",
+      "evidence_class": "deal_data",
+      "state_refs": ["current_commitments"]
+    },
+    {
+      "eval_type": "next_step_quality",
+      "verdict": "fail",
+      "label": null,
+      "diagnostics": ["no_mutual_next_step"],
+      "blocking": true,
+      "rationale": "No mutual next step; does not address the overdue platform introduction.",
+      "evidence_class": "deal_data"
+    },
+    {
+      "eval_type": "cta_calibration",
+      "verdict": "fail",
+      "label": "TOO_WEAK",
+      "diagnostics": ["ask_too_weak"],
+      "blocking": false,
+      "rationale": "'Let me know' is too weak after two weeks of no progress.",
+      "evidence_class": "methodology"
+    }
+  ],
+  "expected_best_action": {
+    "action": "send_email",
+    "why": "Ask Hannah who on the platform team should review the integration and offer Leo plus two slots for a deep dive.",
+    "recipients": [{"person_id": "0b0e0000-0000-4000-8000-000000000031", "role": "to"}],
+    "channel": "email"
+  },
+  "notes": "Synthetic variant; in the real world the deep dive was booked within three days (025)."
+}

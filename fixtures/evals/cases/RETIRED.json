@@ -1,0 +1,9 @@
+{
+  "retired": "invented",
+  "retired_on": "2026-10-05",
+  "reason": "These 87 cases are about invented companies (Acme Corp, Beta Inc, Northstar Health) and were labelled by one author. An agreement number, a false-pass rate, a knowledge-applicability score or a backtest gate computed on them says nothing about real accounts, so no metric, benchmark or backtest reads them any more.",
+  "accounts": ["Acme Corp", "Beta Inc", "Northstar Health"],
+  "cases": 87,
+  "replacement": "bench/data/account_split.json: real CRMArena-Pro B2B accounts, an account-level split with a demo partition that is never gold. Reference answers come from a different, stronger model (see gold_source there), not from humans.",
+  "allowed_use": "pipeline mechanics only: schema checks, cassette replay and matcher regression tests that say so. Never an agreement, false-pass, false-block, backtest or knowledge-applicability number."
+}

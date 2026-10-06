@@ -1,0 +1,65 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://ghost.local/contracts/eval_run_comparison.v1.json",
+  "title": "EvalRunComparison",
+  "description": "HAR-145: two EvalRuns side by side. Each side is one agent run's EvalResults (an EvalRun is one run; see eval_run.v1.json), so each row compares one eval type across the two. A side's verdict is the worst across that run's candidates (fail, then warn, then unknown, then pass), so a regression in any candidate is visible. change is read on the ladder fail < warn < pass: a move toward pass is improved (FAIL -> PASS, WARN -> PASS), a move toward fail is regressed (PASS -> FAIL). unknown (an eval that abstained) is not a step on that ladder: any move into or out of unknown is inconclusive, never improved or regressed. An eval type checked on one side only is added or removed. `overall` is the whole-episode row: regressed when any row regressed or a newly checked eval type failed (added_fail), else improved when any improved, else inconclusive when any row was inconclusive, else unchanged. Counts are real tallies; nothing here is a score or percentage.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["a", "b", "rows", "overall"],
+  "properties": {
+    "a": { "$ref": "#/$defs/side" },
+    "b": { "$ref": "#/$defs/side" },
+    "rows": { "type": "array", "items": { "$ref": "#/$defs/row" } },
+    "overall": { "$ref": "#/$defs/overall" }
+  },
+  "$defs": {
+    "verdict": { "enum": ["pass", "warn", "fail", "unknown"] },
+    "change": { "enum": ["improved", "regressed", "unchanged", "added", "removed", "inconclusive"] },
+    "side": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["eval_run_id", "decision_episode_id", "account_id", "account_name", "evaluated_at", "counts"],
+      "properties": {
+        "eval_run_id": { "$ref": "common.v1.json#/$defs/uuid" },
+        "decision_episode_id": { "oneOf": [{ "$ref": "common.v1.json#/$defs/uuid" }, { "type": "null" }] },
+        "account_id": { "$ref": "common.v1.json#/$defs/uuid" },
+        "account_name": { "type": "string" },
+        "evaluated_at": { "$ref": "common.v1.json#/$defs/timestamp" },
+        "counts": { "$ref": "eval_run.v1.json#/$defs/counts" }
+      }
+    },
+    "row": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["eval_type", "family_id", "area", "a", "b", "a_blocking", "b_blocking", "change", "a_result_ids", "b_result_ids"],
+      "properties": {
+        "eval_type": { "$ref": "eval_result.v1.json#/$defs/evalType" },
+        "family_id": { "type": "string", "pattern": "^E[0-9]+$" },
+        "area": { "$ref": "eval_run.v1.json#/$defs/areaId" },
+        "a": { "oneOf": [{ "type": "null" }, { "$ref": "#/$defs/verdict" }], "description": "Null when A has no EvalResult of the type." },
+        "b": { "oneOf": [{ "type": "null" }, { "$ref": "#/$defs/verdict" }] },
+        "a_blocking": { "type": "boolean", "description": "A has a blocking fail of this type." },
+        "b_blocking": { "type": "boolean" },
+        "change": { "$ref": "#/$defs/change" },
+        "a_result_ids": { "type": "array", "uniqueItems": true, "items": { "$ref": "common.v1.json#/$defs/uuid" } },
+        "b_result_ids": { "type": "array", "uniqueItems": true, "items": { "$ref": "common.v1.json#/$defs/uuid" } }
+      }
+    },
+    "overall": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["change", "improved", "regressed", "unchanged", "added", "removed", "inconclusive", "added_fail", "delta"],
+      "properties": {
+        "change": { "enum": ["improved", "regressed", "unchanged", "inconclusive"] },
+        "improved": { "type": "integer", "minimum": 0 },
+        "regressed": { "type": "integer", "minimum": 0 },
+        "unchanged": { "type": "integer", "minimum": 0 },
+        "added": { "type": "integer", "minimum": 0 },
+        "removed": { "type": "integer", "minimum": 0 },
+        "inconclusive": { "type": "integer", "minimum": 0, "description": "Rows where exactly one side was unknown." },
+        "added_fail": { "type": "integer", "minimum": 0, "description": "Newly checked eval types (added) whose verdict is fail; they make the overall change regressed." },
+        "delta": { "$ref": "eval_run.v1.json#/$defs/countsDelta", "description": "B's counts minus A's." }
+      }
+    }
+  }
+}
