@@ -1,0 +1,479 @@
+{
+  "items": [
+    {
+      "id": "0ac7ad00-0000-4000-8000-00000000ad0d",
+      "idempotency_key": "34a00c5c3082f78553e0bf92de34749fa0195da3b5cc3dac0c3794c5a63f2976",
+      "activity_type": "EmailReceived",
+      "source_system": "email",
+      "source_object_id": "02sWt000001zsRGIAY",
+      "source_event_id": "05e0ad00-0000-4000-8000-00000000ad0d",
+      "occurred_at": "2023-11-09T09:30:00Z",
+      "ingested_at": "2023-11-09T09:30:04Z",
+      "participants": [
+        {
+          "raw_identity": "fatoumata.toure@medtechadvances.com",
+          "display_name": "Fatoumata Touré",
+          "role": "from",
+          "person_id": "0b0ead00-0000-4000-8000-00000000ad11"
+        },
+        {
+          "raw_identity": "luis.rodriguez@vendor.example",
+          "display_name": "Luis Rodriguez",
+          "role": "to",
+          "person_id": "0b0ead00-0000-4000-8000-00000000ad21"
+        }
+      ],
+      "account_id": "0a0cad00-0000-4000-8000-00000000ad01",
+      "opportunity_id": "0c0fad00-0000-4000-8000-00000000ad01",
+      "account_hint": "medtechadvances.com",
+      "opportunity_hint": "006Wt000007BHzBIAW",
+      "payload_ref": "source_events/05e0ad00-0000-4000-8000-00000000ad0d",
+      "summary": "Fatoumata asked about the long-term cost of integrating EduTech Lab and SecureData Nexus, and for a follow-up call.",
+      "permissions": {
+        "visibility": "org"
+      },
+      "provenance": {
+        "source_system": "email",
+        "source_object_id": "02sWt000001zsRGIAY",
+        "connector": "crmarena-loader",
+        "connector_version": "wp31-v1"
+      },
+      "caused_by_activity_id": null,
+      "correlation_id": "0c0cad00-0000-4000-8000-00000000ad80"
+    },
+    {
+      "id": "0ac7ad00-0000-4000-8000-00000000ad0c",
+      "idempotency_key": "d84b90d7aa0f507fa37d3fbbad0af246a0e3b9fd0366c79f35126dc922ef7391",
+      "activity_type": "EmailReceived",
+      "source_system": "email",
+      "source_object_id": "02sWt000001zopGIAQ",
+      "source_event_id": "05e0ad00-0000-4000-8000-00000000ad0c",
+      "occurred_at": "2023-11-08T17:30:00Z",
+      "ingested_at": "2023-11-08T17:30:04Z",
+      "participants": [
+        {
+          "raw_identity": "fatoumata.toure@medtechadvances.com",
+          "display_name": "Fatoumata Touré",
+          "role": "from",
+          "person_id": "0b0ead00-0000-4000-8000-00000000ad11"
+        },
+        {
+          "raw_identity": "luis.rodriguez@vendor.example",
+          "display_name": "Luis Rodriguez",
+          "role": "to",
+          "person_id": "0b0ead00-0000-4000-8000-00000000ad21"
+        }
+      ],
+      "account_id": "0a0cad00-0000-4000-8000-00000000ad01",
+      "opportunity_id": "0c0fad00-0000-4000-8000-00000000ad01",
+      "account_hint": "medtechadvances.com",
+      "opportunity_hint": "006Wt000007BHzBIAW",
+      "payload_ref": "source_events/05e0ad00-0000-4000-8000-00000000ad0c",
+      "summary": "Fatoumata asked for implementation support; Quantum Circuits Inc. offers competitive initial pricing with onboarding.",
+      "permissions": {
+        "visibility": "org"
+      },
+      "provenance": {
+        "source_system": "email",
+        "source_object_id": "02sWt000001zopGIAQ",
+        "connector": "crmarena-loader",
+        "connector_version": "wp31-v1"
+      },
+      "caused_by_activity_id": null,
+      "correlation_id": null
+    },
+    {
+      "id": "0ac7ad00-0000-4000-8000-00000000ad0b",
+      "idempotency_key": "d56f294e0971437fe274e9353d50274bb12b0d89de725b7dd9b5b2b5134585ca",
+      "activity_type": "EmailReceived",
+      "source_system": "email",
+      "source_object_id": "02sWt000002087iIAA",
+      "source_event_id": "05e0ad00-0000-4000-8000-00000000ad0b",
+      "occurred_at": "2023-11-08T16:00:00Z",
+      "ingested_at": "2023-11-08T16:00:04Z",
+      "participants": [
+        {
+          "raw_identity": "fatoumata.toure@medtechadvances.com",
+          "display_name": "Fatoumata Touré",
+          "role": "from",
+          "person_id": "0b0ead00-0000-4000-8000-00000000ad11"
+        },
+        {
+          "raw_identity": "luis.rodriguez@vendor.example",
+          "display_name": "Luis Rodriguez",
+          "role": "to",
+          "person_id": "0b0ead00-0000-4000-8000-00000000ad21"
+        }
+      ],
+      "account_id": "0a0cad00-0000-4000-8000-00000000ad01",
+      "opportunity_id": "0c0fad00-0000-4000-8000-00000000ad01",
+      "account_hint": "medtechadvances.com",
+      "opportunity_hint": "006Wt000007BHzBIAW",
+      "payload_ref": "source_events/05e0ad00-0000-4000-8000-00000000ad0b",
+      "summary": "Fatoumata values pricing transparency and has reservations about EduTech Lab's early usability.",
+      "permissions": {
+        "visibility": "org"
+      },
+      "provenance": {
+        "source_system": "email",
+        "source_object_id": "02sWt000002087iIAA",
+        "connector": "crmarena-loader",
+        "connector_version": "wp31-v1"
+      },
+      "caused_by_activity_id": null,
+      "correlation_id": null
+    },
+    {
+      "id": "0ac7ad00-0000-4000-8000-00000000ad0a",
+      "idempotency_key": "b18e4a03ab4b86dc6ec6a2628668c0a9ba971a4ee3c465ac853381723ab28932",
+      "activity_type": "EmailSent",
+      "source_system": "email",
+      "source_object_id": "02sWt000001zuEUIAY",
+      "source_event_id": "05e0ad00-0000-4000-8000-00000000ad0a",
+      "occurred_at": "2023-11-08T15:05:00Z",
+      "ingested_at": "2023-11-08T15:05:04Z",
+      "participants": [
+        {
+          "raw_identity": "luis.rodriguez@vendor.example",
+          "display_name": "Luis Rodriguez",
+          "role": "from",
+          "person_id": "0b0ead00-0000-4000-8000-00000000ad21"
+        },
+        {
+          "raw_identity": "fatoumata.toure@medtechadvances.com",
+          "display_name": "Fatoumata Touré",
+          "role": "to",
+          "person_id": "0b0ead00-0000-4000-8000-00000000ad11"
+        }
+      ],
+      "account_id": "0a0cad00-0000-4000-8000-00000000ad01",
+      "opportunity_id": "0c0fad00-0000-4000-8000-00000000ad01",
+      "account_hint": "medtechadvances.com",
+      "opportunity_hint": "006Wt000007BHzBIAW",
+      "payload_ref": "source_events/05e0ad00-0000-4000-8000-00000000ad0a",
+      "summary": "Luis followed up on integration flexibility and EduTech Lab results.",
+      "permissions": {
+        "visibility": "org"
+      },
+      "provenance": {
+        "source_system": "email",
+        "source_object_id": "02sWt000001zuEUIAY",
+        "connector": "crmarena-loader",
+        "connector_version": "wp31-v1"
+      },
+      "caused_by_activity_id": null,
+      "correlation_id": null
+    },
+    {
+      "id": "0ac7ad00-0000-4000-8000-00000000ad09",
+      "idempotency_key": "58d43f4e504366303e5c7d2e0d508e50d8734ec5b156a9dc02ce05e951355803",
+      "activity_type": "EmailSent",
+      "source_system": "email",
+      "source_object_id": "02sWt000001zz9GIAQ",
+      "source_event_id": "05e0ad00-0000-4000-8000-00000000ad09",
+      "occurred_at": "2023-11-08T15:00:00Z",
+      "ingested_at": "2023-11-08T15:00:04Z",
+      "participants": [
+        {
+          "raw_identity": "luis.rodriguez@vendor.example",
+          "display_name": "Luis Rodriguez",
+          "role": "from",
+          "person_id": "0b0ead00-0000-4000-8000-00000000ad21"
+        },
+        {
+          "raw_identity": "fatoumata.toure@medtechadvances.com",
+          "display_name": "Fatoumata Touré",
+          "role": "to",
+          "person_id": "0b0ead00-0000-4000-8000-00000000ad11"
+        }
+      ],
+      "account_id": "0a0cad00-0000-4000-8000-00000000ad01",
+      "opportunity_id": "0c0fad00-0000-4000-8000-00000000ad01",
+      "account_hint": "medtechadvances.com",
+      "opportunity_hint": "006Wt000007BHzBIAW",
+      "payload_ref": "source_events/05e0ad00-0000-4000-8000-00000000ad09",
+      "summary": "Luis followed up: proposal total $24,679.53, with discounts on CryptGuard Module and SecureData Nexus.",
+      "permissions": {
+        "visibility": "org"
+      },
+      "provenance": {
+        "source_system": "email",
+        "source_object_id": "02sWt000001zz9GIAQ",
+        "connector": "crmarena-loader",
+        "connector_version": "wp31-v1"
+      },
+      "caused_by_activity_id": null,
+      "correlation_id": null
+    },
+    {
+      "id": "0ac7ad00-0000-4000-8000-00000000ad08",
+      "idempotency_key": "e02e85c214375e6c556c1113b59a8cba4fa78ec2d08d2cba2af7c947e7fdd50b",
+      "activity_type": "EmailSent",
+      "source_system": "email",
+      "source_object_id": "02sWt000001zz4WIAQ",
+      "source_event_id": "05e0ad00-0000-4000-8000-00000000ad08",
+      "occurred_at": "2023-11-08T15:00:00Z",
+      "ingested_at": "2023-11-08T15:00:04Z",
+      "participants": [
+        {
+          "raw_identity": "luis.rodriguez@vendor.example",
+          "display_name": "Luis Rodriguez",
+          "role": "from",
+          "person_id": "0b0ead00-0000-4000-8000-00000000ad21"
+        },
+        {
+          "raw_identity": "fatoumata.toure@medtechadvances.com",
+          "display_name": "Fatoumata Touré",
+          "role": "to",
+          "person_id": "0b0ead00-0000-4000-8000-00000000ad11"
+        }
+      ],
+      "account_id": "0a0cad00-0000-4000-8000-00000000ad01",
+      "opportunity_id": "0c0fad00-0000-4000-8000-00000000ad01",
+      "account_hint": "medtechadvances.com",
+      "opportunity_hint": "006Wt000007BHzBIAW",
+      "payload_ref": "source_events/05e0ad00-0000-4000-8000-00000000ad08",
+      "summary": "Luis asked for feedback on the proposal draft.",
+      "permissions": {
+        "visibility": "org"
+      },
+      "provenance": {
+        "source_system": "email",
+        "source_object_id": "02sWt000001zz4WIAQ",
+        "connector": "crmarena-loader",
+        "connector_version": "wp31-v1"
+      },
+      "caused_by_activity_id": null,
+      "correlation_id": null
+    },
+    {
+      "id": "0ac7ad00-0000-4000-8000-00000000ad07",
+      "idempotency_key": "338bc75919e4e0497d879653c695d52823e5afff5d0edbd241262ab4e677e78c",
+      "activity_type": "CRMTaskLogged",
+      "source_system": "crm",
+      "source_object_id": "00TWt000002zGDFMA2",
+      "source_event_id": "05e0ad00-0000-4000-8000-00000000ad07",
+      "occurred_at": "2023-11-07T00:00:00Z",
+      "ingested_at": "2023-11-07T00:00:04Z",
+      "participants": [],
+      "account_id": "0a0cad00-0000-4000-8000-00000000ad01",
+      "opportunity_id": "0c0fad00-0000-4000-8000-00000000ad01",
+      "account_hint": "001Wt00000PHVyfIAH",
+      "opportunity_hint": "006Wt000007BHzBIAW",
+      "payload_ref": "source_events/05e0ad00-0000-4000-8000-00000000ad07",
+      "summary": "Task: organize a product demo of SecureData Nexus and TrainEDU Suite.",
+      "permissions": {
+        "visibility": "org"
+      },
+      "provenance": {
+        "source_system": "crm",
+        "source_object_id": "00TWt000002zGDFMA2",
+        "connector": "crmarena-loader",
+        "connector_version": "wp31-v1"
+      },
+      "caused_by_activity_id": null,
+      "correlation_id": null
+    },
+    {
+      "id": "0ac7ad00-0000-4000-8000-00000000ad06",
+      "idempotency_key": "dc435b0d121a465528cd4b7cbae28fecde4e07a66d236efa8d7079e2669bb9dd",
+      "activity_type": "EmailReceived",
+      "source_system": "email",
+      "source_object_id": "02sWt000002098bIAA",
+      "source_event_id": "05e0ad00-0000-4000-8000-00000000ad06",
+      "occurred_at": "2023-11-01T09:30:00Z",
+      "ingested_at": "2023-11-01T09:30:04Z",
+      "participants": [
+        {
+          "raw_identity": "fatoumata.toure@medtechadvances.com",
+          "display_name": "Fatoumata Touré",
+          "role": "from",
+          "person_id": "0b0ead00-0000-4000-8000-00000000ad11"
+        },
+        {
+          "raw_identity": "luis.rodriguez@vendor.example",
+          "display_name": "Luis Rodriguez",
+          "role": "to",
+          "person_id": "0b0ead00-0000-4000-8000-00000000ad21"
+        }
+      ],
+      "account_id": "0a0cad00-0000-4000-8000-00000000ad01",
+      "opportunity_id": "0c0fad00-0000-4000-8000-00000000ad01",
+      "account_hint": "medtechadvances.com",
+      "opportunity_hint": "006Wt000007BHzBIAW",
+      "payload_ref": "source_events/05e0ad00-0000-4000-8000-00000000ad06",
+      "summary": "Fatoumata asked how CryptGuard integrates with their security protocols, and about the deployment timeline.",
+      "permissions": {
+        "visibility": "org"
+      },
+      "provenance": {
+        "source_system": "email",
+        "source_object_id": "02sWt000002098bIAA",
+        "connector": "crmarena-loader",
+        "connector_version": "wp31-v1"
+      },
+      "caused_by_activity_id": null,
+      "correlation_id": null
+    },
+    {
+      "id": "0ac7ad00-0000-4000-8000-00000000ad05",
+      "idempotency_key": "b673fb4ed1016d9a9c543f948d61837008b0a3469e5f8cf339842e19bf2b0bbc",
+      "activity_type": "CRMTaskLogged",
+      "source_system": "crm",
+      "source_object_id": "00TWt000002yrBoMAI",
+      "source_event_id": "05e0ad00-0000-4000-8000-00000000ad05",
+      "occurred_at": "2023-11-01T00:00:00Z",
+      "ingested_at": "2023-11-01T00:00:04Z",
+      "participants": [],
+      "account_id": "0a0cad00-0000-4000-8000-00000000ad01",
+      "opportunity_id": "0c0fad00-0000-4000-8000-00000000ad01",
+      "account_hint": "001Wt00000PHVyfIAH",
+      "opportunity_hint": "006Wt000007BHzBIAW",
+      "payload_ref": "source_events/05e0ad00-0000-4000-8000-00000000ad05",
+      "summary": "Task: prepare the proposal draft.",
+      "permissions": {
+        "visibility": "org"
+      },
+      "provenance": {
+        "source_system": "crm",
+        "source_object_id": "00TWt000002yrBoMAI",
+        "connector": "crmarena-loader",
+        "connector_version": "wp31-v1"
+      },
+      "caused_by_activity_id": null,
+      "correlation_id": null
+    },
+    {
+      "id": "0ac7ad00-0000-4000-8000-00000000ad04",
+      "idempotency_key": "e0c7e9bd491e35cff7bab89f760ca9a1935abeee7f0751f0a0180a382d64fa5c",
+      "activity_type": "EmailSent",
+      "source_system": "email",
+      "source_object_id": "02sWt000002020jIAA",
+      "source_event_id": "05e0ad00-0000-4000-8000-00000000ad04",
+      "occurred_at": "2023-10-31T18:00:00Z",
+      "ingested_at": "2023-10-31T18:00:04Z",
+      "participants": [
+        {
+          "raw_identity": "luis.rodriguez@vendor.example",
+          "display_name": "Luis Rodriguez",
+          "role": "from",
+          "person_id": "0b0ead00-0000-4000-8000-00000000ad21"
+        },
+        {
+          "raw_identity": "fatoumata.toure@medtechadvances.com",
+          "display_name": "Fatoumata Touré",
+          "role": "to",
+          "person_id": "0b0ead00-0000-4000-8000-00000000ad11"
+        }
+      ],
+      "account_id": "0a0cad00-0000-4000-8000-00000000ad01",
+      "opportunity_id": "0c0fad00-0000-4000-8000-00000000ad01",
+      "account_hint": "medtechadvances.com",
+      "opportunity_hint": "006Wt000007BHzBIAW",
+      "payload_ref": "source_events/05e0ad00-0000-4000-8000-00000000ad04",
+      "summary": "Luis sent the draft proposal: SecureData Nexus, CryptGuard Module and EduTech Lab.",
+      "permissions": {
+        "visibility": "org"
+      },
+      "provenance": {
+        "source_system": "email",
+        "source_object_id": "02sWt000002020jIAA",
+        "connector": "crmarena-loader",
+        "connector_version": "wp31-v1"
+      },
+      "caused_by_activity_id": null,
+      "correlation_id": null
+    },
+    {
+      "id": "0ac7ad00-0000-4000-8000-00000000ad03",
+      "idempotency_key": "171857228e6e56cbde6c83d00ceec846056c0a64b6ff44b0c354e51f8b72e13f",
+      "activity_type": "QuoteCreated",
+      "source_system": "crm",
+      "source_object_id": "0Q0Wt000001WQWiKAO",
+      "source_event_id": "05e0ad00-0000-4000-8000-00000000ad03",
+      "occurred_at": "2023-10-15T10:12:00Z",
+      "ingested_at": "2023-10-15T10:12:04Z",
+      "participants": [],
+      "account_id": "0a0cad00-0000-4000-8000-00000000ad01",
+      "opportunity_id": "0c0fad00-0000-4000-8000-00000000ad01",
+      "account_hint": "001Wt00000PHVyfIAH",
+      "opportunity_hint": "006Wt000007BHzBIAW",
+      "payload_ref": "source_events/05e0ad00-0000-4000-8000-00000000ad03",
+      "summary": "Quote created: Data Protection & Education Enhancement, $24,679.53.",
+      "permissions": {
+        "visibility": "org"
+      },
+      "provenance": {
+        "source_system": "crm",
+        "source_object_id": "0Q0Wt000001WQWiKAO",
+        "connector": "crmarena-loader",
+        "connector_version": "wp31-v1"
+      },
+      "caused_by_activity_id": null,
+      "correlation_id": null
+    },
+    {
+      "id": "0ac7ad00-0000-4000-8000-00000000ad02",
+      "idempotency_key": "481055df005f3cfea35c66368e065f04c1a9781d1298f4437b91389966af192b",
+      "activity_type": "ContactAdded",
+      "source_system": "crm",
+      "source_object_id": "003Wt00000JqtK4IAJ",
+      "source_event_id": "05e0ad00-0000-4000-8000-00000000ad02",
+      "occurred_at": "2023-10-15T10:12:00Z",
+      "ingested_at": "2023-10-15T10:12:04Z",
+      "participants": [
+        {
+          "raw_identity": "crm:003Wt00000JqtK4IAJ",
+          "display_name": "Fatoumata Touré",
+          "role": "mentioned",
+          "person_id": "0b0ead00-0000-4000-8000-00000000ad11"
+        }
+      ],
+      "account_id": "0a0cad00-0000-4000-8000-00000000ad01",
+      "opportunity_id": "0c0fad00-0000-4000-8000-00000000ad01",
+      "account_hint": "001Wt00000PHVyfIAH",
+      "opportunity_hint": "006Wt000007BHzBIAW",
+      "payload_ref": "source_events/05e0ad00-0000-4000-8000-00000000ad02",
+      "summary": "Fatoumata Touré added as a contact.",
+      "permissions": {
+        "visibility": "org"
+      },
+      "provenance": {
+        "source_system": "crm",
+        "source_object_id": "003Wt00000JqtK4IAJ",
+        "connector": "crmarena-loader",
+        "connector_version": "wp31-v1"
+      },
+      "caused_by_activity_id": null,
+      "correlation_id": null
+    },
+    {
+      "id": "0ac7ad00-0000-4000-8000-00000000ad01",
+      "idempotency_key": "6a67c5ffc7606bd54e87d63eeaa627e6d54fa4abae39aa97c8369110023c7afe",
+      "activity_type": "CRMFieldChanged",
+      "source_system": "crm",
+      "source_object_id": "006Wt000007BHzBIAW",
+      "source_event_id": "05e0ad00-0000-4000-8000-00000000ad01",
+      "occurred_at": "2023-05-25T11:23:41Z",
+      "ingested_at": "2023-05-25T11:23:45Z",
+      "participants": [],
+      "account_id": "0a0cad00-0000-4000-8000-00000000ad01",
+      "opportunity_id": "0c0fad00-0000-4000-8000-00000000ad01",
+      "account_hint": "001Wt00000PHVyfIAH",
+      "opportunity_hint": "006Wt000007BHzBIAW",
+      "payload_ref": "source_events/05e0ad00-0000-4000-8000-00000000ad01",
+      "summary": "Deal created: Advanced Data Protection and Education Enhancement Deal.",
+      "permissions": {
+        "visibility": "org"
+      },
+      "provenance": {
+        "source_system": "crm",
+        "source_object_id": "006Wt000007BHzBIAW",
+        "connector": "crmarena-loader",
+        "connector_version": "wp31-v1"
+      },
+      "caused_by_activity_id": null,
+      "correlation_id": null
+    }
+  ]
+}

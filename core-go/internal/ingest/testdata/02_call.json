@@ -1,0 +1,42 @@
+[
+  {
+    "source_system": "call",
+    "source_object_id": "C-100",
+    "source_event_key": "ended",
+    "connector": "recorder",
+    "connector_version": "0.1.0",
+    "payload": {
+      "kind": "call",
+      "call_id": "C-100",
+      "calendar_event_id": "ev-acme-1",
+      "started_at": "2026-10-01T14:00:00Z",
+      "ended_at": "2026-10-01T14:44:30Z",
+      "speakers": [
+        { "label": "speaker_01", "email": "dana@vendor.example", "name": "Dana Kim" },
+        { "label": "speaker_02", "email": null, "name": null }
+      ]
+    }
+  },
+  {
+    "source_system": "call",
+    "source_object_id": "C-100",
+    "source_event_key": "transcript_ready",
+    "connector": "recorder",
+    "connector_version": "0.1.0",
+    "payload": {
+      "kind": "call",
+      "call_id": "C-100",
+      "calendar_event_id": "ev-acme-1",
+      "started_at": "2026-10-01T14:00:00Z",
+      "ended_at": "2026-10-01T14:44:30Z",
+      "speakers": [
+        { "label": "speaker_01", "email": "dana@vendor.example", "name": "Dana Kim" },
+        { "label": "speaker_02", "email": null, "name": null }
+      ],
+      "transcript": [
+        { "speaker": "speaker_01", "offset_s": 0, "text": "Thanks for joining, Marco." },
+        { "speaker": "speaker_02", "offset_s": 5.5, "text": "We need your SOC2 Type II report before we can sign off." }
+      ]
+    }
+  }
+]

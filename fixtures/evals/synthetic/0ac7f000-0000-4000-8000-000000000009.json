@@ -1,0 +1,22 @@
+{
+  "source_system": "email",
+  "source_object_id": "<syn-northstar-009@mail.northstar.health>",
+  "source_event_key": "received",
+  "occurred_at": "2026-09-25T14:00:00Z",
+  "connector": "gmail",
+  "connector_version": "0.1.0",
+  "payload": {
+    "kind": "email",
+    "direction": "inbound",
+    "message_id": "<syn-northstar-009@mail.northstar.health>",
+    "thread_id": "thr-northstar-incident",
+    "in_reply_to": null,
+    "from": {"email": "sam.okafor@northstar.health", "name": "Sam Okafor"},
+    "to": [{"email": "dana@vendor.example", "name": "Dana Kim"}],
+    "cc": [],
+    "date": "2026-09-25T14:00:00Z",
+    "subject": "Lakeside intake - hold",
+    "body_text": "Dana - we're investigating a misrouted intake form at Lakeside that may involve PHI. Please hold the review invite and any renewal paperwork; no need to reply. Our compliance team will contact your security team directly, and I'll come back to you by Friday October 2.\nSam",
+    "crm_opportunity_ref": "opp:NS-2-EXP"
+  }
+}

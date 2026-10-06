@@ -1,0 +1,22 @@
+{
+  "source_system": "email",
+  "source_object_id": "<ghost-dana-2026-08-18@vendor.example>",
+  "source_event_key": "sent",
+  "occurred_at": "2026-08-18T15:30:00Z",
+  "connector": "gmail",
+  "connector_version": "0.1.0",
+  "payload": {
+    "kind": "email",
+    "direction": "outbound",
+    "message_id": "<ghost-dana-2026-08-18@vendor.example>",
+    "thread_id": "thr-acme-eu-expansion",
+    "in_reply_to": null,
+    "from": {"email": "dana@vendor.example", "name": "Dana Kim"},
+    "to": [{"email": "priya.shah@acme.com", "name": "Priya Shah"}],
+    "cc": [],
+    "date": "2026-08-18T15:30:00Z",
+    "subject": "Expansion to EU teams",
+    "body_text": "Hi Priya,\nGreat to hear the US team wants to bring Relay to the EU warehouses. Could we set up 45 minutes next week to scope the Berlin and Rotterdam rollout?\nBest,\nDana",
+    "crm_opportunity_ref": "opp:AC-4-EXP"
+  }
+}

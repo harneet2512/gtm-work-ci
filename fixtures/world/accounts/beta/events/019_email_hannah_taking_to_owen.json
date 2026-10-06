@@ -1,0 +1,22 @@
+{
+  "source_system": "email",
+  "source_object_id": "<BETA-hl-2026-09-02@beta.io>",
+  "source_event_key": "received",
+  "occurred_at": "2026-09-02T13:15:00Z",
+  "connector": "gmail",
+  "connector_version": "0.1.0",
+  "payload": {
+    "kind": "email",
+    "direction": "inbound",
+    "message_id": "<BETA-hl-2026-09-02@beta.io>",
+    "thread_id": "thr-beta-support-rollout",
+    "in_reply_to": "<ghost-dana-2026-09-01@vendor.example>",
+    "from": {"email": "hannah.lee@beta.io", "name": "Hannah Lee"},
+    "to": [{"email": "dana@vendor.example", "name": "Dana Kim"}],
+    "cc": [],
+    "date": "2026-09-02T13:15:00Z",
+    "subject": "Re: Relay for the Beta support org",
+    "body_text": "Thanks Dana, this is exactly what Owen needs. I'm taking it to him on Friday.\nHannah",
+    "crm_opportunity_ref": "opp:BE-7-EXP"
+  }
+}

@@ -1,0 +1,23 @@
+{
+  "source_system": "email",
+  "source_object_id": "<ghost-dana-2026-09-23-ns@vendor.example>",
+  "source_event_key": "sent",
+  "occurred_at": "2026-09-23T14:30:00Z",
+  "connector": "gmail",
+  "connector_version": "0.1.0",
+  "payload": {
+    "kind": "email",
+    "direction": "outbound",
+    "message_id": "<ghost-dana-2026-09-23-ns@vendor.example>",
+    "thread_id": "thr-northstar-intake",
+    "in_reply_to": "<NSH-ev-2026-09-21@mail.northstar.health>",
+    "from": {"email": "dana@vendor.example", "name": "Dana Kim"},
+    "to": [{"email": "sam.okafor@northstar.health", "name": "Sam Okafor"}],
+    "cc": [],
+    "date": "2026-09-23T14:30:00Z",
+    "subject": "Re: Rolling Relay out to all clinics",
+    "body_text": "Hi Sam,\nElena let me know you're leading the evaluation - great to be working with you. Our BAA template and HIPAA controls summary are attached, and Leo Park, our solutions engineer, will support the security review.\nBest,\nDana",
+    "attachments": ["Ghost_Vendor_BAA_and_HIPAA_Controls.pdf"],
+    "crm_opportunity_ref": "opp:NS-2-EXP"
+  }
+}

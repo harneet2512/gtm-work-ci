@@ -1,0 +1,93 @@
+{
+  "eval_type": "champion_continuity",
+  "version": 1,
+  "title": "Champion continuity",
+  "har97_refs": [
+    {
+      "line": 1193,
+      "text": "## 5.5 Champion continuity"
+    }
+  ],
+  "l2_dimension": null,
+  "questions": [
+    {
+      "section": "§5.5",
+      "text": "Does the proposed action preserve or damage a valuable relationship path?"
+    }
+  ],
+  "inputs": [
+    "champion and champion_status",
+    "delegations and departures",
+    "who the latest messages say owns the step",
+    "recipients of the candidate"
+  ],
+  "criteria": [
+    {
+      "id": "path_preserved",
+      "kind": "check",
+      "text": "the active champion stays on the path",
+      "guide": "If the champion is active and did not delegate, they are included in this step.",
+      "har97": null,
+      "output": "finding",
+      "before": null,
+      "after": null
+    },
+    {
+      "id": "valid_handoff",
+      "kind": "check",
+      "text": "a direct thread is justified by delegation or departure",
+      "guide": "A direct thread without the champion is right only if ownership was explicitly delegated or the champion left.",
+      "har97": null,
+      "output": "finding",
+      "before": null,
+      "after": null
+    }
+  ],
+  "failure_examples": [
+    "Active champion introduces security lead; agent immediately creates a direct handoff and removes champion from future interaction."
+  ],
+  "counter_failures": [],
+  "known_exceptions": [
+    "Champion explicitly delegated ownership or left the process."
+  ],
+  "candidate_choices": [],
+  "principles": [],
+  "labels": [
+    {
+      "label": "CHAMPION_INCLUDED",
+      "when": "The champion stays involved in this step."
+    },
+    {
+      "label": "CHAMPION_BYPASSED",
+      "when": "The active champion is dropped without delegation or departure."
+    },
+    {
+      "label": "VALID_HANDOFF",
+      "when": "The champion is not involved because ownership was delegated or they left."
+    }
+  ],
+  "pass_label": "CHAMPION_INCLUDED",
+  "diagnostics": [
+    {
+      "name": "champion_bypassed",
+      "when": "the active champion is dropped without delegation or departure"
+    }
+  ],
+  "routing": {
+    "actions": [
+      "send_email",
+      "schedule_meeting",
+      "share_document"
+    ],
+    "when_all": [
+      "has_recipients",
+      "champion_known"
+    ],
+    "when_any": [
+      "champion_off_thread",
+      "champion_in_question",
+      "exception_in_state"
+    ]
+  },
+  "uses_rep_profile": false
+}

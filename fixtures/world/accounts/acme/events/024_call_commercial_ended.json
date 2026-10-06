@@ -1,0 +1,19 @@
+{
+  "source_system": "call",
+  "source_object_id": "call-acme-0909",
+  "source_event_key": "ended",
+  "occurred_at": "2026-09-09T14:32:00Z",
+  "connector": "recorder",
+  "connector_version": "0.1.0",
+  "payload": {
+    "kind": "call",
+    "call_id": "call-acme-0909",
+    "calendar_event_id": "gcal:acme-commercial-0909",
+    "started_at": "2026-09-09T14:01:00Z",
+    "ended_at": "2026-09-09T14:32:00Z",
+    "speakers": [
+      {"label": "speaker_01", "email": "dana@vendor.example", "name": "Dana Kim"},
+      {"label": "speaker_02", "email": "priya.shah@acme.com", "name": "Priya Shah"}
+    ]
+  }
+}

@@ -1,0 +1,203 @@
+{
+  "account": "northstar",
+  "checkpoint": 1,
+  "after_event_file": "world/accounts/northstar/events/016_email_elena_pricing_ok.json",
+  "as_of": "2026-09-03T11:20:00Z",
+  "notes": "Champion-led expansion; security review is required but no security person is identified yet.",
+  "expected": {
+    "distinct_activities": 16,
+    "entities": [
+      {
+        "key": "account:northstar",
+        "kind": "account",
+        "display_name": "Northstar Health",
+        "source_identities": ["crm:account:NS-2", "domain:northstar.health"]
+      },
+      {
+        "key": "document:northstar_pricing",
+        "kind": "document",
+        "display_name": "Northstar Four-Clinic Pricing",
+        "source_identities": ["docs:gdrive:northstar-pricing-v1"]
+      },
+      {
+        "key": "opportunity:northstar_expansion",
+        "kind": "opportunity",
+        "display_name": "Northstar - intake rollout to four clinics",
+        "source_identities": ["crm:opp:NS-2-EXP"]
+      },
+      {
+        "key": "person:dana_kim",
+        "kind": "person",
+        "display_name": "Dana Kim",
+        "source_identities": ["call:call-ns-0827:speaker_01", "email:dana@vendor.example", "slack:U02DANA"]
+      },
+      {
+        "key": "person:elena_vasquez",
+        "kind": "person",
+        "display_name": "Elena Vasquez",
+        "source_identities": [
+          "call:call-ns-0827:speaker_02",
+          "crm:contact:1204",
+          "email:elena.vasquez@northstar.health"
+        ]
+      },
+      {
+        "key": "person:grace_liu",
+        "kind": "person",
+        "display_name": "Grace Liu",
+        "source_identities": ["crm:contact:1211", "email:grace.liu@northstar.health"]
+      },
+      {
+        "key": "person:leo_park",
+        "kind": "person",
+        "display_name": "Leo Park",
+        "source_identities": ["call:call-ns-0827:speaker_03", "email:leo@vendor.example"]
+      }
+    ],
+    "edges": [
+      {
+        "src": "opportunity:northstar_expansion",
+        "rel_type": "belongs_to",
+        "dst": "account:northstar"
+      },
+      {"src": "person:dana_kim", "rel_type": "owns", "dst": "opportunity:northstar_expansion"},
+      {"src": "person:leo_park", "rel_type": "supports", "dst": "opportunity:northstar_expansion"},
+      {"src": "person:elena_vasquez", "rel_type": "works_at", "dst": "account:northstar"},
+      {
+        "src": "person:elena_vasquez",
+        "rel_type": "champion_for",
+        "dst": "opportunity:northstar_expansion"
+      },
+      {"src": "person:grace_liu", "rel_type": "works_at", "dst": "account:northstar"},
+      {
+        "src": "person:grace_liu",
+        "rel_type": "economic_buyer_for",
+        "dst": "opportunity:northstar_expansion"
+      },
+      {
+        "src": "document:northstar_pricing",
+        "rel_type": "shared_with",
+        "dst": "person:elena_vasquez"
+      }
+    ],
+    "state_fields": {
+      "stage": "Discovery",
+      "health": "on_track",
+      "owner": "person:dana_kim",
+      "motion": "expansion",
+      "champion": "person:elena_vasquez",
+      "champion_status": "active",
+      "economic_buyer": "person:grace_liu",
+      "blockers": "unknown",
+      "objections": "unknown",
+      "decision_criteria": [
+        {"text": "Live in all four clinics before open enrollment on November 2"},
+        {"text": "Cut front-desk intake time, as in the Lakeside pilot (about a third)"}
+      ],
+      "decision_process": "Grace Liu (VP Finance) approves budget on Elena Vasquez's recommendation; Sam Okafor's security team must review because intake forms carry PHI (BAA required)",
+      "current_commitments": [
+        {
+          "text": "Send pricing for the four clinics by next Wednesday",
+          "status": "fulfilled",
+          "owner": "person:dana_kim",
+          "due": "2026-09-02"
+        },
+        {
+          "text": "Set up time next week to go through the rollout plan",
+          "status": "open",
+          "owner": "person:elena_vasquez"
+        }
+      ],
+      "next_milestone": "Rollout plan review with Elena Vasquez",
+      "next_meeting": null,
+      "relationship_risk": "low",
+      "product_use_case": "Relay patient intake rollout from the Lakeside pilot to all four clinics",
+      "commercial_issue": "unknown",
+      "last_customer_interaction": "2026-09-03T11:20:00Z"
+    },
+    "buying_group": [
+      {
+        "person_key": "person:elena_vasquez",
+        "roles": ["champion"],
+        "status": "active",
+        "title": "Director of Patient Access"
+      },
+      {
+        "person_key": "person:grace_liu",
+        "roles": ["economic_buyer"],
+        "status": "unknown",
+        "title": "VP Finance"
+      }
+    ],
+    "coverage_gaps": ["security"],
+    "material_diff_fields": [
+      "stage",
+      "health",
+      "owner",
+      "motion",
+      "champion",
+      "champion_status",
+      "economic_buyer",
+      "decision_criteria",
+      "decision_process",
+      "current_commitments",
+      "next_milestone",
+      "next_meeting",
+      "relationship_risk",
+      "product_use_case",
+      "buying_group",
+      "coverage_gaps"
+    ],
+    "signals": [
+      "customer_replied",
+      "expansion_interest",
+      "meeting_accepted",
+      "new_stakeholder_entered",
+      "stakeholder_gap"
+    ],
+    "trigger": {
+      "workflow": "post_interaction_followup",
+      "eligible": true,
+      "reason_codes": ["eligible_customer_replied"]
+    },
+    "critical_facts": [
+      {
+        "field": "champion",
+        "value": "person:elena_vasquez",
+        "evidence_event_file": "world/accounts/northstar/events/013_crm_note_scoping.json",
+        "evidence_quote": "Elena Vasquez champions the rollout to all four clinics"
+      },
+      {
+        "field": "economic_buyer",
+        "value": "person:grace_liu",
+        "evidence_event_file": "world/accounts/northstar/events/011_call_scope_transcript.json",
+        "evidence_quote": "Grace Liu, our VP of Finance, approves the budget, but she'll follow my recommendation."
+      },
+      {
+        "field": "decision_process",
+        "value": "Grace Liu (VP Finance) approves budget on Elena Vasquez's recommendation; Sam Okafor's security team must review because intake forms carry PHI (BAA required)",
+        "evidence_event_file": "world/accounts/northstar/events/011_call_scope_transcript.json",
+        "evidence_quote": "Anything that touches patient data also needs a security review by Sam Okafor's team, because intake forms carry PHI."
+      },
+      {
+        "field": "commitment",
+        "value": "Send pricing for the four clinics by next Wednesday",
+        "evidence_event_file": "world/accounts/northstar/events/011_call_scope_transcript.json",
+        "evidence_quote": "I'll send pricing for the four clinics by next Wednesday."
+      },
+      {
+        "field": "decision_criteria",
+        "value": "Live in all four clinics before open enrollment on November 2",
+        "evidence_event_file": "world/accounts/northstar/events/011_call_scope_transcript.json",
+        "evidence_quote": "Open enrollment starts November 2, so that's our real deadline."
+      },
+      {
+        "field": "stage",
+        "value": "Discovery",
+        "evidence_event_file": "world/accounts/northstar/events/002_crm_opp_created.json",
+        "evidence_quote": null
+      }
+    ],
+    "stale_facts": []
+  }
+}

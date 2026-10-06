@@ -1,0 +1,447 @@
+{
+ "note": "neutral sheet id -> case; pass 2 is keyed by sheet id",
+ "sheets": [
+  {
+   "sheet": "S5eea",
+   "case": "cr_d8_k101_cost_answered_in_writing_with_slots",
+   "evals": [
+    "next_action_quality",
+    "knowledge_applicability",
+    "commitment_consistency"
+   ]
+  },
+  {
+   "sheet": "S945d",
+   "case": "cr_x_tech_session_asks_who_from_the_tech_team",
+   "evals": [
+    "stakeholder_selection",
+    "champion_continuity",
+    "stakeholder_coverage"
+   ]
+  },
+  {
+   "sheet": "S42b1",
+   "case": "cr_d3_cto_requested_but_not_included",
+   "evals": [
+    "next_step_quality",
+    "stakeholder_selection",
+    "stakeholder_coverage"
+   ]
+  },
+  {
+   "sheet": "S5ff5",
+   "case": "cr_d3_looking_forward_to_a_meeting_that_has_passed",
+   "evals": [
+    "next_action_quality",
+    "commitment_consistency",
+    "timing_cadence"
+   ]
+  },
+  {
+   "sheet": "S3ed4",
+   "case": "cr_d4_contract_with_friday_deadline_while_procurement_reviews",
+   "evals": [
+    "decision_process",
+    "buyer_readiness",
+    "cta_calibration"
+   ]
+  },
+  {
+   "sheet": "S2ec2",
+   "case": "cr_d4_asks_who_approves_instead_of_assuming",
+   "evals": [
+    "economic_buyer_coverage",
+    "grounding",
+    "decision_process"
+   ]
+  },
+  {
+   "sheet": "S94bc",
+   "case": "cr_d7_promises_the_testimonials_again_thirteen_days_later",
+   "evals": [
+    "next_action_quality",
+    "commitment_consistency",
+    "timing_cadence"
+   ]
+  },
+  {
+   "sheet": "Se70f",
+   "case": "cr_x_k101_ignored_cost_answer_deferred_to_a_call",
+   "evals": [
+    "commitment_consistency",
+    "next_action_quality",
+    "knowledge_applicability"
+   ]
+  },
+  {
+   "sheet": "S9b7e",
+   "case": "cr_d11_internal_review_task_needs_no_customer_contact",
+   "evals": [
+    "state_change_relevance",
+    "next_action_quality",
+    "buyer_readiness"
+   ]
+  },
+  {
+   "sheet": "S19d5",
+   "case": "cr_d1_answers_cost_question_and_sends_case_studies",
+   "evals": [
+    "cta_calibration",
+    "timing_cadence",
+    "buyer_readiness",
+    "grounding"
+   ]
+  },
+  {
+   "sheet": "S9c15",
+   "case": "cr_d6_apologises_for_the_gap_and_offers_demo_dates",
+   "evals": [
+    "commitment_consistency",
+    "next_action_quality",
+    "momentum",
+    "timing_cadence"
+   ]
+  },
+  {
+   "sheet": "S934d",
+   "case": "cr_d3_asks_for_ctos_address_and_adds_him",
+   "evals": [
+    "stakeholder_coverage",
+    "grounding",
+    "stakeholder_selection",
+    "next_step_quality"
+   ]
+  },
+  {
+   "sheet": "S3d54",
+   "case": "cr_d1_cfo_direct_pricing_drops_chin_wei",
+   "evals": [
+    "buyer_readiness",
+    "champion_continuity",
+    "stakeholder_selection"
+   ]
+  },
+  {
+   "sheet": "S7c97",
+   "case": "cr_x_k101_misapplied_cost_breakdown_instead_of_the_call",
+   "evals": [
+    "next_action_quality",
+    "knowledge_applicability",
+    "next_step_quality"
+   ]
+  },
+  {
+   "sheet": "S122a",
+   "case": "cr_x_schedule_with_the_cto_to_be_added",
+   "evals": [
+    "stakeholder_coverage",
+    "stakeholder_selection",
+    "champion_continuity"
+   ]
+  },
+  {
+   "sheet": "S5ec9",
+   "case": "cr_d2_books_thursday_and_attaches_the_order_form",
+   "evals": [
+    "cta_calibration",
+    "next_step_quality",
+    "buyer_readiness",
+    "timing_cadence"
+   ]
+  },
+  {
+   "sheet": "Se07d",
+   "case": "cr_d11_upsell_and_case_study_ask_on_an_internal_task",
+   "evals": [
+    "relationship_pressure",
+    "state_change_relevance",
+    "next_action_quality"
+   ]
+  },
+  {
+   "sheet": "Sfc11",
+   "case": "cr_d3_asks_whether_the_planned_meeting_took_place",
+   "evals": [
+    "timing_cadence",
+    "next_action_quality",
+    "commitment_consistency"
+   ]
+  },
+  {
+   "sheet": "Sc15d",
+   "case": "cr_d1_just_checking_in_after_a_week_of_silence",
+   "evals": [
+    "next_action_quality",
+    "commitment_consistency",
+    "momentum",
+    "timing_cadence"
+   ]
+  },
+  {
+   "sheet": "S49c9",
+   "case": "cr_d8_testimonials_cost_answer_date_and_demo_slots",
+   "evals": [
+    "next_step_quality",
+    "next_action_quality",
+    "commitment_consistency"
+   ]
+  },
+  {
+   "sheet": "S4d5b",
+   "case": "cr_d9_k104_check_in_sent_despite_the_buyers_date",
+   "evals": [
+    "next_action_quality",
+    "knowledge_applicability",
+    "timing_cadence",
+    "exception_awareness"
+   ]
+  },
+  {
+   "sheet": "Sf8b2",
+   "case": "cr_d6_proposal_attached_as_if_the_demo_request_were_fresh",
+   "evals": [
+    "momentum",
+    "commitment_consistency",
+    "timing_cadence",
+    "next_action_quality"
+   ]
+  },
+  {
+   "sheet": "Sef7a",
+   "case": "cr_d4_offers_two_slots_and_the_requested_material",
+   "evals": [
+    "timing_cadence",
+    "buyer_readiness",
+    "cta_calibration",
+    "grounding"
+   ]
+  },
+  {
+   "sheet": "S9cfe",
+   "case": "cr_d2_books_the_thursday_call",
+   "evals": [
+    "timing_cadence",
+    "next_step_quality",
+    "cta_calibration",
+    "buyer_readiness"
+   ]
+  },
+  {
+   "sheet": "Sc9ef",
+   "case": "cr_d8_demo_slots_while_the_cost_of_updates_stays_unanswered",
+   "evals": [
+    "next_step_quality",
+    "commitment_consistency",
+    "next_action_quality"
+   ]
+  },
+  {
+   "sheet": "Sc382",
+   "case": "cr_d8_invents_agreement_on_the_update_cadence",
+   "evals": [
+    "evidence_sufficiency",
+    "grounding",
+    "next_action_quality"
+   ]
+  },
+  {
+   "sheet": "Sde6d",
+   "case": "cr_x_waits_while_the_buyer_reviews_the_offer",
+   "evals": [
+    "next_action_quality",
+    "relationship_pressure",
+    "buyer_readiness"
+   ]
+  },
+  {
+   "sheet": "Sb602",
+   "case": "cr_d3_fourth_negotiation_prep_email",
+   "evals": [
+    "duplicate_action",
+    "next_action_quality",
+    "relationship_pressure"
+   ]
+  },
+  {
+   "sheet": "S8ff9",
+   "case": "cr_d9_k104_answers_the_upgrade_question_without_a_deadline",
+   "evals": [
+    "next_action_quality",
+    "exception_awareness",
+    "knowledge_applicability"
+   ]
+  },
+  {
+   "sheet": "Sd6d9",
+   "case": "cr_d7_contract_draft_to_fernando_alone_while_finance_reviews",
+   "evals": [
+    "stakeholder_coverage",
+    "decision_process",
+    "commitment_consistency"
+   ]
+  },
+  {
+   "sheet": "S1a8e",
+   "case": "cr_d2_long_email_instead_of_the_requested_call",
+   "evals": [
+    "channel_appropriateness",
+    "next_action_quality",
+    "next_step_quality"
+   ]
+  },
+  {
+   "sheet": "Scf1b",
+   "case": "cr_d1_fourth_recap_after_three_identical",
+   "evals": [
+    "next_action_quality",
+    "state_change_relevance",
+    "duplicate_action"
+   ]
+  },
+  {
+   "sheet": "S7974",
+   "case": "cr_x_call_offered_instead_of_the_written_cost_answer",
+   "evals": [
+    "channel_appropriateness",
+    "commitment_consistency",
+    "next_action_quality"
+   ]
+  },
+  {
+   "sheet": "Sdc00",
+   "case": "cr_d6_invents_budget_go_live_and_a_ciso",
+   "evals": [
+    "next_action_quality",
+    "grounding",
+    "evidence_sufficiency"
+   ]
+  },
+  {
+   "sheet": "S8e61",
+   "case": "cr_x_legal_specialist_added_instead_of_the_cto",
+   "evals": [
+    "champion_continuity",
+    "stakeholder_coverage",
+    "stakeholder_selection"
+   ]
+  },
+  {
+   "sheet": "S903f",
+   "case": "cr_d1_case_studies_sent_cost_question_ignored",
+   "evals": [
+    "commitment_consistency",
+    "next_action_quality",
+    "next_step_quality"
+   ]
+  },
+  {
+   "sheet": "S9534",
+   "case": "cr_d4_three_colleagues_copied_on_a_pricing_reply",
+   "evals": [
+    "stakeholder_selection",
+    "stakeholder_coverage",
+    "cta_calibration"
+   ]
+  },
+  {
+   "sheet": "Sce80",
+   "case": "cr_x_k102_misapplied_hold_off_on_a_requested_meeting",
+   "evals": [
+    "grounding",
+    "next_action_quality",
+    "knowledge_applicability"
+   ]
+  },
+  {
+   "sheet": "S4edd",
+   "case": "cr_x_finance_and_tech_review_call_asks_who_joins",
+   "evals": [
+    "stakeholder_coverage",
+    "champion_continuity",
+    "stakeholder_selection"
+   ]
+  },
+  {
+   "sheet": "S977e",
+   "case": "cr_d1_negotiation_invite_while_review_open",
+   "evals": [
+    "buyer_readiness",
+    "commitment_consistency",
+    "grounding"
+   ]
+  },
+  {
+   "sheet": "S64c2",
+   "case": "cr_d7_offers_to_walk_finance_through_the_pricing",
+   "evals": [
+    "decision_process",
+    "stakeholder_coverage",
+    "commitment_consistency"
+   ]
+  },
+  {
+   "sheet": "Sa6bf",
+   "case": "cr_d4_finance_officer_pricing_direct_dropping_aditya",
+   "evals": [
+    "stakeholder_selection",
+    "champion_continuity",
+    "buyer_readiness"
+   ]
+  },
+  {
+   "sheet": "S7bcf",
+   "case": "cr_d6_asks_before_planning_the_demo",
+   "evals": [
+    "evidence_sufficiency",
+    "next_action_quality",
+    "grounding"
+   ]
+  },
+  {
+   "sheet": "S526c",
+   "case": "cr_d2_crm_note_only_no_reply_to_customer",
+   "evals": [
+    "next_action_quality",
+    "next_step_quality",
+    "channel_appropriateness"
+   ]
+  },
+  {
+   "sheet": "Sc1be",
+   "case": "cr_d4_treats_one_signature_title_as_fact",
+   "evals": [
+    "economic_buyer_coverage",
+    "decision_process",
+    "grounding"
+   ]
+  },
+  {
+   "sheet": "S27fc",
+   "case": "cr_d1_signature_push_after_review_notice",
+   "evals": [
+    "next_action_quality",
+    "buyer_readiness",
+    "cta_calibration"
+   ]
+  },
+  {
+   "sheet": "S3bff",
+   "case": "cr_d9_k104_waits_for_the_date_the_buyer_gave",
+   "evals": [
+    "next_action_quality",
+    "knowledge_applicability",
+    "timing_cadence",
+    "exception_awareness"
+   ]
+  },
+  {
+   "sheet": "S144f",
+   "case": "cr_d1_cfo_pulled_in_while_team_reviews",
+   "evals": [
+    "champion_continuity",
+    "stakeholder_coverage",
+    "stakeholder_selection"
+   ]
+  }
+ ]
+}

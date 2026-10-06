@@ -1,0 +1,250 @@
+{
+  "account": "northstar",
+  "checkpoint": 3,
+  "after_event_file": "world/accounts/northstar/events/029_email_elena_delegation.json",
+  "as_of": "2026-09-21T09:30:00Z",
+  "notes": "Exception: the champion explicitly delegates the evaluation to the security lead in writing.",
+  "expected": {
+    "distinct_activities": 29,
+    "entities": [
+      {
+        "key": "account:northstar",
+        "kind": "account",
+        "display_name": "Northstar Health",
+        "source_identities": ["crm:account:NS-2", "domain:northstar.health"]
+      },
+      {
+        "key": "document:northstar_hipaa_pack",
+        "kind": "document",
+        "display_name": "Vendor Co. BAA Template and HIPAA Controls Summary",
+        "source_identities": ["docs:gdrive:northstar-hipaa-pack"]
+      },
+      {
+        "key": "document:northstar_pricing",
+        "kind": "document",
+        "display_name": "Northstar Four-Clinic Pricing",
+        "source_identities": ["docs:gdrive:northstar-pricing-v1"]
+      },
+      {
+        "key": "opportunity:northstar_expansion",
+        "kind": "opportunity",
+        "display_name": "Northstar - intake rollout to four clinics",
+        "source_identities": ["crm:opp:NS-2-EXP"]
+      },
+      {
+        "key": "person:dana_kim",
+        "kind": "person",
+        "display_name": "Dana Kim",
+        "source_identities": [
+          "call:call-ns-0827:speaker_01",
+          "call:call-ns-0911:speaker_01",
+          "email:dana@vendor.example",
+          "slack:U02DANA"
+        ]
+      },
+      {
+        "key": "person:elena_vasquez",
+        "kind": "person",
+        "display_name": "Elena Vasquez",
+        "source_identities": [
+          "call:call-ns-0827:speaker_02",
+          "call:call-ns-0911:speaker_02",
+          "crm:contact:1204",
+          "email:elena.vasquez@northstar.health"
+        ]
+      },
+      {
+        "key": "person:grace_liu",
+        "kind": "person",
+        "display_name": "Grace Liu",
+        "source_identities": ["crm:contact:1211", "email:grace.liu@northstar.health"]
+      },
+      {
+        "key": "person:leo_park",
+        "kind": "person",
+        "display_name": "Leo Park",
+        "source_identities": [
+          "call:call-ns-0827:speaker_03",
+          "call:call-ns-0911:speaker_03",
+          "email:leo@vendor.example",
+          "slack:U02LEO"
+        ]
+      },
+      {
+        "key": "person:sam_okafor",
+        "kind": "person",
+        "display_name": "Sam Okafor",
+        "source_identities": ["email:sam.okafor@northstar.health"]
+      }
+    ],
+    "edges": [
+      {
+        "src": "opportunity:northstar_expansion",
+        "rel_type": "belongs_to",
+        "dst": "account:northstar"
+      },
+      {"src": "person:dana_kim", "rel_type": "owns", "dst": "opportunity:northstar_expansion"},
+      {"src": "person:leo_park", "rel_type": "supports", "dst": "opportunity:northstar_expansion"},
+      {"src": "person:elena_vasquez", "rel_type": "works_at", "dst": "account:northstar"},
+      {
+        "src": "person:elena_vasquez",
+        "rel_type": "champion_for",
+        "dst": "opportunity:northstar_expansion"
+      },
+      {"src": "person:grace_liu", "rel_type": "works_at", "dst": "account:northstar"},
+      {
+        "src": "person:grace_liu",
+        "rel_type": "economic_buyer_for",
+        "dst": "opportunity:northstar_expansion"
+      },
+      {
+        "src": "document:northstar_pricing",
+        "rel_type": "shared_with",
+        "dst": "person:elena_vasquez"
+      },
+      {"src": "person:sam_okafor", "rel_type": "works_at", "dst": "account:northstar"},
+      {
+        "src": "person:sam_okafor",
+        "rel_type": "influences",
+        "dst": "opportunity:northstar_expansion"
+      },
+      {"src": "person:elena_vasquez", "rel_type": "delegated_to", "dst": "person:sam_okafor"},
+      {
+        "src": "document:northstar_hipaa_pack",
+        "rel_type": "shared_with",
+        "dst": "person:elena_vasquez"
+      }
+    ],
+    "state_fields": {
+      "stage": "Commercial review",
+      "health": "on_track",
+      "owner": "person:dana_kim",
+      "motion": "expansion",
+      "champion": "person:elena_vasquez",
+      "champion_status": "delegated",
+      "economic_buyer": "person:grace_liu",
+      "blockers": [
+        {
+          "text": "Security sign-off by Sam Okafor's team before any clinic goes live (intake forms carry PHI; BAA required)",
+          "status": "open"
+        }
+      ],
+      "objections": "unknown",
+      "decision_criteria": [
+        {"text": "Live in all four clinics before open enrollment on November 2"},
+        {"text": "Cut front-desk intake time, as in the Lakeside pilot (about a third)"}
+      ],
+      "decision_process": "Sam Okafor (Information Security Lead) owns the evaluation, including the BAA; Elena Vasquez stepped back from the day-to-day and joins for final sign-off; Grace Liu approves budget on Elena's recommendation",
+      "current_commitments": [
+        {
+          "text": "Send pricing for the four clinics by next Wednesday",
+          "status": "fulfilled",
+          "owner": "person:dana_kim",
+          "due": "2026-09-02"
+        },
+        {
+          "text": "Set up time next week to go through the rollout plan",
+          "status": "fulfilled",
+          "owner": "person:elena_vasquez"
+        },
+        {
+          "text": "Introduce Dana Kim to Sam Okafor",
+          "status": "fulfilled",
+          "owner": "person:elena_vasquez"
+        },
+        {
+          "text": "Have the BAA template and HIPAA controls summary ready",
+          "status": "fulfilled",
+          "owner": "person:dana_kim"
+        }
+      ],
+      "next_milestone": "Security evaluation led by Sam Okafor, including the BAA",
+      "next_meeting": null,
+      "relationship_risk": "low",
+      "product_use_case": "Relay patient intake rollout from the Lakeside pilot to Riverside, then Northgate and Cedar Hills",
+      "commercial_issue": "unknown",
+      "last_customer_interaction": "2026-09-21T09:30:00Z"
+    },
+    "buying_group": [
+      {
+        "person_key": "person:elena_vasquez",
+        "roles": ["champion"],
+        "status": "active",
+        "title": "Director of Patient Access",
+        "delegated_to": "person:sam_okafor"
+      },
+      {
+        "person_key": "person:grace_liu",
+        "roles": ["economic_buyer"],
+        "status": "unknown",
+        "title": "VP Finance"
+      },
+      {
+        "person_key": "person:sam_okafor",
+        "roles": ["security", "technical_evaluator"],
+        "status": "new",
+        "title": "Information Security Lead"
+      }
+    ],
+    "coverage_gaps": [],
+    "material_diff_fields": [
+      "champion_status",
+      "decision_process",
+      "current_commitments",
+      "next_milestone",
+      "buying_group",
+      "coverage_gaps"
+    ],
+    "signals": ["champion_delegated", "customer_replied", "customer_went_silent", "new_stakeholder_entered"],
+    "trigger": {
+      "workflow": "post_interaction_followup",
+      "eligible": true,
+      "reason_codes": ["eligible_customer_replied", "eligible_stakeholder_change"]
+    },
+    "critical_facts": [
+      {
+        "field": "delegation",
+        "value": {
+          "from": "person:elena_vasquez",
+          "to": "person:sam_okafor",
+          "scope": "evaluation, including the BAA"
+        },
+        "evidence_event_file": "world/accounts/northstar/events/029_email_elena_delegation.json",
+        "evidence_quote": "Please work directly with Sam on this",
+        "subject": "person:elena_vasquez"
+      },
+      {
+        "field": "buying_group.member",
+        "value": "person:sam_okafor",
+        "evidence_event_file": "world/accounts/northstar/events/029_email_elena_delegation.json",
+        "evidence_quote": "Sam Okafor leads information security here and will own the evaluation from now on, including the BAA.",
+        "subject": "person:sam_okafor"
+      },
+      {
+        "field": "champion_status",
+        "value": "delegated",
+        "evidence_event_file": "world/accounts/northstar/events/029_email_elena_delegation.json",
+        "evidence_quote": "I'm stepping back from the day-to-day"
+      },
+      {
+        "field": "champion",
+        "value": "person:elena_vasquez",
+        "evidence_event_file": "world/accounts/northstar/events/029_email_elena_delegation.json",
+        "evidence_quote": "Sam will bring me in for final sign-off"
+      },
+      {
+        "field": "economic_buyer",
+        "value": "person:grace_liu",
+        "evidence_event_file": "world/accounts/northstar/events/011_call_scope_transcript.json",
+        "evidence_quote": "Grace Liu, our VP of Finance, approves the budget, but she'll follow my recommendation."
+      }
+    ],
+    "stale_facts": [
+      {
+        "field": "champion_status",
+        "stale_value": "active (Elena drives the evaluation day-to-day)",
+        "source_event_file": "world/accounts/northstar/events/023_call_plan_transcript.json"
+      }
+    ]
+  }
+}

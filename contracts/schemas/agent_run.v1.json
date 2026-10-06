@@ -1,0 +1,101 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://ghost.local/contracts/agent_run.v1.json",
+  "title": "AgentRun",
+  "description": "One account-action workflow run. Traceable to the trigger activities, the state it read and every context tool call (input_context_refs comes from the server-side context_access_log).",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "id", "account_id", "workflow", "run_mode", "status", "trigger_evaluation_id",
+    "trigger_activity_ids", "input_context_refs", "evidence_refs", "knowledge_refs_used", "steps", "created_at"
+  ],
+  "properties": {
+    "id": { "$ref": "common.v1.json#/$defs/uuid" },
+    "account_id": { "$ref": "common.v1.json#/$defs/uuid" },
+    "opportunity_id": { "oneOf": [{ "$ref": "common.v1.json#/$defs/uuid" }, { "type": "null" }] },
+    "workflow": { "type": "string", "enum": ["post_interaction_followup"] },
+    "run_mode": { "$ref": "common.v1.json#/$defs/runMode" },
+    "status": {
+      "type": "string",
+      "enum": ["pending", "context_built", "drafted", "awaiting_human", "approved", "edited", "rejected", "ignored", "executed", "recorded", "failed", "cancelled"]
+    },
+    "trigger_evaluation_id": { "$ref": "common.v1.json#/$defs/uuid" },
+    "trigger_activity_ids": { "type": "array", "minItems": 1, "items": { "$ref": "common.v1.json#/$defs/uuid" } },
+    "correlation_id": { "oneOf": [{ "$ref": "common.v1.json#/$defs/uuid" }, { "type": "null" }] },
+    "state_version": { "type": ["integer", "null"] },
+    "input_context_refs": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["tool", "access_id", "returned_ids", "bytes"],
+        "properties": {
+          "tool": { "type": "string" },
+          "access_id": { "type": "integer" },
+          "returned_ids": { "type": "array", "items": { "type": "string" } },
+          "bytes": { "type": "integer", "minimum": 0 }
+        }
+      }
+    },
+    "output": { "oneOf": [{ "$ref": "agent_run_output.v1.json" }, { "type": "null" }] },
+    "evidence_refs": { "type": "array", "items": { "$ref": "common.v1.json#/$defs/evidenceRef" } },
+    "knowledge_refs_used": { "type": "array", "items": { "$ref": "common.v1.json#/$defs/uuid" }, "description": "Populated by HAR-97." },
+    "model": { "type": ["string", "null"] },
+    "steps": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["seq", "step", "status"],
+        "properties": {
+          "seq": { "type": "integer", "minimum": 1 },
+          "step": { "type": "string", "enum": ["build_context", "draft", "crm_intent", "await_human", "execute"] },
+          "status": { "type": "string", "enum": ["pending", "running", "succeeded", "failed", "skipped", "recorded"] },
+          "started_at": { "oneOf": [{ "$ref": "common.v1.json#/$defs/timestamp" }, { "type": "null" }] },
+          "finished_at": { "oneOf": [{ "$ref": "common.v1.json#/$defs/timestamp" }, { "type": "null" }] },
+          "external_effect_id": { "type": ["string", "null"], "description": "Must be null in dry_run (DB CHECK)." },
+          "detail": { "type": "object" }
+        }
+      }
+    },
+    "error": { "type": ["string", "null"] },
+    "generation": {
+      "description": "HAR-117 (WP19): where the run orchestrator is with this run, derived by core from the run status, the draft step and the published StrategySet. Always written by core; optional so an older producer stays valid. queued: not picked up yet. generating: the strategies are being generated. evaluating: candidates exist and are being evaluated or revised. paused: a transient failure (provider down, open breaker, worker error); the run stays open and the orchestrator resumes it. published: the StrategySet exists. failed: a permanent failure; the account is free. not_orchestrated: the run is past the orchestrator without a StrategySet (a pre-orchestrator run).",
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["phase", "attempt", "reason", "strategy_set_id", "decision_episode_id"],
+      "properties": {
+        "phase": { "type": "string", "enum": ["queued", "generating", "evaluating", "paused", "published", "failed", "not_orchestrated"] },
+        "attempt": { "type": "integer", "minimum": 0, "description": "How many times the orchestrator claimed the run." },
+        "reason": { "type": ["string", "null"], "description": "Why the run is paused or failed (clipped)." },
+        "strategy_set_id": { "oneOf": [{ "$ref": "common.v1.json#/$defs/uuid" }, { "type": "null" }] },
+        "decision_episode_id": { "oneOf": [{ "$ref": "common.v1.json#/$defs/uuid" }, { "type": "null" }] }
+      }
+    },
+    "created_at": { "$ref": "common.v1.json#/$defs/timestamp" },
+    "updated_at": { "$ref": "common.v1.json#/$defs/timestamp" }
+  },
+  "allOf": [
+    {
+      "description": "'recorded' is the terminal state of a dry run whose execute step was recorded (ADR-0015); a live run reaches 'executed' instead.",
+      "if": { "properties": { "status": { "const": "recorded" } }, "required": ["status"] },
+      "then": { "properties": { "run_mode": { "const": "dry_run" } } }
+    },
+    {
+      "description": "HAR-96 §18: a dry run structurally cannot write externally.",
+      "if": { "properties": { "run_mode": { "const": "dry_run" } } },
+      "then": {
+        "properties": {
+          "status": { "not": { "const": "executed" } },
+          "steps": {
+            "items": {
+              "properties": { "external_effect_id": { "type": "null" } },
+              "if": { "properties": { "step": { "const": "execute" } } },
+              "then": { "properties": { "status": { "enum": ["pending", "recorded", "skipped"] } } }
+            }
+          }
+        }
+      }
+    }
+  ]
+}

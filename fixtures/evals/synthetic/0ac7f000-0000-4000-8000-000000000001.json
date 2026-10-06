@@ -1,0 +1,22 @@
+{
+  "source_system": "email",
+  "source_object_id": "<syn-acme-001@mail.acme.com>",
+  "source_event_key": "received",
+  "occurred_at": "2026-09-15T09:00:00Z",
+  "connector": "gmail",
+  "connector_version": "0.1.0",
+  "payload": {
+    "kind": "email",
+    "direction": "inbound",
+    "message_id": "<syn-acme-001@mail.acme.com>",
+    "thread_id": "thr-acme-proposal",
+    "in_reply_to": null,
+    "from": {"email": "priya.shah@acme.com", "name": "Priya Shah"},
+    "to": [{"email": "dana@vendor.example", "name": "Dana Kim"}],
+    "cc": [],
+    "date": "2026-09-15T09:00:00Z",
+    "subject": "Re: Acme EU order form",
+    "body_text": "Order form looks right. I'll get it signed on our side.",
+    "crm_opportunity_ref": "opp:AC-4-EXP"
+  }
+}

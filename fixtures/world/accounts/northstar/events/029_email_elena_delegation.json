@@ -1,0 +1,22 @@
+{
+  "source_system": "email",
+  "source_object_id": "<NSH-ev-2026-09-21@mail.northstar.health>",
+  "source_event_key": "received",
+  "occurred_at": "2026-09-21T09:30:00Z",
+  "connector": "gmail",
+  "connector_version": "0.1.0",
+  "payload": {
+    "kind": "email",
+    "direction": "inbound",
+    "message_id": "<NSH-ev-2026-09-21@mail.northstar.health>",
+    "thread_id": "thr-northstar-intake",
+    "in_reply_to": "<ghost-dana-2026-09-15-ns@vendor.example>",
+    "from": {"email": "elena.vasquez@northstar.health", "name": "Elena Vasquez"},
+    "to": [{"email": "dana@vendor.example", "name": "Dana Kim"}],
+    "cc": [{"email": "sam.okafor@northstar.health", "name": "Sam Okafor"}],
+    "date": "2026-09-21T09:30:00Z",
+    "subject": "Re: Rolling Relay out to all clinics",
+    "body_text": "Hi Dana - sorry for the delay. Sam Okafor leads information security here and will own the evaluation from now on, including the BAA. Please work directly with Sam on this; I'm stepping back from the day-to-day, and Sam will bring me in for final sign-off.\nElena",
+    "crm_opportunity_ref": "opp:NS-2-EXP"
+  }
+}

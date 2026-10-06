@@ -1,0 +1,27 @@
+{
+  "source_system": "calendar",
+  "source_object_id": "gcal:ns-scope-0827",
+  "source_event_key": "scheduled",
+  "occurred_at": "2026-08-20T15:10:00Z",
+  "connector": "google_calendar",
+  "connector_version": "0.1.0",
+  "payload": {
+    "kind": "calendar_event",
+    "event_id": "gcal:ns-scope-0827",
+    "title": "Northstar clinic rollout scoping",
+    "start": "2026-08-27T17:00:00Z",
+    "end": "2026-08-27T17:45:00Z",
+    "status": "scheduled",
+    "organizer": {"email": "dana@vendor.example", "name": "Dana Kim"},
+    "attendees": [
+      {"email": "dana@vendor.example", "name": "Dana Kim", "response": "accepted"},
+      {"email": "leo@vendor.example", "name": "Leo Park", "response": "accepted"},
+      {
+        "email": "elena.vasquez@northstar.health",
+        "name": "Elena Vasquez",
+        "response": "needs_action"
+      }
+    ],
+    "crm_opportunity_ref": "opp:NS-2-EXP"
+  }
+}

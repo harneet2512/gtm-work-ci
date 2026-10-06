@@ -1,0 +1,22 @@
+{
+  "source_system": "email",
+  "source_object_id": "<ghost-dana-2026-09-26@vendor.example>",
+  "source_event_key": "sent",
+  "occurred_at": "2026-09-26T11:00:00Z",
+  "connector": "gmail",
+  "connector_version": "0.1.0",
+  "payload": {
+    "kind": "email",
+    "direction": "outbound",
+    "message_id": "<ghost-dana-2026-09-26@vendor.example>",
+    "thread_id": "thr-acme-eu-expansion",
+    "in_reply_to": "<CAMx9-acme-2026-09-21@mail.acme.com>",
+    "from": {"email": "dana@vendor.example", "name": "Dana Kim"},
+    "to": [{"email": "marco.ruiz@acme.com", "name": "Marco Ruiz"}],
+    "cc": [{"email": "priya.shah@acme.com", "name": "Priya Shah"}],
+    "date": "2026-09-26T11:00:00Z",
+    "subject": "Re: Expansion to EU teams",
+    "body_text": "Hi Marco,\nThanks for joining Thursday. Our mutual NDA went over yesterday; as soon as it's countersigned I'll send our SOC2 Type II report and the latest pen-test summary. To keep the EU timeline on track, could we book a 60-minute security review for Thursday, October 1? Priya, copying you so you have the latest.\nBest,\nDana",
+    "crm_opportunity_ref": "opp:AC-4-EXP"
+  }
+}

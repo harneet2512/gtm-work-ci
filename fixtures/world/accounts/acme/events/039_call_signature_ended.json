@@ -1,0 +1,22 @@
+{
+  "source_system": "call",
+  "source_object_id": "call-acme-0924",
+  "source_event_key": "ended",
+  "occurred_at": "2026-09-24T14:47:00Z",
+  "connector": "recorder",
+  "connector_version": "0.1.0",
+  "payload": {
+    "kind": "call",
+    "call_id": "call-acme-0924",
+    "calendar_event_id": "gcal:acme-signature-0924",
+    "started_at": "2026-09-24T14:01:00Z",
+    "ended_at": "2026-09-24T14:47:00Z",
+    "speakers": [
+      {"label": "speaker_01", "email": "dana@vendor.example", "name": "Dana Kim"},
+      {"label": "speaker_02", "email": "priya.shah@acme.com", "name": "Priya Shah"},
+      {"label": "speaker_03", "email": "marco.ruiz@acme.com", "name": "Marco Ruiz"},
+      {"label": "speaker_04", "email": "tom.becker@acme.com", "name": "Tom Becker"},
+      {"label": "speaker_05", "email": "leo@vendor.example", "name": "Leo Park"}
+    ]
+  }
+}

@@ -1,0 +1,62 @@
+[
+  {
+    "source_system": "email",
+    "source_object_id": "<acme-1@mail.acme.com>",
+    "source_event_key": "received",
+    "connector": "gmail",
+    "connector_version": "0.1.0",
+    "payload": {
+      "kind": "email",
+      "message_id": "<acme-1@mail.acme.com>",
+      "thread_id": "thr-acme-eu",
+      "in_reply_to": null,
+      "direction": "inbound",
+      "from": { "email": "marco.ruiz@acme.com", "name": "Marco Ruiz" },
+      "to": [ { "email": "dana@vendor.example", "name": "Dana Kim" } ],
+      "cc": [ { "email": "priya.shah@acme.com", "name": "Priya Shah" } ],
+      "date": "2026-09-29T15:42:00Z",
+      "subject": "Expansion to EU teams",
+      "body_text": "Hi Dana - we want to roll out to the EU teams. What do you need from us?",
+      "crm_opportunity_ref": "opp:AC-4-EXP"
+    }
+  },
+  {
+    "source_system": "email",
+    "source_object_id": "<acme-2@mail.acme.com>",
+    "source_event_key": "received",
+    "connector": "gmail",
+    "connector_version": "0.1.0",
+    "payload": {
+      "kind": "email",
+      "message_id": "<acme-2@mail.acme.com>",
+      "thread_id": "thr-acme-eu",
+      "in_reply_to": "<ghost-1@vendor.example>",
+      "direction": "inbound",
+      "from": { "email": "marco.ruiz@acme.com", "name": "Marco Ruiz" },
+      "to": [ { "email": "dana@vendor.example", "name": "Dana Kim" } ],
+      "date": "2026-09-29T18:10:00Z",
+      "subject": "Re: Expansion to EU teams",
+      "body_text": "We will need the SOC2 Type II report and the pen-test summary.",
+      "crm_opportunity_ref": "opp:AC-4-EXP"
+    }
+  },
+  {
+    "source_system": "email",
+    "source_object_id": "<ghost-1@vendor.example>",
+    "source_event_key": "sent",
+    "connector": "gmail",
+    "connector_version": "0.1.0",
+    "payload": {
+      "kind": "email",
+      "message_id": "<ghost-1@vendor.example>",
+      "thread_id": "thr-acme-eu",
+      "direction": "outbound",
+      "from": { "email": "dana@vendor.example", "name": "Dana Kim" },
+      "to": [ { "email": "marco.ruiz@acme.com", "name": "Marco Ruiz" } ],
+      "date": "2026-09-30T07:30:00Z",
+      "subject": "Re: Expansion to EU teams",
+      "body_text": "Happy to help. Can we do a security review on Thursday?",
+      "crm_opportunity_ref": "opp:AC-4-EXP"
+    }
+  }
+]

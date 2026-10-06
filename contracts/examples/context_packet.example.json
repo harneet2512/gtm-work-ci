@@ -1,0 +1,20 @@
+{
+  "access_id": 102,
+  "tool": "evidence",
+  "items": [
+    {
+      "claim_id": "0c1a0000-0000-4000-8000-000000000201",
+      "field_path": "blockers",
+      "quote": "Before we can sign off on the EU rollout we'll need your SOC2 Type II report and the pen-test summary.",
+      "activity_id": "0ac70000-0000-4000-8000-000000000101",
+      "speaker_person_id": "0b0e0000-0000-4000-8000-000000000018"
+    }
+  ],
+  "truncated": false,
+  "bytes": 640,
+  "world_as_of": "2026-09-02T10:00:00.000001Z",
+  "limits": {
+    "max_items": 10,
+    "max_bytes": 8192
+  }
+}
