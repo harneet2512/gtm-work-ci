@@ -1,0 +1,243 @@
+{
+ "id": "cr_d11_upsell_and_case_study_ask_on_an_internal_task",
+ "origin": "crmarena",
+ "case_type": "no_action",
+ "title": "An expansion call and a case-study request sent to the customer because an internal review meeting is due",
+ "should_pass": false,
+ "difficulty": "easy",
+ "slice_tags": {
+  "account": "001Wt00000PHVaUIAX",
+  "origin": "crmarena",
+  "motion": "unknown",
+  "stage": "unknown",
+  "champion_status": "active",
+  "economic_buyer": "unknown",
+  "risk": "unknown",
+  "candidate": "flawed",
+  "expected_action": "no_action",
+  "extra": [
+   "contract_signed",
+   "internal_task",
+   "task_trigger"
+  ]
+ },
+ "based_on": {
+  "kind": "crmarena_moment",
+  "account_id": "001Wt00000PHVaUIAX",
+  "deal_id": "006Wt000007B9YfIAK",
+  "trigger_kind": "task_due",
+  "decision_at": "2023-12-10T09:00:00Z",
+  "cutoff": "2023-11-01",
+  "deal_group": "current",
+  "events_before_decision": 9
+ },
+ "source": {
+  "dataset": "CRMArena-Pro B2B Salesforce org (Salesforce AI Research)",
+  "licence": "CC BY-NC 4.0 (non-commercial use only)",
+  "attribution": "Salesforce AI Research, CRMArena-Pro (https://github.com/SalesforceAIResearch/CRMArena, LICENSE.txt); records selected and excerpted, nothing edited",
+  "snapshot_manifest_sha256": "8fbda45c15d1806dc4c37d5230a20ac24d6619ef36a88c0efddb344792c89f03",
+  "generator": "bench/evals/crmarena_gold v1"
+ },
+ "context": {
+  "now": "2023-12-10T09:00:00Z",
+  "state": {
+   "account_id": "e13ada65-50f1-5dfa-86ee-65a34b912d94",
+   "account_name": "TerraSync Solutions",
+   "opportunity_id": "c30b079c-4029-5be8-b978-771005a9eb2c",
+   "fields": {
+    "stage": "unknown",
+    "health": "unknown",
+    "motion": "unknown",
+    "champion": "51fd0353-0ffd-5a7c-8e88-dbe61975ac9d",
+    "champion_status": "active",
+    "economic_buyer": "unknown",
+    "relationship_risk": "unknown",
+    "decision_process": "A contract was signed on 2023-12-06",
+    "current_commitments": [
+     {
+      "text": "Us: organize the customer kick-off meeting (rep task due 2023-12-07; no email recorded)",
+      "status": "open"
+     }
+    ],
+    "next_milestone": "Customer kick-off meeting"
+   },
+   "buying_group": [
+    {
+     "person_id": "51fd0353-0ffd-5a7c-8e88-dbe61975ac9d",
+     "display_name": "Zara Aminu",
+     "title": "HR Development Specialist (champion role inferred, not recorded)",
+     "roles": [
+      "champion"
+     ],
+     "status": "active",
+     "delegated_to_person_id": null,
+     "last_engaged_at": "2023-08-11T15:00:00Z",
+     "evidence_refs": [
+      {
+       "activity_id": "033bc916-409e-515e-9627-85ba610e9ff6",
+       "occurred_at": "2023-08-11T15:00:00Z"
+      }
+     ]
+    }
+   ],
+   "coverage_gaps": [
+    "economic_buyer"
+   ]
+  },
+  "recent_changes": {
+   "summary": "A contract was signed on 2023-12-06. The rep's internal review meeting task is due today.",
+   "material_diff_fields": [
+    "stage"
+   ],
+   "signals": [
+    "stage_advanced"
+   ]
+  },
+  "trigger": {
+   "activity_id": "616ee777-7f4e-58ae-a504-e5943e67107d",
+   "activity_type": "CRMTaskLogged",
+   "occurred_at": "2023-12-10T00:00:00Z",
+   "actor_person_id": null,
+   "event_file": "crmarena:Task:00TWt000002z5zRMAQ",
+   "synthetic": false,
+   "text": "Discuss key learnings and outcomes from the closed deal.",
+   "subject": "Hold internal review meeting",
+   "date_semantics": "task due date"
+  },
+  "supporting_activities": [
+   {
+    "activity_id": "033bc916-409e-515e-9627-85ba610e9ff6",
+    "activity_type": "EmailReply",
+    "occurred_at": "2023-08-11T15:00:00Z",
+    "actor_person_id": "51fd0353-0ffd-5a7c-8e88-dbe61975ac9d",
+    "event_file": "crmarena:EmailMessage:02sWt000001zvH2IAI",
+    "synthetic": false,
+    "text": "Hi Monique,\n\nThank you so much for recapping our meeting. It was indeed a productive conversation, and I feel confident that TechPulse Solutions is the right partner for TerraSync as we advance in our sustainability journey.\n\nYour offer and detailed explanation of the EcoPCB Creator and OptiEnergy Suite have assured us of their fit within our existing systems. The focus on enhanced scalability and rapid feature releases gives us peace of mind as we scale our efforts.\n\nRegarding the pricing, the discounts you've provided are appreciated and will certainly assist in our budget allocation. We are excited about the potential these solutions have.\n\nPlease send over the final documentation so we can proceed accordingly.\n\nLooking forward to our next steps.\n\nBest,\n\nZara Aminu\nInnovation Director\nTerraSync Solutions",
+    "subject": "Re: Negotiation of Terms and Finalization of Pricing",
+    "date_semantics": "sent"
+   },
+   {
+    "activity_id": "5f747b51-2c19-5f90-b5cb-db391c4392a8",
+    "activity_type": "ContractSigned",
+    "occurred_at": "2023-12-06T00:00:00Z",
+    "actor_person_id": null,
+    "event_file": "crmarena:Contract:800Wt00000DE0s0IAD",
+    "synthetic": false,
+    "text": "Contract for the integration of TechPulse's AI-powered EDA solutions with TerraSync's green technology systems, enhancing eco-friendly design and innovation.",
+    "subject": "Contract 00000179",
+    "date_semantics": "contract signed"
+   },
+   {
+    "activity_id": "daa05733-f362-5e40-89a1-d3f859d39f6e",
+    "activity_type": "CRMTaskLogged",
+    "occurred_at": "2023-12-07T00:00:00Z",
+    "actor_person_id": null,
+    "event_file": "crmarena:Task:00TWt000002z5o9MAA",
+    "synthetic": false,
+    "text": "Plan and execute kick-off meeting for TerraSync post-sale onboarding.",
+    "subject": "Organize customer kick-off meeting",
+    "date_semantics": "task due date"
+   }
+  ],
+  "commitments": [
+   {
+    "text": "Organize the customer kick-off meeting (rep task)",
+    "owner_person_id": "c52756b1-5ae4-5381-a8c0-8162be3a586b",
+    "due_at": "2023-12-07T00:00:00Z",
+    "status": "open"
+   }
+  ],
+  "timeline_facts": {
+   "last_inbound_at": "2023-08-11T15:00:00Z",
+   "last_inbound_from_person_id": "51fd0353-0ffd-5a7c-8e88-dbe61975ac9d",
+   "last_outbound_at": "2023-08-11T09:00:00Z",
+   "stated_timing": null
+  },
+  "offered_knowledge": [],
+  "state_provenance": {
+   "champion": "inferred, not recorded: the only customer correspondent (2 inbound emails); CRMArena has no roles",
+   "stage": "unknown unless a field below says otherwise: the loader dates the stage at the deal's last event",
+   "decision_process": "ContractSigned 800Wt00000DE0s0IAD",
+   "current_commitments": "00TWt000002z5o9MAA",
+   "buying_group roles": "inferred from each Contact's Title/Department; the record has no roles"
+  }
+ },
+ "candidate_action": {
+  "proposed_action_type": "send_email",
+  "recipients": [
+   {
+    "person_id": "51fd0353-0ffd-5a7c-8e88-dbe61975ac9d",
+    "role": "to"
+   }
+  ],
+  "finished_artifact": {
+   "channel": "email",
+   "subject": "TerraSync: next phase and a short case study",
+   "body": "Hi Zara,\n\nCongratulations on getting started. As part of our internal review I would love 30 minutes this week to talk about expanding to more TechPulse products, and to ask whether we may write up TerraSync as a case study.\n\nWarm regards,\nMonique"
+  },
+  "crm_next_step_intent": {
+   "next_step": "30-minute expansion call this week",
+   "due_at": null,
+   "stage_change": null
+  },
+  "reason": "The internal review is due; use it to open an expansion conversation.",
+  "evidence_refs": [
+   {
+    "activity_id": "033bc916-409e-515e-9627-85ba610e9ff6",
+    "quote": "Please send over the final documentation so we can proceed accordingly.",
+    "occurred_at": "2023-08-11T15:00:00Z",
+    "speaker_person_id": "51fd0353-0ffd-5a7c-8e88-dbe61975ac9d"
+   }
+  ],
+  "knowledge_refs_used": [],
+  "wait_until": null
+ },
+ "expected": [
+  {
+   "eval_type": "next_action_quality",
+   "verdict": "fail",
+   "label": "NO_ACTION",
+   "diagnostics": [],
+   "blocking": true,
+   "rationale": "Acts on a trigger that needs no customer contact.",
+   "evidence_class": "methodology"
+  },
+  {
+   "eval_type": "state_change_relevance",
+   "verdict": "fail",
+   "label": null,
+   "diagnostics": [],
+   "blocking": false,
+   "rationale": "Uses an internal meeting as the reason to contact the customer.",
+   "evidence_class": "methodology"
+  },
+  {
+   "eval_type": "relationship_pressure",
+   "verdict": "warn",
+   "label": null,
+   "diagnostics": [],
+   "blocking": false,
+   "rationale": "An expansion and case-study ask right after signing.",
+   "evidence_class": "cs_ops"
+  }
+ ],
+ "expected_best_action": {
+  "action": "no_action",
+  "why": "An internal review meeting does not call for customer contact; the kick-off is its own task.",
+  "channel": "none"
+ },
+ "labelling": {
+  "label_kind": "model labels, single author, not human labels",
+  "passes": [
+   "pass_1",
+   "pass_2"
+  ],
+  "agreement": {
+   "judgments": 3,
+   "verdict_agree": 3,
+   "fail_agree": 3
+  },
+  "disagreements": []
+ },
+ "notes": ""
+}

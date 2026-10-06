@@ -1,0 +1,131 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://ghost.local/contracts/eval_wording.v1.json",
+  "title": "EvalWording",
+  "description": "The one vocabulary every surface uses to show evals (eval design spec 4b-3: Slack and web use the same verdict vocabulary, order, icons and wording, rendered from the same EvalBundle; only the depth differs). Per verdict its display order, word, icon and Slack emoji; per eval type a plain-language name and the question it answers; per evidence class a small tag; per grader kind its name; per diagnostic a plain phrase; and the shared phrases. Seller language only: no eval ids, reason codes or scores. The instance is contracts/evals/eval_wording.json; completeness against the eval catalog is tested in Go and TypeScript.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["wording_version", "description", "verdicts", "not_checked", "evidence_classes", "graders", "eval_types", "diagnostics", "policy_reasons", "phrases"],
+  "properties": {
+    "wording_version": { "type": "integer", "minimum": 1 },
+    "description": { "type": "string", "minLength": 1, "maxLength": 2000 },
+    "verdicts": {
+      "description": "Every EvalBundle item verdict, ordered worst first: fail, warn, abstain, pass, not_relevant (collapsed).",
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["fail", "warn", "abstain", "pass", "not_relevant"],
+      "properties": {
+        "fail": { "$ref": "#/$defs/verdict" },
+        "warn": { "$ref": "#/$defs/verdict" },
+        "abstain": { "$ref": "#/$defs/verdict" },
+        "pass": { "$ref": "#/$defs/verdict" },
+        "not_relevant": { "$ref": "#/$defs/verdict" }
+      }
+    },
+    "not_checked": {
+      "description": "A comparison cell for an eval the router did not select for that candidate (no bundle item). Distinct from not_relevant, which the router recorded with its reason.",
+      "$ref": "#/$defs/verdict"
+    },
+    "evidence_classes": {
+      "description": "The small tag that says how proven an eval is (HAR-97 section 15: not every eval is equally proven).",
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["deal_data", "methodology", "cs_ops", "product_rule"],
+      "properties": {
+        "deal_data": { "$ref": "#/$defs/tag" },
+        "methodology": { "$ref": "#/$defs/tag" },
+        "cs_ops": { "$ref": "#/$defs/tag" },
+        "product_rule": { "$ref": "#/$defs/tag" }
+      }
+    },
+    "graders": {
+      "description": "Who judged, by EvalResult kind; shown only in the expanded detail. A semantic grader is followed by its model.",
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["deterministic", "semantic", "trace", "human_delta"],
+      "properties": {
+        "deterministic": { "$ref": "#/$defs/phrase" },
+        "semantic": { "$ref": "#/$defs/phrase" },
+        "trace": { "$ref": "#/$defs/phrase" },
+        "human_delta": { "$ref": "#/$defs/phrase" }
+      }
+    },
+    "eval_types": {
+      "type": "object",
+      "minProperties": 1,
+      "propertyNames": { "$ref": "eval_result.v1.json#/$defs/evalType" },
+      "additionalProperties": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["name", "question"],
+        "properties": {
+          "name": { "type": "string", "minLength": 1, "maxLength": 40 },
+          "question": { "type": "string", "minLength": 1, "maxLength": 120, "pattern": "\\?$" }
+        }
+      }
+    },
+    "diagnostics": {
+      "type": "object",
+      "minProperties": 1,
+      "propertyNames": { "$ref": "eval_result.v1.json#/$defs/diagnostic" },
+      "additionalProperties": { "$ref": "#/$defs/phrase" }
+    },
+    "policy_reasons": {
+      "description": "Why the transition policy held a candidate for review (eval_bundle candidate_policy.reasons), as a noun phrase.",
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["expansion_motion", "pricing_push", "commercial_escalation", "broad_outreach", "expansion_label_mismatch"],
+      "properties": {
+        "expansion_motion": { "$ref": "#/$defs/phrase" },
+        "pricing_push": { "$ref": "#/$defs/phrase" },
+        "commercial_escalation": { "$ref": "#/$defs/phrase" },
+        "broad_outreach": { "$ref": "#/$defs/phrase" },
+        "expansion_label_mismatch": { "$ref": "#/$defs/phrase" }
+      }
+    },
+    "phrases": {
+      "description": "Shared wording. {placeholders} are filled by the surface.",
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["ghost_pick", "human_choice", "blocking", "send_blocked", "after_edit", "not_reevaluated", "not_relevant_summary", "evidence", "dispute", "held_for_review"],
+      "properties": {
+        "ghost_pick": { "$ref": "#/$defs/phrase" },
+        "human_choice": { "$ref": "#/$defs/phrase" },
+        "blocking": { "$ref": "#/$defs/phrase" },
+        "send_blocked": { "$ref": "#/$defs/phrase" },
+        "after_edit": { "$ref": "#/$defs/phrase" },
+        "not_reevaluated": { "$ref": "#/$defs/phrase" },
+        "not_relevant_summary": { "$ref": "#/$defs/phrase" },
+        "evidence": { "$ref": "#/$defs/phrase" },
+        "dispute": { "$ref": "#/$defs/phrase" },
+        "held_for_review": { "$ref": "#/$defs/phrase" }
+      }
+    }
+  },
+  "$defs": {
+    "phrase": { "type": "string", "minLength": 1, "maxLength": 160 },
+    "verdict": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["order", "label", "icon", "slack_emoji"],
+      "properties": {
+        "order": { "type": "integer", "minimum": 0, "maximum": 5 },
+        "label": { "type": "string", "minLength": 1, "maxLength": 20 },
+        "icon": {
+          "description": "The glyph: web draws it as an SVG, Slack shows slack_emoji. Same shape in both.",
+          "enum": ["x-circle", "alert-triangle", "help-circle", "check-circle", "minus-circle", "dashed-circle"]
+        },
+        "slack_emoji": { "type": "string", "pattern": "^:[a-z0-9_+-]+:$" }
+      }
+    },
+    "tag": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["tag", "meaning"],
+      "properties": {
+        "tag": { "type": "string", "minLength": 1, "maxLength": 24 },
+        "meaning": { "type": "string", "minLength": 1, "maxLength": 200 }
+      }
+    }
+  }
+}

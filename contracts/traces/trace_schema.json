@@ -1,0 +1,33 @@
+{
+  "schema_version": 1,
+  "description": "Canonical DecisionEpisode trace (HAR-97 section 3): every consequential episode reconstructs these spans, backward from the executed action to its causal evidence and forward to the consequences and learning it produced. Trace completeness is an invariant (E18). Required fields name the ids a span must carry, derived from the section 3 wording; per-eval required_trace_fields are written at the construction gate.",
+  "source": {"issue": "HAR-97", "section": "CANONICAL EVAL STRATEGY sections 3 and 11", "fetched_on": "2026-10-03"},
+  "common_fields": ["episode_id", "span_id", "parent_span_ids", "recorded_at"],
+  "spans": [
+    {"id": "source_events", "order": 1, "label": "original source/event IDs", "surfaces": [1], "parents": [], "required_fields": ["source_event_ids"]},
+    {"id": "evidence", "order": 2, "label": "extracted evidence + explicit/inferred boundary", "surfaces": [1, 2], "parents": ["source_events"], "required_fields": ["evidence_ids", "provenance_refs", "explicit_or_inferred"]},
+    {"id": "entity_resolution", "order": 3, "label": "entity/account resolution", "surfaces": [3], "parents": ["evidence"], "required_fields": ["resolved_entity_ids", "resolution_confidence"]},
+    {"id": "graph_mutations", "order": 4, "label": "graph mutations", "surfaces": [4], "parents": ["entity_resolution"], "required_fields": ["mutation_ids", "graph_version"]},
+    {"id": "state_transition", "order": 5, "label": "state/transition version", "surfaces": [5], "parents": ["graph_mutations"], "required_fields": ["state_version", "transition_ids", "transition_status"]},
+    {"id": "precedents", "order": 6, "label": "retrieved precedents", "surfaces": [6], "parents": ["state_transition"], "required_fields": ["precedent_ids"]},
+    {"id": "knowledge_retrieved", "order": 7, "label": "retrieved company knowledge", "surfaces": [7], "parents": ["state_transition"], "required_fields": ["knowledge_ids", "knowledge_versions"]},
+    {"id": "applicability", "order": 8, "label": "applicability judgments", "surfaces": [7], "parents": ["knowledge_retrieved"], "required_fields": ["knowledge_id", "applicability_label"]},
+    {"id": "knowledge_used", "order": 9, "label": "knowledge actually used", "surfaces": [8], "parents": ["applicability"], "required_fields": ["knowledge_id", "influence_target"]},
+    {"id": "candidates", "order": 10, "label": "candidate decisions", "surfaces": [9], "parents": ["precedents", "knowledge_used", "state_transition"], "required_fields": ["candidate_ids"]},
+    {"id": "ranking", "order": 11, "label": "ranking / uncertainty / abstention", "surfaces": [10], "parents": ["candidates"], "required_fields": ["ranking", "uncertainty", "abstained"]},
+    {"id": "recommendation", "order": 12, "label": "recommended decision", "surfaces": [10], "parents": ["ranking"], "required_fields": ["decision_id"]},
+    {"id": "human_interaction", "order": 13, "label": "human interaction", "surfaces": [11], "parents": ["recommendation"], "required_fields": ["interaction_kind", "interpretation", "interpretation_confidence"]},
+    {"id": "final_intended_action", "order": 14, "label": "final intended action", "surfaces": [11, 12], "parents": ["human_interaction"], "required_fields": ["action_intent_id"]},
+    {"id": "generated_artifact", "order": 15, "label": "generated artifact", "surfaces": [13], "parents": ["final_intended_action"], "required_fields": ["artifact_id"]},
+    {"id": "tool_calls", "order": 16, "label": "tool calls / writes", "surfaces": [14], "parents": ["generated_artifact"], "required_fields": ["tool_call_ids"]},
+    {"id": "executed_action", "order": 17, "label": "actual executed action", "surfaces": [15], "parents": ["tool_calls"], "required_fields": ["executed_action_id", "external_effect_id"]},
+    {"id": "world_response", "order": 18, "label": "customer/world response", "surfaces": [15], "parents": ["executed_action"], "required_fields": ["observation_ids"]},
+    {"id": "later_outcome", "order": 19, "label": "later outcome", "surfaces": [15], "parents": ["world_response"], "required_fields": ["outcome_ids"]},
+    {"id": "knowledge_mutation_proposal", "order": 20, "label": "proposed knowledge mutation", "surfaces": [16], "parents": ["human_interaction", "world_response", "later_outcome"], "required_fields": ["mutation_proposal_id", "mutation_type", "evidence_ids"]},
+    {"id": "knowledge_version", "order": 21, "label": "resulting knowledge version", "surfaces": [16, 17], "parents": ["knowledge_mutation_proposal"], "required_fields": ["knowledge_id", "knowledge_version"]},
+    {"id": "influenced_future_episodes", "order": 22, "label": "future episodes influenced by that knowledge", "surfaces": [17, 18], "parents": ["knowledge_version"], "required_fields": ["episode_ids"]}
+  ],
+  "traversal": {"backward_from": "executed_action", "forward_from": "knowledge_version"},
+  "eval_result_link": {"required_fields": ["eval_id", "episode_id", "span_id", "supporting_span_ids"]},
+  "viewer_tree": ["source events", "evidence + provenance", "graph mutations", "state/transition", "precedents", "company knowledge (applicability, actual influence)", "decision candidates", "ranking / recommendation", "evals by surface", "human interaction (semantic interpretation + confidence)", "invalidated/recomputed spans after an edit", "generated action", "tools/writes", "environment result", "customer/world response", "knowledge mutation", "knowledge version", "future episodes influenced"]
+}

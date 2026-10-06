@@ -1,0 +1,110 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://ghost.local/contracts/signal.v1.json",
+  "title": "Signal",
+  "description": "Decision-relevant consequence of a state diff (or clock tick). A candidate for trigger evaluation, never an action by itself.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["id", "account_id", "signal_type", "evidence_refs", "created_at"],
+  "properties": {
+    "id": { "$ref": "common.v1.json#/$defs/uuid" },
+    "account_id": { "$ref": "common.v1.json#/$defs/uuid" },
+    "opportunity_id": { "oneOf": [{ "$ref": "common.v1.json#/$defs/uuid" }, { "type": "null" }] },
+    "signal_type": {
+      "type": "string",
+      "enum": [
+        "new_stakeholder_entered", "champion_weakened", "champion_reactivated", "champion_delegated",
+        "security_blocker_appeared", "blocker_resolved", "pricing_interest", "expansion_interest",
+        "stakeholder_gap", "next_meeting_missing", "commitment_overdue", "customer_replied",
+        "customer_went_silent", "meeting_accepted", "support_risk_spike", "product_usage_increased",
+        "stage_regressed", "stage_advanced", "field_contradicted"
+      ]
+    },
+    "state_diff_id": { "oneOf": [{ "$ref": "common.v1.json#/$defs/uuid" }, { "type": "null" }] },
+    "subject_person_id": { "oneOf": [{ "$ref": "common.v1.json#/$defs/uuid" }, { "type": "null" }] },
+    "subject_claim_id": {
+      "description": "The claim behind the state item this signal reports (a blocker, commitment or field). Openness follows that item (matched by item key), so a newer claim that rewords it does not close the signal; only a status change does (ADR-0011).",
+      "oneOf": [{ "$ref": "common.v1.json#/$defs/uuid" }, { "type": "null" }]
+    },
+    "occurred_at": {
+      "description": "When the reported change happened in the world: the latest evidence occurred_at, or the clock tick's observed_at. created_at is when we recorded it. Event windows and 'open as of T' queries run on occurred_at (ADR-0015).",
+      "$ref": "common.v1.json#/$defs/timestamp"
+    },
+    "expires_at": {
+      "description": "End of the EVENT window: occurred_at + eventWindowDays. null for STANDING signals, which stay open while their standingOpenWhile condition holds (ADR-0011, ADR-0015).",
+      "oneOf": [{ "$ref": "common.v1.json#/$defs/timestamp" }, { "type": "null" }]
+    },
+    "dedupe_key": {
+      "description": "Idempotency key: the same fact evaluated again (a retried recompute, a repeated clock tick) never persists a second signal. Unique per account.",
+      "type": "string", "minLength": 1, "maxLength": 300
+    },
+    "rule": { "type": "string", "description": "Rule id that emitted the signal, e.g. 'sig.new_stakeholder@1'." },
+    "details": { "type": "object" },
+    "evidence_refs": { "type": "array", "items": { "$ref": "common.v1.json#/$defs/evidenceRef" } },
+    "created_at": { "$ref": "common.v1.json#/$defs/timestamp" }
+  },
+  "allOf": [
+    {
+      "description": "EVENT signals carry occurred_at and the end of their window; STANDING signals have no window (ADR-0015).",
+      "if": { "properties": { "signal_type": { "$ref": "#/$defs/eventSignalType" } }, "required": ["signal_type"] },
+      "then": { "required": ["occurred_at", "expires_at"], "properties": { "expires_at": { "$ref": "common.v1.json#/$defs/timestamp" } } },
+      "else": { "properties": { "expires_at": { "type": "null" } } }
+    },
+    {
+      "description": "A contradiction names the field and both claims, with evidence, so the rep can confirm (ADR-0008).",
+      "if": { "properties": { "signal_type": { "const": "field_contradicted" } } },
+      "then": {
+        "required": ["details"],
+        "properties": {
+          "details": {
+            "type": "object",
+            "required": ["field", "winning_claim_id", "winning_standing", "contradicting_claim_id", "contradicting_standing"],
+            "properties": {
+              "field": { "type": "string", "minLength": 1 },
+              "winning_claim_id": { "$ref": "common.v1.json#/$defs/uuid" },
+              "winning_standing": { "$ref": "common.v1.json#/$defs/standing" },
+              "contradicting_claim_id": { "$ref": "common.v1.json#/$defs/uuid" },
+              "contradicting_standing": { "$ref": "common.v1.json#/$defs/standing" }
+            }
+          },
+          "evidence_refs": { "minItems": 1 }
+        }
+      }
+    }
+  ],
+  "$defs": {
+    "eventWindowDays": {
+      "description": "EVENT signals are open for this many days after occurred_at (ADR-0011, ADR-0015). No state field bounds them reliably: buying-group status 'new' ends when the stakeholder first writes, which is exactly when knowledge such as K17 is needed.",
+      "const": 14
+    },
+    "eventSignalType": {
+      "description": "EVENT signals report something that happened; for knowledge matching they are open for eventWindowDays after occurred_at.",
+      "enum": [
+        "new_stakeholder_entered", "champion_weakened", "champion_reactivated", "champion_delegated", "blocker_resolved",
+        "pricing_interest", "expansion_interest", "customer_replied", "meeting_accepted", "product_usage_increased",
+        "stage_regressed", "stage_advanced"
+      ]
+    },
+    "standingSignalType": {
+      "description": "STANDING signals report a condition; they are open while the condition in standingOpenWhile still holds in the current AccountState.",
+      "enum": [
+        "security_blocker_appeared", "commitment_overdue", "support_risk_spike", "stakeholder_gap", "next_meeting_missing",
+        "customer_went_silent", "field_contradicted"
+      ]
+    },
+    "standingOpenWhile": {
+      "description": "Per STANDING signal type: the AccountState condition that keeps it open.",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "security_blocker_appeared": { "description": "the blockers item the signal reported (subject_claim_id, matched by its item key, not by which claim currently wins) has status open or overdue" },
+        "commitment_overdue": { "description": "the current_commitments item the signal reported (subject_claim_id, matched by item key) has status overdue" },
+        "support_risk_spike": { "description": "relationship_risk is high" },
+        "stakeholder_gap": { "description": "coverage_gaps still lists the gap named in details.gap" },
+        "next_meeting_missing": { "description": "next_meeting is null" },
+        "customer_went_silent": { "description": "no customer activity after the signal (last_customer_interaction <= occurred_at)" },
+        "field_contradicted": { "description": "the field's conflicts still list the contradicting claim (until a human confirms, ADR-0008)" }
+      }
+    }
+  }
+}

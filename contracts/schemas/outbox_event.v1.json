@@ -1,0 +1,39 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://ghost.local/contracts/outbox_event.v1.json",
+  "title": "OutboxEvent",
+  "description": "HAR-117 (WP19), HAR-136: a fact core publishes for surfaces (Slack, web) so they react instead of polling the read model. Written in the same transaction as the fact it announces (a trigger on strategy_sets and one on business_intelligence_updates), so an event exists if and only if the fact was committed. Delivery is at-least-once per consumer: a consumer lists its unacknowledged events, acts, then acknowledges; a crash between acting and acknowledging delivers the event again, so consumers must be idempotent. Exactly-once on a surface is the surface's job, through the create-only message refs (surface_message.v1.json).",
+  "type": "object",
+  "required": ["id", "topic", "account_id", "created_at"],
+  "properties": {
+    "id": { "type": "integer", "minimum": 1, "description": "Unique and allocated in increasing order when the row is inserted, which is not the order the transactions commit in: a transaction that took a lower id can commit after one that took a higher id. Listing is oldest id first among the committed events; the id is an identity, never a cursor to resume after." },
+    "topic": { "type": "string", "enum": ["strategy_set.published", "bi_update.published"] },
+    "account_id": { "$ref": "common.v1.json#/$defs/uuid" },
+    "created_at": { "$ref": "common.v1.json#/$defs/timestamp" }
+  },
+  "oneOf": [
+    {
+      "description": "strategy_set.published: the run's StrategySet and all its EvalBundles are readable at GET /runs/{agent_run_id}/strategies; Slack Message 2 is posted on it. bi_update_id is the update (Message 1) of the episode's AccountChange, null when the episode has none; Message 2 is never posted before that update's Message 1.",
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id", "topic", "account_id", "created_at", "agent_run_id", "strategy_set_id", "decision_episode_id"],
+      "properties": {
+        "id": true, "topic": { "const": "strategy_set.published" }, "account_id": true, "created_at": true,
+        "agent_run_id": { "$ref": "common.v1.json#/$defs/uuid" },
+        "strategy_set_id": { "$ref": "common.v1.json#/$defs/uuid" },
+        "decision_episode_id": { "$ref": "common.v1.json#/$defs/uuid" },
+        "bi_update_id": { "oneOf": [{ "$ref": "common.v1.json#/$defs/uuid" }, { "type": "null" }] }
+      }
+    },
+    {
+      "description": "bi_update.published: the BusinessIntelligenceUpdate is readable at GET /accounts/{account_id}/business-intelligence/latest while it is the account's latest; Slack Message 1 is posted on it.",
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id", "topic", "account_id", "created_at", "bi_update_id"],
+      "properties": {
+        "id": true, "topic": { "const": "bi_update.published" }, "account_id": true, "created_at": true,
+        "bi_update_id": { "$ref": "common.v1.json#/$defs/uuid" }
+      }
+    }
+  ]
+}

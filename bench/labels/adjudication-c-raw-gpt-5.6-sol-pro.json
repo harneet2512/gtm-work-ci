@@ -1,0 +1,539 @@
+{
+ "label_kind": "model labels, NOT human labels",
+ "model": "openai/gpt-5.6-sol-pro, blind tie-breaker on the 38 disputed judgments (A = Claude Opus, B = Claude Sonnet, gold = legacy gold, judge = the WP18 live judge)",
+ "note": "Verdicts, labels and blocking flags only. The models' free-text reasons and token usage are left out: they quote case text at length and are not needed to re-derive the decisions.",
+ "judgments": [
+  {
+   "case": "acme_cp2_single_threaded_signature_push",
+   "eval_type": "decision_process",
+   "A": "warn",
+   "B": "warn",
+   "gold": "fail",
+   "judge": "fail",
+   "C": {
+    "verdict": "fail",
+    "label": null,
+    "blocking": false,
+    "confidence": "high"
+   }
+  },
+  {
+   "case": "acme_cp2_single_threaded_signature_push",
+   "eval_type": "economic_buyer_coverage",
+   "A": "fail",
+   "B": "warn",
+   "gold": "warn",
+   "judge": "warn",
+   "C": {
+    "verdict": "warn",
+    "label": null,
+    "blocking": false,
+    "confidence": "high"
+   }
+  },
+  {
+   "case": "acme_cp2_single_threaded_signature_push",
+   "eval_type": "stakeholder_coverage",
+   "A": "warn",
+   "B": "warn",
+   "gold": "fail",
+   "judge": null,
+   "C": {
+    "verdict": "warn",
+    "label": "SINGLE_THREADED_RISK",
+    "blocking": false,
+    "confidence": "medium"
+   }
+  },
+  {
+   "case": "acme_cp4_claims_cfo_signed_off",
+   "eval_type": "evidence_sufficiency",
+   "A": "pass",
+   "B": "pass",
+   "gold": "fail",
+   "judge": "pass",
+   "C": {
+    "verdict": "pass",
+    "label": "SUFFICIENT",
+    "blocking": false,
+    "confidence": "high"
+   }
+  },
+  {
+   "case": "acme_cp4_draft1_champion_bypass",
+   "eval_type": "buyer_readiness",
+   "A": "fail",
+   "B": "warn",
+   "gold": "fail",
+   "judge": "fail",
+   "C": {
+    "verdict": "fail",
+    "label": "TOO_EARLY",
+    "blocking": true,
+    "confidence": "high"
+   }
+  },
+  {
+   "case": "acme_cp4_draft1_champion_bypass",
+   "eval_type": "grounding",
+   "A": "fail",
+   "B": "fail",
+   "gold": "pass",
+   "judge": "fail",
+   "C": {
+    "verdict": "fail",
+    "label": null,
+    "blocking": false,
+    "confidence": "high"
+   }
+  },
+  {
+   "case": "acme_cp4_k17_offered_but_ignored",
+   "eval_type": "champion_continuity",
+   "A": "fail",
+   "B": "warn",
+   "gold": "fail",
+   "judge": "fail",
+   "C": {
+    "verdict": "fail",
+    "label": "CHAMPION_BYPASSED",
+    "blocking": true,
+    "confidence": "high"
+   }
+  },
+  {
+   "case": "acme_cp4_k17_offered_but_ignored",
+   "eval_type": "knowledge_applicability",
+   "A": "fail",
+   "B": "warn",
+   "gold": "fail",
+   "judge": "pass",
+   "C": {
+    "verdict": "pass",
+    "label": "APPLIES",
+    "blocking": false,
+    "confidence": "high"
+   }
+  },
+  {
+   "case": "acme_cp4_k21_budget_already_approved_trap",
+   "eval_type": "economic_buyer_coverage",
+   "A": "fail",
+   "B": "fail",
+   "gold": "warn",
+   "judge": "pass",
+   "C": {
+    "verdict": "warn",
+    "label": null,
+    "blocking": false,
+    "confidence": "high"
+   }
+  },
+  {
+   "case": "acme_cp4_review_date_ask_too_soon",
+   "eval_type": "buyer_readiness",
+   "A": "fail",
+   "B": "warn",
+   "gold": "fail",
+   "judge": "fail",
+   "C": {
+    "verdict": "fail",
+    "label": "TOO_EARLY",
+    "blocking": true,
+    "confidence": "high"
+   }
+  },
+  {
+   "case": "acme_cp4_review_date_ask_too_soon",
+   "eval_type": "grounding",
+   "A": "fail",
+   "B": "fail",
+   "gold": "pass",
+   "judge": "fail",
+   "C": {
+    "verdict": "fail",
+    "label": null,
+    "blocking": true,
+    "confidence": "high"
+   }
+  },
+  {
+   "case": "acme_order_form_walkthrough_reply_late",
+   "eval_type": "momentum",
+   "A": "fail",
+   "B": "fail",
+   "gold": "warn",
+   "judge": "fail",
+   "C": {
+    "verdict": "fail",
+    "label": "COOLING",
+    "blocking": false,
+    "confidence": "high"
+   }
+  },
+  {
+   "case": "acme_variant_new_business_k17_cited",
+   "eval_type": "knowledge_applicability",
+   "A": "warn",
+   "B": "warn",
+   "gold": "fail",
+   "judge": "fail",
+   "C": {
+    "verdict": "fail",
+    "label": "DOES_NOT_APPLY",
+    "blocking": false,
+    "confidence": "high"
+   }
+  },
+  {
+   "case": "acme_variant_renewal_open_tickets_seat_upsell",
+   "eval_type": "stakeholder_selection",
+   "A": "fail",
+   "B": "warn",
+   "gold": "fail",
+   "judge": "fail",
+   "C": {
+    "verdict": "fail",
+    "label": null,
+    "blocking": false,
+    "confidence": "high"
+   }
+  },
+  {
+   "case": "beta_cp3_ravi_only_thread",
+   "eval_type": "knowledge_applicability",
+   "A": "fail",
+   "B": "warn",
+   "gold": "fail",
+   "judge": "fail",
+   "C": {
+    "verdict": "pass",
+    "label": "APPLIES",
+    "blocking": false,
+    "confidence": "high"
+   }
+  },
+  {
+   "case": "beta_cp3_residency_docs_light_ask",
+   "eval_type": "grounding",
+   "A": "fail",
+   "B": "warn",
+   "gold": "pass",
+   "judge": "pass",
+   "C": {
+    "verdict": "fail",
+    "label": null,
+    "blocking": true,
+    "confidence": "high"
+   }
+  },
+  {
+   "case": "beta_cp3_review_invite_too_soon",
+   "eval_type": "buyer_readiness",
+   "A": "fail",
+   "B": "warn",
+   "gold": "fail",
+   "judge": "fail",
+   "C": {
+    "verdict": "fail",
+    "label": "TOO_EARLY",
+    "blocking": true,
+    "confidence": "high"
+   }
+  },
+  {
+   "case": "beta_cp3_review_invite_too_soon",
+   "eval_type": "next_action_quality",
+   "A": "fail",
+   "B": "warn",
+   "gold": "fail",
+   "judge": "fail",
+   "C": {
+    "verdict": "fail",
+    "label": "NEEDS_REVISION",
+    "blocking": false,
+    "confidence": "high"
+   }
+  },
+  {
+   "case": "beta_cp4_nonmaterial_fyi_no_action",
+   "eval_type": "next_action_quality",
+   "A": "pass",
+   "B": "fail",
+   "gold": "pass",
+   "judge": "fail",
+   "C": {
+    "verdict": "fail",
+    "label": "ACT_NOW",
+    "blocking": true,
+    "confidence": "high"
+   }
+  },
+  {
+   "case": "beta_enrichment_headcount_congrats_email",
+   "eval_type": "grounding",
+   "A": "fail",
+   "B": "warn",
+   "gold": "fail",
+   "judge": "fail",
+   "C": {
+    "verdict": "fail",
+    "label": null,
+    "blocking": true,
+    "confidence": "high"
+   }
+  },
+  {
+   "case": "beta_owen_approval_congrats_two_weeks_late",
+   "eval_type": "timing_cadence",
+   "A": "warn",
+   "B": "fail",
+   "gold": "fail",
+   "judge": null,
+   "C": {
+    "verdict": "fail",
+    "label": "LATE_OR_MISSED_WINDOW",
+    "blocking": true,
+    "confidence": "high"
+   }
+  },
+  {
+   "case": "beta_variant_sev1_outage_upsell_pitch",
+   "eval_type": "stakeholder_selection",
+   "A": "warn",
+   "B": "warn",
+   "gold": "fail",
+   "judge": null,
+   "C": {
+    "verdict": "pass",
+    "label": null,
+    "blocking": false,
+    "confidence": "high"
+   }
+  },
+  {
+   "case": "beta_world_nudge_for_platform_intro_a_day_early",
+   "eval_type": "commitment_consistency",
+   "A": "fail",
+   "B": "warn",
+   "gold": "pass",
+   "judge": "pass",
+   "C": {
+    "verdict": "pass",
+    "label": null,
+    "blocking": false,
+    "confidence": "high"
+   }
+  },
+  {
+   "case": "beta_world_nudge_for_platform_intro_a_day_early",
+   "eval_type": "next_action_quality",
+   "A": "fail",
+   "B": "warn",
+   "gold": "fail",
+   "judge": "pass",
+   "C": {
+    "verdict": "fail",
+    "label": "WAIT",
+    "blocking": false,
+    "confidence": "high"
+   }
+  },
+  {
+   "case": "beta_world_nudge_for_platform_intro_a_day_early",
+   "eval_type": "timing_cadence",
+   "A": "fail",
+   "B": "warn",
+   "gold": "fail",
+   "judge": "pass",
+   "C": {
+    "verdict": "warn",
+    "label": "TOO_EARLY",
+    "blocking": false,
+    "confidence": "high"
+   }
+  },
+  {
+   "case": "northstar_cp1_direct_to_grace",
+   "eval_type": "economic_buyer_coverage",
+   "A": "fail",
+   "B": "fail",
+   "gold": "warn",
+   "judge": "fail",
+   "C": {
+    "verdict": "warn",
+    "label": null,
+    "blocking": false,
+    "confidence": "high"
+   }
+  },
+  {
+   "case": "northstar_cp2_security_team_never_engaged",
+   "eval_type": "stakeholder_coverage",
+   "A": "warn",
+   "B": "warn",
+   "gold": "fail",
+   "judge": "fail",
+   "C": {
+    "verdict": "fail",
+    "label": "UNDER_THREADED",
+    "blocking": true,
+    "confidence": "high"
+   }
+  },
+  {
+   "case": "northstar_cp3_handoff_drops_final_signoff",
+   "eval_type": "champion_continuity",
+   "A": "fail",
+   "B": "warn",
+   "gold": "pass",
+   "judge": "pass",
+   "C": {
+    "verdict": "pass",
+    "label": "VALID_HANDOFF",
+    "blocking": false,
+    "confidence": "high"
+   }
+  },
+  {
+   "case": "northstar_cp3_review_slots_offered_with_documents",
+   "eval_type": "cta_calibration",
+   "A": "pass",
+   "B": "pass",
+   "gold": "fail",
+   "judge": "pass",
+   "C": {
+    "verdict": "pass",
+    "label": "APPROPRIATE",
+    "blocking": false,
+    "confidence": "high"
+   }
+  },
+  {
+   "case": "northstar_cp4_email_asks_which_day_instead_of_invite",
+   "eval_type": "channel_appropriateness",
+   "A": "warn",
+   "B": "warn",
+   "gold": "fail",
+   "judge": "fail",
+   "C": {
+    "verdict": "fail",
+    "label": null,
+    "blocking": true,
+    "confidence": "high"
+   }
+  },
+  {
+   "case": "northstar_cp4_email_asks_which_day_instead_of_invite",
+   "eval_type": "next_step_quality",
+   "A": "fail",
+   "B": "warn",
+   "gold": "warn",
+   "judge": "fail",
+   "C": {
+    "verdict": "fail",
+    "label": null,
+    "blocking": false,
+    "confidence": "high"
+   }
+  },
+  {
+   "case": "northstar_cp4_go_live_before_security_signoff",
+   "eval_type": "customer_risk_sensitivity",
+   "A": "fail",
+   "B": "warn",
+   "gold": "fail",
+   "judge": "warn",
+   "C": {
+    "verdict": "fail",
+    "label": null,
+    "blocking": true,
+    "confidence": "high"
+   }
+  },
+  {
+   "case": "northstar_cp4_go_live_before_security_signoff",
+   "eval_type": "timing_cadence",
+   "A": "fail",
+   "B": "fail",
+   "gold": "pass",
+   "judge": "pass",
+   "C": {
+    "verdict": "pass",
+    "label": "READY",
+    "blocking": false,
+    "confidence": "high"
+   }
+  },
+  {
+   "case": "northstar_cp4_k17_misapplied_cc_elena",
+   "eval_type": "exception_awareness",
+   "A": "fail",
+   "B": "warn",
+   "gold": "fail",
+   "judge": "pass",
+   "C": {
+    "verdict": "fail",
+    "label": "EXCEPTION_MISSED",
+    "blocking": false,
+    "confidence": "high"
+   }
+  },
+  {
+   "case": "northstar_cp4_k17_misapplied_cc_elena",
+   "eval_type": "knowledge_applicability",
+   "A": "fail",
+   "B": "warn",
+   "gold": "fail",
+   "judge": null,
+   "C": {
+    "verdict": "fail",
+    "label": "EXCEPTION_TRIGGERED",
+    "blocking": false,
+    "confidence": "high"
+   }
+  },
+  {
+   "case": "northstar_cp4_k17_misapplied_cc_elena",
+   "eval_type": "stakeholder_coverage",
+   "A": "warn",
+   "B": "pass",
+   "gold": "fail",
+   "judge": "pass",
+   "C": {
+    "verdict": "warn",
+    "label": "OVER_THREADED_TOO_EARLY",
+    "blocking": false,
+    "confidence": "high"
+   }
+  },
+  {
+   "case": "northstar_sam_invite_after_slots_passed",
+   "eval_type": "momentum",
+   "A": "fail",
+   "B": "fail",
+   "gold": "warn",
+   "judge": "fail",
+   "C": {
+    "verdict": "warn",
+    "label": "COOLING",
+    "blocking": false,
+    "confidence": "high"
+   }
+  },
+  {
+   "case": "northstar_variant_new_business_inflated_roi",
+   "eval_type": "champion_continuity",
+   "A": "fail",
+   "B": "warn",
+   "gold": "pass",
+   "judge": "pass",
+   "C": {
+    "verdict": "pass",
+    "label": "CHAMPION_INCLUDED",
+    "blocking": false,
+    "confidence": "high"
+   }
+  }
+ ]
+}

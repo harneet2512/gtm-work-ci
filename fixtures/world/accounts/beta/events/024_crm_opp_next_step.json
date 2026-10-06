@@ -1,0 +1,18 @@
+{
+  "source_system": "crm",
+  "source_object_id": "opp:BE-7-EXP",
+  "source_event_key": "field:NextStep:Platform team integration review",
+  "occurred_at": "2026-09-10T10:00:00Z",
+  "connector": "salesforce",
+  "connector_version": "0.1.0",
+  "payload": {
+    "kind": "crm_change",
+    "object_type": "Opportunity",
+    "record_id": "opp:BE-7-EXP",
+    "account_record_id": "account:BE-7",
+    "changed_at": "2026-09-10T10:00:00Z",
+    "changed_by": "dana@ghostvendor.com",
+    "created": false,
+    "fields": {"NextStep": {"old": null, "new": "Platform team integration review"}}
+  }
+}

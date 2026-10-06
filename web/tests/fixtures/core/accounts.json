@@ -1,0 +1,15 @@
+{
+  "items": [
+    {
+      "id": "0a0c0000-0000-4000-8000-000000000001",
+      "name": "Acme Corp",
+      "domain": "acme.com",
+      "stage": "Technical evaluation",
+      "health": "at_risk",
+      "motion": "expansion",
+      "last_meaningful_change": "2026-09-29T15:42:00Z",
+      "last_activity_at": "2026-09-29T15:42:00Z",
+      "open_run_id": null
+    }
+  ]
+}

@@ -1,0 +1,18 @@
+{
+  "source_system": "slack",
+  "source_object_id": "#deal-acme:1789989300.000100",
+  "source_event_key": "posted",
+  "occurred_at": "2026-09-21T11:15:00Z",
+  "connector": "slack",
+  "connector_version": "0.1.0",
+  "payload": {
+    "kind": "slack_message",
+    "channel": "#deal-acme",
+    "ts": "1789989300.000100",
+    "thread_ts": null,
+    "user": "U02DANA",
+    "user_email": "dana@ghostvendor.com",
+    "text": "Heads up: Acme's Head of Security, Marco Ruiz, has to sign off on the EU rollout before signature. He's joining Thursday's call. Leo, please get the SOC2 Type II report and pen-test summary ready to share under NDA.",
+    "is_decision": false
+  }
+}

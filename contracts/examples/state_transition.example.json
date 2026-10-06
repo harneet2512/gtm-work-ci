@@ -1,0 +1,139 @@
+{
+  "id": "0e5a0000-0000-4000-8000-000000000002",
+  "account_id": "0a0c0000-0000-4000-8000-000000000001",
+  "opportunity_id": "0c0f0000-0000-4000-8000-000000000004",
+  "from_state": "REORG",
+  "to_state_candidate": "EXPANSION",
+  "status": "CANDIDATE",
+  "trigger_activity_ids": [
+    "0ac70000-0000-4000-8000-000000000101"
+  ],
+  "supporting_facts": [
+    {
+      "key": "expansion_need_stated",
+      "description": "Since the reorg, the customer explicitly asked for or stated a broader rollout: another team or BU, more seats, a geography or a use case beyond the current scope.",
+      "required": true,
+      "satisfied": true,
+      "evidence_refs": [
+        {
+          "activity_id": "0ac70000-0000-4000-8000-000000000101",
+          "claim_id": "0c1a0000-0000-4000-8000-000000000201",
+          "quote": "Before we can sign off on the EU rollout we'll need your SOC2 Type II report and the pen-test summary.",
+          "speaker_person_id": "0b0e0000-0000-4000-8000-000000000018",
+          "occurred_at": "2026-09-29T15:42:00Z"
+        }
+      ],
+      "signal_ids": [
+        "05190000-0000-4000-8000-000000000031"
+      ]
+    },
+    {
+      "key": "additional_stakeholder_engaged",
+      "description": "Since the reorg, a stakeholder other than the new owner (or a business unit) entered the buying group.",
+      "required": true,
+      "satisfied": true,
+      "evidence_refs": [
+        {
+          "activity_id": "0ac70000-0000-4000-8000-000000000101",
+          "claim_id": "0c1a0000-0000-4000-8000-000000000201",
+          "quote": "I lead security at Acme",
+          "speaker_person_id": "0b0e0000-0000-4000-8000-000000000018",
+          "occurred_at": "2026-09-29T15:42:00Z"
+        }
+      ],
+      "signal_ids": [
+        "05190000-0000-4000-8000-000000000030"
+      ]
+    },
+    {
+      "key": "new_owner_identified",
+      "description": "Since the reorg, a relationship owner (champion) is known and active, though not yet stable.",
+      "required": false,
+      "satisfied": true,
+      "evidence_refs": [
+        {
+          "activity_id": "0ac70000-0000-4000-8000-000000000100",
+          "claim_id": "0c1a0000-0000-4000-8000-000000000200",
+          "occurred_at": "2026-09-20T10:00:00Z"
+        },
+        {
+          "activity_id": "0ac70000-0000-4000-8000-000000000101",
+          "claim_id": "0c1a0000-0000-4000-8000-000000000201",
+          "occurred_at": "2026-09-29T15:42:00Z"
+        }
+      ]
+    },
+    {
+      "key": "decision_process_known",
+      "description": "The budget or decision process is known.",
+      "required": false,
+      "satisfied": true,
+      "evidence_refs": [
+        {
+          "activity_id": "0ac70000-0000-4000-8000-000000000101",
+          "claim_id": "0c1a0000-0000-4000-8000-000000000201",
+          "occurred_at": "2026-09-29T15:42:00Z"
+        }
+      ]
+    },
+    {
+      "key": "crm_motion_expansion",
+      "description": "CRM (or a claim) reports an expansion opportunity. Supporting only: motion is not the relationship state.",
+      "required": false,
+      "satisfied": true,
+      "evidence_refs": [
+        {
+          "activity_id": "0ac70000-0000-4000-8000-000000000100",
+          "claim_id": "0c1a0000-0000-4000-8000-000000000200",
+          "occurred_at": "2026-09-20T10:00:00Z"
+        }
+      ]
+    }
+  ],
+  "missing_facts": [
+    {
+      "key": "owner_stabilized",
+      "description": "A champion who took over after the reorg is active, has held the role long enough, is not an interim or acting holder, and has no open weakening or delegation.",
+      "required": true,
+      "satisfied": false,
+      "evidence_refs": [
+        {
+          "activity_id": "0ac70000-0000-4000-8000-000000000100",
+          "claim_id": "0c1a0000-0000-4000-8000-000000000200",
+          "occurred_at": "2026-09-20T10:00:00Z"
+        }
+      ]
+    },
+    {
+      "key": "value_signal_present",
+      "description": "Since the reorg, the customer stated an achieved or expected business value or metric, or product usage increased.",
+      "required": true,
+      "satisfied": false,
+      "evidence_refs": []
+    },
+    {
+      "key": "commercial_next_step",
+      "description": "Since the reorg, a commercial step exists: the opportunity advanced, a pricing or budget conversation started, an open commercial commitment, or a known economic buyer and decision process.",
+      "required": true,
+      "satisfied": false,
+      "evidence_refs": []
+    },
+    {
+      "key": "economic_buyer_known",
+      "description": "The economic buyer is known.",
+      "required": false,
+      "satisfied": false,
+      "evidence_refs": []
+    }
+  ],
+  "contradicting_facts": [],
+  "confidence": 0.4,
+  "state_version": 7,
+  "rule_set_version": "transition_rules:v1",
+  "first_observed_at": "2026-09-29T15:42:00Z",
+  "confirmed_at": null,
+  "rejected_at": null,
+  "closed_at": null,
+  "close_reason": null,
+  "last_updated_at": "2026-09-29T15:42:11Z"
+}

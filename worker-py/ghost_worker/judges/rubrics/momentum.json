@@ -1,0 +1,111 @@
+{
+  "eval_type": "momentum",
+  "version": 1,
+  "title": "Momentum / engagement trajectory",
+  "har97_refs": [
+    {
+      "line": 2340,
+      "text": "## 15.8 Momentum / engagement trajectory"
+    },
+    {
+      "line": 610,
+      "text": "momentum / engagement trajectory"
+    },
+    {
+      "line": 2960,
+      "text": "* momentum / engagement trajectory"
+    }
+  ],
+  "l2_dimension": "momentum / engagement trajectory",
+  "questions": [
+    {
+      "section": "§15(GTM).8",
+      "text": "Is the account getting stronger, weaker, or simply noisier?"
+    }
+  ],
+  "inputs": [
+    "reply cadence",
+    "meeting acceptance",
+    "new stakeholder entry",
+    "executive involvement",
+    "product/adoption movement",
+    "support/risk changes",
+    "periods of silence",
+    "stage movement",
+    "conversation depth / commitment changes"
+  ],
+  "criteria": [
+    {
+      "id": "trajectory",
+      "kind": "evaluate",
+      "text": "the account's trajectory from the activity graph",
+      "guide": "Classify the trajectory from the sequence of activities, not a static snapshot.",
+      "har97": null,
+      "output": "finding",
+      "before": null,
+      "after": null
+    },
+    {
+      "id": "action_matches_trajectory",
+      "kind": "evaluate",
+      "text": "the action matches the trajectory",
+      "guide": "A cooling account calls for light re-engagement, not an escalated ask; a heating one for a concrete step.",
+      "har97": null,
+      "output": "finding",
+      "before": null,
+      "after": null
+    }
+  ],
+  "failure_examples": [],
+  "counter_failures": [],
+  "known_exceptions": [],
+  "candidate_choices": [],
+  "principles": [
+    "Use the HAR-96 activity graph rather than a static snapshot.",
+    "The same inbound email can imply something very different depending on the trajectory that preceded it."
+  ],
+  "labels": [
+    {
+      "label": "HEATING_UP",
+      "when": "Engagement and commitment are increasing."
+    },
+    {
+      "label": "STABLE",
+      "when": "Engagement is steady; nothing has cooled or accelerated."
+    },
+    {
+      "label": "COOLING",
+      "when": "Replies slow, silence, or commitments slip."
+    },
+    {
+      "label": "REACTIVATED",
+      "when": "The account re-engages after a quiet period."
+    },
+    {
+      "label": "NOISY_WITHOUT_PROGRESS",
+      "when": "Activity without movement in stage, commitments or depth."
+    }
+  ],
+  "pass_label": "STABLE",
+  "diagnostics": [
+    {
+      "name": "engagement_cooling",
+      "when": "the trajectory is cooling and the action does not account for it"
+    }
+  ],
+  "routing": {
+    "actions": [
+      "send_email",
+      "schedule_meeting",
+      "share_document",
+      "wait",
+      "no_action"
+    ],
+    "when_all": [],
+    "when_any": [
+      "engagement_shift",
+      "quiet_action"
+    ]
+  },
+  "uses_rep_profile": false
+}

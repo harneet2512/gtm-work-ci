@@ -1,0 +1,241 @@
+{
+ "request": {
+  "activity": {
+   "id": "0ac70000-0000-4000-8000-000000000101",
+   "idempotency_key": "3f1c2a9e8b7d6c5f4e3a2b1c0d9e8f7a6b5c4d3e2f1a0b9c8d7e6f5a4b3c2d1e",
+   "activity_type": "EmailSent",
+   "source_system": "email",
+   "source_object_id": "02sWt000001zzFiIAI",
+   "source_event_id": "05e00000-0000-4000-8000-000000000101",
+   "occurred_at": "2022-01-17T13:30:00Z",
+   "ingested_at": "2026-09-29T15:42:07Z",
+   "participants": [
+    {
+     "raw_identity": "carmen.silva@ghostvendor.com",
+     "display_name": "Carmen Silva",
+     "role": "from"
+    },
+    {
+     "raw_identity": "ahmed.khan@lifttechelevations.com",
+     "display_name": "Ahmed Khan",
+     "role": "to"
+    }
+   ],
+   "account_id": "0a0c0000-0000-4000-8000-000000000001",
+   "opportunity_id": "0c0f0000-0000-4000-8000-000000000004",
+   "account_hint": "acme.com",
+   "opportunity_hint": "thr-acme-eu-expansion",
+   "payload_ref": "source_events/05e00000-0000-4000-8000-000000000101",
+   "summary": "Marco (Acme security) requires SOC2 Type II + pen-test summary before EU rollout sign-off.",
+   "permissions": {
+    "visibility": "org"
+   },
+   "provenance": {
+    "source_system": "email",
+    "source_object_id": "<CAMx9-acme-2026-09-29@mail.acme.com>",
+    "connector": "gmail",
+    "connector_version": "0.1.0"
+   },
+   "caused_by_activity_id": "0ac70000-0000-4000-8000-000000000100",
+   "correlation_id": "0c0c0000-0000-4000-8000-000000000801"
+  },
+  "text": "Hi Ahmed,\n\nThanks for getting back to me so promptly. I'm glad to hear that the proposal has met your expectations so far.\n\nTo address your query regarding AI feature flexibility, our solutions like PulseSim Pro and AI Cirku-Tech are designed to be highly adaptive, ensuring they can integrate and evolve alongside your advancements. This adaptability helps mitigate the risk of system stagnation and keeps your operations optimal.\n\nRegarding pricing negotiations, we’re open to discussing further if you’re considering a larger purchase volume. We aim to provide the best value possible while maintaining the quality and efficient support TechPulse Solutions is known for.\n\nLet me know if you’d like to set up a call to delve deeper into these aspects. We’re eager to collaborate in a way that maximizes the benefits for LiftTech Elevations.\n\nLooking forward to your response.\n\nWarm regards,\n\nCarmen Silva\nSales Representative\nTechPulse Solutions",
+  "known_people": [
+   {
+    "raw_identity": "ahmed.khan@lifttechelevations.com",
+    "display_name": "Ahmed Khan",
+    "title": "Senior Data Scientist",
+    "internal": false
+   },
+   {
+    "raw_identity": "amina.heba@lifttechelevations.com",
+    "display_name": "Amina Heba",
+    "title": "Customer Service Specialist",
+    "internal": false
+   },
+   {
+    "raw_identity": "anastasia.petrova@lifttechelevations.com",
+    "display_name": "Anastasia Petrova",
+    "title": "Security Director",
+    "internal": false
+   },
+   {
+    "raw_identity": "anwar.malik@ghostvendor.com",
+    "display_name": "Anwar Malik",
+    "title": null,
+    "internal": true
+   },
+   {
+    "raw_identity": "carmen.silva@ghostvendor.com",
+    "display_name": "Carmen Silva",
+    "title": null,
+    "internal": true
+   },
+   {
+    "raw_identity": "cheng.zhang@lifttechelevations.com",
+    "display_name": "Cheng Zhang",
+    "title": "Senior Software Architect",
+    "internal": false
+   },
+   {
+    "raw_identity": "chidi.onyekachi@ghostvendor.com",
+    "display_name": "Chidi Onyekachi",
+    "title": null,
+    "internal": true
+   },
+   {
+    "raw_identity": "diego.machado@lifttechelevations.com",
+    "display_name": "Diego Machado",
+    "title": "Innovation Lab Director",
+    "internal": false
+   },
+   {
+    "raw_identity": "diego.sanchez@ghostvendor.com",
+    "display_name": "Diego Sanchez",
+    "title": null,
+    "internal": true
+   },
+   {
+    "raw_identity": "dinesh.nair@lifttechelevations.com",
+    "display_name": "Dinesh Nair",
+    "title": "Head of Engineering",
+    "internal": false
+   },
+   {
+    "raw_identity": "fatima.almasri@ghostvendor.com",
+    "display_name": "Fatima Al-Masri",
+    "title": null,
+    "internal": true
+   },
+   {
+    "raw_identity": "hana.kato@ghostvendor.com",
+    "display_name": "Hana Kato",
+    "title": null,
+    "internal": true
+   },
+   {
+    "raw_identity": "hassan.farah@lifttechelevations.com",
+    "display_name": "Hassan Farah",
+    "title": "Product Development Specialist",
+    "internal": false
+   },
+   {
+    "raw_identity": "igor.sokolov@lifttechelevations.com",
+    "display_name": "Igor Sokolov",
+    "title": "IT Infrastructure Manager",
+    "internal": false
+   },
+   {
+    "raw_identity": "john.smith@lifttechelevations.com",
+    "display_name": "John Smith",
+    "title": "Legal Counsel",
+    "internal": false
+   },
+   {
+    "raw_identity": "liam.osullivan@ghostvendor.com",
+    "display_name": "Liam O'Sullivan",
+    "title": null,
+    "internal": true
+   },
+   {
+    "raw_identity": "luca.romano@lifttechelevations.com",
+    "display_name": "Luca Romano",
+    "title": "Operations Coordinator",
+    "internal": false
+   },
+   {
+    "raw_identity": "mei.chen@ghostvendor.com",
+    "display_name": "Mei Chen",
+    "title": null,
+    "internal": true
+   },
+   {
+    "raw_identity": "mei.lin@ghostvendor.com",
+    "display_name": "Mei Lin",
+    "title": null,
+    "internal": true
+   },
+   {
+    "raw_identity": "mei.wong@lifttechelevations.com",
+    "display_name": "Mei Wong",
+    "title": "Senior Data Analyst",
+    "internal": false
+   },
+   {
+    "raw_identity": "miguel.torres@ghostvendor.com",
+    "display_name": "Miguel Torres",
+    "title": null,
+    "internal": true
+   },
+   {
+    "raw_identity": "mohammed.elsayed@ghostvendor.com",
+    "display_name": "Mohammed El-Sayed",
+    "title": null,
+    "internal": true
+   },
+   {
+    "raw_identity": "monique.dubois@ghostvendor.com",
+    "display_name": "Monique Dubois",
+    "title": null,
+    "internal": true
+   },
+   {
+    "raw_identity": "nadia.albalushi@ghostvendor.com",
+    "display_name": "Nadia Al-Balushi",
+    "title": null,
+    "internal": true
+   },
+   {
+    "raw_identity": "natalia.ivanova@ghostvendor.com",
+    "display_name": "Natalia Ivanova",
+    "title": null,
+    "internal": true
+   },
+   {
+    "raw_identity": "nina.kovalenko@ghostvendor.com",
+    "display_name": "Nina Kovalenko",
+    "title": null,
+    "internal": true
+   },
+   {
+    "raw_identity": "priya.sharma@lifttechelevations.com",
+    "display_name": "Priya Sharma",
+    "title": "Procurement Lead",
+    "internal": false
+   },
+   {
+    "raw_identity": "rashid.hadi@ghostvendor.com",
+    "display_name": "Rashid Hadi",
+    "title": null,
+    "internal": true
+   },
+   {
+    "raw_identity": "rosa.castillo@lifttechelevations.com",
+    "display_name": "Rosa Castillo",
+    "title": "Chief Marketing Officer",
+    "internal": false
+   },
+   {
+    "raw_identity": "samantha.lee@lifttechelevations.com",
+    "display_name": "Samantha Lee",
+    "title": "Corporate Legal Advisor",
+    "internal": false
+   },
+   {
+    "raw_identity": "terek.alfarsi@ghostvendor.com",
+    "display_name": "Terek Al-Farsi",
+    "title": null,
+    "internal": true
+   },
+   {
+    "raw_identity": "yara.almeida@lifttechelevations.com",
+    "display_name": "Yara Almeida",
+    "title": "HR Director",
+    "internal": false
+   }
+  ],
+  "extractor_version": "extract-v4"
+ },
+ "recorded_replay_key": "a1492a142f27689ddbaa8d5b804d8ac4e8f2df3bac94e7a599cd4cd2235e3236",
+ "note": "Built from the recorded cassette for the CRMArena email 02sWt000001zzFiIAI (EmailSent 2022-01-17T13:30:00Z, carmen.silva to ahmed.khan). The key is the replay worker's nonce-masked digest."
+}

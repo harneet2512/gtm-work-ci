@@ -1,0 +1,16 @@
+{
+  "id": "0a5e0000-0000-4000-8000-000000000f01",
+  "agent_run_id": "0f0a0000-0000-4000-8000-000000000601",
+  "decision_episode_id": "0e9e0000-0000-4000-8000-000000000a01",
+  "knowledge_id": "0c17c000-0000-4000-8000-000000000017",
+  "candidate_id": "0ca00000-0000-4000-8000-0000000000a2",
+  "guidance_clause": "Keep the named champion on the thread when a new stakeholder is brought in.",
+  "artifact_span": {
+    "field": "cc",
+    "quote": "Priya"
+  },
+  "conformance": "followed",
+  "override_reason": null,
+  "model": null,
+  "generated_at": "2026-09-29T15:43:30Z"
+}
