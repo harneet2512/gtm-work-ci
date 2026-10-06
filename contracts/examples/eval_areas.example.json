@@ -1,0 +1,85 @@
+{
+  "areas_version": 1,
+  "description": "Example excerpt: two eval types. The full mapping is contracts/evals/eval_areas.json.",
+  "areas": [
+    {
+      "id": "intelligence",
+      "label": "Intelligence",
+      "order": 1,
+      "families": [
+        "E1",
+        "E2",
+        "E3",
+        "E4"
+      ]
+    },
+    {
+      "id": "decision_learning",
+      "label": "Decision & Learning",
+      "order": 2,
+      "families": [
+        "E5",
+        "E6",
+        "E7",
+        "E8",
+        "E9",
+        "E10",
+        "E11",
+        "E12",
+        "E13",
+        "E14",
+        "E15",
+        "E16",
+        "E17"
+      ]
+    },
+    {
+      "id": "cliff_experience",
+      "label": "Cliff / Experience",
+      "order": 3,
+      "families": []
+    },
+    {
+      "id": "system",
+      "label": "System",
+      "order": 4,
+      "families": [
+        "E18",
+        "E19",
+        "E20",
+        "E21",
+        "E22"
+      ]
+    }
+  ],
+  "metric_families": [
+    "M1",
+    "M2",
+    "M3",
+    "M4",
+    "M5"
+  ],
+  "family_spans": {
+    "E1": "evidence",
+    "E2": "resolution",
+    "E3": "graph_mutation",
+    "E4": "state",
+    "E5": "precedents",
+    "E6": "knowledge_applicable",
+    "E7": "knowledge_used",
+    "E8": "candidates",
+    "E9": "ranking",
+    "E10": "human_interaction",
+    "E11": "recomputed_action",
+    "E12": "candidates",
+    "E13": "tool_call",
+    "E14": "execution",
+    "E15": "knowledge_mutation",
+    "E16": "knowledge_used",
+    "E17": "knowledge_mutation"
+  },
+  "eval_types": {
+    "provenance_coverage": "E1",
+    "champion_continuity": "E8"
+  }
+}

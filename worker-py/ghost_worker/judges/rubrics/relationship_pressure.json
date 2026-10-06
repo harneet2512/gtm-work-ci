@@ -1,0 +1,105 @@
+{
+  "eval_type": "relationship_pressure",
+  "version": 1,
+  "title": "Relationship pressure / aggressiveness",
+  "har97_refs": [
+    {
+      "line": 1207,
+      "text": "## 5.6 Relationship pressure / aggressiveness"
+    }
+  ],
+  "l2_dimension": null,
+  "questions": [
+    {
+      "section": "§5.6",
+      "text": "Is the commercial pressure appropriate for this relationship and state?"
+    }
+  ],
+  "inputs": [
+    "concerns the buyer expressed",
+    "unanswered outbound messages",
+    "risk and recovery state",
+    "overdue commitments",
+    "the candidate's wording"
+  ],
+  "criteria": [
+    {
+      "id": "no_urgency_after_concern",
+      "kind": "check",
+      "text": "no aggressive urgency after the buyer expressed concern",
+      "guide": "After a concern, pressure drops until it is addressed.",
+      "har97": null,
+      "output": "finding",
+      "before": null,
+      "after": null
+    },
+    {
+      "id": "no_empty_nudges",
+      "kind": "check",
+      "text": "no repeated nudges without new information",
+      "guide": "Another nudge after no response must bring something new.",
+      "har97": null,
+      "output": "finding",
+      "before": null,
+      "after": null
+    },
+    {
+      "id": "no_expansion_in_recovery",
+      "kind": "check",
+      "text": "no expansion language while the account is in recovery/risk",
+      "guide": "Expansion wording during recovery or risk is too much pressure.",
+      "har97": null,
+      "output": "finding",
+      "before": null,
+      "after": null
+    },
+    {
+      "id": "not_too_soft",
+      "kind": "check",
+      "text": "wording is not overly soft where a clear commitment is overdue",
+      "guide": "When a commitment is overdue, a clear ask is appropriate.",
+      "har97": null,
+      "output": "finding",
+      "before": null,
+      "after": null
+    }
+  ],
+  "failure_examples": [
+    "aggressive urgency after buyer expressed concern",
+    "repeated nudges after no-response without new information",
+    "using expansion language while the account is in recovery/risk",
+    "overly soft wording where a clear commitment is already overdue"
+  ],
+  "counter_failures": [],
+  "known_exceptions": [],
+  "candidate_choices": [],
+  "principles": [],
+  "labels": [],
+  "pass_label": null,
+  "diagnostics": [
+    {
+      "name": "ask_too_strong",
+      "when": "pressure exceeds what the relationship supports"
+    },
+    {
+      "name": "ask_too_weak",
+      "when": "wording is too soft for an overdue commitment"
+    }
+  ],
+  "routing": {
+    "actions": [
+      "send_email",
+      "schedule_meeting",
+      "share_document",
+      "wait",
+      "no_action"
+    ],
+    "when_all": [],
+    "when_any": [
+      "awaiting_reply",
+      "customer_quiet",
+      "proactive_outreach"
+    ]
+  },
+  "uses_rep_profile": false
+}

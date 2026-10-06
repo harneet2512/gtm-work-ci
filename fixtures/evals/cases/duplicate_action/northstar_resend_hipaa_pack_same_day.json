@@ -1,0 +1,192 @@
+{
+  "id": "northstar_resend_hipaa_pack_same_day",
+  "case_type": "duplicate_action",
+  "title": "Northstar 09-23: the pack was emailed and shared with Sam at 14:30Z; candidate sends it again at 18:00Z",
+  "should_pass": false,
+  "difficulty": "easy",
+  "slice_tags": {
+    "account": "northstar",
+    "origin": "world_moment",
+    "motion": "expansion",
+    "stage": "commercial_review",
+    "champion_status": "delegated",
+    "economic_buyer": "known",
+    "risk": "low",
+    "candidate": "flawed",
+    "expected_action": "wait",
+    "extra": ["delegation", "phi"]
+  },
+  "based_on": {
+    "kind": "world_moment",
+    "account": "northstar",
+    "after_event_file": "world/accounts/northstar/events/035_doc_hipaa_pack_sam.json",
+    "checkpoint": 3,
+    "changed_fields": [],
+    "change": null
+  },
+  "context": {
+    "now": "2026-09-23T18:00:00Z",
+    "state": {
+      "account_id": "0a0c0000-0000-4000-8000-000000000003",
+      "account_name": "Northstar Health",
+      "opportunity_id": "0c0f0000-0000-4000-8000-000000000006",
+      "fields": {
+        "stage": "Commercial review",
+        "health": "on_track",
+        "motion": "expansion",
+        "champion": "0b0e0000-0000-4000-8000-000000000041",
+        "champion_status": "delegated",
+        "economic_buyer": "0b0e0000-0000-4000-8000-000000000042",
+        "relationship_risk": "low",
+        "blockers": [
+          {
+            "text": "Security sign-off by Sam Okafor's team before any clinic goes live (intake forms carry PHI; BAA required)",
+            "status": "open"
+          }
+        ],
+        "current_commitments": [
+          {
+            "text": "Send pricing for the four clinics by next Wednesday",
+            "status": "fulfilled",
+            "owner_person_id": "0b0e0000-0000-4000-8000-000000000001",
+            "due": "2026-09-02"
+          },
+          {
+            "text": "Set up time next week to go through the rollout plan",
+            "status": "fulfilled",
+            "owner_person_id": "0b0e0000-0000-4000-8000-000000000041"
+          },
+          {
+            "text": "Introduce Dana Kim to Sam Okafor",
+            "status": "fulfilled",
+            "owner_person_id": "0b0e0000-0000-4000-8000-000000000041"
+          },
+          {
+            "text": "Have the BAA template and HIPAA controls summary ready",
+            "status": "fulfilled",
+            "owner_person_id": "0b0e0000-0000-4000-8000-000000000001"
+          }
+        ]
+      },
+      "buying_group": [
+        {
+          "person_id": "0b0e0000-0000-4000-8000-000000000041",
+          "display_name": "Elena Vasquez",
+          "title": "Director of Patient Access",
+          "roles": ["champion"],
+          "status": "active",
+          "delegated_to_person_id": "0b0e0000-0000-4000-8000-000000000043",
+          "last_engaged_at": null,
+          "evidence_refs": []
+        },
+        {
+          "person_id": "0b0e0000-0000-4000-8000-000000000042",
+          "display_name": "Grace Liu",
+          "title": "VP Finance",
+          "roles": ["economic_buyer"],
+          "status": "unknown",
+          "delegated_to_person_id": null,
+          "last_engaged_at": null,
+          "evidence_refs": []
+        },
+        {
+          "person_id": "0b0e0000-0000-4000-8000-000000000043",
+          "display_name": "Sam Okafor",
+          "title": "Information Security Lead",
+          "roles": ["security", "technical_evaluator"],
+          "status": "new",
+          "delegated_to_person_id": null,
+          "last_engaged_at": null,
+          "evidence_refs": []
+        }
+      ],
+      "coverage_gaps": []
+    },
+    "recent_changes": {
+      "summary": "Rep emailed Sam the BAA template and HIPAA controls summary at 14:30Z and shared the pack at 14:31Z.",
+      "material_diff_fields": [],
+      "signals": []
+    },
+    "trigger": {
+      "activity_id": "0ac70000-0000-4000-8000-0000000c0035",
+      "activity_type": "DocumentShared",
+      "occurred_at": "2026-09-23T14:31:00Z",
+      "actor_person_id": null,
+      "event_file": "world/accounts/northstar/events/035_doc_hipaa_pack_sam.json",
+      "synthetic": false,
+      "text": ""
+    },
+    "supporting_activities": [
+      {
+        "activity_id": "0ac70000-0000-4000-8000-0000000c0034",
+        "activity_type": "EmailSent",
+        "occurred_at": "2026-09-23T14:30:00Z",
+        "actor_person_id": "0b0e0000-0000-4000-8000-000000000001",
+        "event_file": "world/accounts/northstar/events/034_email_dana_to_sam.json",
+        "synthetic": false,
+        "text": "Hi Sam,\nElena let me know you're leading the evaluation - great to be working with you. Our BAA template and HIPAA controls summary are attached, and Leo Park, our solutions engineer, will support the security review.\nBest,\nDana"
+      }
+    ],
+    "commitments": [],
+    "timeline_facts": {
+      "last_inbound_at": "2026-09-21T09:30:00Z",
+      "last_inbound_from_person_id": "0b0e0000-0000-4000-8000-000000000041",
+      "last_outbound_at": "2026-09-23T14:30:00Z",
+      "stated_timing": "Sam owns the evaluation"
+    },
+    "offered_knowledge": []
+  },
+  "candidate_action": {
+    "proposed_action_type": "share_document",
+    "recipients": [{"person_id": "0b0e0000-0000-4000-8000-000000000043", "role": "to", "why": "Evaluation owner"}],
+    "finished_artifact": {
+      "channel": "email",
+      "subject": "BAA template and HIPAA controls summary",
+      "body": "Hi Sam,\n\nSharing our BAA template and HIPAA controls summary for your review.\n\nBest,\nDana",
+      "attachments": ["baa-template.pdf", "hipaa-controls-summary.pdf"]
+    },
+    "crm_next_step_intent": {"next_step": "Sam reviews HIPAA pack", "due_at": null, "stage_change": null},
+    "reason": "Sam needs the HIPAA pack.",
+    "evidence_refs": [
+      {
+        "activity_id": "0ac70000-0000-4000-8000-0000000c0034",
+        "quote": "Our BAA template and HIPAA controls summary are attached",
+        "speaker_person_id": "0b0e0000-0000-4000-8000-000000000001",
+        "occurred_at": "2026-09-23T14:30:00Z"
+      }
+    ],
+    "knowledge_refs_used": [],
+    "wait_until": null
+  },
+  "expected": [
+    {
+      "eval_type": "duplicate_action",
+      "verdict": "fail",
+      "label": null,
+      "diagnostics": [],
+      "blocking": true,
+      "rationale": "Identical documents to the same recipient 3.5 hours after the rep's own email and Drive share.",
+      "evidence_class": "product_rule"
+    },
+    {
+      "eval_type": "next_action_quality",
+      "verdict": "fail",
+      "label": "WAIT",
+      "diagnostics": [],
+      "blocking": false,
+      "rationale": "Nothing new to send; wait for Sam.",
+      "evidence_class": "methodology"
+    },
+    {
+      "eval_type": "champion_continuity",
+      "verdict": "pass",
+      "label": "VALID_HANDOFF",
+      "diagnostics": [],
+      "blocking": false,
+      "rationale": "Sam is the correct recipient after the delegation.",
+      "evidence_class": "methodology"
+    }
+  ],
+  "expected_best_action": {"action": "wait", "why": "The pack was just sent; wait for Sam's response.", "wait_until": "2026-09-25T15:00:00Z"},
+  "notes": "Trigger is the document-share event (no body text)."
+}

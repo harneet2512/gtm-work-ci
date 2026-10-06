@@ -1,0 +1,239 @@
+{
+ "id": "cr_x_finance_and_tech_review_call_asks_who_joins",
+ "origin": "crmarena",
+ "case_type": "valid_champion_handoff",
+ "title": "Sophia has sent the quote to her finance and technical teams and wants a call; the draft offers two slots and asks who should join (analogue)",
+ "should_pass": true,
+ "difficulty": "medium",
+ "slice_tags": {
+  "account": "001Wt00000PHViZIAX",
+  "origin": "crmarena",
+  "motion": "unknown",
+  "stage": "unknown",
+  "champion_status": "active",
+  "economic_buyer": "unknown",
+  "risk": "unknown",
+  "candidate": "good",
+  "expected_action": "send_email",
+  "extra": [
+   "good_draft",
+   "handoff_analogue",
+   "inbound_email",
+   "teams_named_not_required"
+  ]
+ },
+ "based_on": {
+  "kind": "crmarena_moment",
+  "account_id": "001Wt00000PHViZIAX",
+  "deal_id": "006Wt000007BEq1IAG",
+  "trigger_kind": "inbound_email",
+  "decision_at": "2023-11-15T14:45:00Z",
+  "cutoff": "2023-11-01",
+  "deal_group": "current",
+  "events_before_decision": 10
+ },
+ "source": {
+  "dataset": "CRMArena-Pro B2B Salesforce org (Salesforce AI Research)",
+  "licence": "CC BY-NC 4.0 (non-commercial use only)",
+  "attribution": "Salesforce AI Research, CRMArena-Pro (https://github.com/SalesforceAIResearch/CRMArena, LICENSE.txt); records selected and excerpted, nothing edited",
+  "snapshot_manifest_sha256": "8fbda45c15d1806dc4c37d5230a20ac24d6619ef36a88c0efddb344792c89f03",
+  "generator": "bench/evals/crmarena_gold v1"
+ },
+ "context": {
+  "now": "2023-11-15T14:45:00Z",
+  "state": {
+   "account_id": "0fbdbc87-6a3e-527b-833d-85e0e791c592",
+   "account_name": "OmegaDesign Labs",
+   "opportunity_id": "f5d83c3d-aaff-51c4-af7e-d90b45577d81",
+   "fields": {
+    "stage": "unknown",
+    "health": "unknown",
+    "motion": "unknown",
+    "champion": "fe1cf42c-e53b-5b54-b7ad-b2e3c6940616",
+    "champion_status": "active",
+    "economic_buyer": "unknown",
+    "relationship_risk": "unknown",
+    "decision_process": "Sophia forwarded the quote to her finance and technical teams for review and wants a follow-up call on integration points",
+    "current_commitments": [
+     {
+      "text": "Us: a call early next week, Monday or Tuesday (asked 2023-11-15 14:45)",
+      "status": "open"
+     },
+     {
+      "text": "Us: a call on Thursday afternoon (asked 2023-11-15 13:45)",
+      "status": "open"
+     }
+    ],
+    "next_milestone": "Follow-up call early next week"
+   },
+   "buying_group": [
+    {
+     "person_id": "fe1cf42c-e53b-5b54-b7ad-b2e3c6940616",
+     "display_name": "Sophia Ferrari",
+     "title": "Compliance Officer (champion role inferred, not recorded)",
+     "roles": [
+      "champion"
+     ],
+     "status": "active",
+     "delegated_to_person_id": null,
+     "last_engaged_at": "2023-11-15T14:45:00Z",
+     "evidence_refs": [
+      {
+       "activity_id": "c3f00d3f-98f4-53c3-83c6-c012f95675d0",
+       "occurred_at": "2023-11-15T14:45:00Z"
+      }
+     ]
+    }
+   ],
+   "coverage_gaps": [
+    "economic_buyer"
+   ]
+  },
+  "recent_changes": {
+   "summary": "Sophia forwarded the quote to her finance and technical teams, wants a follow-up call on integration points early next week, and had earlier proposed Thursday afternoon.",
+   "material_diff_fields": [
+    "decision_process",
+    "current_commitments"
+   ],
+   "signals": [
+    "customer_replied"
+   ]
+  },
+  "trigger": {
+   "activity_id": "c3f00d3f-98f4-53c3-83c6-c012f95675d0",
+   "activity_type": "EmailReply",
+   "occurred_at": "2023-11-15T14:45:00Z",
+   "actor_person_id": "fe1cf42c-e53b-5b54-b7ad-b2e3c6940616",
+   "event_file": "crmarena:EmailMessage:02sWt000001zr3kIAA",
+   "synthetic": false,
+   "text": "Hi Priya,\n\nThank you for sending over the quote so promptly. I appreciate the attention to detail and the tailored approach you and your team have taken to address our needs. The pricing structure and discounts offered are indeed appealing, especially considering the innovative features of PulseSim Pro.\n\nI have forwarded the details to our finance and technical teams for further review. We might need a follow-up call to discuss some specific integration points with our current systems.\n\nWould it be possible to schedule a call early next week, perhaps on Monday or Tuesday? Let me know your availability, and we'll take it from there.\n\nThanks again for your assistance.\n\nBest regards,\n\nSophia Ferrari\nOmegaDesign Labs",
+   "subject": "Re: Quote Preparation for OmegaDesign Labs",
+   "date_semantics": "sent"
+  },
+  "supporting_activities": [
+   {
+    "activity_id": "d01b2a84-f002-57b4-8759-31cb7bf52c86",
+    "activity_type": "EmailReply",
+    "occurred_at": "2023-11-15T13:45:00Z",
+    "actor_person_id": "fe1cf42c-e53b-5b54-b7ad-b2e3c6940616",
+    "event_file": "crmarena:EmailMessage:02sWt000001zxh3IAA",
+    "synthetic": false,
+    "text": "Hi Priya,\n\nThank you for the detailed update on the quote preparation. I'm glad to hear that the proposal reflects our needs, especially with respect to PulseSim Pro and CloudLink Designer. The discounts are appreciated, and it's great to know how the features can directly benefit our ongoing projects.\n\nYour emphasis on security and customization is reassuring, as rapid deployment without sacrificing security is imperative for us. This aligns well with our vision of staying ahead in tech innovations.\n\nLet's schedule a call this Thursday afternoon to dive deeper into the specifics. I've some ideas on the integration part that could be interesting to explore together.\n\nLooking forward to our discussion.\n\nWarm regards,\n\nSophia Ferrari\nOmegaDesign Labs",
+    "subject": "Re: Quote Preparation for OmegaDesign Labs",
+    "date_semantics": "sent"
+   }
+  ],
+  "commitments": [
+   {
+    "text": "Follow-up call early next week",
+    "owner_person_id": "bd6cda0e-2bf9-5a16-9cc7-98272be516f3",
+    "due_at": null,
+    "status": "open"
+   }
+  ],
+  "timeline_facts": {
+   "last_inbound_at": "2023-11-15T14:45:00Z",
+   "last_inbound_from_person_id": "fe1cf42c-e53b-5b54-b7ad-b2e3c6940616",
+   "last_outbound_at": "2023-11-15T12:05:00Z",
+   "stated_timing": null
+  },
+  "offered_knowledge": [],
+  "state_provenance": {
+   "champion": "inferred, not recorded: the only customer correspondent (4 inbound emails); CRMArena has no roles",
+   "stage": "unknown unless a field below says otherwise: the loader dates the stage at the deal's last event",
+   "decision_process": "02sWt000001zr3kIAA",
+   "buying_group roles": "inferred from each Contact's Title/Department; the record has no roles"
+  }
+ },
+ "candidate_action": {
+  "proposed_action_type": "send_email",
+  "recipients": [
+   {
+    "person_id": "fe1cf42c-e53b-5b54-b7ad-b2e3c6940616",
+    "role": "to"
+   }
+  ],
+  "finished_artifact": {
+   "channel": "email",
+   "subject": "Re: Quote Preparation for OmegaDesign Labs",
+   "body": "Hi Sophia,\n\nMonday, November 20 at 10:00 or Tuesday, November 21 at 14:00 both work for me. Should someone from your finance and technical teams join so we can cover the integration points? If so, send me their names and I will add them.\n\nBest regards,\nPriya"
+  },
+  "crm_next_step_intent": {
+   "next_step": "Sophia picks a slot and names who joins",
+   "due_at": null,
+   "stage_change": null
+  },
+  "reason": "She asked for a call early next week and has the quote with finance and technical teams; ask who joins while she stays the owner.",
+  "evidence_refs": [
+   {
+    "activity_id": "c3f00d3f-98f4-53c3-83c6-c012f95675d0",
+    "quote": "Would it be possible to schedule a call early next week, perhaps on Monday or Tuesday?",
+    "occurred_at": "2023-11-15T14:45:00Z",
+    "speaker_person_id": "fe1cf42c-e53b-5b54-b7ad-b2e3c6940616"
+   },
+   {
+    "activity_id": "c3f00d3f-98f4-53c3-83c6-c012f95675d0",
+    "quote": "I have forwarded the details to our finance and technical teams for further review.",
+    "occurred_at": "2023-11-15T14:45:00Z",
+    "speaker_person_id": "fe1cf42c-e53b-5b54-b7ad-b2e3c6940616"
+   }
+  ],
+  "knowledge_refs_used": [],
+  "wait_until": null
+ },
+ "expected": [
+  {
+   "eval_type": "champion_continuity",
+   "verdict": "pass",
+   "label": "CHAMPION_INCLUDED",
+   "diagnostics": [],
+   "blocking": false,
+   "rationale": "Sophia stays the owner; her finance and technical colleagues are added through her.",
+   "evidence_class": "methodology"
+  },
+  {
+   "eval_type": "stakeholder_selection",
+   "verdict": "pass",
+   "label": null,
+   "diagnostics": [],
+   "blocking": false,
+   "rationale": "Asks who should join rather than guessing.",
+   "evidence_class": "methodology"
+  },
+  {
+   "eval_type": "stakeholder_coverage",
+   "verdict": "pass",
+   "label": "RIGHT_SIZED",
+   "diagnostics": [],
+   "blocking": false,
+   "rationale": "Sophia plus the teams she says have the quote.",
+   "evidence_class": "deal_data"
+  }
+ ],
+ "expected_best_action": {
+  "action": "send_email",
+  "why": "This.",
+  "recipients": [
+   {
+    "person_id": "fe1cf42c-e53b-5b54-b7ad-b2e3c6940616",
+    "role": "to"
+   }
+  ],
+  "channel": "email"
+ },
+ "labelling": {
+  "label_kind": "model labels, single author, not human labels",
+  "passes": [
+   "pass_1",
+   "pass_2"
+  ],
+  "agreement": {
+   "judgments": 3,
+   "verdict_agree": 3,
+   "fail_agree": 3
+  },
+  "disagreements": []
+ },
+ "evidence_gap": "CRMArena has no delegation or departure, so a true VALID_HANDOFF cannot be built from the record; this case uses the nearest real fact (the buyer asks in writing to include another person while the correspondent stays on the thread). Replace or extend it with the WP32 synthetic layer.",
+ "notes": ""
+}

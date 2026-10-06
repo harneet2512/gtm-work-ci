@@ -1,0 +1,53 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://ghost.local/contracts/eval_family_summary.v1.json",
+  "title": "EvalFamilySummary",
+  "description": "HAR-145: one EvalRun's results grouped into the four control-plane areas and, inside each, into the registry's eval families (E1-E22, contracts/evals/eval_registry.json) and the eval types of each family (contracts/evals/eval_areas.json). Counts are real tallies of persisted EvalResults (pass, warn, fail, unknown = abstain); deltas are against the previous episode's EvalRun of the same account and are null when there is none. It is the previous EPISODE of the account (an earlier run, normally for a different event), not a re-run of the same trigger, so a delta mixes a new event with any change in the system and does not say what a change did. GET /eval-runs/compare is the before/after of one trigger. There are no aggregate percentages or scores anywhere. A family appears when this run or the previous one has results for it, so a family that disappeared shows as a negative delta, and an area with no results at all is listed as not measured.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["eval_run_id", "previous_eval_run_id", "areas"],
+  "properties": {
+    "eval_run_id": { "$ref": "common.v1.json#/$defs/uuid" },
+    "previous_eval_run_id": { "oneOf": [{ "$ref": "common.v1.json#/$defs/uuid" }, { "type": "null" }] },
+    "areas": { "type": "array", "minItems": 4, "maxItems": 4, "items": { "$ref": "#/$defs/area" } }
+  },
+  "$defs": {
+    "area": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["area", "label", "order", "measured", "counts", "delta", "families"],
+      "properties": {
+        "area": { "$ref": "eval_run.v1.json#/$defs/areaId" },
+        "label": { "type": "string" },
+        "order": { "type": "integer", "minimum": 1, "maximum": 4 },
+        "measured": { "type": "boolean" },
+        "counts": { "$ref": "eval_run.v1.json#/$defs/counts" },
+        "delta": { "oneOf": [{ "type": "null" }, { "$ref": "eval_run.v1.json#/$defs/countsDelta" }] },
+        "families": { "type": "array", "items": { "$ref": "#/$defs/family" } }
+      }
+    },
+    "family": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["family_id", "name", "counts", "delta", "eval_types"],
+      "properties": {
+        "family_id": { "type": "string", "pattern": "^E[0-9]+$" },
+        "name": { "type": "string", "description": "The registry's family name." },
+        "counts": { "$ref": "eval_run.v1.json#/$defs/counts" },
+        "delta": { "oneOf": [{ "type": "null" }, { "$ref": "eval_run.v1.json#/$defs/countsDelta" }] },
+        "eval_types": { "type": "array", "items": { "$ref": "#/$defs/evalTypeCounts" } }
+      }
+    },
+    "evalTypeCounts": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["eval_type", "counts", "delta", "result_ids"],
+      "properties": {
+        "eval_type": { "$ref": "eval_result.v1.json#/$defs/evalType" },
+        "counts": { "$ref": "eval_run.v1.json#/$defs/counts" },
+        "delta": { "oneOf": [{ "type": "null" }, { "$ref": "eval_run.v1.json#/$defs/countsDelta" }] },
+        "result_ids": { "type": "array", "uniqueItems": true, "items": { "$ref": "common.v1.json#/$defs/uuid" }, "description": "This run's EvalResult ids of the type, so a row can open them (GET /runs/{id}/strategies carries the full results)." }
+      }
+    }
+  }
+}

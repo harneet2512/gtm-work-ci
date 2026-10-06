@@ -1,0 +1,202 @@
+{
+  "id": "beta_cp4_nonmaterial_fyi_no_action",
+  "case_type": "no_action",
+  "title": "Beta cp4: internal Drive-folder FYI; candidate correctly proposes no action",
+  "should_pass": false,
+  "difficulty": "easy",
+  "slice_tags": {
+    "account": "beta",
+    "origin": "checkpoint",
+    "motion": "expansion",
+    "stage": "technical_evaluation",
+    "champion_status": "active",
+    "economic_buyer": "known",
+    "risk": "medium",
+    "candidate": "flawed",
+    "expected_action": "no_action",
+    "extra": ["non_material"]
+  },
+  "based_on": {
+    "kind": "checkpoint",
+    "account": "beta",
+    "after_event_file": "live/beta_nonmaterial_event.json",
+    "checkpoint": 4,
+    "changed_fields": [],
+    "change": null
+  },
+  "context": {
+    "now": "2026-09-25T10:05:00Z",
+    "state": {
+      "account_id": "0a0c0000-0000-4000-8000-000000000002",
+      "account_name": "Beta Inc",
+      "opportunity_id": "0c0f0000-0000-4000-8000-000000000005",
+      "fields": {
+        "stage": "Technical evaluation",
+        "health": "at_risk",
+        "motion": "expansion",
+        "champion": "0b0e0000-0000-4000-8000-000000000031",
+        "champion_status": "active",
+        "economic_buyer": "0b0e0000-0000-4000-8000-000000000032",
+        "relationship_risk": "medium",
+        "blockers": [
+          {
+            "text": "EU data residency for the Dublin team's ticket data (where EU ticket data is stored and processed)",
+            "status": "open"
+          }
+        ],
+        "next_milestone": "Platform team integration review",
+        "current_commitments": [
+          {
+            "text": "Send business case with the Austin pilot numbers by Tuesday",
+            "status": "fulfilled",
+            "owner_person_id": "0b0e0000-0000-4000-8000-000000000001",
+            "due": "2026-09-01"
+          },
+          {
+            "text": "Take the business case to Owen Clarke on Friday",
+            "status": "fulfilled",
+            "owner_person_id": "0b0e0000-0000-4000-8000-000000000031",
+            "due": "2026-09-04"
+          },
+          {
+            "text": "Loop in the right platform team person this week",
+            "status": "fulfilled",
+            "owner_person_id": "0b0e0000-0000-4000-8000-000000000031"
+          },
+          {
+            "text": "Send data residency documentation and sub-processor list to Ravi Menon",
+            "status": "open",
+            "owner_person_id": "0b0e0000-0000-4000-8000-000000000001"
+          }
+        ]
+      },
+      "buying_group": [
+        {
+          "person_id": "0b0e0000-0000-4000-8000-000000000031",
+          "display_name": "Hannah Lee",
+          "title": "VP Customer Operations",
+          "roles": ["champion"],
+          "status": "active",
+          "delegated_to_person_id": null,
+          "last_engaged_at": null,
+          "evidence_refs": []
+        },
+        {
+          "person_id": "0b0e0000-0000-4000-8000-000000000032",
+          "display_name": "Owen Clarke",
+          "title": "Chief Financial Officer",
+          "roles": ["economic_buyer"],
+          "status": "unknown",
+          "delegated_to_person_id": null,
+          "last_engaged_at": null,
+          "evidence_refs": []
+        },
+        {
+          "person_id": "0b0e0000-0000-4000-8000-000000000033",
+          "display_name": "Jess Patel",
+          "title": "Support Operations Manager",
+          "roles": ["user"],
+          "status": "active",
+          "delegated_to_person_id": null,
+          "last_engaged_at": null,
+          "evidence_refs": []
+        },
+        {
+          "person_id": "0b0e0000-0000-4000-8000-000000000034",
+          "display_name": "Ravi Menon",
+          "title": "Head of Platform Engineering",
+          "roles": ["technical_evaluator"],
+          "status": "active",
+          "delegated_to_person_id": null,
+          "last_engaged_at": null,
+          "evidence_refs": []
+        }
+      ],
+      "coverage_gaps": [],
+      "conflicts": [
+        {
+          "field": "next_milestone",
+          "winner_value": "Platform team integration review",
+          "winner_standing": "crm_explicit",
+          "winner_event_file": "world/accounts/beta/events/024_crm_opp_next_step.json",
+          "contradicting_value": "Ravi Menon reads the data residency documentation and sub-processor list; review session not yet scheduled",
+          "contradicting_standing": "first_party_ai",
+          "contradicting_event_file": "world/accounts/beta/events/039_email_ravi_residency_request.json",
+          "contradicting_quote": "I'm not ready to schedule a review session until I've read them."
+        }
+      ]
+    },
+    "recent_changes": {
+      "summary": "Internal FYI: Drive folder moved; no material state change.",
+      "material_diff_fields": [],
+      "signals": []
+    },
+    "trigger": {
+      "activity_id": "0ac70000-0000-4000-8000-0000000b0901",
+      "activity_type": "SlackMessage",
+      "occurred_at": "2026-09-25T10:00:00Z",
+      "actor_person_id": "0b0e0000-0000-4000-8000-000000000001",
+      "event_file": "live/beta_nonmaterial_event.json",
+      "synthetic": false,
+      "text": "FYI: I moved the Beta folder in Drive into the new Customer Accounts team space. Nothing changes on the deal - no action needed."
+    },
+    "supporting_activities": [],
+    "commitments": [],
+    "timeline_facts": {
+      "last_inbound_at": "2026-09-24T11:05:00Z",
+      "last_inbound_from_person_id": "0b0e0000-0000-4000-8000-000000000034",
+      "last_outbound_at": "2026-09-17T16:00:00Z",
+      "stated_timing": "Ravi waits for residency documents"
+    },
+    "offered_knowledge": []
+  },
+  "candidate_action": {
+    "proposed_action_type": "no_action",
+    "recipients": [],
+    "finished_artifact": {"channel": "none", "subject": null, "body": ""},
+    "crm_next_step_intent": {"next_step": "No change", "due_at": null, "stage_change": null},
+    "reason": "Internal housekeeping note; no customer activity and no state change.",
+    "evidence_refs": [
+      {
+        "activity_id": "0ac70000-0000-4000-8000-0000000b0901",
+        "quote": "Nothing changes on the deal - no action needed.",
+        "speaker_person_id": "0b0e0000-0000-4000-8000-000000000001",
+        "occurred_at": "2026-09-25T10:00:00Z"
+      }
+    ],
+    "knowledge_refs_used": [],
+    "wait_until": null
+  },
+  "expected": [
+    {
+      "eval_type": "state_change_relevance",
+      "verdict": "pass",
+      "label": null,
+      "diagnostics": [],
+      "blocking": false,
+      "rationale": "The trigger changes nothing on the deal.",
+      "evidence_class": "methodology"
+    },
+    {
+      "eval_type": "next_action_quality",
+      "verdict": "fail",
+      "label": "ACT_NOW",
+      "diagnostics": [],
+      "blocking": true,
+      "rationale": "Although the Slack trigger itself needs no response, Ravi’s September 24 inbound request for data residency documentation and the sub-processor list remains an open seller commitment, and he is waiting for those materials before scheduling the review. NO_ACTION therefore withholds what the customer asked for now.",
+      "evidence_class": "methodology"
+    },
+    {
+      "eval_type": "buyer_readiness",
+      "verdict": "pass",
+      "label": "NO_ACTION_NEEDED",
+      "diagnostics": [],
+      "blocking": false,
+      "rationale": "Nothing new from the buyer.",
+      "evidence_class": "methodology"
+    }
+  ],
+  "expected_best_action": {"action": "no_action", "why": "Non-material internal event (gold Beta cp4: diff = [], trigger ineligible)."},
+  "gold_revision": [{"revision": "gold-v2", "source": "adjudicated: 2 LLM labellers + GPT-5.6 tie-break, 2026-10-02", "label_kind": "model labels, not human labels", "changes": [{"eval_type": "next_action_quality", "from": "pass", "to": "fail", "contested": true}]}],
+  "notes": "The open rep commitment (residency docs) is handled by the cp3 run, not by this trigger."
+}

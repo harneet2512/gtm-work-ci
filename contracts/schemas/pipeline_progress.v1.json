@@ -1,0 +1,151 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://ghost.local/contracts/pipeline_progress.v1.json",
+  "title": "PipelineProgress",
+  "description": "The live Play-Event pipeline (HAR-145 'Live Play Event N experience'): one entry per pipeline stage, in canonical order, each reporting what the real pipeline did and when. There are no timers behind it. A stage row exists only because the code that executes the stage wrote it (pipeline_stage_events); a stage that has not run has no row and is reported `waiting`, and a stage whose outcome cannot be established is `unknown`, never `completed`. A stage that stays `running` past its deadline (the process that ran it stopped) is reported `unknown` with failure_kind `transport` and the detail `no heartbeat ...`: a poller never waits forever.\n\nStatus vocabulary: `passed`, `warning` and `failed` as a judgment are EVAL VERDICTS and are rendered by the `evals` stage alone. Every other stage that ran to its end is `completed`, which says nothing about quality (a non-eval stage that errors is `failed` with a failure_kind). `evals` is `passed` only when every result passed; any `warn`, `fail` or `abstain` result makes it `warning`, and a batch of only abstains (the judge errored) is `unknown`. Read it by polling: every status change is committed the moment the stage changes (the Play request itself stays open for the whole pipeline, so the poll is a separate request). `overall` tells the client when to stop: `running` means more stages can still arrive.\n\nFailure vocabulary: `failure_kind` says WHY a stage did not complete. `transport` (a timeout, a cancelled call, an unreachable dependency: the stage's outcome is unknown and a retry may succeed) is never an eval verdict: the judging stage `evals` reports a transport problem as `unknown`, and `evals` is `failed` only when judged results failed (`eval_result_ids` names them, `failure_kind` is null). Any other stage that is `failed` carries a `failure_kind`.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["scope", "manifest_id", "run_id", "account_id", "overall", "stages", "generated_at"],
+  "properties": {
+    "scope": {
+      "description": "manifest: the Play of a demo manifest (all stages). run: one AgentRun (its own stages, with the upstream stages of the Play that triggered it when the run came from one, otherwise reported `unknown`: the pipeline did not record them).",
+      "type": "string",
+      "enum": ["manifest", "run"]
+    },
+    "manifest_id": { "oneOf": [{ "$ref": "common.v1.json#/$defs/uuid" }, { "type": "null" }] },
+    "run_id": { "oneOf": [{ "$ref": "common.v1.json#/$defs/uuid" }, { "type": "null" }] },
+    "account_id": { "$ref": "common.v1.json#/$defs/uuid" },
+    "overall": {
+      "description": "not_started: no stage has run. running: at least one stage ran, none failed, and not every stage is done (a Play that handed the decision to a run that has not started is still `running`). failed: a stage failed, an evaluation failed, or a stage ended `unknown` after an error (the pipeline stopped; the stage says why). complete: every stage ended (completed, passed, warning or skipped) and every message the Cliff reserved was posted when its stage ended. `complete` is final: nothing reopens it, so a client stops polling. A Cliff message reserved later (the chooser, the judgment) is listed in cliff.refs.slack_refs with its own ts and never changes an ended stage.",
+      "type": "string",
+      "enum": ["not_started", "running", "failed", "complete"]
+    },
+    "stages": {
+      "description": "Every stage, in canonical order (ingest, resolve, graph, state, decide, evals, cliff). The order is presentation order: started_at and ended_at say what actually happened first.",
+      "type": "array",
+      "minItems": 7,
+      "maxItems": 7,
+      "items": { "$ref": "#/$defs/stage" }
+    },
+    "generated_at": { "$ref": "common.v1.json#/$defs/timestamp" }
+  },
+  "$defs": {
+    "stageId": {
+      "type": "string",
+      "enum": ["ingest", "resolve", "graph", "state", "decide", "evals", "cliff"]
+    },
+    "stageStatus": {
+      "description": "waiting: has not run (no row). running: started, not finished. completed: a stage other than evals ran to its end and wrote its artifact (not a quality claim). passed: evals only: every judged result passed. warning: evals only: a result warned, failed (without every candidate being blocked) or abstained. failed: ran and failed (see failure_kind; for evals, only as a judgment: every candidate blocked). skipped: deliberately not run because the pipeline found nothing to do (for example a non-material event owes no decision; detail says why). unknown: the outcome cannot be established (a transport error while judging, or a stage the pipeline never recorded).",
+      "type": "string",
+      "enum": ["waiting", "running", "completed", "passed", "warning", "failed", "skipped", "unknown"]
+    },
+    "failureKind": {
+      "type": "string",
+      "enum": ["transport", "contract", "internal"]
+    },
+    "slackRef": {
+      "description": "A Cliff message ref. ts is null while the slot is reserved and the post is not recorded.",
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["subject_id", "kind", "channel", "ts"],
+      "properties": {
+        "subject_id": { "$ref": "common.v1.json#/$defs/uuid" },
+        "kind": { "type": "string", "enum": ["bi", "chooser", "judgment"] },
+        "channel": { "type": "string", "minLength": 1, "maxLength": 64 },
+        "ts": { "oneOf": [{ "type": "string", "pattern": "^[0-9]+\\.[0-9]+$" }, { "type": "null" }] }
+      }
+    },
+    "refs": {
+      "description": "The rows the stage produced. Only keys that exist are present.",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "source_event_id": { "$ref": "common.v1.json#/$defs/uuid" },
+        "activity_id": { "$ref": "common.v1.json#/$defs/uuid" },
+        "opportunity_id": { "$ref": "common.v1.json#/$defs/uuid" },
+        "account_change_id": { "$ref": "common.v1.json#/$defs/uuid" },
+        "bi_update_id": { "$ref": "common.v1.json#/$defs/uuid" },
+        "state_diff_id": { "$ref": "common.v1.json#/$defs/uuid" },
+        "state_version": { "type": "integer", "minimum": 1 },
+        "graph_diff_id": { "type": "integer", "minimum": 1 },
+        "trigger_evaluation_id": { "$ref": "common.v1.json#/$defs/uuid" },
+        "run_id": { "$ref": "common.v1.json#/$defs/uuid" },
+        "strategy_set_id": { "$ref": "common.v1.json#/$defs/uuid" },
+        "decision_episode_id": { "$ref": "common.v1.json#/$defs/uuid" },
+        "eval_bundle_ids": { "type": "array", "items": { "$ref": "common.v1.json#/$defs/uuid" }, "uniqueItems": true },
+        "outbox_event_ids": { "type": "array", "items": { "type": "integer", "minimum": 1 }, "uniqueItems": true },
+        "slack_refs": { "type": "array", "items": { "$ref": "#/$defs/slackRef" } }
+      }
+    },
+    "stage": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["stage", "status", "attempt", "started_at", "ended_at", "duration_ms", "refs", "eval_result_ids", "failure_kind", "detail", "seq", "updated_at"],
+      "properties": {
+        "stage": { "$ref": "#/$defs/stageId" },
+        "status": { "$ref": "#/$defs/stageStatus" },
+        "attempt": { "description": "How many times the stage was executed (a resumed Play re-runs a stage that did not finish). 0 while waiting.", "type": "integer", "minimum": 0 },
+        "started_at": { "oneOf": [{ "$ref": "common.v1.json#/$defs/timestamp" }, { "type": "null" }] },
+        "ended_at": { "oneOf": [{ "$ref": "common.v1.json#/$defs/timestamp" }, { "type": "null" }] },
+        "duration_ms": { "oneOf": [{ "type": "integer", "minimum": 0 }, { "type": "null" }] },
+        "refs": { "$ref": "#/$defs/refs" },
+        "eval_result_ids": {
+          "description": "The EvalResults of the stage where it was judged (evals; for decide, none).",
+          "type": "array",
+          "items": { "$ref": "common.v1.json#/$defs/uuid" },
+          "uniqueItems": true
+        },
+        "failure_kind": { "oneOf": [{ "$ref": "#/$defs/failureKind" }, { "type": "null" }] },
+        "detail": { "description": "One line: the reason for a skip, a warning or a failure; a count for a pass.", "oneOf": [{ "type": "string", "maxLength": 500 }, { "type": "null" }] },
+        "seq": { "description": "Monotonic change counter of the stored row: assigned on insert and reassigned (larger) on every update, so a poller that remembers the largest seq it saw detects any stored change. Use updated_at for when. A status the reader derives without a write (running past its deadline becomes unknown) does not move seq. Null for a waiting stage (no row).", "oneOf": [{ "type": "integer", "minimum": 1 }, { "type": "null" }] },
+        "updated_at": { "oneOf": [{ "$ref": "common.v1.json#/$defs/timestamp" }, { "type": "null" }] }
+      },
+      "allOf": [
+        {
+          "description": "A waiting stage has no times, no refs and no failure.",
+          "if": { "properties": { "status": { "const": "waiting" } } },
+          "then": { "properties": { "attempt": { "const": 0 }, "started_at": { "type": "null" }, "ended_at": { "type": "null" }, "seq": { "type": "null" }, "failure_kind": { "type": "null" }, "eval_result_ids": { "maxItems": 0 } } }
+        },
+        {
+          "description": "A running stage has started and not ended.",
+          "if": { "properties": { "status": { "const": "running" } } },
+          "then": { "properties": { "started_at": { "type": "string" }, "ended_at": { "type": "null" } } }
+        },
+        {
+          "description": "A transport error is an unknown or failed execution, never a verdict; the judging stage can only be unknown.",
+          "if": { "properties": { "failure_kind": { "const": "transport" } }, "required": ["failure_kind"] },
+          "then": { "properties": { "status": { "enum": ["failed", "unknown"] } } }
+        },
+        {
+          "if": { "properties": { "stage": { "const": "evals" }, "failure_kind": { "type": "string" } }, "required": ["stage", "failure_kind"] },
+          "then": { "properties": { "status": { "const": "unknown" } } }
+        },
+        {
+          "description": "evals is failed only as a judgment: results failed, nothing errored.",
+          "if": { "properties": { "stage": { "const": "evals" }, "status": { "const": "failed" } }, "required": ["stage", "status"] },
+          "then": { "properties": { "failure_kind": { "type": "null" }, "eval_result_ids": { "minItems": 1 } } }
+        },
+        {
+          "description": "Any other failed stage says why it failed.",
+          "if": { "properties": { "stage": { "not": { "const": "evals" } }, "status": { "const": "failed" } }, "required": ["stage", "status"] },
+          "then": { "properties": { "failure_kind": { "type": "string" } } }
+        },
+        {
+          "description": "A finished stage has ended.",
+          "if": { "properties": { "status": { "enum": ["completed", "passed", "warning", "failed", "skipped"] } }, "required": ["status"] },
+          "then": { "properties": { "ended_at": { "type": "string" } } }
+        },
+        {
+          "description": "passed and warning are eval verdicts: only the evals stage renders them.",
+          "if": { "properties": { "status": { "enum": ["passed", "warning"] } }, "required": ["status"] },
+          "then": { "properties": { "stage": { "const": "evals" } } }
+        },
+        {
+          "description": "The judging stage renders verdicts: it is never merely completed.",
+          "if": { "properties": { "stage": { "const": "evals" } }, "required": ["stage"] },
+          "then": { "properties": { "status": { "not": { "const": "completed" } } } }
+        }
+      ]
+    }
+  }
+}

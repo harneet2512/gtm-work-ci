@@ -1,0 +1,46 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://ghost.local/contracts/knowledge_use.v1.json",
+  "title": "KnowledgeUse",
+  "description": "One piece of company knowledge a candidate cites, and whether the candidate actually follows what the knowledge says. Retrieval, applicability, citation and conformance are four different facts and this record is the last two: knowledge_attribution.v1.json keeps retrieved, applicable and used apart, and a candidate that cites an id is only 'used'. conformance says whether the candidate's action agrees with the guidance clause. It is never called influence: nothing here shows the knowledge changed the candidate (that needs a run without it). The E16.3 and E8.11 evals read it.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "id", "agent_run_id", "decision_episode_id", "knowledge_id", "candidate_id", "guidance_clause", "artifact_span",
+    "conformance", "override_reason", "generated_at"
+  ],
+  "properties": {
+    "id": { "$ref": "common.v1.json#/$defs/uuid" },
+    "agent_run_id": { "$ref": "common.v1.json#/$defs/uuid" },
+    "decision_episode_id": { "$ref": "common.v1.json#/$defs/uuid" },
+    "knowledge_id": { "$ref": "common.v1.json#/$defs/uuid" },
+    "candidate_id": { "$ref": "common.v1.json#/$defs/uuid" },
+    "guidance_clause": {
+      "description": "The words of the knowledge's guidance the candidate is held against, quoted from the knowledge version in force.",
+      "type": "string", "minLength": 1, "maxLength": 1000
+    },
+    "artifact_span": {
+      "description": "Where in the candidate the clause shows up (or should have): the field and the quoted words. quote is null when the candidate says nothing about it.",
+      "type": "object", "additionalProperties": false, "required": ["field", "quote"],
+      "properties": {
+        "field": { "enum": ["strategy_type", "description", "rationale", "to", "cc", "subject", "body", "five_questions"] },
+        "quote": { "type": ["string", "null"], "maxLength": 1000 }
+      }
+    },
+    "conformance": {
+      "description": "followed: the candidate does what the clause says. overridden_with_reason: it departs from the clause and says why. contradicted: it departs and gives no reason. ignored: it cites the knowledge and never acts on it. unknown: it cannot be established.",
+      "enum": ["followed", "overridden_with_reason", "contradicted", "ignored", "unknown"]
+    },
+    "override_reason": { "type": ["string", "null"], "maxLength": 1000 },
+    "model": { "type": ["string", "null"] },
+    "generated_at": { "$ref": "common.v1.json#/$defs/timestamp" }
+  },
+  "allOf": [
+    {
+      "description": "An override states its reason; no other conformance carries one.",
+      "if": { "properties": { "conformance": { "const": "overridden_with_reason" } } },
+      "then": { "properties": { "override_reason": { "type": "string", "minLength": 1 } } },
+      "else": { "properties": { "override_reason": { "type": "null" } } }
+    }
+  ]
+}

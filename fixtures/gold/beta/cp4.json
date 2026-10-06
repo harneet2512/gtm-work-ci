@@ -1,0 +1,282 @@
+{
+  "account": "beta",
+  "checkpoint": 4,
+  "after_event_file": "live/beta_nonmaterial_event.json",
+  "live_files": ["live/beta_nonmaterial_event.json"],
+  "as_of": "2026-09-25T10:00:00Z",
+  "notes": "After fixtures/live/beta_nonmaterial_event.json: internal FYI, no material state change.",
+  "expected": {
+    "distinct_activities": 40,
+    "entities": [
+      {
+        "key": "account:beta",
+        "kind": "account",
+        "display_name": "Beta Inc",
+        "source_identities": ["crm:account:BE-7", "domain:beta.io"]
+      },
+      {
+        "key": "document:beta_business_case",
+        "kind": "document",
+        "display_name": "Beta Support Rollout Business Case",
+        "source_identities": ["docs:gdrive:beta-business-case-v1"]
+      },
+      {
+        "key": "opportunity:beta_expansion",
+        "kind": "opportunity",
+        "display_name": "Beta - support org rollout",
+        "source_identities": ["crm:opp:BE-7-EXP"]
+      },
+      {
+        "key": "person:dana_kim",
+        "kind": "person",
+        "display_name": "Dana Kim",
+        "source_identities": [
+          "call:call-beta-0826:speaker_01",
+          "call:call-beta-0915:speaker_01",
+          "email:dana@ghostvendor.com",
+          "slack:U02DANA"
+        ]
+      },
+      {
+        "key": "person:hannah_lee",
+        "kind": "person",
+        "display_name": "Hannah Lee",
+        "source_identities": [
+          "call:call-beta-0826:speaker_02",
+          "call:call-beta-0915:speaker_02",
+          "crm:contact:903",
+          "email:hannah.lee@beta.io"
+        ]
+      },
+      {
+        "key": "person:jess_patel",
+        "kind": "person",
+        "display_name": "Jess Patel",
+        "source_identities": [
+          "call:call-beta-0826:speaker_03",
+          "call:call-beta-0915:speaker_05",
+          "crm:contact:915",
+          "email:jess.patel@beta.io"
+        ]
+      },
+      {
+        "key": "person:leo_park",
+        "kind": "person",
+        "display_name": "Leo Park",
+        "source_identities": [
+          "call:call-beta-0826:speaker_04",
+          "call:call-beta-0915:speaker_04",
+          "email:leo@ghostvendor.com",
+          "slack:U02LEO"
+        ]
+      },
+      {
+        "key": "person:owen_clarke",
+        "kind": "person",
+        "display_name": "Owen Clarke",
+        "source_identities": ["crm:contact:907", "email:owen.clarke@beta.io"]
+      },
+      {
+        "key": "person:rachel_ortiz",
+        "kind": "person",
+        "display_name": "Rachel Ortiz",
+        "source_identities": ["email:rachel@ghostvendor.com", "slack:U02RACHEL"]
+      },
+      {
+        "key": "person:ravi_menon",
+        "kind": "person",
+        "display_name": "Ravi Menon",
+        "source_identities": ["call:call-beta-0915:speaker_03", "crm:contact:911", "email:ravi.menon@beta.io"]
+      }
+    ],
+    "edges": [
+      {"src": "opportunity:beta_expansion", "rel_type": "belongs_to", "dst": "account:beta"},
+      {"src": "person:dana_kim", "rel_type": "owns", "dst": "opportunity:beta_expansion"},
+      {"src": "person:leo_park", "rel_type": "supports", "dst": "opportunity:beta_expansion"},
+      {"src": "person:hannah_lee", "rel_type": "works_at", "dst": "account:beta"},
+      {
+        "src": "person:hannah_lee",
+        "rel_type": "champion_for",
+        "dst": "opportunity:beta_expansion"
+      },
+      {"src": "person:owen_clarke", "rel_type": "works_at", "dst": "account:beta"},
+      {
+        "src": "person:owen_clarke",
+        "rel_type": "economic_buyer_for",
+        "dst": "opportunity:beta_expansion"
+      },
+      {"src": "person:jess_patel", "rel_type": "works_at", "dst": "account:beta"},
+      {"src": "person:jess_patel", "rel_type": "influences", "dst": "opportunity:beta_expansion"},
+      {
+        "src": "document:beta_business_case",
+        "rel_type": "shared_with",
+        "dst": "person:hannah_lee"
+      },
+      {"src": "person:ravi_menon", "rel_type": "works_at", "dst": "account:beta"},
+      {"src": "person:ravi_menon", "rel_type": "influences", "dst": "opportunity:beta_expansion"}
+    ],
+    "state_fields": {
+      "stage": "Technical evaluation",
+      "health": "at_risk",
+      "owner": "person:dana_kim",
+      "motion": "expansion",
+      "champion": "person:hannah_lee",
+      "champion_status": "active",
+      "economic_buyer": "person:owen_clarke",
+      "blockers": [
+        {
+          "text": "EU data residency for the Dublin team's ticket data (where EU ticket data is stored and processed)",
+          "status": "open"
+        }
+      ],
+      "objections": "unknown",
+      "decision_criteria": [
+        {"text": "15 percent drop in average handle time, shown with the Austin pilot"},
+        {"text": "Live before the December ticket surge"},
+        {"text": "SAML SSO against Okta for all 140 agents"}
+      ],
+      "decision_process": "Ravi Menon (Head of Platform Engineering) must confirm EU data residency before any review session; Owen Clarke already approved the budget",
+      "current_commitments": [
+        {
+          "text": "Send business case with the Austin pilot numbers by Tuesday",
+          "status": "fulfilled",
+          "owner": "person:dana_kim",
+          "due": "2026-09-01"
+        },
+        {
+          "text": "Take the business case to Owen Clarke on Friday",
+          "status": "fulfilled",
+          "owner": "person:hannah_lee",
+          "due": "2026-09-04"
+        },
+        {
+          "text": "Loop in the right platform team person this week",
+          "status": "fulfilled",
+          "owner": "person:hannah_lee"
+        },
+        {
+          "text": "Send data residency documentation and sub-processor list to Ravi Menon",
+          "status": "open",
+          "owner": "person:dana_kim"
+        }
+      ],
+      "next_milestone": "Platform team integration review",
+      "next_meeting": null,
+      "relationship_risk": "medium",
+      "product_use_case": "Relay for the full support org: ~140 agents across Austin and Dublin",
+      "commercial_issue": "unknown",
+      "last_customer_interaction": "2026-09-24T11:05:00Z"
+    },
+    "buying_group": [
+      {
+        "person_key": "person:hannah_lee",
+        "roles": ["champion"],
+        "status": "active",
+        "title": "VP Customer Operations"
+      },
+      {
+        "person_key": "person:owen_clarke",
+        "roles": ["economic_buyer"],
+        "status": "unknown",
+        "title": "Chief Financial Officer"
+      },
+      {
+        "person_key": "person:jess_patel",
+        "roles": ["user"],
+        "status": "active",
+        "title": "Support Operations Manager"
+      },
+      {
+        "person_key": "person:ravi_menon",
+        "roles": ["technical_evaluator"],
+        "status": "active",
+        "title": "Head of Platform Engineering"
+      }
+    ],
+    "coverage_gaps": [],
+    "material_diff_fields": [],
+    "signals": [],
+    "trigger": {
+      "workflow": "post_interaction_followup",
+      "eligible": false,
+      "reason_codes": ["no_material_change"]
+    },
+    "critical_facts": [
+      {
+        "field": "blockers",
+        "value": "EU data residency for the Dublin team's ticket data (where EU ticket data is stored and processed)",
+        "evidence_event_file": "world/accounts/beta/events/032_email_hannah_residency_correction.json",
+        "evidence_quote": "The real blocker is EU data residency for the Dublin team's tickets."
+      },
+      {
+        "field": "buying_group.member",
+        "value": "person:ravi_menon",
+        "evidence_event_file": "world/accounts/beta/events/033_call_deepdive_transcript.json",
+        "evidence_quote": "Ravi Menon, I lead platform engineering at Beta.",
+        "subject": "person:ravi_menon"
+      },
+      {
+        "field": "stakeholder_role",
+        "value": "Technical approver",
+        "evidence_event_file": "world/accounts/beta/events/037_crm_contact_ravi_role.json",
+        "evidence_quote": null,
+        "subject": "person:ravi_menon"
+      },
+      {
+        "field": "champion",
+        "value": "person:hannah_lee",
+        "evidence_event_file": "world/accounts/beta/events/039_email_ravi_residency_request.json",
+        "evidence_quote": "Hannah is still driving the rollout on our side."
+      },
+      {
+        "field": "commitment",
+        "value": "Send data residency documentation and sub-processor list to Ravi Menon",
+        "evidence_event_file": "world/accounts/beta/events/039_email_ravi_residency_request.json",
+        "evidence_quote": "Could you send your data residency documentation and your sub-processor list?"
+      },
+      {
+        "field": "stage",
+        "value": "Technical evaluation",
+        "evidence_event_file": "world/accounts/beta/events/035_crm_opp_stage_tech_eval.json",
+        "evidence_quote": null
+      },
+      {
+        "field": "economic_buyer",
+        "value": "person:owen_clarke",
+        "evidence_event_file": "world/accounts/beta/events/005_email_hannah_scope_reply.json",
+        "evidence_quote": "Owen Clarke, our CFO, signs off on anything over $100k"
+      }
+    ],
+    "conflicts": [
+      {
+        "field": "next_milestone",
+        "winner_value": "Platform team integration review",
+        "winner_standing": "crm_explicit",
+        "winner_event_file": "world/accounts/beta/events/024_crm_opp_next_step.json",
+        "contradicting_value": "Ravi Menon reads the data residency documentation and sub-processor list; review session not yet scheduled",
+        "contradicting_standing": "first_party_ai",
+        "contradicting_event_file": "world/accounts/beta/events/039_email_ravi_residency_request.json",
+        "contradicting_quote": "I'm not ready to schedule a review session until I've read them."
+      }
+    ],
+    "stale_facts": [
+      {
+        "field": "blockers",
+        "stale_value": "SSO is the main open item",
+        "source_event_file": "world/accounts/beta/events/033_call_deepdive_transcript.json"
+      },
+      {
+        "field": "person.title",
+        "stale_value": "Senior Engineering Manager",
+        "source_event_file": "world/accounts/beta/events/028_enrich_ravi.json",
+        "subject": "person:ravi_menon"
+      },
+      {
+        "field": "person.employer",
+        "stale_value": "globex.com",
+        "source_event_file": "world/accounts/beta/events/028_enrich_ravi.json",
+        "subject": "person:ravi_menon"
+      }
+    ]
+  }
+}
