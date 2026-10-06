@@ -1,0 +1,1589 @@
+{
+  "benchmark": "knowledge_applicability:legacy_fixture_gold",
+  "gold_source": "fixtures/evals/cases knowledge_applicability labels (+ exception_awareness knowledge refs); invented demo accounts, to be replaced by CRMArena-based gold",
+  "modes": [
+    {
+      "mode": "matcher_given_correct_upstream_signals",
+      "metrics": {
+        "pairs": 18,
+        "label_accuracy": 0.8888888888888888,
+        "applicability_precision": 0.8,
+        "applicability_recall": 1,
+        "exception_recall": 0.7142857142857143,
+        "exception_precision": 1,
+        "confusion_gold_to_predicted": {
+          "APPLIES->APPLIES": 8,
+          "DOES_NOT_APPLY->DOES_NOT_APPLY": 3,
+          "EXCEPTION_TRIGGERED->APPLIES": 2,
+          "EXCEPTION_TRIGGERED->EXCEPTION_TRIGGERED": 5
+        },
+        "misses_from_invalid_conditions": 2
+      },
+      "metrics_excluding_debatable": {
+        "pairs": 17,
+        "label_accuracy": 0.8823529411764706,
+        "applicability_precision": 0.8,
+        "applicability_recall": 1,
+        "exception_recall": 0.7142857142857143,
+        "exception_precision": 1,
+        "confusion_gold_to_predicted": {
+          "APPLIES->APPLIES": 8,
+          "DOES_NOT_APPLY->DOES_NOT_APPLY": 2,
+          "EXCEPTION_TRIGGERED->APPLIES": 2,
+          "EXCEPTION_TRIGGERED->EXCEPTION_TRIGGERED": 5
+        },
+        "misses_from_invalid_conditions": 2
+      },
+      "rows": [
+        {
+          "case_id": "acme_cp4_k17_applied_draft2",
+          "knowledge": "K17",
+          "gold": "APPLIES",
+          "predicted": "APPLIES",
+          "gold_source": "knowledge_applicability",
+          "correct": true,
+          "matcher_entry": {
+            "knowledge_id": "0c17c000-0000-4000-8000-000000000117",
+            "applies": true,
+            "matched_conditions": [
+              "motion eq \"expansion\"",
+              "diff.new_stakeholder_entered exists",
+              "champion_status in [\"active\",\"weakening\",\"delegated\",\"departed\",\"inactive\"]"
+            ],
+            "unmatched_conditions": [],
+            "exceptions_checked": [
+              {
+                "exception": "Champion explicitly delegated ownership",
+                "triggered": false
+              },
+              {
+                "exception": "Champion departed",
+                "triggered": false
+              }
+            ]
+          }
+        },
+        {
+          "case_id": "acme_cp4_k17_offered_but_ignored",
+          "knowledge": "K17",
+          "gold": "APPLIES",
+          "predicted": "APPLIES",
+          "gold_source": "knowledge_applicability",
+          "correct": true,
+          "matcher_entry": {
+            "knowledge_id": "0c17c000-0000-4000-8000-000000000117",
+            "applies": true,
+            "matched_conditions": [
+              "motion eq \"expansion\"",
+              "diff.new_stakeholder_entered exists",
+              "champion_status in [\"active\",\"weakening\",\"delegated\",\"departed\",\"inactive\"]"
+            ],
+            "unmatched_conditions": [],
+            "exceptions_checked": [
+              {
+                "exception": "Champion explicitly delegated ownership",
+                "triggered": false
+              },
+              {
+                "exception": "Champion departed",
+                "triggered": false
+              }
+            ]
+          }
+        },
+        {
+          "case_id": "acme_silence_k05_light_checkin",
+          "knowledge": "K05",
+          "gold": "APPLIES",
+          "predicted": "APPLIES",
+          "gold_source": "knowledge_applicability",
+          "correct": true,
+          "matcher_entry": {
+            "knowledge_id": "0c17c000-0000-4000-8000-000000000005",
+            "applies": true,
+            "matched_conditions": [
+              "diff.customer_went_silent exists",
+              "champion_status eq \"active\""
+            ],
+            "unmatched_conditions": [],
+            "exceptions_checked": [
+              {
+                "exception": "We owe the customer an open deliverable: send it instead of checking in",
+                "triggered": false
+              },
+              {
+                "exception": "Customer stated a later date for their next step",
+                "triggered": false
+              }
+            ]
+          },
+          "invalid_conditions": [
+            {
+              "where": "We owe the customer an open deliverable: send it instead of checking in",
+              "condition": "current_commitments contains \"open item owned by our rep\"",
+              "rule": "status_in_text",
+              "message": "names an item status inside the text; use an item pattern {\"text\": ..., \"status\": ...}"
+            },
+            {
+              "where": "We owe the customer an open deliverable: send it instead of checking in",
+              "condition": "current_commitments contains \"open item owned by our rep\"",
+              "rule": "owner_in_text",
+              "message": "names an item owner inside the text; ownership is not expressible as item text (no owner key yet)"
+            }
+          ]
+        },
+        {
+          "case_id": "beta_cp3_k17_and_k08_transfer",
+          "knowledge": "K17",
+          "gold": "APPLIES",
+          "predicted": "APPLIES",
+          "gold_source": "knowledge_applicability",
+          "correct": true,
+          "matcher_entry": {
+            "knowledge_id": "0c17c000-0000-4000-8000-000000000117",
+            "applies": true,
+            "matched_conditions": [
+              "motion eq \"expansion\"",
+              "diff.new_stakeholder_entered exists",
+              "champion_status in [\"active\",\"weakening\",\"delegated\",\"departed\",\"inactive\"]"
+            ],
+            "unmatched_conditions": [],
+            "exceptions_checked": [
+              {
+                "exception": "Champion explicitly delegated ownership",
+                "triggered": false
+              },
+              {
+                "exception": "Champion departed",
+                "triggered": false
+              }
+            ]
+          }
+        },
+        {
+          "case_id": "beta_cp3_k17_and_k08_transfer",
+          "knowledge": "K08",
+          "gold": "APPLIES",
+          "predicted": "APPLIES",
+          "gold_source": "knowledge_applicability",
+          "correct": true,
+          "matcher_entry": {
+            "knowledge_id": "0c17c000-0000-4000-8000-000000000108",
+            "applies": true,
+            "matched_conditions": [
+              "diff.security_blocker_appeared exists",
+              "next_meeting not_exists"
+            ],
+            "unmatched_conditions": [],
+            "exceptions_checked": [
+              {
+                "exception": "Reviewer has already read the documents and asked for a meeting",
+                "triggered": false
+              }
+            ]
+          }
+        },
+        {
+          "case_id": "acme_cp4_draft1_champion_bypass",
+          "knowledge": "K17",
+          "gold": "APPLIES",
+          "predicted": "APPLIES",
+          "gold_source": "knowledge_applicability",
+          "correct": true,
+          "matcher_entry": {
+            "knowledge_id": "0c17c000-0000-4000-8000-000000000117",
+            "applies": true,
+            "matched_conditions": [
+              "motion eq \"expansion\"",
+              "diff.new_stakeholder_entered exists",
+              "champion_status in [\"active\",\"weakening\",\"delegated\",\"departed\",\"inactive\"]"
+            ],
+            "unmatched_conditions": [],
+            "exceptions_checked": [
+              {
+                "exception": "Champion explicitly delegated ownership",
+                "triggered": false
+              },
+              {
+                "exception": "Champion departed",
+                "triggered": false
+              }
+            ]
+          }
+        },
+        {
+          "case_id": "beta_cp3_ravi_only_thread",
+          "knowledge": "K17",
+          "gold": "APPLIES",
+          "predicted": "APPLIES",
+          "gold_source": "knowledge_applicability",
+          "correct": true,
+          "matcher_entry": {
+            "knowledge_id": "0c17c000-0000-4000-8000-000000000117",
+            "applies": true,
+            "matched_conditions": [
+              "motion eq \"expansion\"",
+              "diff.new_stakeholder_entered exists",
+              "champion_status in [\"active\",\"weakening\",\"delegated\",\"departed\",\"inactive\"]"
+            ],
+            "unmatched_conditions": [],
+            "exceptions_checked": [
+              {
+                "exception": "Champion explicitly delegated ownership",
+                "triggered": false
+              },
+              {
+                "exception": "Champion departed",
+                "triggered": false
+              }
+            ]
+          }
+        },
+        {
+          "case_id": "acme_cp4_k21_budget_already_approved_trap",
+          "knowledge": "K21",
+          "gold": "EXCEPTION_TRIGGERED",
+          "predicted": "APPLIES",
+          "gold_source": "knowledge_applicability",
+          "correct": false,
+          "matcher_entry": {
+            "knowledge_id": "0c17c000-0000-4000-8000-000000000021",
+            "applies": true,
+            "matched_conditions": [
+              "economic_buyer is_unknown",
+              "stage in [\"Commercial review\",\"Technical evaluation\",\"Negotiation\"]"
+            ],
+            "unmatched_conditions": [],
+            "exceptions_checked": [
+              {
+                "exception": "Spend is already approved in writing by the customer",
+                "triggered": false
+              }
+            ]
+          },
+          "exception_conditions_not_met": [
+            "Spend is already approved in writing by the customer: blockers contains \"budget approval blocker with status resolved\""
+          ],
+          "invalid_conditions": [
+            {
+              "where": "Spend is already approved in writing by the customer",
+              "condition": "blockers contains \"budget approval blocker with status resolved\"",
+              "rule": "status_in_text",
+              "message": "names an item status inside the text; use an item pattern {\"text\": ..., \"status\": ...}"
+            }
+          ],
+          "miss_cause": "invalid_condition"
+        },
+        {
+          "case_id": "acme_variant_priya_departed_k17_trap",
+          "knowledge": "K17",
+          "gold": "EXCEPTION_TRIGGERED",
+          "predicted": "EXCEPTION_TRIGGERED",
+          "gold_source": "knowledge_applicability",
+          "correct": true,
+          "matcher_entry": {
+            "knowledge_id": "0c17c000-0000-4000-8000-000000000117",
+            "applies": false,
+            "matched_conditions": [
+              "motion eq \"expansion\"",
+              "diff.new_stakeholder_entered exists",
+              "champion_status in [\"active\",\"weakening\",\"delegated\",\"departed\",\"inactive\"]"
+            ],
+            "unmatched_conditions": [],
+            "exceptions_checked": [
+              {
+                "exception": "Champion explicitly delegated ownership",
+                "triggered": false
+              },
+              {
+                "exception": "Champion departed",
+                "triggered": true
+              }
+            ]
+          }
+        },
+        {
+          "case_id": "beta_silence_k05_trap_rep_owes_residency_docs",
+          "knowledge": "K05",
+          "gold": "EXCEPTION_TRIGGERED",
+          "predicted": "APPLIES",
+          "gold_source": "knowledge_applicability",
+          "correct": false,
+          "matcher_entry": {
+            "knowledge_id": "0c17c000-0000-4000-8000-000000000005",
+            "applies": true,
+            "matched_conditions": [
+              "diff.customer_went_silent exists",
+              "champion_status eq \"active\""
+            ],
+            "unmatched_conditions": [],
+            "exceptions_checked": [
+              {
+                "exception": "We owe the customer an open deliverable: send it instead of checking in",
+                "triggered": false
+              },
+              {
+                "exception": "Customer stated a later date for their next step",
+                "triggered": false
+              }
+            ]
+          },
+          "exception_conditions_not_met": [
+            "We owe the customer an open deliverable: send it instead of checking in: current_commitments contains \"open item owned by our rep\"",
+            "Customer stated a later date for their next step: next_milestone contains \"customer-stated later date\""
+          ],
+          "invalid_conditions": [
+            {
+              "where": "We owe the customer an open deliverable: send it instead of checking in",
+              "condition": "current_commitments contains \"open item owned by our rep\"",
+              "rule": "status_in_text",
+              "message": "names an item status inside the text; use an item pattern {\"text\": ..., \"status\": ...}"
+            },
+            {
+              "where": "We owe the customer an open deliverable: send it instead of checking in",
+              "condition": "current_commitments contains \"open item owned by our rep\"",
+              "rule": "owner_in_text",
+              "message": "names an item owner inside the text; ownership is not expressible as item text (no owner key yet)"
+            }
+          ],
+          "miss_cause": "invalid_condition"
+        },
+        {
+          "case_id": "northstar_cp4_k08_misapplied_withholds_meeting",
+          "knowledge": "K08",
+          "gold": "EXCEPTION_TRIGGERED",
+          "predicted": "EXCEPTION_TRIGGERED",
+          "gold_source": "exception_awareness",
+          "correct": true,
+          "matcher_entry": {
+            "knowledge_id": "0c17c000-0000-4000-8000-000000000108",
+            "applies": false,
+            "matched_conditions": [
+              "diff.security_blocker_appeared exists",
+              "next_meeting not_exists"
+            ],
+            "unmatched_conditions": [],
+            "exceptions_checked": [
+              {
+                "exception": "Reviewer has already read the documents and asked for a meeting",
+                "triggered": true
+              }
+            ]
+          }
+        },
+        {
+          "case_id": "northstar_cp4_k08_reviewer_requested_meeting",
+          "knowledge": "K08",
+          "gold": "EXCEPTION_TRIGGERED",
+          "predicted": "EXCEPTION_TRIGGERED",
+          "gold_source": "knowledge_applicability",
+          "correct": true,
+          "matcher_entry": {
+            "knowledge_id": "0c17c000-0000-4000-8000-000000000108",
+            "applies": false,
+            "matched_conditions": [
+              "diff.security_blocker_appeared exists",
+              "next_meeting not_exists"
+            ],
+            "unmatched_conditions": [],
+            "exceptions_checked": [
+              {
+                "exception": "Reviewer has already read the documents and asked for a meeting",
+                "triggered": true
+              }
+            ]
+          }
+        },
+        {
+          "case_id": "northstar_cp4_k17_delegation_exception_honored",
+          "knowledge": "K17",
+          "gold": "EXCEPTION_TRIGGERED",
+          "predicted": "EXCEPTION_TRIGGERED",
+          "gold_source": "knowledge_applicability",
+          "correct": true,
+          "matcher_entry": {
+            "knowledge_id": "0c17c000-0000-4000-8000-000000000117",
+            "applies": false,
+            "matched_conditions": [
+              "motion eq \"expansion\"",
+              "diff.new_stakeholder_entered exists",
+              "champion_status in [\"active\",\"weakening\",\"delegated\",\"departed\",\"inactive\"]"
+            ],
+            "unmatched_conditions": [],
+            "exceptions_checked": [
+              {
+                "exception": "Champion explicitly delegated ownership",
+                "triggered": true
+              },
+              {
+                "exception": "Champion departed",
+                "triggered": false
+              }
+            ]
+          }
+        },
+        {
+          "case_id": "northstar_cp4_k17_misapplied_cc_elena",
+          "knowledge": "K17",
+          "gold": "EXCEPTION_TRIGGERED",
+          "predicted": "EXCEPTION_TRIGGERED",
+          "gold_source": "knowledge_applicability",
+          "correct": true,
+          "matcher_entry": {
+            "knowledge_id": "0c17c000-0000-4000-8000-000000000117",
+            "applies": false,
+            "matched_conditions": [
+              "motion eq \"expansion\"",
+              "diff.new_stakeholder_entered exists",
+              "champion_status in [\"active\",\"weakening\",\"delegated\",\"departed\",\"inactive\"]"
+            ],
+            "unmatched_conditions": [],
+            "exceptions_checked": [
+              {
+                "exception": "Champion explicitly delegated ownership",
+                "triggered": true
+              },
+              {
+                "exception": "Champion departed",
+                "triggered": false
+              }
+            ]
+          }
+        },
+        {
+          "case_id": "acme_variant_new_business_k17_cited",
+          "knowledge": "K17",
+          "gold": "DOES_NOT_APPLY",
+          "predicted": "DOES_NOT_APPLY",
+          "gold_source": "knowledge_applicability",
+          "debatable": true,
+          "correct": true,
+          "matcher_entry": {
+            "knowledge_id": "0c17c000-0000-4000-8000-000000000117",
+            "applies": false,
+            "matched_conditions": [
+              "diff.new_stakeholder_entered exists",
+              "champion_status in [\"active\",\"weakening\",\"delegated\",\"departed\",\"inactive\"]"
+            ],
+            "unmatched_conditions": [
+              "motion eq \"expansion\""
+            ],
+            "exceptions_checked": []
+          }
+        },
+        {
+          "case_id": "acme_world_k08_cited_without_security_gate",
+          "knowledge": "K08",
+          "gold": "DOES_NOT_APPLY",
+          "predicted": "DOES_NOT_APPLY",
+          "gold_source": "knowledge_applicability",
+          "correct": true,
+          "matcher_entry": {
+            "knowledge_id": "0c17c000-0000-4000-8000-000000000108",
+            "applies": false,
+            "matched_conditions": [
+              "next_meeting not_exists"
+            ],
+            "unmatched_conditions": [
+              "diff.security_blocker_appeared exists"
+            ],
+            "exceptions_checked": []
+          }
+        },
+        {
+          "case_id": "beta_cp3_k21_known_economic_buyer_trap",
+          "knowledge": "K21",
+          "gold": "DOES_NOT_APPLY",
+          "predicted": "DOES_NOT_APPLY",
+          "gold_source": "knowledge_applicability",
+          "correct": true,
+          "matcher_entry": {
+            "knowledge_id": "0c17c000-0000-4000-8000-000000000021",
+            "applies": false,
+            "matched_conditions": [
+              "stage in [\"Commercial review\",\"Technical evaluation\",\"Negotiation\"]"
+            ],
+            "unmatched_conditions": [
+              "economic_buyer is_unknown"
+            ],
+            "exceptions_checked": []
+          },
+          "invalid_conditions": [
+            {
+              "where": "Spend is already approved in writing by the customer",
+              "condition": "blockers contains \"budget approval blocker with status resolved\"",
+              "rule": "status_in_text",
+              "message": "names an item status inside the text; use an item pattern {\"text\": ..., \"status\": ...}"
+            }
+          ]
+        },
+        {
+          "case_id": "northstar_cp3_work_directly_with_sam",
+          "knowledge": "K09",
+          "gold": "APPLIES",
+          "predicted": "APPLIES",
+          "gold_source": "knowledge_applicability",
+          "correct": true,
+          "matcher_entry": {
+            "knowledge_id": "0c17c000-0000-4000-8000-000000000009",
+            "applies": true,
+            "matched_conditions": [
+              "champion_status eq \"delegated\"",
+              "diff.champion_delegated exists"
+            ],
+            "unmatched_conditions": [],
+            "exceptions_checked": [
+              {
+                "exception": "The delegate asks to include the champion",
+                "triggered": false
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "mode": "own_diff_signals_only",
+      "metrics": {
+        "pairs": 18,
+        "label_accuracy": 0.4444444444444444,
+        "applicability_precision": 0.7142857142857143,
+        "applicability_recall": 0.625,
+        "exception_recall": 0,
+        "exception_precision": null,
+        "confusion_gold_to_predicted": {
+          "APPLIES->APPLIES": 5,
+          "APPLIES->DOES_NOT_APPLY": 3,
+          "DOES_NOT_APPLY->DOES_NOT_APPLY": 3,
+          "EXCEPTION_TRIGGERED->APPLIES": 2,
+          "EXCEPTION_TRIGGERED->DOES_NOT_APPLY": 5
+        },
+        "misses_from_invalid_conditions": 2
+      },
+      "metrics_excluding_debatable": {
+        "pairs": 17,
+        "label_accuracy": 0.4117647058823529,
+        "applicability_precision": 0.7142857142857143,
+        "applicability_recall": 0.625,
+        "exception_recall": 0,
+        "exception_precision": null,
+        "confusion_gold_to_predicted": {
+          "APPLIES->APPLIES": 5,
+          "APPLIES->DOES_NOT_APPLY": 3,
+          "DOES_NOT_APPLY->DOES_NOT_APPLY": 2,
+          "EXCEPTION_TRIGGERED->APPLIES": 2,
+          "EXCEPTION_TRIGGERED->DOES_NOT_APPLY": 5
+        },
+        "misses_from_invalid_conditions": 2
+      },
+      "rows": [
+        {
+          "case_id": "acme_cp4_k17_applied_draft2",
+          "knowledge": "K17",
+          "gold": "APPLIES",
+          "predicted": "DOES_NOT_APPLY",
+          "gold_source": "knowledge_applicability",
+          "correct": false,
+          "matcher_entry": {
+            "knowledge_id": "0c17c000-0000-4000-8000-000000000117",
+            "applies": false,
+            "matched_conditions": [
+              "motion eq \"expansion\"",
+              "champion_status in [\"active\",\"weakening\",\"delegated\",\"departed\",\"inactive\"]"
+            ],
+            "unmatched_conditions": [
+              "diff.new_stakeholder_entered exists"
+            ],
+            "exceptions_checked": []
+          },
+          "miss_cause": "matcher_or_signals"
+        },
+        {
+          "case_id": "acme_cp4_k17_offered_but_ignored",
+          "knowledge": "K17",
+          "gold": "APPLIES",
+          "predicted": "DOES_NOT_APPLY",
+          "gold_source": "knowledge_applicability",
+          "correct": false,
+          "matcher_entry": {
+            "knowledge_id": "0c17c000-0000-4000-8000-000000000117",
+            "applies": false,
+            "matched_conditions": [
+              "motion eq \"expansion\"",
+              "champion_status in [\"active\",\"weakening\",\"delegated\",\"departed\",\"inactive\"]"
+            ],
+            "unmatched_conditions": [
+              "diff.new_stakeholder_entered exists"
+            ],
+            "exceptions_checked": []
+          },
+          "miss_cause": "matcher_or_signals"
+        },
+        {
+          "case_id": "acme_silence_k05_light_checkin",
+          "knowledge": "K05",
+          "gold": "APPLIES",
+          "predicted": "APPLIES",
+          "gold_source": "knowledge_applicability",
+          "correct": true,
+          "matcher_entry": {
+            "knowledge_id": "0c17c000-0000-4000-8000-000000000005",
+            "applies": true,
+            "matched_conditions": [
+              "diff.customer_went_silent exists",
+              "champion_status eq \"active\""
+            ],
+            "unmatched_conditions": [],
+            "exceptions_checked": [
+              {
+                "exception": "We owe the customer an open deliverable: send it instead of checking in",
+                "triggered": false
+              },
+              {
+                "exception": "Customer stated a later date for their next step",
+                "triggered": false
+              }
+            ]
+          },
+          "invalid_conditions": [
+            {
+              "where": "We owe the customer an open deliverable: send it instead of checking in",
+              "condition": "current_commitments contains \"open item owned by our rep\"",
+              "rule": "status_in_text",
+              "message": "names an item status inside the text; use an item pattern {\"text\": ..., \"status\": ...}"
+            },
+            {
+              "where": "We owe the customer an open deliverable: send it instead of checking in",
+              "condition": "current_commitments contains \"open item owned by our rep\"",
+              "rule": "owner_in_text",
+              "message": "names an item owner inside the text; ownership is not expressible as item text (no owner key yet)"
+            }
+          ]
+        },
+        {
+          "case_id": "beta_cp3_k17_and_k08_transfer",
+          "knowledge": "K17",
+          "gold": "APPLIES",
+          "predicted": "APPLIES",
+          "gold_source": "knowledge_applicability",
+          "correct": true,
+          "matcher_entry": {
+            "knowledge_id": "0c17c000-0000-4000-8000-000000000117",
+            "applies": true,
+            "matched_conditions": [
+              "motion eq \"expansion\"",
+              "diff.new_stakeholder_entered exists",
+              "champion_status in [\"active\",\"weakening\",\"delegated\",\"departed\",\"inactive\"]"
+            ],
+            "unmatched_conditions": [],
+            "exceptions_checked": [
+              {
+                "exception": "Champion explicitly delegated ownership",
+                "triggered": false
+              },
+              {
+                "exception": "Champion departed",
+                "triggered": false
+              }
+            ]
+          }
+        },
+        {
+          "case_id": "beta_cp3_k17_and_k08_transfer",
+          "knowledge": "K08",
+          "gold": "APPLIES",
+          "predicted": "APPLIES",
+          "gold_source": "knowledge_applicability",
+          "correct": true,
+          "matcher_entry": {
+            "knowledge_id": "0c17c000-0000-4000-8000-000000000108",
+            "applies": true,
+            "matched_conditions": [
+              "diff.security_blocker_appeared exists",
+              "next_meeting not_exists"
+            ],
+            "unmatched_conditions": [],
+            "exceptions_checked": [
+              {
+                "exception": "Reviewer has already read the documents and asked for a meeting",
+                "triggered": false
+              }
+            ]
+          }
+        },
+        {
+          "case_id": "acme_cp4_draft1_champion_bypass",
+          "knowledge": "K17",
+          "gold": "APPLIES",
+          "predicted": "DOES_NOT_APPLY",
+          "gold_source": "knowledge_applicability",
+          "correct": false,
+          "matcher_entry": {
+            "knowledge_id": "0c17c000-0000-4000-8000-000000000117",
+            "applies": false,
+            "matched_conditions": [
+              "motion eq \"expansion\"",
+              "champion_status in [\"active\",\"weakening\",\"delegated\",\"departed\",\"inactive\"]"
+            ],
+            "unmatched_conditions": [
+              "diff.new_stakeholder_entered exists"
+            ],
+            "exceptions_checked": []
+          },
+          "miss_cause": "matcher_or_signals"
+        },
+        {
+          "case_id": "beta_cp3_ravi_only_thread",
+          "knowledge": "K17",
+          "gold": "APPLIES",
+          "predicted": "APPLIES",
+          "gold_source": "knowledge_applicability",
+          "correct": true,
+          "matcher_entry": {
+            "knowledge_id": "0c17c000-0000-4000-8000-000000000117",
+            "applies": true,
+            "matched_conditions": [
+              "motion eq \"expansion\"",
+              "diff.new_stakeholder_entered exists",
+              "champion_status in [\"active\",\"weakening\",\"delegated\",\"departed\",\"inactive\"]"
+            ],
+            "unmatched_conditions": [],
+            "exceptions_checked": [
+              {
+                "exception": "Champion explicitly delegated ownership",
+                "triggered": false
+              },
+              {
+                "exception": "Champion departed",
+                "triggered": false
+              }
+            ]
+          }
+        },
+        {
+          "case_id": "acme_cp4_k21_budget_already_approved_trap",
+          "knowledge": "K21",
+          "gold": "EXCEPTION_TRIGGERED",
+          "predicted": "APPLIES",
+          "gold_source": "knowledge_applicability",
+          "correct": false,
+          "matcher_entry": {
+            "knowledge_id": "0c17c000-0000-4000-8000-000000000021",
+            "applies": true,
+            "matched_conditions": [
+              "economic_buyer is_unknown",
+              "stage in [\"Commercial review\",\"Technical evaluation\",\"Negotiation\"]"
+            ],
+            "unmatched_conditions": [],
+            "exceptions_checked": [
+              {
+                "exception": "Spend is already approved in writing by the customer",
+                "triggered": false
+              }
+            ]
+          },
+          "exception_conditions_not_met": [
+            "Spend is already approved in writing by the customer: blockers contains \"budget approval blocker with status resolved\""
+          ],
+          "invalid_conditions": [
+            {
+              "where": "Spend is already approved in writing by the customer",
+              "condition": "blockers contains \"budget approval blocker with status resolved\"",
+              "rule": "status_in_text",
+              "message": "names an item status inside the text; use an item pattern {\"text\": ..., \"status\": ...}"
+            }
+          ],
+          "miss_cause": "invalid_condition"
+        },
+        {
+          "case_id": "acme_variant_priya_departed_k17_trap",
+          "knowledge": "K17",
+          "gold": "EXCEPTION_TRIGGERED",
+          "predicted": "DOES_NOT_APPLY",
+          "gold_source": "knowledge_applicability",
+          "correct": false,
+          "matcher_entry": {
+            "knowledge_id": "0c17c000-0000-4000-8000-000000000117",
+            "applies": false,
+            "matched_conditions": [
+              "motion eq \"expansion\"",
+              "champion_status in [\"active\",\"weakening\",\"delegated\",\"departed\",\"inactive\"]"
+            ],
+            "unmatched_conditions": [
+              "diff.new_stakeholder_entered exists"
+            ],
+            "exceptions_checked": []
+          },
+          "exception_conditions_not_met": [
+            "Champion explicitly delegated ownership: champion_status eq \"delegated\""
+          ],
+          "miss_cause": "matcher_or_signals"
+        },
+        {
+          "case_id": "beta_silence_k05_trap_rep_owes_residency_docs",
+          "knowledge": "K05",
+          "gold": "EXCEPTION_TRIGGERED",
+          "predicted": "APPLIES",
+          "gold_source": "knowledge_applicability",
+          "correct": false,
+          "matcher_entry": {
+            "knowledge_id": "0c17c000-0000-4000-8000-000000000005",
+            "applies": true,
+            "matched_conditions": [
+              "diff.customer_went_silent exists",
+              "champion_status eq \"active\""
+            ],
+            "unmatched_conditions": [],
+            "exceptions_checked": [
+              {
+                "exception": "We owe the customer an open deliverable: send it instead of checking in",
+                "triggered": false
+              },
+              {
+                "exception": "Customer stated a later date for their next step",
+                "triggered": false
+              }
+            ]
+          },
+          "exception_conditions_not_met": [
+            "We owe the customer an open deliverable: send it instead of checking in: current_commitments contains \"open item owned by our rep\"",
+            "Customer stated a later date for their next step: next_milestone contains \"customer-stated later date\""
+          ],
+          "invalid_conditions": [
+            {
+              "where": "We owe the customer an open deliverable: send it instead of checking in",
+              "condition": "current_commitments contains \"open item owned by our rep\"",
+              "rule": "status_in_text",
+              "message": "names an item status inside the text; use an item pattern {\"text\": ..., \"status\": ...}"
+            },
+            {
+              "where": "We owe the customer an open deliverable: send it instead of checking in",
+              "condition": "current_commitments contains \"open item owned by our rep\"",
+              "rule": "owner_in_text",
+              "message": "names an item owner inside the text; ownership is not expressible as item text (no owner key yet)"
+            }
+          ],
+          "miss_cause": "invalid_condition"
+        },
+        {
+          "case_id": "northstar_cp4_k08_misapplied_withholds_meeting",
+          "knowledge": "K08",
+          "gold": "EXCEPTION_TRIGGERED",
+          "predicted": "DOES_NOT_APPLY",
+          "gold_source": "exception_awareness",
+          "correct": false,
+          "matcher_entry": {
+            "knowledge_id": "0c17c000-0000-4000-8000-000000000108",
+            "applies": false,
+            "matched_conditions": [
+              "next_meeting not_exists"
+            ],
+            "unmatched_conditions": [
+              "diff.security_blocker_appeared exists"
+            ],
+            "exceptions_checked": []
+          },
+          "miss_cause": "matcher_or_signals"
+        },
+        {
+          "case_id": "northstar_cp4_k08_reviewer_requested_meeting",
+          "knowledge": "K08",
+          "gold": "EXCEPTION_TRIGGERED",
+          "predicted": "DOES_NOT_APPLY",
+          "gold_source": "knowledge_applicability",
+          "correct": false,
+          "matcher_entry": {
+            "knowledge_id": "0c17c000-0000-4000-8000-000000000108",
+            "applies": false,
+            "matched_conditions": [
+              "next_meeting not_exists"
+            ],
+            "unmatched_conditions": [
+              "diff.security_blocker_appeared exists"
+            ],
+            "exceptions_checked": []
+          },
+          "miss_cause": "matcher_or_signals"
+        },
+        {
+          "case_id": "northstar_cp4_k17_delegation_exception_honored",
+          "knowledge": "K17",
+          "gold": "EXCEPTION_TRIGGERED",
+          "predicted": "DOES_NOT_APPLY",
+          "gold_source": "knowledge_applicability",
+          "correct": false,
+          "matcher_entry": {
+            "knowledge_id": "0c17c000-0000-4000-8000-000000000117",
+            "applies": false,
+            "matched_conditions": [
+              "motion eq \"expansion\"",
+              "champion_status in [\"active\",\"weakening\",\"delegated\",\"departed\",\"inactive\"]"
+            ],
+            "unmatched_conditions": [
+              "diff.new_stakeholder_entered exists"
+            ],
+            "exceptions_checked": []
+          },
+          "exception_conditions_not_met": [
+            "Champion departed: champion_status in [\"departed\",\"inactive\"]"
+          ],
+          "miss_cause": "matcher_or_signals"
+        },
+        {
+          "case_id": "northstar_cp4_k17_misapplied_cc_elena",
+          "knowledge": "K17",
+          "gold": "EXCEPTION_TRIGGERED",
+          "predicted": "DOES_NOT_APPLY",
+          "gold_source": "knowledge_applicability",
+          "correct": false,
+          "matcher_entry": {
+            "knowledge_id": "0c17c000-0000-4000-8000-000000000117",
+            "applies": false,
+            "matched_conditions": [
+              "motion eq \"expansion\"",
+              "champion_status in [\"active\",\"weakening\",\"delegated\",\"departed\",\"inactive\"]"
+            ],
+            "unmatched_conditions": [
+              "diff.new_stakeholder_entered exists"
+            ],
+            "exceptions_checked": []
+          },
+          "exception_conditions_not_met": [
+            "Champion departed: champion_status in [\"departed\",\"inactive\"]"
+          ],
+          "miss_cause": "matcher_or_signals"
+        },
+        {
+          "case_id": "acme_variant_new_business_k17_cited",
+          "knowledge": "K17",
+          "gold": "DOES_NOT_APPLY",
+          "predicted": "DOES_NOT_APPLY",
+          "gold_source": "knowledge_applicability",
+          "debatable": true,
+          "correct": true,
+          "matcher_entry": {
+            "knowledge_id": "0c17c000-0000-4000-8000-000000000117",
+            "applies": false,
+            "matched_conditions": [
+              "champion_status in [\"active\",\"weakening\",\"delegated\",\"departed\",\"inactive\"]"
+            ],
+            "unmatched_conditions": [
+              "motion eq \"expansion\"",
+              "diff.new_stakeholder_entered exists"
+            ],
+            "exceptions_checked": []
+          }
+        },
+        {
+          "case_id": "acme_world_k08_cited_without_security_gate",
+          "knowledge": "K08",
+          "gold": "DOES_NOT_APPLY",
+          "predicted": "DOES_NOT_APPLY",
+          "gold_source": "knowledge_applicability",
+          "correct": true,
+          "matcher_entry": {
+            "knowledge_id": "0c17c000-0000-4000-8000-000000000108",
+            "applies": false,
+            "matched_conditions": [
+              "next_meeting not_exists"
+            ],
+            "unmatched_conditions": [
+              "diff.security_blocker_appeared exists"
+            ],
+            "exceptions_checked": []
+          }
+        },
+        {
+          "case_id": "beta_cp3_k21_known_economic_buyer_trap",
+          "knowledge": "K21",
+          "gold": "DOES_NOT_APPLY",
+          "predicted": "DOES_NOT_APPLY",
+          "gold_source": "knowledge_applicability",
+          "correct": true,
+          "matcher_entry": {
+            "knowledge_id": "0c17c000-0000-4000-8000-000000000021",
+            "applies": false,
+            "matched_conditions": [
+              "stage in [\"Commercial review\",\"Technical evaluation\",\"Negotiation\"]"
+            ],
+            "unmatched_conditions": [
+              "economic_buyer is_unknown"
+            ],
+            "exceptions_checked": []
+          },
+          "invalid_conditions": [
+            {
+              "where": "Spend is already approved in writing by the customer",
+              "condition": "blockers contains \"budget approval blocker with status resolved\"",
+              "rule": "status_in_text",
+              "message": "names an item status inside the text; use an item pattern {\"text\": ..., \"status\": ...}"
+            }
+          ]
+        },
+        {
+          "case_id": "northstar_cp3_work_directly_with_sam",
+          "knowledge": "K09",
+          "gold": "APPLIES",
+          "predicted": "APPLIES",
+          "gold_source": "knowledge_applicability",
+          "correct": true,
+          "matcher_entry": {
+            "knowledge_id": "0c17c000-0000-4000-8000-000000000009",
+            "applies": true,
+            "matched_conditions": [
+              "champion_status eq \"delegated\"",
+              "diff.champion_delegated exists"
+            ],
+            "unmatched_conditions": [],
+            "exceptions_checked": [
+              {
+                "exception": "The delegate asks to include the champion",
+                "triggered": false
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "mode": "wp8_rules_on_gold_state_in_memory_history",
+      "metrics": {
+        "pairs": 18,
+        "label_accuracy": 0.8888888888888888,
+        "applicability_precision": 0.8,
+        "applicability_recall": 1,
+        "exception_recall": 0.7142857142857143,
+        "exception_precision": 1,
+        "confusion_gold_to_predicted": {
+          "APPLIES->APPLIES": 8,
+          "DOES_NOT_APPLY->DOES_NOT_APPLY": 3,
+          "EXCEPTION_TRIGGERED->APPLIES": 2,
+          "EXCEPTION_TRIGGERED->EXCEPTION_TRIGGERED": 5
+        },
+        "misses_from_invalid_conditions": 2
+      },
+      "metrics_excluding_debatable": {
+        "pairs": 17,
+        "label_accuracy": 0.8823529411764706,
+        "applicability_precision": 0.8,
+        "applicability_recall": 1,
+        "exception_recall": 0.7142857142857143,
+        "exception_precision": 1,
+        "confusion_gold_to_predicted": {
+          "APPLIES->APPLIES": 8,
+          "DOES_NOT_APPLY->DOES_NOT_APPLY": 2,
+          "EXCEPTION_TRIGGERED->APPLIES": 2,
+          "EXCEPTION_TRIGGERED->EXCEPTION_TRIGGERED": 5
+        },
+        "misses_from_invalid_conditions": 2
+      },
+      "rows": [
+        {
+          "case_id": "acme_cp4_k17_applied_draft2",
+          "knowledge": "K17",
+          "gold": "APPLIES",
+          "predicted": "APPLIES",
+          "gold_source": "knowledge_applicability",
+          "correct": true,
+          "matcher_entry": {
+            "knowledge_id": "0c17c000-0000-4000-8000-000000000117",
+            "applies": true,
+            "matched_conditions": [
+              "motion eq \"expansion\"",
+              "diff.new_stakeholder_entered exists",
+              "champion_status in [\"active\",\"weakening\",\"delegated\",\"departed\",\"inactive\"]"
+            ],
+            "unmatched_conditions": [],
+            "exceptions_checked": [
+              {
+                "exception": "Champion explicitly delegated ownership",
+                "triggered": false
+              },
+              {
+                "exception": "Champion departed",
+                "triggered": false
+              }
+            ]
+          }
+        },
+        {
+          "case_id": "acme_cp4_k17_offered_but_ignored",
+          "knowledge": "K17",
+          "gold": "APPLIES",
+          "predicted": "APPLIES",
+          "gold_source": "knowledge_applicability",
+          "correct": true,
+          "matcher_entry": {
+            "knowledge_id": "0c17c000-0000-4000-8000-000000000117",
+            "applies": true,
+            "matched_conditions": [
+              "motion eq \"expansion\"",
+              "diff.new_stakeholder_entered exists",
+              "champion_status in [\"active\",\"weakening\",\"delegated\",\"departed\",\"inactive\"]"
+            ],
+            "unmatched_conditions": [],
+            "exceptions_checked": [
+              {
+                "exception": "Champion explicitly delegated ownership",
+                "triggered": false
+              },
+              {
+                "exception": "Champion departed",
+                "triggered": false
+              }
+            ]
+          }
+        },
+        {
+          "case_id": "acme_silence_k05_light_checkin",
+          "knowledge": "K05",
+          "gold": "APPLIES",
+          "predicted": "APPLIES",
+          "gold_source": "knowledge_applicability",
+          "correct": true,
+          "matcher_entry": {
+            "knowledge_id": "0c17c000-0000-4000-8000-000000000005",
+            "applies": true,
+            "matched_conditions": [
+              "diff.customer_went_silent exists",
+              "champion_status eq \"active\""
+            ],
+            "unmatched_conditions": [],
+            "exceptions_checked": [
+              {
+                "exception": "We owe the customer an open deliverable: send it instead of checking in",
+                "triggered": false
+              },
+              {
+                "exception": "Customer stated a later date for their next step",
+                "triggered": false
+              }
+            ]
+          },
+          "invalid_conditions": [
+            {
+              "where": "We owe the customer an open deliverable: send it instead of checking in",
+              "condition": "current_commitments contains \"open item owned by our rep\"",
+              "rule": "status_in_text",
+              "message": "names an item status inside the text; use an item pattern {\"text\": ..., \"status\": ...}"
+            },
+            {
+              "where": "We owe the customer an open deliverable: send it instead of checking in",
+              "condition": "current_commitments contains \"open item owned by our rep\"",
+              "rule": "owner_in_text",
+              "message": "names an item owner inside the text; ownership is not expressible as item text (no owner key yet)"
+            }
+          ]
+        },
+        {
+          "case_id": "beta_cp3_k17_and_k08_transfer",
+          "knowledge": "K17",
+          "gold": "APPLIES",
+          "predicted": "APPLIES",
+          "gold_source": "knowledge_applicability",
+          "correct": true,
+          "matcher_entry": {
+            "knowledge_id": "0c17c000-0000-4000-8000-000000000117",
+            "applies": true,
+            "matched_conditions": [
+              "motion eq \"expansion\"",
+              "diff.new_stakeholder_entered exists",
+              "champion_status in [\"active\",\"weakening\",\"delegated\",\"departed\",\"inactive\"]"
+            ],
+            "unmatched_conditions": [],
+            "exceptions_checked": [
+              {
+                "exception": "Champion explicitly delegated ownership",
+                "triggered": false
+              },
+              {
+                "exception": "Champion departed",
+                "triggered": false
+              }
+            ]
+          }
+        },
+        {
+          "case_id": "beta_cp3_k17_and_k08_transfer",
+          "knowledge": "K08",
+          "gold": "APPLIES",
+          "predicted": "APPLIES",
+          "gold_source": "knowledge_applicability",
+          "correct": true,
+          "matcher_entry": {
+            "knowledge_id": "0c17c000-0000-4000-8000-000000000108",
+            "applies": true,
+            "matched_conditions": [
+              "diff.security_blocker_appeared exists",
+              "next_meeting not_exists"
+            ],
+            "unmatched_conditions": [],
+            "exceptions_checked": [
+              {
+                "exception": "Reviewer has already read the documents and asked for a meeting",
+                "triggered": false
+              }
+            ]
+          }
+        },
+        {
+          "case_id": "acme_cp4_draft1_champion_bypass",
+          "knowledge": "K17",
+          "gold": "APPLIES",
+          "predicted": "APPLIES",
+          "gold_source": "knowledge_applicability",
+          "correct": true,
+          "matcher_entry": {
+            "knowledge_id": "0c17c000-0000-4000-8000-000000000117",
+            "applies": true,
+            "matched_conditions": [
+              "motion eq \"expansion\"",
+              "diff.new_stakeholder_entered exists",
+              "champion_status in [\"active\",\"weakening\",\"delegated\",\"departed\",\"inactive\"]"
+            ],
+            "unmatched_conditions": [],
+            "exceptions_checked": [
+              {
+                "exception": "Champion explicitly delegated ownership",
+                "triggered": false
+              },
+              {
+                "exception": "Champion departed",
+                "triggered": false
+              }
+            ]
+          }
+        },
+        {
+          "case_id": "beta_cp3_ravi_only_thread",
+          "knowledge": "K17",
+          "gold": "APPLIES",
+          "predicted": "APPLIES",
+          "gold_source": "knowledge_applicability",
+          "correct": true,
+          "matcher_entry": {
+            "knowledge_id": "0c17c000-0000-4000-8000-000000000117",
+            "applies": true,
+            "matched_conditions": [
+              "motion eq \"expansion\"",
+              "diff.new_stakeholder_entered exists",
+              "champion_status in [\"active\",\"weakening\",\"delegated\",\"departed\",\"inactive\"]"
+            ],
+            "unmatched_conditions": [],
+            "exceptions_checked": [
+              {
+                "exception": "Champion explicitly delegated ownership",
+                "triggered": false
+              },
+              {
+                "exception": "Champion departed",
+                "triggered": false
+              }
+            ]
+          }
+        },
+        {
+          "case_id": "acme_cp4_k21_budget_already_approved_trap",
+          "knowledge": "K21",
+          "gold": "EXCEPTION_TRIGGERED",
+          "predicted": "APPLIES",
+          "gold_source": "knowledge_applicability",
+          "correct": false,
+          "matcher_entry": {
+            "knowledge_id": "0c17c000-0000-4000-8000-000000000021",
+            "applies": true,
+            "matched_conditions": [
+              "economic_buyer is_unknown",
+              "stage in [\"Commercial review\",\"Technical evaluation\",\"Negotiation\"]"
+            ],
+            "unmatched_conditions": [],
+            "exceptions_checked": [
+              {
+                "exception": "Spend is already approved in writing by the customer",
+                "triggered": false
+              }
+            ]
+          },
+          "exception_conditions_not_met": [
+            "Spend is already approved in writing by the customer: blockers contains \"budget approval blocker with status resolved\""
+          ],
+          "invalid_conditions": [
+            {
+              "where": "Spend is already approved in writing by the customer",
+              "condition": "blockers contains \"budget approval blocker with status resolved\"",
+              "rule": "status_in_text",
+              "message": "names an item status inside the text; use an item pattern {\"text\": ..., \"status\": ...}"
+            }
+          ],
+          "miss_cause": "invalid_condition"
+        },
+        {
+          "case_id": "acme_variant_priya_departed_k17_trap",
+          "knowledge": "K17",
+          "gold": "EXCEPTION_TRIGGERED",
+          "predicted": "EXCEPTION_TRIGGERED",
+          "gold_source": "knowledge_applicability",
+          "correct": true,
+          "matcher_entry": {
+            "knowledge_id": "0c17c000-0000-4000-8000-000000000117",
+            "applies": false,
+            "matched_conditions": [
+              "motion eq \"expansion\"",
+              "diff.new_stakeholder_entered exists",
+              "champion_status in [\"active\",\"weakening\",\"delegated\",\"departed\",\"inactive\"]"
+            ],
+            "unmatched_conditions": [],
+            "exceptions_checked": [
+              {
+                "exception": "Champion explicitly delegated ownership",
+                "triggered": false
+              },
+              {
+                "exception": "Champion departed",
+                "triggered": true
+              }
+            ]
+          }
+        },
+        {
+          "case_id": "beta_silence_k05_trap_rep_owes_residency_docs",
+          "knowledge": "K05",
+          "gold": "EXCEPTION_TRIGGERED",
+          "predicted": "APPLIES",
+          "gold_source": "knowledge_applicability",
+          "correct": false,
+          "matcher_entry": {
+            "knowledge_id": "0c17c000-0000-4000-8000-000000000005",
+            "applies": true,
+            "matched_conditions": [
+              "diff.customer_went_silent exists",
+              "champion_status eq \"active\""
+            ],
+            "unmatched_conditions": [],
+            "exceptions_checked": [
+              {
+                "exception": "We owe the customer an open deliverable: send it instead of checking in",
+                "triggered": false
+              },
+              {
+                "exception": "Customer stated a later date for their next step",
+                "triggered": false
+              }
+            ]
+          },
+          "exception_conditions_not_met": [
+            "We owe the customer an open deliverable: send it instead of checking in: current_commitments contains \"open item owned by our rep\"",
+            "Customer stated a later date for their next step: next_milestone contains \"customer-stated later date\""
+          ],
+          "invalid_conditions": [
+            {
+              "where": "We owe the customer an open deliverable: send it instead of checking in",
+              "condition": "current_commitments contains \"open item owned by our rep\"",
+              "rule": "status_in_text",
+              "message": "names an item status inside the text; use an item pattern {\"text\": ..., \"status\": ...}"
+            },
+            {
+              "where": "We owe the customer an open deliverable: send it instead of checking in",
+              "condition": "current_commitments contains \"open item owned by our rep\"",
+              "rule": "owner_in_text",
+              "message": "names an item owner inside the text; ownership is not expressible as item text (no owner key yet)"
+            }
+          ],
+          "miss_cause": "invalid_condition"
+        },
+        {
+          "case_id": "northstar_cp4_k08_misapplied_withholds_meeting",
+          "knowledge": "K08",
+          "gold": "EXCEPTION_TRIGGERED",
+          "predicted": "EXCEPTION_TRIGGERED",
+          "gold_source": "exception_awareness",
+          "correct": true,
+          "matcher_entry": {
+            "knowledge_id": "0c17c000-0000-4000-8000-000000000108",
+            "applies": false,
+            "matched_conditions": [
+              "diff.security_blocker_appeared exists",
+              "next_meeting not_exists"
+            ],
+            "unmatched_conditions": [],
+            "exceptions_checked": [
+              {
+                "exception": "Reviewer has already read the documents and asked for a meeting",
+                "triggered": true
+              }
+            ]
+          }
+        },
+        {
+          "case_id": "northstar_cp4_k08_reviewer_requested_meeting",
+          "knowledge": "K08",
+          "gold": "EXCEPTION_TRIGGERED",
+          "predicted": "EXCEPTION_TRIGGERED",
+          "gold_source": "knowledge_applicability",
+          "correct": true,
+          "matcher_entry": {
+            "knowledge_id": "0c17c000-0000-4000-8000-000000000108",
+            "applies": false,
+            "matched_conditions": [
+              "diff.security_blocker_appeared exists",
+              "next_meeting not_exists"
+            ],
+            "unmatched_conditions": [],
+            "exceptions_checked": [
+              {
+                "exception": "Reviewer has already read the documents and asked for a meeting",
+                "triggered": true
+              }
+            ]
+          }
+        },
+        {
+          "case_id": "northstar_cp4_k17_delegation_exception_honored",
+          "knowledge": "K17",
+          "gold": "EXCEPTION_TRIGGERED",
+          "predicted": "EXCEPTION_TRIGGERED",
+          "gold_source": "knowledge_applicability",
+          "correct": true,
+          "matcher_entry": {
+            "knowledge_id": "0c17c000-0000-4000-8000-000000000117",
+            "applies": false,
+            "matched_conditions": [
+              "motion eq \"expansion\"",
+              "diff.new_stakeholder_entered exists",
+              "champion_status in [\"active\",\"weakening\",\"delegated\",\"departed\",\"inactive\"]"
+            ],
+            "unmatched_conditions": [],
+            "exceptions_checked": [
+              {
+                "exception": "Champion explicitly delegated ownership",
+                "triggered": true
+              },
+              {
+                "exception": "Champion departed",
+                "triggered": false
+              }
+            ]
+          }
+        },
+        {
+          "case_id": "northstar_cp4_k17_misapplied_cc_elena",
+          "knowledge": "K17",
+          "gold": "EXCEPTION_TRIGGERED",
+          "predicted": "EXCEPTION_TRIGGERED",
+          "gold_source": "knowledge_applicability",
+          "correct": true,
+          "matcher_entry": {
+            "knowledge_id": "0c17c000-0000-4000-8000-000000000117",
+            "applies": false,
+            "matched_conditions": [
+              "motion eq \"expansion\"",
+              "diff.new_stakeholder_entered exists",
+              "champion_status in [\"active\",\"weakening\",\"delegated\",\"departed\",\"inactive\"]"
+            ],
+            "unmatched_conditions": [],
+            "exceptions_checked": [
+              {
+                "exception": "Champion explicitly delegated ownership",
+                "triggered": true
+              },
+              {
+                "exception": "Champion departed",
+                "triggered": false
+              }
+            ]
+          }
+        },
+        {
+          "case_id": "acme_variant_new_business_k17_cited",
+          "knowledge": "K17",
+          "gold": "DOES_NOT_APPLY",
+          "predicted": "DOES_NOT_APPLY",
+          "gold_source": "knowledge_applicability",
+          "debatable": true,
+          "correct": true,
+          "matcher_entry": {
+            "knowledge_id": "0c17c000-0000-4000-8000-000000000117",
+            "applies": false,
+            "matched_conditions": [
+              "diff.new_stakeholder_entered exists",
+              "champion_status in [\"active\",\"weakening\",\"delegated\",\"departed\",\"inactive\"]"
+            ],
+            "unmatched_conditions": [
+              "motion eq \"expansion\""
+            ],
+            "exceptions_checked": []
+          }
+        },
+        {
+          "case_id": "acme_world_k08_cited_without_security_gate",
+          "knowledge": "K08",
+          "gold": "DOES_NOT_APPLY",
+          "predicted": "DOES_NOT_APPLY",
+          "gold_source": "knowledge_applicability",
+          "correct": true,
+          "matcher_entry": {
+            "knowledge_id": "0c17c000-0000-4000-8000-000000000108",
+            "applies": false,
+            "matched_conditions": [
+              "next_meeting not_exists"
+            ],
+            "unmatched_conditions": [
+              "diff.security_blocker_appeared exists"
+            ],
+            "exceptions_checked": []
+          }
+        },
+        {
+          "case_id": "beta_cp3_k21_known_economic_buyer_trap",
+          "knowledge": "K21",
+          "gold": "DOES_NOT_APPLY",
+          "predicted": "DOES_NOT_APPLY",
+          "gold_source": "knowledge_applicability",
+          "correct": true,
+          "matcher_entry": {
+            "knowledge_id": "0c17c000-0000-4000-8000-000000000021",
+            "applies": false,
+            "matched_conditions": [
+              "stage in [\"Commercial review\",\"Technical evaluation\",\"Negotiation\"]"
+            ],
+            "unmatched_conditions": [
+              "economic_buyer is_unknown"
+            ],
+            "exceptions_checked": []
+          },
+          "invalid_conditions": [
+            {
+              "where": "Spend is already approved in writing by the customer",
+              "condition": "blockers contains \"budget approval blocker with status resolved\"",
+              "rule": "status_in_text",
+              "message": "names an item status inside the text; use an item pattern {\"text\": ..., \"status\": ...}"
+            }
+          ]
+        },
+        {
+          "case_id": "northstar_cp3_work_directly_with_sam",
+          "knowledge": "K09",
+          "gold": "APPLIES",
+          "predicted": "APPLIES",
+          "gold_source": "knowledge_applicability",
+          "correct": true,
+          "matcher_entry": {
+            "knowledge_id": "0c17c000-0000-4000-8000-000000000009",
+            "applies": true,
+            "matched_conditions": [
+              "champion_status eq \"delegated\"",
+              "diff.champion_delegated exists"
+            ],
+            "unmatched_conditions": [],
+            "exceptions_checked": [
+              {
+                "exception": "The delegate asks to include the champion",
+                "triggered": false
+              }
+            ]
+          }
+        }
+      ]
+    }
+  ]
+}

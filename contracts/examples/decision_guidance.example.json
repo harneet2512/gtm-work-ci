@@ -1,0 +1,60 @@
+{
+  "id": "06d1de00-0000-4000-8000-000000000c01",
+  "account_id": "0a0c0000-0000-4000-8000-000000000001",
+  "agent_run_id": "0f0a0000-0000-4000-8000-000000000601",
+  "state_version": 7,
+  "recommended_action": "send_email",
+  "not_recommended": [
+    {
+      "action": "Direct Marco-only thread with a meeting CTA",
+      "why": "Bypasses the active champion (K17)."
+    }
+  ],
+  "why_now": "Marco requested the security package before committing to a review date.",
+  "who_to_involve": [
+    {
+      "person_id": "0b0e0000-0000-4000-8000-000000000018",
+      "why": "Requested SOC2 + pen-test"
+    },
+    {
+      "person_id": "0b0e0000-0000-4000-8000-000000000017",
+      "why": "Active champion, commercial point of contact"
+    }
+  ],
+  "who_not_to_involve": [],
+  "recommended_channel": "email",
+  "ask_strength": "light",
+  "wait_until": null,
+  "supporting_knowledge": [
+    {
+      "knowledge_id": "0c17c000-0000-4000-8000-000000000017",
+      "applies": true,
+      "matched_conditions": [
+        "motion eq expansion",
+        "champion_status eq active",
+        "diff.new_stakeholder_entered exists"
+      ],
+      "unmatched_conditions": [],
+      "exceptions_checked": [
+        {
+          "exception": "Champion explicitly delegated ownership",
+          "triggered": false,
+          "evidence_refs": [
+            {
+              "activity_id": "0ac70000-0000-4000-8000-000000000101",
+              "quote": "Priya will stay the point of contact on the commercial side.",
+              "speaker_person_id": "0b0e0000-0000-4000-8000-000000000018",
+              "occurred_at": "2026-09-29T15:42:00Z"
+            }
+          ]
+        },
+        {
+          "exception": "Champion departed",
+          "triggered": false,
+          "evidence_refs": []
+        }
+      ]
+    }
+  ],
+  "created_at": "2026-09-29T15:42:12Z"
+}

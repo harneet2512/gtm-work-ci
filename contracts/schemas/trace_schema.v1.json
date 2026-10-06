@@ -1,0 +1,76 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://ghost.local/contracts/trace_schema.v1.json",
+  "title": "TraceSchema",
+  "description": "The canonical trace contract (HAR-97 CANONICAL EVAL STRATEGY section 3 and 11, HAR-140 / WP36): the spans a consequential DecisionEpisode must make reconstructable, in causal order, so an operator can traverse backward from an action to its causal evidence and forward to the consequences and learning it produced. The instance is contracts/traces/trace_schema.json. It names the spans and the ids each must carry; it does not implement the trace.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema_version", "description", "source", "common_fields", "spans", "traversal", "eval_result_link", "viewer_tree"],
+  "properties": {
+    "schema_version": {
+      "type": "integer",
+      "minimum": 1
+    },
+    "description": {
+      "type": "string",
+      "minLength": 1
+    },
+    "source": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["issue", "section", "fetched_on"],
+      "properties": {
+        "issue": {"const": "HAR-97"},
+        "section": {"type": "string"},
+        "fetched_on": {"type": "string", "format": "date"}
+      }
+    },
+    "common_fields": {
+      "description": "Carried by every span.",
+      "type": "array",
+      "minItems": 3,
+      "uniqueItems": true,
+      "items": {
+        "type": "string",
+        "pattern": "^[a-z_]+$"
+      }
+    },
+    "spans": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["id", "order", "label", "surfaces", "parents", "required_fields"],
+        "properties": {"id": {"type": "string", "pattern": "^[a-z_]+$"}, "order": {"type": "integer", "minimum": 1}, "label": {"type": "string", "minLength": 1}, "surfaces": {"type": "array", "minItems": 1, "uniqueItems": true, "items": {"type": "integer", "minimum": 1, "maximum": 20}}, "parents": {"description": "Span ids this span is causally derived from; earlier in order.", "type": "array", "uniqueItems": true, "items": {"type": "string", "pattern": "^[a-z_]+$"}}, "required_fields": {"type": "array", "minItems": 1, "uniqueItems": true, "items": {"type": "string", "pattern": "^[a-z_]+$"}}}
+      }
+    },
+    "traversal": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["backward_from", "forward_from"],
+      "properties": {
+        "backward_from": {"type": "string", "pattern": "^[a-z_]+$"},
+        "forward_from": {"type": "string", "pattern": "^[a-z_]+$"}
+      }
+    },
+    "eval_result_link": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["required_fields"],
+      "properties": {
+        "required_fields": {"type": "array", "minItems": 1, "uniqueItems": true, "items": {"type": "string", "pattern": "^[a-z_]+$"}}
+      }
+    },
+    "viewer_tree": {
+      "description": "HAR-97 section 11 internal trace viewer nodes, in display order.",
+      "type": "array",
+      "minItems": 1,
+      "uniqueItems": true,
+      "items": {
+        "type": "string",
+        "minLength": 1
+      }
+    }
+  }
+}

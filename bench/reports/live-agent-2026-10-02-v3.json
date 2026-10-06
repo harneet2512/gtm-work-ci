@@ -1,0 +1,501 @@
+{
+  "summary": {
+    "model": "openrouter/deepseek/deepseek-v4-flash",
+    "repeats": 5,
+    "situations": {
+      "acme_unguided": {
+        "runs": 5,
+        "errors": {},
+        "actions": {
+          "send_email": 4,
+          "share_document": 1
+        },
+        "checks": {
+          "priya_included": "5/5",
+          "marco_included": "5/5"
+        }
+      },
+      "acme_guided_k17": {
+        "runs": 5,
+        "errors": {
+          "provider_error": 3
+        },
+        "actions": {
+          "send_email": 2
+        },
+        "checks": {
+          "priya_included": "2/2",
+          "marco_included": "2/2",
+          "k17_cited": "2/2"
+        }
+      },
+      "acme_guided_wait_until_tuesday": {
+        "runs": 5,
+        "errors": {
+          "provider_error": 2
+        },
+        "actions": {
+          "wait": 3
+        },
+        "checks": {
+          "waited": "3/3",
+          "knowledge_kept": "3/3"
+        }
+      },
+      "beta_non_material": {
+        "runs": 5,
+        "errors": {},
+        "actions": {
+          "no_action": 4,
+          "wait": 1
+        },
+        "checks": {
+          "no_action": "4/5"
+        }
+      },
+      "northstar_delegation_exception": {
+        "runs": 5,
+        "errors": {
+          "provider_error": 1
+        },
+        "actions": {
+          "send_email": 4
+        },
+        "checks": {
+          "sam_included": "4/4",
+          "elena_not_forced": "4/4",
+          "k17_not_cited": "4/4"
+        }
+      }
+    }
+  },
+  "raw": {
+    "acme_unguided": [
+      {
+        "action": "send_email",
+        "recipients": {
+          "0b0e0000-0000-4000-8000-000000000018": "to",
+          "0b0e0000-0000-4000-8000-000000000017": "cc"
+        },
+        "seconds": 51.0,
+        "knowledge": [],
+        "used_guidance": false,
+        "tool_calls": 5,
+        "pulled": [
+          "/internal/ctx/state",
+          "/internal/ctx/people",
+          "/internal/ctx/activities?limit=10",
+          "/internal/ctx/evidence?field_path=blockers",
+          "/internal/ctx/commitments"
+        ]
+      },
+      {
+        "action": "send_email",
+        "recipients": {
+          "0b0e0000-0000-4000-8000-000000000018": "to",
+          "0b0e0000-0000-4000-8000-000000000017": "cc"
+        },
+        "seconds": 99.0,
+        "knowledge": [],
+        "used_guidance": false,
+        "tool_calls": 6,
+        "pulled": [
+          "/internal/ctx/state",
+          "/internal/ctx/people",
+          "/internal/ctx/activities?limit=10",
+          "/internal/ctx/commitments",
+          "/internal/ctx/evidence?field_path=blockers",
+          "/internal/ctx/state?field_path=next_milestone"
+        ]
+      },
+      {
+        "action": "send_email",
+        "recipients": {
+          "0b0e0000-0000-4000-8000-000000000018": "to",
+          "0b0e0000-0000-4000-8000-000000000017": "cc"
+        },
+        "seconds": 76.4,
+        "knowledge": [],
+        "used_guidance": false,
+        "tool_calls": 6,
+        "pulled": [
+          "/internal/ctx/state",
+          "/internal/ctx/people",
+          "/internal/ctx/activities?limit=10",
+          "/internal/ctx/evidence?field_path=blockers",
+          "/internal/ctx/commitments",
+          "/internal/ctx/state?field_path=health"
+        ]
+      },
+      {
+        "action": "share_document",
+        "recipients": {
+          "0b0e0000-0000-4000-8000-000000000018": "to",
+          "0b0e0000-0000-4000-8000-000000000017": "cc",
+          "0b0e0000-0000-4000-8000-000000000001": "cc"
+        },
+        "seconds": 74.0,
+        "knowledge": [],
+        "used_guidance": false,
+        "tool_calls": 6,
+        "pulled": [
+          "/internal/ctx/state",
+          "/internal/ctx/people",
+          "/internal/ctx/activities?limit=10",
+          "/internal/ctx/commitments",
+          "/internal/ctx/evidence?field_path=blockers",
+          "/internal/ctx/state?field_path=next_milestone"
+        ]
+      },
+      {
+        "action": "send_email",
+        "recipients": {
+          "0b0e0000-0000-4000-8000-000000000018": "to",
+          "0b0e0000-0000-4000-8000-000000000017": "cc"
+        },
+        "seconds": 68.5,
+        "knowledge": [],
+        "used_guidance": false,
+        "tool_calls": 6,
+        "pulled": [
+          "/internal/ctx/state",
+          "/internal/ctx/people",
+          "/internal/ctx/activities?limit=10",
+          "/internal/ctx/commitments",
+          "/internal/ctx/evidence?field_path=blockers",
+          "/internal/ctx/recent_diffs"
+        ]
+      }
+    ],
+    "acme_guided_k17": [
+      {
+        "action": "send_email",
+        "recipients": {
+          "0b0e0000-0000-4000-8000-000000000018": "to",
+          "0b0e0000-0000-4000-8000-000000000017": "cc"
+        },
+        "seconds": 47.2,
+        "knowledge": [
+          "0c17c000-0000-4000-8000-000000000017"
+        ],
+        "used_guidance": true,
+        "tool_calls": 6,
+        "pulled": [
+          "/internal/ctx/state?field_path=stage",
+          "/internal/ctx/state?field_path=health",
+          "/internal/ctx/state?field_path=champion",
+          "/internal/ctx/state?field_path=champion_status",
+          "/internal/ctx/state?field_path=motion",
+          "/internal/ctx/people?limit=20"
+        ]
+      },
+      {
+        "error": "provider_error",
+        "message": "skill output is malformed (fields: crm_next_step_intent.due_at)",
+        "seconds": 66.9,
+        "pulled": [
+          "/internal/ctx/state?field_path=stage",
+          "/internal/ctx/state?field_path=health",
+          "/internal/ctx/state?field_path=champion",
+          "/internal/ctx/state?field_path=champion_status",
+          "/internal/ctx/state?field_path=motion",
+          "/internal/ctx/people?limit=20"
+        ]
+      },
+      {
+        "error": "provider_error",
+        "message": "skill output is malformed (fields: crm_next_step_intent.due_at)",
+        "seconds": 49.8,
+        "pulled": [
+          "/internal/ctx/state",
+          "/internal/ctx/people",
+          "/internal/ctx/activities?field_path=stage&limit=5",
+          "/internal/ctx/commitments",
+          "/internal/ctx/evidence?field_path=champion_status",
+          "/internal/ctx/evidence?field_path=blockers"
+        ]
+      },
+      {
+        "action": "send_email",
+        "recipients": {
+          "0b0e0000-0000-4000-8000-000000000018": "to",
+          "0b0e0000-0000-4000-8000-000000000017": "cc"
+        },
+        "seconds": 85.6,
+        "knowledge": [
+          "0c17c000-0000-4000-8000-000000000017"
+        ],
+        "used_guidance": true,
+        "tool_calls": 6,
+        "pulled": [
+          "/internal/ctx/state",
+          "/internal/ctx/people",
+          "/internal/ctx/evidence?field_path=stage",
+          "/internal/ctx/activities?limit=5",
+          "/internal/ctx/commitments",
+          "/internal/ctx/evidence?field_path=champion_status"
+        ]
+      },
+      {
+        "error": "provider_error",
+        "message": "overall deadline exceeded waiting for openrouter/deepseek/deepseek-v4-flash",
+        "seconds": 161.7,
+        "pulled": [
+          "/internal/ctx/state",
+          "/internal/ctx/people",
+          "/internal/ctx/evidence?field_path=stage",
+          "/internal/ctx/activities?limit=5",
+          "/internal/ctx/commitments",
+          "/internal/ctx/evidence?field_path=champion_status"
+        ]
+      }
+    ],
+    "acme_guided_wait_until_tuesday": [
+      {
+        "error": "provider_error",
+        "message": "model output is not valid JSON",
+        "seconds": 143.2,
+        "pulled": [
+          "/internal/ctx/state",
+          "/internal/ctx/people",
+          "/internal/ctx/activities?limit=10",
+          "/internal/ctx/commitments",
+          "/internal/ctx/commitments?field_path=commitment"
+        ]
+      },
+      {
+        "action": "wait",
+        "recipients": {},
+        "seconds": 132.8,
+        "knowledge": [
+          "0c17c000-0000-4000-8000-000000000021"
+        ],
+        "used_guidance": true,
+        "tool_calls": 6,
+        "pulled": [
+          "/internal/ctx/state",
+          "/internal/ctx/people",
+          "/internal/ctx/activities",
+          "/internal/ctx/commitments",
+          "/internal/ctx/evidence?field_path=blockers",
+          "/internal/ctx/evidence?field_path=stage"
+        ]
+      },
+      {
+        "error": "provider_error",
+        "message": "overall deadline exceeded waiting for openrouter/deepseek/deepseek-v4-flash",
+        "seconds": 172.0,
+        "pulled": [
+          "/internal/ctx/state",
+          "/internal/ctx/people",
+          "/internal/ctx/activities?limit=10",
+          "/internal/ctx/commitments",
+          "/internal/ctx/evidence?field_path=blockers",
+          "/internal/ctx/state?field_path=health"
+        ]
+      },
+      {
+        "action": "wait",
+        "recipients": {},
+        "seconds": 96.7,
+        "knowledge": [
+          "0c17c000-0000-4000-8000-000000000021"
+        ],
+        "used_guidance": true,
+        "tool_calls": 5,
+        "pulled": [
+          "/internal/ctx/state",
+          "/internal/ctx/people",
+          "/internal/ctx/activities?limit=10",
+          "/internal/ctx/commitments",
+          "/internal/ctx/evidence?field_path=blockers"
+        ]
+      },
+      {
+        "action": "wait",
+        "recipients": {},
+        "seconds": 58.0,
+        "knowledge": [
+          "0c17c000-0000-4000-8000-000000000021"
+        ],
+        "used_guidance": true,
+        "tool_calls": 6,
+        "pulled": [
+          "/internal/ctx/state",
+          "/internal/ctx/people",
+          "/internal/ctx/evidence?field_path=buying_group.member",
+          "/internal/ctx/commitments",
+          "/internal/ctx/activities?limit=5",
+          "/internal/ctx/state?field_path=health"
+        ]
+      }
+    ],
+    "beta_non_material": [
+      {
+        "action": "no_action",
+        "recipients": {},
+        "seconds": 18.1,
+        "knowledge": [],
+        "used_guidance": false,
+        "tool_calls": 6,
+        "pulled": [
+          "/internal/ctx/state",
+          "/internal/ctx/people",
+          "/internal/ctx/activities?limit=10",
+          "/internal/ctx/recent_diffs",
+          "/internal/ctx/evidence",
+          "/internal/ctx/commitments"
+        ]
+      },
+      {
+        "action": "no_action",
+        "recipients": {},
+        "seconds": 24.4,
+        "knowledge": [],
+        "used_guidance": false,
+        "tool_calls": 6,
+        "pulled": [
+          "/internal/ctx/state",
+          "/internal/ctx/people",
+          "/internal/ctx/activities?limit=10",
+          "/internal/ctx/people?field_path=buying_group.member",
+          "/internal/ctx/evidence?field_path=stage",
+          "/internal/ctx/recent_diffs"
+        ]
+      },
+      {
+        "action": "no_action",
+        "recipients": {},
+        "seconds": 31.5,
+        "knowledge": [],
+        "used_guidance": false,
+        "tool_calls": 6,
+        "pulled": [
+          "/internal/ctx/state",
+          "/internal/ctx/people",
+          "/internal/ctx/activities?limit=10",
+          "/internal/ctx/recent_diffs",
+          "/internal/ctx/evidence",
+          "/internal/ctx/commitments"
+        ]
+      },
+      {
+        "action": "no_action",
+        "recipients": {},
+        "seconds": 20.9,
+        "knowledge": [],
+        "used_guidance": false,
+        "tool_calls": 6,
+        "pulled": [
+          "/internal/ctx/state",
+          "/internal/ctx/people",
+          "/internal/ctx/activities?limit=10",
+          "/internal/ctx/recent_diffs",
+          "/internal/ctx/evidence?field_path=stage",
+          "/internal/ctx/commitments"
+        ]
+      },
+      {
+        "action": "wait",
+        "recipients": {},
+        "seconds": 13.6,
+        "knowledge": [],
+        "used_guidance": false,
+        "tool_calls": 6,
+        "pulled": [
+          "/internal/ctx/state",
+          "/internal/ctx/people",
+          "/internal/ctx/activities?limit=10",
+          "/internal/ctx/people?limit=20",
+          "/internal/ctx/recent_diffs",
+          "/internal/ctx/commitments"
+        ]
+      }
+    ],
+    "northstar_delegation_exception": [
+      {
+        "error": "provider_error",
+        "message": "overall deadline exceeded waiting for openrouter/deepseek/deepseek-v4-flash",
+        "seconds": 151.1,
+        "pulled": [
+          "/internal/ctx/state",
+          "/internal/ctx/people",
+          "/internal/ctx/activities?field_path=stage&limit=5",
+          "/internal/ctx/commitments",
+          "/internal/ctx/recent_diffs",
+          "/internal/ctx/activities?limit=5"
+        ]
+      },
+      {
+        "action": "send_email",
+        "recipients": {
+          "0b0e0000-0000-4000-8000-000000000042": "to"
+        },
+        "seconds": 83.2,
+        "knowledge": [],
+        "used_guidance": false,
+        "tool_calls": 6,
+        "pulled": [
+          "/internal/ctx/state",
+          "/internal/ctx/people",
+          "/internal/ctx/activities?field_path=stage&limit=5",
+          "/internal/ctx/commitments",
+          "/internal/ctx/recent_diffs",
+          "/internal/ctx/evidence?field_path=delegation"
+        ]
+      },
+      {
+        "action": "send_email",
+        "recipients": {
+          "0b0e0000-0000-4000-8000-000000000042": "to"
+        },
+        "seconds": 61.6,
+        "knowledge": [],
+        "used_guidance": false,
+        "tool_calls": 5,
+        "pulled": [
+          "/internal/ctx/state",
+          "/internal/ctx/people",
+          "/internal/ctx/activities?limit=5",
+          "/internal/ctx/commitments",
+          "/internal/ctx/evidence?field_path=delegation"
+        ]
+      },
+      {
+        "action": "send_email",
+        "recipients": {
+          "0b0e0000-0000-4000-8000-000000000042": "to"
+        },
+        "seconds": 60.8,
+        "knowledge": [],
+        "used_guidance": false,
+        "tool_calls": 5,
+        "pulled": [
+          "/internal/ctx/state",
+          "/internal/ctx/people",
+          "/internal/ctx/activities?limit=5",
+          "/internal/ctx/evidence?field_path=delegation",
+          "/internal/ctx/commitments"
+        ]
+      },
+      {
+        "action": "send_email",
+        "recipients": {
+          "0b0e0000-0000-4000-8000-000000000042": "to"
+        },
+        "seconds": 110.4,
+        "knowledge": [],
+        "used_guidance": false,
+        "tool_calls": 6,
+        "pulled": [
+          "/internal/ctx/state",
+          "/internal/ctx/people",
+          "/internal/ctx/activities?field_path=stage&limit=5",
+          "/internal/ctx/commitments",
+          "/internal/ctx/recent_diffs",
+          "/internal/ctx/activities?limit=10"
+        ]
+      }
+    ]
+  }
+}

@@ -1,0 +1,35 @@
+{
+  "organization": {"name": "Vendor Co.", "domain": "ghostvendor.com", "product": "Relay"},
+  "people": [
+    {
+      "key": "person:dana_kim",
+      "kind": "employee",
+      "display_name": "Dana Kim",
+      "email": "dana@ghostvendor.com",
+      "title": "Account Executive",
+      "role": "AE",
+      "slack_user": "U02DANA",
+      "manager_key": "person:rachel_ortiz"
+    },
+    {
+      "key": "person:leo_park",
+      "kind": "employee",
+      "display_name": "Leo Park",
+      "email": "leo@ghostvendor.com",
+      "title": "Solutions Engineer",
+      "role": "SE",
+      "slack_user": "U02LEO",
+      "manager_key": "person:rachel_ortiz"
+    },
+    {
+      "key": "person:rachel_ortiz",
+      "kind": "employee",
+      "display_name": "Rachel Ortiz",
+      "email": "rachel@ghostvendor.com",
+      "title": "Director of Sales",
+      "role": "Manager",
+      "slack_user": "U02RACHEL",
+      "manager_key": null
+    }
+  ]
+}

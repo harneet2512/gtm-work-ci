@@ -1,0 +1,66 @@
+{
+  "manifest_id": "11111111-1111-4111-8111-111111111111",
+  "account_id": "22222222-2222-4222-8222-222222222222",
+  "opportunity_id": "33333333-3333-4333-8333-333333333333",
+  "episode": 1,
+  "total": 2,
+  "boundary": {
+    "historical_start": 1,
+    "historical_end": 1,
+    "live_start": 2,
+    "live_end": 2
+  },
+  "window": "historical",
+  "state": {
+    "version": 1,
+    "as_of": "2026-09-29T11:00:00Z",
+    "digest": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+    "document": {
+      "account_id": "22222222-2222-4222-8222-222222222222",
+      "version": 1
+    }
+  },
+  "knowledge": {
+    "as_of": "2026-09-29T11:00:00.000001Z",
+    "items": []
+  },
+  "prior_episodes": [
+    {
+      "position": 1,
+      "event_id": "44444444-4444-4444-8444-444444444444",
+      "occurred_at": "2026-09-29T11:00:00Z",
+      "source_system": "email",
+      "provenance_origin": "dataset",
+      "provenance": "crmarena-pro:b2b",
+      "released": true,
+      "held_out": false,
+      "material": false,
+      "account_change_id": null,
+      "decision_episode_id": null,
+      "state_version": 1,
+      "graph_diff_id": null,
+      "no_action_reason": "no_material_change",
+      "coalesced": false
+    }
+  ],
+  "next_event": {
+    "position": 2,
+    "event_id": "55555555-5555-4555-8555-555555555555",
+    "occurred_at": "2026-09-29T12:00:00Z",
+    "source_system": "email",
+    "provenance_origin": "dataset",
+    "provenance": "crmarena-pro:b2b",
+    "released": false,
+    "held_out": true,
+    "material": null,
+    "account_change_id": null,
+    "decision_episode_id": null,
+    "state_version": null,
+    "graph_diff_id": null,
+    "no_action_reason": null,
+    "coalesced": null
+  },
+  "can_previous": true,
+  "can_play_next": true,
+  "computed_at": "2026-10-04T05:00:00Z"
+}

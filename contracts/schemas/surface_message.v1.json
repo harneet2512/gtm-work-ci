@@ -1,0 +1,17 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://ghost.local/contracts/surface_message.v1.json",
+  "title": "SurfaceMessage",
+  "description": "HAR-136: where a surface put one of the demo's channel messages, so each is posted exactly once per subject. One row per (subject_id, surface, kind), created by a reservation BEFORE the post; ts is written once, AFTER the post, and never changes. A reservation with ts null means a post may or may not have happened (a crash between the post and the write); the surface reconciles it against the channel (Slack: conversations.history with include_all_metadata since reserved_at, matching the message metadata {subject_id, kind}) before it posts again. The subject is the DecisionEpisode for the strategy chooser (Message 2) and the judgment (Message 3), and the BusinessIntelligenceUpdate for Message 1, which exists before its episode does.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["subject_id", "surface", "kind", "channel", "ts", "reserved_at"],
+  "properties": {
+    "subject_id": { "$ref": "common.v1.json#/$defs/uuid" },
+    "surface": { "type": "string", "pattern": "^[a-z][a-z0-9_-]{0,31}$", "description": "For example slack." },
+    "kind": { "enum": ["bi", "chooser", "judgment"], "description": "bi: Message 1; chooser: Message 2; judgment: Message 3." },
+    "channel": { "type": "string", "minLength": 1, "maxLength": 64 },
+    "ts": { "oneOf": [{ "type": "string", "pattern": "^[0-9]+\\.[0-9]+$" }, { "type": "null" }], "description": "The surface's id of the posted message (Slack ts). Null until the post is recorded; write-once." },
+    "reserved_at": { "$ref": "common.v1.json#/$defs/timestamp" }
+  }
+}

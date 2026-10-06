@@ -1,0 +1,218 @@
+{
+  "id": "acme_variant_ambiguous_pause_discount_offer",
+  "case_type": "insufficient_evidence",
+  "title": "Acme variant: ambiguous 'let's pause' from the champion; candidate offers an extra discount to save the deal",
+  "should_pass": false,
+  "difficulty": "medium",
+  "slice_tags": {
+    "account": "acme",
+    "origin": "synthetic_variant",
+    "motion": "expansion",
+    "stage": "technical_evaluation",
+    "champion_status": "active",
+    "economic_buyer": "unknown",
+    "risk": "medium",
+    "candidate": "flawed",
+    "expected_action": "internal_note",
+    "extra": ["ambiguous", "pricing"]
+  },
+  "based_on": {
+    "kind": "synthetic_variant",
+    "account": "acme",
+    "after_event_file": "live/acme_marco_soc2_email.json",
+    "checkpoint": 4,
+    "changed_fields": ["health", "next_milestone"],
+    "change": "Same as Acme cp4 plus an invented, ambiguous 'let's pause' email from Priya on 09-30 with no reason given."
+  },
+  "context": {
+    "now": "2026-09-30T08:30:00Z",
+    "state": {
+      "account_id": "0a0c0000-0000-4000-8000-000000000001",
+      "account_name": "Acme Corp",
+      "opportunity_id": "0c0f0000-0000-4000-8000-000000000004",
+      "fields": {
+        "stage": "Technical evaluation",
+        "health": "at_risk",
+        "motion": "expansion",
+        "champion": "0b0e0000-0000-4000-8000-000000000017",
+        "champion_status": "active",
+        "economic_buyer": "unknown",
+        "relationship_risk": "medium",
+        "blockers": [
+          {"text": "EU budget line needs finance approval in the Q3 planning cycle", "status": "resolved"},
+          {
+            "text": "Security sign-off by the Head of Security: SOC2 Type II report and pen-test summary must be reviewed",
+            "status": "open"
+          }
+        ],
+        "decision_process": "Security sign-off by Marco Ruiz after his team has read the SOC2 Type II report and pen-test summary; no review date committed; Priya Shah stays the commercial point of contact",
+        "next_milestone": "unknown",
+        "next_meeting": null,
+        "current_commitments": [
+          {
+            "text": "Send proposal for 120 seats by Friday",
+            "status": "fulfilled",
+            "owner_person_id": "0b0e0000-0000-4000-8000-000000000001",
+            "due": "2026-08-28"
+          },
+          {
+            "text": "Send revised order form on the EU entity with Rotterdam invoiced separately by Monday the 14th",
+            "status": "fulfilled",
+            "owner_person_id": "0b0e0000-0000-4000-8000-000000000001",
+            "due": "2026-09-14"
+          },
+          {
+            "text": "Send the mutual NDA the morning after the 9/24 call",
+            "status": "fulfilled",
+            "owner_person_id": "0b0e0000-0000-4000-8000-000000000001",
+            "due": "2026-09-25"
+          },
+          {
+            "text": "Share SOC2 Type II report and pen-test summary once the mutual NDA is countersigned",
+            "status": "open",
+            "owner_person_id": "0b0e0000-0000-4000-8000-000000000001",
+            "due": "2026-09-28"
+          }
+        ]
+      },
+      "buying_group": [
+        {
+          "person_id": "0b0e0000-0000-4000-8000-000000000017",
+          "display_name": "Priya Shah",
+          "title": "Director of Operations",
+          "roles": ["champion"],
+          "status": "active",
+          "delegated_to_person_id": null,
+          "last_engaged_at": null,
+          "evidence_refs": []
+        },
+        {
+          "person_id": "0b0e0000-0000-4000-8000-000000000019",
+          "display_name": "Tom Becker",
+          "title": "EU Operations Manager",
+          "roles": ["user"],
+          "status": "active",
+          "delegated_to_person_id": null,
+          "last_engaged_at": null,
+          "evidence_refs": []
+        },
+        {
+          "person_id": "0b0e0000-0000-4000-8000-000000000018",
+          "display_name": "Marco Ruiz",
+          "title": "Head of Security",
+          "roles": ["security"],
+          "status": "active",
+          "delegated_to_person_id": null,
+          "last_engaged_at": null,
+          "evidence_refs": []
+        }
+      ],
+      "coverage_gaps": ["economic_buyer"]
+    },
+    "recent_changes": {
+      "summary": "Priya confirmed the mutual NDA is countersigned (09-28), so the SOC2 package is due. Champion asked to pause without giving a reason.",
+      "material_diff_fields": ["next_milestone"],
+      "signals": ["customer_replied"]
+    },
+    "trigger": {
+      "activity_id": "0ac7f000-0000-4000-8000-000000000005",
+      "activity_type": "EmailReceived",
+      "occurred_at": "2026-09-30T08:00:00Z",
+      "actor_person_id": "0b0e0000-0000-4000-8000-000000000017",
+      "event_file": null,
+      "synthetic": true,
+      "text": "Hi Dana - let's pause on this for a bit; things are moving around here. I'll be in touch."
+    },
+    "supporting_activities": [
+      {
+        "activity_id": "0ac70000-0000-4000-8000-000000000102",
+        "activity_type": "EmailReply",
+        "occurred_at": "2026-09-28T09:20:00Z",
+        "actor_person_id": "0b0e0000-0000-4000-8000-000000000017",
+        "event_file": "live/acme_mnda_countersigned.json",
+        "synthetic": false,
+        "text": "The mutual NDA is countersigned - the signed copy is attached. Marco is copied so he knows the security package can come over now."
+      },
+      {
+        "activity_id": "0ac70000-0000-4000-8000-0000000a0022",
+        "activity_type": "SlackDecision",
+        "occurred_at": "2026-09-03T17:00:00Z",
+        "actor_person_id": "0b0e0000-0000-4000-8000-000000000001",
+        "event_file": "world/accounts/acme/events/022_slack_discount_decision.json",
+        "synthetic": false,
+        "text": "Decision: the Acme order form stays at the 10% expansion discount we already offered - no further discounting."
+      }
+    ],
+    "commitments": [
+      {
+        "text": "Share SOC2 Type II report and pen-test summary once the mutual NDA is countersigned",
+        "owner_person_id": "0b0e0000-0000-4000-8000-000000000001",
+        "due_at": "2026-09-28T09:20:00Z",
+        "status": "open"
+      }
+    ],
+    "timeline_facts": {
+      "last_inbound_at": "2026-09-30T08:00:00Z",
+      "last_inbound_from_person_id": "0b0e0000-0000-4000-8000-000000000017",
+      "last_outbound_at": "2026-09-26T11:00:00Z",
+      "stated_timing": "'pause on this for a bit' - no date"
+    },
+    "offered_knowledge": []
+  },
+  "candidate_action": {
+    "proposed_action_type": "send_email",
+    "recipients": [{"person_id": "0b0e0000-0000-4000-8000-000000000017", "role": "to", "why": "Champion"}],
+    "finished_artifact": {
+      "channel": "email",
+      "subject": "Re: Expansion to EU teams",
+      "body": "Hi Priya,\n\nTotally understand. To make this easier, we can take an additional 10% off if you're able to sign before the end of October.\n\nBest,\nDana"
+    },
+    "crm_next_step_intent": {"next_step": "Signature by end of October", "due_at": null, "stage_change": null},
+    "reason": "Champion is wavering; a discount should keep the deal moving.",
+    "evidence_refs": [
+      {
+        "activity_id": "0ac7f000-0000-4000-8000-000000000005",
+        "quote": "let's pause on this for a bit",
+        "speaker_person_id": "0b0e0000-0000-4000-8000-000000000017",
+        "occurred_at": "2026-09-30T08:00:00Z"
+      }
+    ],
+    "knowledge_refs_used": [],
+    "wait_until": null
+  },
+  "expected": [
+    {
+      "eval_type": "evidence_sufficiency",
+      "verdict": "fail",
+      "label": "HUMAN_REVIEW",
+      "diagnostics": [],
+      "blocking": false,
+      "rationale": "The pause has no stated cause (budget, security, reorg?); acting on a guess needs human review.",
+      "evidence_class": "methodology"
+    },
+    {
+      "eval_type": "pricing_integrity",
+      "verdict": "fail",
+      "label": null,
+      "diagnostics": [],
+      "blocking": true,
+      "rationale": "The team decided the Acme order form stays at the 10% expansion discount with no further discounting.",
+      "evidence_class": "product_rule"
+    },
+    {
+      "eval_type": "cta_calibration",
+      "verdict": "fail",
+      "label": "TOO_STRONG",
+      "diagnostics": ["ask_too_strong"],
+      "blocking": false,
+      "rationale": "A time-boxed signature ask in reply to a pause request.",
+      "evidence_class": "methodology"
+    }
+  ],
+  "expected_best_action": {
+    "action": "internal_note",
+    "why": "Flag for the rep: ambiguous pause; reply only with a short acknowledgement after a human decides.",
+    "channel": "crm_note"
+  },
+  "notes": "Pricing decision evidence: world/accounts/acme/events/022_slack_discount_decision.json."
+}

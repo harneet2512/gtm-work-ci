@@ -1,0 +1,340 @@
+{
+  "event_id": "05e0ad00-0000-4000-8000-00000000ad0d",
+  "projected": true,
+  "job_ids": [
+    131,
+    132
+  ],
+  "summary": {
+    "added": 26,
+    "changed": 1,
+    "removed": 0,
+    "repaired": 0
+  },
+  "changes": [
+    {
+      "kind": "node",
+      "op": "added",
+      "type": "Conversation",
+      "id": "0ac7ad00-0000-4000-8000-00000000ad0d",
+      "props": {
+        "id": "0ac7ad00-0000-4000-8000-00000000ad0d",
+        "account_id": "0a0cad00-0000-4000-8000-00000000ad01",
+        "activity_type": "EmailReceived",
+        "source_system": "email",
+        "occurred_at": "2023-11-09T09:30:00Z",
+        "visibility": "org"
+      },
+      "source_event_ids": [
+        "05e0ad00-0000-4000-8000-00000000ad0d"
+      ],
+      "attributed_to_event": true
+    },
+    {
+      "kind": "node",
+      "op": "added",
+      "type": "Claim",
+      "id": "0c1aad00-0000-4000-8000-00000000ad27",
+      "source_event_ids": [
+        "05e0ad00-0000-4000-8000-00000000ad0d"
+      ],
+      "attributed_to_event": true
+    },
+    {
+      "kind": "node",
+      "op": "added",
+      "type": "Claim",
+      "id": "0c1aad00-0000-4000-8000-00000000ad28",
+      "source_event_ids": [
+        "05e0ad00-0000-4000-8000-00000000ad0d"
+      ],
+      "attributed_to_event": true
+    },
+    {
+      "kind": "node",
+      "op": "added",
+      "type": "Claim",
+      "id": "0c1aad00-0000-4000-8000-00000000ad29",
+      "source_event_ids": [
+        "05e0ad00-0000-4000-8000-00000000ad0d"
+      ],
+      "attributed_to_event": true
+    },
+    {
+      "kind": "node",
+      "op": "added",
+      "type": "Claim",
+      "id": "0c1aad00-0000-4000-8000-00000000ad2a",
+      "source_event_ids": [
+        "05e0ad00-0000-4000-8000-00000000ad0d"
+      ],
+      "attributed_to_event": true
+    },
+    {
+      "kind": "node",
+      "op": "added",
+      "type": "Signal",
+      "id": "051aad00-0000-4000-8000-00000000ad40",
+      "source_event_ids": [
+        "05e0ad00-0000-4000-8000-00000000ad0d"
+      ],
+      "attributed_to_event": true
+    },
+    {
+      "kind": "edge",
+      "op": "added",
+      "type": "ABOUT",
+      "id": "0ed9ad00-0000-4000-8000-00000000ad37",
+      "from": "0ac7ad00-0000-4000-8000-00000000ad0d",
+      "to": "0c0fad00-0000-4000-8000-00000000ad01",
+      "source_event_ids": [
+        "05e0ad00-0000-4000-8000-00000000ad0d"
+      ],
+      "attributed_to_event": true
+    },
+    {
+      "kind": "edge",
+      "op": "added",
+      "type": "INVOLVES",
+      "id": "0ed9ad00-0000-4000-8000-00000000ad38",
+      "from": "0ac7ad00-0000-4000-8000-00000000ad0d",
+      "to": "0b0ead00-0000-4000-8000-00000000ad11",
+      "source_event_ids": [
+        "05e0ad00-0000-4000-8000-00000000ad0d"
+      ],
+      "attributed_to_event": true
+    },
+    {
+      "kind": "edge",
+      "op": "added",
+      "type": "INVOLVES",
+      "id": "0ed9ad00-0000-4000-8000-00000000ad39",
+      "from": "0ac7ad00-0000-4000-8000-00000000ad0d",
+      "to": "0b0ead00-0000-4000-8000-00000000ad21",
+      "source_event_ids": [
+        "05e0ad00-0000-4000-8000-00000000ad0d"
+      ],
+      "attributed_to_event": true
+    },
+    {
+      "kind": "edge",
+      "op": "added",
+      "type": "ABOUT_ACCOUNT",
+      "id": "claim:0c1aad00-0000-4000-8000-00000000ad27:ABOUT_ACCOUNT",
+      "from": "0c1aad00-0000-4000-8000-00000000ad27",
+      "to": "0a0cad00-0000-4000-8000-00000000ad01",
+      "source_event_ids": [
+        "05e0ad00-0000-4000-8000-00000000ad0d"
+      ],
+      "attributed_to_event": true
+    },
+    {
+      "kind": "edge",
+      "op": "added",
+      "type": "ABOUT_OPPORTUNITY",
+      "id": "claim:0c1aad00-0000-4000-8000-00000000ad27:ABOUT_OPPORTUNITY",
+      "from": "0c1aad00-0000-4000-8000-00000000ad27",
+      "to": "0c0fad00-0000-4000-8000-00000000ad01",
+      "source_event_ids": [
+        "05e0ad00-0000-4000-8000-00000000ad0d"
+      ],
+      "attributed_to_event": true
+    },
+    {
+      "kind": "edge",
+      "op": "added",
+      "type": "SUPPORTED_BY",
+      "id": "claim:0c1aad00-0000-4000-8000-00000000ad27:SUPPORTED_BY",
+      "from": "0c1aad00-0000-4000-8000-00000000ad27",
+      "to": "0ac7ad00-0000-4000-8000-00000000ad0d",
+      "source_event_ids": [
+        "05e0ad00-0000-4000-8000-00000000ad0d"
+      ],
+      "attributed_to_event": true
+    },
+    {
+      "kind": "edge",
+      "op": "added",
+      "type": "ABOUT_ACCOUNT",
+      "id": "claim:0c1aad00-0000-4000-8000-00000000ad28:ABOUT_ACCOUNT",
+      "from": "0c1aad00-0000-4000-8000-00000000ad28",
+      "to": "0a0cad00-0000-4000-8000-00000000ad01",
+      "source_event_ids": [
+        "05e0ad00-0000-4000-8000-00000000ad0d"
+      ],
+      "attributed_to_event": true
+    },
+    {
+      "kind": "edge",
+      "op": "added",
+      "type": "ABOUT_OPPORTUNITY",
+      "id": "claim:0c1aad00-0000-4000-8000-00000000ad28:ABOUT_OPPORTUNITY",
+      "from": "0c1aad00-0000-4000-8000-00000000ad28",
+      "to": "0c0fad00-0000-4000-8000-00000000ad01",
+      "source_event_ids": [
+        "05e0ad00-0000-4000-8000-00000000ad0d"
+      ],
+      "attributed_to_event": true
+    },
+    {
+      "kind": "edge",
+      "op": "added",
+      "type": "SUPPORTED_BY",
+      "id": "claim:0c1aad00-0000-4000-8000-00000000ad28:SUPPORTED_BY",
+      "from": "0c1aad00-0000-4000-8000-00000000ad28",
+      "to": "0ac7ad00-0000-4000-8000-00000000ad0d",
+      "source_event_ids": [
+        "05e0ad00-0000-4000-8000-00000000ad0d"
+      ],
+      "attributed_to_event": true
+    },
+    {
+      "kind": "edge",
+      "op": "added",
+      "type": "ABOUT_ACCOUNT",
+      "id": "claim:0c1aad00-0000-4000-8000-00000000ad29:ABOUT_ACCOUNT",
+      "from": "0c1aad00-0000-4000-8000-00000000ad29",
+      "to": "0a0cad00-0000-4000-8000-00000000ad01",
+      "source_event_ids": [
+        "05e0ad00-0000-4000-8000-00000000ad0d"
+      ],
+      "attributed_to_event": true
+    },
+    {
+      "kind": "edge",
+      "op": "added",
+      "type": "ABOUT_OPPORTUNITY",
+      "id": "claim:0c1aad00-0000-4000-8000-00000000ad29:ABOUT_OPPORTUNITY",
+      "from": "0c1aad00-0000-4000-8000-00000000ad29",
+      "to": "0c0fad00-0000-4000-8000-00000000ad01",
+      "source_event_ids": [
+        "05e0ad00-0000-4000-8000-00000000ad0d"
+      ],
+      "attributed_to_event": true
+    },
+    {
+      "kind": "edge",
+      "op": "added",
+      "type": "SUPPORTED_BY",
+      "id": "claim:0c1aad00-0000-4000-8000-00000000ad29:SUPPORTED_BY",
+      "from": "0c1aad00-0000-4000-8000-00000000ad29",
+      "to": "0ac7ad00-0000-4000-8000-00000000ad0d",
+      "source_event_ids": [
+        "05e0ad00-0000-4000-8000-00000000ad0d"
+      ],
+      "attributed_to_event": true
+    },
+    {
+      "kind": "edge",
+      "op": "added",
+      "type": "ABOUT_ACCOUNT",
+      "id": "claim:0c1aad00-0000-4000-8000-00000000ad2a:ABOUT_ACCOUNT",
+      "from": "0c1aad00-0000-4000-8000-00000000ad2a",
+      "to": "0a0cad00-0000-4000-8000-00000000ad01",
+      "source_event_ids": [
+        "05e0ad00-0000-4000-8000-00000000ad0d"
+      ],
+      "attributed_to_event": true
+    },
+    {
+      "kind": "edge",
+      "op": "added",
+      "type": "ABOUT_OPPORTUNITY",
+      "id": "claim:0c1aad00-0000-4000-8000-00000000ad2a:ABOUT_OPPORTUNITY",
+      "from": "0c1aad00-0000-4000-8000-00000000ad2a",
+      "to": "0c0fad00-0000-4000-8000-00000000ad01",
+      "source_event_ids": [
+        "05e0ad00-0000-4000-8000-00000000ad0d"
+      ],
+      "attributed_to_event": true
+    },
+    {
+      "kind": "edge",
+      "op": "added",
+      "type": "SUPPORTED_BY",
+      "id": "claim:0c1aad00-0000-4000-8000-00000000ad2a:SUPPORTED_BY",
+      "from": "0c1aad00-0000-4000-8000-00000000ad2a",
+      "to": "0ac7ad00-0000-4000-8000-00000000ad0d",
+      "source_event_ids": [
+        "05e0ad00-0000-4000-8000-00000000ad0d"
+      ],
+      "attributed_to_event": true
+    },
+    {
+      "kind": "edge",
+      "op": "added",
+      "type": "ABOUT_ACCOUNT",
+      "id": "signal:051aad00-0000-4000-8000-00000000ad40:ABOUT_ACCOUNT:0a0cad00-0000-4000-8000-00000000ad01",
+      "from": "051aad00-0000-4000-8000-00000000ad40",
+      "to": "0a0cad00-0000-4000-8000-00000000ad01",
+      "source_event_ids": [
+        "05e0ad00-0000-4000-8000-00000000ad0d"
+      ],
+      "attributed_to_event": true
+    },
+    {
+      "kind": "edge",
+      "op": "added",
+      "type": "ABOUT_OPPORTUNITY",
+      "id": "signal:051aad00-0000-4000-8000-00000000ad40:ABOUT_OPPORTUNITY:0c0fad00-0000-4000-8000-00000000ad01",
+      "from": "051aad00-0000-4000-8000-00000000ad40",
+      "to": "0c0fad00-0000-4000-8000-00000000ad01",
+      "source_event_ids": [
+        "05e0ad00-0000-4000-8000-00000000ad0d"
+      ],
+      "attributed_to_event": true
+    },
+    {
+      "kind": "edge",
+      "op": "added",
+      "type": "ABOUT_PERSON",
+      "id": "signal:051aad00-0000-4000-8000-00000000ad40:ABOUT_PERSON:0b0ead00-0000-4000-8000-00000000ad11",
+      "from": "051aad00-0000-4000-8000-00000000ad40",
+      "to": "0b0ead00-0000-4000-8000-00000000ad11",
+      "source_event_ids": [
+        "05e0ad00-0000-4000-8000-00000000ad0d"
+      ],
+      "attributed_to_event": true
+    },
+    {
+      "kind": "edge",
+      "op": "added",
+      "type": "DERIVED_FROM",
+      "id": "signal:051aad00-0000-4000-8000-00000000ad40:DERIVED_FROM:0c1aad00-0000-4000-8000-00000000ad27",
+      "from": "051aad00-0000-4000-8000-00000000ad40",
+      "to": "0c1aad00-0000-4000-8000-00000000ad27",
+      "source_event_ids": [
+        "05e0ad00-0000-4000-8000-00000000ad0d"
+      ],
+      "attributed_to_event": true
+    },
+    {
+      "kind": "edge",
+      "op": "added",
+      "type": "DERIVED_FROM",
+      "id": "signal:051aad00-0000-4000-8000-00000000ad40:DERIVED_FROM:0ac7ad00-0000-4000-8000-00000000ad0d",
+      "from": "051aad00-0000-4000-8000-00000000ad40",
+      "to": "0ac7ad00-0000-4000-8000-00000000ad0d",
+      "source_event_ids": [
+        "05e0ad00-0000-4000-8000-00000000ad0d"
+      ],
+      "attributed_to_event": true
+    },
+    {
+      "kind": "node",
+      "op": "changed",
+      "type": "Claim",
+      "id": "0c1aad00-0000-4000-8000-00000000ad2b",
+      "changed": {
+        "status": {
+          "before": "active",
+          "after": "superseded"
+        }
+      },
+      "source_event_ids": [
+        "05e0ad00-0000-4000-8000-00000000ad0d"
+      ],
+      "attributed_to_event": true
+    }
+  ]
+}

@@ -1,0 +1,63 @@
+{
+  "description": "Org-change and seller email templates of the synthetic layer v1 (spec sections b, c). Same register and length as the CRMArena-Pro emails. Plain business language only: no rule, feature or outcome wording (the leakage test scans this file).",
+  "champion_leaves": {
+    "subject": "Personal update",
+    "bodies": [
+      "Hi {seller_first},\n\nI wanted to let you know personally that I will be leaving {company} at the end of this month to take on a new role elsewhere. It has been a pleasure working with you on {product}, and I appreciate the time you have invested in understanding our needs.\n\nI am making sure the notes from our conversations are passed on so nothing is lost in the handover. Someone from the team will be in touch once responsibilities are confirmed.\n\nThank you again for everything.\n\nBest regards,\n\n{buyer_full}\n{company}"
+    ]
+  },
+  "champion_moves": {
+    "subject": "Change in my responsibilities",
+    "bodies": [
+      "Hi {seller_first},\n\nA quick note to let you know that I am moving into a different area within {company} and will no longer be the main person looking after {product} on our side. It has been good working with you, and I want to make sure the conversation continues smoothly.\n\nI will share my notes internally so whoever picks this up has the full picture. Expect to hear from them once the new arrangement is settled.\n\nKind regards,\n\n{buyer_full}\n{company}"
+    ]
+  },
+  "reorg_announced": {
+    "subject": "Organisational changes at {company}",
+    "bodies": [
+      "Hi {seller_first},\n\nI wanted to give you a heads-up that {company} is going through a restructure this quarter. Several teams are being combined, and some responsibilities, including ownership of the work we have been discussing on {product}, are being reassigned.\n\nOnce the new structure is confirmed I will let you know who your main contact will be. Until then, please bear with us if responses take a little longer than usual.\n\nBest,\n\n{buyer_full}\n{company}"
+    ]
+  },
+  "written_handover": {
+    "subject": "Handing over to {other_name}",
+    "bodies": [
+      "Hi {seller_first},\n\nFrom here on, {other_name} will take the lead on {product} for {company} and has my full support to make decisions on the evaluation. Please work with {other_name} directly; there is no need to keep me in the loop on the day-to-day details.\n\nThank you for being so responsive so far. I am confident the project is in good hands.\n\nBest regards,\n\n{buyer_full}\n{company}"
+    ]
+  },
+  "expansion_interest": {
+    "subject": "Interest from our team in {product}",
+    "bodies": [
+      "Hi {seller_first},\n\nI lead one of the business units at {company}, and after the recent changes here our group has been looking at {product} as well. The results the existing team reported caught our attention, and we would like to understand how it could support our work too.\n\nCould you share what a rollout to another group typically involves and what the next steps would be? I would be glad to set up a short call with the right people.\n\nKind regards,\n\n{buyer_full}\n{company}"
+    ]
+  },
+  "stakeholder_intro": {
+    "subject": "Introduction",
+    "bodies": [
+      "Hi {seller_first},\n\nI have recently joined the conversations about {product} at {company} and wanted to introduce myself. I will be helping the team assess how it fits with our current setup, so you can expect a few questions from me over the coming weeks.\n\nLooking forward to working with you.\n\nBest,\n\n{buyer_full}\n{company}"
+    ]
+  },
+  "seller_note": {
+    "subject": "{product}: a quick introduction",
+    "bodies": [
+      "Hi {buyer_first},\n\nI am working with your colleagues at {company} on {product} and wanted to reach out to you directly, as your perspective on how the work runs day to day would be valuable. If it is useful, I would be happy to walk you through how other teams have set things up and hear what matters most on your side.\n\nWould a short conversation in the next couple of weeks suit you?\n\nBest regards,\n\n{seller_full}"
+    ]
+  },
+  "seller_value": {
+    "subject": "Re: pricing for {product}",
+    "bodies": [
+      "Hi {buyer_first},\n\nThank you for being open about the budget. I would like to keep the proposal as it stands and instead show you where the return comes from: the time your team saves each week, the reduced effort on routine reviews, and the support that is included from day one.\n\nI have put together a short summary of those numbers for {company}. Could we go through it together this week?\n\nBest regards,\n\n{seller_full}"
+    ]
+  },
+  "seller_technical": {
+    "subject": "Re: your questions on {product}",
+    "bodies": [
+      "Hi {buyer_first},\n\nThank you for the detailed questions. Short answers are below, and I am happy to go deeper on any of them. In brief, {product} works alongside the tools you already use, setup typically takes a few weeks, and access controls can be configured to match your current policies.\n\nIf it helps, we can set up a working session to go through the specifics with your team.\n\nBest regards,\n\n{seller_full}"
+    ]
+  },
+  "seller_outreach": {
+    "subject": "{product} at {company}",
+    "bodies": [
+      "Hi {buyer_first},\n\nI understand you have recently become involved in the discussions about {product} at {company}. Welcome, and thank you for taking the time. I would be glad to bring you up to speed on where things stand and answer any questions you have.\n\nWould a short call next week work for you?\n\nBest regards,\n\n{seller_full}"
+    ]
+  }
+}

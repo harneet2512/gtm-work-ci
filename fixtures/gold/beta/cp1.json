@@ -1,0 +1,209 @@
+{
+  "account": "beta",
+  "checkpoint": 1,
+  "after_event_file": "world/accounts/beta/events/020_crm_opp_stage_commercial_review.json",
+  "as_of": "2026-09-04T10:00:00Z",
+  "notes": "Scoping done, business case delivered; CFO Owen Clarke is the named economic buyer.",
+  "expected": {
+    "distinct_activities": 20,
+    "entities": [
+      {
+        "key": "account:beta",
+        "kind": "account",
+        "display_name": "Beta Inc",
+        "source_identities": ["crm:account:BE-7", "domain:beta.io"]
+      },
+      {
+        "key": "document:beta_business_case",
+        "kind": "document",
+        "display_name": "Beta Support Rollout Business Case",
+        "source_identities": ["docs:gdrive:beta-business-case-v1"]
+      },
+      {
+        "key": "opportunity:beta_expansion",
+        "kind": "opportunity",
+        "display_name": "Beta - support org rollout",
+        "source_identities": ["crm:opp:BE-7-EXP"]
+      },
+      {
+        "key": "person:dana_kim",
+        "kind": "person",
+        "display_name": "Dana Kim",
+        "source_identities": ["call:call-beta-0826:speaker_01", "email:dana@ghostvendor.com", "slack:U02DANA"]
+      },
+      {
+        "key": "person:hannah_lee",
+        "kind": "person",
+        "display_name": "Hannah Lee",
+        "source_identities": ["call:call-beta-0826:speaker_02", "crm:contact:903", "email:hannah.lee@beta.io"]
+      },
+      {
+        "key": "person:jess_patel",
+        "kind": "person",
+        "display_name": "Jess Patel",
+        "source_identities": ["call:call-beta-0826:speaker_03", "crm:contact:915", "email:jess.patel@beta.io"]
+      },
+      {
+        "key": "person:leo_park",
+        "kind": "person",
+        "display_name": "Leo Park",
+        "source_identities": ["call:call-beta-0826:speaker_04", "email:leo@ghostvendor.com"]
+      },
+      {
+        "key": "person:owen_clarke",
+        "kind": "person",
+        "display_name": "Owen Clarke",
+        "source_identities": ["crm:contact:907", "email:owen.clarke@beta.io"]
+      }
+    ],
+    "edges": [
+      {"src": "opportunity:beta_expansion", "rel_type": "belongs_to", "dst": "account:beta"},
+      {"src": "person:dana_kim", "rel_type": "owns", "dst": "opportunity:beta_expansion"},
+      {"src": "person:leo_park", "rel_type": "supports", "dst": "opportunity:beta_expansion"},
+      {"src": "person:hannah_lee", "rel_type": "works_at", "dst": "account:beta"},
+      {
+        "src": "person:hannah_lee",
+        "rel_type": "champion_for",
+        "dst": "opportunity:beta_expansion"
+      },
+      {"src": "person:owen_clarke", "rel_type": "works_at", "dst": "account:beta"},
+      {
+        "src": "person:owen_clarke",
+        "rel_type": "economic_buyer_for",
+        "dst": "opportunity:beta_expansion"
+      },
+      {"src": "person:jess_patel", "rel_type": "works_at", "dst": "account:beta"},
+      {"src": "person:jess_patel", "rel_type": "influences", "dst": "opportunity:beta_expansion"},
+      {
+        "src": "document:beta_business_case",
+        "rel_type": "shared_with",
+        "dst": "person:hannah_lee"
+      }
+    ],
+    "state_fields": {
+      "stage": "Commercial review",
+      "health": "on_track",
+      "owner": "person:dana_kim",
+      "motion": "expansion",
+      "champion": "person:hannah_lee",
+      "champion_status": "active",
+      "economic_buyer": "person:owen_clarke",
+      "blockers": "unknown",
+      "objections": "unknown",
+      "decision_criteria": [
+        {"text": "15 percent drop in average handle time, shown with the Austin pilot"},
+        {"text": "Live before the December ticket surge"}
+      ],
+      "decision_process": "CFO Owen Clarke signs off on spend over $100k based on a business case; Hannah Lee takes it to him",
+      "current_commitments": [
+        {
+          "text": "Send business case with the Austin pilot numbers by Tuesday",
+          "status": "fulfilled",
+          "owner": "person:dana_kim",
+          "due": "2026-09-01"
+        },
+        {
+          "text": "Take the business case to Owen Clarke on Friday",
+          "status": "open",
+          "owner": "person:hannah_lee",
+          "due": "2026-09-04"
+        }
+      ],
+      "next_milestone": "Owen Clarke reviews the business case",
+      "next_meeting": null,
+      "relationship_risk": "low",
+      "product_use_case": "Relay for the full support org: ~140 agents across Austin and Dublin",
+      "commercial_issue": "unknown",
+      "last_customer_interaction": "2026-09-02T13:15:00Z"
+    },
+    "buying_group": [
+      {
+        "person_key": "person:hannah_lee",
+        "roles": ["champion"],
+        "status": "active",
+        "title": "VP Customer Operations"
+      },
+      {
+        "person_key": "person:owen_clarke",
+        "roles": ["economic_buyer"],
+        "status": "unknown",
+        "title": "Chief Financial Officer"
+      },
+      {
+        "person_key": "person:jess_patel",
+        "roles": ["user"],
+        "status": "active",
+        "title": "Support Operations Manager"
+      }
+    ],
+    "coverage_gaps": [],
+    "material_diff_fields": [
+      "stage",
+      "health",
+      "owner",
+      "motion",
+      "champion",
+      "champion_status",
+      "economic_buyer",
+      "decision_criteria",
+      "decision_process",
+      "current_commitments",
+      "next_milestone",
+      "next_meeting",
+      "relationship_risk",
+      "product_use_case",
+      "buying_group"
+    ],
+    "signals": [
+      "customer_replied",
+      "expansion_interest",
+      "meeting_accepted",
+      "new_stakeholder_entered",
+      "stage_advanced"
+    ],
+    "trigger": {
+      "workflow": "post_interaction_followup",
+      "eligible": false,
+      "reason_codes": ["no_relevant_signal"]
+    },
+    "critical_facts": [
+      {
+        "field": "champion",
+        "value": "person:hannah_lee",
+        "evidence_event_file": "world/accounts/beta/events/016_crm_note_scoping.json",
+        "evidence_quote": "Hannah Lee champions the support-org rollout"
+      },
+      {
+        "field": "economic_buyer",
+        "value": "person:owen_clarke",
+        "evidence_event_file": "world/accounts/beta/events/005_email_hannah_scope_reply.json",
+        "evidence_quote": "Owen Clarke, our CFO, signs off on anything over $100k"
+      },
+      {
+        "field": "decision_criteria",
+        "value": "15 percent drop in average handle time, shown with the Austin pilot",
+        "evidence_event_file": "world/accounts/beta/events/015_call_scope_transcript.json",
+        "evidence_quote": "If we can show a 15 percent drop in average handle time, the business case makes itself."
+      },
+      {
+        "field": "commitment",
+        "value": "Send business case with the Austin pilot numbers by Tuesday",
+        "evidence_event_file": "world/accounts/beta/events/015_call_scope_transcript.json",
+        "evidence_quote": "I'll send a business case with the Austin pilot numbers by Tuesday."
+      },
+      {
+        "field": "stage",
+        "value": "Commercial review",
+        "evidence_event_file": "world/accounts/beta/events/020_crm_opp_stage_commercial_review.json",
+        "evidence_quote": null
+      },
+      {
+        "field": "motion",
+        "value": "expansion",
+        "evidence_event_file": "world/accounts/beta/events/002_crm_opp_created.json",
+        "evidence_quote": null
+      }
+    ],
+    "stale_facts": []
+  }
+}

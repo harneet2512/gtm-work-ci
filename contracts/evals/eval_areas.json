@@ -1,0 +1,127 @@
+{
+  "areas_version": 1,
+  "description": "How persisted EvalResults roll up into the four product areas of the HAR-145 Ghost Eval Control Plane. An EvalResult's eval_type belongs to exactly one registry family (contracts/evals/eval_registry.json, E1-E22), and each family to exactly one area. HAR-145 puts the whole decision and feedback loop under Decision & Learning, decision construction and ranking, the human interaction, edit propagation, action generation, tool use, execution, knowledge mutation and its later use, so E5-E17 are all there. The three buckets and their gates (eval_registry.json) organise the evals inside the areas; they do not replace them. Cliff / Experience holds the messages and no eval family; System is operational only (E18-E22). The operational diagnostics M1-M5 are metrics, never evals, and belong to no area (they are served as OperationalMetrics). family_spans says which TraceSpan kind (episode_trace.v1.json) an EvalResult of a family is attached to by default; an eval whose span differs says so in the registry (`span_kind`). The validation and safety families E18-E22 have no span and are listed on the trace as unassigned. grounding and timing_cadence are each split by what they judge: decision_grounding / decision_timing (E8: the strategy) and artifact_grounding / artifact_timing (E12: the action artifact), so no judge serves two evals; the two older names remain until the split judges ship and each serves one eval. core-go/internal/evalarea mirrors this file; a parity test keeps them identical.",
+  "source": {
+    "issue": "HAR-145",
+    "section": "API / data contracts required from backend (EvalFamilySummary)",
+    "note": "The registry links E-evals to catalog types many-to-many and leaves 13 catalog types unlinked; this file picks the one primary family per type, and a test checks it is one of the registry's own links where the registry has any."
+  },
+  "areas": [
+    {
+      "id": "intelligence",
+      "label": "Intelligence",
+      "order": 1,
+      "families": [
+        "E1",
+        "E2",
+        "E3",
+        "E4"
+      ]
+    },
+    {
+      "id": "decision_learning",
+      "label": "Decision & Learning",
+      "order": 2,
+      "families": [
+        "E5",
+        "E6",
+        "E7",
+        "E8",
+        "E9",
+        "E10",
+        "E11",
+        "E12",
+        "E13",
+        "E14",
+        "E15",
+        "E16",
+        "E17"
+      ]
+    },
+    {
+      "id": "cliff_experience",
+      "label": "Cliff / Experience",
+      "order": 3,
+      "families": []
+    },
+    {
+      "id": "system",
+      "label": "System",
+      "order": 4,
+      "families": [
+        "E18",
+        "E19",
+        "E20",
+        "E21",
+        "E22"
+      ]
+    }
+  ],
+  "metric_families": [
+    "M1",
+    "M2",
+    "M3",
+    "M4",
+    "M5"
+  ],
+  "family_spans": {
+    "E1": "evidence",
+    "E2": "resolution",
+    "E3": "graph_mutation",
+    "E4": "state",
+    "E5": "precedents",
+    "E6": "knowledge_applicable",
+    "E7": "knowledge_used",
+    "E8": "candidates",
+    "E9": "ranking",
+    "E10": "human_interaction",
+    "E11": "recomputed_action",
+    "E12": "candidates",
+    "E13": "tool_call",
+    "E14": "execution",
+    "E15": "knowledge_mutation",
+    "E16": "knowledge_used",
+    "E17": "knowledge_mutation"
+  },
+  "eval_types": {
+    "action_stage_fit": "E8",
+    "artifact_grounding": "E12",
+    "artifact_timing": "E12",
+    "business_case": "E8",
+    "buyer_readiness": "E8",
+    "champion_continuity": "E8",
+    "champion_strength": "E8",
+    "channel_appropriateness": "E12",
+    "commitment_consistency": "E12",
+    "crm_writeback": "E13",
+    "cta_calibration": "E12",
+    "customer_risk_sensitivity": "E8",
+    "date_commitment_consistency": "E12",
+    "decision_grounding": "E8",
+    "decision_process": "E8",
+    "decision_timing": "E8",
+    "duplicate_action": "E14",
+    "economic_buyer_coverage": "E8",
+    "evidence_sufficiency": "E9",
+    "exception_awareness": "E6",
+    "expansion_readiness": "E8",
+    "grounding": "E12",
+    "human_delta": "E10",
+    "knowledge_applicability": "E6",
+    "momentum": "E8",
+    "next_action_quality": "E8",
+    "next_step_quality": "E12",
+    "permission_policy": "E13",
+    "pricing_integrity": "E12",
+    "provenance_coverage": "E1",
+    "recipient_correctness": "E12",
+    "relationship_pressure": "E8",
+    "rep_style": "E12",
+    "stakeholder_coverage": "E8",
+    "stakeholder_selection": "E8",
+    "state_change_relevance": "E8",
+    "state_transition_support": "E4",
+    "timing_cadence": "E8",
+    "trajectory": "E18"
+  }
+}

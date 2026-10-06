@@ -1,0 +1,274 @@
+{
+  "account": "acme",
+  "checkpoint": 3,
+  "after_event_file": "world/accounts/acme/events/044_email_dana_security_review_ask.json",
+  "as_of": "2026-09-26T11:00:00Z",
+  "notes": "End of world/. Marco (security) enters; blocker becomes security/SOC2; CRM stage Technical evaluation; rep proposed an Oct 1 review that was never accepted.",
+  "expected": {
+    "distinct_activities": 43,
+    "entities": [
+      {
+        "key": "account:acme",
+        "kind": "account",
+        "display_name": "Acme Corp",
+        "source_identities": ["crm:account:AC-4", "domain:acme.com"]
+      },
+      {
+        "key": "document:acme_mnda",
+        "kind": "document",
+        "display_name": "Acme - Vendor Co. Mutual NDA",
+        "source_identities": ["docs:gdrive:acme-mnda-2026"]
+      },
+      {
+        "key": "document:acme_proposal",
+        "kind": "document",
+        "display_name": "Acme EU Rollout Proposal",
+        "source_identities": ["docs:gdrive:acme-eu-proposal-v1"]
+      },
+      {
+        "key": "opportunity:acme_expansion",
+        "kind": "opportunity",
+        "display_name": "Acme - EU rollout expansion",
+        "source_identities": ["crm:opp:AC-4-EXP"]
+      },
+      {
+        "key": "person:dana_kim",
+        "kind": "person",
+        "display_name": "Dana Kim",
+        "source_identities": [
+          "call:call-acme-0825:speaker_01",
+          "call:call-acme-0909:speaker_01",
+          "call:call-acme-0924:speaker_01",
+          "email:dana@ghostvendor.com",
+          "slack:U02DANA"
+        ]
+      },
+      {
+        "key": "person:leo_park",
+        "kind": "person",
+        "display_name": "Leo Park",
+        "source_identities": [
+          "call:call-acme-0825:speaker_04",
+          "call:call-acme-0924:speaker_05",
+          "email:leo@ghostvendor.com"
+        ]
+      },
+      {
+        "key": "person:marco_ruiz",
+        "kind": "person",
+        "display_name": "Marco Ruiz",
+        "source_identities": ["call:call-acme-0924:speaker_03", "crm:contact:842", "email:marco.ruiz@acme.com"]
+      },
+      {
+        "key": "person:priya_shah",
+        "kind": "person",
+        "display_name": "Priya Shah",
+        "source_identities": [
+          "call:call-acme-0825:speaker_02",
+          "call:call-acme-0909:speaker_02",
+          "call:call-acme-0924:speaker_02",
+          "crm:contact:817",
+          "email:priya.shah@acme.com"
+        ]
+      },
+      {
+        "key": "person:rachel_ortiz",
+        "kind": "person",
+        "display_name": "Rachel Ortiz",
+        "source_identities": ["email:rachel@ghostvendor.com", "slack:U02RACHEL"]
+      },
+      {
+        "key": "person:tom_becker",
+        "kind": "person",
+        "display_name": "Tom Becker",
+        "source_identities": [
+          "call:call-acme-0825:speaker_03",
+          "call:call-acme-0924:speaker_04",
+          "crm:contact:829",
+          "email:tom.becker@acme.com"
+        ]
+      }
+    ],
+    "edges": [
+      {"src": "opportunity:acme_expansion", "rel_type": "belongs_to", "dst": "account:acme"},
+      {"src": "person:dana_kim", "rel_type": "owns", "dst": "opportunity:acme_expansion"},
+      {"src": "person:leo_park", "rel_type": "supports", "dst": "opportunity:acme_expansion"},
+      {"src": "person:priya_shah", "rel_type": "works_at", "dst": "account:acme"},
+      {"src": "person:tom_becker", "rel_type": "works_at", "dst": "account:acme"},
+      {
+        "src": "person:priya_shah",
+        "rel_type": "champion_for",
+        "dst": "opportunity:acme_expansion"
+      },
+      {"src": "person:tom_becker", "rel_type": "influences", "dst": "opportunity:acme_expansion"},
+      {"src": "document:acme_proposal", "rel_type": "shared_with", "dst": "person:priya_shah"},
+      {"src": "document:acme_proposal", "rel_type": "shared_with", "dst": "person:tom_becker"},
+      {"src": "person:marco_ruiz", "rel_type": "works_at", "dst": "account:acme"},
+      {"src": "person:marco_ruiz", "rel_type": "influences", "dst": "opportunity:acme_expansion"},
+      {"src": "document:acme_mnda", "rel_type": "shared_with", "dst": "person:priya_shah"},
+      {"src": "document:acme_mnda", "rel_type": "shared_with", "dst": "person:marco_ruiz"}
+    ],
+    "state_fields": {
+      "stage": "Technical evaluation",
+      "health": "at_risk",
+      "owner": "person:dana_kim",
+      "motion": "expansion",
+      "champion": "person:priya_shah",
+      "champion_status": "active",
+      "economic_buyer": "unknown",
+      "blockers": [
+        {
+          "text": "EU budget line needs finance approval in the Q3 planning cycle",
+          "status": "resolved"
+        },
+        {
+          "text": "Security sign-off by the Head of Security: SOC2 Type II report and pen-test summary must be reviewed",
+          "status": "open"
+        }
+      ],
+      "objections": "unknown",
+      "decision_criteria": [
+        {"text": "EU sites run the same workflows as the US sites"},
+        {"text": "Berlin and Rotterdam live before the January peak"}
+      ],
+      "decision_process": "Security sign-off by Marco Ruiz (Head of Security) is the last gate before signature; Priya Shah remains the commercial point of contact",
+      "current_commitments": [
+        {
+          "text": "Send proposal for 120 seats by Friday",
+          "status": "fulfilled",
+          "owner": "person:dana_kim",
+          "due": "2026-08-28"
+        },
+        {
+          "text": "Send revised order form on the EU entity with Rotterdam invoiced separately by Monday the 14th",
+          "status": "fulfilled",
+          "owner": "person:dana_kim",
+          "due": "2026-09-14"
+        },
+        {
+          "text": "Send the mutual NDA the morning after the 9/24 call",
+          "status": "fulfilled",
+          "owner": "person:dana_kim",
+          "due": "2026-09-25"
+        },
+        {
+          "text": "Share SOC2 Type II report and pen-test summary once the mutual NDA is countersigned",
+          "status": "open",
+          "owner": "person:dana_kim"
+        }
+      ],
+      "next_milestone": "Security review of the SOC2 Type II report and pen-test summary",
+      "next_meeting": null,
+      "relationship_risk": "medium",
+      "product_use_case": "Relay rollout to the Berlin (~70 users) and Rotterdam (~50 users) warehouses",
+      "commercial_issue": "Order form on the EU entity Acme Logistics B.V. with the Rotterdam site invoiced separately",
+      "last_customer_interaction": "2026-09-24T14:47:00Z"
+    },
+    "buying_group": [
+      {
+        "person_key": "person:priya_shah",
+        "roles": ["champion"],
+        "status": "active",
+        "title": "Director of Operations"
+      },
+      {
+        "person_key": "person:tom_becker",
+        "roles": ["user"],
+        "status": "active",
+        "title": "EU Operations Manager"
+      },
+      {
+        "person_key": "person:marco_ruiz",
+        "roles": ["security"],
+        "status": "new",
+        "title": "Head of Security"
+      }
+    ],
+    "coverage_gaps": ["economic_buyer"],
+    "material_diff_fields": [
+      "stage",
+      "health",
+      "blockers",
+      "decision_process",
+      "current_commitments",
+      "next_milestone",
+      "relationship_risk",
+      "buying_group"
+    ],
+    "signals": [
+      "customer_replied",
+      "meeting_accepted",
+      "new_stakeholder_entered",
+      "security_blocker_appeared",
+      "stage_advanced"
+    ],
+    "trigger": {
+      "workflow": "post_interaction_followup",
+      "eligible": false,
+      "reason_codes": ["rep_already_replied"]
+    },
+    "critical_facts": [
+      {
+        "field": "stage",
+        "value": "Technical evaluation",
+        "evidence_event_file": "world/accounts/acme/events/041_crm_opp_stage_tech_eval.json",
+        "evidence_quote": null
+      },
+      {
+        "field": "buying_group.member",
+        "value": "person:marco_ruiz",
+        "evidence_event_file": "world/accounts/acme/events/033_email_priya_security_signoff.json",
+        "evidence_quote": "our Head of Security, Marco Ruiz, has to sign off on the vendor",
+        "subject": "person:marco_ruiz"
+      },
+      {
+        "field": "blockers",
+        "value": "Security sign-off by the Head of Security: SOC2 Type II report and pen-test summary must be reviewed",
+        "evidence_event_file": "world/accounts/acme/events/040_call_signature_transcript.json",
+        "evidence_quote": "For any vendor touching that data I need to see your SOC2 Type II report and your latest pen-test summary before I can sign off."
+      },
+      {
+        "field": "champion",
+        "value": "person:priya_shah",
+        "evidence_event_file": "world/accounts/acme/events/033_email_priya_security_signoff.json",
+        "evidence_quote": "I'm still your point of contact on the commercial side"
+      },
+      {
+        "field": "stakeholder_role",
+        "value": "Security approver",
+        "evidence_event_file": "world/accounts/acme/events/042_crm_contact_marco_role.json",
+        "evidence_quote": null,
+        "subject": "person:marco_ruiz"
+      },
+      {
+        "field": "commitment",
+        "value": "Share SOC2 Type II report and pen-test summary once the mutual NDA is countersigned",
+        "evidence_event_file": "world/accounts/acme/events/040_call_signature_transcript.json",
+        "evidence_quote": "We can share both as soon as the mutual NDA is countersigned."
+      },
+      {
+        "field": "economic_buyer",
+        "value": "unknown",
+        "evidence_event_file": "world/accounts/acme/events/014_crm_note_scoping.json",
+        "evidence_quote": "Economic buyer not identified - Priya says finance decides as a committee."
+      }
+    ],
+    "stale_facts": [
+      {
+        "field": "stage",
+        "stale_value": "Negotiation",
+        "source_event_file": "world/accounts/acme/events/025_call_commercial_transcript.json"
+      },
+      {
+        "field": "blockers",
+        "stale_value": "open: EU budget line needs finance approval in the Q3 planning cycle",
+        "source_event_file": "world/accounts/acme/events/012_call_scope_transcript.json"
+      },
+      {
+        "field": "next_meeting",
+        "stale_value": "2026-10-01 security review (proposed by the rep, never accepted)",
+        "source_event_file": "world/accounts/acme/events/044_email_dana_security_review_ask.json"
+      }
+    ]
+  }
+}

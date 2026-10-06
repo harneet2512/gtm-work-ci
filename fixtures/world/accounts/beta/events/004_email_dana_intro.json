@@ -1,0 +1,22 @@
+{
+  "source_system": "email",
+  "source_object_id": "<ghost-dana-2026-08-19@ghostvendor.com>",
+  "source_event_key": "sent",
+  "occurred_at": "2026-08-19T14:00:00Z",
+  "connector": "gmail",
+  "connector_version": "0.1.0",
+  "payload": {
+    "kind": "email",
+    "direction": "outbound",
+    "message_id": "<ghost-dana-2026-08-19@ghostvendor.com>",
+    "thread_id": "thr-beta-support-rollout",
+    "in_reply_to": null,
+    "from": {"email": "dana@ghostvendor.com", "name": "Dana Kim"},
+    "to": [{"email": "hannah.lee@beta.io", "name": "Hannah Lee"}],
+    "cc": [],
+    "date": "2026-08-19T14:00:00Z",
+    "subject": "Relay for the Beta support org",
+    "body_text": "Hi Hannah,\nFollowing up on your note at the quarterly review - we'd love to help bring Relay from Customer Ops to the full support org. Could we find 45 minutes next week to scope it?\nBest,\nDana",
+    "crm_opportunity_ref": "opp:BE-7-EXP"
+  }
+}

@@ -1,0 +1,170 @@
+{
+  "id": "acme_cp1_follow_up_thirty_minutes_after_proposal",
+  "case_type": "no_action",
+  "title": "Acme cp1: triggered by the internal 'proposal sent' Slack note, candidate chases Priya 30 minutes after the proposal",
+  "should_pass": false,
+  "difficulty": "easy",
+  "slice_tags": {
+    "account": "acme",
+    "origin": "checkpoint",
+    "motion": "expansion",
+    "stage": "discovery",
+    "champion_status": "active",
+    "economic_buyer": "unknown",
+    "risk": "low",
+    "candidate": "flawed",
+    "expected_action": "no_action",
+    "extra": ["internal_trigger", "non_material"]
+  },
+  "based_on": {
+    "kind": "checkpoint",
+    "account": "acme",
+    "after_event_file": "world/accounts/acme/events/017_slack_proposal_sent.json",
+    "checkpoint": 1,
+    "changed_fields": [],
+    "change": null
+  },
+  "context": {
+    "now": "2026-08-28T15:35:00Z",
+    "state": {
+      "account_id": "0a0c0000-0000-4000-8000-000000000001",
+      "account_name": "Acme Corp",
+      "opportunity_id": "0c0f0000-0000-4000-8000-000000000004",
+      "fields": {
+        "stage": "Discovery",
+        "health": "on_track",
+        "motion": "expansion",
+        "champion": "0b0e0000-0000-4000-8000-000000000017",
+        "champion_status": "active",
+        "economic_buyer": "unknown",
+        "relationship_risk": "low",
+        "blockers": [{"text": "EU budget line needs finance approval in the Q3 planning cycle", "status": "open"}],
+        "next_milestone": "Finance approval of the EU budget line"
+      },
+      "buying_group": [
+        {
+          "person_id": "0b0e0000-0000-4000-8000-000000000017",
+          "display_name": "Priya Shah",
+          "title": "Director of Operations",
+          "roles": ["champion"],
+          "status": "active",
+          "delegated_to_person_id": null,
+          "last_engaged_at": null,
+          "evidence_refs": []
+        },
+        {
+          "person_id": "0b0e0000-0000-4000-8000-000000000019",
+          "display_name": "Tom Becker",
+          "title": "EU Operations Manager",
+          "roles": ["user"],
+          "status": "active",
+          "delegated_to_person_id": null,
+          "last_engaged_at": null,
+          "evidence_refs": []
+        }
+      ],
+      "coverage_gaps": ["economic_buyer"]
+    },
+    "recent_changes": {
+      "summary": "Internal Slack note after the proposal email; no new customer activity.",
+      "material_diff_fields": [
+        "stage",
+        "health",
+        "owner",
+        "motion",
+        "champion",
+        "champion_status",
+        "blockers",
+        "decision_criteria",
+        "decision_process",
+        "current_commitments",
+        "next_milestone",
+        "next_meeting",
+        "relationship_risk",
+        "product_use_case",
+        "buying_group",
+        "coverage_gaps"
+      ],
+      "signals": ["customer_replied", "expansion_interest", "meeting_accepted", "new_stakeholder_entered", "stakeholder_gap"]
+    },
+    "trigger": {
+      "activity_id": "0ac70000-0000-4000-8000-0000000a0017",
+      "activity_type": "SlackMessage",
+      "occurred_at": "2026-08-28T15:30:00Z",
+      "actor_person_id": "0b0e0000-0000-4000-8000-000000000001",
+      "event_file": "world/accounts/acme/events/017_slack_proposal_sent.json",
+      "synthetic": false,
+      "text": "Proposal sent to Priya: 120 seats, $156k/yr. Finance approval of the EU budget line is still the open item."
+    },
+    "supporting_activities": [],
+    "commitments": [],
+    "timeline_facts": {
+      "last_inbound_at": "2026-08-19T09:12:00Z",
+      "last_inbound_from_person_id": "0b0e0000-0000-4000-8000-000000000017",
+      "last_outbound_at": "2026-08-28T15:00:00Z",
+      "stated_timing": "Finance decides in the Q3 planning cycle"
+    },
+    "offered_knowledge": []
+  },
+  "candidate_action": {
+    "proposed_action_type": "send_email",
+    "recipients": [{"person_id": "0b0e0000-0000-4000-8000-000000000017", "role": "to", "why": "Champion"}],
+    "finished_artifact": {
+      "channel": "email",
+      "subject": "Re: Acme EU rollout - proposal",
+      "body": "Hi Priya,\n\nJust following up on the proposal I sent earlier - any initial thoughts? Would love to get a signature date on the calendar.\n\nBest,\nDana"
+    },
+    "crm_next_step_intent": {"next_step": "Signature date", "due_at": null, "stage_change": null},
+    "reason": "Keep momentum after sending the proposal.",
+    "evidence_refs": [
+      {
+        "activity_id": "0ac70000-0000-4000-8000-0000000a0017",
+        "quote": "Proposal sent to Priya: 120 seats, $156k/yr.",
+        "speaker_person_id": "0b0e0000-0000-4000-8000-000000000001",
+        "occurred_at": "2026-08-28T15:30:00Z"
+      }
+    ],
+    "knowledge_refs_used": [],
+    "wait_until": null
+  },
+  "expected": [
+    {
+      "eval_type": "next_action_quality",
+      "verdict": "fail",
+      "label": "NO_ACTION",
+      "diagnostics": [],
+      "blocking": true,
+      "rationale": "The trigger is our own internal note; the proposal went out 35 minutes ago and finance decides in the planning cycle.",
+      "evidence_class": "methodology"
+    },
+    {
+      "eval_type": "buyer_readiness",
+      "verdict": "fail",
+      "label": "NO_ACTION_NEEDED",
+      "diagnostics": [],
+      "blocking": false,
+      "rationale": "Nothing has changed on the buyer side.",
+      "evidence_class": "methodology"
+    },
+    {
+      "eval_type": "relationship_pressure",
+      "verdict": "fail",
+      "label": null,
+      "diagnostics": [],
+      "blocking": false,
+      "rationale": "Chasing within the hour, with a signature ask, is pressure without a reason.",
+      "evidence_class": "cs_ops"
+    },
+    {
+      "eval_type": "cta_calibration",
+      "verdict": "fail",
+      "label": "TOO_STRONG",
+      "diagnostics": ["ask_too_strong"],
+      "blocking": false,
+      "rationale": "Signature-date ask while the budget line is unapproved.",
+      "evidence_class": "methodology"
+    }
+  ],
+  "expected_best_action": {"action": "no_action", "why": "Gold Acme cp1: trigger ineligible (no_material_change)."},
+  "notes": "Internal events must not cause customer-facing chases."
+}
