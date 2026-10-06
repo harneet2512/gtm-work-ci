@@ -1,0 +1,73 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://ghost.local/contracts/eval_run.v1.json",
+  "title": "EvalRun",
+  "description": "HAR-145: the eval run of one agent run: the persisted EvalResults (eval_runs rows) of that run's candidates, counted. An EvalRun is not a separate stored object: its id is the agent run id, so every EvalResult already belongs to exactly one. Counts are real tallies of persisted EvalResults, never a percentage or a score: pass, warn, fail and unknown (an `abstain` verdict: the evaluator ran and could not judge). An eval judged not relevant has no EvalResult and is not counted here. `previous_eval_run_id` is the account's previous episode's EvalRun by run creation time (null for its first). It is the previous EPISODE of the account (an earlier run, normally for a different event), not a re-run of the same trigger, so a delta mixes a new event with any change in the system and does not say what a change did. GET /eval-runs/compare is the before/after of one trigger.  every delta is this run's count minus that run's, or null when there is no previous run. The area roll-up uses contracts/evals/eval_areas.json. Operational metrics (tokens, latency, cost) are not evals and are not here.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "id", "account_id", "account_name", "decision_episode_id", "run_status", "evaluated_at", "result_count",
+    "counts", "areas", "previous_eval_run_id"
+  ],
+  "properties": {
+    "id": { "$ref": "common.v1.json#/$defs/uuid", "description": "The agent run id." },
+    "account_id": { "$ref": "common.v1.json#/$defs/uuid" },
+    "account_name": { "type": "string" },
+    "decision_episode_id": { "oneOf": [{ "$ref": "common.v1.json#/$defs/uuid" }, { "type": "null" }] },
+    "run_status": { "$ref": "agent_run.v1.json#/properties/status" },
+    "evaluated_at": { "$ref": "common.v1.json#/$defs/timestamp", "description": "created_at of the run's newest EvalResult: the replay clock when the run is a replay, so it orders results within an account but is not the write time." },
+    "result_count": { "type": "integer", "minimum": 1, "description": "Equals counts.total; kept so a consumer can show 'n results' without reading counts." },
+    "counts": { "$ref": "#/$defs/counts" },
+    "areas": {
+      "description": "The four areas in display order, always all four; an area with no results has measured false and zero counts (it is not measured, not healthy).",
+      "type": "array",
+      "minItems": 4,
+      "maxItems": 4,
+      "items": { "$ref": "#/$defs/areaCounts" }
+    },
+    "previous_eval_run_id": { "oneOf": [{ "$ref": "common.v1.json#/$defs/uuid" }, { "type": "null" }] }
+  },
+  "$defs": {
+    "areaId": { "$ref": "eval_areas.v1.json#/$defs/areaId" },
+    "counts": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["pass", "warn", "fail", "unknown", "blocking_fail", "total"],
+      "properties": {
+        "pass": { "type": "integer", "minimum": 0 },
+        "warn": { "type": "integer", "minimum": 0 },
+        "fail": { "type": "integer", "minimum": 0 },
+        "unknown": { "type": "integer", "minimum": 0, "description": "Verdict abstain." },
+        "blocking_fail": { "type": "integer", "minimum": 0, "description": "Of the fails, those that block the send (EvalResult.blocking)." },
+        "total": { "type": "integer", "minimum": 0, "description": "pass + warn + fail + unknown." }
+      }
+    },
+    "countsDelta": {
+      "description": "this - previous for every count; a negative number is a decrease.",
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["pass", "warn", "fail", "unknown", "blocking_fail", "total"],
+      "properties": {
+        "pass": { "type": "integer" },
+        "warn": { "type": "integer" },
+        "fail": { "type": "integer" },
+        "unknown": { "type": "integer" },
+        "blocking_fail": { "type": "integer" },
+        "total": { "type": "integer" }
+      }
+    },
+    "areaCounts": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["area", "label", "order", "measured", "counts", "delta"],
+      "properties": {
+        "area": { "$ref": "#/$defs/areaId" },
+        "label": { "type": "string" },
+        "order": { "type": "integer", "minimum": 1, "maximum": 4 },
+        "measured": { "type": "boolean", "description": "True when at least one EvalResult of the area exists in this run." },
+        "counts": { "$ref": "#/$defs/counts" },
+        "delta": { "oneOf": [{ "type": "null" }, { "$ref": "#/$defs/countsDelta" }] }
+      }
+    }
+  }
+}

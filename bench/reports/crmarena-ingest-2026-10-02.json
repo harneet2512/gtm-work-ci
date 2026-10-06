@@ -1,0 +1,67 @@
+{
+  "activities": 15306,
+  "activities_by_type": {
+    "CRMFieldChanged": 1975,
+    "CRMTaskLogged": 4782,
+    "ChatTranscriptReady": 58,
+    "ContactAdded": 886,
+    "ContractSigned": 163,
+    "EmailReceived": 1822,
+    "EmailReply": 423,
+    "EmailSent": 2932,
+    "OpportunityStageChanged": 1170,
+    "OrderPlaced": 163,
+    "QuoteCreated": 704,
+    "SupportTicketOpened": 153,
+    "SupportTicketResolved": 75
+  },
+  "unresolved": 0,
+  "unresolved_by_reason": {},
+  "activities_per_account": {
+    "entities": 101,
+    "min": 65,
+    "median": 151,
+    "p90": 205,
+    "max": 239,
+    "mean": 151.54455445544554
+  },
+  "activities_per_deal": {
+    "entities": 1170,
+    "min": 2,
+    "median": 11,
+    "p90": 18,
+    "max": 35,
+    "mean": 11.854700854700855
+  },
+  "opportunity_hint_without_opportunity_by_type": {},
+  "entities": {
+    "accounts": 101,
+    "accounts_with_domain": 101,
+    "activities_with_opportunity": 13870,
+    "contacts": 886,
+    "current_identity_mappings": 3412,
+    "employees": 167,
+    "opportunities": 1170,
+    "opportunities_with_owner": 1170
+  },
+  "open_edges_by_rel_and_standing": {
+    "about/first_party_record": 15306,
+    "belongs_to/crm_explicit": 1170,
+    "involves/first_party_record": 17927,
+    "owns/crm_explicit": 1170,
+    "participated_in/first_party_record": 16755,
+    "works_at/crm_explicit": 886
+  },
+  "resolution_anomalies": {
+    "accounts_sharing_a_name": 0,
+    "accounts_without_activity": 0,
+    "activities_on_another_accounts_deal": 0,
+    "contacts_at_our_domain": 0,
+    "contacts_created_by_email_domain_rule": 0,
+    "contacts_with_two_open_works_at": 0,
+    "contacts_without_account": 0,
+    "opportunities_without_belongs_to": 0,
+    "participants_without_person": 2842,
+    "people_participants_without_person": 0
+  }
+}

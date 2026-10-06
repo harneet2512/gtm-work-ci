@@ -1,0 +1,200 @@
+{
+  "id": "beta_variant_hannah_stepping_back_asks_day_to_day_owner",
+  "case_type": "under_threading",
+  "title": "Beta variant: the champion will have much less time; the candidate asks whom to work with day to day and keeps her on milestones",
+  "should_pass": true,
+  "difficulty": "hard",
+  "slice_tags": {
+    "account": "beta",
+    "origin": "synthetic_variant",
+    "motion": "expansion",
+    "stage": "technical_evaluation",
+    "champion_status": "weakening",
+    "economic_buyer": "known",
+    "risk": "medium",
+    "candidate": "good",
+    "expected_action": "send_email",
+    "extra": ["champion_weakening"]
+  },
+  "based_on": {
+    "kind": "synthetic_variant",
+    "account": "beta",
+    "after_event_file": "world/accounts/beta/events/037_crm_contact_ravi_role.json",
+    "checkpoint": 3,
+    "changed_fields": ["champion_status", "buying_group", "decision_process", "next_milestone", "current_commitments"],
+    "change": "Beta on 09-18 plus an invented email from Hannah: she moves to APAC in October, stays sponsor, has much less time day to day."
+  },
+  "context": {
+    "now": "2026-09-18T15:00:00Z",
+    "state": {
+      "account_id": "0a0c0000-0000-4000-8000-000000000002",
+      "account_name": "Beta Inc",
+      "opportunity_id": "0c0f0000-0000-4000-8000-000000000005",
+      "fields": {
+        "stage": "Technical evaluation",
+        "health": "at_risk",
+        "motion": "expansion",
+        "champion": "0b0e0000-0000-4000-8000-000000000031",
+        "champion_status": "weakening",
+        "economic_buyer": "0b0e0000-0000-4000-8000-000000000032",
+        "relationship_risk": "medium",
+        "blockers": [
+          {
+            "text": "EU data residency for the Dublin team's ticket data (where EU ticket data is stored and processed)",
+            "status": "open"
+          }
+        ],
+        "decision_process": "Ravi Menon must confirm where EU ticket data is stored before Beta goes further; Owen Clarke already approved the budget",
+        "next_milestone": "Ravi confirms where EU ticket data is stored",
+        "current_commitments": [
+          {
+            "text": "Pull the data residency addendum and sub-processor list for Ravi",
+            "status": "open",
+            "owner_person_id": "0b0e0000-0000-4000-8000-000000000002"
+          }
+        ]
+      },
+      "buying_group": [
+        {
+          "person_id": "0b0e0000-0000-4000-8000-000000000031",
+          "display_name": "Hannah Lee",
+          "title": "VP Customer Operations",
+          "roles": ["champion"],
+          "status": "weakening",
+          "delegated_to_person_id": null,
+          "last_engaged_at": null,
+          "evidence_refs": []
+        },
+        {
+          "person_id": "0b0e0000-0000-4000-8000-000000000032",
+          "display_name": "Owen Clarke",
+          "title": "Chief Financial Officer",
+          "roles": ["economic_buyer"],
+          "status": "unknown",
+          "delegated_to_person_id": null,
+          "last_engaged_at": null,
+          "evidence_refs": []
+        },
+        {
+          "person_id": "0b0e0000-0000-4000-8000-000000000033",
+          "display_name": "Jess Patel",
+          "title": "Support Operations Manager",
+          "roles": ["user"],
+          "status": "active",
+          "delegated_to_person_id": null,
+          "last_engaged_at": null,
+          "evidence_refs": []
+        },
+        {
+          "person_id": "0b0e0000-0000-4000-8000-000000000034",
+          "display_name": "Ravi Menon",
+          "title": "Head of Platform Engineering",
+          "roles": ["technical_evaluator"],
+          "status": "active",
+          "delegated_to_person_id": null,
+          "last_engaged_at": null,
+          "evidence_refs": []
+        }
+      ],
+      "coverage_gaps": []
+    },
+    "recent_changes": {
+      "summary": "Hannah will move to APAC in October: stays sponsor, much less day-to-day time; Ravi is still on residency.",
+      "material_diff_fields": [],
+      "signals": ["customer_replied", "champion_weakened"]
+    },
+    "trigger": {
+      "activity_id": "0ac7f000-0000-4000-8000-000000000010",
+      "activity_type": "EmailReceived",
+      "occurred_at": "2026-09-18T14:00:00Z",
+      "actor_person_id": "0b0e0000-0000-4000-8000-000000000031",
+      "event_file": null,
+      "synthetic": true,
+      "text": "Hi Dana - heads-up: I'm moving over to lead our APAC support build-out from October. I'll stay the sponsor for this rollout, but I'll have much less time day to day. Ravi is still working through the residency question.\nHannah"
+    },
+    "supporting_activities": [],
+    "commitments": [
+      {
+        "text": "Pull the data residency addendum and sub-processor list for Ravi",
+        "owner_person_id": "0b0e0000-0000-4000-8000-000000000002",
+        "due_at": null,
+        "status": "open"
+      }
+    ],
+    "timeline_facts": {
+      "last_inbound_at": "2026-09-18T14:00:00Z",
+      "last_inbound_from_person_id": "0b0e0000-0000-4000-8000-000000000031",
+      "last_outbound_at": "2026-09-17T16:00:00Z",
+      "stated_timing": "Hannah moves to APAC from October"
+    },
+    "offered_knowledge": []
+  },
+  "candidate_action": {
+    "proposed_action_type": "send_email",
+    "recipients": [{"person_id": "0b0e0000-0000-4000-8000-000000000031", "role": "to", "why": "Champion and sponsor"}],
+    "finished_artifact": {
+      "channel": "email",
+      "subject": "Re: APAC move",
+      "body": "Hi Hannah,\n\nCongratulations on the APAC role, and thanks for the heads-up. Who would you like us to work with day to day from October - Ravi on the technical side, and Jess for the Dublin rollout? We'll keep you on the milestones that need your sign-off.\n\nBest,\nDana"
+    },
+    "crm_next_step_intent": {"next_step": "Hannah names a day-to-day owner", "due_at": null, "stage_change": null},
+    "reason": "Secure a day-to-day owner while the champion stays sponsor.",
+    "evidence_refs": [
+      {
+        "activity_id": "0ac7f000-0000-4000-8000-000000000010",
+        "quote": "I'll stay the sponsor for this rollout, but I'll have much less time day to day.",
+        "speaker_person_id": "0b0e0000-0000-4000-8000-000000000031",
+        "occurred_at": "2026-09-18T14:00:00Z"
+      }
+    ],
+    "knowledge_refs_used": [],
+    "wait_until": null
+  },
+  "expected": [
+    {
+      "eval_type": "champion_strength",
+      "verdict": "pass",
+      "label": null,
+      "diagnostics": [],
+      "blocking": false,
+      "rationale": "Responds to a weakening champion by asking her to name a day-to-day owner while keeping her as sponsor.",
+      "evidence_class": "methodology",
+      "debatable": true,
+      "debate_note": "Some reviewers would wait until October before asking, so it does not read as writing her off."
+    },
+    {
+      "eval_type": "champion_continuity",
+      "verdict": "pass",
+      "label": "CHAMPION_INCLUDED",
+      "diagnostics": [],
+      "blocking": false,
+      "rationale": "Hannah stays the addressee and keeps sign-off milestones.",
+      "evidence_class": "methodology"
+    },
+    {
+      "eval_type": "stakeholder_coverage",
+      "verdict": "pass",
+      "label": "RIGHT_SIZED",
+      "diagnostics": [],
+      "blocking": false,
+      "rationale": "Plans the threading through Ravi and Jess that the deal will need.",
+      "evidence_class": "deal_data"
+    },
+    {
+      "eval_type": "next_step_quality",
+      "verdict": "pass",
+      "label": null,
+      "diagnostics": [],
+      "blocking": false,
+      "rationale": "One clear question with an owner (Hannah names the day-to-day contact).",
+      "evidence_class": "deal_data"
+    }
+  ],
+  "expected_best_action": {
+    "action": "send_email",
+    "why": "Exactly this.",
+    "recipients": [{"person_id": "0b0e0000-0000-4000-8000-000000000031", "role": "to"}],
+    "channel": "email"
+  },
+  "notes": "Hard should-pass: a champion who is weakening but not gone."
+}

@@ -1,0 +1,43 @@
+{
+  "wording_version": 1,
+  "description": "Example excerpt with two eval types and two diagnostics. The full wording table is contracts/evals/eval_wording.json.",
+  "verdicts": {
+    "fail": { "order": 0, "label": "Fail", "icon": "x-circle", "slack_emoji": ":x:" },
+    "warn": { "order": 1, "label": "Warn", "icon": "alert-triangle", "slack_emoji": ":warning:" },
+    "abstain": { "order": 2, "label": "Unsure", "icon": "help-circle", "slack_emoji": ":grey_question:" },
+    "pass": { "order": 3, "label": "Pass", "icon": "check-circle", "slack_emoji": ":white_check_mark:" },
+    "not_relevant": { "order": 4, "label": "Not relevant", "icon": "minus-circle", "slack_emoji": ":heavy_minus_sign:" }
+  },
+  "not_checked": { "order": 5, "label": "Not checked", "icon": "dashed-circle", "slack_emoji": ":white_circle:" },
+  "evidence_classes": {
+    "deal_data": { "tag": "Deal evidence", "meaning": "Backed by observed deal behaviour and the buyer's own words." },
+    "methodology": { "tag": "Sales methodology", "meaning": "Backed by established enterprise-sales practice (MEDDPICC, mutual action plans), not by this deal's data." },
+    "cs_ops": { "tag": "CS practice", "meaning": "Backed by customer-success operations: adoption, health, risk and support signals." },
+    "product_rule": { "tag": "Policy rule", "meaning": "A hard product or policy rule, checked by code." }
+  },
+  "graders": { "deterministic": "Rule check", "semantic": "AI judge", "trace": "Run audit", "human_delta": "Edit analysis" },
+  "eval_types": {
+    "cta_calibration": { "name": "CTA calibration", "question": "Is the ask the right size for where the buyer is?" },
+    "stakeholder_selection": { "name": "Stakeholder fit", "question": "Are the right people on this action?" }
+  },
+  "diagnostics": { "too_early": "Too early", "champion_bypassed": "Champion bypassed" },
+  "policy_reasons": {
+    "expansion_motion": "an expansion ask",
+    "pricing_push": "a pricing push",
+    "commercial_escalation": "a commercial escalation",
+    "broad_outreach": "broad executive outreach",
+    "expansion_label_mismatch": "an expansion ask labelled as something else"
+  },
+  "phrases": {
+    "ghost_pick": "Ghost's pick",
+    "human_choice": "Chosen by {actor}",
+    "blocking": "Blocks send",
+    "send_blocked": "Send is blocked: {eval} still fails.",
+    "after_edit": "{eval} {from} → {to} after your edit",
+    "not_reevaluated": "Not re-evaluated yet",
+    "not_relevant_summary": "Not relevant here ({count})",
+    "evidence": "Evidence",
+    "dispute": "This eval is wrong",
+    "held_for_review": "Held for review: {reasons} while the account change is unconfirmed."
+  }
+}

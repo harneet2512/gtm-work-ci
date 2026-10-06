@@ -1,0 +1,1549 @@
+{
+  "run": {
+    "id": "0f0aad00-0000-4000-8000-00000000ad60",
+    "account_id": "0a0cad00-0000-4000-8000-00000000ad01",
+    "opportunity_id": "0c0fad00-0000-4000-8000-00000000ad01",
+    "workflow": "post_interaction_followup",
+    "run_mode": "dry_run",
+    "status": "recorded",
+    "trigger_evaluation_id": "07e1ad00-0000-4000-8000-00000000ad50",
+    "trigger_activity_ids": [
+      "0ac7ad00-0000-4000-8000-00000000ad0d"
+    ],
+    "correlation_id": "0c0cad00-0000-4000-8000-00000000ad80",
+    "state_version": 108,
+    "input_context_refs": [
+      {
+        "tool": "state",
+        "access_id": 2101,
+        "returned_ids": [
+          "0a0cad00-0000-4000-8000-00000000ad01"
+        ],
+        "bytes": 3410
+      },
+      {
+        "tool": "evidence",
+        "access_id": 2102,
+        "returned_ids": [
+          "0c1aad00-0000-4000-8000-00000000ad27",
+          "0c1aad00-0000-4000-8000-00000000ad28",
+          "0c1aad00-0000-4000-8000-00000000ad2a"
+        ],
+        "bytes": 1180
+      }
+    ],
+    "output": {
+      "proposed_action_type": "send_email",
+      "recipients": [
+        {
+          "person_id": "0b0ead00-0000-4000-8000-00000000ad11",
+          "role": "to",
+          "why": "Asked the cost question and for the call"
+        }
+      ],
+      "finished_artifact": {
+        "channel": "email",
+        "subject": "Re: Feedback request on proposal draft",
+        "body": "Hi Fatoumata,\n\nThank you for the questions. A call is a good idea: would Monday, November 13 at 10:00 or Tuesday, November 14 at 14:00 suit you?\n\nBefore the call I will send a breakdown of the long-term costs of running EduTech Lab and SecureData Nexus alongside your existing systems, so we can spend the time on your questions rather than the numbers. I can also bring our implementation lead to cover the onboarding support your team mentioned.\n\nBest regards,\nLuis",
+        "attachments": []
+      },
+      "crm_next_step_intent": {
+        "next_step": "Follow-up call with Fatoumata on long-term costs",
+        "due_at": null,
+        "stage_change": null
+      },
+      "reason": "Fatoumata asked about long-term integration costs and for a follow-up call.",
+      "evidence_refs": [
+        {
+          "activity_id": "0ac7ad00-0000-4000-8000-00000000ad0d",
+          "claim_id": "0c1aad00-0000-4000-8000-00000000ad27",
+          "quote": "That said, I have some questions regarding the long-term cost implications of integrating both the EduTech Lab and the SecureData Nexus into our existing systems.",
+          "speaker_person_id": "0b0ead00-0000-4000-8000-00000000ad11",
+          "occurred_at": "2023-11-09T09:30:00Z"
+        },
+        {
+          "activity_id": "0ac7ad00-0000-4000-8000-00000000ad0d",
+          "claim_id": "0c1aad00-0000-4000-8000-00000000ad28",
+          "quote": "Could we schedule a follow-up call to discuss these points in more detail?",
+          "speaker_person_id": "0b0ead00-0000-4000-8000-00000000ad11",
+          "occurred_at": "2023-11-09T09:30:00Z"
+        }
+      ],
+      "knowledge_refs_used": [],
+      "wait_until": null
+    },
+    "evidence_refs": [
+      {
+        "activity_id": "0ac7ad00-0000-4000-8000-00000000ad0d",
+        "claim_id": "0c1aad00-0000-4000-8000-00000000ad27",
+        "quote": "That said, I have some questions regarding the long-term cost implications of integrating both the EduTech Lab and the SecureData Nexus into our existing systems.",
+        "speaker_person_id": "0b0ead00-0000-4000-8000-00000000ad11",
+        "occurred_at": "2023-11-09T09:30:00Z"
+      },
+      {
+        "activity_id": "0ac7ad00-0000-4000-8000-00000000ad0d",
+        "claim_id": "0c1aad00-0000-4000-8000-00000000ad28",
+        "quote": "Could we schedule a follow-up call to discuss these points in more detail?",
+        "speaker_person_id": "0b0ead00-0000-4000-8000-00000000ad11",
+        "occurred_at": "2023-11-09T09:30:00Z"
+      }
+    ],
+    "knowledge_refs_used": [],
+    "model": "qwen/qwen3.8-flash",
+    "steps": [
+      {
+        "seq": 1,
+        "step": "build_context",
+        "status": "succeeded",
+        "started_at": "2023-11-09T09:30:12Z",
+        "finished_at": "2023-11-09T09:30:14Z",
+        "external_effect_id": null,
+        "detail": {}
+      },
+      {
+        "seq": 2,
+        "step": "draft",
+        "status": "succeeded",
+        "started_at": "2023-11-09T09:30:14Z",
+        "finished_at": "2023-11-09T09:31:08Z",
+        "external_effect_id": null,
+        "detail": {}
+      },
+      {
+        "seq": 3,
+        "step": "crm_intent",
+        "status": "recorded",
+        "started_at": "2023-11-09T09:31:08Z",
+        "finished_at": "2023-11-09T09:31:08Z",
+        "external_effect_id": null,
+        "detail": {}
+      },
+      {
+        "seq": 4,
+        "step": "await_human",
+        "status": "succeeded",
+        "started_at": "2023-11-09T09:31:30Z",
+        "finished_at": "2023-11-09T09:58:00Z",
+        "external_effect_id": null,
+        "detail": {}
+      },
+      {
+        "seq": 5,
+        "step": "execute",
+        "status": "recorded",
+        "started_at": "2023-11-09T09:58:02Z",
+        "finished_at": "2023-11-09T09:58:03Z",
+        "external_effect_id": null,
+        "detail": {}
+      }
+    ],
+    "error": null,
+    "generation": {
+      "phase": "published",
+      "attempt": 1,
+      "reason": null,
+      "strategy_set_id": "05e7ad00-0000-4000-8000-00000000ad0b",
+      "decision_episode_id": "0e9ead00-0000-4000-8000-00000000ad0a"
+    },
+    "created_at": "2023-11-09T09:30:12Z",
+    "updated_at": "2023-11-09T09:58:03Z"
+  },
+  "trigger_activities": [
+    {
+      "id": "0ac7ad00-0000-4000-8000-00000000ad0d",
+      "idempotency_key": "34a00c5c3082f78553e0bf92de34749fa0195da3b5cc3dac0c3794c5a63f2976",
+      "activity_type": "EmailReceived",
+      "source_system": "email",
+      "source_object_id": "02sWt000001zsRGIAY",
+      "source_event_id": "05e0ad00-0000-4000-8000-00000000ad0d",
+      "occurred_at": "2023-11-09T09:30:00Z",
+      "ingested_at": "2023-11-09T09:30:04Z",
+      "participants": [
+        {
+          "raw_identity": "fatoumata.toure@medtechadvances.com",
+          "display_name": "Fatoumata Touré",
+          "role": "from",
+          "person_id": "0b0ead00-0000-4000-8000-00000000ad11"
+        },
+        {
+          "raw_identity": "luis.rodriguez@ghostvendor.com",
+          "display_name": "Luis Rodriguez",
+          "role": "to",
+          "person_id": "0b0ead00-0000-4000-8000-00000000ad21"
+        }
+      ],
+      "account_id": "0a0cad00-0000-4000-8000-00000000ad01",
+      "opportunity_id": "0c0fad00-0000-4000-8000-00000000ad01",
+      "account_hint": "medtechadvances.com",
+      "opportunity_hint": "006Wt000007BHzBIAW",
+      "payload_ref": "source_events/05e0ad00-0000-4000-8000-00000000ad0d",
+      "summary": "Fatoumata asked about the long-term cost of integrating EduTech Lab and SecureData Nexus, and for a follow-up call.",
+      "permissions": {
+        "visibility": "org"
+      },
+      "provenance": {
+        "source_system": "email",
+        "source_object_id": "02sWt000001zsRGIAY",
+        "connector": "crmarena-loader",
+        "connector_version": "wp31-v1"
+      },
+      "caused_by_activity_id": null,
+      "correlation_id": "0c0cad00-0000-4000-8000-00000000ad80"
+    }
+  ],
+  "correlated_activities": [
+    {
+      "id": "0ac7ad00-0000-4000-8000-00000000ad03",
+      "idempotency_key": "171857228e6e56cbde6c83d00ceec846056c0a64b6ff44b0c354e51f8b72e13f",
+      "activity_type": "QuoteCreated",
+      "source_system": "crm",
+      "source_object_id": "0Q0Wt000001WQWiKAO",
+      "source_event_id": "05e0ad00-0000-4000-8000-00000000ad03",
+      "occurred_at": "2023-10-15T10:12:00Z",
+      "ingested_at": "2023-10-15T10:12:04Z",
+      "participants": [],
+      "account_id": "0a0cad00-0000-4000-8000-00000000ad01",
+      "opportunity_id": "0c0fad00-0000-4000-8000-00000000ad01",
+      "account_hint": "001Wt00000PHVyfIAH",
+      "opportunity_hint": "006Wt000007BHzBIAW",
+      "payload_ref": "source_events/05e0ad00-0000-4000-8000-00000000ad03",
+      "summary": "Quote created: Data Protection & Education Enhancement, $24,679.53.",
+      "permissions": {
+        "visibility": "org"
+      },
+      "provenance": {
+        "source_system": "crm",
+        "source_object_id": "0Q0Wt000001WQWiKAO",
+        "connector": "crmarena-loader",
+        "connector_version": "wp31-v1"
+      },
+      "caused_by_activity_id": null,
+      "correlation_id": null
+    },
+    {
+      "id": "0ac7ad00-0000-4000-8000-00000000ad04",
+      "idempotency_key": "e0c7e9bd491e35cff7bab89f760ca9a1935abeee7f0751f0a0180a382d64fa5c",
+      "activity_type": "EmailSent",
+      "source_system": "email",
+      "source_object_id": "02sWt000002020jIAA",
+      "source_event_id": "05e0ad00-0000-4000-8000-00000000ad04",
+      "occurred_at": "2023-10-31T18:00:00Z",
+      "ingested_at": "2023-10-31T18:00:04Z",
+      "participants": [
+        {
+          "raw_identity": "luis.rodriguez@ghostvendor.com",
+          "display_name": "Luis Rodriguez",
+          "role": "from",
+          "person_id": "0b0ead00-0000-4000-8000-00000000ad21"
+        },
+        {
+          "raw_identity": "fatoumata.toure@medtechadvances.com",
+          "display_name": "Fatoumata Touré",
+          "role": "to",
+          "person_id": "0b0ead00-0000-4000-8000-00000000ad11"
+        }
+      ],
+      "account_id": "0a0cad00-0000-4000-8000-00000000ad01",
+      "opportunity_id": "0c0fad00-0000-4000-8000-00000000ad01",
+      "account_hint": "medtechadvances.com",
+      "opportunity_hint": "006Wt000007BHzBIAW",
+      "payload_ref": "source_events/05e0ad00-0000-4000-8000-00000000ad04",
+      "summary": "Luis sent the draft proposal: SecureData Nexus, CryptGuard Module and EduTech Lab.",
+      "permissions": {
+        "visibility": "org"
+      },
+      "provenance": {
+        "source_system": "email",
+        "source_object_id": "02sWt000002020jIAA",
+        "connector": "crmarena-loader",
+        "connector_version": "wp31-v1"
+      },
+      "caused_by_activity_id": null,
+      "correlation_id": null
+    },
+    {
+      "id": "0ac7ad00-0000-4000-8000-00000000ad06",
+      "idempotency_key": "dc435b0d121a465528cd4b7cbae28fecde4e07a66d236efa8d7079e2669bb9dd",
+      "activity_type": "EmailReceived",
+      "source_system": "email",
+      "source_object_id": "02sWt000002098bIAA",
+      "source_event_id": "05e0ad00-0000-4000-8000-00000000ad06",
+      "occurred_at": "2023-11-01T09:30:00Z",
+      "ingested_at": "2023-11-01T09:30:04Z",
+      "participants": [
+        {
+          "raw_identity": "fatoumata.toure@medtechadvances.com",
+          "display_name": "Fatoumata Touré",
+          "role": "from",
+          "person_id": "0b0ead00-0000-4000-8000-00000000ad11"
+        },
+        {
+          "raw_identity": "luis.rodriguez@ghostvendor.com",
+          "display_name": "Luis Rodriguez",
+          "role": "to",
+          "person_id": "0b0ead00-0000-4000-8000-00000000ad21"
+        }
+      ],
+      "account_id": "0a0cad00-0000-4000-8000-00000000ad01",
+      "opportunity_id": "0c0fad00-0000-4000-8000-00000000ad01",
+      "account_hint": "medtechadvances.com",
+      "opportunity_hint": "006Wt000007BHzBIAW",
+      "payload_ref": "source_events/05e0ad00-0000-4000-8000-00000000ad06",
+      "summary": "Fatoumata asked how CryptGuard integrates with their security protocols, and about the deployment timeline.",
+      "permissions": {
+        "visibility": "org"
+      },
+      "provenance": {
+        "source_system": "email",
+        "source_object_id": "02sWt000002098bIAA",
+        "connector": "crmarena-loader",
+        "connector_version": "wp31-v1"
+      },
+      "caused_by_activity_id": null,
+      "correlation_id": null
+    },
+    {
+      "id": "0ac7ad00-0000-4000-8000-00000000ad09",
+      "idempotency_key": "58d43f4e504366303e5c7d2e0d508e50d8734ec5b156a9dc02ce05e951355803",
+      "activity_type": "EmailSent",
+      "source_system": "email",
+      "source_object_id": "02sWt000001zz9GIAQ",
+      "source_event_id": "05e0ad00-0000-4000-8000-00000000ad09",
+      "occurred_at": "2023-11-08T15:00:00Z",
+      "ingested_at": "2023-11-08T15:00:04Z",
+      "participants": [
+        {
+          "raw_identity": "luis.rodriguez@ghostvendor.com",
+          "display_name": "Luis Rodriguez",
+          "role": "from",
+          "person_id": "0b0ead00-0000-4000-8000-00000000ad21"
+        },
+        {
+          "raw_identity": "fatoumata.toure@medtechadvances.com",
+          "display_name": "Fatoumata Touré",
+          "role": "to",
+          "person_id": "0b0ead00-0000-4000-8000-00000000ad11"
+        }
+      ],
+      "account_id": "0a0cad00-0000-4000-8000-00000000ad01",
+      "opportunity_id": "0c0fad00-0000-4000-8000-00000000ad01",
+      "account_hint": "medtechadvances.com",
+      "opportunity_hint": "006Wt000007BHzBIAW",
+      "payload_ref": "source_events/05e0ad00-0000-4000-8000-00000000ad09",
+      "summary": "Luis followed up: proposal total $24,679.53, with discounts on CryptGuard Module and SecureData Nexus.",
+      "permissions": {
+        "visibility": "org"
+      },
+      "provenance": {
+        "source_system": "email",
+        "source_object_id": "02sWt000001zz9GIAQ",
+        "connector": "crmarena-loader",
+        "connector_version": "wp31-v1"
+      },
+      "caused_by_activity_id": null,
+      "correlation_id": null
+    },
+    {
+      "id": "0ac7ad00-0000-4000-8000-00000000ad0b",
+      "idempotency_key": "d56f294e0971437fe274e9353d50274bb12b0d89de725b7dd9b5b2b5134585ca",
+      "activity_type": "EmailReceived",
+      "source_system": "email",
+      "source_object_id": "02sWt000002087iIAA",
+      "source_event_id": "05e0ad00-0000-4000-8000-00000000ad0b",
+      "occurred_at": "2023-11-08T16:00:00Z",
+      "ingested_at": "2023-11-08T16:00:04Z",
+      "participants": [
+        {
+          "raw_identity": "fatoumata.toure@medtechadvances.com",
+          "display_name": "Fatoumata Touré",
+          "role": "from",
+          "person_id": "0b0ead00-0000-4000-8000-00000000ad11"
+        },
+        {
+          "raw_identity": "luis.rodriguez@ghostvendor.com",
+          "display_name": "Luis Rodriguez",
+          "role": "to",
+          "person_id": "0b0ead00-0000-4000-8000-00000000ad21"
+        }
+      ],
+      "account_id": "0a0cad00-0000-4000-8000-00000000ad01",
+      "opportunity_id": "0c0fad00-0000-4000-8000-00000000ad01",
+      "account_hint": "medtechadvances.com",
+      "opportunity_hint": "006Wt000007BHzBIAW",
+      "payload_ref": "source_events/05e0ad00-0000-4000-8000-00000000ad0b",
+      "summary": "Fatoumata values pricing transparency and has reservations about EduTech Lab's early usability.",
+      "permissions": {
+        "visibility": "org"
+      },
+      "provenance": {
+        "source_system": "email",
+        "source_object_id": "02sWt000002087iIAA",
+        "connector": "crmarena-loader",
+        "connector_version": "wp31-v1"
+      },
+      "caused_by_activity_id": null,
+      "correlation_id": null
+    },
+    {
+      "id": "0ac7ad00-0000-4000-8000-00000000ad0c",
+      "idempotency_key": "d84b90d7aa0f507fa37d3fbbad0af246a0e3b9fd0366c79f35126dc922ef7391",
+      "activity_type": "EmailReceived",
+      "source_system": "email",
+      "source_object_id": "02sWt000001zopGIAQ",
+      "source_event_id": "05e0ad00-0000-4000-8000-00000000ad0c",
+      "occurred_at": "2023-11-08T17:30:00Z",
+      "ingested_at": "2023-11-08T17:30:04Z",
+      "participants": [
+        {
+          "raw_identity": "fatoumata.toure@medtechadvances.com",
+          "display_name": "Fatoumata Touré",
+          "role": "from",
+          "person_id": "0b0ead00-0000-4000-8000-00000000ad11"
+        },
+        {
+          "raw_identity": "luis.rodriguez@ghostvendor.com",
+          "display_name": "Luis Rodriguez",
+          "role": "to",
+          "person_id": "0b0ead00-0000-4000-8000-00000000ad21"
+        }
+      ],
+      "account_id": "0a0cad00-0000-4000-8000-00000000ad01",
+      "opportunity_id": "0c0fad00-0000-4000-8000-00000000ad01",
+      "account_hint": "medtechadvances.com",
+      "opportunity_hint": "006Wt000007BHzBIAW",
+      "payload_ref": "source_events/05e0ad00-0000-4000-8000-00000000ad0c",
+      "summary": "Fatoumata asked for implementation support; Quantum Circuits Inc. offers competitive initial pricing with onboarding.",
+      "permissions": {
+        "visibility": "org"
+      },
+      "provenance": {
+        "source_system": "email",
+        "source_object_id": "02sWt000001zopGIAQ",
+        "connector": "crmarena-loader",
+        "connector_version": "wp31-v1"
+      },
+      "caused_by_activity_id": null,
+      "correlation_id": null
+    }
+  ],
+  "state_before": {
+    "account_id": "0a0cad00-0000-4000-8000-00000000ad01",
+    "account_name": "MedTech Advances",
+    "opportunity_id": "0c0fad00-0000-4000-8000-00000000ad01",
+    "opportunities": [
+      {
+        "opportunity_id": "0c0fad00-0000-4000-8000-00000000ad01",
+        "is_open": true,
+        "is_primary": true,
+        "stage": "unknown",
+        "owner": "0b0ead00-0000-4000-8000-00000000ad21",
+        "amount": null,
+        "health": "unknown",
+        "as_of": "2023-11-08T17:30:00Z",
+        "last_activity_id": "0ac7ad00-0000-4000-8000-00000000ad0c"
+      }
+    ],
+    "version": 107,
+    "as_of": "2023-11-08T17:30:00Z",
+    "computed_at": "2023-11-08T17:30:09Z",
+    "last_activity_id": "0ac7ad00-0000-4000-8000-00000000ad0c",
+    "fields": {
+      "stage": {
+        "value": "unknown",
+        "known": false,
+        "winning_claim_id": null,
+        "standing": null,
+        "confidence": null,
+        "as_of": null,
+        "evidence_refs": [],
+        "competing_claim_ids": [],
+        "suggested_claim_ids": []
+      },
+      "health": {
+        "value": "unknown",
+        "known": false,
+        "winning_claim_id": null,
+        "standing": null,
+        "confidence": null,
+        "as_of": null,
+        "evidence_refs": [],
+        "competing_claim_ids": [],
+        "suggested_claim_ids": []
+      },
+      "owner": {
+        "value": "0b0ead00-0000-4000-8000-00000000ad21",
+        "known": true,
+        "winning_claim_id": "0c1aad00-0000-4000-8000-00000000ad21",
+        "standing": "crm_explicit",
+        "confidence": 1,
+        "as_of": "2023-05-25T11:23:41Z",
+        "evidence_refs": [
+          {
+            "activity_id": "0ac7ad00-0000-4000-8000-00000000ad01",
+            "claim_id": "0c1aad00-0000-4000-8000-00000000ad21",
+            "occurred_at": "2023-05-25T11:23:41Z"
+          }
+        ],
+        "competing_claim_ids": [],
+        "suggested_claim_ids": [],
+        "opportunity_id": "0c0fad00-0000-4000-8000-00000000ad01"
+      },
+      "motion": {
+        "value": "unknown",
+        "known": false,
+        "winning_claim_id": null,
+        "standing": null,
+        "confidence": null,
+        "as_of": null,
+        "evidence_refs": [],
+        "competing_claim_ids": [],
+        "suggested_claim_ids": []
+      },
+      "champion": {
+        "value": "unknown",
+        "known": false,
+        "winning_claim_id": null,
+        "standing": null,
+        "confidence": null,
+        "as_of": null,
+        "evidence_refs": [],
+        "competing_claim_ids": [],
+        "suggested_claim_ids": []
+      },
+      "champion_status": {
+        "value": "unknown",
+        "known": false,
+        "winning_claim_id": null,
+        "standing": null,
+        "confidence": null,
+        "as_of": null,
+        "evidence_refs": [],
+        "competing_claim_ids": [],
+        "suggested_claim_ids": []
+      },
+      "economic_buyer": {
+        "value": "unknown",
+        "known": false,
+        "winning_claim_id": null,
+        "standing": null,
+        "confidence": null,
+        "as_of": null,
+        "evidence_refs": [],
+        "competing_claim_ids": [],
+        "suggested_claim_ids": []
+      },
+      "blockers": {
+        "value": [],
+        "known": false,
+        "winning_claim_id": null,
+        "standing": null,
+        "confidence": null,
+        "as_of": null,
+        "evidence_refs": [],
+        "competing_claim_ids": [],
+        "suggested_claim_ids": []
+      },
+      "objections": {
+        "value": [
+          {
+            "text": "Reservations about EduTech Lab's early usability",
+            "claim_id": "0c1aad00-0000-4000-8000-00000000ad23",
+            "status": "open",
+            "evidence_refs": [
+              {
+                "activity_id": "0ac7ad00-0000-4000-8000-00000000ad0b",
+                "claim_id": "0c1aad00-0000-4000-8000-00000000ad23",
+                "quote": "We've also noted the positive feedback about EduTech Lab, although we do have some reservations based on initial usability with other solutions.",
+                "speaker_person_id": "0b0ead00-0000-4000-8000-00000000ad11",
+                "occurred_at": "2023-11-08T16:00:00Z"
+              }
+            ]
+          }
+        ],
+        "known": true,
+        "winning_claim_id": null,
+        "standing": null,
+        "confidence": null,
+        "as_of": "2023-11-08T16:00:00Z",
+        "evidence_refs": [
+          {
+            "activity_id": "0ac7ad00-0000-4000-8000-00000000ad0b",
+            "claim_id": "0c1aad00-0000-4000-8000-00000000ad23",
+            "quote": "We've also noted the positive feedback about EduTech Lab, although we do have some reservations based on initial usability with other solutions.",
+            "speaker_person_id": "0b0ead00-0000-4000-8000-00000000ad11",
+            "occurred_at": "2023-11-08T16:00:00Z"
+          }
+        ],
+        "competing_claim_ids": [],
+        "suggested_claim_ids": []
+      },
+      "decision_criteria": {
+        "value": [
+          {
+            "text": "Transparent pricing",
+            "claim_id": "0c1aad00-0000-4000-8000-00000000ad22",
+            "status": "open",
+            "evidence_refs": [
+              {
+                "activity_id": "0ac7ad00-0000-4000-8000-00000000ad0b",
+                "claim_id": "0c1aad00-0000-4000-8000-00000000ad22",
+                "quote": "Transparency in terms of pricing is indeed something we value highly.",
+                "speaker_person_id": "0b0ead00-0000-4000-8000-00000000ad11",
+                "occurred_at": "2023-11-08T16:00:00Z"
+              }
+            ]
+          },
+          {
+            "text": "Support during the initial implementation",
+            "claim_id": "0c1aad00-0000-4000-8000-00000000ad26",
+            "status": "open",
+            "evidence_refs": [
+              {
+                "activity_id": "0ac7ad00-0000-4000-8000-00000000ad0c",
+                "claim_id": "0c1aad00-0000-4000-8000-00000000ad26",
+                "quote": "Our team would also like to discuss the potential for additional support during the initial implementation phase, to streamline the transition effectively.",
+                "speaker_person_id": "0b0ead00-0000-4000-8000-00000000ad11",
+                "occurred_at": "2023-11-08T17:30:00Z"
+              }
+            ]
+          }
+        ],
+        "known": true,
+        "winning_claim_id": null,
+        "standing": null,
+        "confidence": null,
+        "as_of": "2023-11-08T17:30:00Z",
+        "evidence_refs": [
+          {
+            "activity_id": "0ac7ad00-0000-4000-8000-00000000ad0b",
+            "claim_id": "0c1aad00-0000-4000-8000-00000000ad22",
+            "quote": "Transparency in terms of pricing is indeed something we value highly.",
+            "speaker_person_id": "0b0ead00-0000-4000-8000-00000000ad11",
+            "occurred_at": "2023-11-08T16:00:00Z"
+          },
+          {
+            "activity_id": "0ac7ad00-0000-4000-8000-00000000ad0c",
+            "claim_id": "0c1aad00-0000-4000-8000-00000000ad26",
+            "quote": "Our team would also like to discuss the potential for additional support during the initial implementation phase, to streamline the transition effectively.",
+            "speaker_person_id": "0b0ead00-0000-4000-8000-00000000ad11",
+            "occurred_at": "2023-11-08T17:30:00Z"
+          }
+        ],
+        "competing_claim_ids": [],
+        "suggested_claim_ids": []
+      },
+      "decision_process": {
+        "value": "unknown",
+        "known": false,
+        "winning_claim_id": null,
+        "standing": null,
+        "confidence": null,
+        "as_of": null,
+        "evidence_refs": [],
+        "competing_claim_ids": [],
+        "suggested_claim_ids": []
+      },
+      "current_commitments": {
+        "value": [
+          {
+            "text": "Fatoumata to gather her team's feature requests",
+            "claim_id": "0c1aad00-0000-4000-8000-00000000ad24",
+            "status": "open",
+            "evidence_refs": [
+              {
+                "activity_id": "0ac7ad00-0000-4000-8000-00000000ad0b",
+                "claim_id": "0c1aad00-0000-4000-8000-00000000ad24",
+                "quote": "I’ll coordinate internally to gather any additional feedback from my team regarding specific feature requests or adjustments.",
+                "speaker_person_id": "0b0ead00-0000-4000-8000-00000000ad11",
+                "occurred_at": "2023-11-08T16:00:00Z"
+              }
+            ]
+          }
+        ],
+        "known": true,
+        "winning_claim_id": null,
+        "standing": null,
+        "confidence": null,
+        "as_of": "2023-11-08T16:00:00Z",
+        "evidence_refs": [
+          {
+            "activity_id": "0ac7ad00-0000-4000-8000-00000000ad0b",
+            "claim_id": "0c1aad00-0000-4000-8000-00000000ad24",
+            "quote": "I’ll coordinate internally to gather any additional feedback from my team regarding specific feature requests or adjustments.",
+            "speaker_person_id": "0b0ead00-0000-4000-8000-00000000ad11",
+            "occurred_at": "2023-11-08T16:00:00Z"
+          }
+        ],
+        "competing_claim_ids": [],
+        "suggested_claim_ids": []
+      },
+      "next_milestone": {
+        "value": "unknown",
+        "known": false,
+        "winning_claim_id": null,
+        "standing": null,
+        "confidence": null,
+        "as_of": null,
+        "evidence_refs": [],
+        "competing_claim_ids": [],
+        "suggested_claim_ids": []
+      },
+      "next_meeting": {
+        "value": "unknown",
+        "known": false,
+        "winning_claim_id": null,
+        "standing": null,
+        "confidence": null,
+        "as_of": null,
+        "evidence_refs": [],
+        "competing_claim_ids": [],
+        "suggested_claim_ids": []
+      },
+      "relationship_risk": {
+        "value": "medium",
+        "known": true,
+        "winning_claim_id": "0c1aad00-0000-4000-8000-00000000ad25",
+        "standing": "first_party_ai",
+        "confidence": 0.7,
+        "as_of": "2023-11-08T17:30:00Z",
+        "evidence_refs": [
+          {
+            "activity_id": "0ac7ad00-0000-4000-8000-00000000ad0c",
+            "claim_id": "0c1aad00-0000-4000-8000-00000000ad25",
+            "quote": "Quantum Circuits Inc. offers competitive initial pricing with comprehensive onboarding, and we are considering all options that maximize our long-term value.",
+            "speaker_person_id": "0b0ead00-0000-4000-8000-00000000ad11",
+            "occurred_at": "2023-11-08T17:30:00Z"
+          }
+        ],
+        "competing_claim_ids": [],
+        "suggested_claim_ids": []
+      },
+      "product_use_case": {
+        "value": "Data protection and healthcare education: SecureData Nexus, CryptGuard Module, EduTech Lab",
+        "known": true,
+        "winning_claim_id": "0c1aad00-0000-4000-8000-00000000ad2b",
+        "standing": "first_party_ai",
+        "confidence": 0.8,
+        "as_of": "2023-10-31T18:00:00Z",
+        "evidence_refs": [
+          {
+            "activity_id": "0ac7ad00-0000-4000-8000-00000000ad04",
+            "claim_id": "0c1aad00-0000-4000-8000-00000000ad2b",
+            "occurred_at": "2023-10-31T18:00:00Z"
+          }
+        ],
+        "competing_claim_ids": [],
+        "suggested_claim_ids": []
+      },
+      "commercial_issue": {
+        "value": "Weighing Quantum Circuits Inc.'s initial pricing and onboarding",
+        "known": true,
+        "winning_claim_id": "0c1aad00-0000-4000-8000-00000000ad25",
+        "standing": "first_party_ai",
+        "confidence": 0.8,
+        "as_of": "2023-11-08T17:30:00Z",
+        "evidence_refs": [
+          {
+            "activity_id": "0ac7ad00-0000-4000-8000-00000000ad0c",
+            "claim_id": "0c1aad00-0000-4000-8000-00000000ad25",
+            "quote": "Quantum Circuits Inc. offers competitive initial pricing with comprehensive onboarding, and we are considering all options that maximize our long-term value.",
+            "speaker_person_id": "0b0ead00-0000-4000-8000-00000000ad11",
+            "occurred_at": "2023-11-08T17:30:00Z"
+          }
+        ],
+        "competing_claim_ids": [],
+        "suggested_claim_ids": []
+      },
+      "last_customer_interaction": {
+        "value": "2023-11-08T17:30:00Z",
+        "known": true,
+        "winning_claim_id": null,
+        "standing": null,
+        "confidence": null,
+        "as_of": "2023-11-08T17:30:00Z",
+        "evidence_refs": [
+          {
+            "activity_id": "0ac7ad00-0000-4000-8000-00000000ad0c",
+            "occurred_at": "2023-11-08T17:30:00Z"
+          }
+        ],
+        "competing_claim_ids": [],
+        "suggested_claim_ids": [],
+        "derived": true
+      },
+      "last_meaningful_change": {
+        "value": "Fatoumata asked for implementation support and named Quantum Circuits' onboarding",
+        "known": true,
+        "winning_claim_id": null,
+        "standing": null,
+        "confidence": null,
+        "as_of": "2023-11-08T17:30:00Z",
+        "evidence_refs": [
+          {
+            "activity_id": "0ac7ad00-0000-4000-8000-00000000ad0c",
+            "occurred_at": "2023-11-08T17:30:00Z"
+          }
+        ],
+        "competing_claim_ids": [],
+        "suggested_claim_ids": [],
+        "derived": true
+      },
+      "summary": {
+        "value": "Fatoumata likes the proposal's flexibility, values pricing transparency and is weighing Quantum Circuits' onboarding offer.",
+        "known": true,
+        "winning_claim_id": "0c1aad00-0000-4000-8000-00000000ad25",
+        "standing": "first_party_ai",
+        "confidence": 0.8,
+        "as_of": "2023-11-08T17:30:00Z",
+        "evidence_refs": [
+          {
+            "activity_id": "0ac7ad00-0000-4000-8000-00000000ad0c",
+            "claim_id": "0c1aad00-0000-4000-8000-00000000ad25",
+            "quote": "Quantum Circuits Inc. offers competitive initial pricing with comprehensive onboarding, and we are considering all options that maximize our long-term value.",
+            "speaker_person_id": "0b0ead00-0000-4000-8000-00000000ad11",
+            "occurred_at": "2023-11-08T17:30:00Z"
+          }
+        ],
+        "competing_claim_ids": [],
+        "suggested_claim_ids": []
+      }
+    },
+    "buying_group": [
+      {
+        "person_id": "0b0ead00-0000-4000-8000-00000000ad11",
+        "display_name": "Fatoumata Touré",
+        "title": "Supply Chain Coordinator",
+        "roles": [
+          "unknown"
+        ],
+        "role_source": null,
+        "role_basis": null,
+        "role_provenance": [],
+        "status": "active",
+        "delegated_to_person_id": null,
+        "last_engaged_at": "2023-11-08T17:30:00Z",
+        "evidence_refs": [
+          {
+            "activity_id": "0ac7ad00-0000-4000-8000-00000000ad0c",
+            "quote": "Our team would also like to discuss the potential for additional support during the initial implementation phase, to streamline the transition effectively.",
+            "speaker_person_id": "0b0ead00-0000-4000-8000-00000000ad11",
+            "occurred_at": "2023-11-08T17:30:00Z"
+          }
+        ]
+      }
+    ],
+    "open_transition": null,
+    "coverage_gaps": [
+      "economic_buyer"
+    ]
+  },
+  "state_at_run": {
+    "account_id": "0a0cad00-0000-4000-8000-00000000ad01",
+    "account_name": "MedTech Advances",
+    "opportunity_id": "0c0fad00-0000-4000-8000-00000000ad01",
+    "opportunities": [
+      {
+        "opportunity_id": "0c0fad00-0000-4000-8000-00000000ad01",
+        "is_open": true,
+        "is_primary": true,
+        "stage": "unknown",
+        "owner": "0b0ead00-0000-4000-8000-00000000ad21",
+        "amount": null,
+        "health": "unknown",
+        "as_of": "2023-11-09T09:30:00Z",
+        "last_activity_id": "0ac7ad00-0000-4000-8000-00000000ad0d"
+      }
+    ],
+    "version": 108,
+    "as_of": "2023-11-09T09:30:00Z",
+    "computed_at": "2023-11-09T09:30:09Z",
+    "last_activity_id": "0ac7ad00-0000-4000-8000-00000000ad0d",
+    "fields": {
+      "stage": {
+        "value": "unknown",
+        "known": false,
+        "winning_claim_id": null,
+        "standing": null,
+        "confidence": null,
+        "as_of": null,
+        "evidence_refs": [],
+        "competing_claim_ids": [],
+        "suggested_claim_ids": []
+      },
+      "health": {
+        "value": "unknown",
+        "known": false,
+        "winning_claim_id": null,
+        "standing": null,
+        "confidence": null,
+        "as_of": null,
+        "evidence_refs": [],
+        "competing_claim_ids": [],
+        "suggested_claim_ids": []
+      },
+      "owner": {
+        "value": "0b0ead00-0000-4000-8000-00000000ad21",
+        "known": true,
+        "winning_claim_id": "0c1aad00-0000-4000-8000-00000000ad21",
+        "standing": "crm_explicit",
+        "confidence": 1,
+        "as_of": "2023-05-25T11:23:41Z",
+        "evidence_refs": [
+          {
+            "activity_id": "0ac7ad00-0000-4000-8000-00000000ad01",
+            "claim_id": "0c1aad00-0000-4000-8000-00000000ad21",
+            "occurred_at": "2023-05-25T11:23:41Z"
+          }
+        ],
+        "competing_claim_ids": [],
+        "suggested_claim_ids": [],
+        "opportunity_id": "0c0fad00-0000-4000-8000-00000000ad01"
+      },
+      "motion": {
+        "value": "unknown",
+        "known": false,
+        "winning_claim_id": null,
+        "standing": null,
+        "confidence": null,
+        "as_of": null,
+        "evidence_refs": [],
+        "competing_claim_ids": [],
+        "suggested_claim_ids": []
+      },
+      "champion": {
+        "value": "unknown",
+        "known": false,
+        "winning_claim_id": null,
+        "standing": null,
+        "confidence": null,
+        "as_of": null,
+        "evidence_refs": [],
+        "competing_claim_ids": [],
+        "suggested_claim_ids": []
+      },
+      "champion_status": {
+        "value": "unknown",
+        "known": false,
+        "winning_claim_id": null,
+        "standing": null,
+        "confidence": null,
+        "as_of": null,
+        "evidence_refs": [],
+        "competing_claim_ids": [],
+        "suggested_claim_ids": []
+      },
+      "economic_buyer": {
+        "value": "unknown",
+        "known": false,
+        "winning_claim_id": null,
+        "standing": null,
+        "confidence": null,
+        "as_of": null,
+        "evidence_refs": [],
+        "competing_claim_ids": [],
+        "suggested_claim_ids": []
+      },
+      "blockers": {
+        "value": [],
+        "known": false,
+        "winning_claim_id": null,
+        "standing": null,
+        "confidence": null,
+        "as_of": null,
+        "evidence_refs": [],
+        "competing_claim_ids": [],
+        "suggested_claim_ids": []
+      },
+      "objections": {
+        "value": [
+          {
+            "text": "Reservations about EduTech Lab's early usability",
+            "claim_id": "0c1aad00-0000-4000-8000-00000000ad23",
+            "status": "open",
+            "evidence_refs": [
+              {
+                "activity_id": "0ac7ad00-0000-4000-8000-00000000ad0b",
+                "claim_id": "0c1aad00-0000-4000-8000-00000000ad23",
+                "quote": "We've also noted the positive feedback about EduTech Lab, although we do have some reservations based on initial usability with other solutions.",
+                "speaker_person_id": "0b0ead00-0000-4000-8000-00000000ad11",
+                "occurred_at": "2023-11-08T16:00:00Z"
+              }
+            ]
+          },
+          {
+            "text": "Long-term cost of integrating EduTech Lab and SecureData Nexus",
+            "claim_id": "0c1aad00-0000-4000-8000-00000000ad27",
+            "status": "open",
+            "evidence_refs": [
+              {
+                "activity_id": "0ac7ad00-0000-4000-8000-00000000ad0d",
+                "claim_id": "0c1aad00-0000-4000-8000-00000000ad27",
+                "quote": "That said, I have some questions regarding the long-term cost implications of integrating both the EduTech Lab and the SecureData Nexus into our existing systems.",
+                "speaker_person_id": "0b0ead00-0000-4000-8000-00000000ad11",
+                "occurred_at": "2023-11-09T09:30:00Z"
+              }
+            ]
+          }
+        ],
+        "known": true,
+        "winning_claim_id": null,
+        "standing": null,
+        "confidence": null,
+        "as_of": "2023-11-09T09:30:00Z",
+        "evidence_refs": [
+          {
+            "activity_id": "0ac7ad00-0000-4000-8000-00000000ad0b",
+            "claim_id": "0c1aad00-0000-4000-8000-00000000ad23",
+            "quote": "We've also noted the positive feedback about EduTech Lab, although we do have some reservations based on initial usability with other solutions.",
+            "speaker_person_id": "0b0ead00-0000-4000-8000-00000000ad11",
+            "occurred_at": "2023-11-08T16:00:00Z"
+          },
+          {
+            "activity_id": "0ac7ad00-0000-4000-8000-00000000ad0d",
+            "claim_id": "0c1aad00-0000-4000-8000-00000000ad27",
+            "quote": "That said, I have some questions regarding the long-term cost implications of integrating both the EduTech Lab and the SecureData Nexus into our existing systems.",
+            "speaker_person_id": "0b0ead00-0000-4000-8000-00000000ad11",
+            "occurred_at": "2023-11-09T09:30:00Z"
+          }
+        ],
+        "competing_claim_ids": [],
+        "suggested_claim_ids": []
+      },
+      "decision_criteria": {
+        "value": [
+          {
+            "text": "Transparent pricing",
+            "claim_id": "0c1aad00-0000-4000-8000-00000000ad22",
+            "status": "open",
+            "evidence_refs": [
+              {
+                "activity_id": "0ac7ad00-0000-4000-8000-00000000ad0b",
+                "claim_id": "0c1aad00-0000-4000-8000-00000000ad22",
+                "quote": "Transparency in terms of pricing is indeed something we value highly.",
+                "speaker_person_id": "0b0ead00-0000-4000-8000-00000000ad11",
+                "occurred_at": "2023-11-08T16:00:00Z"
+              }
+            ]
+          },
+          {
+            "text": "Support during the initial implementation",
+            "claim_id": "0c1aad00-0000-4000-8000-00000000ad26",
+            "status": "open",
+            "evidence_refs": [
+              {
+                "activity_id": "0ac7ad00-0000-4000-8000-00000000ad0c",
+                "claim_id": "0c1aad00-0000-4000-8000-00000000ad26",
+                "quote": "Our team would also like to discuss the potential for additional support during the initial implementation phase, to streamline the transition effectively.",
+                "speaker_person_id": "0b0ead00-0000-4000-8000-00000000ad11",
+                "occurred_at": "2023-11-08T17:30:00Z"
+              }
+            ]
+          },
+          {
+            "text": "A clear view of future financial commitments",
+            "claim_id": "0c1aad00-0000-4000-8000-00000000ad2a",
+            "status": "open",
+            "evidence_refs": [
+              {
+                "activity_id": "0ac7ad00-0000-4000-8000-00000000ad0d",
+                "claim_id": "0c1aad00-0000-4000-8000-00000000ad2a",
+                "quote": "Ensuring that we have a clear understanding of future financial commitments is crucial for us.",
+                "speaker_person_id": "0b0ead00-0000-4000-8000-00000000ad11",
+                "occurred_at": "2023-11-09T09:30:00Z"
+              }
+            ]
+          }
+        ],
+        "known": true,
+        "winning_claim_id": null,
+        "standing": null,
+        "confidence": null,
+        "as_of": "2023-11-09T09:30:00Z",
+        "evidence_refs": [
+          {
+            "activity_id": "0ac7ad00-0000-4000-8000-00000000ad0b",
+            "claim_id": "0c1aad00-0000-4000-8000-00000000ad22",
+            "quote": "Transparency in terms of pricing is indeed something we value highly.",
+            "speaker_person_id": "0b0ead00-0000-4000-8000-00000000ad11",
+            "occurred_at": "2023-11-08T16:00:00Z"
+          },
+          {
+            "activity_id": "0ac7ad00-0000-4000-8000-00000000ad0c",
+            "claim_id": "0c1aad00-0000-4000-8000-00000000ad26",
+            "quote": "Our team would also like to discuss the potential for additional support during the initial implementation phase, to streamline the transition effectively.",
+            "speaker_person_id": "0b0ead00-0000-4000-8000-00000000ad11",
+            "occurred_at": "2023-11-08T17:30:00Z"
+          },
+          {
+            "activity_id": "0ac7ad00-0000-4000-8000-00000000ad0d",
+            "claim_id": "0c1aad00-0000-4000-8000-00000000ad2a",
+            "quote": "Ensuring that we have a clear understanding of future financial commitments is crucial for us.",
+            "speaker_person_id": "0b0ead00-0000-4000-8000-00000000ad11",
+            "occurred_at": "2023-11-09T09:30:00Z"
+          }
+        ],
+        "competing_claim_ids": [],
+        "suggested_claim_ids": []
+      },
+      "decision_process": {
+        "value": "unknown",
+        "known": false,
+        "winning_claim_id": null,
+        "standing": null,
+        "confidence": null,
+        "as_of": null,
+        "evidence_refs": [],
+        "competing_claim_ids": [],
+        "suggested_claim_ids": []
+      },
+      "current_commitments": {
+        "value": [
+          {
+            "text": "Fatoumata to gather her team's feature requests",
+            "claim_id": "0c1aad00-0000-4000-8000-00000000ad24",
+            "status": "open",
+            "evidence_refs": [
+              {
+                "activity_id": "0ac7ad00-0000-4000-8000-00000000ad0b",
+                "claim_id": "0c1aad00-0000-4000-8000-00000000ad24",
+                "quote": "I’ll coordinate internally to gather any additional feedback from my team regarding specific feature requests or adjustments.",
+                "speaker_person_id": "0b0ead00-0000-4000-8000-00000000ad11",
+                "occurred_at": "2023-11-08T16:00:00Z"
+              }
+            ]
+          }
+        ],
+        "known": true,
+        "winning_claim_id": null,
+        "standing": null,
+        "confidence": null,
+        "as_of": "2023-11-08T16:00:00Z",
+        "evidence_refs": [
+          {
+            "activity_id": "0ac7ad00-0000-4000-8000-00000000ad0b",
+            "claim_id": "0c1aad00-0000-4000-8000-00000000ad24",
+            "quote": "I’ll coordinate internally to gather any additional feedback from my team regarding specific feature requests or adjustments.",
+            "speaker_person_id": "0b0ead00-0000-4000-8000-00000000ad11",
+            "occurred_at": "2023-11-08T16:00:00Z"
+          }
+        ],
+        "competing_claim_ids": [],
+        "suggested_claim_ids": []
+      },
+      "next_milestone": {
+        "value": "Follow-up call on long-term costs",
+        "known": true,
+        "winning_claim_id": "0c1aad00-0000-4000-8000-00000000ad28",
+        "standing": "first_party_ai",
+        "confidence": 0.9,
+        "as_of": "2023-11-09T09:30:00Z",
+        "evidence_refs": [
+          {
+            "activity_id": "0ac7ad00-0000-4000-8000-00000000ad0d",
+            "claim_id": "0c1aad00-0000-4000-8000-00000000ad28",
+            "quote": "Could we schedule a follow-up call to discuss these points in more detail?",
+            "speaker_person_id": "0b0ead00-0000-4000-8000-00000000ad11",
+            "occurred_at": "2023-11-09T09:30:00Z"
+          }
+        ],
+        "competing_claim_ids": [],
+        "suggested_claim_ids": []
+      },
+      "next_meeting": {
+        "value": "Follow-up call requested; no time agreed",
+        "known": true,
+        "winning_claim_id": "0c1aad00-0000-4000-8000-00000000ad28",
+        "standing": "first_party_ai",
+        "confidence": 0.9,
+        "as_of": "2023-11-09T09:30:00Z",
+        "evidence_refs": [
+          {
+            "activity_id": "0ac7ad00-0000-4000-8000-00000000ad0d",
+            "claim_id": "0c1aad00-0000-4000-8000-00000000ad28",
+            "quote": "Could we schedule a follow-up call to discuss these points in more detail?",
+            "speaker_person_id": "0b0ead00-0000-4000-8000-00000000ad11",
+            "occurred_at": "2023-11-09T09:30:00Z"
+          }
+        ],
+        "competing_claim_ids": [],
+        "suggested_claim_ids": []
+      },
+      "relationship_risk": {
+        "value": "medium",
+        "known": true,
+        "winning_claim_id": "0c1aad00-0000-4000-8000-00000000ad25",
+        "standing": "first_party_ai",
+        "confidence": 0.7,
+        "as_of": "2023-11-08T17:30:00Z",
+        "evidence_refs": [
+          {
+            "activity_id": "0ac7ad00-0000-4000-8000-00000000ad0c",
+            "claim_id": "0c1aad00-0000-4000-8000-00000000ad25",
+            "quote": "Quantum Circuits Inc. offers competitive initial pricing with comprehensive onboarding, and we are considering all options that maximize our long-term value.",
+            "speaker_person_id": "0b0ead00-0000-4000-8000-00000000ad11",
+            "occurred_at": "2023-11-08T17:30:00Z"
+          }
+        ],
+        "competing_claim_ids": [],
+        "suggested_claim_ids": []
+      },
+      "product_use_case": {
+        "value": "CryptGuard Module for data protection; integrating EduTech Lab and SecureData Nexus",
+        "known": true,
+        "winning_claim_id": "0c1aad00-0000-4000-8000-00000000ad29",
+        "standing": "first_party_ai",
+        "confidence": 0.85,
+        "as_of": "2023-11-09T09:30:00Z",
+        "evidence_refs": [
+          {
+            "activity_id": "0ac7ad00-0000-4000-8000-00000000ad0d",
+            "claim_id": "0c1aad00-0000-4000-8000-00000000ad29",
+            "quote": "I am particularly interested in the CryptGuard Module due to its adaptability and potential for enhancing our data protection efforts.",
+            "speaker_person_id": "0b0ead00-0000-4000-8000-00000000ad11",
+            "occurred_at": "2023-11-09T09:30:00Z"
+          }
+        ],
+        "competing_claim_ids": [],
+        "suggested_claim_ids": []
+      },
+      "commercial_issue": {
+        "value": "Weighing Quantum Circuits Inc.'s initial pricing and onboarding",
+        "known": true,
+        "winning_claim_id": "0c1aad00-0000-4000-8000-00000000ad25",
+        "standing": "first_party_ai",
+        "confidence": 0.8,
+        "as_of": "2023-11-08T17:30:00Z",
+        "evidence_refs": [
+          {
+            "activity_id": "0ac7ad00-0000-4000-8000-00000000ad0c",
+            "claim_id": "0c1aad00-0000-4000-8000-00000000ad25",
+            "quote": "Quantum Circuits Inc. offers competitive initial pricing with comprehensive onboarding, and we are considering all options that maximize our long-term value.",
+            "speaker_person_id": "0b0ead00-0000-4000-8000-00000000ad11",
+            "occurred_at": "2023-11-08T17:30:00Z"
+          }
+        ],
+        "competing_claim_ids": [],
+        "suggested_claim_ids": []
+      },
+      "last_customer_interaction": {
+        "value": "2023-11-09T09:30:00Z",
+        "known": true,
+        "winning_claim_id": null,
+        "standing": null,
+        "confidence": null,
+        "as_of": "2023-11-09T09:30:00Z",
+        "evidence_refs": [
+          {
+            "activity_id": "0ac7ad00-0000-4000-8000-00000000ad0d",
+            "occurred_at": "2023-11-09T09:30:00Z"
+          }
+        ],
+        "competing_claim_ids": [],
+        "suggested_claim_ids": [],
+        "derived": true
+      },
+      "last_meaningful_change": {
+        "value": "Fatoumata asked about long-term integration costs and for a follow-up call",
+        "known": true,
+        "winning_claim_id": null,
+        "standing": null,
+        "confidence": null,
+        "as_of": "2023-11-09T09:30:00Z",
+        "evidence_refs": [
+          {
+            "activity_id": "0ac7ad00-0000-4000-8000-00000000ad0d",
+            "occurred_at": "2023-11-09T09:30:00Z"
+          }
+        ],
+        "competing_claim_ids": [],
+        "suggested_claim_ids": [],
+        "derived": true
+      },
+      "summary": {
+        "value": "Fatoumata likes the proposal's flexibility, values pricing transparency and is weighing Quantum Circuits' onboarding offer.",
+        "known": true,
+        "winning_claim_id": "0c1aad00-0000-4000-8000-00000000ad25",
+        "standing": "first_party_ai",
+        "confidence": 0.8,
+        "as_of": "2023-11-08T17:30:00Z",
+        "evidence_refs": [
+          {
+            "activity_id": "0ac7ad00-0000-4000-8000-00000000ad0c",
+            "claim_id": "0c1aad00-0000-4000-8000-00000000ad25",
+            "quote": "Quantum Circuits Inc. offers competitive initial pricing with comprehensive onboarding, and we are considering all options that maximize our long-term value.",
+            "speaker_person_id": "0b0ead00-0000-4000-8000-00000000ad11",
+            "occurred_at": "2023-11-08T17:30:00Z"
+          }
+        ],
+        "competing_claim_ids": [],
+        "suggested_claim_ids": []
+      }
+    },
+    "buying_group": [
+      {
+        "person_id": "0b0ead00-0000-4000-8000-00000000ad11",
+        "display_name": "Fatoumata Touré",
+        "title": "Supply Chain Coordinator",
+        "roles": [
+          "unknown"
+        ],
+        "role_source": null,
+        "role_basis": null,
+        "role_provenance": [],
+        "status": "active",
+        "delegated_to_person_id": null,
+        "last_engaged_at": "2023-11-09T09:30:00Z",
+        "evidence_refs": [
+          {
+            "activity_id": "0ac7ad00-0000-4000-8000-00000000ad0d",
+            "quote": "Could we schedule a follow-up call to discuss these points in more detail?",
+            "speaker_person_id": "0b0ead00-0000-4000-8000-00000000ad11",
+            "occurred_at": "2023-11-09T09:30:00Z"
+          }
+        ]
+      }
+    ],
+    "open_transition": null,
+    "coverage_gaps": [
+      "economic_buyer"
+    ]
+  },
+  "state_diff": {
+    "id": "0d1fad00-0000-4000-8000-00000000ad30",
+    "account_id": "0a0cad00-0000-4000-8000-00000000ad01",
+    "from_version": 107,
+    "to_version": 108,
+    "is_material": true,
+    "changes": [
+      {
+        "field": "objections",
+        "op": "changed",
+        "before": [
+          "Reservations about EduTech Lab's early usability"
+        ],
+        "after": [
+          "Reservations about EduTech Lab's early usability",
+          "Long-term cost of integrating EduTech Lab and SecureData Nexus"
+        ],
+        "material": true,
+        "evidence_refs": [
+          {
+            "activity_id": "0ac7ad00-0000-4000-8000-00000000ad0d",
+            "claim_id": "0c1aad00-0000-4000-8000-00000000ad27",
+            "quote": "That said, I have some questions regarding the long-term cost implications of integrating both the EduTech Lab and the SecureData Nexus into our existing systems.",
+            "speaker_person_id": "0b0ead00-0000-4000-8000-00000000ad11",
+            "occurred_at": "2023-11-09T09:30:00Z"
+          }
+        ]
+      },
+      {
+        "field": "decision_criteria",
+        "op": "changed",
+        "before": [
+          "Transparent pricing",
+          "Support during the initial implementation"
+        ],
+        "after": [
+          "Transparent pricing",
+          "Support during the initial implementation",
+          "A clear view of future financial commitments"
+        ],
+        "material": true,
+        "evidence_refs": [
+          {
+            "activity_id": "0ac7ad00-0000-4000-8000-00000000ad0d",
+            "claim_id": "0c1aad00-0000-4000-8000-00000000ad2a",
+            "quote": "Ensuring that we have a clear understanding of future financial commitments is crucial for us.",
+            "speaker_person_id": "0b0ead00-0000-4000-8000-00000000ad11",
+            "occurred_at": "2023-11-09T09:30:00Z"
+          }
+        ]
+      },
+      {
+        "field": "next_meeting",
+        "op": "set",
+        "before": "unknown",
+        "after": "Follow-up call requested; no time agreed",
+        "material": true,
+        "evidence_refs": [
+          {
+            "activity_id": "0ac7ad00-0000-4000-8000-00000000ad0d",
+            "claim_id": "0c1aad00-0000-4000-8000-00000000ad28",
+            "quote": "Could we schedule a follow-up call to discuss these points in more detail?",
+            "speaker_person_id": "0b0ead00-0000-4000-8000-00000000ad11",
+            "occurred_at": "2023-11-09T09:30:00Z"
+          }
+        ]
+      },
+      {
+        "field": "next_milestone",
+        "op": "set",
+        "before": "unknown",
+        "after": "Follow-up call on long-term costs",
+        "material": true,
+        "evidence_refs": [
+          {
+            "activity_id": "0ac7ad00-0000-4000-8000-00000000ad0d",
+            "claim_id": "0c1aad00-0000-4000-8000-00000000ad28",
+            "quote": "Could we schedule a follow-up call to discuss these points in more detail?",
+            "speaker_person_id": "0b0ead00-0000-4000-8000-00000000ad11",
+            "occurred_at": "2023-11-09T09:30:00Z"
+          }
+        ]
+      },
+      {
+        "field": "product_use_case",
+        "op": "changed",
+        "before": "Data protection and healthcare education: SecureData Nexus, CryptGuard Module, EduTech Lab",
+        "after": "CryptGuard Module for data protection; integrating EduTech Lab and SecureData Nexus",
+        "material": true,
+        "evidence_refs": [
+          {
+            "activity_id": "0ac7ad00-0000-4000-8000-00000000ad0d",
+            "claim_id": "0c1aad00-0000-4000-8000-00000000ad29",
+            "quote": "I am particularly interested in the CryptGuard Module due to its adaptability and potential for enhancing our data protection efforts.",
+            "speaker_person_id": "0b0ead00-0000-4000-8000-00000000ad11",
+            "occurred_at": "2023-11-09T09:30:00Z"
+          }
+        ]
+      },
+      {
+        "field": "last_customer_interaction",
+        "op": "changed",
+        "before": "2023-11-08T17:30:00Z",
+        "after": "2023-11-09T09:30:00Z",
+        "material": false,
+        "evidence_refs": [
+          {
+            "activity_id": "0ac7ad00-0000-4000-8000-00000000ad0d",
+            "occurred_at": "2023-11-09T09:30:00Z"
+          }
+        ]
+      },
+      {
+        "field": "last_meaningful_change",
+        "op": "changed",
+        "before": "Fatoumata asked for implementation support and named Quantum Circuits' onboarding",
+        "after": "Fatoumata asked about long-term integration costs and for a follow-up call",
+        "material": false,
+        "evidence_refs": [
+          {
+            "activity_id": "0ac7ad00-0000-4000-8000-00000000ad0d",
+            "occurred_at": "2023-11-09T09:30:00Z"
+          }
+        ]
+      }
+    ],
+    "activity_ids": [
+      "0ac7ad00-0000-4000-8000-00000000ad0d"
+    ],
+    "created_at": "2023-11-09T09:30:11Z"
+  },
+  "signals": [
+    {
+      "id": "051aad00-0000-4000-8000-00000000ad40",
+      "account_id": "0a0cad00-0000-4000-8000-00000000ad01",
+      "opportunity_id": "0c0fad00-0000-4000-8000-00000000ad01",
+      "signal_type": "customer_replied",
+      "state_diff_id": "0d1fad00-0000-4000-8000-00000000ad30",
+      "subject_person_id": "0b0ead00-0000-4000-8000-00000000ad11",
+      "subject_claim_id": "0c1aad00-0000-4000-8000-00000000ad27",
+      "occurred_at": "2023-11-09T09:30:00Z",
+      "expires_at": "2023-11-23T09:30:00Z",
+      "dedupe_key": "diff:0d1fad00-0000-4000-8000-00000000ad30:sig.customer_replied@1:0ac7ad00-0000-4000-8000-00000000ad0d",
+      "rule": "sig.customer_replied@1",
+      "details": {
+        "activity_id": "0ac7ad00-0000-4000-8000-00000000ad0d"
+      },
+      "evidence_refs": [
+        {
+          "activity_id": "0ac7ad00-0000-4000-8000-00000000ad0d",
+          "claim_id": "0c1aad00-0000-4000-8000-00000000ad27",
+          "quote": "That said, I have some questions regarding the long-term cost implications of integrating both the EduTech Lab and the SecureData Nexus into our existing systems.",
+          "speaker_person_id": "0b0ead00-0000-4000-8000-00000000ad11",
+          "occurred_at": "2023-11-09T09:30:00Z"
+        }
+      ],
+      "created_at": "2023-11-09T09:30:11Z"
+    }
+  ],
+  "trigger_evaluation": {
+    "id": "07e1ad00-0000-4000-8000-00000000ad50",
+    "account_id": "0a0cad00-0000-4000-8000-00000000ad01",
+    "workflow": "post_interaction_followup",
+    "eligible": true,
+    "reason_codes": [
+      "eligible_customer_replied"
+    ],
+    "explanation": "Fatoumata replied with a new cost question and asked for a call; no open run.",
+    "signal_ids": [
+      "051aad00-0000-4000-8000-00000000ad40"
+    ],
+    "state_diff_id": "0d1fad00-0000-4000-8000-00000000ad30",
+    "agent_run_id": "0f0aad00-0000-4000-8000-00000000ad60",
+    "evaluated_at": "2023-11-09T09:30:12Z"
+  },
+  "context_accesses": [
+    {
+      "access_id": 2101,
+      "tool": "state",
+      "items": [
+        {
+          "id": "0a0cad00-0000-4000-8000-00000000ad01"
+        }
+      ],
+      "truncated": false,
+      "bytes": 3410,
+      "world_as_of": "2023-11-09T09:30:00.000001Z",
+      "limits": {
+        "max_items": 10,
+        "max_bytes": 8192
+      }
+    },
+    {
+      "access_id": 2102,
+      "tool": "evidence",
+      "items": [
+        {
+          "id": "0c1aad00-0000-4000-8000-00000000ad27"
+        },
+        {
+          "id": "0c1aad00-0000-4000-8000-00000000ad28"
+        },
+        {
+          "id": "0c1aad00-0000-4000-8000-00000000ad2a"
+        }
+      ],
+      "truncated": false,
+      "bytes": 1180,
+      "world_as_of": "2023-11-09T09:30:00.000001Z",
+      "limits": {
+        "max_items": 10,
+        "max_bytes": 8192
+      }
+    }
+  ],
+  "decisions": [
+    {
+      "id": "0decad00-0000-4000-8000-00000000ad71",
+      "agent_run_id": "0f0aad00-0000-4000-8000-00000000ad60",
+      "decision": "edit",
+      "surface": "slack",
+      "actor_person_id": "0b0ead00-0000-4000-8000-00000000ad21",
+      "actor_label": "Luis Rodriguez",
+      "edited_artifact": {
+        "channel": "email",
+        "subject": "Re: Feedback request on proposal draft",
+        "body": "Hi Fatoumata,\n\nThank you for the questions. Here is how the proposal we sent on October 31 breaks down:\n\n- SecureData Nexus: 25 units at a 15% discount, $12,749.79\n- CryptGuard Module: 20 units at a 15% discount, $8,329.83\n- EduTech Lab: 10 units at a 10% discount, $3,599.91\n\nThe total is $24,679.53. I would also like to take you up on the call: would Monday, November 13 at 10:00 or Tuesday, November 14 at 14:00 suit you?\n\nBest regards,\nLuis",
+        "attachments": []
+      },
+      "reason": "Put the figures in writing and offered the call times in the same email.",
+      "created_at": "2023-11-09T09:58:00Z"
+    }
+  ],
+  "placeholders": {
+    "eval_runs": [],
+    "customer_reactions": [],
+    "knowledge_updates": []
+  }
+}

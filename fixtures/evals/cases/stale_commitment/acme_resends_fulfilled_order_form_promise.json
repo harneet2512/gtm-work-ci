@@ -1,0 +1,169 @@
+{
+  "id": "acme_resends_fulfilled_order_form_promise",
+  "case_type": "stale_commitment",
+  "title": "Acme 09-21: candidate re-promises the revised order form 'by Monday the 14th', a commitment fulfilled a week earlier",
+  "should_pass": false,
+  "difficulty": "easy",
+  "slice_tags": {
+    "account": "acme",
+    "origin": "world_moment",
+    "motion": "expansion",
+    "stage": "commercial_review",
+    "champion_status": "active",
+    "economic_buyer": "unknown",
+    "risk": "low",
+    "candidate": "flawed",
+    "expected_action": "send_email",
+    "extra": ["fulfilled_commitment"]
+  },
+  "based_on": {
+    "kind": "world_moment",
+    "account": "acme",
+    "after_event_file": "world/accounts/acme/events/033_email_priya_security_signoff.json",
+    "checkpoint": 3,
+    "changed_fields": ["stage", "health", "relationship_risk", "decision_process", "current_commitments", "buying_group"],
+    "change": null
+  },
+  "context": {
+    "now": "2026-09-21T11:00:00Z",
+    "state": {
+      "account_id": "0a0c0000-0000-4000-8000-000000000001",
+      "account_name": "Acme Corp",
+      "opportunity_id": "0c0f0000-0000-4000-8000-000000000004",
+      "fields": {
+        "stage": "Commercial review",
+        "health": "on_track",
+        "motion": "expansion",
+        "champion": "0b0e0000-0000-4000-8000-000000000017",
+        "champion_status": "active",
+        "economic_buyer": "unknown",
+        "relationship_risk": "low",
+        "current_commitments": [
+          {
+            "text": "Send revised order form on the EU entity with Rotterdam invoiced separately by Monday the 14th",
+            "status": "fulfilled",
+            "owner_person_id": "0b0e0000-0000-4000-8000-000000000001",
+            "due": "2026-09-14"
+          }
+        ]
+      },
+      "buying_group": [
+        {
+          "person_id": "0b0e0000-0000-4000-8000-000000000017",
+          "display_name": "Priya Shah",
+          "title": "Director of Operations",
+          "roles": ["champion"],
+          "status": "active",
+          "delegated_to_person_id": null,
+          "last_engaged_at": null,
+          "evidence_refs": []
+        },
+        {
+          "person_id": "0b0e0000-0000-4000-8000-000000000019",
+          "display_name": "Tom Becker",
+          "title": "EU Operations Manager",
+          "roles": ["user"],
+          "status": "active",
+          "delegated_to_person_id": null,
+          "last_engaged_at": null,
+          "evidence_refs": []
+        },
+        {
+          "person_id": "0b0e0000-0000-4000-8000-000000000018",
+          "display_name": "Marco Ruiz",
+          "title": "Head of Security",
+          "roles": ["security"],
+          "status": "new",
+          "delegated_to_person_id": null,
+          "last_engaged_at": null,
+          "evidence_refs": []
+        }
+      ],
+      "coverage_gaps": ["economic_buyer"]
+    },
+    "recent_changes": {
+      "summary": "Legal is fine with the order form; Head of Security must sign off before signature; Marco added to Thursday's call.",
+      "material_diff_fields": ["blockers", "decision_process", "buying_group"],
+      "signals": ["new_stakeholder_entered", "security_blocker_appeared", "customer_replied"]
+    },
+    "trigger": {
+      "activity_id": "0ac70000-0000-4000-8000-0000000a0033",
+      "activity_type": "EmailReply",
+      "occurred_at": "2026-09-21T10:30:00Z",
+      "actor_person_id": "0b0e0000-0000-4000-8000-000000000017",
+      "event_file": "world/accounts/acme/events/033_email_priya_security_signoff.json",
+      "synthetic": false,
+      "text": "Hi Dana,\nLegal is fine with the order form. One more step before signature: because the EU rollout moves warehouse data for our EU entity, our Head of Security, Marco Ruiz, has to sign off on the vendor. I've added him to Thursday's call. Budget is still approved, and I'm still your point of contact on the commercial side.\nPriya"
+    },
+    "supporting_activities": [],
+    "commitments": [],
+    "timeline_facts": {
+      "last_inbound_at": "2026-09-21T10:30:00Z",
+      "last_inbound_from_person_id": "0b0e0000-0000-4000-8000-000000000017",
+      "last_outbound_at": "2026-09-18T15:00:00Z",
+      "stated_timing": "Signature planning call Thursday Sep 24"
+    },
+    "offered_knowledge": []
+  },
+  "candidate_action": {
+    "proposed_action_type": "send_email",
+    "recipients": [{"person_id": "0b0e0000-0000-4000-8000-000000000017", "role": "to", "why": "Champion"}],
+    "finished_artifact": {
+      "channel": "email",
+      "subject": "Re: Expansion to EU teams",
+      "body": "Hi Priya,\n\nThanks for the update on Marco. I'll get the revised order form on Acme Logistics B.V. over to you by Monday the 14th, and we'll cover security on Thursday.\n\nBest,\nDana"
+    },
+    "crm_next_step_intent": {"next_step": "Send revised order form", "due_at": null, "stage_change": null},
+    "reason": "Order form revision still pending.",
+    "evidence_refs": [
+      {
+        "activity_id": "0ac70000-0000-4000-8000-0000000a0033",
+        "quote": "Legal is fine with the order form.",
+        "speaker_person_id": "0b0e0000-0000-4000-8000-000000000017",
+        "occurred_at": "2026-09-21T10:30:00Z"
+      }
+    ],
+    "knowledge_refs_used": [],
+    "wait_until": null
+  },
+  "expected": [
+    {
+      "eval_type": "commitment_consistency",
+      "verdict": "fail",
+      "label": null,
+      "diagnostics": [],
+      "blocking": true,
+      "rationale": "The revised order form was sent on 09-14 and Legal has already approved it; re-promising it is a stale commitment.",
+      "evidence_class": "methodology",
+      "state_refs": ["current_commitments"]
+    },
+    {
+      "eval_type": "date_commitment_consistency",
+      "verdict": "fail",
+      "label": null,
+      "diagnostics": [],
+      "blocking": true,
+      "rationale": "'Monday the 14th' is in the past at evaluation time.",
+      "evidence_class": "product_rule"
+    },
+    {
+      "eval_type": "state_change_relevance",
+      "verdict": "fail",
+      "label": null,
+      "diagnostics": [],
+      "blocking": false,
+      "rationale": "Ignores the material change (security sign-off required).",
+      "evidence_class": "methodology"
+    }
+  ],
+  "expected_best_action": {
+    "action": "send_email",
+    "why": "Thank Priya, confirm Marco for Thursday, and say the SOC2 package will be ready to share under NDA.",
+    "recipients": [
+      {"person_id": "0b0e0000-0000-4000-8000-000000000017", "role": "to"},
+      {"person_id": "0b0e0000-0000-4000-8000-000000000018", "role": "cc"}
+    ],
+    "channel": "email"
+  },
+  "notes": "Commitment history from gold current_commitments."
+}

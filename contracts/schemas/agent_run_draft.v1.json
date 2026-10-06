@@ -1,0 +1,63 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://ghost.local/contracts/agent_run_draft.v1.json",
+  "title": "AgentRunDraft",
+  "description": "One draft in a run's pre-action flow (HAR-97 §7): Draft 1 from the account agent, Draft 2..n from the revision planner, or (HAR-129) any draft from the strategy generator, one per candidate. The last draft is what the human reviews.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["agent_run_id", "draft_index", "source", "output", "revision_feedback", "created_at"],
+  "properties": {
+    "agent_run_id": { "$ref": "common.v1.json#/$defs/uuid" },
+    "draft_index": { "type": "integer", "minimum": 1 },
+    "source": { "type": "string", "enum": ["account_agent", "revision_planner", "strategy_generator"] },
+    "output": { "$ref": "agent_run_output.v1.json" },
+    "decision": { "$ref": "#/$defs/decision" },
+    "revision_feedback": {
+      "description": "Eval findings the revision planner acted on to produce this draft (empty for draft 1).",
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["eval_result_id", "instruction"],
+        "properties": {
+          "eval_result_id": { "$ref": "common.v1.json#/$defs/uuid" },
+          "instruction": { "type": "string", "minLength": 1, "maxLength": 1000 }
+        }
+      }
+    },
+    "model": { "type": ["string", "null"] },
+    "created_at": { "$ref": "common.v1.json#/$defs/timestamp" }
+  },
+  "$defs": {
+    "decision": {
+      "description": "The account agent's structured decision behind this draft (HAR-97 §14): what to do, why now, whom to involve and not involve, and whether supplied guidance shaped it. Persisted so the reasoning is not lost when the draft is stored.",
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["action", "why_now", "used_guidance", "who_to_involve", "who_not_to_involve"],
+      "properties": {
+        "action": { "$ref": "agent_run_output.v1.json#/properties/proposed_action_type" },
+        "action_class": { "description": "The strategy's decision class (strategy_candidate.v1.json action_class), kept because several classes map onto one executable action (CRM_UPDATE, ASK_RESEARCH, HUMAN_REVIEW and INTERNAL_TASK all become internal_note). Present on strategy drafts.", "enum": ["REPLY", "MEETING", "SHARE_DOCUMENT", "INTERNAL_TASK", "WAIT", "NO_ACTION", "ASK_RESEARCH", "EXPANSION_MOTION", "CRM_UPDATE", "UNKNOWN", "HUMAN_REVIEW"] },
+        "why_now": { "type": "string", "minLength": 1, "maxLength": 1000 },
+        "used_guidance": { "type": "boolean", "description": "True only when supplied guidance applied and shaped the decision (then output.knowledge_refs_used is non-empty)." },
+        "wait_until": { "oneOf": [{ "$ref": "common.v1.json#/$defs/timestamp" }, { "type": "null" }] },
+        "who_to_involve": { "$ref": "decision_guidance.v1.json#/$defs/people" },
+        "who_not_to_involve": { "$ref": "decision_guidance.v1.json#/$defs/people" }
+      }
+    }
+  },
+  "allOf": [
+    {
+      "if": { "properties": { "source": { "const": "account_agent" } } },
+      "then": { "properties": { "draft_index": { "const": 1 }, "revision_feedback": { "maxItems": 0 } } }
+    },
+    {
+      "if": { "properties": { "source": { "const": "revision_planner" } } },
+      "then": { "properties": { "draft_index": { "minimum": 2 }, "revision_feedback": { "minItems": 1 } } }
+    },
+    {
+      "description": "A strategy candidate (HAR-129) is any draft index and is not a revision.",
+      "if": { "properties": { "source": { "const": "strategy_generator" } } },
+      "then": { "properties": { "revision_feedback": { "maxItems": 0 } } }
+    }
+  ]
+}

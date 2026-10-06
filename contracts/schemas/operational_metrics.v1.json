@@ -1,0 +1,64 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://ghost.local/contracts/operational_metrics.v1.json",
+  "title": "OperationalMetrics",
+  "description": "HAR-145: what one agent run (and so its DecisionEpisode) cost to produce: model calls, tokens, tool calls, retries, latency by stage and cost, summed from the usage the model worker reports on every response and core stores per call (run_model_usage). These are the operational diagnostics M1-M5 (token efficiency, tool efficiency, eval overhead, latency, cost) of the HAR-97 registry: a METRIC, never an EVAL. `classification` is always metric and nothing here has a verdict, pass or fail. Counts are exact sums of what the worker reported; a field the provider did not report is not guessed: cached_input_tokens, reasoning_tokens and cost_usd are null unless every model call reported them, and a null is shown as \"not measured\", never as 0 or as a free run. Tokens of a model answer that was discarded and retried are not reported (the attempt is in retries), so token sums are a lower bound when retries > 0. `usage_source` says where the answers came from: live (a real provider; the figures are what it reported), replay (recorded cassettes, nothing spent) or mixed. Replayed calls are never summed: `measured` is true only when at least one live call was recorded, and false (every number 0 or null, no stages) for a run with no usage recorded (from before usage capture, one that made no model call) or one that was only replayed.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "classification", "agent_run_id", "decision_episode_id", "measured", "model_calls", "input_tokens", "output_tokens",
+    "cached_input_tokens", "reasoning_tokens", "tool_calls", "context_pulls", "retries", "cost_usd", "latency", "models", "stages", "usage_source"
+  ],
+  "properties": {
+    "classification": { "const": "metric" },
+    "agent_run_id": { "$ref": "common.v1.json#/$defs/uuid" },
+    "decision_episode_id": { "oneOf": [{ "$ref": "common.v1.json#/$defs/uuid" }, { "type": "null" }] },
+    "measured": { "type": "boolean", "description": "True only when live usage was recorded for the run; false for a run with no usage or a replay-only run." },
+    "usage_source": { "enum": ["live", "replay", "mixed", null], "description": "Where the recorded answers came from; null when no usage was recorded for the run." },
+    "model_calls": { "type": "integer", "minimum": 0, "description": "Provider completions whose answer the worker used; a discarded and retried attempt is counted in retries, not here. Replayed calls are not counted." },
+    "input_tokens": { "type": "integer", "minimum": 0, "description": "Prompt tokens, cached ones included." },
+    "output_tokens": { "type": "integer", "minimum": 0, "description": "Completion tokens, reasoning ones included." },
+    "cached_input_tokens": { "type": ["integer", "null"], "minimum": 0, "description": "The part of input_tokens served from the provider's prompt cache; null (not measured) unless every live model call reported it." },
+    "reasoning_tokens": { "type": ["integer", "null"], "minimum": 0, "description": "The part of output_tokens spent on hidden reasoning; null (not measured) unless every live model call reported it." },
+    "tool_calls": { "type": "integer", "minimum": 0, "description": "Tool calls the model asked for, as counted by the worker." },
+    "context_pulls": { "type": "integer", "minimum": 0, "description": "GET /internal/ctx pulls core logged for the run (context_access_log): core's own count of the same activity." },
+    "retries": { "type": "integer", "minimum": 0, "description": "Extra provider attempts: rate-limit backoffs, an invalid-output retry, a fallback-model switch." },
+    "cost_usd": { "type": ["number", "null"], "minimum": 0, "description": "Sum of the provider-reported cost; null (show \"not measured\") unless every recorded live model call reported one. Never an estimate, and never reported for replayed calls." },
+    "latency": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["worker_call_ms", "model_ms"],
+      "properties": {
+        "worker_call_ms": { "type": "integer", "minimum": 0, "description": "Sum of core's measured duration of each live worker call. It is NOT the run's elapsed time: concurrent calls add up and the time between calls (core's own work, waiting for the human) is not in it." },
+        "model_ms": { "type": "integer", "minimum": 0, "description": "Sum of the time the worker spent inside the provider layer, per live call; concurrent calls add up." }
+      }
+    },
+    "models": { "type": "array", "uniqueItems": true, "items": { "type": "string" }, "description": "Models the worker reported using." },
+    "stages": {
+      "description": "The same sums by worker operation (the latency stages), in the order they first ran.",
+      "type": "array",
+      "items": { "$ref": "#/$defs/stage" }
+    }
+  },
+  "$defs": {
+    "stage": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["stage", "worker_calls", "model_calls", "input_tokens", "output_tokens", "cached_input_tokens", "reasoning_tokens", "tool_calls", "retries", "cost_usd", "worker_call_ms", "model_ms"],
+      "properties": {
+        "stage": { "enum": ["draft", "strategies", "judge", "revise", "human_delta", "judgment_inference"], "description": "The worker operation. judge is the semantic-eval overhead (M3)." },
+        "worker_calls": { "type": "integer", "minimum": 1, "description": "Worker HTTP calls of this operation." },
+        "model_calls": { "type": "integer", "minimum": 0 },
+        "input_tokens": { "type": "integer", "minimum": 0 },
+        "output_tokens": { "type": "integer", "minimum": 0 },
+        "cached_input_tokens": { "type": ["integer", "null"], "minimum": 0 },
+        "reasoning_tokens": { "type": ["integer", "null"], "minimum": 0 },
+        "tool_calls": { "type": "integer", "minimum": 0 },
+        "retries": { "type": "integer", "minimum": 0 },
+        "cost_usd": { "type": ["number", "null"], "minimum": 0 },
+        "worker_call_ms": { "type": "integer", "minimum": 0, "description": "As latency.worker_call_ms, for this operation." },
+        "model_ms": { "type": "integer", "minimum": 0 }
+      }
+    }
+  }
+}

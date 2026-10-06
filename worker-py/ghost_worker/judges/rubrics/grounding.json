@@ -1,0 +1,105 @@
+{
+  "eval_type": "grounding",
+  "version": 1,
+  "title": "Grounding in buyer evidence / factual support",
+  "har97_refs": [
+    {
+      "line": 1258,
+      "text": "## 5.9 Grounding / factual support"
+    },
+    {
+      "line": 2417,
+      "text": "## 15.12 Grounding in buyer evidence"
+    },
+    {
+      "line": 614,
+      "text": "grounding in buyer evidence"
+    },
+    {
+      "line": 2964,
+      "text": "* grounding in actual buyer evidence"
+    }
+  ],
+  "l2_dimension": "grounding in actual buyer evidence",
+  "questions": [
+    {
+      "section": "§5.9",
+      "text": "Are the claims, rationale and proposed action grounded in the account state and source evidence?"
+    },
+    {
+      "section": "§15(GTM).12",
+      "text": "Does the proposed GTM action follow from what this buyer/account has actually said and done?"
+    }
+  ],
+  "inputs": [
+    "account state and its conflicts",
+    "trigger and supporting activities",
+    "the candidate's claims, rationale and cited evidence"
+  ],
+  "criteria": [
+    {
+      "id": "claims_supported",
+      "kind": "check",
+      "text": "every factual claim is supported by the evidence",
+      "guide": "Names, approvals, dates and figures in the action appear in the state or activities.",
+      "har97": null,
+      "output": "finding",
+      "before": null,
+      "after": null
+    },
+    {
+      "id": "quotes_support_action",
+      "kind": "check",
+      "text": "cited evidence supports, not contradicts, the action",
+      "guide": "A cited quote that says the opposite of the proposal is a grounding failure.",
+      "har97": null,
+      "output": "finding",
+      "before": null,
+      "after": null
+    },
+    {
+      "id": "standing_respected",
+      "kind": "check",
+      "text": "newer or higher-standing evidence wins over stale or third-party data",
+      "guide": "When sources conflict, the action follows the customer's own, newer evidence.",
+      "har97": null,
+      "output": "finding",
+      "before": null,
+      "after": null
+    },
+    {
+      "id": "follows_buyer",
+      "kind": "evaluate",
+      "text": "the action follows from what the buyer said and did",
+      "guide": "The action responds to the buyer's own words and actions, not a generic playbook.",
+      "har97": null,
+      "output": "finding",
+      "before": null,
+      "after": null
+    }
+  ],
+  "failure_examples": [],
+  "counter_failures": [],
+  "known_exceptions": [],
+  "candidate_choices": [],
+  "principles": [
+    "Do not let generic GTM “best practice” override actual customer evidence.",
+    "This remains a core eval because generic sales best practice should not override first-party customer evidence."
+  ],
+  "labels": [],
+  "pass_label": null,
+  "diagnostics": [],
+  "routing": {
+    "actions": [
+      "send_email",
+      "schedule_meeting",
+      "share_document",
+      "internal_note",
+      "wait",
+      "no_action"
+    ],
+    "when_all": [],
+    "when_any": []
+  },
+  "uses_rep_profile": false
+}

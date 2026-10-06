@@ -1,0 +1,150 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://ghost.local/contracts/strategy_candidate.v1.json",
+  "title": "StrategyCandidate",
+  "description": "One complete candidate decision (HAR-129 section 6, 7): a materially different GTM strategy with its finished action, so the human chooses among real actions and no draft is generated after the click. The worker returns candidates without draft_index and eval_bundle_ref; core assigns the draft and runs the evals, and a candidate inside a StrategySet must carry both.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "candidate_id", "strategy_type", "title", "description", "ranking", "preferred_by_agent", "rationale",
+    "state_refs", "evidence_refs", "knowledge_refs", "action_type", "to", "cc", "subject", "full_action_artifact", "preview",
+    "action_class", "five_questions"
+  ],
+  "properties": {
+    "candidate_id": { "$ref": "common.v1.json#/$defs/uuid" },
+    "strategy_type": {
+      "description": "Open vocabulary, generated from the account state (for example stronger_cta, add_stakeholder, clarify_first); lower snake case so judgment inference can compare candidates.",
+      "type": "string", "pattern": "^[a-z][a-z0-9_]*$", "maxLength": 80
+    },
+    "title": { "description": "Card heading.", "type": "string", "minLength": 1, "maxLength": 80 },
+    "description": { "description": "One-line strategic intent.", "type": "string", "minLength": 1, "maxLength": 300 },
+    "ranking": { "description": "1 is Ghost's best; unique within a set.", "type": "integer", "minimum": 1 },
+    "preferred_by_agent": { "description": "True exactly for ranking 1.", "type": "boolean" },
+    "rationale": { "description": "Why this strategy is plausible for the current state.", "type": "string", "minLength": 1, "maxLength": 1500 },
+    "state_refs": {
+      "description": "AccountState fields the strategy relies on (same vocabulary as EvalResult.state_refs).",
+      "type": "array", "items": { "type": "string" }
+    },
+    "evidence_refs": { "type": "array", "minItems": 1, "items": { "$ref": "common.v1.json#/$defs/evidenceRef" } },
+    "knowledge_refs": {
+      "description": "Company knowledge applied to this candidate (every knowledge object the candidate used).",
+      "type": "array", "items": { "$ref": "common.v1.json#/$defs/uuid" }
+    },
+    "action_type": { "$ref": "agent_run_output.v1.json#/properties/proposed_action_type" },
+    "action_class": {
+      "description": "The decision class of the strategy (HAR-97 decision vocabulary, HAR-128). action_type is the executable tool vocabulary; action_class says what kind of move the strategy is and maps onto action_type (see allOf): REPLY -> send_email, MEETING -> schedule_meeting, SHARE_DOCUMENT -> share_document, INTERNAL_TASK, ASK_RESEARCH (research, account brief, ask the internal owner), CRM_UPDATE and HUMAN_REVIEW (hand to a human) -> internal_note, WAIT -> wait, NO_ACTION and UNKNOWN (the evidence does not say) -> no_action, EXPANSION_MOTION (commercial expansion outreach) -> send_email, schedule_meeting or share_document. Under a CANDIDATE or UNRESOLVED transition core restricts EXPANSION_MOTION.",
+      "type": "string", "enum": ["REPLY", "MEETING", "SHARE_DOCUMENT", "INTERNAL_TASK", "WAIT", "NO_ACTION", "ASK_RESEARCH", "EXPANSION_MOTION", "CRM_UPDATE", "UNKNOWN", "HUMAN_REVIEW"]
+    },
+    "selected_eval_suite": {
+      "description": "The eval suite core routed THIS candidate to, from the transition status, the state and the candidate's own action (routing.v1.json action_routes); null when no suite applies. Set by core after generation (the worker never sends it); it repeats eval_bundle.selected_eval_suite so the choice is visible on the candidate itself.",
+      "oneOf": [{ "type": "string", "pattern": "^[a-z][a-z0-9_]*$" }, { "type": "null" }]
+    },
+    "to": {
+      "type": "array",
+      "items": { "$ref": "agent_run_output.v1.json#/properties/recipients/items", "properties": { "role": { "const": "to" } } }
+    },
+    "cc": {
+      "type": "array",
+      "items": { "$ref": "agent_run_output.v1.json#/properties/recipients/items", "properties": { "role": { "const": "cc" } } }
+    },
+    "subject": {
+      "description": "Card field; equals full_action_artifact.subject (a SQL CHECK keeps them equal).",
+      "type": ["string", "null"], "maxLength": 300
+    },
+    "full_action_artifact": { "$ref": "agent_run_output.v1.json#/properties/finished_artifact" },
+    "five_questions": {
+      "description": "The five questions every visible recommendation answers (HAR-128): what changed, why we think the state changed, what remains unknown, what prior knowledge applies, why this is the next action. Each answer is non-empty; rationale stays the one-paragraph summary.",
+      "type": "object", "additionalProperties": false,
+      "required": ["what_changed", "why_state_changed", "what_remains_unknown", "prior_knowledge_applies", "why_next_action"],
+      "properties": {
+        "what_changed": { "type": "string", "minLength": 1, "maxLength": 600 },
+        "why_state_changed": { "type": "string", "minLength": 1, "maxLength": 600 },
+        "what_remains_unknown": { "type": "string", "minLength": 1, "maxLength": 600 },
+        "prior_knowledge_applies": { "type": "string", "minLength": 1, "maxLength": 600 },
+        "why_next_action": { "type": "string", "minLength": 1, "maxLength": 600 }
+      }
+    },
+    "preview": { "description": "Meaningful excerpt of the body for the card (no new text).", "type": "string", "minLength": 1, "maxLength": 600 },
+    "draft_index": {
+      "description": "The AgentRun draft that stores this candidate's output, so EvalResult(agent_run_id, draft_index) rows apply unchanged. Assigned by core.",
+      "type": "integer", "minimum": 1
+    },
+    "eval_bundle_ref": {
+      "description": "EvalBundle id. Assigned by core after the evals ran.",
+      "$ref": "common.v1.json#/$defs/uuid"
+    }
+  },
+  "allOf": [
+    {
+      "description": "Ghost prefers exactly its top-ranked candidate.",
+      "if": { "properties": { "ranking": { "const": 1 } } },
+      "then": { "properties": { "preferred_by_agent": { "const": true } } },
+      "else": { "properties": { "preferred_by_agent": { "const": false } } }
+    },
+    {
+      "description": "An email strategy addresses someone, over the email channel (as AgentRunOutput).",
+      "if": { "properties": { "action_type": { "const": "send_email" } } },
+      "then": {
+        "properties": {
+          "to": { "minItems": 1 },
+          "full_action_artifact": { "properties": { "channel": { "const": "email" } } }
+        }
+      }
+    },
+    {
+      "description": "action_class REPLY is carried out as send_email.",
+      "if": { "properties": { "action_class": { "const": "REPLY" } }, "required": ["action_class"] },
+      "then": { "properties": { "action_type": { "enum": ["send_email"] } } }
+    },
+    {
+      "description": "action_class MEETING is carried out as schedule_meeting.",
+      "if": { "properties": { "action_class": { "const": "MEETING" } }, "required": ["action_class"] },
+      "then": { "properties": { "action_type": { "enum": ["schedule_meeting"] } } }
+    },
+    {
+      "description": "action_class SHARE_DOCUMENT is carried out as share_document.",
+      "if": { "properties": { "action_class": { "const": "SHARE_DOCUMENT" } }, "required": ["action_class"] },
+      "then": { "properties": { "action_type": { "enum": ["share_document"] } } }
+    },
+    {
+      "description": "action_class INTERNAL_TASK is carried out as internal_note.",
+      "if": { "properties": { "action_class": { "const": "INTERNAL_TASK" } }, "required": ["action_class"] },
+      "then": { "properties": { "action_type": { "enum": ["internal_note"] } } }
+    },
+    {
+      "description": "action_class WAIT is carried out as wait.",
+      "if": { "properties": { "action_class": { "const": "WAIT" } }, "required": ["action_class"] },
+      "then": { "properties": { "action_type": { "enum": ["wait"] } } }
+    },
+    {
+      "description": "action_class NO_ACTION is carried out as no_action.",
+      "if": { "properties": { "action_class": { "const": "NO_ACTION" } }, "required": ["action_class"] },
+      "then": { "properties": { "action_type": { "enum": ["no_action"] } } }
+    },
+    {
+      "description": "action_class ASK_RESEARCH is carried out as internal_note.",
+      "if": { "properties": { "action_class": { "const": "ASK_RESEARCH" } }, "required": ["action_class"] },
+      "then": { "properties": { "action_type": { "enum": ["internal_note"] } } }
+    },
+    {
+      "description": "action_class EXPANSION_MOTION is carried out as send_email or schedule_meeting or share_document.",
+      "if": { "properties": { "action_class": { "const": "EXPANSION_MOTION" } }, "required": ["action_class"] },
+      "then": { "properties": { "action_type": { "enum": ["send_email", "schedule_meeting", "share_document"] } } }
+    },
+    {
+      "description": "action_class CRM_UPDATE is carried out as internal_note.",
+      "if": { "properties": { "action_class": { "const": "CRM_UPDATE" } }, "required": ["action_class"] },
+      "then": { "properties": { "action_type": { "enum": ["internal_note"] } } }
+    },
+    {
+      "description": "action_class UNKNOWN is carried out as no_action.",
+      "if": { "properties": { "action_class": { "const": "UNKNOWN" } }, "required": ["action_class"] },
+      "then": { "properties": { "action_type": { "enum": ["no_action"] } } }
+    },
+    {
+      "description": "action_class HUMAN_REVIEW is carried out as internal_note.",
+      "if": { "properties": { "action_class": { "const": "HUMAN_REVIEW" } }, "required": ["action_class"] },
+      "then": { "properties": { "action_type": { "enum": ["internal_note"] } } }
+    }
+  ]
+}

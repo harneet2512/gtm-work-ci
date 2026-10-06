@@ -1,0 +1,22 @@
+{
+  "source_system": "email",
+  "source_object_id": "<BETA-hl-2026-08-20@beta.io>",
+  "source_event_key": "received",
+  "occurred_at": "2026-08-20T10:20:00Z",
+  "connector": "gmail",
+  "connector_version": "0.1.0",
+  "payload": {
+    "kind": "email",
+    "direction": "inbound",
+    "message_id": "<BETA-hl-2026-08-20@beta.io>",
+    "thread_id": "thr-beta-support-rollout",
+    "in_reply_to": "<ghost-dana-2026-08-19@ghostvendor.com>",
+    "from": {"email": "hannah.lee@beta.io", "name": "Hannah Lee"},
+    "to": [{"email": "dana@ghostvendor.com", "name": "Dana Kim"}],
+    "cc": [],
+    "date": "2026-08-20T10:20:00Z",
+    "subject": "Re: Relay for the Beta support org",
+    "body_text": "Hi Dana - yes, we want the whole support org on Relay: about 140 agents across Austin and Dublin. Owen Clarke, our CFO, signs off on anything over $100k, so we'll need a clear business case for him. Wednesday the 26th at 11:00 Central works for a scoping call.\nHannah",
+    "crm_opportunity_ref": "opp:BE-7-EXP"
+  }
+}

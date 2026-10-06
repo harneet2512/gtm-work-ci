@@ -1,0 +1,41 @@
+/* The Decision & Learning view inside the decision area of /evals: five stage tabs and the table of one stage. */
+
+.decision-learning {
+  margin: var(--space-6) 0;
+}
+
+.decision-learning .stage-h {
+  margin: var(--space-4) 0 var(--space-2);
+  color: var(--ink);
+  font-size: var(--text-md);
+}
+
+.stage-table thead th:nth-child(1) { width: 26%; }
+.stage-table thead th:nth-child(2) { width: 20%; }
+.stage-table thead th:nth-child(3) { width: 20%; }
+.stage-table thead th:nth-child(4) { width: 12%; }
+.stage-table thead th:nth-child(5) { width: 10%; }
+.stage-table thead th:nth-child(6) { width: 12%; }
+
+.stage-table .stage-also {
+  display: block;
+  margin-top: var(--space-1);
+  font-weight: 400;
+}
+
+/* A missing result is said plainly and never dressed as a verdict */
+.stage-table .stage-result {
+  color: var(--muted);
+  font-style: italic;
+}
+
+.metrics-list {
+  margin-top: var(--space-6);
+}
+
+.metrics-list ul {
+  margin: var(--space-2) 0 0;
+  padding-left: var(--space-5);
+  color: var(--ink-2);
+  font-size: var(--text-sm);
+}
