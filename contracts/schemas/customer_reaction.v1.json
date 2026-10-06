@@ -1,0 +1,26 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://ghost.local/contracts/customer_reaction.v1.json",
+  "title": "CustomerReaction",
+  "description": "Fast supervision (HAR-97 §12): what the customer did after an action, detected from follow-on activity. Behavioral evidence, not truth.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["id", "account_id", "activity_id", "reaction_type", "polarity", "evidence_refs", "created_at"],
+  "properties": {
+    "id": { "$ref": "common.v1.json#/$defs/uuid" },
+    "account_id": { "$ref": "common.v1.json#/$defs/uuid" },
+    "agent_run_id": { "oneOf": [{ "$ref": "common.v1.json#/$defs/uuid" }, { "type": "null" }] },
+    "activity_id": { "$ref": "common.v1.json#/$defs/uuid" },
+    "reaction_type": {
+      "type": "string",
+      "enum": [
+        "replied", "ignored", "meeting_accepted", "stakeholder_added", "stakeholder_removed",
+        "objection_raised", "new_commitment", "requested_document", "conversation_advanced",
+        "conversation_cooled"
+      ]
+    },
+    "polarity": { "type": "string", "enum": ["positive", "neutral", "negative"] },
+    "evidence_refs": { "type": "array", "items": { "$ref": "common.v1.json#/$defs/evidenceRef" } },
+    "created_at": { "$ref": "common.v1.json#/$defs/timestamp" }
+  }
+}

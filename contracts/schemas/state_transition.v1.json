@@ -1,0 +1,163 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://ghost.local/contracts/state_transition.v1.json",
+  "title": "StateTransition",
+  "description": "An evidence-earned move of an account's relationship state (HAR-97 pitch §2-§4, ADR-0012). Written only by the deterministic transition detector from the rule set (contracts/transitions/rules.v1.json) after recompute; the account agent reads it and never writes it. Every satisfied fact points at the claims and activities it rests on; contradicting evidence is preserved on every status, and only a decisive contradiction (rejects=true) makes it REJECTED. Every write is appended to state_transition_history.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "id", "account_id", "from_state", "to_state_candidate", "status", "trigger_activity_ids",
+    "supporting_facts", "missing_facts", "contradicting_facts", "confidence", "state_version",
+    "rule_set_version", "first_observed_at", "last_updated_at"
+  ],
+  "properties": {
+    "id": { "$ref": "common.v1.json#/$defs/uuid" },
+    "account_id": { "$ref": "common.v1.json#/$defs/uuid" },
+    "opportunity_id": { "oneOf": [{ "$ref": "common.v1.json#/$defs/uuid" }, { "type": "null" }] },
+    "from_state": {
+      "description": "The account's CONFIRMED relationship state when the transition was first observed ('unknown' before any).",
+      "$ref": "common.v1.json#/$defs/relationshipStateOrUnknown"
+    },
+    "to_state_candidate": {
+      "description": "The state the evidence points to; null exactly when UNRESOLVED (ambiguous, or a candidate that lost its gate). Never equal to from_state.",
+      "oneOf": [{ "$ref": "common.v1.json#/$defs/relationshipState" }, { "type": "null" }]
+    },
+    "status": { "$ref": "common.v1.json#/$defs/transitionStatus" },
+    "trigger_activity_ids": {
+      "description": "Activities whose recompute first produced or last changed this transition.",
+      "type": "array", "minItems": 1, "uniqueItems": true, "items": { "$ref": "common.v1.json#/$defs/uuid" }
+    },
+    "supporting_facts": { "type": "array", "items": { "$ref": "#/$defs/supportingFact" } },
+    "missing_facts": {
+      "description": "Rule-set facts not (yet) satisfied, required or optional; the 'why not confirmed?' list.",
+      "type": "array", "items": { "$ref": "#/$defs/missingFact" }
+    },
+    "contradicting_facts": {
+      "description": "Rule-set contradictions that hold, preserved on every status (HAR-97 L1). A decisive one (rejects=true) exists exactly when REJECTED.",
+      "type": "array", "items": { "$ref": "#/$defs/contradictingFact" }
+    },
+    "confidence": {
+      "description": "Satisfied required facts / required facts of the rule, rounded to 3 places (SQL numeric(4,3)).",
+      "type": "number", "minimum": 0, "maximum": 1, "multipleOf": 0.001
+    },
+    "state_version": {
+      "description": "AccountState version the facts were last evaluated against (state_history).",
+      "type": "integer", "minimum": 0
+    },
+    "rule_set_version": { "$ref": "common.v1.json#/$defs/ruleSetVersion" },
+    "first_observed_at": { "$ref": "common.v1.json#/$defs/timestamp" },
+    "confirmed_at": { "oneOf": [{ "$ref": "common.v1.json#/$defs/timestamp" }, { "type": "null" }] },
+    "rejected_at": { "oneOf": [{ "$ref": "common.v1.json#/$defs/timestamp" }, { "type": "null" }] },
+    "closed_at": {
+      "description": "Set when a stale UNRESOLVED transition is closed (rule set threshold unresolved_stale_days); a closed transition is terminal and no longer open.",
+      "oneOf": [{ "$ref": "common.v1.json#/$defs/timestamp" }, { "type": "null" }]
+    },
+    "close_reason": { "enum": ["stale", null] },
+    "last_updated_at": { "$ref": "common.v1.json#/$defs/timestamp" }
+  },
+  "allOf": [
+    {
+      "description": "The target is null exactly when UNRESOLVED.",
+      "if": { "properties": { "status": { "const": "UNRESOLVED" } } },
+      "then": { "properties": { "to_state_candidate": { "type": "null" } } },
+      "else": { "properties": { "to_state_candidate": { "$ref": "common.v1.json#/$defs/relationshipState" } } }
+    },
+    {
+      "description": "CONFIRMED: confirmed_at set and no unmet required fact (non-decisive contradictions stay visible).",
+      "if": { "properties": { "status": { "const": "CONFIRMED" } } },
+      "then": {
+        "required": ["confirmed_at"],
+        "properties": {
+          "confirmed_at": { "$ref": "common.v1.json#/$defs/timestamp" },
+          "missing_facts": { "items": { "properties": { "required": { "const": false } } } }
+        }
+      },
+      "else": { "properties": { "confirmed_at": { "type": "null" } } }
+    },
+    {
+      "description": "REJECTED: a decisive contradiction and rejected_at; no other status carries a decisive contradiction.",
+      "if": { "properties": { "status": { "const": "REJECTED" } } },
+      "then": {
+        "required": ["rejected_at"],
+        "properties": {
+          "rejected_at": { "$ref": "common.v1.json#/$defs/timestamp" },
+          "contradicting_facts": { "contains": { "properties": { "rejects": { "const": true } } } }
+        }
+      },
+      "else": {
+        "properties": {
+          "rejected_at": { "type": "null" },
+          "contradicting_facts": { "items": { "properties": { "rejects": { "const": false } } } }
+        }
+      }
+    },
+    {
+      "description": "CANDIDATE: at least one supporting fact and at least one unmet REQUIRED fact (otherwise it would be CONFIRMED).",
+      "if": { "properties": { "status": { "const": "CANDIDATE" } } },
+      "then": {
+        "properties": {
+          "supporting_facts": { "minItems": 1 },
+          "missing_facts": { "contains": { "properties": { "required": { "const": true } } } }
+        }
+      }
+    },
+    {
+      "description": "Only an UNRESOLVED transition can be closed, and a closed one says why.",
+      "if": { "required": ["closed_at"], "properties": { "closed_at": { "type": "string" } } },
+      "then": { "required": ["close_reason"], "properties": { "status": { "const": "UNRESOLVED" }, "close_reason": { "const": "stale" } } },
+      "else": { "properties": { "close_reason": { "const": null } } }
+    },
+    { "$ref": "#/$defs/notToSelf" }
+  ],
+  "$defs": {
+    "factBase": {
+      "type": "object",
+      "required": ["key", "description", "required", "satisfied", "evidence_refs"],
+      "properties": {
+        "key": { "$ref": "common.v1.json#/$defs/factKey" },
+        "description": { "type": "string", "minLength": 1, "maxLength": 300 },
+        "required": { "type": "boolean", "description": "The rule set requires this fact for CONFIRMED (always false for contradictions)." },
+        "satisfied": { "type": "boolean" },
+        "evidence_refs": {
+          "description": "Claims and activities the fact rests on (a satisfied fact has at least one).",
+          "type": "array", "items": { "$ref": "common.v1.json#/$defs/evidenceRef" }
+        },
+        "signal_ids": {
+          "description": "Signals the fact's conditions matched (ADR-0011).",
+          "type": "array", "uniqueItems": true, "items": { "$ref": "common.v1.json#/$defs/uuid" }
+        }
+      }
+    },
+    "supportingFact": {
+      "allOf": [{ "$ref": "#/$defs/factBase" }],
+      "properties": { "satisfied": { "const": true }, "evidence_refs": { "minItems": 1 } },
+      "unevaluatedProperties": false
+    },
+    "missingFact": {
+      "allOf": [{ "$ref": "#/$defs/factBase" }],
+      "properties": { "satisfied": { "const": false } },
+      "unevaluatedProperties": false
+    },
+    "contradictingFact": {
+      "allOf": [{ "$ref": "#/$defs/factBase" }],
+      "required": ["rejects"],
+      "properties": {
+        "satisfied": { "const": true },
+        "required": { "const": false },
+        "evidence_refs": { "minItems": 1 },
+        "rejects": { "type": "boolean", "description": "Decisive per the rule set: it moves the transition to REJECTED." }
+      },
+      "unevaluatedProperties": false
+    },
+    "notToSelf": {
+      "description": "A transition changes state: to_state_candidate never equals from_state. One branch per relationshipState (a test checks the branches cover the vocabulary).",
+      "allOf": [
+        { "if": { "properties": { "from_state": { "const": "NEW_LOGO" } } }, "then": { "properties": { "to_state_candidate": { "not": { "const": "NEW_LOGO" } } } } },
+        { "if": { "properties": { "from_state": { "const": "EXPANSION" } } }, "then": { "properties": { "to_state_candidate": { "not": { "const": "EXPANSION" } } } } },
+        { "if": { "properties": { "from_state": { "const": "RENEWAL" } } }, "then": { "properties": { "to_state_candidate": { "not": { "const": "RENEWAL" } } } } },
+        { "if": { "properties": { "from_state": { "const": "RECOVERY" } } }, "then": { "properties": { "to_state_candidate": { "not": { "const": "RECOVERY" } } } } },
+        { "if": { "properties": { "from_state": { "const": "REORG" } } }, "then": { "properties": { "to_state_candidate": { "not": { "const": "REORG" } } } } }
+      ]
+    }
+  }
+}

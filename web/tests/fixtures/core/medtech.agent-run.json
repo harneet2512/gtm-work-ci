@@ -1,0 +1,149 @@
+{
+  "id": "0f0aad00-0000-4000-8000-00000000ad60",
+  "account_id": "0a0cad00-0000-4000-8000-00000000ad01",
+  "opportunity_id": "0c0fad00-0000-4000-8000-00000000ad01",
+  "workflow": "post_interaction_followup",
+  "run_mode": "dry_run",
+  "status": "recorded",
+  "trigger_evaluation_id": "07e1ad00-0000-4000-8000-00000000ad50",
+  "trigger_activity_ids": [
+    "0ac7ad00-0000-4000-8000-00000000ad0d"
+  ],
+  "correlation_id": "0c0cad00-0000-4000-8000-00000000ad80",
+  "state_version": 108,
+  "input_context_refs": [
+    {
+      "tool": "state",
+      "access_id": 2101,
+      "returned_ids": [
+        "0a0cad00-0000-4000-8000-00000000ad01"
+      ],
+      "bytes": 3410
+    },
+    {
+      "tool": "evidence",
+      "access_id": 2102,
+      "returned_ids": [
+        "0c1aad00-0000-4000-8000-00000000ad27",
+        "0c1aad00-0000-4000-8000-00000000ad28",
+        "0c1aad00-0000-4000-8000-00000000ad2a"
+      ],
+      "bytes": 1180
+    }
+  ],
+  "output": {
+    "proposed_action_type": "send_email",
+    "recipients": [
+      {
+        "person_id": "0b0ead00-0000-4000-8000-00000000ad11",
+        "role": "to",
+        "why": "Asked the cost question and for the call"
+      }
+    ],
+    "finished_artifact": {
+      "channel": "email",
+      "subject": "Re: Feedback request on proposal draft",
+      "body": "Hi Fatoumata,\n\nThank you for the questions. A call is a good idea: would Monday, November 13 at 10:00 or Tuesday, November 14 at 14:00 suit you?\n\nBefore the call I will send a breakdown of the long-term costs of running EduTech Lab and SecureData Nexus alongside your existing systems, so we can spend the time on your questions rather than the numbers. I can also bring our implementation lead to cover the onboarding support your team mentioned.\n\nBest regards,\nLuis",
+      "attachments": []
+    },
+    "crm_next_step_intent": {
+      "next_step": "Follow-up call with Fatoumata on long-term costs",
+      "due_at": null,
+      "stage_change": null
+    },
+    "reason": "Fatoumata asked about long-term integration costs and for a follow-up call.",
+    "evidence_refs": [
+      {
+        "activity_id": "0ac7ad00-0000-4000-8000-00000000ad0d",
+        "claim_id": "0c1aad00-0000-4000-8000-00000000ad27",
+        "quote": "That said, I have some questions regarding the long-term cost implications of integrating both the EduTech Lab and the SecureData Nexus into our existing systems.",
+        "speaker_person_id": "0b0ead00-0000-4000-8000-00000000ad11",
+        "occurred_at": "2023-11-09T09:30:00Z"
+      },
+      {
+        "activity_id": "0ac7ad00-0000-4000-8000-00000000ad0d",
+        "claim_id": "0c1aad00-0000-4000-8000-00000000ad28",
+        "quote": "Could we schedule a follow-up call to discuss these points in more detail?",
+        "speaker_person_id": "0b0ead00-0000-4000-8000-00000000ad11",
+        "occurred_at": "2023-11-09T09:30:00Z"
+      }
+    ],
+    "knowledge_refs_used": [],
+    "wait_until": null
+  },
+  "evidence_refs": [
+    {
+      "activity_id": "0ac7ad00-0000-4000-8000-00000000ad0d",
+      "claim_id": "0c1aad00-0000-4000-8000-00000000ad27",
+      "quote": "That said, I have some questions regarding the long-term cost implications of integrating both the EduTech Lab and the SecureData Nexus into our existing systems.",
+      "speaker_person_id": "0b0ead00-0000-4000-8000-00000000ad11",
+      "occurred_at": "2023-11-09T09:30:00Z"
+    },
+    {
+      "activity_id": "0ac7ad00-0000-4000-8000-00000000ad0d",
+      "claim_id": "0c1aad00-0000-4000-8000-00000000ad28",
+      "quote": "Could we schedule a follow-up call to discuss these points in more detail?",
+      "speaker_person_id": "0b0ead00-0000-4000-8000-00000000ad11",
+      "occurred_at": "2023-11-09T09:30:00Z"
+    }
+  ],
+  "knowledge_refs_used": [],
+  "model": "qwen/qwen3.8-flash",
+  "steps": [
+    {
+      "seq": 1,
+      "step": "build_context",
+      "status": "succeeded",
+      "started_at": "2023-11-09T09:30:12Z",
+      "finished_at": "2023-11-09T09:30:14Z",
+      "external_effect_id": null,
+      "detail": {}
+    },
+    {
+      "seq": 2,
+      "step": "draft",
+      "status": "succeeded",
+      "started_at": "2023-11-09T09:30:14Z",
+      "finished_at": "2023-11-09T09:31:08Z",
+      "external_effect_id": null,
+      "detail": {}
+    },
+    {
+      "seq": 3,
+      "step": "crm_intent",
+      "status": "recorded",
+      "started_at": "2023-11-09T09:31:08Z",
+      "finished_at": "2023-11-09T09:31:08Z",
+      "external_effect_id": null,
+      "detail": {}
+    },
+    {
+      "seq": 4,
+      "step": "await_human",
+      "status": "succeeded",
+      "started_at": "2023-11-09T09:31:30Z",
+      "finished_at": "2023-11-09T09:58:00Z",
+      "external_effect_id": null,
+      "detail": {}
+    },
+    {
+      "seq": 5,
+      "step": "execute",
+      "status": "recorded",
+      "started_at": "2023-11-09T09:58:02Z",
+      "finished_at": "2023-11-09T09:58:03Z",
+      "external_effect_id": null,
+      "detail": {}
+    }
+  ],
+  "error": null,
+  "generation": {
+    "phase": "published",
+    "attempt": 1,
+    "reason": null,
+    "strategy_set_id": "05e7ad00-0000-4000-8000-00000000ad0b",
+    "decision_episode_id": "0e9ead00-0000-4000-8000-00000000ad0a"
+  },
+  "created_at": "2023-11-09T09:30:12Z",
+  "updated_at": "2023-11-09T09:58:03Z"
+}

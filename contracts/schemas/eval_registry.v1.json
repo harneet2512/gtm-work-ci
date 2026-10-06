@@ -1,0 +1,259 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://ghost.local/contracts/eval_registry.v1.json",
+  "title": "EvalRegistry",
+  "description": "Canonical eval registry (HAR-97 CANONICAL EVAL STRATEGY section 12, HAR-140 / WP36): families E1-E22 and operational M1-M5, and per eval the surfaces (1-20) and dimensions it protects. An EVAL is a judgment on one episode, span or decision; metrics aggregate evals (metric_registry.v1.json); the completeness matrix (completeness_matrix.v1.json) refers to evals by id. The instance is contracts/evals/eval_registry.json.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["registry_version", "description", "source", "gold_source", "buckets", "gates", "known_deviations", "families", "evals", "metrics"],
+  "properties": {
+    "registry_version": {
+      "type": "integer",
+      "minimum": 1
+    },
+    "description": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 2000
+    },
+    "source": {
+      "$ref": "#/$defs/source"
+    },
+    "gold_source": {
+      "description": "Where the reference answers the model judges are measured against come from: a different, stronger model, blind to the judge under test. They are NOT human labels, and every agreement figure and every surface that shows one says so (reference answers by a stronger model, not human).",
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["kind", "model"],
+      "properties": {
+        "kind": {"const": "model_reference"},
+        "model": {"type": "string", "minLength": 1}
+      }
+    },
+    "buckets": {
+      "description": "The three canonical buckets, in order: context / organizational intelligence, decision / human judgment / action, system / eval health.",
+      "type": "array", "minItems": 3, "maxItems": 3,
+      "items": {
+        "type": "object", "additionalProperties": false, "required": ["id", "order", "name", "question"],
+        "properties": {
+          "id": {"$ref": "#/$defs/bucket"},
+          "order": {"type": "integer", "minimum": 1, "maximum": 3},
+          "name": {"type": "string", "minLength": 1, "maxLength": 80},
+          "question": {"type": "string", "minLength": 1, "maxLength": 300}
+        }
+      }
+    },
+    "gates": {
+      "description": "The named gates of the buckets (B1-B9, D1-D10 in decision-flow order, S1-S5, and S6 for the efficiency metrics), each with the question it asks and what it improves or protects. A gate no eval is registered under yet (D6, D10) is shown as not measured, never as passing.",
+      "type": "array", "minItems": 1,
+      "items": {
+        "type": "object", "additionalProperties": false, "required": ["id", "bucket", "order", "name", "question", "improves", "plain_what", "plain_why"],
+        "properties": {
+          "id": {"$ref": "#/$defs/gate"},
+          "bucket": {"$ref": "#/$defs/bucket"},
+          "order": {"description": "Position within the bucket: for Bucket 2 the step of the decision flow.", "type": "integer", "minimum": 1, "maximum": 10},
+          "name": {"type": "string", "minLength": 1, "maxLength": 100},
+          "question": {"type": "string", "minLength": 1, "maxLength": 300},
+          "improves": {"type": "string", "minLength": 1, "maxLength": 300},
+          "display_name": {"description": "The short card name (HAR-97 v2 definitions). `name` stays the long registry name that the Go gate metadata and stored results pin.", "type": "string", "minLength": 1, "maxLength": 60},
+          "display_question": {"description": "The card question (HAR-97 v2 definitions). `question` stays the wording the stored results carry.", "type": "string", "minLength": 1, "maxLength": 300},
+          "plain_what": {"description": "HAR-149: what the gate does, in plain English for a non-engineer (the drawer's 'What are we doing?').", "type": "string", "minLength": 40, "maxLength": 500},
+          "plain_why": {"description": "HAR-149: the failure the gate catches and why it matters (the drawer's 'Why do we care?').", "type": "string", "minLength": 40, "maxLength": 500},
+          "invariant": {"description": "The bad behaviour the gate catches.", "type": "string", "minLength": 1, "maxLength": 300},
+          "judges": {"description": "The object it grades and the trace step.", "type": "string", "minLength": 1, "maxLength": 300},
+          "grader": {"description": "Who grades: deterministic code, a model, or both.", "type": "string", "minLength": 1, "maxLength": 60},
+          "criteria": {"description": "When each verdict applies, verbatim from the definitions. A verdict the definitions do not define for the gate is absent (never invented).", "type": "object", "additionalProperties": false, "properties": {"pass": {"type": "string", "minLength": 1, "maxLength": 500}, "warn": {"type": "string", "minLength": 1, "maxLength": 500}, "fail": {"type": "string", "minLength": 1, "maxLength": 500}, "unknown": {"type": "string", "minLength": 1, "maxLength": 500}}},
+          "criteria_note": {"description": "Free text the definitions give instead of per-verdict criteria (D6).", "type": "string", "maxLength": 500},
+          "protects": {"description": "What gets better because this gate exists.", "type": "string", "minLength": 1, "maxLength": 300},
+          "when": {"description": "The demo moment the gate runs at (Bucket 2 only in the definitions).", "type": "string", "minLength": 1, "maxLength": 60},
+          "status_note": {"description": "Bucket 3: what is built today, said honestly.", "type": "string", "minLength": 1, "maxLength": 500},
+          "message": {"description": "The Cliff Slack message of the one loop this gate judges (M1 what changed, M2 what to do, M3 what we learned from you, ecolite what is used next time); system for the S gates, which judge the machinery.", "enum": ["M1", "M2", "M3", "ecolite", "system"]},
+          "impact": {"description": "What a failure of this gate changes in the backend today, read from the code paths and never inferred from the gate name.", "enum": ["blocks current action", "requires human review", "triggers recomputation", "prevents knowledge promotion", "marks capability unreliable", "monitoring only"]},
+          "impact_basis": {"description": "The code citation that justifies impact.", "type": "string", "minLength": 1},
+          "mode": {"description": "HAR-97 execution mode: live_required runs on every real episode that reaches the stage; live_conditional only when the trigger object exists (a missing prerequisite is never a pass); offline_benchmark runs on frozen cases and never on a live episode; continuous_aggregate is observability over many runs.", "enum": ["live_required", "live_conditional", "offline_benchmark", "continuous_aggregate"]},
+          "trigger": {"description": "The Trigger / cadence column of HAR-97, verbatim.", "type": "string", "minLength": 1, "maxLength": 200},
+          "not_triggered": {"description": "For a live_conditional gate: the situation whose absence reads \"Not triggered\" (derived from `trigger`, never a pass).", "type": "string", "minLength": 1, "maxLength": 100}
+        }
+      }
+    },
+    "control_effect_rules": {
+      "description": "HAR-149: the control effect each verdict of each gate has in the backend today, cited from code (never inferred from the gate name). `default` applies to a gate with no entry in `gates`; a gate entry overrides single verdicts and cites its code in `basis`.",
+      "type": "object", "additionalProperties": false, "required": ["vocabulary", "description", "default", "gates"],
+      "properties": {
+        "vocabulary": {"type": "array", "minItems": 1, "uniqueItems": true, "items": {"enum": ["OBSERVE", "CONTINUE", "RANK", "RECOMPUTE", "RETRY", "BLOCK", "ESCALATE", "MARK UNKNOWN", "RECORD ONLY"]}},
+        "description": {"type": "string", "minLength": 1},
+        "default": {"type": "object", "additionalProperties": false, "required": ["pass", "warn", "fail", "unknown"], "properties": {
+          "pass": {"$ref": "#/$defs/controlEffect"}, "warn": {"$ref": "#/$defs/controlEffect"}, "fail": {"$ref": "#/$defs/controlEffect"}, "unknown": {"$ref": "#/$defs/controlEffect"}}},
+        "gates": {"type": "object", "propertyNames": {"$ref": "#/$defs/gate"}, "additionalProperties": {"type": "object", "additionalProperties": false, "required": ["basis"], "properties": {
+          "pass": {"$ref": "#/$defs/controlEffect"}, "warn": {"$ref": "#/$defs/controlEffect"}, "fail": {"$ref": "#/$defs/controlEffect"}, "unknown": {"$ref": "#/$defs/controlEffect"},
+          "only_for": {"description": "The overrides apply only to results of this grader kind and these sub-gates.", "type": "object", "additionalProperties": false, "required": ["grader", "sub_gates"], "properties": {"grader": {"enum": ["deterministic", "model"]}, "sub_gates": {"type": "array", "minItems": 1, "items": {"type": "string"}}}},
+          "basis": {"description": "The code citation.", "type": "string", "minLength": 1}}}}
+      }
+    },
+    "known_deviations": {
+      "description": "Where an owner decision overrides the canonical text, recorded here rather than hidden.",
+      "type": "array", "minItems": 1,
+      "items": {
+        "type": "object", "additionalProperties": false, "required": ["id", "canonical", "decision", "applies_to"],
+        "properties": {
+          "id": {"type": "string", "pattern": "^[a-z_]+$"},
+          "canonical": {"type": "string", "minLength": 1},
+          "decision": {"type": "string", "minLength": 1},
+          "applies_to": {"type": "array", "minItems": 1, "items": {"$ref": "#/$defs/gate"}}
+        }
+      }
+    },
+    "bucket1_audit": {
+      "description": "Audit of the intelligence evals against Bucket 1 (HAR-97 B1-B9): per gate, the legacy E ids it maps, whether the existing implementation was correct with evidence (keep), judged the wrong object or passed without per-episode evidence (fix), or did not exist (missing), what was found and what the Bucket 1 builder added.",
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["gate", "legacy_ids", "audit", "finding", "built", "implemented_by"],
+        "properties": {
+          "gate": { "$ref": "#/$defs/gate" },
+          "legacy_ids": { "type": "array", "items": { "type": "string", "pattern": "^E[0-9]+\\.[0-9]+$" } },
+          "audit": { "enum": ["keep", "fix", "missing"] },
+          "finding": { "type": "string", "minLength": 1 },
+          "built": { "type": "string", "minLength": 1 },
+          "implemented_by": { "type": "string", "minLength": 1 }
+        }
+      }
+    },
+    "families": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "$ref": "#/$defs/family"
+      }
+    },
+    "evals": {
+      "description": "E-family evals only: a judgment on one episode, span or decision. A hidden eval stays here (its owner and matrix cells keep it) but no surface lists or counts it.",
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "allOf": [{"$ref": "#/$defs/eval"}, {"properties": {"id": {"pattern": "^E"}}}]
+      }
+    },
+    "metrics": {
+      "description": "The operational diagnostics M1-M5 (tokens, tool efficiency, eval overhead, latency, cost). They are metrics, never evals: they are not in evals[], are counted by no eval total and belong to no product area. An eval that was reclassified as a metric names its old id in reclassified_from.",
+      "type": "array",
+      "minItems": 5,
+      "maxItems": 5,
+      "items": {
+        "allOf": [{"$ref": "#/$defs/eval"}, {"properties": {"id": {"pattern": "^M"}, "class": {"const": "operational"}}}]
+      }
+    }
+  },
+  "$defs": {
+    "source": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["issue", "section", "fetched_on"],
+      "properties": {
+        "issue": {"const": "HAR-97"},
+        "section": {"type": "string", "minLength": 1},
+        "fetched_on": {"type": "string", "format": "date"}
+      }
+    },
+    "job": {"description": "Which of the three eval jobs the eval serves; follows the family's job.", "enum": ["intelligence", "decision_loop", "system"]},
+    "bucket": {"description": "context_intelligence: B1-B9. decision_action: D1-D10. system_health: S1-S6.", "enum": ["context_intelligence", "decision_action", "system_health"]},
+    "controlEffect": {"enum": ["OBSERVE", "CONTINUE", "RANK", "RECOMPUTE", "RETRY", "BLOCK", "ESCALATE", "MARK UNKNOWN", "RECORD ONLY"]},
+    "gate": {"description": "B1-B9 (context), D1-D10 (decision flow), S1-S5 (system health), S6 (efficiency metrics, never evals).", "type": "string", "pattern": "^(B[1-9]|D(?:[1-9]|10)|S[1-6])$"},
+    "judgedObject": {
+      "description": "What the eval judges: a contract type (PascalCase, a contract in contracts/schemas or a TraceSpan) and the field of that object that identifies it.",
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["type", "id_field"],
+      "properties": {
+        "type": {"type": "string", "pattern": "^[A-Z][A-Za-z]+$"},
+        "id_field": {"type": "string", "pattern": "^[a-z][a-z_]*$"}
+      }
+    },
+    "surface": {
+      "type": "integer",
+      "minimum": 1,
+      "maximum": 20
+    },
+    "dimension": {
+      "enum": ["INTENDED_BEHAVIOR", "INVARIANTS", "BOUNDARIES", "FAILURE_MODES", "AMBIGUITY_ABSTENTION", "ADVERSARIAL_GAMING", "STOCHASTIC_RELIABILITY", "CAUSAL_TRACE_ATTRIBUTION", "REGRESSION_RISK", "OBSERVABILITY"]
+    },
+    "class": {
+      "enum": ["behavioral", "execution", "validation", "safety", "operational"]
+    },
+    "family": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id", "name", "section", "class", "job", "surfaces", "owner", "invariant"],
+      "properties": {
+        "id": {"type": "string", "pattern": "^(E(?:[1-9]|1[0-9]|2[0-2])(?:\\.[0-9]+)?|M[1-5])$"},
+        "name": {"type": "string", "minLength": 1},
+        "section": {"type": "string", "minLength": 1},
+        "class": {"$ref": "#/$defs/class"},
+        "job": {"description": "HAR-129 demo-loop clarification (2026-10-04): which of the three eval jobs the family serves. intelligence: context to trustworthy organizational intelligence (evidence fidelity, inference boundary, entity resolution, graph/state mutation, knowledge formation and applicability), shown with the business-intelligence update and the state diff. decision_loop: intelligence to decision, action, human feedback and updated knowledge (decision construction and ranking, action quality, human-judgment interpretation, edit propagation, knowledge mutation and later use). system: inward-facing engineering quality and efficiency (trace integrity, grader quality, reliability, safety, tokens, latency, cost), kept secondary in the operator view.", "enum": ["intelligence", "decision_loop", "system"]},
+        "surfaces": {"type": "array", "minItems": 1, "uniqueItems": true, "items": {"$ref": "#/$defs/surface"}},
+        "owner": {"type": "string", "pattern": "^HAR-[0-9]+$"},
+        "invariant": {"type": ["string", "null"]}
+      }
+    },
+    "eval": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id", "family", "name", "section", "surfaces", "dimensions", "class", "status", "owner", "grader", "mode", "invariant", "knowledge_mutation_allowed", "repeated_trials_required", "version", "implemented_by", "contract_status", "bucket", "gate", "question", "improves", "legacy_id"],
+      "properties": {
+        "id": {"type": "string", "pattern": "^(E(?:[1-9]|1[0-9]|2[0-2])(?:\\.[0-9]+)?|M[1-5])$"},
+        "family": {"type": "string", "pattern": "^(E(?:[1-9]|1[0-9]|2[0-2])(?:\\.[0-9]+)?|M[1-5])$"},
+        "name": {"type": "string", "minLength": 1, "maxLength": 120},
+        "section": {"type": "string", "minLength": 1},
+        "surfaces": {"type": "array", "minItems": 1, "uniqueItems": true, "items": {"$ref": "#/$defs/surface"}},
+        "dimensions": {"type": "array", "minItems": 1, "uniqueItems": true, "items": {"$ref": "#/$defs/dimension"}},
+        "class": {"$ref": "#/$defs/class"},
+        "status": {"description": "implemented: grader or metric code and gold on main. partial: a proxy, a unit-tested mechanism or a computable-but-unreported metric. planned: nothing on main, owned by a Linear issue (implemented_by may say \"none (rebuild)\" when an earlier pointer was wrong). hidden: out of scope for the current product loop; kept for its owner and the completeness matrix, never listed or counted by a surface.", "enum": ["implemented", "partial", "planned", "hidden"]},
+        "owner": {"type": "string", "pattern": "^HAR-[0-9]+$"},
+        "grader": {"enum": ["deterministic", "model", "hybrid", "outcome", null]},
+        "mode": {"enum": ["blocking", "advisory", "shadow", null]},
+        "invariant": {"type": ["string", "null"]},
+        "knowledge_mutation_allowed": {"type": "boolean"},
+        "repeated_trials_required": {"type": "boolean"},
+        "version": {"type": "integer", "minimum": 1},
+        "implemented_by": {"type": "array", "items": {"type": "string", "minLength": 1}},
+        "contract_status": {"description": "pending: the section 12 definitions (inputs, required trace fields, pass/warn/fail/unknown, failure modes, gold dataset) are written at the construction gate before implementation.", "enum": ["pending", "specified"]},
+        "reclassified_from": {"description": "On a metric: the E eval ids that were reclassified into it (a latency is a metric, not an eval).", "type": "array", "uniqueItems": true, "items": {"type": "string", "pattern": "^E(?:[1-9]|1[0-9]|2[0-2])\\.[0-9]+$"}},
+        "job": {"$ref": "#/$defs/job"},
+        "area": {"description": "The product area the eval is shown in (eval_areas.json): it follows the family's area.", "$ref": "eval_areas.v1.json#/$defs/areaId"},
+        "bucket": {"$ref": "#/$defs/bucket"},
+        "gate": {"$ref": "#/$defs/gate"},
+        "also_gates": {"description": "Further gates the eval also serves (a candidate's message is judged before the person chooses and again as the final one).", "type": "array", "uniqueItems": true, "items": {"$ref": "#/$defs/gate"}},
+        "question": {"description": "The question the eval's gate asks.", "type": "string", "minLength": 1, "maxLength": 300},
+        "improves": {"description": "What the eval's gate improves or protects.", "type": "string", "minLength": 1, "maxLength": 300},
+        "legacy_id": {"description": "The E id (or M id of a metric): kept as metadata for implementation compatibility; the product surface shows the gate, not this.", "type": "string", "pattern": "^(E(?:[1-9]|1[0-9]|2[0-2])\\.[0-9]+|M[1-5])$"},
+        "judged_object": {"$ref": "#/$defs/judgedObject"},
+        "span_kind": {"description": "The episode_trace span the eval's results attach to.", "$ref": "episode_trace.v1.json#/$defs/spanKind"},
+        "also_span_kinds": {"description": "Further spans the eval attaches to (an action eval also runs on the final artifact at send).", "type": "array", "uniqueItems": true, "items": {"$ref": "episode_trace.v1.json#/$defs/spanKind"}},
+        "demo_moment": {"description": "Where in the demo the eval is exercised. M2: the chooser (three candidates). CES: choose, edit, send. M3: the judgment message (Correct, Edit interpretation, Do not learn this). ECOLITE: the second Play. OFFLINE: only against gold. LATER: later chronology.", "type": "array", "minItems": 1, "uniqueItems": true, "items": {"enum": ["M2", "CES", "M3", "ECOLITE", "OFFLINE", "LATER"]}},
+        "purpose": {"type": "string", "minLength": 1},
+        "inputs": {"type": "array", "minItems": 1, "items": {"type": "string", "minLength": 1}},
+        "required_trace_fields": {"description": "Span ids and fields of contracts/traces/trace_schema.json the eval reads.", "type": "array", "minItems": 1, "items": {"type": "string", "minLength": 1}},
+        "pass_definition": {"type": "string", "minLength": 1},
+        "warn_definition": {"type": "string", "minLength": 1},
+        "fail_definition": {"type": "string", "minLength": 1},
+        "unknown_definition": {"type": "string", "minLength": 1},
+        "failure_modes": {"type": "array", "minItems": 1, "items": {"type": "string", "minLength": 1}},
+        "gold_dataset": {"type": "string", "minLength": 1},
+        "affected_behavior": {"type": "array", "minItems": 1, "items": {"type": "string", "minLength": 1}},
+        "definitions_ref": {"description": "Where the section 12 definitions of an implemented eval already live: eval types in contracts/evals/eval_catalog.json and the gold it is scored against.", "type": "object", "additionalProperties": false, "required": ["catalog_types", "gold"], "properties": {"catalog_types": {"type": "array", "uniqueItems": true, "items": {"type": "string", "pattern": "^[a-z_]+$"}}, "gold": {"type": "array", "uniqueItems": true, "items": {"type": "string", "pattern": "^(bench|contracts|docs|fixtures)/[A-Za-z0-9_./-]+$"}}}}
+      },
+      "allOf": [
+        {"if": {"properties": {"status": {"enum": ["planned", "hidden"]}}}, "then": {"properties": {"grader": {"const": null}, "mode": {"const": null}, "implemented_by": {"maxItems": 1, "items": {"const": "none (rebuild)"}}}}},
+        {"if": {"properties": {"status": {"enum": ["implemented", "partial"]}}}, "then": {"properties": {"grader": {"type": "string"}, "mode": {"type": "string"}, "implemented_by": {"minItems": 1}}}},
+        {"if": {"properties": {"contract_status": {"const": "specified"}}}, "then": {"required": ["purpose", "inputs", "required_trace_fields", "pass_definition", "warn_definition", "fail_definition", "unknown_definition", "failure_modes", "gold_dataset", "affected_behavior"]}},
+        {"if": {"properties": {"status": {"const": "implemented"}}}, "then": {"required": ["definitions_ref"], "properties": {"definitions_ref": {"properties": {"gold": {"minItems": 1}}}}}},
+        {"if": {"properties": {"mode": {"const": "blocking"}}}, "then": {"properties": {"invariant": {"type": "string", "minLength": 1}}}},
+        {"if": {"properties": {"class": {"enum": ["validation", "execution", "safety", "operational"]}}}, "then": {"properties": {"knowledge_mutation_allowed": {"const": false}}}},
+        {"if": {"properties": {"class": {"const": "operational"}}}, "then": {"properties": {"surfaces": {"const": [20]}}}},
+        {"description": "A decision or feedback-loop eval (E8-E17) says what it judges, where and when. A hidden one is exempt.",
+         "if": {"properties": {"family": {"pattern": "^E(?:[89]|1[0-7])$"}, "status": {"enum": ["implemented", "partial", "planned"]}}, "required": ["family", "status"]},
+         "then": {"required": ["job", "area", "judged_object", "span_kind", "demo_moment"]}}
+      ]
+    }
+  }
+}

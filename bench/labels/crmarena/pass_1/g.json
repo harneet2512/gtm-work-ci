@@ -1,0 +1,28 @@
+{
+ "cr_d2_books_thursday_and_attaches_the_order_form": {
+  "timing_cadence": [
+   "pass",
+   "READY",
+   false,
+   "Replies the same hour to her request for a call this week."
+  ],
+  "buyer_readiness": [
+   "warn",
+   "TOO_EARLY",
+   false,
+   "She has only said the proposal looks promising; a standard order form before the first discussion is premature."
+  ],
+  "cta_calibration": [
+   "fail",
+   "TOO_STRONG",
+   false,
+   "Commercial paperwork before the first discussion is a mis-sized step; no signature or deadline is asked, so it does not block."
+  ],
+  "next_step_quality": [
+   "pass",
+   null,
+   false,
+   "A dated call is booked."
+  ]
+ }
+}

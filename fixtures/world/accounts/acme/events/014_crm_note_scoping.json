@@ -1,0 +1,18 @@
+{
+  "source_system": "crm",
+  "source_object_id": "note:AC-4-001",
+  "source_event_key": "created",
+  "occurred_at": "2026-08-26T09:00:00Z",
+  "connector": "salesforce",
+  "connector_version": "0.1.0",
+  "payload": {
+    "kind": "crm_change",
+    "object_type": "Note",
+    "record_id": "note:AC-4-001",
+    "account_record_id": "account:AC-4",
+    "changed_at": "2026-08-26T09:00:00Z",
+    "changed_by": "dana@ghostvendor.com",
+    "created": true,
+    "note_body": "Scoping call 8/25: Priya Shah is sponsoring the EU rollout (Berlin ~70 users, Rotterdam ~50). Open blocker: the EU budget line needs finance approval in the Q3 planning cycle. Economic buyer not identified - Priya says finance decides as a committee."
+  }
+}

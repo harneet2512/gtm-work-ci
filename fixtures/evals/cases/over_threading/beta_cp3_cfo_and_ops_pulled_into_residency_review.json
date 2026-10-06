@@ -1,0 +1,247 @@
+{
+  "id": "beta_cp3_cfo_and_ops_pulled_into_residency_review",
+  "case_type": "over_threading",
+  "title": "Beta cp3: residency documents sent to Ravi with the CFO and the support ops manager added and asked to push",
+  "should_pass": false,
+  "difficulty": "easy",
+  "slice_tags": {
+    "account": "beta",
+    "origin": "checkpoint",
+    "motion": "expansion",
+    "stage": "technical_evaluation",
+    "champion_status": "active",
+    "economic_buyer": "known",
+    "risk": "medium",
+    "candidate": "flawed",
+    "expected_action": "send_email",
+    "extra": ["data_residency", "exec_escalation"]
+  },
+  "based_on": {
+    "kind": "checkpoint",
+    "account": "beta",
+    "after_event_file": "world/accounts/beta/events/039_email_ravi_residency_request.json",
+    "checkpoint": 3,
+    "changed_fields": [],
+    "change": null
+  },
+  "context": {
+    "now": "2026-09-24T11:10:00Z",
+    "state": {
+      "account_id": "0a0c0000-0000-4000-8000-000000000002",
+      "account_name": "Beta Inc",
+      "opportunity_id": "0c0f0000-0000-4000-8000-000000000005",
+      "fields": {
+        "stage": "Technical evaluation",
+        "health": "at_risk",
+        "motion": "expansion",
+        "champion": "0b0e0000-0000-4000-8000-000000000031",
+        "champion_status": "active",
+        "economic_buyer": "0b0e0000-0000-4000-8000-000000000032",
+        "relationship_risk": "medium",
+        "blockers": [
+          {
+            "text": "EU data residency for the Dublin team's ticket data (where EU ticket data is stored and processed)",
+            "status": "open"
+          }
+        ],
+        "decision_process": "Ravi Menon (Head of Platform Engineering) must confirm EU data residency before any review session; Owen Clarke already approved the budget",
+        "next_milestone": "Platform team integration review",
+        "next_meeting": null,
+        "current_commitments": [
+          {
+            "text": "Send business case with the Austin pilot numbers by Tuesday",
+            "status": "fulfilled",
+            "owner_person_id": "0b0e0000-0000-4000-8000-000000000001",
+            "due": "2026-09-01"
+          },
+          {
+            "text": "Take the business case to Owen Clarke on Friday",
+            "status": "fulfilled",
+            "owner_person_id": "0b0e0000-0000-4000-8000-000000000031",
+            "due": "2026-09-04"
+          },
+          {
+            "text": "Loop in the right platform team person this week",
+            "status": "fulfilled",
+            "owner_person_id": "0b0e0000-0000-4000-8000-000000000031"
+          },
+          {
+            "text": "Send data residency documentation and sub-processor list to Ravi Menon",
+            "status": "open",
+            "owner_person_id": "0b0e0000-0000-4000-8000-000000000001"
+          }
+        ]
+      },
+      "buying_group": [
+        {
+          "person_id": "0b0e0000-0000-4000-8000-000000000031",
+          "display_name": "Hannah Lee",
+          "title": "VP Customer Operations",
+          "roles": ["champion"],
+          "status": "active",
+          "delegated_to_person_id": null,
+          "last_engaged_at": null,
+          "evidence_refs": []
+        },
+        {
+          "person_id": "0b0e0000-0000-4000-8000-000000000032",
+          "display_name": "Owen Clarke",
+          "title": "Chief Financial Officer",
+          "roles": ["economic_buyer"],
+          "status": "unknown",
+          "delegated_to_person_id": null,
+          "last_engaged_at": null,
+          "evidence_refs": []
+        },
+        {
+          "person_id": "0b0e0000-0000-4000-8000-000000000033",
+          "display_name": "Jess Patel",
+          "title": "Support Operations Manager",
+          "roles": ["user"],
+          "status": "active",
+          "delegated_to_person_id": null,
+          "last_engaged_at": null,
+          "evidence_refs": []
+        },
+        {
+          "person_id": "0b0e0000-0000-4000-8000-000000000034",
+          "display_name": "Ravi Menon",
+          "title": "Head of Platform Engineering",
+          "roles": ["technical_evaluator"],
+          "status": "active",
+          "delegated_to_person_id": null,
+          "last_engaged_at": null,
+          "evidence_refs": []
+        }
+      ],
+      "coverage_gaps": [],
+      "conflicts": [
+        {
+          "field": "next_milestone",
+          "winner_value": "Platform team integration review",
+          "winner_standing": "crm_explicit",
+          "winner_event_file": "world/accounts/beta/events/024_crm_opp_next_step.json",
+          "contradicting_value": "Ravi Menon reads the data residency documentation and sub-processor list; review session not yet scheduled",
+          "contradicting_standing": "first_party_ai",
+          "contradicting_event_file": "world/accounts/beta/events/039_email_ravi_residency_request.json",
+          "contradicting_quote": "I'm not ready to schedule a review session until I've read them."
+        }
+      ]
+    },
+    "recent_changes": {
+      "summary": "Ravi (Head of Platform Engineering) asked for data residency documentation and the sub-processor list; not ready to schedule a review; Hannah still drives the rollout.",
+      "material_diff_fields": [
+        "stage",
+        "health",
+        "blockers",
+        "decision_criteria",
+        "decision_process",
+        "current_commitments",
+        "next_milestone",
+        "relationship_risk",
+        "buying_group"
+      ],
+      "signals": [
+        "customer_replied",
+        "customer_went_silent",
+        "field_contradicted",
+        "meeting_accepted",
+        "new_stakeholder_entered",
+        "security_blocker_appeared",
+        "stage_advanced"
+      ]
+    },
+    "trigger": {
+      "activity_id": "0ac70000-0000-4000-8000-0000000b0039",
+      "activity_type": "EmailReply",
+      "occurred_at": "2026-09-24T11:05:00Z",
+      "actor_person_id": "0b0e0000-0000-4000-8000-000000000034",
+      "event_file": "world/accounts/beta/events/039_email_ravi_residency_request.json",
+      "synthetic": false,
+      "text": "Hi Dana - thanks. Before we go further I need to confirm where EU ticket data is stored and processed, and whether it ever leaves the EU. Could you send your data residency documentation and your sub-processor list? I'm not ready to schedule a review session until I've read them. Hannah is still driving the rollout on our side.\nRavi"
+    },
+    "supporting_activities": [],
+    "commitments": [
+      {
+        "text": "Send data residency documentation and sub-processor list to Ravi Menon",
+        "owner_person_id": "0b0e0000-0000-4000-8000-000000000001",
+        "due_at": null,
+        "status": "open"
+      }
+    ],
+    "timeline_facts": {
+      "last_inbound_at": "2026-09-24T11:05:00Z",
+      "last_inbound_from_person_id": "0b0e0000-0000-4000-8000-000000000034",
+      "last_outbound_at": "2026-09-17T16:00:00Z",
+      "stated_timing": "Ravi will not schedule a review session until he has read the documents"
+    },
+    "offered_knowledge": []
+  },
+  "candidate_action": {
+    "proposed_action_type": "send_email",
+    "recipients": [
+      {"person_id": "0b0e0000-0000-4000-8000-000000000034", "role": "to", "why": "Requested the documents"},
+      {"person_id": "0b0e0000-0000-4000-8000-000000000031", "role": "cc", "why": "Champion"},
+      {"person_id": "0b0e0000-0000-4000-8000-000000000032", "role": "cc", "why": "Economic buyer"},
+      {"person_id": "0b0e0000-0000-4000-8000-000000000033", "role": "cc", "why": "Support operations"}
+    ],
+    "finished_artifact": {
+      "channel": "email",
+      "subject": "Re: Relay for the Beta support org",
+      "body": "Hi Ravi,\n\nAttached are our EU data residency addendum and sub-processor list. Owen, Jess - copying you so everyone is aligned; Owen, it would help if you could nudge the platform review along so we can stay on track for December.\n\nBest,\nDana",
+      "attachments": ["eu-data-residency-addendum.pdf", "sub-processors-2026.pdf"]
+    },
+    "crm_next_step_intent": {"next_step": "Ravi reviews residency docs", "due_at": null, "stage_change": null},
+    "reason": "Keep the whole buying group aligned.",
+    "evidence_refs": [
+      {
+        "activity_id": "0ac70000-0000-4000-8000-0000000b0039",
+        "quote": "Could you send your data residency documentation and your sub-processor list?",
+        "speaker_person_id": "0b0e0000-0000-4000-8000-000000000034",
+        "occurred_at": "2026-09-24T11:05:00Z"
+      }
+    ],
+    "knowledge_refs_used": [],
+    "wait_until": null
+  },
+  "expected": [
+    {
+      "eval_type": "stakeholder_coverage",
+      "verdict": "fail",
+      "label": "OVER_THREADED",
+      "diagnostics": ["over_threaded_too_early"],
+      "blocking": true,
+      "rationale": "Owen already approved the budget and Jess is a user; neither is part of the residency review. Asking the CFO to push the platform team is pressure from above. Executive involvement in a technical document review is premature.",
+      "evidence_class": "deal_data",
+      "state_refs": ["buying_group"]
+    },
+    {
+      "eval_type": "relationship_pressure",
+      "verdict": "fail",
+      "label": null,
+      "diagnostics": [],
+      "blocking": false,
+      "rationale": "Asks the CFO to nudge a reviewer who said he is not ready yet.",
+      "evidence_class": "cs_ops"
+    },
+    {
+      "eval_type": "champion_continuity",
+      "verdict": "pass",
+      "label": "CHAMPION_INCLUDED",
+      "diagnostics": [],
+      "blocking": false,
+      "rationale": "Hannah is on the thread.",
+      "evidence_class": "methodology"
+    }
+  ],
+  "expected_best_action": {
+    "action": "send_email",
+    "why": "Documents to Ravi with Hannah cc'd only.",
+    "recipients": [
+      {"person_id": "0b0e0000-0000-4000-8000-000000000034", "role": "to"},
+      {"person_id": "0b0e0000-0000-4000-8000-000000000031", "role": "cc"}
+    ],
+    "channel": "email"
+  },
+  "notes": "Over-threading in a known-economic-buyer account."
+}

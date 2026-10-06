@@ -1,0 +1,293 @@
+{
+  "version": "demo-boundary.v1",
+  "source": "HAR-129",
+  "invariant": "Ghost demo audience surface = Web Control Plane + Cliff in Slack. Internal developer/admin/proof tooling must never be promoted into the audience-facing demo without an explicit HAR-129 contract change approved by the product owner.",
+  "audience_surfaces": [
+    {
+      "id": "web_control_plane",
+      "name": "Web Control Plane",
+      "job": "Play, account/world state, graph/state diffs, traces, evals, organizational knowledge/history inspection."
+    },
+    {
+      "id": "cliff_in_slack",
+      "name": "Cliff in Slack",
+      "job": "Business-intelligence update, strategy chooser, selected complete action, relevant evals, human judgment and learning interaction; and Ask Cliff: free-form questions answered from the real data, in a direct message or in a thread under an @mention."
+    }
+  ],
+  "visible_trigger": {
+    "surface": "web_control_plane",
+    "control": "Play",
+    "core_endpoint": "POST /replay/manifests/{manifest_id}/episodes/next",
+    "also": [
+      {
+        "surface": "cliff_in_slack",
+        "control": "play_next",
+        "core_endpoint": "POST /replay/manifests/{manifest_id}/episodes/next",
+        "requires_confirmation": true
+      }
+    ]
+  },
+  "ask_cliff": {
+    "approved_by": "product owner, 2026-10-06 (HAR-129 contract change)",
+    "dm": true,
+    "mention_in_thread": true,
+    "channel_top_level_messages": ["M1", "M2", "M3"],
+    "actions": ["play_next", "demo_status"],
+    "dry_run_only": ["draft_followup", "crm_update_preview"],
+    "agent": {
+      "memory": { "verbatim_turns": 8, "older_turns": "summarised", "stored_in": "core" },
+      "max_tool_calls": 12,
+      "deadline_s": 120,
+      "progress": "updates_the_thinking_message_in_place",
+      "confirmation_per_state_change": true,
+      "continues_after_confirmation": true,
+      "trace": "every_answer_links_its_trace"
+    }
+  },
+  "audience_flow": [
+    {
+      "step": 1,
+      "surface": "web_control_plane",
+      "what": "Historical organizational context is loaded; the control plane shows the current account/world state, and the next event is still withheld."
+    },
+    {
+      "step": 2,
+      "surface": "web_control_plane",
+      "what": "The human presses Play.",
+      "trigger": true
+    },
+    {
+      "step": 3,
+      "surface": "web_control_plane",
+      "what": "One held-out next event enters the real pipeline; the graph, the account state and the business understanding change, shown as real diffs."
+    },
+    {
+      "step": 4,
+      "surface": "web_control_plane",
+      "what": "Intelligence-building evals assess whether that understanding is supported by the evidence."
+    },
+    {
+      "step": 5,
+      "surface": "cliff_in_slack",
+      "what": "Cliff posts what changed in the account and why (Message 1)."
+    },
+    {
+      "step": 6,
+      "surface": "cliff_in_slack",
+      "what": "Cliff posts three materially different, complete strategies, each already assessed by decision/action evals (Message 2)."
+    },
+    {
+      "step": 7,
+      "surface": "cliff_in_slack",
+      "what": "The human chooses one; the same message expands in place to the complete selected action."
+    },
+    {
+      "step": 8,
+      "surface": "cliff_in_slack",
+      "what": "The human can edit the action, then sends it explicitly."
+    },
+    {
+      "step": 9,
+      "surface": "cliff_in_slack",
+      "what": "Cliff interprets the human judgment and asks the human to confirm or correct that interpretation (Message 3)."
+    },
+    {
+      "step": 10,
+      "surface": "web_control_plane",
+      "what": "The confirmed feedback becomes organizational context; knowledge is formed or refined with provenance and scope."
+    },
+    {
+      "step": 11,
+      "surface": "web_control_plane",
+      "what": "A later chronological episode retrieves and uses that knowledge, the trace shows it, and the loop continues."
+    }
+  ],
+  "forbidden_terms": [
+    {
+      "id": "seller_domain",
+      "kind": "brand",
+      "pattern": "ghostvendor",
+      "case_sensitive": false,
+      "why": "The seller-side mail domain is a data key the recorded extraction cassettes depend on; it never renders. Seller people show as '<name> · seller, Vendor Co.' with no address."
+    },
+    {
+      "id": "legacy_brand",
+      "kind": "brand",
+      "pattern": "\\bghost\\b",
+      "case_sensitive": false,
+      "why": "The product is named gtm_ai on every audience surface. Internal identifiers (GHOST_* env vars, ghost_worker, ghostctl) never render and do not match a whole-word 'ghost'."
+    },
+    {
+      "id": "ghostctl",
+      "kind": "developer_tooling",
+      "pattern": "\\bghostctl\\b|\\babc-(?:pack|arms)\\b",
+      "case_sensitive": false,
+      "why": "The operator CLI is internal plumbing, never a product capability or demo step."
+    },
+    {
+      "id": "ghostcli",
+      "kind": "developer_tooling",
+      "pattern": "\\bghostcli\\b",
+      "case_sensitive": false,
+      "why": "Same as ghostctl."
+    },
+    {
+      "id": "fake_services",
+      "kind": "developer_tooling",
+      "pattern": "\\b(?:fakecore|demosmoke|slackfake)\\b",
+      "case_sensitive": false,
+      "why": "Test doubles and smoke drivers never reach the audience."
+    },
+    {
+      "id": "repo_scripts",
+      "kind": "developer_tooling",
+      "pattern": "\\bscripts/(?:demo|slack|ci)\\b|\\bbootstrap\\.py\\b|\\bdemo_smoke\\.py\\b",
+      "case_sensitive": false,
+      "why": "Repository scripts are setup/test tooling."
+    },
+    {
+      "id": "shell_scripts",
+      "kind": "terminal_command",
+      "pattern": "\\b[\\w-]+\\.(?:ps1|sh)\\b",
+      "case_sensitive": false,
+      "why": "A shell script name in audience copy is a terminal step."
+    },
+    {
+      "id": "cli_word",
+      "kind": "terminal_command",
+      "pattern": "\\bCLI\\b",
+      "case_sensitive": true,
+      "why": "The audience never uses a command-line interface."
+    },
+    {
+      "id": "terminal_phrases",
+      "kind": "terminal_command",
+      "pattern": "\\b(?:open|from|use|run in) (?:a|the) terminal\\b|\\bterminal (?:command|window|session)\\b|\\bcommand[- ]line\\b",
+      "case_sensitive": false,
+      "why": "Once the demo begins no terminal is visible (HAR-129 Demo surface boundary)."
+    },
+    {
+      "id": "build_and_test_commands",
+      "kind": "terminal_command",
+      "pattern": "\\bgo (?:run|test|build)\\b|\\bnpm (?:run|test|start)\\b|\\bnpx\\b|\\bpytest\\b|\\bpython -m\\b|\\bvitest\\b|\\bplaywright test\\b",
+      "case_sensitive": false,
+      "why": "Build and test runners are internal."
+    },
+    {
+      "id": "service_and_db_commands",
+      "kind": "terminal_command",
+      "pattern": "\\bpsql\\b|\\bdocker\\b|\\bgoose\\b|\\bmigrate (?:up|down|status)\\b|\\bcurl\\b",
+      "case_sensitive": false,
+      "why": "Database, migration and raw service commands are internal."
+    },
+    {
+      "id": "proof_plumbing",
+      "kind": "proof_plumbing",
+      "pattern": "\\bproof-har129\\b|\\bproof harness\\b|\\bconfirmation matrix\\b|\\bdemo-report\\.md\\b|\\bartifacts/har129\\b",
+      "case_sensitive": false,
+      "why": "The verification entrypoint and its artifacts are internal acceptance plumbing, not demo UI (HAR-129 North-star acceptance, section A)."
+    },
+    {
+      "id": "abc_experiment",
+      "kind": "out_of_scope_experiment",
+      "pattern": "\\b[Bb]lind A/B/C\\b|\\bA/B/C (?:experiments?|tests?|arms?|uplift|reports?|trials?|runs?|proof)\\b|\\bB ?> ?[AC]\\b|\\bC equals A\\b|\\barms? [ABC]\\b|\\b[ABC] arm\\b|\\bcontext[- ]only arm\\b",
+      "case_sensitive": true,
+      "why": "A/B/C experiments, their arms and B>A / B>C claims are out of scope for the current demo (HAR-129 section 16 step 36). Strategy letters and 'you chose B over A' are product copy."
+    },
+    {
+      "id": "uplift",
+      "kind": "out_of_scope_experiment",
+      "pattern": "\\b(?:knowledge|causal|false)[- ]uplift\\b|\\buplift (?:claims?|experiments?|reports?|proof)\\b|\\bcausal attribution\\b",
+      "case_sensitive": false,
+      "why": "Causal uplift and attribution are out of scope for the current demo. Business language such as a price uplift is product copy."
+    },
+    {
+      "id": "negative_transfer",
+      "kind": "out_of_scope_experiment",
+      "pattern": "\\bnegative[- ]transfer\\b",
+      "case_sensitive": false,
+      "why": "Negative-transfer experiments are out of scope for the current demo."
+    },
+    {
+      "id": "irrelevant_knowledge_injection",
+      "kind": "out_of_scope_experiment",
+      "pattern": "\\birrelevant[- ]knowledge[- ]injection\\b|\\binject(?:s|ed|ing)? irrelevant[- ]knowledge\\b|\\birrelevant[- ]knowledge arms?\\b",
+      "case_sensitive": false,
+      "why": "Irrelevant-knowledge injection is out of scope for the current demo. Rejecting inapplicable knowledge (an applicability eval) is in scope."
+    },
+    {
+      "id": "counterfactual",
+      "kind": "out_of_scope_experiment",
+      "pattern": "\\bcounterfactual\\b",
+      "case_sensitive": false,
+      "why": "Counterfactual causal attribution is out of scope for the current demo."
+    }
+  ],
+  "internal_tooling": [
+    {
+      "name": "ghostctl",
+      "kind": "developer_cli",
+      "note": "migrate, ingest, seed-org, import/replay-crmarena, mine-demo-cases, freeze-demo-manifest, graph, learn, jobs, breaker; on open branches also demo up/seed/play/verify (PR #63) and abc-pack/abc-arms (PR #64)."
+    },
+    {
+      "name": "ghostctl migrate",
+      "kind": "migration"
+    },
+    {
+      "name": "ghostctl import-crmarena / replay-crmarena / seed-org / ingest",
+      "kind": "data_loader"
+    },
+    {
+      "name": "ghostctl mine-demo-cases / freeze-demo-manifest",
+      "kind": "case_freezing"
+    },
+    {
+      "name": "ghostctl breaker / jobs",
+      "kind": "admin_cli"
+    },
+    {
+      "name": "ghostctl proof-har129",
+      "kind": "proof_harness",
+      "note": "The HAR-129 section H/I verification entrypoint: headless, internal acceptance only."
+    },
+    {
+      "name": "ghostctl demo (PR #63)",
+      "kind": "demo_runner",
+      "note": "Pre-demo bring-up and internal acceptance only; never the visible trigger."
+    },
+    {
+      "name": "scripts/demo (wp-codespace-demo)",
+      "kind": "startup_shutdown",
+      "note": "Hidden startup/stop automation before the demo is allowed."
+    },
+    {
+      "name": "scripts/slack/bootstrap.py",
+      "kind": "developer_script"
+    },
+    {
+      "name": "scripts/slack/demo_smoke.py",
+      "kind": "test_runner"
+    },
+    {
+      "name": "scripts/ci/mirror.sh",
+      "kind": "ci"
+    },
+    {
+      "name": "core-go/cmd/fakecore",
+      "kind": "fake_service"
+    },
+    {
+      "name": "core-go/cmd/demosmoke",
+      "kind": "test_runner"
+    },
+    {
+      "name": "core-go/cmd/slackbot --dry-run / --post-run",
+      "kind": "service_command",
+      "note": "Dry-run renders previews only; the demo's Slack messages come from the core outbox."
+    },
+    {
+      "name": "go test, pytest, vitest, playwright",
+      "kind": "test_runner"
+    }
+  ]
+}

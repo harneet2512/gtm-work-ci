@@ -1,0 +1,24 @@
+// Package bucket2run runs the Bucket 2 gates (HAR-97 D1-D10) over one real episode. It reads the stored
+// strategy set, eval bundles, human decision, judgment inference, send-time evals, recompute derivation and
+// recorded effects, calls the worker's model judges (one call per judgment, no live model in tests), builds
+// every gate's results and stores them. A judge that fails leaves its gate unmeasured and the error is
+// returned: a missing result shows "not measured", never a made-up pass.
+//
+// Model calls per episode (all through /v1/decision-judge, cached or replayed in tests):
+//
+//	1  rank_rationale (D3a)          1  intent_fit (D1)
+//	1  set_quality (D2 set)          3  candidate_quality (D2, one per candidate)
+//	1  ranking (D3)                  1  final_artifact (D8, before a send, see below)
+//
+// plus the judgment inference (D5) the send already requests: 8 new judge calls and 1 inference call.
+//
+// Execution mode (HAR-97 v3 table). D1-D3 are LIVE / REQUIRED at decision construction (Run after the strategy set
+// is published). D8 is LIVE / REQUIRED immediately before Send: strategystore.Send judges the exact final artifact
+// (recipients, cc, subject, body and CTA) inside the send-time evaluation, before the outbox write, through
+// JudgeFinalArtifact, and stores the D8 results with the pre-send artifact as evidence. Only a D8 check mapped to an
+// eval catalog blocking_rule can refuse the send (bucket2.D8Blockers); every other D8 FAIL or WARN is a stored
+// warning. This package's post-send D8 pass only refreshes the deterministic checks and never repeats the model call
+// when the pre-send result exists, so the model call count is unchanged: one final_artifact call per send, now
+// placed before the send. D9 is LIVE / REQUIRED after the execution attempt: afterGates runs it once the recorded
+// effect exists.
+package bucket2run

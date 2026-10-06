@@ -1,0 +1,22 @@
+{
+  "source_system": "email",
+  "source_object_id": "<ghost-dana-2026-08-20-ns@ghostvendor.com>",
+  "source_event_key": "sent",
+  "occurred_at": "2026-08-20T15:00:00Z",
+  "connector": "gmail",
+  "connector_version": "0.1.0",
+  "payload": {
+    "kind": "email",
+    "direction": "outbound",
+    "message_id": "<ghost-dana-2026-08-20-ns@ghostvendor.com>",
+    "thread_id": "thr-northstar-intake",
+    "in_reply_to": "<NSH-ev-2026-08-20@mail.northstar.health>",
+    "from": {"email": "dana@ghostvendor.com", "name": "Dana Kim"},
+    "to": [{"email": "elena.vasquez@northstar.health", "name": "Elena Vasquez"}],
+    "cc": [],
+    "date": "2026-08-20T15:00:00Z",
+    "subject": "Re: Rolling Relay out to all clinics",
+    "body_text": "Hi Elena,\nGreat news about Lakeside. How does Thursday the 27th at 1pm Eastern look? I'll bring Leo Park, our solutions engineer.\nBest,\nDana",
+    "crm_opportunity_ref": "opp:NS-2-EXP"
+  }
+}

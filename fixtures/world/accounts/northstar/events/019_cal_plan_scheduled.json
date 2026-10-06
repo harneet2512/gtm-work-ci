@@ -1,0 +1,27 @@
+{
+  "source_system": "calendar",
+  "source_object_id": "gcal:ns-plan-0911",
+  "source_event_key": "scheduled",
+  "occurred_at": "2026-09-08T14:00:00Z",
+  "connector": "google_calendar",
+  "connector_version": "0.1.0",
+  "payload": {
+    "kind": "calendar_event",
+    "event_id": "gcal:ns-plan-0911",
+    "title": "Northstar - rollout plan",
+    "start": "2026-09-11T15:00:00Z",
+    "end": "2026-09-11T15:45:00Z",
+    "status": "scheduled",
+    "organizer": {"email": "dana@ghostvendor.com", "name": "Dana Kim"},
+    "attendees": [
+      {"email": "dana@ghostvendor.com", "name": "Dana Kim", "response": "accepted"},
+      {"email": "leo@ghostvendor.com", "name": "Leo Park", "response": "accepted"},
+      {
+        "email": "elena.vasquez@northstar.health",
+        "name": "Elena Vasquez",
+        "response": "needs_action"
+      }
+    ],
+    "crm_opportunity_ref": "opp:NS-2-EXP"
+  }
+}

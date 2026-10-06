@@ -1,0 +1,395 @@
+/* The eval catalog (/evals): headline numbers, the honest quality callout, checks by evidence class with their
+   grader, blocking power, reach and measured agreement, and the HAR-97 families with their build status. */
+.catalog-head {
+  margin-bottom: var(--space-5);
+}
+
+.catalog-head h1 {
+  font-size: var(--text-3xl);
+}
+
+.catalog-head .lead {
+  margin-top: var(--space-2);
+}
+
+.catalog-stats {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: var(--space-3);
+  margin: 0 0 var(--space-4);
+}
+
+.stat {
+  padding: var(--space-4) var(--space-5);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-lg);
+  background: var(--surface);
+  box-shadow: var(--shadow-1);
+}
+
+.stat dt {
+  color: var(--muted);
+  font-size: var(--text-2xs);
+  font-weight: 600;
+  letter-spacing: var(--tracking-caps);
+  text-transform: uppercase;
+}
+
+.stat dd {
+  display: grid;
+  gap: var(--space-1-5);
+  margin: var(--space-2) 0 0;
+}
+
+.stat-value {
+  color: var(--ink);
+  font-size: var(--text-2xl);
+  font-weight: 600;
+  letter-spacing: var(--tracking-tight);
+  line-height: var(--leading-tight);
+}
+
+.stat-note {
+  color: var(--muted);
+  font-size: var(--text-xs);
+}
+
+.status-bar {
+  display: flex;
+  width: 100%;
+  max-width: 220px;
+  height: 6px;
+  border-radius: var(--radius-full);
+  background: var(--surface-sunken);
+  overflow: hidden;
+}
+
+.status-bar .is-live { background: var(--pass-solid); }
+.status-bar .is-partial { background: var(--warn-solid); }
+.status-bar .is-planned { background: var(--line-strong); }
+
+.quality-callout {
+  margin: 0 0 var(--space-4);
+  padding: var(--space-4) var(--space-5);
+  border: 1px dashed var(--line-strong);
+  border-radius: var(--radius-lg);
+  background: var(--surface-subtle);
+}
+
+.quality-callout.measured {
+  border-style: solid;
+  background: var(--surface);
+  box-shadow: inset 3px 0 0 var(--brand);
+}
+
+.quality-callout h2 {
+  margin: 0 0 var(--space-2);
+}
+
+.quality-callout p {
+  max-width: 92ch;
+  margin: 0 0 var(--space-2);
+  color: var(--ink-2);
+  line-height: var(--leading-normal);
+}
+
+.quality-callout .caveat {
+  margin: 0;
+  color: var(--muted);
+  font-size: var(--text-sm);
+}
+
+.class-filter {
+  flex: 0 1 auto;
+  max-width: 100%;
+  overflow-x: auto;
+  scrollbar-width: none;
+}
+
+.class-filter a {
+  flex: none;
+  white-space: nowrap;
+}
+
+.class-filter .num {
+  margin-left: var(--space-1);
+  color: var(--faint);
+  font-size: var(--text-xs);
+}
+
+.class-filter a[aria-current="page"] .num {
+  color: var(--muted);
+}
+
+/* The checks; on a narrow screen a table scrolls inside its own frame, never the page */
+.table-scroll {
+  position: relative;
+  max-width: 100%;
+  overflow-x: auto;
+}
+
+.table-scroll:focus-visible {
+  box-shadow: var(--focus-ring);
+}
+
+.check-table,
+.strategy-table {
+  width: 100%;
+  margin: 0 0 var(--space-6);
+  border-collapse: collapse;
+  table-layout: fixed;
+}
+
+.check-table caption {
+  caption-side: top;
+  padding: var(--space-2) 0 var(--space-3);
+  color: var(--ink-2);
+  font-size: var(--text-sm);
+  text-align: left;
+}
+
+.check-table th,
+.check-table td,
+.strategy-table th,
+.strategy-table td {
+  padding: var(--space-3) var(--space-3) var(--space-3) 0;
+  border-bottom: 1px solid var(--line);
+  font-size: var(--text-sm);
+  text-align: left;
+  vertical-align: top;
+}
+
+.check-table thead th,
+.strategy-table thead th {
+  padding-top: 0;
+  border-bottom-color: var(--line-strong);
+  color: var(--muted);
+  font-size: var(--text-2xs);
+  font-weight: 600;
+  letter-spacing: var(--tracking-caps);
+  text-transform: uppercase;
+}
+
+.check-table thead th:nth-child(1) { width: 34%; }
+.check-table thead th:nth-child(2) { width: 12%; }
+.check-table thead th:nth-child(3) { width: 11%; }
+.check-table thead th:nth-child(4) { width: 20%; }
+.check-table thead th:nth-child(5) { width: 23%; }
+
+.check-table tbody th {
+  font-weight: 400;
+}
+
+.check-table .eval-name {
+  display: block;
+  color: var(--ink);
+  font-size: var(--text-base);
+  font-weight: 600;
+}
+
+.check-table .question {
+  display: block;
+  margin-top: var(--space-0-5);
+  color: var(--ink-2);
+}
+
+.check-table tr:target {
+  background: var(--brand-tint);
+}
+
+.definition summary {
+  display: inline-flex;
+  align-items: center;
+  margin-top: var(--space-1);
+  color: var(--brand-text);
+  font-size: var(--text-xs);
+  font-weight: 500;
+}
+
+.definition p {
+  max-width: 70ch;
+  margin: var(--space-1) 0;
+  color: var(--ink-2);
+}
+
+.grader-chip,
+.can-block {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-1);
+  padding: 1px var(--space-2);
+  border-radius: var(--radius-full);
+  background: var(--brand-tint);
+  color: var(--brand-text);
+  font-size: var(--text-xs);
+  font-weight: 500;
+  white-space: nowrap;
+}
+
+.grader-chip.is-rule {
+  background: var(--surface-sunken);
+  color: var(--ink-2);
+}
+
+.can-block {
+  background: transparent;
+  color: var(--muted);
+  padding-left: 0;
+}
+
+.can-block.is-yes {
+  color: var(--ink);
+}
+
+.measured {
+  display: grid;
+  gap: var(--space-1);
+  font-variant-numeric: tabular-nums;
+}
+
+.measured-words {
+  color: var(--ink);
+  font-weight: 500;
+}
+
+.agree-meter {
+  display: block;
+  width: 100%;
+  max-width: 160px;
+  height: 4px;
+  border-radius: var(--radius-full);
+  background: var(--surface-sunken);
+  overflow: hidden;
+}
+
+.agree-meter > span {
+  display: block;
+  height: 100%;
+  border-radius: inherit;
+}
+
+.agree-meter.is-high > span { background: var(--pass-solid); }
+.agree-meter.is-mid > span { background: var(--warn-solid); }
+.agree-meter.is-low > span { background: var(--fail-solid); }
+
+.measured .hint {
+  margin: 0;
+}
+
+.not-measured {
+  color: var(--muted);
+}
+
+/* The families */
+.family {
+  border-top: 1px solid var(--line);
+}
+
+.family:last-of-type {
+  border-bottom: 1px solid var(--line);
+}
+
+.family summary {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--space-1) var(--space-4);
+  min-height: 44px;
+  padding: var(--space-2) 0;
+}
+
+.family summary:hover .family-name {
+  color: var(--brand-text);
+}
+
+.family-name {
+  min-width: 260px;
+  color: var(--ink);
+  font-size: var(--text-base);
+  font-weight: 600;
+}
+
+.family-kind {
+  min-width: 84px;
+  color: var(--muted);
+  font-size: var(--text-2xs);
+  font-weight: 600;
+  letter-spacing: var(--tracking-caps);
+  text-transform: uppercase;
+}
+
+.family .status-bar {
+  width: 120px;
+}
+
+.family-counts {
+  color: var(--ink-2);
+  font-size: var(--text-sm);
+  font-variant-numeric: tabular-nums;
+}
+
+.ref {
+  color: var(--muted);
+  font-family: var(--font-mono);
+  font-size: var(--text-2xs);
+}
+
+.family summary .ref {
+  margin-left: auto;
+}
+
+.invariant {
+  max-width: 82ch;
+  margin: 0 0 var(--space-3);
+  color: var(--ink-2);
+  font-style: italic;
+}
+
+.strategy-table thead th:first-child {
+  width: 34%;
+}
+
+.strategy-table tbody th {
+  color: var(--ink);
+  font-weight: 400;
+}
+
+.status {
+  padding: 1px var(--space-2);
+  border-radius: var(--radius-full);
+  font-size: var(--text-2xs);
+  font-weight: 600;
+}
+
+.status-live { color: var(--pass); background: var(--pass-tint); }
+.status-partial { color: var(--warn); background: var(--warn-tint); }
+.status-planned { color: var(--muted); background: var(--surface-sunken); }
+
+@media (max-width: 1023px) {
+  .catalog-stats {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 900px) {
+  .check-table,
+  .strategy-table {
+    min-width: 640px;
+    table-layout: auto;
+  }
+
+  .check-table thead th:first-child,
+  .strategy-table thead th:first-child {
+    width: auto;
+  }
+
+  .family-name {
+    min-width: 0;
+  }
+}
+
+@media (max-width: 560px) {
+  .catalog-stats {
+    grid-template-columns: 1fr;
+  }
+}

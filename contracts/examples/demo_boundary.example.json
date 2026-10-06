@@ -1,0 +1,88 @@
+{
+  "version": "demo-boundary.v1",
+  "source": "HAR-129",
+  "invariant": "Ghost demo audience surface = Web Control Plane + Cliff in Slack. Internal developer/admin/proof tooling must never be promoted into the audience-facing demo without an explicit HAR-129 contract change approved by the product owner.",
+  "audience_surfaces": [
+    {
+      "id": "web_control_plane",
+      "name": "Web Control Plane",
+      "job": "Play, account/world state, graph/state diffs, traces, evals, organizational knowledge/history inspection."
+    },
+    {
+      "id": "cliff_in_slack",
+      "name": "Cliff in Slack",
+      "job": "Business-intelligence update, strategy chooser, selected complete action, relevant evals, human judgment and learning interaction."
+    }
+  ],
+  "visible_trigger": {
+    "surface": "web_control_plane",
+    "control": "Play",
+    "core_endpoint": "POST /replay/manifests/{manifest_id}/episodes/next",
+    "also": [
+      {
+        "surface": "cliff_in_slack",
+        "control": "play_next",
+        "core_endpoint": "POST /replay/manifests/{manifest_id}/episodes/next",
+        "requires_confirmation": true
+      }
+    ]
+  },
+  "ask_cliff": {
+    "approved_by": "product owner, 2026-10-06 (HAR-129 contract change)",
+    "dm": true,
+    "mention_in_thread": true,
+    "channel_top_level_messages": ["M1", "M2", "M3"],
+    "actions": ["play_next", "demo_status"],
+    "dry_run_only": ["draft_followup", "crm_update_preview"],
+    "agent": {
+      "memory": { "verbatim_turns": 8, "older_turns": "summarised", "stored_in": "core" },
+      "max_tool_calls": 12,
+      "deadline_s": 120,
+      "progress": "updates_the_thinking_message_in_place",
+      "confirmation_per_state_change": true,
+      "continues_after_confirmation": true,
+      "trace": "every_answer_links_its_trace"
+    }
+  },
+  "audience_flow": [
+    {
+      "step": 1,
+      "surface": "web_control_plane",
+      "what": "Historical organizational context is loaded; the control plane shows the current account/world state, and the next event is still withheld."
+    },
+    {
+      "step": 2,
+      "surface": "web_control_plane",
+      "what": "The human presses Play.",
+      "trigger": true
+    },
+    {
+      "step": 5,
+      "surface": "cliff_in_slack",
+      "what": "Cliff posts what changed in the account and why (Message 1)."
+    }
+  ],
+  "forbidden_terms": [
+    {
+      "id": "ghostctl",
+      "kind": "developer_tooling",
+      "pattern": "\\bghostctl\\b|\\babc-(?:pack|arms)\\b",
+      "case_sensitive": false,
+      "why": "The operator CLI is internal plumbing, never a product capability or demo step."
+    },
+    {
+      "id": "abc_experiment",
+      "kind": "out_of_scope_experiment",
+      "pattern": "\\b[Bb]lind A/B/C\\b|\\bA/B/C (?:experiments?|tests?|arms?|uplift|reports?|trials?|runs?|proof)\\b|\\bB ?> ?[AC]\\b|\\bC equals A\\b|\\barms? [ABC]\\b|\\b[ABC] arm\\b|\\bcontext[- ]only arm\\b",
+      "case_sensitive": true,
+      "why": "A/B/C experiments, their arms and B>A / B>C claims are out of scope for the current demo (HAR-129 section 16 step 36). Strategy letters and 'you chose B over A' are product copy."
+    }
+  ],
+  "internal_tooling": [
+    {
+      "name": "ghostctl proof-har129",
+      "kind": "proof_harness",
+      "note": "The HAR-129 section H/I verification entrypoint: headless, internal acceptance only."
+    }
+  ]
+}

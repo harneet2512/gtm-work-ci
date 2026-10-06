@@ -1,0 +1,79 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://ghost.local/contracts/human_delta.v1.json",
+  "title": "HumanDelta",
+  "description": "What the human changed and why it appears they changed it (HAR-97 §9): deterministic literal diff, semantic interpretation, and whether any existing eval predicted it. An unexplained delta yields a narrow candidate criterion.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "id", "decision_episode_id", "literal_changes", "semantic_labels", "explained_by_eval_result_ids",
+    "unexplained", "created_at"
+  ],
+  "properties": {
+    "id": { "$ref": "common.v1.json#/$defs/uuid" },
+    "decision_episode_id": { "$ref": "common.v1.json#/$defs/uuid" },
+    "literal_changes": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["kind"],
+        "properties": {
+          "kind": {
+            "type": "string",
+            "enum": [
+              "recipient_added", "recipient_removed", "recipient_role_changed", "subject_changed",
+              "cta_changed", "timing_changed", "paragraph_added", "paragraph_removed", "paragraph_edited",
+              "channel_changed", "action_type_changed", "attachment_added", "attachment_removed",
+              "crm_next_step_changed"
+            ]
+          },
+          "before": {},
+          "after": {}
+        }
+      }
+    },
+    "semantic_labels": {
+      "type": "array",
+      "uniqueItems": true,
+      "items": {
+        "type": "string",
+        "enum": [
+          "reduced_pressure", "increased_pressure", "kept_champion_involved", "removed_unnecessary_stakeholders",
+          "added_missing_stakeholder", "delayed_cta", "removed_cta", "smaller_ask", "larger_ask",
+          "changed_channel", "corrected_fact", "deferred_to_buyer_timing", "style_only"
+        ]
+      }
+    },
+    "explained_by_eval_result_ids": {
+      "description": "Eval results that predicted this change (generator failed despite a known criterion).",
+      "type": "array", "items": { "$ref": "common.v1.json#/$defs/uuid" }
+    },
+    "unexplained": { "type": "boolean" },
+    "candidate_criterion": {
+      "oneOf": [
+        { "type": "null" },
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["statement", "suggested_eval_type"],
+          "properties": {
+            "statement": { "type": "string", "minLength": 1, "maxLength": 1000 },
+            "suggested_eval_type": { "$ref": "eval_result.v1.json#/$defs/evalType" },
+            "knowledge_candidate_id": { "oneOf": [{ "$ref": "common.v1.json#/$defs/uuid" }, { "type": "null" }] }
+          }
+        }
+      ]
+    },
+    "model": { "type": ["string", "null"] },
+    "created_at": { "$ref": "common.v1.json#/$defs/timestamp" }
+  },
+  "allOf": [
+    {
+      "description": "An unexplained delta proposes a candidate criterion; an explained one points at the evals that predicted it.",
+      "if": { "properties": { "unexplained": { "const": true } } },
+      "then": { "required": ["candidate_criterion"], "properties": { "candidate_criterion": { "type": "object" }, "explained_by_eval_result_ids": { "maxItems": 0 } } },
+      "else": { "properties": { "explained_by_eval_result_ids": { "minItems": 1 } } }
+    }
+  ]
+}

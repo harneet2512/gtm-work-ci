@@ -1,0 +1,351 @@
+/* Account graph explorer panels: the event diff beside the canvas, the kinds legend, the text alternative
+ * and the inspector additions (a claim value, connected nodes). */
+/* What this event changed: a rail beside the canvas */
+.gx-rail {
+  padding: var(--space-3) var(--space-4) var(--space-4);
+  border-top: 1px solid var(--line);
+  background: var(--surface);
+  font-size: var(--text-xs);
+}
+
+.gx-rail h3 {
+  margin: 0 0 var(--space-2);
+  color: var(--ink);
+  font-size: var(--text-sm);
+  font-weight: 600;
+}
+
+.gx-diff-group h4 {
+  display: flex;
+  align-items: baseline;
+  gap: var(--space-1-5);
+  margin: var(--space-3) 0 var(--space-1);
+  color: var(--muted);
+  font-size: var(--text-2xs);
+  font-weight: 600;
+  letter-spacing: var(--tracking-caps);
+  text-transform: uppercase;
+}
+
+.gx-count {
+  padding: 0 var(--space-1-5);
+  border-radius: var(--radius-full);
+  background: var(--surface-sunken);
+  color: var(--ink-2);
+  font-family: var(--font-mono);
+  letter-spacing: 0;
+}
+
+.tone-added .gx-count {
+  background: var(--pass-tint);
+  color: var(--pass);
+}
+
+.tone-changed .gx-count {
+  background: var(--warn-tint);
+  color: var(--warn);
+}
+
+.tone-removed .gx-count {
+  background: var(--fail-tint);
+  color: var(--fail);
+}
+
+.gx-diff-group ul {
+  display: grid;
+  /* minmax(0, ...) lets long rows ellipsize instead of widening the rail. */
+  grid-template-columns: minmax(0, 1fr);
+  gap: 1px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.gx-diff-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 2px var(--space-2);
+  width: 100%;
+  padding: var(--space-1) var(--space-2);
+  border: 0;
+  border-radius: var(--radius-xs);
+  background: none;
+  color: var(--ink);
+  font: inherit;
+  text-align: left;
+  cursor: pointer;
+  transition: background-color var(--dur-1) var(--ease-out);
+}
+
+.gx-diff-row:hover {
+  background: var(--surface-hover);
+}
+
+.gx-diff-row:focus-visible {
+  outline: none;
+  box-shadow: var(--focus-ring);
+}
+
+/* Rows wrap to two lines (the whole text is also the button's name and title). */
+.gx-row-body {
+  display: -webkit-box;
+  flex: 1 1 0;
+  min-width: 0;
+  overflow: hidden;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  overflow-wrap: anywhere;
+}
+
+.gx-rel {
+  flex: none;
+  color: var(--muted);
+  font: var(--text-2xs) / 1.5 var(--font-mono);
+}
+
+.gx-row-detail {
+  flex-basis: 100%;
+  padding-left: 20px;
+  color: var(--warn);
+}
+
+.gx-diff-row .gx-glyph {
+  flex: none;
+}
+
+.tone-added .gx-glyph {
+  fill: var(--pass-solid);
+  stroke: var(--pass-solid);
+}
+
+.tone-changed .gx-glyph {
+  fill: var(--warn-solid);
+  stroke: var(--warn-solid);
+}
+
+.tone-removed .gx-glyph {
+  fill: var(--fail-solid);
+  stroke: var(--fail-solid);
+}
+
+.gx-diff-row.is-gone {
+  color: var(--muted);
+  cursor: default;
+}
+
+.gx-diff-row.is-gone .gx-row-body {
+  text-decoration: line-through;
+}
+
+.gx-note {
+  margin: var(--space-2) 0 0;
+  color: var(--muted);
+}
+
+/* Legend and HUD */
+.gx-legend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-1) var(--space-3);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  color: var(--muted);
+  font-size: var(--text-2xs);
+}
+
+.gx-legend li {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-1);
+}
+
+.gx-glyph {
+  fill: var(--graph-node);
+  stroke: var(--graph-node);
+}
+
+.gx-legend [data-region="account"] .gx-glyph {
+  fill: var(--graph-node-strong);
+  stroke: var(--graph-node-strong);
+}
+
+.gx-legend [data-region="knows"] .gx-glyph,
+.gx-legend [data-region="knowledge"] .gx-glyph {
+  fill: var(--graph-ghost);
+  stroke: var(--graph-ghost);
+}
+
+.gx-glyph.shape-ring {
+  fill: none;
+}
+
+.gx-hud {
+  margin: 0;
+  color: var(--muted);
+  font: var(--text-2xs) / 1.4 var(--font-mono);
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
+
+.gx-help {
+  margin: var(--space-2) 0 0;
+  color: var(--muted);
+  font-size: var(--text-xs);
+}
+
+/* The text alternative: hidden until a keyboard user tabs into it, then a plain list. */
+.gx-text:not(:focus-within) {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+
+/* Shown over the canvas, never in the flow: revealing or hiding it must not move the page under a click. */
+.gx-text:focus-within {
+  position: absolute;
+  left: var(--space-3);
+  bottom: var(--space-3);
+  z-index: var(--z-pop);
+  width: min(420px, calc(100% - 2 * var(--space-3)));
+  max-height: 280px;
+  padding: var(--space-3);
+  overflow: auto;
+  border: 1px solid var(--line);
+  border-radius: var(--radius-md);
+  background: var(--surface);
+  box-shadow: var(--shadow-3);
+}
+
+.gx-text h3 {
+  margin: var(--space-2) 0 var(--space-1);
+  font-size: var(--text-xs);
+}
+
+.gx-text ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.gx-text button {
+  display: block;
+  width: 100%;
+  padding: 2px var(--space-2);
+  border: 0;
+  background: none;
+  color: var(--ink-2);
+  font: inherit;
+  font-size: var(--text-xs);
+  text-align: left;
+}
+
+.gx-text button:focus-visible {
+  outline: none;
+  box-shadow: var(--focus-ring);
+}
+
+.gx-text button[aria-pressed="true"] {
+  color: var(--brand-text);
+}
+
+/* Inspector additions: a claim's value, and the nodes one hop away */
+.prov-facts {
+  display: grid;
+  gap: var(--space-1);
+  margin: var(--space-2) 0;
+}
+
+.prov-facts div {
+  display: grid;
+  grid-template-columns: 84px 1fr;
+  gap: var(--space-2);
+}
+
+.prov-facts dt {
+  color: var(--muted);
+  font-size: var(--text-xs);
+}
+
+.prov-facts dd {
+  margin: 0;
+  overflow-wrap: anywhere;
+}
+
+.prov-related h4 {
+  margin: var(--space-4) 0 var(--space-1);
+  color: var(--muted);
+  font-size: var(--text-2xs);
+  letter-spacing: var(--tracking-caps);
+  text-transform: uppercase;
+}
+
+.prov-related ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.prov-related button {
+  display: flex;
+  gap: var(--space-2);
+  width: 100%;
+  padding: var(--space-1) var(--space-2);
+  border: 0;
+  border-radius: var(--radius-xs);
+  background: none;
+  color: var(--ink);
+  font: inherit;
+  font-size: var(--text-sm);
+  text-align: left;
+  cursor: pointer;
+}
+
+.prov-related button:hover {
+  background: var(--surface-hover);
+}
+
+.prov-related button:focus-visible {
+  outline: none;
+  box-shadow: var(--focus-ring);
+}
+
+.prov-rel {
+  flex: none;
+  min-width: 96px;
+  color: var(--muted);
+  font: var(--text-xs) / 1.6 var(--font-mono);
+}
+
+@media (max-width: 720px) {
+  .gx-body {
+    --gx-height: 460px;
+  }
+
+  .gx-legend,
+  .gx-crumbs {
+    display: none;
+  }
+
+  .gx-body {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .gx-sheet {
+    max-height: 420px;
+    border-top: 1px solid var(--line);
+    border-left: 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .gx-zoom button,
+  .gx-crumbs button {
+    transition: none;
+  }
+}

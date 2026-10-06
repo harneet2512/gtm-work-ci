@@ -1,0 +1,290 @@
+{
+  "id": "acme_cp4_draft1_champion_bypass",
+  "case_type": "champion_bypass",
+  "title": "Acme cp4 Draft 1 (HAR-97 §15 story): direct Marco-only thread with a meeting CTA, Priya dropped",
+  "should_pass": false,
+  "difficulty": "medium",
+  "slice_tags": {
+    "account": "acme",
+    "origin": "checkpoint",
+    "motion": "expansion",
+    "stage": "technical_evaluation",
+    "champion_status": "active",
+    "economic_buyer": "unknown",
+    "risk": "medium",
+    "candidate": "flawed",
+    "expected_action": "send_email",
+    "extra": ["draft_1", "har97_story", "security_review"]
+  },
+  "based_on": {
+    "kind": "checkpoint",
+    "account": "acme",
+    "after_event_file": "live/acme_marco_soc2_email.json",
+    "checkpoint": 4,
+    "changed_fields": [],
+    "change": null
+  },
+  "context": {
+    "now": "2026-09-29T15:45:00Z",
+    "state": {
+      "account_id": "0a0c0000-0000-4000-8000-000000000001",
+      "account_name": "Acme Corp",
+      "opportunity_id": "0c0f0000-0000-4000-8000-000000000004",
+      "fields": {
+        "stage": "Technical evaluation",
+        "health": "at_risk",
+        "motion": "expansion",
+        "champion": "0b0e0000-0000-4000-8000-000000000017",
+        "champion_status": "active",
+        "economic_buyer": "unknown",
+        "relationship_risk": "medium",
+        "blockers": [
+          {"text": "EU budget line needs finance approval in the Q3 planning cycle", "status": "resolved"},
+          {
+            "text": "Security sign-off by the Head of Security: SOC2 Type II report and pen-test summary must be reviewed",
+            "status": "open"
+          }
+        ],
+        "decision_process": "Security sign-off by Marco Ruiz after his team has read the SOC2 Type II report and pen-test summary; no review date committed; Priya Shah stays the commercial point of contact",
+        "next_milestone": "Acme security team reads the SOC2 Type II report and pen-test summary; review date not committed",
+        "next_meeting": null,
+        "current_commitments": [
+          {
+            "text": "Send proposal for 120 seats by Friday",
+            "status": "fulfilled",
+            "owner_person_id": "0b0e0000-0000-4000-8000-000000000001",
+            "due": "2026-08-28"
+          },
+          {
+            "text": "Send revised order form on the EU entity with Rotterdam invoiced separately by Monday the 14th",
+            "status": "fulfilled",
+            "owner_person_id": "0b0e0000-0000-4000-8000-000000000001",
+            "due": "2026-09-14"
+          },
+          {
+            "text": "Send the mutual NDA the morning after the 9/24 call",
+            "status": "fulfilled",
+            "owner_person_id": "0b0e0000-0000-4000-8000-000000000001",
+            "due": "2026-09-25"
+          },
+          {
+            "text": "Share SOC2 Type II report and pen-test summary once the mutual NDA is countersigned",
+            "status": "open",
+            "owner_person_id": "0b0e0000-0000-4000-8000-000000000001",
+            "due": "2026-09-28"
+          }
+        ]
+      },
+      "buying_group": [
+        {
+          "person_id": "0b0e0000-0000-4000-8000-000000000017",
+          "display_name": "Priya Shah",
+          "title": "Director of Operations",
+          "roles": ["champion"],
+          "status": "active",
+          "delegated_to_person_id": null,
+          "last_engaged_at": null,
+          "evidence_refs": []
+        },
+        {
+          "person_id": "0b0e0000-0000-4000-8000-000000000019",
+          "display_name": "Tom Becker",
+          "title": "EU Operations Manager",
+          "roles": ["user"],
+          "status": "active",
+          "delegated_to_person_id": null,
+          "last_engaged_at": null,
+          "evidence_refs": []
+        },
+        {
+          "person_id": "0b0e0000-0000-4000-8000-000000000018",
+          "display_name": "Marco Ruiz",
+          "title": "Head of Security",
+          "roles": ["security"],
+          "status": "active",
+          "delegated_to_person_id": null,
+          "last_engaged_at": null,
+          "evidence_refs": []
+        }
+      ],
+      "coverage_gaps": ["economic_buyer"]
+    },
+    "recent_changes": {
+      "summary": "Priya confirmed the mutual NDA is countersigned (09-28), so the SOC2 package is due. Marco (Head of Security) replied directly: SOC2 Type II report and pen-test summary required before sign-off; no review date; Priya stays commercial contact.",
+      "material_diff_fields": ["decision_process", "current_commitments", "next_milestone", "buying_group"],
+      "signals": ["customer_replied"]
+    },
+    "trigger": {
+      "activity_id": "0ac70000-0000-4000-8000-000000000101",
+      "activity_type": "EmailReply",
+      "occurred_at": "2026-09-29T15:42:00Z",
+      "actor_person_id": "0b0e0000-0000-4000-8000-000000000018",
+      "event_file": "live/acme_marco_soc2_email.json",
+      "synthetic": false,
+      "text": "Hi Dana - Priya looped me in; I lead security at Acme. Before we can sign off on the EU rollout we'll need your SOC2 Type II report and the pen-test summary. I can't commit to a review date until our team has read them. Priya will stay the point of contact on the commercial side.\nMarco"
+    },
+    "supporting_activities": [
+      {
+        "activity_id": "0ac70000-0000-4000-8000-000000000102",
+        "activity_type": "EmailReply",
+        "occurred_at": "2026-09-28T09:20:00Z",
+        "actor_person_id": "0b0e0000-0000-4000-8000-000000000017",
+        "event_file": "live/acme_mnda_countersigned.json",
+        "synthetic": false,
+        "text": "The mutual NDA is countersigned - the signed copy is attached. Marco is copied so he knows the security package can come over now."
+      }
+    ],
+    "commitments": [
+      {
+        "text": "Share SOC2 Type II report and pen-test summary once the mutual NDA is countersigned",
+        "owner_person_id": "0b0e0000-0000-4000-8000-000000000001",
+        "due_at": "2026-09-28T09:20:00Z",
+        "status": "open"
+      }
+    ],
+    "timeline_facts": {
+      "last_inbound_at": "2026-09-29T15:42:00Z",
+      "last_inbound_from_person_id": "0b0e0000-0000-4000-8000-000000000018",
+      "last_outbound_at": "2026-09-26T11:00:00Z",
+      "stated_timing": "Marco will not commit to a review date until his team has read the SOC2 package"
+    },
+    "offered_knowledge": [
+      {
+        "id": "0c17c000-0000-4000-8000-000000000117",
+        "key": "K17",
+        "title": "Keep the active champion involved when a new stakeholder enters during expansion",
+        "situation_signature": [
+          {"field": "motion", "op": "eq", "value": "expansion"},
+          {"field": "diff.new_stakeholder_entered", "op": "exists"},
+          {"field": "champion_status", "op": "in", "value": ["active", "weakening", "delegated", "departed", "inactive"]}
+        ],
+        "guidance": {
+          "summary": "Introduce the new stakeholder with the champion still in the loop; do not create a direct handoff.",
+          "do": ["cc or include the champion in the next interaction", "address the new stakeholder's specific request"],
+          "dont": [
+            "start a separate thread that drops the champion",
+            "escalate the ask while the new stakeholder is still reviewing"
+          ]
+        },
+        "status": "supported",
+        "counts": {
+          "decisions": 8,
+          "positive_reactions": 6,
+          "negative_reactions": 1,
+          "outcomes_advanced": 3,
+          "counterexamples": 1
+        },
+        "supporting_decision_episode_ids": ["0e9e0000-0000-4000-8000-000000000a01"],
+        "counterexamples": [
+          {
+            "decision_episode_id": "0e9e0000-0000-4000-8000-000000000a01",
+            "note": "Champion was leaving the company; direct handoff worked."
+          }
+        ],
+        "exceptions": [
+          {
+            "description": "Champion explicitly delegated ownership",
+            "conditions": [{"field": "champion_status", "op": "eq", "value": "delegated"}]
+          },
+          {
+            "description": "Champion departed",
+            "conditions": [{"field": "champion_status", "op": "in", "value": ["departed", "inactive"]}]
+          }
+        ],
+        "evidence_classes": ["deal_data", "methodology"],
+        "used_by_evaluators": ["champion_continuity:v1"],
+        "provenance": {
+          "created_from": "seed_history",
+          "source_decision_episode_id": null,
+          "note": "Version 2 of K17 (supersedes 0c17c000-0000-4000-8000-000000000017, the contract example): the signature requires a known champion (champion_status in a set) instead of 'active', so its delegated/departed exceptions are reachable (ADR-0011, signature first). Correction authored 2026-10-02, dated before the cases that offer it."
+        },
+        "created_at": "2026-09-20T00:00:00Z",
+        "last_validated_at": "2026-09-20T00:00:00Z"
+      }
+    ]
+  },
+  "candidate_action": {
+    "proposed_action_type": "send_email",
+    "recipients": [{"person_id": "0b0e0000-0000-4000-8000-000000000018", "role": "to", "why": "Requested the security documents"}],
+    "finished_artifact": {
+      "channel": "email",
+      "subject": "Re: Expansion to EU teams",
+      "body": "Hi Marco,\n\nGreat to meet you. Attached are our SOC2 Type II report and the latest pen-test summary. Could we book a 60-minute security review with our team this Thursday or Friday so we can keep the EU rollout on schedule?\n\nBest,\nDana",
+      "attachments": ["soc2-type2-2026.pdf", "pentest-summary-2026Q3.pdf"]
+    },
+    "crm_next_step_intent": {"next_step": "Security review meeting with Marco this week", "due_at": null, "stage_change": null},
+    "reason": "Marco owns the security sign-off; go direct and book the review.",
+    "evidence_refs": [
+      {
+        "activity_id": "0ac70000-0000-4000-8000-000000000101",
+        "quote": "Before we can sign off on the EU rollout we'll need your SOC2 Type II report and the pen-test summary.",
+        "speaker_person_id": "0b0e0000-0000-4000-8000-000000000018",
+        "occurred_at": "2026-09-29T15:42:00Z"
+      }
+    ],
+    "knowledge_refs_used": [],
+    "wait_until": null
+  },
+  "expected": [
+    {
+      "eval_type": "champion_continuity",
+      "verdict": "fail",
+      "label": "CHAMPION_BYPASSED",
+      "diagnostics": ["champion_bypassed"],
+      "blocking": true,
+      "rationale": "Draft starts a direct thread with Marco and drops Priya, although Marco wrote that Priya stays the commercial point of contact and ownership was not delegated.",
+      "evidence_class": "methodology",
+      "state_refs": ["champion", "champion_status", "buying_group"],
+      "knowledge_refs": ["0c17c000-0000-4000-8000-000000000117"]
+    },
+    {
+      "eval_type": "knowledge_applicability",
+      "verdict": "fail",
+      "label": "APPLIES",
+      "diagnostics": [],
+      "blocking": false,
+      "rationale": "K17 applies (expansion, champion active, new stakeholder entered; no exception triggered) and the draft does the 'dont'.",
+      "evidence_class": "methodology",
+      "state_refs": ["motion", "champion_status"],
+      "knowledge_refs": ["0c17c000-0000-4000-8000-000000000117"]
+    },
+    {
+      "eval_type": "buyer_readiness",
+      "verdict": "fail",
+      "label": "TOO_EARLY",
+      "diagnostics": ["too_early"],
+      "blocking": true,
+      "rationale": "Marco cannot commit to a review date until his team has read the documents.",
+      "evidence_class": "methodology"
+    },
+    {
+      "eval_type": "cta_calibration",
+      "verdict": "fail",
+      "label": "TOO_STRONG",
+      "diagnostics": ["ask_too_strong"],
+      "blocking": false,
+      "rationale": "Meeting this week is a stronger ask than the reviewer's stated readiness.",
+      "evidence_class": "methodology"
+    },
+    {
+      "eval_type": "grounding",
+      "verdict": "fail",
+      "label": null,
+      "diagnostics": [],
+      "blocking": false,
+      "rationale": "Sending the requested documents is grounded, but pushing a 60-minute review this Thursday or Friday and recording a meeting this week as the next step conflicts with Marco’s explicit statement that he cannot commit to a review date until his team has read them. The claimed need to keep the rollout “on schedule” is also unsupported by the account evidence.",
+      "evidence_class": "deal_data"
+    }
+  ],
+  "expected_best_action": {
+    "action": "send_email",
+    "why": "Draft 2: documents to Marco, Priya cc'd, light reviewer-paced ask (contracts/examples/agent_run_draft.example.json).",
+    "recipients": [
+      {"person_id": "0b0e0000-0000-4000-8000-000000000018", "role": "to"},
+      {"person_id": "0b0e0000-0000-4000-8000-000000000017", "role": "cc"}
+    ],
+    "channel": "email"
+  },
+  "gold_revision": [{"revision": "gold-v2", "source": "adjudicated: 2 LLM labellers + GPT-5.6 tie-break, 2026-10-02", "label_kind": "model labels, not human labels", "changes": [{"eval_type": "grounding", "from": "pass", "to": "fail"}]}],
+  "notes": "The canonical Draft 1 failure from contracts/examples/eval_result.example.json; gold verdict mirrors that EvalResult."
+}
