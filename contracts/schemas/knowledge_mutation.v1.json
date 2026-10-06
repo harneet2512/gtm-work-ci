@@ -1,0 +1,46 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://ghost.local/contracts/knowledge_mutation.v1.json",
+  "title": "KnowledgeMutation",
+  "description": "HAR-145: one change a DecisionEpisode made to company knowledge, derived from the knowledge lifecycle's own records (knowledge_evidence, knowledge_status_history, knowledge, judgment_inferences); there is no separate mutation table. One mutation per piece of evidence the episode attached to a knowledge object, in the order it was attached. operation is HAR-97's mutation vocabulary: CREATE (the episode's evidence is the first on a knowledge object: the episode seeded it), STRENGTHEN (supporting evidence on existing knowledge: a decision episode, human decision, positive customer reaction or advanced outcome, or a move up the candidate < provisional < supported < confirmed ladder, or back onto it from disputed or stale), WEAKEN (a counterexample or a negative reaction on it, or a move down that ladder), DISPUTE (the evidence moved the knowledge to disputed), MARK_STALE (to stale). A status change is reported on the mutation that caused it (DISPUTE and MARK_STALE win over STRENGTHEN and WEAKEN); the exact move is in status_before and status. REFINE, NARROW, EXPAND, ADD_EXCEPTION and NO_CHANGE are reserved for a lifecycle that rewrites a knowledge object's wording, scope or exceptions or decides to leave it alone; today the lifecycle only counts evidence and moves status, so a derived mutation never carries them. preconditions, applicability_conditions and exceptions are read from the knowledge object, which never rewrites them after creation (the database refuses it), so they are the version in force at the time of the mutation; a lifecycle that revises them must version them first.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "id", "operation", "knowledge_id", "knowledge_key", "title", "scope", "preconditions", "applicability_conditions", "exceptions",
+    "evidence_episode_id", "evidence", "human_verdict", "human_confirmed", "version", "status", "status_before", "occurred_at"
+  ],
+  "properties": {
+    "id": { "$ref": "common.v1.json#/$defs/uuid", "description": "The id of the knowledge_evidence row this mutation is read from: stable across reads." },
+    "operation": { "enum": ["CREATE", "STRENGTHEN", "WEAKEN", "REFINE", "NARROW", "EXPAND", "ADD_EXCEPTION", "DISPUTE", "MARK_STALE", "NO_CHANGE"] },
+    "knowledge_id": { "$ref": "common.v1.json#/$defs/uuid" },
+    "knowledge_key": { "type": ["string", "null"], "pattern": "^K[0-9]+$" },
+    "title": { "type": "string" },
+    "scope": {
+      "enum": ["undetermined", "account_specific", "reusable_candidate"],
+      "description": "decision_episodes.learning_scope of the evidence episode: whether the learning is judged specific to this account or a reusable candidate."
+    },
+    "preconditions": { "type": "array", "items": { "$ref": "knowledge.v1.json#/$defs/condition" }, "description": "The knowledge's situation_signature: every condition must hold for it to apply." },
+    "applicability_conditions": { "type": "array", "items": { "$ref": "knowledge.v1.json#/$defs/condition" }, "description": "Narrowing conditions learned after the signature." },
+    "exceptions": { "type": "array", "items": { "$ref": "knowledge.v1.json#/properties/exceptions/items" } },
+    "evidence_episode_id": { "$ref": "common.v1.json#/$defs/uuid", "description": "The DecisionEpisode this is read for." },
+    "evidence": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["kind", "ref_id", "note"],
+      "properties": {
+        "kind": { "enum": ["decision_episode", "human_decision", "customer_reaction", "business_outcome", "counterexample"] },
+        "ref_id": { "$ref": "common.v1.json#/$defs/uuid" },
+        "note": { "type": ["string", "null"] }
+      }
+    },
+    "human_verdict": {
+      "enum": ["none", "pending", "confirmed", "corrected"],
+      "description": "The human's verdict on Ghost's inference for the evidence episode (judgment_inferences.human_verdict); none when no inference exists."
+    },
+    "human_confirmed": { "type": "boolean", "description": "True exactly when human_verdict is confirmed. A pending or corrected verdict is not a confirmation." },
+    "version": { "type": "integer", "minimum": 1, "description": "The knowledge object's revision after this mutation: the 1-based position of this evidence among the object's evidence, so a CREATE is version 1." },
+    "status": { "enum": ["candidate", "provisional", "supported", "confirmed", "disputed", "stale"], "description": "The knowledge status right after this mutation." },
+    "status_before": { "enum": ["candidate", "provisional", "supported", "confirmed", "disputed", "stale", null], "description": "Null for a CREATE." },
+    "occurred_at": { "$ref": "common.v1.json#/$defs/timestamp" }
+  }
+}

@@ -1,0 +1,95 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://ghost.local/contracts/decision_episode.v1.json",
+  "title": "DecisionEpisode",
+  "description": "The full supervised record of one decision (HAR-97 §8, HAR-129 §14): state the agent saw, what it proposed, every eval, what the human did, and — later — how the customer and the business responded. The human decision is high-value supervision, not truth. Since HAR-129 an episode is opened when the strategy set is generated and closes in stages (status); episodes recorded before that (and runs without a strategy set) are simply 'decided'. The HAR-129 objects hang off the episode by decision_episode_id (strategy set, human strategy decision, judgment inference) and are not repeated here; state before/after is the state diff's from/to version; candidate knowledge and evaluator versions are found through knowledge_evidence and the human delta.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "id", "agent_run_id", "account_id", "state_version", "trigger_activity_ids", "status",
+    "eval_result_ids", "customer_reaction_ids", "business_outcome_ids", "created_at"
+  ],
+  "properties": {
+    "id": { "$ref": "common.v1.json#/$defs/uuid" },
+    "agent_run_id": { "$ref": "common.v1.json#/$defs/uuid" },
+    "account_id": { "$ref": "common.v1.json#/$defs/uuid" },
+    "status": {
+      "description": "awaiting_choice: strategy set shown, nothing chosen. chosen: a strategy was selected, no send decision yet. decided: send or discard recorded (the HumanDecision exists). judged: the judgment inference exists and the human has answered it.",
+      "type": "string",
+      "enum": ["awaiting_choice", "chosen", "decided", "judged"]
+    },
+    "state_version": { "type": "integer", "minimum": 0 },
+    "state_diff_id": { "oneOf": [{ "$ref": "common.v1.json#/$defs/uuid" }, { "type": "null" }] },
+    "held_out_event_id": {
+      "description": "The replay event that started the episode; absent for live episodes.",
+      "oneOf": [{ "$ref": "common.v1.json#/$defs/uuid" }, { "type": "null" }]
+    },
+    "account_change_id": { "oneOf": [{ "$ref": "common.v1.json#/$defs/uuid" }, { "type": "null" }] },
+    "business_intelligence_update_id": { "oneOf": [{ "$ref": "common.v1.json#/$defs/uuid" }, { "type": "null" }] },
+    "trigger_activity_ids": { "type": "array", "minItems": 1, "items": { "$ref": "common.v1.json#/$defs/uuid" } },
+    "decision_guidance_id": { "oneOf": [{ "$ref": "common.v1.json#/$defs/uuid" }, { "type": "null" }] },
+    "final_draft_index": { "type": "integer", "minimum": 1 },
+    "eval_result_ids": {
+      "description": "Every EvalResult of the run, for all candidates when there is a strategy set.",
+      "type": "array", "items": { "$ref": "common.v1.json#/$defs/uuid" }
+    },
+    "human_decision_id": { "$ref": "common.v1.json#/$defs/uuid" },
+    "human_action": {
+      "type": "string",
+      "enum": ["APPROVE_UNCHANGED", "APPROVE_WITH_EDIT", "REJECT", "IGNORE", "MANUAL_REPLACEMENT"]
+    },
+    "human_final_artifact": {
+      "oneOf": [{ "$ref": "agent_run_output.v1.json#/properties/finished_artifact" }, { "type": "null" }]
+    },
+    "human_delta_id": { "oneOf": [{ "$ref": "common.v1.json#/$defs/uuid" }, { "type": "null" }] },
+    "learning_scope": {
+      "description": "Whether the human's correction looks account-specific or like a candidate reusable criterion (HAR-129 §12, step 30). Only a verdict on the scope; promotion still needs scoping and backtesting.",
+      "type": "string",
+      "enum": ["undetermined", "account_specific", "reusable_candidate"]
+    },
+    "customer_reaction_ids": { "type": "array", "items": { "$ref": "common.v1.json#/$defs/uuid" } },
+    "business_outcome_ids": { "type": "array", "items": { "$ref": "common.v1.json#/$defs/uuid" } },
+    "created_at": { "$ref": "common.v1.json#/$defs/timestamp" },
+    "state_transition": {"description": "The StateTransition the agent read at the replay clock (HAR-128; the full object, never rewritten by the agent): the open CANDIDATE/UNRESOLVED transition, else the newest CONFIRMED one. Null when the account had none.", "oneOf": [{"$ref": "state_transition.v1.json"}, {"type": "null"}]},
+    "transition_status": {"oneOf": [{"$ref": "common.v1.json#/$defs/transitionStatus"}, {"type": "null"}]},
+    "supporting_evidence": {"description": "Evidence behind the transition's satisfied facts, one entry per fact.", "type": "array", "items": {"type": "object", "additionalProperties": false, "required": ["fact_key", "evidence_refs"], "properties": {"fact_key": {"$ref": "common.v1.json#/$defs/factKey"}, "evidence_refs": {"type": "array", "items": {"$ref": "common.v1.json#/$defs/evidenceRef"}}}}},
+    "missing_evidence": {"description": "The transition's unmet facts (the 'what remains unknown' list).", "type": "array", "items": {"type": "object", "additionalProperties": false, "required": ["fact_key", "required"], "properties": {"fact_key": {"$ref": "common.v1.json#/$defs/factKey"}, "required": {"type": "boolean"}, "description": {"type": "string"}}}},
+    "selected_eval_suite": {"oneOf": [{"type": "string", "pattern": "^[a-z][a-z0-9_]*$"}, {"type": "null"}]}
+  },
+  "allOf": [
+    {
+      "description": "Once the human has decided, the decision and the final draft exist.",
+      "if": { "properties": { "status": { "enum": ["decided", "judged"] } } },
+      "then": { "required": ["final_draft_index", "human_decision_id", "human_action"] }
+    },
+    {
+      "description": "Before the human decides there is no decision, action or final draft.",
+      "if": { "properties": { "status": { "enum": ["awaiting_choice", "chosen"] } } },
+      "then": {
+        "not": {
+          "anyOf": [
+            { "required": ["final_draft_index"] },
+            { "required": ["human_decision_id"] },
+            { "required": ["human_action"] }
+          ]
+        }
+      }
+    },
+    {
+      "description": "A replay episode points at the change it reacts to.",
+      "if": { "required": ["held_out_event_id"], "properties": { "held_out_event_id": { "type": "string" } } },
+      "then": { "required": ["account_change_id", "business_intelligence_update_id"] }
+    },
+    {
+      "description": "Edits and manual replacements carry the human's final artifact and a delta.",
+      "if": { "properties": { "human_action": { "enum": ["APPROVE_WITH_EDIT", "MANUAL_REPLACEMENT"] } }, "required": ["human_action"] },
+      "then": {
+        "required": ["human_final_artifact", "human_delta_id"],
+        "properties": {
+          "human_final_artifact": { "type": "object" },
+          "human_delta_id": { "$ref": "common.v1.json#/$defs/uuid" }
+        }
+      }
+    }
+  ]
+}

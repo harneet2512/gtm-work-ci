@@ -1,0 +1,46 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://ghost.local/contracts/evaluator_version.v1.json",
+  "title": "EvaluatorVersion",
+  "description": "A versioned evaluator definition (HAR-97 §10, §21). Candidates from unexplained human corrections are backtested, shadow-run, then promoted; exactly one active version per evaluator.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["evaluator", "version", "status", "kind", "rubric", "created_from", "metrics", "created_at"],
+  "properties": {
+    "evaluator": { "$ref": "eval_result.v1.json#/$defs/evalType" },
+    "version": { "type": "integer", "minimum": 1 },
+    "status": { "type": "string", "enum": ["candidate", "shadow", "active", "retired"] },
+    "kind": { "$ref": "eval_result.v1.json#/properties/kind" },
+    "rubric": { "type": "string", "minLength": 1, "maxLength": 8000 },
+    "labels": { "type": "array", "items": { "type": "string", "pattern": "^[A-Z][A-Z_]*$" } },
+    "examples": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["case_id", "expected_label"],
+        "properties": {
+          "case_id": { "type": "string" },
+          "expected_label": { "type": "string" },
+          "note": { "type": "string" }
+        }
+      }
+    },
+    "created_from": { "type": "string", "enum": ["seed", "human_delta", "manual"] },
+    "source_human_delta_id": { "oneOf": [{ "$ref": "common.v1.json#/$defs/uuid" }, { "type": "null" }] },
+    "metrics": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "n_cases": { "type": "integer", "minimum": 0 },
+        "agreement": { "type": ["number", "null"], "minimum": 0, "maximum": 1 },
+        "false_pass_rate": { "type": ["number", "null"], "minimum": 0, "maximum": 1 },
+        "false_block_rate": { "type": ["number", "null"], "minimum": 0, "maximum": 1 },
+        "repeat_consistency": { "type": ["number", "null"], "minimum": 0, "maximum": 1 },
+        "calibration_error": { "type": ["number", "null"], "minimum": 0 }
+      }
+    },
+    "created_at": { "$ref": "common.v1.json#/$defs/timestamp" },
+    "promoted_at": { "oneOf": [{ "$ref": "common.v1.json#/$defs/timestamp" }, { "type": "null" }] }
+  }
+}

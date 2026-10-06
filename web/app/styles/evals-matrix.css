@@ -1,0 +1,267 @@
+/* The comparison of the episode eval page: eval x option, sticky option heads, cells that peek at their evidence. */
+/* The comparison: eval x option */
+.compare-panel {
+  padding-bottom: var(--space-2);
+}
+
+/* position: relative keeps absolutely placed descendants (screen-reader text, peeks) inside the scroller. */
+.matrix-scroll {
+  position: relative;
+  margin: 0 calc(var(--space-5) * -1);
+  overflow-x: auto;
+}
+
+.eval-matrix {
+  width: 100%;
+  min-width: 760px;
+  border-collapse: separate;
+  border-spacing: 0;
+  table-layout: fixed;
+}
+
+.eval-matrix caption {
+  caption-side: top;
+  padding: 0 var(--space-5) var(--space-3);
+  color: var(--muted);
+  font-size: var(--text-xs);
+  text-align: left;
+}
+
+.eval-matrix th,
+.eval-matrix td {
+  padding: var(--space-3) var(--space-4);
+  border-bottom: 1px solid var(--line);
+  text-align: left;
+  vertical-align: top;
+}
+
+.eval-matrix tbody tr:last-child th,
+.eval-matrix tbody tr:last-child td {
+  border-bottom: 0;
+}
+
+.eval-matrix th:first-child,
+.eval-matrix td:first-child {
+  padding-left: var(--space-5);
+}
+
+.eval-matrix thead th {
+  position: sticky;
+  top: var(--header-h);
+  z-index: var(--z-sticky);
+  background: var(--surface);
+  box-shadow: inset 0 -1px 0 var(--line-strong);
+  border-bottom: 0;
+  font-weight: 400;
+}
+
+.eval-matrix thead .eval-col {
+  color: var(--muted);
+  font-size: var(--text-2xs);
+  font-weight: 600;
+  letter-spacing: var(--tracking-caps);
+  text-transform: uppercase;
+  vertical-align: bottom;
+}
+
+.eval-matrix .eval-col {
+  width: 21%;
+}
+
+.eval-matrix tbody th[scope="row"] {
+  font-weight: 400;
+}
+
+.eval-matrix tbody .eval-name {
+  display: block;
+  margin-bottom: var(--space-1);
+  color: var(--ink);
+  font-size: var(--text-sm);
+  font-weight: 600;
+}
+
+.option-col .verdict-strip {
+  margin-top: var(--space-2);
+}
+
+.option-col.selected,
+.eval-matrix td.selected {
+  background: color-mix(in srgb, var(--brand-tint) 55%, var(--surface));
+}
+
+.option-col.selected {
+  box-shadow: inset 0 2px 0 var(--brand), inset 0 -1px 0 var(--line-strong);
+}
+
+.option-link {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--space-2);
+  color: var(--ink);
+  text-decoration: none;
+}
+
+.option-link:hover {
+  text-decoration: none;
+}
+
+.option-link:hover .option-title {
+  color: var(--brand-text);
+}
+
+.option-title {
+  font-size: var(--text-sm);
+  font-weight: 600;
+  line-height: var(--leading-snug);
+}
+
+.option-held {
+  display: block;
+  margin-top: var(--space-1-5);
+  color: var(--warn);
+  font-size: var(--text-xs);
+}
+
+/* Cells: verdict + one-line reason; a judged cell opens its card and peeks at its evidence */
+.eval-matrix td.cell {
+  position: relative;
+  padding: 0;
+}
+
+.cell-link,
+.cell-static {
+  display: block;
+  height: 100%;
+  padding: var(--space-3) var(--space-4);
+  color: inherit;
+  text-decoration: none;
+}
+
+.cell-link {
+  transition: background-color var(--dur-1) ease;
+}
+
+.cell-link:hover {
+  background: var(--surface-hover);
+  text-decoration: none;
+}
+
+.cell-link:focus-visible {
+  border-radius: 0;
+  box-shadow: inset 0 0 0 2px var(--brand);
+}
+
+.cell-verdict {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--space-1-5);
+}
+
+.cell-reason {
+  display: -webkit-box;
+  margin-top: var(--space-1-5);
+  overflow: hidden;
+  color: var(--ink-2);
+  font-size: var(--text-sm);
+  line-height: var(--leading-snug);
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 3;
+}
+
+.eval-matrix td.v-not_relevant .cell-reason,
+.eval-matrix td.v-not_checked .cell-reason {
+  color: var(--muted);
+}
+
+.eval-matrix td.v-not_checked {
+  background-image: repeating-linear-gradient(135deg, transparent 0 7px, var(--surface-sunken) 7px 8px);
+}
+
+.peek {
+  position: absolute;
+  top: calc(100% - var(--space-2));
+  left: var(--space-3);
+  right: var(--space-3);
+  z-index: var(--z-pop);
+  display: grid;
+  gap: var(--space-1);
+  padding: var(--space-3);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-md);
+  background: var(--surface);
+  box-shadow: var(--shadow-3);
+  pointer-events: none;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(-4px) scale(0.98);
+  transform-origin: top center;
+  transition: opacity var(--dur-1) var(--ease-out), transform var(--dur-1) var(--ease-out), visibility 0s linear var(--dur-1);
+}
+
+.cell:focus-within .peek {
+  opacity: 1;
+  visibility: visible;
+  transform: none;
+  transition-delay: 0s;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .cell:hover .peek {
+    opacity: 1;
+    visibility: visible;
+    transform: none;
+    transition-delay: 0s;
+  }
+}
+
+.peek-quote {
+  color: var(--ink);
+  font-size: var(--text-sm);
+  line-height: var(--leading-snug);
+}
+
+.peek-quote.is-empty {
+  color: var(--muted);
+}
+
+.peek-attr {
+  color: var(--muted);
+  font-size: var(--text-xs);
+}
+
+@media (min-width: 1024px) {
+  /* Wide enough for the whole table: let the column heads stick to the top bar while the rows scroll. */
+  .matrix-scroll {
+    overflow: visible;
+  }
+}
+
+@media (max-width: 1023px) {
+  .eval-matrix thead th {
+    position: static;
+  }
+
+  /* On a phone the options scroll sideways; the eval names stay put. */
+  .eval-matrix .eval-col {
+    position: sticky;
+    left: 0;
+    z-index: 1;
+    background: var(--surface);
+    box-shadow: 1px 0 0 var(--line);
+  }
+
+  .peek {
+    display: none;
+  }
+}
+
+@media (max-width: 720px) {
+  .eval-head h1 {
+    font-size: var(--text-2xl);
+  }
+
+  .matrix-scroll {
+    margin: 0 calc(var(--space-4) * -1);
+  }
+}

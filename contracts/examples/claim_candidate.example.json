@@ -1,0 +1,10 @@
+{
+  "field_path": "stakeholder_role",
+  "value": "security",
+  "confidence": 0.95,
+  "evidence_quote": "I lead security at Acme",
+  "speaker_identity": "marco.ruiz@acme.com",
+  "subject_identity": "marco.ruiz@acme.com",
+  "role": "security",
+  "due_at": null
+}

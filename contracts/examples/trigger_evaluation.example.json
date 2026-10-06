@@ -1,0 +1,18 @@
+{
+  "id": "07e10000-0000-4000-8000-000000000501",
+  "account_id": "0a0c0000-0000-4000-8000-000000000001",
+  "workflow": "post_interaction_followup",
+  "eligible": true,
+  "reason_codes": [
+    "eligible_customer_replied",
+    "eligible_stakeholder_change"
+  ],
+  "explanation": "Customer replied with a new security stakeholder and blocker; no open run.",
+  "signal_ids": [
+    "051a0000-0000-4000-8000-000000000401",
+    "051a0000-0000-4000-8000-000000000402"
+  ],
+  "state_diff_id": "0d1f0000-0000-4000-8000-000000000301",
+  "agent_run_id": "0f0a0000-0000-4000-8000-000000000601",
+  "evaluated_at": "2026-09-29T15:42:12Z"
+}

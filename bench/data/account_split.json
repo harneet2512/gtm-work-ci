@@ -1,0 +1,205 @@
+{
+ "split_version": 1,
+ "unit": "account",
+ "seed": 20261005,
+ "description": "Account-level split of the CRMArena-Pro B2B org. An account decides its partition, whichever deal a case comes from. The demo partition is never in gold, in tuning, in knowledge formation or in a backtest. Gold reference answers are written by a different, stronger model, blind to the judge under test; they are not human labels.",
+ "gold_source": {
+  "kind": "model_reference",
+  "model": "openai/gpt-5.6-sol-pro"
+ },
+ "rule": "eligible = accounts with at least one previous and one current deal in deal_split.json; sort by account id; random.Random(20261005).shuffle; remove the demo accounts; first 56 are train, the rest test; every other account is unused",
+ "source": {
+  "dataset": "CRMArena-Pro B2B Salesforce org (Salesforce AI Research)",
+  "licence": "CC BY-NC 4.0 (non-commercial use only)",
+  "account_json_sha256": "16564e38d50ca81221e9aa185f6f3ae31514f9f32dd8f14b6dda7e7312fae036",
+  "opportunity_json_sha256": "dec22c6f0adfa34a2adba53be1b1ba2c68827ce4d5acc0aadd9d509f7bee36c2",
+  "deal_split": "bench/data/deal_split.json",
+  "deal_split_sha256": "bb1d9566501926352412220bf48348895311a8c1a6e4ffc76812f81324d69fae"
+ },
+ "counts": {
+  "accounts": 101,
+  "eligible": 96,
+  "demo": 2,
+  "train": 56,
+  "test": 38,
+  "unused": 5
+ },
+ "partitions": {
+  "demo": {
+   "accounts": [
+    {
+     "account_id": "001Wt00000PHVyfIAH",
+     "name": "MedTech Advances",
+     "role": "demo case 1 (first Play: the correction is made)"
+    },
+    {
+     "account_id": "001Wt00000PFsmaIAD",
+     "name": "EcoLite Innovations",
+     "role": "demo case 2 (second Play: the knowledge is used)"
+    }
+   ],
+   "deal_ids": [
+    "006Wt000007B185IAC",
+    "006Wt000007B4ViIAK",
+    "006Wt000007B5GUIA0",
+    "006Wt000007B7yHIAS",
+    "006Wt000007B81UIAS",
+    "006Wt000007B8CnIAK",
+    "006Wt000007B8XiIAK",
+    "006Wt000007BAEZIA4",
+    "006Wt000007BAkqIAG",
+    "006Wt000007BAuVIAW",
+    "006Wt000007BB2YIAW",
+    "006Wt000007BBDsIAO",
+    "006Wt000007BBH6IAO",
+    "006Wt000007BBH7IAO",
+    "006Wt000007BCcyIAG",
+    "006Wt000007BDAnIAO",
+    "006Wt000007BDCPIA4",
+    "006Wt000007BDE1IAO",
+    "006Wt000007BDFdIAO",
+    "006Wt000007BDHFIA4",
+    "006Wt000007BDIrIAO",
+    "006Wt000007BEA6IAO",
+    "006Wt000007BEekIAG",
+    "006Wt000007BFnmIAG",
+    "006Wt000007BHCqIAO",
+    "006Wt000007BHSxIAO",
+    "006Wt000007BHvxIAG",
+    "006Wt000007BHxZIAW",
+    "006Wt000007BHzBIAW"
+   ],
+   "excluded_from": [
+    "gold",
+    "prompt_and_rubric_tuning",
+    "knowledge_formation",
+    "backtests",
+    "agreement_numbers"
+   ]
+  },
+  "train": {
+   "accounts": [
+    "001Wt00000PFj4zIAD",
+    "001Wt00000PFlupIAD",
+    "001Wt00000PFrk1IAD",
+    "001Wt00000PFsjOIAT",
+    "001Wt00000PFsmbIAD",
+    "001Wt00000PFsmcIAD",
+    "001Wt00000PFsmdIAD",
+    "001Wt00000PGGTuIAP",
+    "001Wt00000PGR63IAH",
+    "001Wt00000PGRqjIAH",
+    "001Wt00000PGSwZIAX",
+    "001Wt00000PGXrLIAX",
+    "001Wt00000PGXrMIAX",
+    "001Wt00000PGXrNIAX",
+    "001Wt00000PGYgxIAH",
+    "001Wt00000PGYx4IAH",
+    "001Wt00000PGYx5IAH",
+    "001Wt00000PGZZnIAP",
+    "001Wt00000PGZgHIAX",
+    "001Wt00000PGZmfIAH",
+    "001Wt00000PGaNjIAL",
+    "001Wt00000PGaNkIAL",
+    "001Wt00000PGaZCIA1",
+    "001Wt00000PGaZDIA1",
+    "001Wt00000PGcFxIAL",
+    "001Wt00000PGcpMIAT",
+    "001Wt00000PGdBuIAL",
+    "001Wt00000PGdwiIAD",
+    "001Wt00000PGdzxIAD",
+    "001Wt00000PGeJIIA1",
+    "001Wt00000PGtmwIAD",
+    "001Wt00000PGtmxIAD",
+    "001Wt00000PGz2nIAD",
+    "001Wt00000PGzM9IAL",
+    "001Wt00000PGzSaIAL",
+    "001Wt00000PGzsMIAT",
+    "001Wt00000PH90cIAD",
+    "001Wt00000PH9DRIA1",
+    "001Wt00000PH9ITIA1",
+    "001Wt00000PHR75IAH",
+    "001Wt00000PHR8gIAH",
+    "001Wt00000PHRF8IAP",
+    "001Wt00000PHRTfIAP",
+    "001Wt00000PHRbiIAH",
+    "001Wt00000PHVaUIAX",
+    "001Wt00000PHVdhIAH",
+    "001Wt00000PHViXIAX",
+    "001Wt00000PHViYIAX",
+    "001Wt00000PHViZIAX",
+    "001Wt00000PHViaIAH",
+    "001Wt00000PHVllIAH",
+    "001Wt00000PHVnNIAX",
+    "001Wt00000PHVnOIAX",
+    "001Wt00000PHVozIAH",
+    "001Wt00000PHVqbIAH",
+    "001Wt00000PHVqdIAH"
+   ],
+   "used_for": [
+    "prompt_and_rubric_tuning",
+    "knowledge_formation",
+    "backtests"
+   ]
+  },
+  "test": {
+   "accounts": [
+    "001Wt00000PFj50IAD",
+    "001Wt00000PFluoIAD",
+    "001Wt00000PFsmZIAT",
+    "001Wt00000PFt7TIAT",
+    "001Wt00000PFttwIAD",
+    "001Wt00000PGGTtIAP",
+    "001Wt00000PGHsyIAH",
+    "001Wt00000PGRnYIAX",
+    "001Wt00000PGXrKIAX",
+    "001Wt00000PGZZoIAP",
+    "001Wt00000PGZmeIAH",
+    "001Wt00000PGb5MIAT",
+    "001Wt00000PGb5NIAT",
+    "001Wt00000PGb5OIAT",
+    "001Wt00000PGccRIAT",
+    "001Wt00000PGoAaIAL",
+    "001Wt00000PGovMIAT",
+    "001Wt00000PGtdJIAT",
+    "001Wt00000PGtdKIAT",
+    "001Wt00000PGyTIIA1",
+    "001Wt00000PGyv0IAD",
+    "001Wt00000PGzVpIAL",
+    "001Wt00000PHHXXIA5",
+    "001Wt00000PHRF9IAP",
+    "001Wt00000PHRTeIAP",
+    "001Wt00000PHRVGIA5",
+    "001Wt00000PHRVHIA5",
+    "001Wt00000PHRVIIA5",
+    "001Wt00000PHVaVIAX",
+    "001Wt00000PHVfJIAX",
+    "001Wt00000PHVgvIAH",
+    "001Wt00000PHVk9IAH",
+    "001Wt00000PHVkAIAX",
+    "001Wt00000PHVsDIAX",
+    "001Wt00000PHVtpIAH",
+    "001Wt00000PHVvRIAX",
+    "001Wt00000PHVx3IAH",
+    "001Wt00000PHW0HIAX"
+   ],
+   "used_for": [
+    "gold",
+    "agreement_numbers"
+   ],
+   "never_seen_by": [
+    "prompt_authors"
+   ]
+  },
+  "unused": {
+   "accounts": [
+    "001Wt00000PFsjMIAT",
+    "001Wt00000PGQzcIAH",
+    "001Wt00000PGSwYIAX",
+    "001Wt00000PGaHIIA1",
+    "001Wt00000PGzSbIAL"
+   ],
+   "reason": "a deal on one side of the cutoff only: no earlier episode to learn from"
+  }
+ }
+}

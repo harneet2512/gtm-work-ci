@@ -1,0 +1,159 @@
+{
+  "id": "acme_cp2_crm_writeback_negotiation",
+  "case_type": "conflicting_account_state",
+  "title": "Acme 09-10: candidate writes stage 'Negotiation' to CRM from the call remark, overriding the explicit CRM stage",
+  "should_pass": false,
+  "difficulty": "medium",
+  "slice_tags": {
+    "account": "acme",
+    "origin": "world_moment",
+    "motion": "expansion",
+    "stage": "commercial_review",
+    "champion_status": "active",
+    "economic_buyer": "unknown",
+    "risk": "low",
+    "candidate": "flawed",
+    "expected_action": "internal_note",
+    "extra": ["standing_conflict"]
+  },
+  "based_on": {
+    "kind": "world_moment",
+    "account": "acme",
+    "after_event_file": "world/accounts/acme/events/027_crm_note_commercial.json",
+    "checkpoint": 2,
+    "changed_fields": [],
+    "change": null
+  },
+  "context": {
+    "now": "2026-09-10T09:30:00Z",
+    "state": {
+      "account_id": "0a0c0000-0000-4000-8000-000000000001",
+      "account_name": "Acme Corp",
+      "opportunity_id": "0c0f0000-0000-4000-8000-000000000004",
+      "fields": {
+        "stage": "Commercial review",
+        "health": "on_track",
+        "motion": "expansion",
+        "champion": "0b0e0000-0000-4000-8000-000000000017",
+        "champion_status": "active",
+        "economic_buyer": "unknown",
+        "relationship_risk": "low",
+        "blockers": [{"text": "EU budget line needs finance approval in the Q3 planning cycle", "status": "resolved"}],
+        "commercial_issue": "Order form on the EU entity Acme Logistics B.V. with the Rotterdam site invoiced separately"
+      },
+      "buying_group": [
+        {
+          "person_id": "0b0e0000-0000-4000-8000-000000000017",
+          "display_name": "Priya Shah",
+          "title": "Director of Operations",
+          "roles": ["champion"],
+          "status": "active",
+          "delegated_to_person_id": null,
+          "last_engaged_at": null,
+          "evidence_refs": []
+        },
+        {
+          "person_id": "0b0e0000-0000-4000-8000-000000000019",
+          "display_name": "Tom Becker",
+          "title": "EU Operations Manager",
+          "roles": ["user"],
+          "status": "active",
+          "delegated_to_person_id": null,
+          "last_engaged_at": null,
+          "evidence_refs": []
+        }
+      ],
+      "coverage_gaps": ["economic_buyer"]
+    },
+    "recent_changes": {
+      "summary": "CRM stage set to Commercial review (crm_explicit) after a call where Priya said 'basically in negotiation' (first_party_ai).",
+      "material_diff_fields": ["stage", "commercial_issue"],
+      "signals": ["stage_advanced"]
+    },
+    "trigger": {
+      "activity_id": "0ac70000-0000-4000-8000-0000000a0027",
+      "activity_type": "CRMNoteAdded",
+      "occurred_at": "2026-09-10T09:05:00Z",
+      "actor_person_id": null,
+      "event_file": "world/accounts/acme/events/027_crm_note_commercial.json",
+      "synthetic": false,
+      "text": "Commercial walkthrough 9/9: finance approved the EU budget. Order form to be issued on Acme Logistics B.V. with Rotterdam invoiced separately. Keeping the stage at Commercial review until the signature path is confirmed."
+    },
+    "supporting_activities": [
+      {
+        "activity_id": "0ac70000-0000-4000-8000-0000000a0025",
+        "activity_type": "TranscriptReady",
+        "occurred_at": "2026-09-09T14:32:00Z",
+        "actor_person_id": "0b0e0000-0000-4000-8000-000000000017",
+        "event_file": "world/accounts/acme/events/025_call_commercial_transcript.json",
+        "synthetic": false,
+        "text": "speaker_02: Yes. From my side we're basically in negotiation now"
+      }
+    ],
+    "commitments": [],
+    "timeline_facts": {
+      "last_inbound_at": "2026-09-03T10:15:00Z",
+      "last_inbound_from_person_id": "0b0e0000-0000-4000-8000-000000000017",
+      "last_outbound_at": "2026-08-28T15:00:00Z",
+      "stated_timing": "Revised order form by Monday the 14th"
+    },
+    "offered_knowledge": []
+  },
+  "candidate_action": {
+    "proposed_action_type": "internal_note",
+    "recipients": [],
+    "finished_artifact": {
+      "channel": "crm_note",
+      "subject": null,
+      "body": "Priya confirmed on the 9/9 call that we're in negotiation. Updating stage."
+    },
+    "crm_next_step_intent": {"next_step": "Send revised order form by 9/14", "due_at": "2026-09-14T16:00:00Z", "stage_change": "Negotiation"},
+    "reason": "Call transcript indicates negotiation.",
+    "evidence_refs": [
+      {
+        "activity_id": "0ac70000-0000-4000-8000-0000000a0025",
+        "quote": "From my side we're basically in negotiation now",
+        "speaker_person_id": "0b0e0000-0000-4000-8000-000000000017",
+        "occurred_at": "2026-09-09T14:32:00Z"
+      }
+    ],
+    "knowledge_refs_used": [],
+    "wait_until": null
+  },
+  "expected": [
+    {
+      "eval_type": "crm_writeback",
+      "verdict": "fail",
+      "label": null,
+      "diagnostics": [],
+      "blocking": true,
+      "rationale": "The CRM stage was explicitly set to Commercial review after the call; a crm_explicit value outranks a first_party_ai inference and must not be overwritten.",
+      "evidence_class": "product_rule",
+      "state_refs": ["stage"]
+    },
+    {
+      "eval_type": "grounding",
+      "verdict": "fail",
+      "label": null,
+      "diagnostics": [],
+      "blocking": false,
+      "rationale": "A conversational remark is not a stage decision; the CRM note says the stage stays until the signature path is confirmed.",
+      "evidence_class": "deal_data"
+    },
+    {
+      "eval_type": "commitment_consistency",
+      "verdict": "pass",
+      "label": null,
+      "diagnostics": [],
+      "blocking": false,
+      "rationale": "The 9/14 next step is correct.",
+      "evidence_class": "methodology"
+    }
+  ],
+  "expected_best_action": {
+    "action": "internal_note",
+    "why": "Log the call outcomes (EU entity, split invoicing) without changing the stage.",
+    "channel": "crm_note"
+  },
+  "notes": "Gold stale fact: stage = Negotiation from 025."
+}
