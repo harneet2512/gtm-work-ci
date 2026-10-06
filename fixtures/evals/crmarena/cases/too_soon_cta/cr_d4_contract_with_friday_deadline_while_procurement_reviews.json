@@ -1,0 +1,303 @@
+{
+ "id": "cr_d4_contract_with_friday_deadline_while_procurement_reviews",
+ "origin": "crmarena",
+ "case_type": "too_soon_cta",
+ "title": "Final contract with a Friday signature deadline, hours after the buyer said procurement is still reviewing",
+ "should_pass": false,
+ "difficulty": "easy",
+ "slice_tags": {
+  "account": "001Wt00000PHRbiIAH",
+  "origin": "crmarena",
+  "motion": "unknown",
+  "stage": "unknown",
+  "champion_status": "active",
+  "economic_buyer": "unknown",
+  "risk": "unknown",
+  "candidate": "flawed",
+  "expected_action": "send_email",
+  "extra": [
+   "inbound_email",
+   "signature_push"
+  ]
+ },
+ "based_on": {
+  "kind": "crmarena_moment",
+  "account_id": "001Wt00000PHRbiIAH",
+  "deal_id": "006Wt000007B62yIAC",
+  "trigger_kind": "inbound_email",
+  "decision_at": "2023-12-05T16:00:00Z",
+  "cutoff": "2023-11-01",
+  "deal_group": "current",
+  "events_before_decision": 7
+ },
+ "source": {
+  "dataset": "CRMArena-Pro B2B Salesforce org (Salesforce AI Research)",
+  "licence": "CC BY-NC 4.0 (non-commercial use only)",
+  "attribution": "Salesforce AI Research, CRMArena-Pro (https://github.com/SalesforceAIResearch/CRMArena, LICENSE.txt); records selected and excerpted, nothing edited",
+  "snapshot_manifest_sha256": "8fbda45c15d1806dc4c37d5230a20ac24d6619ef36a88c0efddb344792c89f03",
+  "generator": "bench/evals/crmarena_gold v1"
+ },
+ "context": {
+  "now": "2023-12-05T16:00:00Z",
+  "state": {
+   "account_id": "ab409b48-affa-5385-b5c1-da45ca5ff1fa",
+   "account_name": "PowerGrid Innovations",
+   "opportunity_id": "05fa2ed5-878b-58aa-b859-6e0c2ac21a8d",
+   "fields": {
+    "stage": "unknown",
+    "health": "unknown",
+    "motion": "unknown",
+    "champion": "e41f2e16-c4fb-534b-b3e0-6c5f5f152f53",
+    "champion_status": "active",
+    "economic_buyer": "unknown",
+    "relationship_risk": "unknown",
+    "decision_process": "Aditya will discuss the proposal with the procurement team and return feedback or additional requests by the end of this week (2023-12-08)",
+    "objections": [
+     {
+      "text": "Wants the implementation timeline and training programs",
+      "status": "open"
+     },
+     {
+      "text": "Wants case studies or references from similar projects",
+      "status": "open"
+     }
+    ],
+    "current_commitments": [
+     {
+      "text": "Customer: feedback or additional requests by the end of this week (2023-12-08)",
+      "status": "open"
+     },
+     {
+      "text": "Us: a brief meeting next week, the implementation timeline and training programs, and case studies (asked 2023-12-05)",
+      "status": "open"
+     }
+    ],
+    "next_milestone": "Customer feedback by 2023-12-08"
+   },
+   "buying_group": [
+    {
+     "person_id": "e41f2e16-c4fb-534b-b3e0-6c5f5f152f53",
+     "display_name": "Aditya Kumar",
+     "title": "Research Analyst (champion role inferred, not recorded)",
+     "roles": [
+      "champion"
+     ],
+     "status": "active",
+     "delegated_to_person_id": null,
+     "last_engaged_at": "2023-12-05T16:00:00Z",
+     "evidence_refs": [
+      {
+       "activity_id": "8d1e84a5-ef48-59d1-8217-88e94e40179c",
+       "occurred_at": "2023-12-05T16:00:00Z"
+      }
+     ]
+    },
+    {
+     "person_id": "632cdafb-c253-55b9-a9ac-9bc057d4a5f9",
+     "display_name": "Gabriel Acosta",
+     "title": "Finance Officer",
+     "roles": [
+      "unknown"
+     ],
+     "status": "unknown",
+     "delegated_to_person_id": null,
+     "last_engaged_at": null,
+     "evidence_refs": []
+    },
+    {
+     "person_id": "98bfc06d-64f8-5951-9b8d-cfdb34f3b069",
+     "display_name": "Fatima Noor",
+     "title": "Supply Chain Coordinator",
+     "roles": [
+      "unknown"
+     ],
+     "status": "unknown",
+     "delegated_to_person_id": null,
+     "last_engaged_at": null,
+     "evidence_refs": []
+    },
+    {
+     "person_id": "a870ae70-623d-55a8-b4a3-84cc54d9e420",
+     "display_name": "Yasir Abdi",
+     "title": "Operations Assistant",
+     "roles": [
+      "unknown"
+     ],
+     "status": "unknown",
+     "delegated_to_person_id": null,
+     "last_engaged_at": null,
+     "evidence_refs": []
+    }
+   ],
+   "coverage_gaps": [
+    "economic_buyer"
+   ]
+  },
+  "recent_changes": {
+   "summary": "Aditya says he will take the proposal to the procurement team and revert by the end of the week; earlier today he asked for a meeting next week, case studies, the implementation timeline and training.",
+   "material_diff_fields": [
+    "decision_process",
+    "current_commitments",
+    "objections"
+   ],
+   "signals": [
+    "customer_replied"
+   ]
+  },
+  "trigger": {
+   "activity_id": "8d1e84a5-ef48-59d1-8217-88e94e40179c",
+   "activity_type": "EmailReceived",
+   "occurred_at": "2023-12-05T16:00:00Z",
+   "actor_person_id": "e41f2e16-c4fb-534b-b3e0-6c5f5f152f53",
+   "event_file": "crmarena:EmailMessage:02sWt000001zu9iIAA",
+   "synthetic": false,
+   "text": "Hi Thato,\n\nThank you for the comprehensive follow-up. I appreciate the attention to detail and the tailored approach in your proposal. I have gone through the document, and the scalability of the OptiEnergy Suite indeed seems promising, aligning with our strategy for growth and innovation.\n\nYour explanation around the technological advancements TechPulse continues to invest in reassures us of the forward-thinking nature of your solutions. It’s crucial for our partnerships to not only align with our current needs but also evolve with future demands.\n\nFurthermore, the responsiveness of your support team stands out, which is an essential factor for us, given our operational demands. I’ll be discussing the proposal with our procurement team and should be able to get back to you with feedback or additional requests by the end of this week.\n\nThanks again for your ongoing support and the detailed insights.\n\nBest,\n\nAditya Kumar\nDirector of Energy Solutions\nPowerGrid Innovations",
+   "subject": "Proposal Follow-Up",
+   "date_semantics": "sent"
+  },
+  "supporting_activities": [
+   {
+    "activity_id": "1bd41cd9-ff86-5fe7-803a-c077c8070e15",
+    "activity_type": "EmailReceived",
+    "occurred_at": "2023-12-05T12:15:00Z",
+    "actor_person_id": "e41f2e16-c4fb-534b-b3e0-6c5f5f152f53",
+    "event_file": "crmarena:EmailMessage:02sWt000001zpElIAI",
+    "synthetic": false,
+    "text": "Hi Thato,\n\nThank you for the follow-up email and for the productive call earlier today. I appreciate the detailed insights you shared about TechPulse Solutions' strategy in the EDA space and the emphasis on scalability with the OptiEnergy Suite.\n\nThe comprehensive breakdown of the product features and benefits was very enlightening, especially regarding how they align with our current and future projects. The scalability and customization aspects are certainly appealing.\n\nI've reviewed the details of your proposal in conjunction with our internal team, and we find the offer promising. We are particularly interested in learning more about the implementation timeline and any training programs you offer to facilitate seamless integration.\n\nCould we schedule a brief meeting next week to address these points? Additionally, if you have any case studies or references from similar projects, it would be helpful to review them as part of our decision-making process.\n\nLooking forward to your response.\n\nBest,\n\nAditya Kumar\nPowerGrid Innovations",
+    "subject": "Proposal Follow-Up",
+    "date_semantics": "sent"
+   },
+   {
+    "activity_id": "945edf97-a010-5ffd-839f-8e7c74e8e3bf",
+    "activity_type": "EmailSent",
+    "occurred_at": "2023-12-05T14:30:00Z",
+    "actor_person_id": "31eba1fb-ea09-549f-a869-19c45a58d841",
+    "event_file": "crmarena:EmailMessage:02sWt000001zx5wIAA",
+    "synthetic": false,
+    "text": "Hi Aditya,\n\nI hope this email finds you well. Thank you for the insightful voice call we had earlier today. I wanted to follow up on some key points we discussed regarding our proposal for PowerGrid Innovations.\n\nWe understand your interest in the scalability of our OptiEnergy Suite as it aligns with your ongoing energy optimization initiatives. I'd like to reiterate that our solution is designed to scale effortlessly alongside your growing needs, ensuring that PowerGrid Innovations remains at the forefront of energy management advancements.",
+    "subject": "Proposal Follow-Up",
+    "date_semantics": "sent"
+   }
+  ],
+  "commitments": [
+   {
+    "text": "Customer returns feedback by the end of the week (2023-12-08)",
+    "owner_person_id": "e41f2e16-c4fb-534b-b3e0-6c5f5f152f53",
+    "due_at": "2023-12-08T00:00:00Z",
+    "status": "open"
+   },
+   {
+    "text": "Meeting next week, timeline, training and case studies",
+    "owner_person_id": "31eba1fb-ea09-549f-a869-19c45a58d841",
+    "due_at": null,
+    "status": "open"
+   }
+  ],
+  "timeline_facts": {
+   "last_inbound_at": "2023-12-05T16:00:00Z",
+   "last_inbound_from_person_id": "e41f2e16-c4fb-534b-b3e0-6c5f5f152f53",
+   "last_outbound_at": "2023-12-05T14:30:00Z",
+   "stated_timing": "Aditya: 'should be able to get back to you with feedback or additional requests by the end of this week.'"
+  },
+  "offered_knowledge": [],
+  "state_provenance": {
+   "champion": "inferred, not recorded: the only customer correspondent (2 inbound emails); CRMArena has no roles",
+   "stage": "unknown unless a field below says otherwise: the loader dates the stage at the deal's last event",
+   "decision_process": "02sWt000001zu9iIAA",
+   "objections": "02sWt000001zpElIAI",
+   "current_commitments": "02sWt000001zpElIAI, 02sWt000001zu9iIAA",
+   "buying_group roles": "inferred from each Contact's Title/Department; the record has no roles"
+  }
+ },
+ "candidate_action": {
+  "proposed_action_type": "send_email",
+  "recipients": [
+   {
+    "person_id": "e41f2e16-c4fb-534b-b3e0-6c5f5f152f53",
+    "role": "to"
+   }
+  ],
+  "finished_artifact": {
+   "channel": "email",
+   "subject": "Final contract for PowerGrid Innovations",
+   "body": "Hi Aditya,\n\nThanks for reviewing the proposal with your team. To keep the discount in our proposal in place, I have attached the final contract. Could you sign and return it by Friday, December 8?\n\nBest regards,\nThato",
+   "attachments": [
+    "PowerGrid_Final_Contract.pdf"
+   ]
+  },
+  "crm_next_step_intent": {
+   "next_step": "Signed contract returned",
+   "due_at": "2023-12-08T17:00:00Z",
+   "stage_change": null
+  },
+  "reason": "He is positive on scalability; move to the close.",
+  "evidence_refs": [
+   {
+    "activity_id": "8d1e84a5-ef48-59d1-8217-88e94e40179c",
+    "quote": "I’ll be discussing the proposal with our procurement team and should be able to get back to you with feedback or additional requests by the end of this week.",
+    "occurred_at": "2023-12-05T16:00:00Z",
+    "speaker_person_id": "e41f2e16-c4fb-534b-b3e0-6c5f5f152f53"
+   }
+  ],
+  "knowledge_refs_used": [],
+  "wait_until": null
+ },
+ "expected": [
+  {
+   "eval_type": "buyer_readiness",
+   "verdict": "fail",
+   "label": "TOO_EARLY",
+   "diagnostics": [
+    "too_early"
+   ],
+   "blocking": false,
+   "rationale": "Aditya will revert after discussing with procurement and still wants the timeline, training and case studies; a contract push precedes both.",
+   "evidence_class": "methodology"
+  },
+  {
+   "eval_type": "cta_calibration",
+   "verdict": "fail",
+   "label": "TOO_STRONG",
+   "diagnostics": [
+    "ask_too_strong"
+   ],
+   "blocking": true,
+   "rationale": "A signed contract by a fixed Friday deadline is a closing commitment he has not signalled.",
+   "evidence_class": "methodology"
+  },
+  {
+   "eval_type": "decision_process",
+   "verdict": "fail",
+   "label": null,
+   "diagnostics": [],
+   "blocking": true,
+   "rationale": "Contradicts the gate he stated: the procurement team's review.",
+   "evidence_class": "methodology"
+  }
+ ],
+ "expected_best_action": {
+  "action": "send_email",
+  "why": "Answer his open asks (meeting next week, timeline, training, case studies) and let procurement finish its review.",
+  "recipients": [
+   {
+    "person_id": "e41f2e16-c4fb-534b-b3e0-6c5f5f152f53",
+    "role": "to"
+   }
+  ],
+  "channel": "email"
+ },
+ "labelling": {
+  "label_kind": "model labels, single author, not human labels",
+  "passes": [
+   "pass_1",
+   "pass_2"
+  ],
+  "agreement": {
+   "judgments": 3,
+   "verdict_agree": 3,
+   "fail_agree": 3
+  },
+  "disagreements": []
+ },
+ "notes": ""
+}

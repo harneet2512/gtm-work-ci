@@ -1,0 +1,348 @@
+/* /control — the operator surface (HAR-145): context bar, Play pipeline strip, health bands, material
+   changes and the episode trajectory. Operator density: mono ids, tight rows, chips not prose. */
+
+.control {
+  padding-top: var(--space-4);
+}
+
+.control-head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: var(--space-3) var(--space-6);
+  padding-bottom: var(--space-3);
+  border-bottom: 1px solid var(--line);
+  margin-bottom: var(--space-4);
+}
+
+.control-head h1 {
+  margin: 0;
+  font-size: var(--text-xl);
+}
+
+.context-bar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-4) var(--space-6);
+  margin: 0;
+}
+.context-bar div {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+.context-bar dt {
+  font-size: var(--text-2xs);
+  letter-spacing: var(--tracking-caps);
+  text-transform: uppercase;
+  color: var(--muted);
+}
+.context-bar dd {
+  margin: 0;
+  font-family: var(--font-mono);
+  font-size: var(--text-sm);
+  color: var(--ink-2);
+}
+
+/* — Play pipeline strip — */
+.pipeline-head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--space-3);
+}
+.pipeline-head h2 {
+  margin: 0;
+  font-size: var(--text-lg);
+}
+.pipeline-head .hint {
+  flex: 1;
+  min-width: 16rem;
+  margin: 0;
+}
+.pipeline-head .play {
+  font-weight: 600;
+}
+
+.replay-card .history-link {
+  margin: var(--space-2) 0 0;
+  font-size: var(--text-xs);
+}
+
+.pipeline-strip {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+  list-style: none;
+  margin: var(--space-4) 0 0;
+  padding: 0;
+}
+.pipeline-strip .stage {
+  position: relative;
+  display: grid;
+  grid-template-columns: auto 1fr;
+  grid-template-areas: "mark label" "mark status" "detail detail";
+  column-gap: var(--space-2);
+  min-width: 7.25rem;
+  padding: var(--space-1-5) var(--space-2);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-sm);
+  background: var(--surface-subtle);
+  transition: border-color 180ms ease, background 180ms ease;
+}
+.stage-mark {
+  grid-area: mark;
+  align-self: start;
+  font-family: var(--font-mono);
+  font-size: var(--text-sm);
+  color: var(--faint);
+}
+.stage-label {
+  grid-area: label;
+  font-size: var(--text-sm);
+  font-weight: 600;
+  color: var(--ink);
+}
+.stage-status {
+  grid-area: status;
+  font-size: var(--text-2xs);
+  letter-spacing: var(--tracking-caps);
+  text-transform: uppercase;
+  color: var(--muted);
+}
+.stage-problem::before {
+  content: " \00b7 ";
+}
+.stage-detail {
+  grid-area: detail;
+  margin-top: 2px;
+  font-family: var(--font-mono);
+  font-size: var(--text-2xs);
+  color: var(--muted);
+  overflow-wrap: anywhere;
+}
+.pipeline-strip .st-running {
+  border-color: var(--brand-line);
+  background: var(--brand-tint);
+}
+.pipeline-strip .st-running .stage-mark { color: var(--brand-text); }
+.pipeline-strip .st-completed .stage-mark { color: var(--ink-2); }
+.pipeline-overall { margin: var(--space-2) 0 0; font-size: var(--text-xs); color: var(--muted); letter-spacing: var(--tracking-caps); text-transform: uppercase; }
+.pipeline-strip .st-passed { border-color: var(--pass-line, var(--line-strong)); }
+.pipeline-strip .st-passed .stage-mark { color: var(--pass-solid, var(--brand-text)); }
+.pipeline-strip .st-warning .stage-mark { color: var(--warn-solid); }
+.pipeline-strip .st-warning { border-color: var(--warn-line, var(--line-strong)); background: var(--warn-tint); }
+.pipeline-strip .st-failed .stage-mark { color: var(--fail-solid); }
+.pipeline-strip .st-failed { border-color: var(--fail-line); background: var(--fail-tint); }
+.pipeline-strip .st-skipped .stage-label,
+.pipeline-strip .st-skipped .stage-status { color: var(--faint); }
+
+.pipeline-line {
+  margin: var(--space-3) 0 0;
+  font-size: var(--text-sm);
+  color: var(--ink-2);
+}
+/* A refusal is neutral ink with a rule, not the eval-FAIL red: red is reserved for EvalResult verdicts. */
+.pipeline-line.error { color: var(--ink); border-left: 2px solid var(--line-strong); padding-left: var(--space-2); }
+.pipeline-strip .st-unavailable { border-style: dashed; }
+.pipeline-strip .st-unavailable .stage-mark,
+.pipeline-strip .st-unavailable .stage-status { color: var(--muted); }
+
+@media (prefers-reduced-motion: reduce) {
+  .pipeline-strip .stage { transition: none; }
+}
+
+/* — Health bands — */
+.bands {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(13rem, 1fr));
+  gap: var(--space-2);
+  margin-top: var(--space-3);
+}
+.band {
+  padding: var(--space-2) var(--space-3);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-sm);
+  background: var(--surface);
+}
+.band header {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+}
+.band h3 {
+  margin: 0;
+  font-size: var(--text-sm);
+}
+.band-mark {
+  font-family: var(--font-mono);
+  color: var(--faint);
+}
+.band.tone-ok .band-mark { color: var(--pass-solid, var(--brand-text)); }
+.band.tone-unsure .band-mark { color: var(--unsure); }
+.band.tone-recorded .band-mark { color: var(--ink-2); }
+.band.tone-warn { border-color: var(--warn-line, var(--line-strong)); }
+.band.tone-warn .band-mark { color: var(--warn-solid); }
+.band.tone-fail { border-color: var(--fail-line); }
+.band.tone-fail .band-mark { color: var(--fail-solid); }
+.band-status {
+  margin: var(--space-1) 0 0;
+  font-size: var(--text-sm);
+  color: var(--ink-2);
+}
+.band ul {
+  margin: var(--space-2) 0 0;
+  padding-left: var(--space-4);
+  font-size: var(--text-xs);
+  color: var(--muted);
+}
+
+/* — Material changes + trajectory — */
+.control-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(20rem, 100%), 1fr));
+  gap: var(--space-4);
+  margin-top: var(--space-4);
+}
+.material-changes h2 {
+  font-size: var(--text-lg);
+}
+.material-changes ol {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+.material-changes li {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: var(--space-2);
+  padding: var(--space-1-5) 0;
+  border-top: 1px solid var(--line);
+  font-size: var(--text-sm);
+}
+.material-changes .pos {
+  font-family: var(--font-mono);
+  font-size: var(--text-xs);
+  color: var(--muted);
+}
+.material-changes .detail {
+  font-family: var(--font-mono);
+  font-size: var(--text-2xs);
+  color: var(--muted);
+}
+.material-changes .ep-link {
+  font-size: var(--text-xs);
+}
+
+.trajectory ol {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+.trajectory li {
+  display: flex;
+  align-items: baseline;
+  gap: var(--space-2);
+  padding: var(--space-1) 0;
+  font-size: var(--text-sm);
+}
+.trajectory li a {
+  display: flex;
+  gap: var(--space-2);
+  color: inherit;
+  text-decoration: none;
+}
+.trajectory li a:hover .what { text-decoration: underline; }
+.trajectory .pos {
+  font-family: var(--font-mono);
+  font-size: var(--text-xs);
+  color: var(--muted);
+}
+.trajectory .status {
+  margin-left: auto;
+  font-size: var(--text-2xs);
+  letter-spacing: var(--tracking-caps);
+  text-transform: uppercase;
+  color: var(--faint);
+}
+.trajectory li.material .status { color: var(--brand-text); }
+.trajectory li.held > span { opacity: 0.75; }
+.trajectory li.held .pos { border: 1px dashed var(--line-strong); border-radius: var(--radius-1); padding: 0 var(--space-1); }
+
+/* — Inspector pane — */
+.inspector-pane {
+  padding: var(--space-4) var(--space-3);
+  font-size: var(--text-sm);
+}
+.inspector-pane h2 {
+  margin: 0 0 var(--space-3);
+  font-size: var(--text-2xs);
+  font-weight: 600;
+  letter-spacing: var(--tracking-caps);
+  text-transform: uppercase;
+  color: var(--faint);
+}
+.inspector-pane .kv {
+  margin: 0 0 var(--space-3);
+}
+.inspector-pane .kv div {
+  display: flex;
+  justify-content: space-between;
+  gap: var(--space-2);
+  padding: var(--space-1) 0;
+  border-bottom: 1px solid var(--line);
+}
+.inspector-pane .kv dt {
+  font-size: var(--text-2xs);
+  letter-spacing: var(--tracking-caps);
+  text-transform: uppercase;
+  color: var(--muted);
+}
+.inspector-pane .kv dd { margin: 0; color: var(--ink-2); }
+.inspector-pane .mono { font-family: var(--font-mono); font-size: var(--text-xs); }
+.insp-steps {
+  list-style: none;
+  margin: 0 0 var(--space-3);
+  padding: 0;
+  font-size: var(--text-xs);
+}
+.insp-steps li {
+  display: flex;
+  align-items: baseline;
+  gap: var(--space-2);
+  padding: var(--space-1) 0;
+  border-bottom: 1px solid var(--line);
+}
+.insp-steps .seq {
+  font-family: var(--font-mono);
+  color: var(--faint);
+  min-width: 1.25rem;
+}
+.insp-steps .step { flex: 1; color: var(--ink-2); }
+.insp-steps .st {
+  font-size: var(--text-2xs);
+  letter-spacing: var(--tracking-caps);
+  text-transform: uppercase;
+  color: var(--muted);
+}
+.insp-steps .step-failed .st { color: var(--fail); }
+.insp-steps .step-running .st { color: var(--brand-text); }
+
+/* /system — platform health surface (HAR-145) */
+.sys-summary { display: flex; align-items: baseline; gap: var(--space-1-5); margin: var(--space-1-5) 0 var(--space-2); font-size: var(--text-sm); color: var(--ink-2); }
+.sys-mark { font-family: var(--font-mono); font-weight: 600; }
+.sys-mark.ok { color: var(--pass-solid); }
+.sys-mark.warn { color: var(--warn-solid); }
+.sys-mark.bad { color: var(--fail-solid); }
+.sys-mark.unknown { color: var(--muted); }
+.system .explorer-table code { font-size: var(--text-2xs); }
+.system .manifest-form { max-width: 30rem; }
+
+/* Demo mode (?demo=1): presentation emphasis only — the data never changes. */
+html[data-demo="1"] .trajectory .step,
+html[data-demo="1"] .episode-rail .enode .nlabel { font-size: var(--text-base); }
+html[data-demo="1"] .episode-rail .enode .nsummary { font-size: var(--text-sm); }
+html[data-demo="1"] .context-bar dd { font-size: var(--text-sm); }
+html[data-demo="1"] .loop-strip .lphase { min-height: 4.5rem; }

@@ -1,0 +1,64 @@
+{
+  "source_system": "call",
+  "source_object_id": "call-beta-0915",
+  "source_event_key": "transcript_ready",
+  "occurred_at": "2026-09-15T15:47:00Z",
+  "connector": "recorder",
+  "connector_version": "0.1.0",
+  "payload": {
+    "kind": "call",
+    "call_id": "call-beta-0915",
+    "calendar_event_id": "gcal:beta-platform-0915",
+    "started_at": "2026-09-15T15:01:00Z",
+    "ended_at": "2026-09-15T15:47:00Z",
+    "speakers": [
+      {"label": "speaker_01", "email": "dana@vendor.example", "name": "Dana Kim"},
+      {"label": "speaker_02", "email": "hannah.lee@beta.io", "name": "Hannah Lee"},
+      {"label": "speaker_03", "email": "ravi.menon@beta.io", "name": "Ravi Menon"},
+      {"label": "speaker_04", "email": "leo@vendor.example", "name": "Leo Park"},
+      {"label": "speaker_05", "email": "jess.patel@beta.io", "name": "Jess Patel"}
+    ],
+    "transcript": [
+      {
+        "speaker": "speaker_01",
+        "offset_s": 0,
+        "text": "Thanks for joining, Ravi. Could you start with what you need from us?"
+      },
+      {
+        "speaker": "speaker_03",
+        "offset_s": 5,
+        "text": "Sure - Ravi Menon, I lead platform engineering at Beta. My job is to make sure anything we roll out fits our identity and data setup."
+      },
+      {
+        "speaker": "speaker_02",
+        "offset_s": 16,
+        "text": "I think SSO is the main open item from our side."
+      },
+      {
+        "speaker": "speaker_03",
+        "offset_s": 21,
+        "text": "We'll need SAML SSO against our Okta tenant for all 140 agents."
+      },
+      {
+        "speaker": "speaker_04",
+        "offset_s": 28,
+        "text": "We support SAML with Okta today, including SCIM provisioning."
+      },
+      {
+        "speaker": "speaker_05",
+        "offset_s": 35,
+        "text": "From the support side, the Dublin agents handle every EU customer ticket."
+      },
+      {
+        "speaker": "speaker_03",
+        "offset_s": 42,
+        "text": "Good. I'll also want to understand the data flows for the Dublin team before I sign off."
+      },
+      {
+        "speaker": "speaker_01",
+        "offset_s": 50,
+        "text": "Understood. We'll follow up with whatever documentation you need."
+      }
+    ]
+  }
+}

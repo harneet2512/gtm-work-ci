@@ -1,0 +1,19 @@
+{
+  "id": "0e7a1000-0000-4000-8000-0000000000d4",
+  "gate": "D4",
+  "sub_gate": "",
+  "label": "DIFFERENT_BUT_DEFENSIBLE",
+  "judged_object": { "type": "HumanStrategyDecision", "id": "0e7a1000-0000-4000-8000-0000000000a1" },
+  "span_id": "human_interaction:0e7a1000-0000-4000-8000-0000000000a1",
+  "verdict": "pass",
+  "question": "What does the person's choice tell us about gtm_ai's decision?",
+  "observed": "the person chose the second option (1 eval warning) over the preferred one (1); ranking [a, b, c]",
+  "why": "the chosen candidate was not worse evaluated than the preferred one: a different but defensible preference",
+  "evidence_refs": [
+    "human_strategy_decision:0e7a1000-0000-4000-8000-0000000000a1",
+    "candidate:0e7a1000-0000-4000-8000-0000000000ca"
+  ],
+  "improves": "Turns a click into structured supervision without treating the person as automatically right.",
+  "grader": { "kind": "deterministic" },
+  "calibrated": false
+}

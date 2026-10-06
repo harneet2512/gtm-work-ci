@@ -1,0 +1,47 @@
+{
+  "id": "0ac70000-0000-4000-8000-000000000101",
+  "idempotency_key": "3f1c2a9e8b7d6c5f4e3a2b1c0d9e8f7a6b5c4d3e2f1a0b9c8d7e6f5a4b3c2d1e",
+  "activity_type": "EmailReceived",
+  "source_system": "email",
+  "source_object_id": "<CAMx9-acme-2026-09-29@mail.acme.com>",
+  "source_event_id": "05e00000-0000-4000-8000-000000000101",
+  "occurred_at": "2026-09-29T15:42:00Z",
+  "ingested_at": "2026-09-29T15:42:07Z",
+  "participants": [
+    {
+      "raw_identity": "marco.ruiz@acme.com",
+      "display_name": "Marco Ruiz",
+      "role": "from",
+      "person_id": "0b0e0000-0000-4000-8000-000000000018"
+    },
+    {
+      "raw_identity": "dana@vendor.example",
+      "display_name": "Dana Kim",
+      "role": "to",
+      "person_id": "0b0e0000-0000-4000-8000-000000000001"
+    },
+    {
+      "raw_identity": "priya.shah@acme.com",
+      "display_name": "Priya Shah",
+      "role": "cc",
+      "person_id": "0b0e0000-0000-4000-8000-000000000017"
+    }
+  ],
+  "account_id": "0a0c0000-0000-4000-8000-000000000001",
+  "opportunity_id": "0c0f0000-0000-4000-8000-000000000004",
+  "account_hint": "acme.com",
+  "opportunity_hint": "thr-acme-eu-expansion",
+  "payload_ref": "source_events/05e00000-0000-4000-8000-000000000101",
+  "summary": "Marco (Acme security) requires SOC2 Type II + pen-test summary before EU rollout sign-off.",
+  "permissions": {
+    "visibility": "org"
+  },
+  "provenance": {
+    "source_system": "email",
+    "source_object_id": "<CAMx9-acme-2026-09-29@mail.acme.com>",
+    "connector": "gmail",
+    "connector_version": "0.1.0"
+  },
+  "caused_by_activity_id": "0ac70000-0000-4000-8000-000000000100",
+  "correlation_id": "0c0c0000-0000-4000-8000-000000000801"
+}

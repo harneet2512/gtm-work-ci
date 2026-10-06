@@ -1,0 +1,70 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://ghost.local/contracts/agent_run_output.v1.json",
+  "title": "AgentRunOutput",
+  "description": "Structured output of the account-action (draft) agent returned by POST /v1/draft.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["proposed_action_type", "recipients", "finished_artifact", "crm_next_step_intent", "reason", "evidence_refs"],
+  "properties": {
+    "proposed_action_type": {
+      "type": "string",
+      "enum": ["send_email", "schedule_meeting", "share_document", "internal_note", "wait", "no_action"]
+    },
+    "recipients": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["person_id", "role"],
+        "properties": {
+          "person_id": { "$ref": "common.v1.json#/$defs/uuid" },
+          "role": { "type": "string", "enum": ["to", "cc", "bcc"] },
+          "why": { "type": "string", "maxLength": 500 }
+        }
+      }
+    },
+    "finished_artifact": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["channel", "body"],
+      "properties": {
+        "channel": { "type": "string", "enum": ["email", "slack", "crm_note", "none"] },
+        "subject": { "type": ["string", "null"], "maxLength": 300 },
+        "body": { "type": "string", "maxLength": 20000 },
+        "attachments": { "type": "array", "items": { "type": "string" } }
+      }
+    },
+    "crm_next_step_intent": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["next_step"],
+      "properties": {
+        "next_step": { "type": "string", "maxLength": 500 },
+        "due_at": { "oneOf": [{ "$ref": "common.v1.json#/$defs/timestamp" }, { "type": "null" }] },
+        "stage_change": { "type": ["string", "null"] }
+      }
+    },
+    "reason": { "type": "string", "maxLength": 2000 },
+    "evidence_refs": { "type": "array", "items": { "$ref": "common.v1.json#/$defs/evidenceRef" } },
+    "knowledge_refs_used": { "type": "array", "items": { "$ref": "common.v1.json#/$defs/uuid" } },
+    "wait_until": { "oneOf": [{ "$ref": "common.v1.json#/$defs/timestamp" }, { "type": "null" }] }
+  },
+  "allOf": [
+    {
+      "description": "An email proposal must address someone over the email channel.",
+      "if": { "properties": { "proposed_action_type": { "const": "send_email" } } },
+      "then": {
+        "properties": {
+          "recipients": { "minItems": 1 },
+          "finished_artifact": { "properties": { "channel": { "const": "email" } } }
+        }
+      }
+    },
+    {
+      "description": "Any proposed action must be grounded in evidence (HAR-96 §11 reason/evidence_refs).",
+      "if": { "properties": { "proposed_action_type": { "not": { "enum": ["wait", "no_action"] } } } },
+      "then": { "properties": { "evidence_refs": { "minItems": 1 } } }
+    }
+  ]
+}

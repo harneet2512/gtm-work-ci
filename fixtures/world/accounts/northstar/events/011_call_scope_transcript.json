@@ -1,0 +1,62 @@
+{
+  "source_system": "call",
+  "source_object_id": "call-ns-0827",
+  "source_event_key": "transcript_ready",
+  "occurred_at": "2026-08-27T17:46:00Z",
+  "connector": "recorder",
+  "connector_version": "0.1.0",
+  "payload": {
+    "kind": "call",
+    "call_id": "call-ns-0827",
+    "calendar_event_id": "gcal:ns-scope-0827",
+    "started_at": "2026-08-27T17:01:00Z",
+    "ended_at": "2026-08-27T17:46:00Z",
+    "speakers": [
+      {"label": "speaker_01", "email": "dana@vendor.example", "name": "Dana Kim"},
+      {"label": "speaker_02", "email": "elena.vasquez@northstar.health", "name": "Elena Vasquez"},
+      {"label": "speaker_03", "email": "leo@vendor.example", "name": "Leo Park"}
+    ],
+    "transcript": [
+      {
+        "speaker": "speaker_01",
+        "offset_s": 0,
+        "text": "Thanks Elena. What made the Lakeside pilot work?"
+      },
+      {
+        "speaker": "speaker_02",
+        "offset_s": 4,
+        "text": "Front-desk staff cut intake time by about a third, and patients stopped filling in the same form twice."
+      },
+      {
+        "speaker": "speaker_01",
+        "offset_s": 15,
+        "text": "And for the other three clinics, who needs to be involved in the decision?"
+      },
+      {
+        "speaker": "speaker_02",
+        "offset_s": 21,
+        "text": "Grace Liu, our VP of Finance, approves the budget, but she'll follow my recommendation."
+      },
+      {
+        "speaker": "speaker_02",
+        "offset_s": 30,
+        "text": "Anything that touches patient data also needs a security review by Sam Okafor's team, because intake forms carry PHI."
+      },
+      {
+        "speaker": "speaker_03",
+        "offset_s": 41,
+        "text": "We'll need a BAA in place, and we can share our HIPAA controls summary."
+      },
+      {
+        "speaker": "speaker_01",
+        "offset_s": 49,
+        "text": "I'll send pricing for the four clinics by next Wednesday."
+      },
+      {
+        "speaker": "speaker_02",
+        "offset_s": 55,
+        "text": "Perfect. Open enrollment starts November 2, so that's our real deadline."
+      }
+    ]
+  }
+}

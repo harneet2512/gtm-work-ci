@@ -1,0 +1,22 @@
+{
+  "source_system": "call",
+  "source_object_id": "call-beta-0915",
+  "source_event_key": "ended",
+  "occurred_at": "2026-09-15T15:47:00Z",
+  "connector": "recorder",
+  "connector_version": "0.1.0",
+  "payload": {
+    "kind": "call",
+    "call_id": "call-beta-0915",
+    "calendar_event_id": "gcal:beta-platform-0915",
+    "started_at": "2026-09-15T15:01:00Z",
+    "ended_at": "2026-09-15T15:47:00Z",
+    "speakers": [
+      {"label": "speaker_01", "email": "dana@vendor.example", "name": "Dana Kim"},
+      {"label": "speaker_02", "email": "hannah.lee@beta.io", "name": "Hannah Lee"},
+      {"label": "speaker_03", "email": "ravi.menon@beta.io", "name": "Ravi Menon"},
+      {"label": "speaker_04", "email": "leo@vendor.example", "name": "Leo Park"},
+      {"label": "speaker_05", "email": "jess.patel@beta.io", "name": "Jess Patel"}
+    ]
+  }
+}

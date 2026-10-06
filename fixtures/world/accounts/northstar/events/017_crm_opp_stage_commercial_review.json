@@ -1,0 +1,18 @@
+{
+  "source_system": "crm",
+  "source_object_id": "opp:NS-2-EXP",
+  "source_event_key": "field:StageName:Commercial review",
+  "occurred_at": "2026-09-04T10:30:00Z",
+  "connector": "salesforce",
+  "connector_version": "0.1.0",
+  "payload": {
+    "kind": "crm_change",
+    "object_type": "Opportunity",
+    "record_id": "opp:NS-2-EXP",
+    "account_record_id": "account:NS-2",
+    "changed_at": "2026-09-04T10:30:00Z",
+    "changed_by": "dana@vendor.example",
+    "created": false,
+    "fields": {"StageName": {"old": "Discovery", "new": "Commercial review"}}
+  }
+}

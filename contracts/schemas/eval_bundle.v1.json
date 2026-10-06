@@ -1,0 +1,63 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://ghost.local/contracts/eval_bundle.v1.json",
+  "title": "EvalBundle",
+  "description": "The evals selected for one strategy candidate (HAR-129 section 9). Routing is part of the record: every selected eval says why it is relevant here, and an eval judged not relevant has no result. Verdicts are listed one by one, never collapsed into a score. Each EvalResult also lives in eval_runs under (agent_run_id, draft_index); the bundle is the snapshot Slack and web render.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["id", "agent_run_id", "draft_index", "strategy_candidate_id", "items", "generated_at"],
+  "properties": {
+    "id": { "$ref": "common.v1.json#/$defs/uuid" },
+    "agent_run_id": { "$ref": "common.v1.json#/$defs/uuid" },
+    "draft_index": { "type": "integer", "minimum": 1 },
+    "strategy_candidate_id": { "$ref": "common.v1.json#/$defs/uuid" },
+    "items": { "type": "array", "minItems": 1, "items": { "$ref": "#/$defs/item" } },
+    "generated_at": { "$ref": "common.v1.json#/$defs/timestamp" },
+    "selected_eval_suite": {"description": "The eval suite the router selected from the transition status, the state and the action (contracts/transitions/routing.v1.json); null when no suite applies. Suite-governed semantic evals outside it are listed as not_relevant.", "oneOf": [{"type": "string", "pattern": "^[a-z][a-z0-9_]*$"}, {"type": "null"}]},
+    "candidate_policy": {"description": "The deterministic transition policy applied to the candidate (HAR-128): while the transition is CANDIDATE or UNRESOLVED an expansion CTA (by its label, or by the text of an external action: a mislabelled candidate is restricted and the mismatch recorded as expansion_label_mismatch), commercial escalation, broad executive outreach or pricing push is restricted, needs human review and cannot be Ghost's preferred candidate. Null when no transition policy applied.", "oneOf": [{"type": "null"}, {"type": "object", "additionalProperties": false, "required": ["transition_status", "status", "reasons"], "properties": {"transition_status": {"$ref": "common.v1.json#/$defs/transitionStatus"}, "status": {"enum": ["allowed", "restricted"]}, "reasons": {"type": "array", "uniqueItems": true, "items": {"enum": ["expansion_motion", "pricing_push", "commercial_escalation", "broad_outreach", "expansion_label_mismatch"]}}, "requires_human_review": {"type": "boolean"}}, "if": {"properties": {"status": {"const": "restricted"}}}, "then": {"properties": {"reasons": {"minItems": 1}, "requires_human_review": {"const": true}}, "required": ["requires_human_review"]}, "else": {"properties": {"reasons": {"maxItems": 0}}}}]}
+  },
+  "$defs": {
+    "item": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["eval_type", "relevance_reason", "verdict", "result"],
+      "properties": {
+        "eval_type": { "$ref": "eval_result.v1.json#/$defs/evalType" },
+        "relevance_reason": {
+          "description": "Why this eval was (or was not) relevant to this candidate and state.",
+          "type": "string", "minLength": 1, "maxLength": 500
+        },
+        "verdict": {
+          "description": "The EvalResult verdict, or not_relevant when the eval did not run. unknown (older spelling: abstain) is kept: an evaluator that ran and could not judge is not the same as one that does not apply.",
+          "type": "string", "enum": ["pass", "warn", "fail", "unknown", "abstain", "not_relevant"]
+        },
+        "result": {
+          "description": "The full EvalResult (evidence_refs, suggested_correction, model, blocking, reason live there); null exactly when verdict is not_relevant.",
+          "oneOf": [{ "$ref": "eval_result.v1.json" }, { "type": "null" }]
+        },
+        "metadata": {
+          "description": "Cost and latency of producing the judgment (the model name is result.model).",
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "cost_usd": { "type": ["number", "null"], "minimum": 0 },
+            "latency_ms": { "type": ["integer", "null"], "minimum": 0 },
+            "input_tokens": { "type": ["integer", "null"], "minimum": 0 },
+            "output_tokens": { "type": ["integer", "null"], "minimum": 0 }
+          }
+        }
+      },
+      "allOf": [
+        {
+          "if": { "properties": { "verdict": { "const": "not_relevant" } } },
+          "then": { "properties": { "result": { "type": "null" } } },
+          "else": { "properties": { "result": { "type": "object" } } }
+        },
+        { "if": { "properties": { "verdict": { "const": "pass" } } }, "then": { "properties": { "result": { "properties": { "verdict": { "const": "pass" } } } } } },
+        { "if": { "properties": { "verdict": { "const": "warn" } } }, "then": { "properties": { "result": { "properties": { "verdict": { "const": "warn" } } } } } },
+        { "if": { "properties": { "verdict": { "const": "fail" } } }, "then": { "properties": { "result": { "properties": { "verdict": { "const": "fail" } } } } } },
+        { "if": { "properties": { "verdict": { "enum": ["unknown", "abstain"] } } }, "then": { "properties": { "result": { "properties": { "verdict": { "enum": ["unknown", "abstain"] } } } } } }
+      ]
+    }
+  }
+}

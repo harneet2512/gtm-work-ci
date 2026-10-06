@@ -1,0 +1,24 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://ghost.local/contracts/held_out_event.v1.json",
+  "title": "HeldOutEvent",
+  "description": "One replay event of the frozen demo case (HAR-129 section 3, 14). The held-out event N is withheld from every store until Play releases it through the normal ingest path; event_id is the replay dataset's stable id for it, not an activity id (an activity exists only after Play).",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["event_id", "provenance", "occurred_at", "replay_position"],
+  "properties": {
+    "event_id": { "$ref": "common.v1.json#/$defs/uuid" },
+    "provenance": { "$ref": "common.v1.json#/$defs/eventProvenance" },
+    "occurred_at": { "$ref": "common.v1.json#/$defs/timestamp" },
+    "payload_sha256": {
+      "description": "Lowercase hex SHA-256 of the canonical JSON (object keys sorted, no insignificant whitespace, numbers as written, no HTML escaping) of the event's SourceEvent payload as the replay dataset holds it (known as of the event). The manifest pins it for the held-out event (demo_manifest requires it there) and Play verifies the dataset's payload against it before releasing anything, so a dataset edited after the case was frozen is refused. History events may omit it.",
+      "type": "string",
+      "pattern": "^[0-9a-f]{64}$"
+    },
+    "replay_position": {
+      "description": "1-based position in the frozen replay order of the case (real chronology, never reordered).",
+      "type": "integer",
+      "minimum": 1
+    }
+  }
+}

@@ -1,0 +1,220 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://ghost.local/contracts/transition_rules.v1.json",
+  "title": "TransitionRules",
+  "description": "The relationship-state transition rule set (ADR-0012): per transition, the facts it rests on, which are required for CONFIRMED, the CANDIDATE gate and the contradictions (decisive ones REJECT it). Data, not code: thresholds, vocabularies and the buying-group predicate are named configuration, and every condition is evaluable deterministically from AccountState fields, claims, the buying group and signals (no LLM). The instance is contracts/transitions/rules.v1.json.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["rule_set_version", "description", "evaluation", "confidence", "anchors", "claim_standings", "claim_statuses", "buying_group_member_statuses", "vocabularies", "thresholds", "transitions"],
+  "properties": {
+    "rule_set_version": { "$ref": "common.v1.json#/$defs/ruleSetVersion" },
+    "description": { "type": "string", "minLength": 1, "maxLength": 2000 },
+    "evaluation": {
+      "description": "How the detector applies the rules, in order; normative for the detector.",
+      "type": "array", "minItems": 1, "items": { "type": "string", "minLength": 1, "maxLength": 700 }
+    },
+    "confidence": {
+      "description": "StateTransition.confidence = satisfied required facts / required facts, rounded to 3 places.",
+      "const": "satisfied_required_ratio"
+    },
+    "anchors": {
+      "description": "Meaning of each 'since' value. A rule that uses one must not list 'unknown' in from_states (there is no anchor).",
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["from_state_confirmed_at"],
+      "properties": { "from_state_confirmed_at": { "type": "string", "minLength": 1, "maxLength": 800 } }
+    },
+    "claim_standings": {
+      "description": "Standings a claim must have to count as evidence for a claim.* condition: first-party only, so enrichment (third_party) never earns a state.",
+      "type": "array", "minItems": 1, "uniqueItems": true,
+      "items": { "$ref": "common.v1.json#/$defs/standing" }
+    },
+    "claim_statuses": {
+      "description": "Claim statuses that count as evidence for a claim.* condition: active and superseded (a superseded claim is an earlier statement the customer made); outranked, expired and rejected claims never count.",
+      "type": "array", "minItems": 1, "uniqueItems": true,
+      "items": { "enum": ["active", "outranked", "superseded", "expired", "rejected"] }
+    },
+    "buying_group_member_statuses": {
+      "description": "The buying-group predicate: 'buying_group.<role>' matches members holding that role whose status is one of these.",
+      "type": "array", "minItems": 1, "uniqueItems": true,
+      "items": { "$ref": "account_state.v1.json#/properties/buying_group/items/properties/status" }
+    },
+    "vocabularies": {
+      "description": "Value lists for AccountState fields whose vocabulary is not an enum in account_state.v1.json (motion is free text there; its canonical values are the opportunities.motion CHECK).",
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["motion"],
+      "properties": { "motion": { "type": "array", "minItems": 1, "uniqueItems": true, "items": { "type": "string", "pattern": "^[a-z_]+$" } } }
+    },
+    "thresholds": {
+      "type": "object",
+      "minProperties": 1,
+      "propertyNames": { "pattern": "^[a-z][a-z0-9_]*$" },
+      "additionalProperties": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["value", "unit", "description"],
+        "properties": {
+          "value": { "type": "number", "minimum": 0 },
+          "unit": { "enum": ["days", "count"] },
+          "description": { "type": "string", "minLength": 1, "maxLength": 300 }
+        }
+      }
+    },
+    "transitions": { "type": "array", "minItems": 1, "items": { "$ref": "#/$defs/transition" } }
+  },
+  "$defs": {
+    "transition": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id", "from_states", "to_state", "description", "claim_scope", "har97_sections", "facts", "candidate", "confirmed", "contradictions"],
+      "properties": {
+        "id": { "type": "string", "pattern": "^[a-z][a-z0-9_]*$" },
+        "from_states": {
+          "type": "array", "minItems": 1, "uniqueItems": true,
+          "items": { "$ref": "common.v1.json#/$defs/relationshipStateOrUnknown" }
+        },
+        "to_state": { "$ref": "common.v1.json#/$defs/relationshipState" },
+        "description": { "type": "string", "minLength": 1, "maxLength": 600 },
+        "claim_scope": { "enum": ["deal", "account"], "description": "deal: for each open deal the rule reads that deal's OpportunityState fields, claims and signals (and those of no deal); account: it reads every claim and signal. Facts hold when they hold in any open deal (ADR-0016)." },
+        "har97_sections": { "$ref": "eval_catalog.v1.json#/$defs/sections" },
+        "facts": {
+          "type": "array", "minItems": 1,
+          "items": { "allOf": [{ "$ref": "#/$defs/factDef" }], "properties": { "rejects": false } }
+        },
+        "candidate": {
+          "description": "CANDIDATE gate: at least one requires_any fact holds AND at least min_satisfied.threshold of the min_satisfied.of facts hold (change evidence only, never static state).",
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["requires_any", "min_satisfied"],
+          "properties": {
+            "requires_any": { "type": "array", "minItems": 1, "uniqueItems": true, "items": { "$ref": "common.v1.json#/$defs/factKey" } },
+            "min_satisfied": {
+              "type": "object", "additionalProperties": false, "required": ["threshold", "of"],
+              "properties": {
+                "threshold": { "$ref": "#/$defs/thresholdName" },
+                "of": { "type": "array", "minItems": 1, "uniqueItems": true, "items": { "$ref": "common.v1.json#/$defs/factKey" } }
+              }
+            }
+          }
+        },
+        "confirmed": {
+          "description": "CONFIRMED gate: every requires_all fact holds (exactly the facts with required=true) and no decisive contradiction holds.",
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["requires_all"],
+          "properties": {
+            "requires_all": { "type": "array", "minItems": 1, "uniqueItems": true, "items": { "$ref": "common.v1.json#/$defs/factKey" } },
+            "after_candidate": { "type": "boolean", "description": "Confirm only when this rule's own CANDIDATE was recorded by an earlier evaluation." }
+          }
+        },
+        "contradictions": {
+          "description": "Contradicting evidence, recorded whenever it holds; a decisive one (rejects=true) moves an open transition of this rule to REJECTED.",
+          "type": "array", "minItems": 1,
+          "items": {
+            "allOf": [{ "$ref": "#/$defs/factDef" }],
+            "required": ["rejects"],
+            "properties": { "required": { "const": false }, "rejects": { "type": "boolean" } }
+          }
+        }
+      }
+    },
+    "factDef": {
+      "description": "A fact holds when any one of its condition groups holds; a group holds when all of its conditions hold.",
+      "type": "object",
+      "required": ["key", "description", "required", "any_of"],
+      "properties": {
+        "key": { "$ref": "common.v1.json#/$defs/factKey" },
+        "description": { "type": "string", "minLength": 1, "maxLength": 300 },
+        "required": { "type": "boolean" },
+        "rejects": { "type": "boolean", "description": "Contradictions only: decisive." },
+        "har97": { "type": "string", "minLength": 1, "maxLength": 200, "description": "The HAR-97 wording this fact implements." },
+        "any_of": {
+          "type": "array", "minItems": 1,
+          "items": {
+            "type": "object", "additionalProperties": false, "required": ["all_of"],
+            "properties": { "all_of": { "type": "array", "minItems": 1, "items": { "$ref": "#/$defs/condition" } } }
+          }
+        }
+      },
+      "additionalProperties": false
+    },
+    "thresholdName": { "type": "string", "pattern": "^[a-z][a-z0-9_]*$" },
+    "condition": {
+      "description": "path: 'state.<field>' (AccountState field value), 'state.<field>.standing' (its winning claim's standing), 'claim.<field_path>' (claims on that field_path whose standing is in claim_standings), 'buying_group.<role>' (members with that role and a status in buying_group_member_statuses, optionally filtered by 'where'), 'diff.<signal_type>' (signals of that type; 'exists' = open per ADR-0011). Ops: eq/neq/in/known/is_unknown on values; age_days_gte on a timestamp-valued field; has_item = a list item of kind value that is open, overdue or has no status; fired_within_days = a signal created within the threshold window; asserted_within_days = a claim on that field_path asserted (occurred_at) within the window, or for a state path the field is known and its as_of is within the window. 'since' further requires the evidence (signal created_at, claim occurred_at, field as_of) to be STRICTLY after the anchor. 'about' compares the claim's or signal's subject_person_id with the current champion. A key an op does not use is rejected, so nothing in a rule is silently ignored.",
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["path", "op"],
+      "properties": {
+        "path": { "type": "string", "pattern": "^(state\\.[a-z_]+(\\.standing)?|claim\\.[a-z_.]+|buying_group\\.[a-z_]+|diff\\.[a-z_]+)$" },
+        "stance": { "enum": ["stated", "withdrawn"], "description": "Which claims a claim.* condition selects: stated (the default) or withdrawn. A withdrawn claim never counts as stated evidence." },
+        "op": { "enum": ["eq", "neq", "in", "known", "is_unknown", "age_days_gte", "has_item", "exists", "not_exists", "fired_within_days", "asserted_within_days"] },
+        "value": { "description": "Literal for eq/neq/has_item (string) or in (array of strings); never a number (numbers are thresholds). Validated against the path's vocabulary." },
+        "threshold": { "$ref": "#/$defs/thresholdName" },
+        "since": { "enum": ["from_state_confirmed_at"] },
+        "where": {
+          "description": "Buying-group paths only: further member filter, e.g. {\"tenure\": \"interim\"}.",
+          "type": "object", "additionalProperties": false, "minProperties": 1,
+          "properties": { "tenure": { "$ref": "account_state.v1.json#/$defs/tenure" } }
+        },
+        "about": {
+          "enum": ["champion", "not_champion"],
+          "description": "Claim and signal paths only: the evidence's subject_person_id is (champion) or is not (not_champion) the current champion."
+        }
+      },
+      "allOf": [
+        {
+          "if": { "properties": { "path": { "pattern": "^state\\.[a-z_]+$" } } },
+          "then": { "properties": { "op": { "enum": ["eq", "neq", "in", "known", "is_unknown", "age_days_gte", "has_item", "asserted_within_days"] } } }
+        },
+        {
+          "if": { "properties": { "path": { "pattern": "\\.standing$" } } },
+          "then": { "properties": { "op": { "enum": ["eq", "neq", "in"] }, "since": false } }
+        },
+        {
+          "if": { "properties": { "path": { "pattern": "^claim\\." } } },
+          "then": { "properties": { "op": { "const": "asserted_within_days" } } }
+        },
+        {
+          "if": { "properties": { "path": { "pattern": "^buying_group\\." } } },
+          "then": { "properties": { "op": { "enum": ["exists", "not_exists"] }, "since": false } }
+        },
+        {
+          "if": { "properties": { "path": { "pattern": "^diff\\." } } },
+          "then": { "properties": { "op": { "enum": ["exists", "not_exists", "fired_within_days"] } } }
+        },
+        {
+          "description": "'about' qualifies evidence that names a person: claims, and signals that fired.",
+          "if": { "not": { "properties": { "path": { "pattern": "^(claim|diff)\\." }, "op": { "enum": ["asserted_within_days", "exists", "fired_within_days"] } }, "required": ["path", "op"] } },
+          "then": { "properties": { "about": false } }
+        },
+        {
+          "if": { "properties": { "path": { "not": { "pattern": "^buying_group\\." } } } },
+          "then": { "properties": { "where": false } }
+        },
+        {
+          "if": { "properties": { "op": { "enum": ["eq", "neq", "has_item"] } }, "required": ["op"] },
+          "then": { "required": ["value"], "properties": { "value": { "type": "string" } } }
+        },
+        {
+          "if": { "properties": { "op": { "const": "in" } }, "required": ["op"] },
+          "then": { "required": ["value"], "properties": { "value": { "type": "array", "minItems": 1, "items": { "type": "string" } } } }
+        },
+        {
+          "if": { "properties": { "op": { "enum": ["eq", "neq", "in", "has_item"] } }, "required": ["op"] },
+          "else": { "properties": { "value": false } }
+        },
+        {
+          "if": { "properties": { "op": { "enum": ["age_days_gte", "fired_within_days", "asserted_within_days"] } }, "required": ["op"] },
+          "then": { "required": ["threshold"] },
+          "else": { "properties": { "threshold": false } }
+        },
+        {
+          "description": "'since' needs evidence with a time: not on absence, unknown-ness or age checks.",
+          "if": { "properties": { "op": { "enum": ["not_exists", "is_unknown", "age_days_gte"] } }, "required": ["op"] },
+          "then": { "properties": { "since": false } }
+        }
+      ]
+    }
+  }
+}

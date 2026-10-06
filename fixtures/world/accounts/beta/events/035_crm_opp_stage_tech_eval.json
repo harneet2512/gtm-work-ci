@@ -1,0 +1,18 @@
+{
+  "source_system": "crm",
+  "source_object_id": "opp:BE-7-EXP",
+  "source_event_key": "field:StageName:Technical evaluation",
+  "occurred_at": "2026-09-17T09:30:00Z",
+  "connector": "salesforce",
+  "connector_version": "0.1.0",
+  "payload": {
+    "kind": "crm_change",
+    "object_type": "Opportunity",
+    "record_id": "opp:BE-7-EXP",
+    "account_record_id": "account:BE-7",
+    "changed_at": "2026-09-17T09:30:00Z",
+    "changed_by": "dana@vendor.example",
+    "created": false,
+    "fields": {"StageName": {"old": "Commercial review", "new": "Technical evaluation"}}
+  }
+}

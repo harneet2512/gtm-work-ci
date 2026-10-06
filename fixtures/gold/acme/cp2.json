@@ -1,0 +1,205 @@
+{
+  "account": "acme",
+  "checkpoint": 2,
+  "after_event_file": "world/accounts/acme/events/028_email_dana_order_form.json",
+  "as_of": "2026-09-14T16:00:00Z",
+  "notes": "Budget blocker resolved; call implies 'Negotiation' but CRM explicitly sets 'Commercial review' afterwards (crm_explicit outranks first_party_ai).",
+  "expected": {
+    "distinct_activities": 27,
+    "entities": [
+      {
+        "key": "account:acme",
+        "kind": "account",
+        "display_name": "Acme Corp",
+        "source_identities": ["crm:account:AC-4", "domain:acme.com"]
+      },
+      {
+        "key": "document:acme_proposal",
+        "kind": "document",
+        "display_name": "Acme EU Rollout Proposal",
+        "source_identities": ["docs:gdrive:acme-eu-proposal-v1"]
+      },
+      {
+        "key": "opportunity:acme_expansion",
+        "kind": "opportunity",
+        "display_name": "Acme - EU rollout expansion",
+        "source_identities": ["crm:opp:AC-4-EXP"]
+      },
+      {
+        "key": "person:dana_kim",
+        "kind": "person",
+        "display_name": "Dana Kim",
+        "source_identities": [
+          "call:call-acme-0825:speaker_01",
+          "call:call-acme-0909:speaker_01",
+          "email:dana@vendor.example",
+          "slack:U02DANA"
+        ]
+      },
+      {
+        "key": "person:leo_park",
+        "kind": "person",
+        "display_name": "Leo Park",
+        "source_identities": ["call:call-acme-0825:speaker_04", "email:leo@vendor.example"]
+      },
+      {
+        "key": "person:priya_shah",
+        "kind": "person",
+        "display_name": "Priya Shah",
+        "source_identities": [
+          "call:call-acme-0825:speaker_02",
+          "call:call-acme-0909:speaker_02",
+          "crm:contact:817",
+          "email:priya.shah@acme.com"
+        ]
+      },
+      {
+        "key": "person:rachel_ortiz",
+        "kind": "person",
+        "display_name": "Rachel Ortiz",
+        "source_identities": ["email:rachel@vendor.example", "slack:U02RACHEL"]
+      },
+      {
+        "key": "person:tom_becker",
+        "kind": "person",
+        "display_name": "Tom Becker",
+        "source_identities": ["call:call-acme-0825:speaker_03", "crm:contact:829", "email:tom.becker@acme.com"]
+      }
+    ],
+    "edges": [
+      {"src": "opportunity:acme_expansion", "rel_type": "belongs_to", "dst": "account:acme"},
+      {"src": "person:dana_kim", "rel_type": "owns", "dst": "opportunity:acme_expansion"},
+      {"src": "person:leo_park", "rel_type": "supports", "dst": "opportunity:acme_expansion"},
+      {"src": "person:priya_shah", "rel_type": "works_at", "dst": "account:acme"},
+      {"src": "person:tom_becker", "rel_type": "works_at", "dst": "account:acme"},
+      {
+        "src": "person:priya_shah",
+        "rel_type": "champion_for",
+        "dst": "opportunity:acme_expansion"
+      },
+      {"src": "person:tom_becker", "rel_type": "influences", "dst": "opportunity:acme_expansion"},
+      {"src": "document:acme_proposal", "rel_type": "shared_with", "dst": "person:priya_shah"},
+      {"src": "document:acme_proposal", "rel_type": "shared_with", "dst": "person:tom_becker"}
+    ],
+    "state_fields": {
+      "stage": "Commercial review",
+      "health": "on_track",
+      "owner": "person:dana_kim",
+      "motion": "expansion",
+      "champion": "person:priya_shah",
+      "champion_status": "active",
+      "economic_buyer": "unknown",
+      "blockers": [
+        {
+          "text": "EU budget line needs finance approval in the Q3 planning cycle",
+          "status": "resolved"
+        }
+      ],
+      "objections": "unknown",
+      "decision_criteria": [
+        {"text": "EU sites run the same workflows as the US sites"},
+        {"text": "Berlin and Rotterdam live before the January peak"}
+      ],
+      "decision_process": "Finance approved the EU budget line; order form to be signed on Acme Logistics B.V.",
+      "current_commitments": [
+        {
+          "text": "Send proposal for 120 seats by Friday",
+          "status": "fulfilled",
+          "owner": "person:dana_kim",
+          "due": "2026-08-28"
+        },
+        {
+          "text": "Send revised order form on the EU entity with Rotterdam invoiced separately by Monday the 14th",
+          "status": "fulfilled",
+          "owner": "person:dana_kim",
+          "due": "2026-09-14"
+        }
+      ],
+      "next_milestone": "Order form signature",
+      "next_meeting": null,
+      "relationship_risk": "low",
+      "product_use_case": "Relay rollout to the Berlin (~70 users) and Rotterdam (~50 users) warehouses",
+      "commercial_issue": "Order form on the EU entity Acme Logistics B.V. with the Rotterdam site invoiced separately",
+      "last_customer_interaction": "2026-09-09T14:32:00Z"
+    },
+    "buying_group": [
+      {
+        "person_key": "person:priya_shah",
+        "roles": ["champion"],
+        "status": "active",
+        "title": "Director of Operations"
+      },
+      {
+        "person_key": "person:tom_becker",
+        "roles": ["user"],
+        "status": "active",
+        "title": "EU Operations Manager"
+      }
+    ],
+    "coverage_gaps": ["economic_buyer"],
+    "material_diff_fields": [
+      "stage",
+      "blockers",
+      "decision_process",
+      "current_commitments",
+      "next_milestone",
+      "commercial_issue"
+    ],
+    "signals": [
+      "blocker_resolved",
+      "customer_replied",
+      "customer_went_silent",
+      "meeting_accepted",
+      "stage_advanced"
+    ],
+    "trigger": {
+      "workflow": "post_interaction_followup",
+      "eligible": false,
+      "reason_codes": ["no_relevant_signal"]
+    },
+    "critical_facts": [
+      {
+        "field": "stage",
+        "value": "Commercial review",
+        "evidence_event_file": "world/accounts/acme/events/026_crm_opp_stage_commercial_review.json",
+        "evidence_quote": null
+      },
+      {
+        "field": "blockers",
+        "value": "resolved: EU budget line needs finance approval in the Q3 planning cycle",
+        "evidence_event_file": "world/accounts/acme/events/019_email_priya_budget_approved.json",
+        "evidence_quote": "finance approved the EU budget line this morning, so budget is no longer a blocker"
+      },
+      {
+        "field": "commercial_issue",
+        "value": "Order form on the EU entity Acme Logistics B.V. with the Rotterdam site invoiced separately",
+        "evidence_event_file": "world/accounts/acme/events/025_call_commercial_transcript.json",
+        "evidence_quote": "We'd want the Rotterdam site invoiced separately"
+      },
+      {
+        "field": "commitment",
+        "value": "Send revised order form on the EU entity with Rotterdam invoiced separately by Monday the 14th",
+        "evidence_event_file": "world/accounts/acme/events/025_call_commercial_transcript.json",
+        "evidence_quote": "I'll send the revised order form with the EU entity and split invoicing by Monday the 14th."
+      },
+      {
+        "field": "economic_buyer",
+        "value": "unknown",
+        "evidence_event_file": "world/accounts/acme/events/014_crm_note_scoping.json",
+        "evidence_quote": "Economic buyer not identified - Priya says finance decides as a committee."
+      }
+    ],
+    "stale_facts": [
+      {
+        "field": "stage",
+        "stale_value": "Negotiation",
+        "source_event_file": "world/accounts/acme/events/025_call_commercial_transcript.json"
+      },
+      {
+        "field": "blockers",
+        "stale_value": "open: EU budget line needs finance approval in the Q3 planning cycle",
+        "source_event_file": "world/accounts/acme/events/012_call_scope_transcript.json"
+      }
+    ]
+  }
+}

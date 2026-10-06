@@ -1,0 +1,41 @@
+{
+  "id": "0acc0000-0000-4000-8000-000000000801",
+  "account_id": "0a0c0000-0000-4000-8000-000000000001",
+  "opportunity_id": "0c0f0000-0000-4000-8000-000000000004",
+  "held_out_event_id": "0e7e0000-0000-4000-8000-000000000002",
+  "trigger_activity_ids": [
+    "0ac70000-0000-4000-8000-000000000101"
+  ],
+  "previous_state_ref": {
+    "account_id": "0a0c0000-0000-4000-8000-000000000001",
+    "opportunity_id": null,
+    "version": 6
+  },
+  "current_state_ref": {
+    "account_id": "0a0c0000-0000-4000-8000-000000000001",
+    "opportunity_id": null,
+    "version": 7
+  },
+  "state_diff_id": "0d1f0000-0000-4000-8000-000000000301",
+  "graph_diff_ref": {
+    "id": "06ad0000-0000-4000-8000-000000000901",
+    "from_projection_seq": 41,
+    "to_projection_seq": 42
+  },
+  "material_change": true,
+  "evidence_refs": [
+    {
+      "activity_id": "0ac70000-0000-4000-8000-000000000101",
+      "quote": "Before we can sign off on the EU rollout we'll need your SOC2 Type II report and the pen-test summary.",
+      "speaker_person_id": "0b0e0000-0000-4000-8000-000000000018",
+      "occurred_at": "2026-09-29T15:42:00Z"
+    },
+    {
+      "activity_id": "0ac70000-0000-4000-8000-000000000101",
+      "quote": "I can't commit to a review date until our team has read them.",
+      "speaker_person_id": "0b0e0000-0000-4000-8000-000000000018",
+      "occurred_at": "2026-09-29T15:42:00Z"
+    }
+  ],
+  "created_at": "2026-09-29T15:42:11Z"
+}

@@ -1,0 +1,43 @@
+{
+  "id": "0d9a0000-0000-4000-8000-000000000e01",
+  "strategy_set_id": "05e70000-0000-4000-8000-000000000b01",
+  "decision_episode_id": "0e9e0000-0000-4000-8000-000000000a01",
+  "agent_run_id": "0f0a0000-0000-4000-8000-000000000601",
+  "order": [
+    "0ca00000-0000-4000-8000-0000000000a1",
+    "0ca00000-0000-4000-8000-0000000000a2",
+    "0ca00000-0000-4000-8000-0000000000a3"
+  ],
+  "preferred_candidate_id": "0ca00000-0000-4000-8000-0000000000a1",
+  "tier_inputs": [
+    { "candidate_id": "0ca00000-0000-4000-8000-0000000000a1", "blocking": false, "restricted": false, "worker_rank": 1 },
+    { "candidate_id": "0ca00000-0000-4000-8000-0000000000a2", "blocking": false, "restricted": false, "worker_rank": 2 },
+    { "candidate_id": "0ca00000-0000-4000-8000-0000000000a3", "blocking": false, "restricted": true, "worker_rank": 3 }
+  ],
+  "pairwise_reasons": [
+    {
+      "ranked_higher_id": "0ca00000-0000-4000-8000-0000000000a1",
+      "ranked_lower_id": "0ca00000-0000-4000-8000-0000000000a2",
+      "reason": "Marco asked for the security documents, so sending them with a dated call keeps the EU sign-off moving; the second option waits on his review.",
+      "evidence_refs": [
+        {
+          "activity_id": "0ac70000-0000-4000-8000-000000000101",
+          "quote": "Before we can sign off on the EU rollout we'll need your SOC2 Type II report and the pen-test summary.",
+          "speaker_person_id": "0b0e0000-0000-4000-8000-000000000018",
+          "occurred_at": "2026-09-29T15:42:00Z"
+        }
+      ],
+      "knowledge_refs": []
+    },
+    {
+      "ranked_higher_id": "0ca00000-0000-4000-8000-0000000000a2",
+      "ranked_lower_id": "0ca00000-0000-4000-8000-0000000000a3",
+      "reason": "The third option asks a new stakeholder for a commitment before the transition is resolved, which the transition policy restricts.",
+      "evidence_refs": [],
+      "knowledge_refs": []
+    }
+  ],
+  "abstained": false,
+  "model": "deepseek/deepseek-v4-flash",
+  "generated_at": "2026-09-29T15:43:30Z"
+}

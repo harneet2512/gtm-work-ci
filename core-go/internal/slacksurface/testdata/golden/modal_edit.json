@@ -1,0 +1,84 @@
+{
+  "type": "modal",
+  "title": {
+    "type": "plain_text",
+    "text": "Edit email",
+    "emoji": false
+  },
+  "blocks": [
+    {
+      "type": "input",
+      "block_id": "ghost.input.to",
+      "label": {
+        "type": "plain_text",
+        "text": "To (people on this account, comma separated)",
+        "emoji": false
+      },
+      "element": {
+        "type": "plain_text_input",
+        "action_id": "value",
+        "initial_value": "Marco \u003cmarco@acme.example.test\u003e",
+        "max_length": 3000
+      }
+    },
+    {
+      "type": "input",
+      "block_id": "ghost.input.cc",
+      "label": {
+        "type": "plain_text",
+        "text": "CC (comma separated)",
+        "emoji": false
+      },
+      "element": {
+        "type": "plain_text_input",
+        "action_id": "value",
+        "initial_value": "Priya \u003cpriya@acme.example.test\u003e",
+        "max_length": 3000
+      },
+      "optional": true
+    },
+    {
+      "type": "input",
+      "block_id": "ghost.input.subject",
+      "label": {
+        "type": "plain_text",
+        "text": "Subject",
+        "emoji": false
+      },
+      "element": {
+        "type": "plain_text_input",
+        "action_id": "value",
+        "initial_value": "Re: Expansion to EU teams",
+        "max_length": 1000
+      }
+    },
+    {
+      "type": "input",
+      "block_id": "ghost.input.body",
+      "label": {
+        "type": "plain_text",
+        "text": "Body",
+        "emoji": false
+      },
+      "element": {
+        "type": "plain_text_input",
+        "action_id": "value",
+        "initial_value": "Hi Marco,\n\nAttached are our SOC2 Type II report and pen-test summary. Once you and Priya have reviewed, let us know what timing suits you.\n\nBest,\nDana",
+        "multiline": true,
+        "max_length": 3000
+      }
+    }
+  ],
+  "close": {
+    "type": "plain_text",
+    "text": "Close",
+    "emoji": false
+  },
+  "submit": {
+    "type": "plain_text",
+    "text": "Save",
+    "emoji": false
+  },
+  "private_metadata": "{\"run_id\":\"0f0a0000-0000-4000-8000-000000000601\",\"candidate_id\":\"0ca00000-0000-4000-8000-0000000000a2\",\"channel_id\":\"C0DRYRUN\",\"message_ts\":\"1700000000.000100\"}",
+  "callback_id": "ghost.edit_modal"
+}

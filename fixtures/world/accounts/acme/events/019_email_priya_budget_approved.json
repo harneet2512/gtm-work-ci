@@ -1,0 +1,22 @@
+{
+  "source_system": "email",
+  "source_object_id": "<CAMx9-acme-2026-09-03@mail.acme.com>",
+  "source_event_key": "received",
+  "occurred_at": "2026-09-03T10:15:00Z",
+  "connector": "gmail",
+  "connector_version": "0.1.0",
+  "payload": {
+    "kind": "email",
+    "direction": "inbound",
+    "message_id": "<CAMx9-acme-2026-09-03@mail.acme.com>",
+    "thread_id": "thr-acme-proposal",
+    "in_reply_to": "<ghost-dana-2026-08-28@vendor.example>",
+    "from": {"email": "priya.shah@acme.com", "name": "Priya Shah"},
+    "to": [{"email": "dana@vendor.example", "name": "Dana Kim"}],
+    "cc": [],
+    "date": "2026-09-03T10:15:00Z",
+    "subject": "Re: Acme EU rollout - proposal",
+    "body_text": "Hi Dana,\nSorry for the slow reply - it was planning week. Good news: finance approved the EU budget line this morning, so budget is no longer a blocker. Can we walk through the order form together next Wednesday?\nPriya",
+    "crm_opportunity_ref": "opp:AC-4-EXP"
+  }
+}

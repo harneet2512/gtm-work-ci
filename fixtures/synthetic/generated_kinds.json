@@ -1,0 +1,270 @@
+[
+ {
+  "connector": "crmarena-loader",
+  "connector_version": "wp31-v1",
+  "occurred_at": "2021-06-23T14:30:00Z",
+  "origin": "synthetic",
+  "payload": {
+   "account_record_id": "account:001Wt00000PFj4zIAD",
+   "changed_at": "2021-06-23T14:30:00Z",
+   "changed_by": "integration:crmarena",
+   "created": true,
+   "fields": {
+    "Department": {
+     "new": "Marketing"
+    },
+    "Email": {
+     "new": "mateo.weber@navicorptech.com"
+    },
+    "FirstName": {
+     "new": "Mateo"
+    },
+    "LastName": {
+     "new": "Weber"
+    },
+    "Title": {
+     "new": "Acting Marketing Director"
+    }
+   },
+   "kind": "crm_change",
+   "object_type": "Contact",
+   "record_id": "contact:003Wt00000Jqz6CIAR"
+  },
+  "provenance": "synthetic:v1",
+  "source_event_key": "created",
+  "source_object_id": "contact:003Wt00000Jqz6CIAR",
+  "source_system": "crm"
+ },
+ {
+  "connector": "crmarena-loader",
+  "connector_version": "wp31-v1",
+  "occurred_at": "2021-05-10T16:15:00Z",
+  "origin": "synthetic",
+  "payload": {
+   "account_record_id": "account:001Wt00000PFj4zIAD",
+   "changed_at": "2021-05-10T16:15:00Z",
+   "changed_by": "integration:crmarena",
+   "created": false,
+   "fields": {
+    "Role__c": {
+     "new": "User"
+    }
+   },
+   "kind": "crm_change",
+   "object_type": "Contact",
+   "record_id": "contact:003Wt00000JqmtfIAB"
+  },
+  "provenance": "synthetic:v1",
+  "source_event_key": "field:Role__c:User",
+  "source_object_id": "contact:003Wt00000JqmtfIAB",
+  "source_system": "crm"
+ },
+ {
+  "connector": "crmarena-loader",
+  "connector_version": "wp31-v1",
+  "occurred_at": "2020-12-05T19:45:00Z",
+  "origin": "synthetic",
+  "payload": {
+   "account_record_id": "account:001Wt00000PHVkAIAX",
+   "changed_at": "2020-12-05T19:45:00Z",
+   "changed_by": "integration:crmarena",
+   "created": false,
+   "fields": {
+    "Title": {
+     "new": "Logistics Coordinator"
+    }
+   },
+   "kind": "crm_change",
+   "object_type": "Contact",
+   "record_id": "contact:003Wt00000JqvTwIAJ"
+  },
+  "provenance": "synthetic:v1",
+  "source_event_key": "field:Title:Logistics Coordinator",
+  "source_object_id": "contact:003Wt00000JqvTwIAJ",
+  "source_system": "crm"
+ },
+ {
+  "connector": "crmarena-loader",
+  "connector_version": "wp31-v1",
+  "occurred_at": "2023-06-21T17:45:00Z",
+  "origin": "synthetic",
+  "payload": {
+   "account_record_id": "account:001Wt00000PGdBuIAL",
+   "changed_at": "2023-06-21T17:45:00Z",
+   "changed_by": "integration:crmarena",
+   "created": false,
+   "fields": {
+    "Amount": {
+     "new": 12390.18
+    }
+   },
+   "kind": "crm_change",
+   "object_type": "Opportunity",
+   "record_id": "opp:006Wt000007BDKTIA4"
+  },
+  "provenance": "synthetic:v1",
+  "source_event_key": "field:Amount:12390.18",
+  "source_object_id": "opp:006Wt000007BDKTIA4",
+  "source_system": "crm"
+ },
+ {
+  "connector": "crmarena-loader",
+  "connector_version": "wp31-v1",
+  "occurred_at": "2024-04-16T12:30:00Z",
+  "origin": "synthetic",
+  "payload": {
+   "account_record_id": "account:001Wt00000PFj4zIAD",
+   "changed_at": "2024-04-16T12:30:00Z",
+   "changed_by": "integration:crmarena",
+   "created": false,
+   "fields": {
+    "StageName": {
+     "new": "Qualification"
+    }
+   },
+   "kind": "crm_change",
+   "object_type": "Opportunity",
+   "record_id": "opp:006Wt000007BA3HIAW"
+  },
+  "provenance": "synthetic:v1",
+  "source_event_key": "field:StageName:Qualification",
+  "source_object_id": "opp:006Wt000007BA3HIAW",
+  "source_system": "crm"
+ },
+ {
+  "connector": "crmarena-loader",
+  "connector_version": "wp31-v1",
+  "occurred_at": "2021-05-15T17:00:00Z",
+  "origin": "synthetic",
+  "payload": {
+   "account_record_id": "account:001Wt00000PGdBuIAL",
+   "changed_at": "2021-05-15T17:00:00Z",
+   "changed_by": "integration:crmarena",
+   "created": true,
+   "fields": {
+    "Discount": {
+     "new": 8.06570447
+    },
+    "ExpirationDate": {
+     "new": "2021-06-14"
+    },
+    "GrandTotal": {
+     "new": 31303.0484
+    },
+    "Name": {
+     "new": "TechSavvy Innovations Partnership Quote"
+    },
+    "QuoteNumber": {
+     "new": "00001164"
+    }
+   },
+   "kind": "crm_change",
+   "object_type": "Quote",
+   "opportunity_record_id": "opp:006Wt000007B6cQIAS",
+   "record_id": "quote:0Q0Wt000001WTieKAG"
+  },
+  "provenance": "synthetic:v1",
+  "source_event_key": "created",
+  "source_object_id": "quote:0Q0Wt000001WTieKAG",
+  "source_system": "crm"
+ },
+ {
+  "connector": "crmarena-loader",
+  "connector_version": "wp31-v1",
+  "occurred_at": "2021-06-17T16:15:00Z",
+  "origin": "synthetic",
+  "payload": {
+   "body_text": "Hi Liam,\n\nI wanted to give you a heads-up that NaviCorp Tech is going through a restructure this quarter. Several teams are being combined, and some responsibilities, including ownership of the work we have been discussing on Advanced Navigation Optimization Project, are being reassigned.\n\nOnce the new structure is confirmed I will let you know who your main contact will be. Until then, please bear with us if responses take a little longer than usual.\n\nBest,\n\nNikhil Reddy\nNaviCorp Tech",
+   "crm_opportunity_ref": "opp:006Wt000007BFEFIA4",
+   "date": "2021-06-17T16:15:00Z",
+   "direction": "inbound",
+   "from": {
+    "email": "nikhil.reddy@navicorptech.com",
+    "name": "Nikhil Reddy"
+   },
+   "in_reply_to": null,
+   "kind": "email",
+   "message_id": "02sWt00000209TlIAI",
+   "subject": "Organisational changes at NaviCorp Tech",
+   "thread_id": "opp:006Wt000007BFEFIA4",
+   "to": [
+    {
+     "email": "liam.osullivan@vendor.example",
+     "name": "Liam O'Sullivan"
+    }
+   ]
+  },
+  "provenance": "synthetic:v1",
+  "source_event_key": "received",
+  "source_object_id": "02sWt00000209TlIAI",
+  "source_system": "email"
+ },
+ {
+  "connector": "crmarena-loader",
+  "connector_version": "wp31-v1",
+  "occurred_at": "2024-03-30T19:00:00Z",
+  "origin": "synthetic",
+  "payload": {
+   "body_text": "Hi Nikhil,\n\nThank you for the detailed questions. Short answers are below, and I am happy to go deeper on any of them. In brief, TechPulse-NaviCorp Strategic EDA Partnership works alongside the tools you already use, setup typically takes a few weeks, and access controls can be configured to match your current policies.\n\nIf it helps, we can set up a working session to go through the specifics with your team.\n\nBest regards,\n\nPriyanka Iyer",
+   "crm_opportunity_ref": "opp:006Wt000007BA3HIAW",
+   "date": "2024-03-30T19:00:00Z",
+   "direction": "outbound",
+   "from": {
+    "email": "priyanka.iyer@vendor.example",
+    "name": "Priyanka Iyer"
+   },
+   "in_reply_to": null,
+   "kind": "email",
+   "message_id": "02sWt00000209TyIAI",
+   "subject": "Re: your questions on TechPulse-NaviCorp Strategic EDA Partnership",
+   "thread_id": "opp:006Wt000007BA3HIAW",
+   "to": [
+    {
+     "email": "nikhil.reddy@navicorptech.com",
+     "name": "Nikhil Reddy"
+    }
+   ]
+  },
+  "provenance": "synthetic:v1",
+  "source_event_key": "sent",
+  "source_object_id": "02sWt00000209TyIAI",
+  "source_system": "email"
+ },
+ {
+  "connector": "crmarena-loader",
+  "connector_version": "wp31-v1",
+  "occurred_at": "2024-03-30T12:15:00Z",
+  "origin": "synthetic",
+  "payload": {
+   "body_text": "Hi Nikhil,\n\nThank you for the detailed questions. Short answers are below, and I am happy to go deeper on any of them. In brief, NaviCorp Tech Strategic Partnership works alongside the tools you already use, setup typically takes a few weeks, and access controls can be configured to match your current policies.\n\nIf it helps, we can set up a working session to go through the specifics with your team.\n\nBest regards,\n\nKofi Adomah",
+   "cc": [
+    {
+     "email": "aaliyah.jones@vendor.example",
+     "name": "Aaliyah Jones"
+    }
+   ],
+   "crm_opportunity_ref": "opp:006Wt000007BFfeIAG",
+   "date": "2024-03-30T12:15:00Z",
+   "direction": "outbound",
+   "from": {
+    "email": "kofi.adomah@vendor.example",
+    "name": "Kofi Adomah"
+   },
+   "in_reply_to": null,
+   "kind": "email",
+   "message_id": "02sWt00000209TtIAI",
+   "subject": "Re: your questions on NaviCorp Tech Strategic Partnership",
+   "thread_id": "opp:006Wt000007BFfeIAG",
+   "to": [
+    {
+     "email": "nikhil.reddy@navicorptech.com",
+     "name": "Nikhil Reddy"
+    }
+   ]
+  },
+  "provenance": "synthetic:v1",
+  "source_event_key": "sent",
+  "source_object_id": "02sWt00000209TtIAI",
+  "source_system": "email"
+ }
+]

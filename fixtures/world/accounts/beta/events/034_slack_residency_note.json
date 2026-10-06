@@ -1,0 +1,18 @@
+{
+  "source_system": "slack",
+  "source_object_id": "#deal-beta:1789567200.000100",
+  "source_event_key": "posted",
+  "occurred_at": "2026-09-16T14:00:00Z",
+  "connector": "slack",
+  "connector_version": "0.1.0",
+  "payload": {
+    "kind": "slack_message",
+    "channel": "#deal-beta",
+    "ts": "1789567200.000100",
+    "thread_ts": null,
+    "user": "U02LEO",
+    "user_email": "leo@vendor.example",
+    "text": "Ravi's real question is EU data residency for the Dublin ticket data. We host EU tenants in Frankfurt; I'll pull our data residency addendum and sub-processor list.",
+    "is_decision": false
+  }
+}

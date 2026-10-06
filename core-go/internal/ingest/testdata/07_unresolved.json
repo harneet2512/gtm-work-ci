@@ -1,0 +1,20 @@
+{
+  "source_system": "email",
+  "source_object_id": "<newco-1@newco.io>",
+  "source_event_key": "received",
+  "connector": "gmail",
+  "connector_version": "0.1.0",
+  "payload": {
+    "kind": "email",
+    "message_id": "<newco-1@newco.io>",
+    "thread_id": "thr-newco",
+    "in_reply_to": null,
+    "direction": "inbound",
+    "from": { "email": "sam@newco.io", "name": "Sam Lee" },
+    "to": [ { "email": "dana@vendor.example" } ],
+    "date": "2026-10-03T10:00:00Z",
+    "subject": "Interested in a demo",
+    "body_text": "We saw your talk and would like a demo.",
+    "crm_opportunity_ref": null
+  }
+}

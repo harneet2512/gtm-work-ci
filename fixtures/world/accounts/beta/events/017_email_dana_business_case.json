@@ -1,0 +1,23 @@
+{
+  "source_system": "email",
+  "source_object_id": "<ghost-dana-2026-09-01@vendor.example>",
+  "source_event_key": "sent",
+  "occurred_at": "2026-09-01T17:00:00Z",
+  "connector": "gmail",
+  "connector_version": "0.1.0",
+  "payload": {
+    "kind": "email",
+    "direction": "outbound",
+    "message_id": "<ghost-dana-2026-09-01@vendor.example>",
+    "thread_id": "thr-beta-support-rollout",
+    "in_reply_to": "<BETA-hl-2026-08-20@beta.io>",
+    "from": {"email": "dana@vendor.example", "name": "Dana Kim"},
+    "to": [{"email": "hannah.lee@beta.io", "name": "Hannah Lee"}],
+    "cc": [],
+    "date": "2026-09-01T17:00:00Z",
+    "subject": "Re: Relay for the Beta support org",
+    "body_text": "Hi Hannah,\nAttached is the business case built on the Austin pilot: average handle time dropped 17 percent over eight weeks, which pays back the 140-seat rollout in under seven months. Happy to join when you take it to Owen.\nBest,\nDana",
+    "attachments": ["Beta_Support_Rollout_Business_Case.pdf"],
+    "crm_opportunity_ref": "opp:BE-7-EXP"
+  }
+}
