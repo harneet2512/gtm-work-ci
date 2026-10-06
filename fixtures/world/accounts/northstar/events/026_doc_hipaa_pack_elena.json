@@ -1,0 +1,16 @@
+{
+  "source_system": "docs",
+  "source_object_id": "gdrive:northstar-hipaa-pack",
+  "source_event_key": "shared:2026-09-15T14:01:00Z",
+  "occurred_at": "2026-09-15T14:01:00Z",
+  "connector": "google_drive",
+  "connector_version": "0.1.0",
+  "payload": {
+    "kind": "document",
+    "document_id": "gdrive:northstar-hipaa-pack",
+    "title": "Vendor Co. BAA Template and HIPAA Controls Summary",
+    "shared_at": "2026-09-15T14:01:00Z",
+    "shared_by": "dana@ghostvendor.com",
+    "shared_with": ["elena.vasquez@northstar.health"]
+  }
+}

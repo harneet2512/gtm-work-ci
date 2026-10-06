@@ -1,0 +1,63 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://ghost.local/contracts/opportunity_state.v1.json",
+  "title": "OpportunityState",
+  "description": "Current projection of one deal, keyed by (account_id, opportunity_id) (ADR-0016). Pure fold over the adjudicated claims scoped to that opportunity, so every deal-scoped field describes this deal and no other. Every field points back to evidence; 'unknown' is a legal value. Claims without an opportunity_id never enter it (they are account scope); person-scoped facts (title, delegation, presence) enter only for people who took part in this deal.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["account_id", "opportunity_id", "version", "as_of", "computed_at", "is_open", "fields", "buying_group", "coverage_gaps"],
+  "properties": {
+    "account_id": { "$ref": "common.v1.json#/$defs/uuid" },
+    "opportunity_id": { "$ref": "common.v1.json#/$defs/uuid" },
+    "version": { "type": "integer", "minimum": 1, "description": "Per-opportunity counter; a new version is written only when the content changed." },
+    "as_of": { "$ref": "common.v1.json#/$defs/timestamp", "description": "Latest occurred_at of the deal's activities; computed_at for a deal that has none (like an account, so overdue items are judged against now)." },
+    "computed_at": { "$ref": "common.v1.json#/$defs/timestamp" },
+    "last_activity_id": { "oneOf": [{ "$ref": "common.v1.json#/$defs/uuid" }, { "type": "null" }] },
+    "is_open": { "type": "boolean", "description": "False when the known stage starts with 'closed' (case-insensitive). An unknown stage is open." },
+    "fields": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "stage", "health", "owner", "amount", "motion", "champion", "champion_status", "economic_buyer",
+        "blockers", "objections", "decision_criteria", "decision_process", "current_commitments",
+        "next_milestone", "next_meeting", "relationship_risk", "product_use_case", "commercial_issue",
+        "last_customer_interaction", "last_meaningful_change", "summary"
+      ],
+      "properties": {
+        "stage": { "$ref": "account_state.v1.json#/$defs/scalarField" },
+        "health": { "$ref": "account_state.v1.json#/$defs/scalarField" },
+        "owner": { "$ref": "account_state.v1.json#/$defs/scalarField" },
+        "amount": {
+          "allOf": [{ "$ref": "account_state.v1.json#/$defs/scalarField" }, { "properties": { "value": { "type": ["number", "string"] } } }]
+        },
+        "motion": { "$ref": "account_state.v1.json#/$defs/scalarField" },
+        "champion": { "$ref": "account_state.v1.json#/$defs/scalarField" },
+        "champion_status": { "allOf": [{ "$ref": "account_state.v1.json#/$defs/scalarField" }, { "properties": { "value": { "$ref": "account_state.v1.json#/$defs/championStatus" } } }] },
+        "economic_buyer": { "$ref": "account_state.v1.json#/$defs/scalarField" },
+        "blockers": { "$ref": "account_state.v1.json#/$defs/listField" },
+        "objections": { "$ref": "account_state.v1.json#/$defs/listField" },
+        "decision_criteria": { "$ref": "account_state.v1.json#/$defs/listField" },
+        "decision_process": { "$ref": "account_state.v1.json#/$defs/scalarField" },
+        "current_commitments": { "$ref": "account_state.v1.json#/$defs/listField" },
+        "next_milestone": { "$ref": "account_state.v1.json#/$defs/scalarField" },
+        "next_meeting": { "$ref": "account_state.v1.json#/$defs/scalarField" },
+        "relationship_risk": { "allOf": [{ "$ref": "account_state.v1.json#/$defs/scalarField" }, { "properties": { "value": { "$ref": "account_state.v1.json#/$defs/relationshipRisk" } } }] },
+        "product_use_case": { "$ref": "account_state.v1.json#/$defs/scalarField" },
+        "commercial_issue": { "$ref": "account_state.v1.json#/$defs/scalarField" },
+        "last_customer_interaction": { "$ref": "account_state.v1.json#/$defs/derivedField" },
+        "last_meaningful_change": { "$ref": "account_state.v1.json#/$defs/derivedField" },
+        "summary": { "$ref": "account_state.v1.json#/$defs/scalarField" },
+        "champion_since": { "$ref": "account_state.v1.json#/properties/fields/properties/champion_since", "description": "Optional (ADR-0012): when this deal's current champion's unbroken run of claims began; the transition detector reads it per deal." }
+      }
+    },
+    "buying_group": {
+      "description": "The buying group as seen on this deal: people with a role claim scoped to the deal, plus people who took part in the deal's activities and have an account-level presence claim.",
+      "type": "array",
+      "items": { "$ref": "account_state.v1.json#/properties/buying_group/items" }
+    },
+    "coverage_gaps": {
+      "type": "array",
+      "items": { "type": "string", "enum": ["economic_buyer", "technical_evaluator", "security", "legal", "executive_sponsor", "procurement"] }
+    }
+  }
+}

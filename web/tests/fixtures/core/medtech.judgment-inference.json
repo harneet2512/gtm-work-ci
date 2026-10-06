@@ -1,0 +1,49 @@
+{
+  "id": "01f0ad00-0000-4000-8000-00000000ad90",
+  "decision_episode_id": "0e9ead00-0000-4000-8000-00000000ad0a",
+  "human_strategy_decision_id": "0d5dad00-0000-4000-8000-00000000ad70",
+  "agent_preference": "0ca0ad00-0000-4000-8000-00000000ada1",
+  "human_choice": "0ca0ad00-0000-4000-8000-00000000ada2",
+  "agreement": "overrode",
+  "inferred_semantic_delta": {
+    "statement": "Luis wanted the figures in writing before the call: Fatoumata said a clear understanding of future financial commitments is crucial, and the day before that pricing transparency is something her team values highly."
+  },
+  "evidence": {
+    "candidate_differences": [
+      "gtm_ai's pick offers call times and promises the cost breakdown later; the chosen option puts the proposal figures in writing now, and Luis's edit adds the same call times."
+    ],
+    "evidence_refs": [
+      {
+        "activity_id": "0ac7ad00-0000-4000-8000-00000000ad0d",
+        "quote": "Ensuring that we have a clear understanding of future financial commitments is crucial for us.",
+        "speaker_person_id": "0b0ead00-0000-4000-8000-00000000ad11",
+        "occurred_at": "2023-11-09T09:30:00Z"
+      },
+      {
+        "activity_id": "0ac7ad00-0000-4000-8000-00000000ad0b",
+        "quote": "Transparency in terms of pricing is indeed something we value highly.",
+        "speaker_person_id": "0b0ead00-0000-4000-8000-00000000ad11",
+        "occurred_at": "2023-11-08T16:00:00Z"
+      }
+    ],
+    "eval_differences": [
+      {
+        "eval_type": "cta_calibration",
+        "agent_preference_verdict": "pass",
+        "human_choice_verdict": "warn",
+        "note": "gtm_ai's pick matched her call request; Luis's edit added the call times to the written answer."
+      },
+      {
+        "eval_type": "pricing_integrity",
+        "agent_preference_verdict": "not_relevant",
+        "human_choice_verdict": "pass",
+        "note": "Only the chosen option states prices, and they match the quote."
+      }
+    ],
+    "knowledge_refs": [],
+    "no_applicable_knowledge": true
+  },
+  "human_verdict": "pending",
+  "model": "qwen/qwen3.8-flash",
+  "generated_at": "2023-11-09T09:58:40Z"
+}

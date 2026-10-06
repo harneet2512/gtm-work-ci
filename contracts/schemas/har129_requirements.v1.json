@@ -1,0 +1,74 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://ghost.local/contracts/har129_requirements.v1.json",
+  "title": "Har129Requirements",
+  "description": "The single source of truth for the HAR-129 confirmation matrix (HAR-129 section I). Every requirement that can appear as a visible/product behavior of the final demo is listed once, with a faithful quote from HAR-129 and the required behavior restated. The proof harness derives one matrix row per item here; no row is added by hand and no item may be omitted. New HAR-129 requirements become new entries.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["version", "source", "quoted_from", "sections", "requirements"],
+  "properties": {
+    "version": { "const": "har129-requirements.v1" },
+    "source": { "const": "HAR-129" },
+    "quoted_from": {
+      "description": "Where the quotes come from, so a reviewer can re-read the source.",
+      "type": "string",
+      "minLength": 1
+    },
+    "sections": {
+      "description": "The HAR-129 sections the requirements are grouped under.",
+      "type": "array",
+      "minItems": 1,
+      "items": { "$ref": "#/$defs/section" }
+    },
+    "requirements": {
+      "description": "One item per HAR-129 visible/product requirement. Ids are unique and the matrix row set must equal this set.",
+      "type": "array",
+      "minItems": 1,
+      "items": { "$ref": "#/$defs/requirement" }
+    }
+  },
+  "$defs": {
+    "section": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id", "title", "reference"],
+      "properties": {
+        "id": { "type": "string", "pattern": "^[A-Z0-9-]+$" },
+        "title": { "type": "string", "minLength": 1 },
+        "reference": { "type": "string", "minLength": 1 }
+      }
+    },
+    "requirement": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id", "section", "reference", "requirement", "required_behavior"],
+      "properties": {
+        "id": {
+          "description": "Stable matrix row id, e.g. HAR129-G-01. Never reused for a different requirement.",
+          "type": "string",
+          "pattern": "^HAR129-[A-Z0-9]+-[0-9]{2}$"
+        },
+        "section": {
+          "description": "The sections[].id this requirement belongs to.",
+          "type": "string",
+          "pattern": "^[A-Z0-9-]+$"
+        },
+        "reference": {
+          "description": "The exact HAR-129 locator, e.g. 'HAR-129 §G' or 'HAR-129 §16 step 7'.",
+          "type": "string",
+          "minLength": 1
+        },
+        "requirement": {
+          "description": "The requirement quoted faithfully from HAR-129. This comes from the contract, not from the implementation.",
+          "type": "string",
+          "minLength": 1
+        },
+        "required_behavior": {
+          "description": "What must be observed live for this requirement to be CONFIRMED.",
+          "type": "string",
+          "minLength": 1
+        }
+      }
+    }
+  }
+}

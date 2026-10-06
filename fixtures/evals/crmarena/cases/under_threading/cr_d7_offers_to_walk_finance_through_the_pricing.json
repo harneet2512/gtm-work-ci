@@ -1,0 +1,280 @@
+{
+ "id": "cr_d7_offers_to_walk_finance_through_the_pricing",
+ "origin": "crmarena",
+ "case_type": "under_threading",
+ "title": "Same moment, good draft: testimonials delivered and the finance review addressed by offering to include finance",
+ "should_pass": true,
+ "difficulty": "medium",
+ "slice_tags": {
+  "account": "001Wt00000PHRVGIA5",
+  "origin": "crmarena",
+  "motion": "unknown",
+  "stage": "unknown",
+  "champion_status": "active",
+  "economic_buyer": "unknown",
+  "risk": "unknown",
+  "candidate": "good",
+  "expected_action": "send_email",
+  "extra": [
+   "finance_review_open",
+   "good_draft",
+   "task_trigger"
+  ]
+ },
+ "based_on": {
+  "kind": "crmarena_moment",
+  "account_id": "001Wt00000PHRVGIA5",
+  "deal_id": "006Wt000007BB0vIAG",
+  "trigger_kind": "task_due",
+  "decision_at": "2023-11-15T09:00:00Z",
+  "cutoff": "2023-11-01",
+  "deal_group": "current",
+  "events_before_decision": 7
+ },
+ "source": {
+  "dataset": "CRMArena-Pro B2B Salesforce org (Salesforce AI Research)",
+  "licence": "CC BY-NC 4.0 (non-commercial use only)",
+  "attribution": "Salesforce AI Research, CRMArena-Pro (https://github.com/SalesforceAIResearch/CRMArena, LICENSE.txt); records selected and excerpted, nothing edited",
+  "snapshot_manifest_sha256": "8fbda45c15d1806dc4c37d5230a20ac24d6619ef36a88c0efddb344792c89f03",
+  "generator": "bench/evals/crmarena_gold v1"
+ },
+ "context": {
+  "now": "2023-11-15T09:00:00Z",
+  "state": {
+   "account_id": "8808f443-b62c-5c59-b366-335ba0538829",
+   "account_name": "AlphaTech Productions",
+   "opportunity_id": "092d11b9-1b7f-5d42-9159-1ea0638885e0",
+   "fields": {
+    "stage": "unknown",
+    "health": "unknown",
+    "motion": "unknown",
+    "champion": "b205d68e-e34e-5a81-a87b-399ba8982757",
+    "champion_status": "active",
+    "economic_buyer": "unknown",
+    "relationship_risk": "unknown",
+    "decision_process": "Fernando shared the proposal with the finance team, who are reviewing the pricing; he said on 2023-11-07 he would revert soon",
+    "current_commitments": [
+     {
+      "text": "Customer: finance team's feedback on the pricing (open since 2023-11-07)",
+      "status": "open"
+     },
+     {
+      "text": "Us: detailed testimonials from media companies, promised 'shortly' on 2023-11-07",
+      "status": "open"
+     }
+    ],
+    "next_milestone": "unknown: no date was agreed"
+   },
+   "buying_group": [
+    {
+     "person_id": "b205d68e-e34e-5a81-a87b-399ba8982757",
+     "display_name": "Fernando Sosa",
+     "title": "Supply Chain Optimization Analyst (champion role inferred, not recorded)",
+     "roles": [
+      "champion"
+     ],
+     "status": "active",
+     "delegated_to_person_id": null,
+     "last_engaged_at": "2023-11-07T15:00:00Z",
+     "evidence_refs": [
+      {
+       "activity_id": "aaf99d76-ad58-55e8-ae59-b2588d4b1f48",
+       "occurred_at": "2023-11-07T15:00:00Z"
+      }
+     ]
+    },
+    {
+     "person_id": "98fdec20-6c5c-5a1f-b756-10a0d471ae6c",
+     "display_name": "Anita Desai",
+     "title": "Financial Controller",
+     "roles": [
+      "unknown"
+     ],
+     "status": "unknown",
+     "delegated_to_person_id": null,
+     "last_engaged_at": null,
+     "evidence_refs": []
+    }
+   ],
+   "coverage_gaps": [
+    "economic_buyer"
+   ]
+  },
+  "recent_changes": {
+   "summary": "No email since 2023-11-07; the rep's testimonials promise and the finance team's pricing review are both still open.",
+   "material_diff_fields": [
+    "current_commitments"
+   ],
+   "signals": [
+    "customer_went_silent"
+   ]
+  },
+  "trigger": {
+   "activity_id": "e50fbe6a-d268-5d1c-8f7f-70f0ef254934",
+   "activity_type": "CRMTaskLogged",
+   "occurred_at": "2023-11-15T00:00:00Z",
+   "actor_person_id": null,
+   "event_file": "crmarena:Task:00TWt000002yxwvMAA",
+   "synthetic": false,
+   "text": "Draft the contract for the Enhanced Media Solutions Partnership and submit for internal review and client approval.",
+   "subject": "Prepare Contract for Review",
+   "date_semantics": "task due date"
+  },
+  "supporting_activities": [
+   {
+    "activity_id": "7980b34c-ca2c-5ca5-bbad-7d4721573ef8",
+    "activity_type": "EmailReceived",
+    "occurred_at": "2023-11-07T14:30:00Z",
+    "actor_person_id": "b205d68e-e34e-5a81-a87b-399ba8982757",
+    "event_file": "crmarena:EmailMessage:02sWt000001zsB4IAI",
+    "synthetic": false,
+    "text": "Hello Ayumi,\n\nThank you for the detailed email and for addressing my points from our call. I appreciate the effort your team is putting into making sure TechPulse Solutions fits seamlessly with our existing systems.\n\nThe emphasis on customizable solutions is very important to us, and your dedication to providing tailored tools that suit AlphaTech’s specific requirements reassures my team about this partnership. Your products certainly reflect a modern approach, which is exactly what we are looking for to address our EDA challenges.\n\nI have shared your proposal with our finance team, and they are currently reviewing the pricing. I hope to get back to you soon with our feedback and any final thoughts.\n\nThank you once again for your support and patience.\n\nBest,\n\nFernando Sosa\nAlphaTech Productions",
+    "subject": "Negotiation of Enhanced Media Solutions Partnership",
+    "date_semantics": "sent"
+   },
+   {
+    "activity_id": "aaf99d76-ad58-55e8-ae59-b2588d4b1f48",
+    "activity_type": "EmailReply",
+    "occurred_at": "2023-11-07T15:00:00Z",
+    "actor_person_id": "b205d68e-e34e-5a81-a87b-399ba8982757",
+    "event_file": "crmarena:EmailMessage:02sWt000001zpGOIAY",
+    "synthetic": false,
+    "text": "Hi Ayumi,\n\nThanks for getting back to me so quickly, and I appreciate the clear summary of our discussion. I agree that TechPulse's offerings, particularly the case studies, resonate well with what we are looking to achieve at AlphaTech.\n\nWe are indeed considering the customization options as they would allow us to tailor the suite to our specific workflow needs, something that is highly valuable for our operations. Our main concern has been ensuring any solution we partner with can keep pace with technological shifts while maintaining security standards. Your emphasis on future adaptability and the innovative edge of your solutions is quite reassuring.\n\nI'd be interested to see more detailed testimonials or use cases focusing on how other media companies have benefited from similar implementations. This will help us present a strong case internally.\n\nThanks again for your patience and guidance throughout this process. I'll coordinate with my team, and we can touch base soon to move things forward.\n\nBest,\n\nFernando Sosa\nAlphaTech Productions",
+    "subject": "Re: Negotiation of Enhanced Media Solutions Partnership",
+    "date_semantics": "sent"
+   },
+   {
+    "activity_id": "ed683ae0-ca71-59a1-94ab-d2426b7ca118",
+    "activity_type": "EmailSent",
+    "occurred_at": "2023-11-07T16:00:00Z",
+    "actor_person_id": "aaa330ce-218f-5a3f-8910-bb36dea2f5a3",
+    "event_file": "crmarena:EmailMessage:02sWt000001zx93IAA",
+    "synthetic": false,
+    "text": "Hi Fernando,\n\nThank you for your swift response and the positive feedback. I'm delighted to hear that our approach aligns with AlphaTech's strategic needs.\n\nI'll gather more detailed testimonials and success stories from media companies that have implemented our solutions and share these with you shortly. I'm confident they will provide the insight and assurance that you and your team need to advance the discussions.\n\nPlease feel free to reach out if any other questions surface, or if there are specific areas you would like us to address in more detail.\n\nLooking forward to our continued collaboration.\n\nBest regards,\n\nAyumi Shimizu\nSales Representative, TechPulse Solutions",
+    "subject": "Negotiation of Enhanced Media Solutions Partnership",
+    "date_semantics": "sent"
+   }
+  ],
+  "commitments": [
+   {
+    "text": "Finance team's feedback on the pricing",
+    "owner_person_id": "b205d68e-e34e-5a81-a87b-399ba8982757",
+    "due_at": null,
+    "status": "open"
+   },
+   {
+    "text": "Share detailed media-company testimonials ('shortly', 2023-11-07)",
+    "owner_person_id": "aaa330ce-218f-5a3f-8910-bb36dea2f5a3",
+    "due_at": null,
+    "status": "open"
+   }
+  ],
+  "timeline_facts": {
+   "last_inbound_at": "2023-11-07T15:00:00Z",
+   "last_inbound_from_person_id": "b205d68e-e34e-5a81-a87b-399ba8982757",
+   "last_outbound_at": "2023-11-07T16:00:00Z",
+   "stated_timing": null
+  },
+  "offered_knowledge": [],
+  "state_provenance": {
+   "champion": "inferred, not recorded: the only customer correspondent (2 inbound emails); CRMArena has no roles",
+   "stage": "unknown unless a field below says otherwise: the loader dates the stage at the deal's last event",
+   "decision_process": "02sWt000001zsB4IAI",
+   "current_commitments": "02sWt000001zsB4IAI, 02sWt000001zpGOIAY, 02sWt000001zx93IAA",
+   "buying_group roles": "inferred from each Contact's Title/Department; the record has no roles"
+  }
+ },
+ "candidate_action": {
+  "proposed_action_type": "send_email",
+  "recipients": [
+   {
+    "person_id": "b205d68e-e34e-5a81-a87b-399ba8982757",
+    "role": "to"
+   }
+  ],
+  "finished_artifact": {
+   "channel": "email",
+   "subject": "AlphaTech: testimonials and next step on pricing",
+   "body": "Hi Fernando,\n\nSorry for the wait; attached are the media-company testimonials I promised. I know your finance team is reviewing the pricing. If it helps, I can walk them through it. Who should I include? I will hold the contract draft until you tell me where that review stands.\n\nWarm regards,\nAyumi",
+   "attachments": [
+    "Media_company_testimonials.pdf"
+   ]
+  },
+  "crm_next_step_intent": {
+   "next_step": "Fernando shares the finance review status and who to include",
+   "due_at": null,
+   "stage_change": null
+  },
+  "reason": "Deliver the overdue testimonials and ask about the open finance review before sending a contract.",
+  "evidence_refs": [
+   {
+    "activity_id": "7980b34c-ca2c-5ca5-bbad-7d4721573ef8",
+    "quote": "I have shared your proposal with our finance team, and they are currently reviewing the pricing.",
+    "occurred_at": "2023-11-07T14:30:00Z",
+    "speaker_person_id": "b205d68e-e34e-5a81-a87b-399ba8982757"
+   },
+   {
+    "activity_id": "ed683ae0-ca71-59a1-94ab-d2426b7ca118",
+    "quote": "I'll gather more detailed testimonials and success stories from media companies that have implemented our solutions and share these with you shortly.",
+    "occurred_at": "2023-11-07T16:00:00Z",
+    "speaker_person_id": "aaa330ce-218f-5a3f-8910-bb36dea2f5a3"
+   }
+  ],
+  "knowledge_refs_used": [],
+  "wait_until": null
+ },
+ "expected": [
+  {
+   "eval_type": "stakeholder_coverage",
+   "verdict": "pass",
+   "label": "RIGHT_SIZED",
+   "diagnostics": [],
+   "blocking": false,
+   "rationale": "Offers to include finance, asks who.",
+   "evidence_class": "deal_data"
+  },
+  {
+   "eval_type": "decision_process",
+   "verdict": "pass",
+   "label": null,
+   "diagnostics": [],
+   "blocking": false,
+   "rationale": "Holds the draft until the finance review status is known.",
+   "evidence_class": "methodology"
+  },
+  {
+   "eval_type": "commitment_consistency",
+   "verdict": "pass",
+   "label": null,
+   "diagnostics": [],
+   "blocking": false,
+   "rationale": "Delivers the overdue testimonials.",
+   "evidence_class": "methodology"
+  }
+ ],
+ "expected_best_action": {
+  "action": "send_email",
+  "why": "This.",
+  "recipients": [
+   {
+    "person_id": "b205d68e-e34e-5a81-a87b-399ba8982757",
+    "role": "to"
+   }
+  ],
+  "channel": "email"
+ },
+ "labelling": {
+  "label_kind": "model labels, single author, not human labels",
+  "passes": [
+   "pass_1",
+   "pass_2"
+  ],
+  "agreement": {
+   "judgments": 3,
+   "verdict_agree": 3,
+   "fail_agree": 3
+  },
+  "disagreements": []
+ },
+ "notes": ""
+}

@@ -1,0 +1,1343 @@
+{
+  "account_id": "0a0cad00-0000-4000-8000-00000000ad01",
+  "nodes": [
+    {
+      "id": "0a0cad00-0000-4000-8000-00000000ad01",
+      "type": "Account",
+      "label": "MedTech Advances",
+      "status": "active",
+      "evidence_refs": [],
+      "source_event_ids": []
+    },
+    {
+      "id": "0c0fad00-0000-4000-8000-00000000ad01",
+      "type": "Opportunity",
+      "label": "Advanced Data Protection and Education Enhancement Deal",
+      "status": "open",
+      "evidence_refs": [
+        {
+          "activity_id": "0ac7ad00-0000-4000-8000-00000000ad01"
+        }
+      ],
+      "source_event_ids": [
+        "05e0ad00-0000-4000-8000-00000000ad01"
+      ]
+    },
+    {
+      "id": "0b0ead00-0000-4000-8000-00000000ad11",
+      "type": "Person",
+      "label": "Fatoumata Touré",
+      "status": "active",
+      "data": {
+        "title": "Supply Chain Coordinator"
+      },
+      "evidence_refs": [
+        {
+          "activity_id": "0ac7ad00-0000-4000-8000-00000000ad02"
+        }
+      ],
+      "source_event_ids": [
+        "05e0ad00-0000-4000-8000-00000000ad02"
+      ]
+    },
+    {
+      "id": "0b0ead00-0000-4000-8000-00000000ad21",
+      "type": "Person",
+      "label": "Luis Rodriguez",
+      "status": "active",
+      "evidence_refs": [],
+      "source_event_ids": []
+    },
+    {
+      "id": "0ac7ad00-0000-4000-8000-00000000ad01",
+      "type": "Activity",
+      "label": "CRMFieldChanged",
+      "valid_from": "2023-05-25T11:23:41Z",
+      "data": {
+        "activity_type": "CRMFieldChanged",
+        "source_system": "crm",
+        "occurred_at": "2023-05-25T11:23:41Z",
+        "visibility": "org"
+      },
+      "evidence_refs": [
+        {
+          "activity_id": "0ac7ad00-0000-4000-8000-00000000ad01"
+        }
+      ],
+      "source_event_ids": [
+        "05e0ad00-0000-4000-8000-00000000ad01"
+      ]
+    },
+    {
+      "id": "0ac7ad00-0000-4000-8000-00000000ad02",
+      "type": "Activity",
+      "label": "ContactAdded",
+      "valid_from": "2023-10-15T10:12:00Z",
+      "data": {
+        "activity_type": "ContactAdded",
+        "source_system": "crm",
+        "occurred_at": "2023-10-15T10:12:00Z",
+        "visibility": "org"
+      },
+      "evidence_refs": [
+        {
+          "activity_id": "0ac7ad00-0000-4000-8000-00000000ad02"
+        }
+      ],
+      "source_event_ids": [
+        "05e0ad00-0000-4000-8000-00000000ad02"
+      ]
+    },
+    {
+      "id": "0ac7ad00-0000-4000-8000-00000000ad03",
+      "type": "Activity",
+      "label": "QuoteCreated",
+      "valid_from": "2023-10-15T10:12:00Z",
+      "data": {
+        "activity_type": "QuoteCreated",
+        "source_system": "crm",
+        "occurred_at": "2023-10-15T10:12:00Z",
+        "visibility": "org"
+      },
+      "evidence_refs": [
+        {
+          "activity_id": "0ac7ad00-0000-4000-8000-00000000ad03"
+        }
+      ],
+      "source_event_ids": [
+        "05e0ad00-0000-4000-8000-00000000ad03"
+      ]
+    },
+    {
+      "id": "0ac7ad00-0000-4000-8000-00000000ad04",
+      "type": "Conversation",
+      "label": "EmailSent",
+      "valid_from": "2023-10-31T18:00:00Z",
+      "data": {
+        "activity_type": "EmailSent",
+        "source_system": "email",
+        "occurred_at": "2023-10-31T18:00:00Z",
+        "visibility": "org"
+      },
+      "evidence_refs": [
+        {
+          "activity_id": "0ac7ad00-0000-4000-8000-00000000ad04"
+        }
+      ],
+      "source_event_ids": [
+        "05e0ad00-0000-4000-8000-00000000ad04"
+      ]
+    },
+    {
+      "id": "0ac7ad00-0000-4000-8000-00000000ad05",
+      "type": "Activity",
+      "label": "CRMTaskLogged",
+      "valid_from": "2023-11-01T00:00:00Z",
+      "data": {
+        "activity_type": "CRMTaskLogged",
+        "source_system": "crm",
+        "occurred_at": "2023-11-01T00:00:00Z",
+        "visibility": "org"
+      },
+      "evidence_refs": [
+        {
+          "activity_id": "0ac7ad00-0000-4000-8000-00000000ad05"
+        }
+      ],
+      "source_event_ids": [
+        "05e0ad00-0000-4000-8000-00000000ad05"
+      ]
+    },
+    {
+      "id": "0ac7ad00-0000-4000-8000-00000000ad06",
+      "type": "Conversation",
+      "label": "EmailReceived",
+      "valid_from": "2023-11-01T09:30:00Z",
+      "data": {
+        "activity_type": "EmailReceived",
+        "source_system": "email",
+        "occurred_at": "2023-11-01T09:30:00Z",
+        "visibility": "org"
+      },
+      "evidence_refs": [
+        {
+          "activity_id": "0ac7ad00-0000-4000-8000-00000000ad06"
+        }
+      ],
+      "source_event_ids": [
+        "05e0ad00-0000-4000-8000-00000000ad06"
+      ]
+    },
+    {
+      "id": "0ac7ad00-0000-4000-8000-00000000ad07",
+      "type": "Activity",
+      "label": "CRMTaskLogged",
+      "valid_from": "2023-11-07T00:00:00Z",
+      "data": {
+        "activity_type": "CRMTaskLogged",
+        "source_system": "crm",
+        "occurred_at": "2023-11-07T00:00:00Z",
+        "visibility": "org"
+      },
+      "evidence_refs": [
+        {
+          "activity_id": "0ac7ad00-0000-4000-8000-00000000ad07"
+        }
+      ],
+      "source_event_ids": [
+        "05e0ad00-0000-4000-8000-00000000ad07"
+      ]
+    },
+    {
+      "id": "0ac7ad00-0000-4000-8000-00000000ad08",
+      "type": "Conversation",
+      "label": "EmailSent",
+      "valid_from": "2023-11-08T15:00:00Z",
+      "data": {
+        "activity_type": "EmailSent",
+        "source_system": "email",
+        "occurred_at": "2023-11-08T15:00:00Z",
+        "visibility": "org"
+      },
+      "evidence_refs": [
+        {
+          "activity_id": "0ac7ad00-0000-4000-8000-00000000ad08"
+        }
+      ],
+      "source_event_ids": [
+        "05e0ad00-0000-4000-8000-00000000ad08"
+      ]
+    },
+    {
+      "id": "0ac7ad00-0000-4000-8000-00000000ad09",
+      "type": "Conversation",
+      "label": "EmailSent",
+      "valid_from": "2023-11-08T15:00:00Z",
+      "data": {
+        "activity_type": "EmailSent",
+        "source_system": "email",
+        "occurred_at": "2023-11-08T15:00:00Z",
+        "visibility": "org"
+      },
+      "evidence_refs": [
+        {
+          "activity_id": "0ac7ad00-0000-4000-8000-00000000ad09"
+        }
+      ],
+      "source_event_ids": [
+        "05e0ad00-0000-4000-8000-00000000ad09"
+      ]
+    },
+    {
+      "id": "0ac7ad00-0000-4000-8000-00000000ad0a",
+      "type": "Conversation",
+      "label": "EmailSent",
+      "valid_from": "2023-11-08T15:05:00Z",
+      "data": {
+        "activity_type": "EmailSent",
+        "source_system": "email",
+        "occurred_at": "2023-11-08T15:05:00Z",
+        "visibility": "org"
+      },
+      "evidence_refs": [
+        {
+          "activity_id": "0ac7ad00-0000-4000-8000-00000000ad0a"
+        }
+      ],
+      "source_event_ids": [
+        "05e0ad00-0000-4000-8000-00000000ad0a"
+      ]
+    },
+    {
+      "id": "0ac7ad00-0000-4000-8000-00000000ad0b",
+      "type": "Conversation",
+      "label": "EmailReceived",
+      "valid_from": "2023-11-08T16:00:00Z",
+      "data": {
+        "activity_type": "EmailReceived",
+        "source_system": "email",
+        "occurred_at": "2023-11-08T16:00:00Z",
+        "visibility": "org"
+      },
+      "evidence_refs": [
+        {
+          "activity_id": "0ac7ad00-0000-4000-8000-00000000ad0b"
+        }
+      ],
+      "source_event_ids": [
+        "05e0ad00-0000-4000-8000-00000000ad0b"
+      ]
+    },
+    {
+      "id": "0ac7ad00-0000-4000-8000-00000000ad0c",
+      "type": "Conversation",
+      "label": "EmailReceived",
+      "valid_from": "2023-11-08T17:30:00Z",
+      "data": {
+        "activity_type": "EmailReceived",
+        "source_system": "email",
+        "occurred_at": "2023-11-08T17:30:00Z",
+        "visibility": "org"
+      },
+      "evidence_refs": [
+        {
+          "activity_id": "0ac7ad00-0000-4000-8000-00000000ad0c"
+        }
+      ],
+      "source_event_ids": [
+        "05e0ad00-0000-4000-8000-00000000ad0c"
+      ]
+    },
+    {
+      "id": "0c1aad00-0000-4000-8000-00000000ad21",
+      "type": "Claim",
+      "label": "owner",
+      "status": "active",
+      "valid_from": "2023-05-25T11:23:41Z",
+      "data": {
+        "field_path": "owner",
+        "standing": "crm_explicit",
+        "confidence": 1
+      },
+      "evidence_refs": [
+        {
+          "activity_id": "0ac7ad00-0000-4000-8000-00000000ad01"
+        }
+      ],
+      "source_event_ids": [
+        "05e0ad00-0000-4000-8000-00000000ad01"
+      ]
+    },
+    {
+      "id": "0c1aad00-0000-4000-8000-00000000ad22",
+      "type": "Claim",
+      "label": "decision_criteria",
+      "status": "active",
+      "valid_from": "2023-11-08T16:00:00Z",
+      "data": {
+        "field_path": "decision_criteria",
+        "standing": "first_party_ai",
+        "confidence": 0.8
+      },
+      "evidence_refs": [
+        {
+          "activity_id": "0ac7ad00-0000-4000-8000-00000000ad0b"
+        }
+      ],
+      "source_event_ids": [
+        "05e0ad00-0000-4000-8000-00000000ad0b"
+      ]
+    },
+    {
+      "id": "0c1aad00-0000-4000-8000-00000000ad23",
+      "type": "Claim",
+      "label": "objections",
+      "status": "active",
+      "valid_from": "2023-11-08T16:00:00Z",
+      "data": {
+        "field_path": "objections",
+        "standing": "first_party_ai",
+        "confidence": 0.8
+      },
+      "evidence_refs": [
+        {
+          "activity_id": "0ac7ad00-0000-4000-8000-00000000ad0b"
+        }
+      ],
+      "source_event_ids": [
+        "05e0ad00-0000-4000-8000-00000000ad0b"
+      ]
+    },
+    {
+      "id": "0c1aad00-0000-4000-8000-00000000ad24",
+      "type": "Commitment",
+      "label": "commitment",
+      "status": "active",
+      "valid_from": "2023-11-08T16:00:00Z",
+      "data": {
+        "standing": "first_party_ai",
+        "confidence": 0.8
+      },
+      "evidence_refs": [
+        {
+          "activity_id": "0ac7ad00-0000-4000-8000-00000000ad0b"
+        }
+      ],
+      "source_event_ids": [
+        "05e0ad00-0000-4000-8000-00000000ad0b"
+      ]
+    },
+    {
+      "id": "0c1aad00-0000-4000-8000-00000000ad25",
+      "type": "Claim",
+      "label": "commercial_issue",
+      "status": "active",
+      "valid_from": "2023-11-08T17:30:00Z",
+      "data": {
+        "field_path": "commercial_issue",
+        "standing": "first_party_ai",
+        "confidence": 0.8
+      },
+      "evidence_refs": [
+        {
+          "activity_id": "0ac7ad00-0000-4000-8000-00000000ad0c"
+        }
+      ],
+      "source_event_ids": [
+        "05e0ad00-0000-4000-8000-00000000ad0c"
+      ]
+    },
+    {
+      "id": "0c1aad00-0000-4000-8000-00000000ad26",
+      "type": "Claim",
+      "label": "decision_criteria",
+      "status": "active",
+      "valid_from": "2023-11-08T17:30:00Z",
+      "data": {
+        "field_path": "decision_criteria",
+        "standing": "first_party_ai",
+        "confidence": 0.8
+      },
+      "evidence_refs": [
+        {
+          "activity_id": "0ac7ad00-0000-4000-8000-00000000ad0c"
+        }
+      ],
+      "source_event_ids": [
+        "05e0ad00-0000-4000-8000-00000000ad0c"
+      ]
+    },
+    {
+      "id": "0c1aad00-0000-4000-8000-00000000ad2b",
+      "type": "Claim",
+      "label": "product_use_case",
+      "status": "active",
+      "valid_from": "2023-10-31T18:00:00Z",
+      "data": {
+        "field_path": "product_use_case",
+        "standing": "first_party_ai",
+        "confidence": 0.8
+      },
+      "evidence_refs": [
+        {
+          "activity_id": "0ac7ad00-0000-4000-8000-00000000ad04"
+        }
+      ],
+      "source_event_ids": [
+        "05e0ad00-0000-4000-8000-00000000ad04"
+      ]
+    }
+  ],
+  "edges": [
+    {
+      "id": "0ed9ad00-0000-4000-8000-00000000ad01",
+      "source": "0b0ead00-0000-4000-8000-00000000ad11",
+      "target": "0a0cad00-0000-4000-8000-00000000ad01",
+      "rel_type": "WORKS_AT",
+      "status": "active",
+      "evidence_refs": [
+        {
+          "activity_id": "0ac7ad00-0000-4000-8000-00000000ad02"
+        }
+      ],
+      "source_event_ids": [
+        "05e0ad00-0000-4000-8000-00000000ad02"
+      ],
+      "standing": "crm_explicit",
+      "confidence": 1
+    },
+    {
+      "id": "0ed9ad00-0000-4000-8000-00000000ad02",
+      "source": "0c0fad00-0000-4000-8000-00000000ad01",
+      "target": "0a0cad00-0000-4000-8000-00000000ad01",
+      "rel_type": "BELONGS_TO",
+      "status": "active",
+      "evidence_refs": [
+        {
+          "activity_id": "0ac7ad00-0000-4000-8000-00000000ad01"
+        }
+      ],
+      "source_event_ids": [
+        "05e0ad00-0000-4000-8000-00000000ad01"
+      ],
+      "standing": "crm_explicit",
+      "confidence": 1
+    },
+    {
+      "id": "0ed9ad00-0000-4000-8000-00000000ad03",
+      "source": "0b0ead00-0000-4000-8000-00000000ad21",
+      "target": "0c0fad00-0000-4000-8000-00000000ad01",
+      "rel_type": "OWNS",
+      "status": "active",
+      "evidence_refs": [
+        {
+          "activity_id": "0ac7ad00-0000-4000-8000-00000000ad01"
+        }
+      ],
+      "source_event_ids": [
+        "05e0ad00-0000-4000-8000-00000000ad01"
+      ],
+      "standing": "crm_explicit",
+      "confidence": 1
+    },
+    {
+      "id": "0ed9ad00-0000-4000-8000-00000000ad13",
+      "source": "0ac7ad00-0000-4000-8000-00000000ad01",
+      "target": "0c0fad00-0000-4000-8000-00000000ad01",
+      "rel_type": "ABOUT",
+      "status": "active",
+      "evidence_refs": [
+        {
+          "activity_id": "0ac7ad00-0000-4000-8000-00000000ad01"
+        }
+      ],
+      "source_event_ids": [
+        "05e0ad00-0000-4000-8000-00000000ad01"
+      ],
+      "standing": "crm_explicit",
+      "confidence": 1
+    },
+    {
+      "id": "0ed9ad00-0000-4000-8000-00000000ad16",
+      "source": "0ac7ad00-0000-4000-8000-00000000ad02",
+      "target": "0c0fad00-0000-4000-8000-00000000ad01",
+      "rel_type": "ABOUT",
+      "status": "active",
+      "evidence_refs": [
+        {
+          "activity_id": "0ac7ad00-0000-4000-8000-00000000ad02"
+        }
+      ],
+      "source_event_ids": [
+        "05e0ad00-0000-4000-8000-00000000ad02"
+      ],
+      "standing": "crm_explicit",
+      "confidence": 1
+    },
+    {
+      "id": "0ed9ad00-0000-4000-8000-00000000ad19",
+      "source": "0ac7ad00-0000-4000-8000-00000000ad03",
+      "target": "0c0fad00-0000-4000-8000-00000000ad01",
+      "rel_type": "ABOUT",
+      "status": "active",
+      "evidence_refs": [
+        {
+          "activity_id": "0ac7ad00-0000-4000-8000-00000000ad03"
+        }
+      ],
+      "source_event_ids": [
+        "05e0ad00-0000-4000-8000-00000000ad03"
+      ],
+      "standing": "crm_explicit",
+      "confidence": 1
+    },
+    {
+      "id": "0ed9ad00-0000-4000-8000-00000000ad1c",
+      "source": "0ac7ad00-0000-4000-8000-00000000ad04",
+      "target": "0c0fad00-0000-4000-8000-00000000ad01",
+      "rel_type": "ABOUT",
+      "status": "active",
+      "evidence_refs": [
+        {
+          "activity_id": "0ac7ad00-0000-4000-8000-00000000ad04"
+        }
+      ],
+      "source_event_ids": [
+        "05e0ad00-0000-4000-8000-00000000ad04"
+      ],
+      "standing": "first_party_record",
+      "confidence": 1
+    },
+    {
+      "id": "0ed9ad00-0000-4000-8000-00000000ad1d",
+      "source": "0ac7ad00-0000-4000-8000-00000000ad04",
+      "target": "0b0ead00-0000-4000-8000-00000000ad21",
+      "rel_type": "INVOLVES",
+      "status": "active",
+      "evidence_refs": [
+        {
+          "activity_id": "0ac7ad00-0000-4000-8000-00000000ad04"
+        }
+      ],
+      "source_event_ids": [
+        "05e0ad00-0000-4000-8000-00000000ad04"
+      ],
+      "standing": "first_party_record",
+      "confidence": 1
+    },
+    {
+      "id": "0ed9ad00-0000-4000-8000-00000000ad1e",
+      "source": "0ac7ad00-0000-4000-8000-00000000ad04",
+      "target": "0b0ead00-0000-4000-8000-00000000ad11",
+      "rel_type": "INVOLVES",
+      "status": "active",
+      "evidence_refs": [
+        {
+          "activity_id": "0ac7ad00-0000-4000-8000-00000000ad04"
+        }
+      ],
+      "source_event_ids": [
+        "05e0ad00-0000-4000-8000-00000000ad04"
+      ],
+      "standing": "first_party_record",
+      "confidence": 1
+    },
+    {
+      "id": "0ed9ad00-0000-4000-8000-00000000ad1f",
+      "source": "0ac7ad00-0000-4000-8000-00000000ad05",
+      "target": "0c0fad00-0000-4000-8000-00000000ad01",
+      "rel_type": "ABOUT",
+      "status": "active",
+      "evidence_refs": [
+        {
+          "activity_id": "0ac7ad00-0000-4000-8000-00000000ad05"
+        }
+      ],
+      "source_event_ids": [
+        "05e0ad00-0000-4000-8000-00000000ad05"
+      ],
+      "standing": "crm_explicit",
+      "confidence": 1
+    },
+    {
+      "id": "0ed9ad00-0000-4000-8000-00000000ad22",
+      "source": "0ac7ad00-0000-4000-8000-00000000ad06",
+      "target": "0c0fad00-0000-4000-8000-00000000ad01",
+      "rel_type": "ABOUT",
+      "status": "active",
+      "evidence_refs": [
+        {
+          "activity_id": "0ac7ad00-0000-4000-8000-00000000ad06"
+        }
+      ],
+      "source_event_ids": [
+        "05e0ad00-0000-4000-8000-00000000ad06"
+      ],
+      "standing": "first_party_record",
+      "confidence": 1
+    },
+    {
+      "id": "0ed9ad00-0000-4000-8000-00000000ad23",
+      "source": "0ac7ad00-0000-4000-8000-00000000ad06",
+      "target": "0b0ead00-0000-4000-8000-00000000ad11",
+      "rel_type": "INVOLVES",
+      "status": "active",
+      "evidence_refs": [
+        {
+          "activity_id": "0ac7ad00-0000-4000-8000-00000000ad06"
+        }
+      ],
+      "source_event_ids": [
+        "05e0ad00-0000-4000-8000-00000000ad06"
+      ],
+      "standing": "first_party_record",
+      "confidence": 1
+    },
+    {
+      "id": "0ed9ad00-0000-4000-8000-00000000ad24",
+      "source": "0ac7ad00-0000-4000-8000-00000000ad06",
+      "target": "0b0ead00-0000-4000-8000-00000000ad21",
+      "rel_type": "INVOLVES",
+      "status": "active",
+      "evidence_refs": [
+        {
+          "activity_id": "0ac7ad00-0000-4000-8000-00000000ad06"
+        }
+      ],
+      "source_event_ids": [
+        "05e0ad00-0000-4000-8000-00000000ad06"
+      ],
+      "standing": "first_party_record",
+      "confidence": 1
+    },
+    {
+      "id": "0ed9ad00-0000-4000-8000-00000000ad25",
+      "source": "0ac7ad00-0000-4000-8000-00000000ad07",
+      "target": "0c0fad00-0000-4000-8000-00000000ad01",
+      "rel_type": "ABOUT",
+      "status": "active",
+      "evidence_refs": [
+        {
+          "activity_id": "0ac7ad00-0000-4000-8000-00000000ad07"
+        }
+      ],
+      "source_event_ids": [
+        "05e0ad00-0000-4000-8000-00000000ad07"
+      ],
+      "standing": "crm_explicit",
+      "confidence": 1
+    },
+    {
+      "id": "0ed9ad00-0000-4000-8000-00000000ad28",
+      "source": "0ac7ad00-0000-4000-8000-00000000ad08",
+      "target": "0c0fad00-0000-4000-8000-00000000ad01",
+      "rel_type": "ABOUT",
+      "status": "active",
+      "evidence_refs": [
+        {
+          "activity_id": "0ac7ad00-0000-4000-8000-00000000ad08"
+        }
+      ],
+      "source_event_ids": [
+        "05e0ad00-0000-4000-8000-00000000ad08"
+      ],
+      "standing": "first_party_record",
+      "confidence": 1
+    },
+    {
+      "id": "0ed9ad00-0000-4000-8000-00000000ad29",
+      "source": "0ac7ad00-0000-4000-8000-00000000ad08",
+      "target": "0b0ead00-0000-4000-8000-00000000ad21",
+      "rel_type": "INVOLVES",
+      "status": "active",
+      "evidence_refs": [
+        {
+          "activity_id": "0ac7ad00-0000-4000-8000-00000000ad08"
+        }
+      ],
+      "source_event_ids": [
+        "05e0ad00-0000-4000-8000-00000000ad08"
+      ],
+      "standing": "first_party_record",
+      "confidence": 1
+    },
+    {
+      "id": "0ed9ad00-0000-4000-8000-00000000ad2a",
+      "source": "0ac7ad00-0000-4000-8000-00000000ad08",
+      "target": "0b0ead00-0000-4000-8000-00000000ad11",
+      "rel_type": "INVOLVES",
+      "status": "active",
+      "evidence_refs": [
+        {
+          "activity_id": "0ac7ad00-0000-4000-8000-00000000ad08"
+        }
+      ],
+      "source_event_ids": [
+        "05e0ad00-0000-4000-8000-00000000ad08"
+      ],
+      "standing": "first_party_record",
+      "confidence": 1
+    },
+    {
+      "id": "0ed9ad00-0000-4000-8000-00000000ad2b",
+      "source": "0ac7ad00-0000-4000-8000-00000000ad09",
+      "target": "0c0fad00-0000-4000-8000-00000000ad01",
+      "rel_type": "ABOUT",
+      "status": "active",
+      "evidence_refs": [
+        {
+          "activity_id": "0ac7ad00-0000-4000-8000-00000000ad09"
+        }
+      ],
+      "source_event_ids": [
+        "05e0ad00-0000-4000-8000-00000000ad09"
+      ],
+      "standing": "first_party_record",
+      "confidence": 1
+    },
+    {
+      "id": "0ed9ad00-0000-4000-8000-00000000ad2c",
+      "source": "0ac7ad00-0000-4000-8000-00000000ad09",
+      "target": "0b0ead00-0000-4000-8000-00000000ad21",
+      "rel_type": "INVOLVES",
+      "status": "active",
+      "evidence_refs": [
+        {
+          "activity_id": "0ac7ad00-0000-4000-8000-00000000ad09"
+        }
+      ],
+      "source_event_ids": [
+        "05e0ad00-0000-4000-8000-00000000ad09"
+      ],
+      "standing": "first_party_record",
+      "confidence": 1
+    },
+    {
+      "id": "0ed9ad00-0000-4000-8000-00000000ad2d",
+      "source": "0ac7ad00-0000-4000-8000-00000000ad09",
+      "target": "0b0ead00-0000-4000-8000-00000000ad11",
+      "rel_type": "INVOLVES",
+      "status": "active",
+      "evidence_refs": [
+        {
+          "activity_id": "0ac7ad00-0000-4000-8000-00000000ad09"
+        }
+      ],
+      "source_event_ids": [
+        "05e0ad00-0000-4000-8000-00000000ad09"
+      ],
+      "standing": "first_party_record",
+      "confidence": 1
+    },
+    {
+      "id": "0ed9ad00-0000-4000-8000-00000000ad2e",
+      "source": "0ac7ad00-0000-4000-8000-00000000ad0a",
+      "target": "0c0fad00-0000-4000-8000-00000000ad01",
+      "rel_type": "ABOUT",
+      "status": "active",
+      "evidence_refs": [
+        {
+          "activity_id": "0ac7ad00-0000-4000-8000-00000000ad0a"
+        }
+      ],
+      "source_event_ids": [
+        "05e0ad00-0000-4000-8000-00000000ad0a"
+      ],
+      "standing": "first_party_record",
+      "confidence": 1
+    },
+    {
+      "id": "0ed9ad00-0000-4000-8000-00000000ad2f",
+      "source": "0ac7ad00-0000-4000-8000-00000000ad0a",
+      "target": "0b0ead00-0000-4000-8000-00000000ad21",
+      "rel_type": "INVOLVES",
+      "status": "active",
+      "evidence_refs": [
+        {
+          "activity_id": "0ac7ad00-0000-4000-8000-00000000ad0a"
+        }
+      ],
+      "source_event_ids": [
+        "05e0ad00-0000-4000-8000-00000000ad0a"
+      ],
+      "standing": "first_party_record",
+      "confidence": 1
+    },
+    {
+      "id": "0ed9ad00-0000-4000-8000-00000000ad30",
+      "source": "0ac7ad00-0000-4000-8000-00000000ad0a",
+      "target": "0b0ead00-0000-4000-8000-00000000ad11",
+      "rel_type": "INVOLVES",
+      "status": "active",
+      "evidence_refs": [
+        {
+          "activity_id": "0ac7ad00-0000-4000-8000-00000000ad0a"
+        }
+      ],
+      "source_event_ids": [
+        "05e0ad00-0000-4000-8000-00000000ad0a"
+      ],
+      "standing": "first_party_record",
+      "confidence": 1
+    },
+    {
+      "id": "0ed9ad00-0000-4000-8000-00000000ad31",
+      "source": "0ac7ad00-0000-4000-8000-00000000ad0b",
+      "target": "0c0fad00-0000-4000-8000-00000000ad01",
+      "rel_type": "ABOUT",
+      "status": "active",
+      "evidence_refs": [
+        {
+          "activity_id": "0ac7ad00-0000-4000-8000-00000000ad0b"
+        }
+      ],
+      "source_event_ids": [
+        "05e0ad00-0000-4000-8000-00000000ad0b"
+      ],
+      "standing": "first_party_record",
+      "confidence": 1
+    },
+    {
+      "id": "0ed9ad00-0000-4000-8000-00000000ad32",
+      "source": "0ac7ad00-0000-4000-8000-00000000ad0b",
+      "target": "0b0ead00-0000-4000-8000-00000000ad11",
+      "rel_type": "INVOLVES",
+      "status": "active",
+      "evidence_refs": [
+        {
+          "activity_id": "0ac7ad00-0000-4000-8000-00000000ad0b"
+        }
+      ],
+      "source_event_ids": [
+        "05e0ad00-0000-4000-8000-00000000ad0b"
+      ],
+      "standing": "first_party_record",
+      "confidence": 1
+    },
+    {
+      "id": "0ed9ad00-0000-4000-8000-00000000ad33",
+      "source": "0ac7ad00-0000-4000-8000-00000000ad0b",
+      "target": "0b0ead00-0000-4000-8000-00000000ad21",
+      "rel_type": "INVOLVES",
+      "status": "active",
+      "evidence_refs": [
+        {
+          "activity_id": "0ac7ad00-0000-4000-8000-00000000ad0b"
+        }
+      ],
+      "source_event_ids": [
+        "05e0ad00-0000-4000-8000-00000000ad0b"
+      ],
+      "standing": "first_party_record",
+      "confidence": 1
+    },
+    {
+      "id": "0ed9ad00-0000-4000-8000-00000000ad34",
+      "source": "0ac7ad00-0000-4000-8000-00000000ad0c",
+      "target": "0c0fad00-0000-4000-8000-00000000ad01",
+      "rel_type": "ABOUT",
+      "status": "active",
+      "evidence_refs": [
+        {
+          "activity_id": "0ac7ad00-0000-4000-8000-00000000ad0c"
+        }
+      ],
+      "source_event_ids": [
+        "05e0ad00-0000-4000-8000-00000000ad0c"
+      ],
+      "standing": "first_party_record",
+      "confidence": 1
+    },
+    {
+      "id": "0ed9ad00-0000-4000-8000-00000000ad35",
+      "source": "0ac7ad00-0000-4000-8000-00000000ad0c",
+      "target": "0b0ead00-0000-4000-8000-00000000ad11",
+      "rel_type": "INVOLVES",
+      "status": "active",
+      "evidence_refs": [
+        {
+          "activity_id": "0ac7ad00-0000-4000-8000-00000000ad0c"
+        }
+      ],
+      "source_event_ids": [
+        "05e0ad00-0000-4000-8000-00000000ad0c"
+      ],
+      "standing": "first_party_record",
+      "confidence": 1
+    },
+    {
+      "id": "0ed9ad00-0000-4000-8000-00000000ad36",
+      "source": "0ac7ad00-0000-4000-8000-00000000ad0c",
+      "target": "0b0ead00-0000-4000-8000-00000000ad21",
+      "rel_type": "INVOLVES",
+      "status": "active",
+      "evidence_refs": [
+        {
+          "activity_id": "0ac7ad00-0000-4000-8000-00000000ad0c"
+        }
+      ],
+      "source_event_ids": [
+        "05e0ad00-0000-4000-8000-00000000ad0c"
+      ],
+      "standing": "first_party_record",
+      "confidence": 1
+    },
+    {
+      "id": "claim:0c1aad00-0000-4000-8000-00000000ad21:ABOUT_ACCOUNT",
+      "source": "0c1aad00-0000-4000-8000-00000000ad21",
+      "target": "0a0cad00-0000-4000-8000-00000000ad01",
+      "rel_type": "ABOUT_ACCOUNT",
+      "status": "active",
+      "evidence_refs": [
+        {
+          "activity_id": "0ac7ad00-0000-4000-8000-00000000ad01"
+        }
+      ],
+      "source_event_ids": [
+        "05e0ad00-0000-4000-8000-00000000ad01"
+      ],
+      "standing": "crm_explicit",
+      "confidence": 1
+    },
+    {
+      "id": "claim:0c1aad00-0000-4000-8000-00000000ad21:ABOUT_OPPORTUNITY",
+      "source": "0c1aad00-0000-4000-8000-00000000ad21",
+      "target": "0c0fad00-0000-4000-8000-00000000ad01",
+      "rel_type": "ABOUT_OPPORTUNITY",
+      "status": "active",
+      "evidence_refs": [
+        {
+          "activity_id": "0ac7ad00-0000-4000-8000-00000000ad01"
+        }
+      ],
+      "source_event_ids": [
+        "05e0ad00-0000-4000-8000-00000000ad01"
+      ],
+      "standing": "crm_explicit",
+      "confidence": 1
+    },
+    {
+      "id": "claim:0c1aad00-0000-4000-8000-00000000ad21:SUPPORTED_BY",
+      "source": "0c1aad00-0000-4000-8000-00000000ad21",
+      "target": "0ac7ad00-0000-4000-8000-00000000ad01",
+      "rel_type": "SUPPORTED_BY",
+      "status": "active",
+      "evidence_refs": [
+        {
+          "activity_id": "0ac7ad00-0000-4000-8000-00000000ad01"
+        }
+      ],
+      "source_event_ids": [
+        "05e0ad00-0000-4000-8000-00000000ad01"
+      ],
+      "standing": "crm_explicit",
+      "confidence": 1
+    },
+    {
+      "id": "claim:0c1aad00-0000-4000-8000-00000000ad22:ABOUT_ACCOUNT",
+      "source": "0c1aad00-0000-4000-8000-00000000ad22",
+      "target": "0a0cad00-0000-4000-8000-00000000ad01",
+      "rel_type": "ABOUT_ACCOUNT",
+      "status": "active",
+      "evidence_refs": [
+        {
+          "activity_id": "0ac7ad00-0000-4000-8000-00000000ad0b"
+        }
+      ],
+      "source_event_ids": [
+        "05e0ad00-0000-4000-8000-00000000ad0b"
+      ],
+      "standing": "first_party_ai",
+      "confidence": 0.8
+    },
+    {
+      "id": "claim:0c1aad00-0000-4000-8000-00000000ad22:ABOUT_OPPORTUNITY",
+      "source": "0c1aad00-0000-4000-8000-00000000ad22",
+      "target": "0c0fad00-0000-4000-8000-00000000ad01",
+      "rel_type": "ABOUT_OPPORTUNITY",
+      "status": "active",
+      "evidence_refs": [
+        {
+          "activity_id": "0ac7ad00-0000-4000-8000-00000000ad0b"
+        }
+      ],
+      "source_event_ids": [
+        "05e0ad00-0000-4000-8000-00000000ad0b"
+      ],
+      "standing": "first_party_ai",
+      "confidence": 0.8
+    },
+    {
+      "id": "claim:0c1aad00-0000-4000-8000-00000000ad22:SUPPORTED_BY",
+      "source": "0c1aad00-0000-4000-8000-00000000ad22",
+      "target": "0ac7ad00-0000-4000-8000-00000000ad0b",
+      "rel_type": "SUPPORTED_BY",
+      "status": "active",
+      "evidence_refs": [
+        {
+          "activity_id": "0ac7ad00-0000-4000-8000-00000000ad0b"
+        }
+      ],
+      "source_event_ids": [
+        "05e0ad00-0000-4000-8000-00000000ad0b"
+      ],
+      "standing": "first_party_ai",
+      "confidence": 0.8
+    },
+    {
+      "id": "claim:0c1aad00-0000-4000-8000-00000000ad23:ABOUT_ACCOUNT",
+      "source": "0c1aad00-0000-4000-8000-00000000ad23",
+      "target": "0a0cad00-0000-4000-8000-00000000ad01",
+      "rel_type": "ABOUT_ACCOUNT",
+      "status": "active",
+      "evidence_refs": [
+        {
+          "activity_id": "0ac7ad00-0000-4000-8000-00000000ad0b"
+        }
+      ],
+      "source_event_ids": [
+        "05e0ad00-0000-4000-8000-00000000ad0b"
+      ],
+      "standing": "first_party_ai",
+      "confidence": 0.8
+    },
+    {
+      "id": "claim:0c1aad00-0000-4000-8000-00000000ad23:ABOUT_OPPORTUNITY",
+      "source": "0c1aad00-0000-4000-8000-00000000ad23",
+      "target": "0c0fad00-0000-4000-8000-00000000ad01",
+      "rel_type": "ABOUT_OPPORTUNITY",
+      "status": "active",
+      "evidence_refs": [
+        {
+          "activity_id": "0ac7ad00-0000-4000-8000-00000000ad0b"
+        }
+      ],
+      "source_event_ids": [
+        "05e0ad00-0000-4000-8000-00000000ad0b"
+      ],
+      "standing": "first_party_ai",
+      "confidence": 0.8
+    },
+    {
+      "id": "claim:0c1aad00-0000-4000-8000-00000000ad23:SUPPORTED_BY",
+      "source": "0c1aad00-0000-4000-8000-00000000ad23",
+      "target": "0ac7ad00-0000-4000-8000-00000000ad0b",
+      "rel_type": "SUPPORTED_BY",
+      "status": "active",
+      "evidence_refs": [
+        {
+          "activity_id": "0ac7ad00-0000-4000-8000-00000000ad0b"
+        }
+      ],
+      "source_event_ids": [
+        "05e0ad00-0000-4000-8000-00000000ad0b"
+      ],
+      "standing": "first_party_ai",
+      "confidence": 0.8
+    },
+    {
+      "id": "claim:0c1aad00-0000-4000-8000-00000000ad24:ABOUT_ACCOUNT",
+      "source": "0c1aad00-0000-4000-8000-00000000ad24",
+      "target": "0a0cad00-0000-4000-8000-00000000ad01",
+      "rel_type": "ABOUT_ACCOUNT",
+      "status": "active",
+      "evidence_refs": [
+        {
+          "activity_id": "0ac7ad00-0000-4000-8000-00000000ad0b"
+        }
+      ],
+      "source_event_ids": [
+        "05e0ad00-0000-4000-8000-00000000ad0b"
+      ],
+      "standing": "first_party_ai",
+      "confidence": 0.8
+    },
+    {
+      "id": "claim:0c1aad00-0000-4000-8000-00000000ad24:ABOUT_OPPORTUNITY",
+      "source": "0c1aad00-0000-4000-8000-00000000ad24",
+      "target": "0c0fad00-0000-4000-8000-00000000ad01",
+      "rel_type": "ABOUT_OPPORTUNITY",
+      "status": "active",
+      "evidence_refs": [
+        {
+          "activity_id": "0ac7ad00-0000-4000-8000-00000000ad0b"
+        }
+      ],
+      "source_event_ids": [
+        "05e0ad00-0000-4000-8000-00000000ad0b"
+      ],
+      "standing": "first_party_ai",
+      "confidence": 0.8
+    },
+    {
+      "id": "claim:0c1aad00-0000-4000-8000-00000000ad24:MADE_IN",
+      "source": "0c1aad00-0000-4000-8000-00000000ad24",
+      "target": "0ac7ad00-0000-4000-8000-00000000ad0b",
+      "rel_type": "MADE_IN",
+      "status": "active",
+      "evidence_refs": [
+        {
+          "activity_id": "0ac7ad00-0000-4000-8000-00000000ad0b"
+        }
+      ],
+      "source_event_ids": [
+        "05e0ad00-0000-4000-8000-00000000ad0b"
+      ],
+      "standing": "first_party_ai",
+      "confidence": 0.8
+    },
+    {
+      "id": "claim:0c1aad00-0000-4000-8000-00000000ad24:MADE_BY",
+      "source": "0c1aad00-0000-4000-8000-00000000ad24",
+      "target": "0b0ead00-0000-4000-8000-00000000ad11",
+      "rel_type": "MADE_BY",
+      "status": "active",
+      "evidence_refs": [
+        {
+          "activity_id": "0ac7ad00-0000-4000-8000-00000000ad0b"
+        }
+      ],
+      "source_event_ids": [
+        "05e0ad00-0000-4000-8000-00000000ad0b"
+      ],
+      "standing": "first_party_ai",
+      "confidence": 0.8
+    },
+    {
+      "id": "claim:0c1aad00-0000-4000-8000-00000000ad25:ABOUT_ACCOUNT",
+      "source": "0c1aad00-0000-4000-8000-00000000ad25",
+      "target": "0a0cad00-0000-4000-8000-00000000ad01",
+      "rel_type": "ABOUT_ACCOUNT",
+      "status": "active",
+      "evidence_refs": [
+        {
+          "activity_id": "0ac7ad00-0000-4000-8000-00000000ad0c"
+        }
+      ],
+      "source_event_ids": [
+        "05e0ad00-0000-4000-8000-00000000ad0c"
+      ],
+      "standing": "first_party_ai",
+      "confidence": 0.8
+    },
+    {
+      "id": "claim:0c1aad00-0000-4000-8000-00000000ad25:ABOUT_OPPORTUNITY",
+      "source": "0c1aad00-0000-4000-8000-00000000ad25",
+      "target": "0c0fad00-0000-4000-8000-00000000ad01",
+      "rel_type": "ABOUT_OPPORTUNITY",
+      "status": "active",
+      "evidence_refs": [
+        {
+          "activity_id": "0ac7ad00-0000-4000-8000-00000000ad0c"
+        }
+      ],
+      "source_event_ids": [
+        "05e0ad00-0000-4000-8000-00000000ad0c"
+      ],
+      "standing": "first_party_ai",
+      "confidence": 0.8
+    },
+    {
+      "id": "claim:0c1aad00-0000-4000-8000-00000000ad25:SUPPORTED_BY",
+      "source": "0c1aad00-0000-4000-8000-00000000ad25",
+      "target": "0ac7ad00-0000-4000-8000-00000000ad0c",
+      "rel_type": "SUPPORTED_BY",
+      "status": "active",
+      "evidence_refs": [
+        {
+          "activity_id": "0ac7ad00-0000-4000-8000-00000000ad0c"
+        }
+      ],
+      "source_event_ids": [
+        "05e0ad00-0000-4000-8000-00000000ad0c"
+      ],
+      "standing": "first_party_ai",
+      "confidence": 0.8
+    },
+    {
+      "id": "claim:0c1aad00-0000-4000-8000-00000000ad26:ABOUT_ACCOUNT",
+      "source": "0c1aad00-0000-4000-8000-00000000ad26",
+      "target": "0a0cad00-0000-4000-8000-00000000ad01",
+      "rel_type": "ABOUT_ACCOUNT",
+      "status": "active",
+      "evidence_refs": [
+        {
+          "activity_id": "0ac7ad00-0000-4000-8000-00000000ad0c"
+        }
+      ],
+      "source_event_ids": [
+        "05e0ad00-0000-4000-8000-00000000ad0c"
+      ],
+      "standing": "first_party_ai",
+      "confidence": 0.8
+    },
+    {
+      "id": "claim:0c1aad00-0000-4000-8000-00000000ad26:ABOUT_OPPORTUNITY",
+      "source": "0c1aad00-0000-4000-8000-00000000ad26",
+      "target": "0c0fad00-0000-4000-8000-00000000ad01",
+      "rel_type": "ABOUT_OPPORTUNITY",
+      "status": "active",
+      "evidence_refs": [
+        {
+          "activity_id": "0ac7ad00-0000-4000-8000-00000000ad0c"
+        }
+      ],
+      "source_event_ids": [
+        "05e0ad00-0000-4000-8000-00000000ad0c"
+      ],
+      "standing": "first_party_ai",
+      "confidence": 0.8
+    },
+    {
+      "id": "claim:0c1aad00-0000-4000-8000-00000000ad26:SUPPORTED_BY",
+      "source": "0c1aad00-0000-4000-8000-00000000ad26",
+      "target": "0ac7ad00-0000-4000-8000-00000000ad0c",
+      "rel_type": "SUPPORTED_BY",
+      "status": "active",
+      "evidence_refs": [
+        {
+          "activity_id": "0ac7ad00-0000-4000-8000-00000000ad0c"
+        }
+      ],
+      "source_event_ids": [
+        "05e0ad00-0000-4000-8000-00000000ad0c"
+      ],
+      "standing": "first_party_ai",
+      "confidence": 0.8
+    },
+    {
+      "id": "claim:0c1aad00-0000-4000-8000-00000000ad2b:ABOUT_ACCOUNT",
+      "source": "0c1aad00-0000-4000-8000-00000000ad2b",
+      "target": "0a0cad00-0000-4000-8000-00000000ad01",
+      "rel_type": "ABOUT_ACCOUNT",
+      "status": "active",
+      "evidence_refs": [
+        {
+          "activity_id": "0ac7ad00-0000-4000-8000-00000000ad04"
+        }
+      ],
+      "source_event_ids": [
+        "05e0ad00-0000-4000-8000-00000000ad04"
+      ],
+      "standing": "first_party_ai",
+      "confidence": 0.8
+    },
+    {
+      "id": "claim:0c1aad00-0000-4000-8000-00000000ad2b:ABOUT_OPPORTUNITY",
+      "source": "0c1aad00-0000-4000-8000-00000000ad2b",
+      "target": "0c0fad00-0000-4000-8000-00000000ad01",
+      "rel_type": "ABOUT_OPPORTUNITY",
+      "status": "active",
+      "evidence_refs": [
+        {
+          "activity_id": "0ac7ad00-0000-4000-8000-00000000ad04"
+        }
+      ],
+      "source_event_ids": [
+        "05e0ad00-0000-4000-8000-00000000ad04"
+      ],
+      "standing": "first_party_ai",
+      "confidence": 0.8
+    },
+    {
+      "id": "claim:0c1aad00-0000-4000-8000-00000000ad2b:SUPPORTED_BY",
+      "source": "0c1aad00-0000-4000-8000-00000000ad2b",
+      "target": "0ac7ad00-0000-4000-8000-00000000ad04",
+      "rel_type": "SUPPORTED_BY",
+      "status": "active",
+      "evidence_refs": [
+        {
+          "activity_id": "0ac7ad00-0000-4000-8000-00000000ad04"
+        }
+      ],
+      "source_event_ids": [
+        "05e0ad00-0000-4000-8000-00000000ad04"
+      ],
+      "standing": "first_party_ai",
+      "confidence": 0.8
+    }
+  ],
+  "sections": {
+    "account": [
+      "0a0cad00-0000-4000-8000-00000000ad01"
+    ],
+    "opportunities": [
+      "0c0fad00-0000-4000-8000-00000000ad01"
+    ],
+    "stakeholders": [
+      "0b0ead00-0000-4000-8000-00000000ad11",
+      "0b0ead00-0000-4000-8000-00000000ad21"
+    ],
+    "activities": [
+      "0ac7ad00-0000-4000-8000-00000000ad0c",
+      "0ac7ad00-0000-4000-8000-00000000ad0b",
+      "0ac7ad00-0000-4000-8000-00000000ad0a",
+      "0ac7ad00-0000-4000-8000-00000000ad09",
+      "0ac7ad00-0000-4000-8000-00000000ad08",
+      "0ac7ad00-0000-4000-8000-00000000ad07",
+      "0ac7ad00-0000-4000-8000-00000000ad06",
+      "0ac7ad00-0000-4000-8000-00000000ad05",
+      "0ac7ad00-0000-4000-8000-00000000ad04",
+      "0ac7ad00-0000-4000-8000-00000000ad03",
+      "0ac7ad00-0000-4000-8000-00000000ad02",
+      "0ac7ad00-0000-4000-8000-00000000ad01"
+    ],
+    "claims": [
+      "0c1aad00-0000-4000-8000-00000000ad2b",
+      "0c1aad00-0000-4000-8000-00000000ad26",
+      "0c1aad00-0000-4000-8000-00000000ad25",
+      "0c1aad00-0000-4000-8000-00000000ad23",
+      "0c1aad00-0000-4000-8000-00000000ad22",
+      "0c1aad00-0000-4000-8000-00000000ad21"
+    ],
+    "commitments": [
+      "0c1aad00-0000-4000-8000-00000000ad24"
+    ]
+  },
+  "truncated": false,
+  "withheld": false,
+  "projection": {
+    "complete": true,
+    "projected_at": null
+  }
+}

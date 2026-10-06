@@ -1,0 +1,88 @@
+{
+  "id": "0c17c000-0000-4000-8000-000000000017",
+  "key": "K17",
+  "title": "Keep the active champion involved when a new stakeholder enters during expansion",
+  "situation_signature": [
+    {
+      "field": "motion",
+      "op": "eq",
+      "value": "expansion"
+    },
+    {
+      "field": "champion_status",
+      "op": "eq",
+      "value": "active"
+    },
+    {
+      "field": "diff.new_stakeholder_entered",
+      "op": "exists"
+    }
+  ],
+  "guidance": {
+    "summary": "Introduce the new stakeholder with the champion still in the loop; do not create a direct handoff.",
+    "do": [
+      "cc or include the champion in the next interaction",
+      "address the new stakeholder's specific request"
+    ],
+    "dont": [
+      "start a separate thread that drops the champion",
+      "escalate the ask while the new stakeholder is still reviewing"
+    ]
+  },
+  "status": "supported",
+  "counts": {
+    "decisions": 8,
+    "positive_reactions": 6,
+    "negative_reactions": 1,
+    "outcomes_advanced": 3,
+    "counterexamples": 1
+  },
+  "supporting_decision_episode_ids": [
+    "0e9e0000-0000-4000-8000-000000000a01"
+  ],
+  "counterexamples": [
+    {
+      "decision_episode_id": "0e9e0000-0000-4000-8000-000000000a01",
+      "note": "Champion was leaving the company; direct handoff worked."
+    }
+  ],
+  "exceptions": [
+    {
+      "description": "Champion explicitly delegated ownership",
+      "conditions": [
+        {
+          "field": "champion_status",
+          "op": "eq",
+          "value": "delegated"
+        }
+      ]
+    },
+    {
+      "description": "Champion departed",
+      "conditions": [
+        {
+          "field": "champion_status",
+          "op": "in",
+          "value": [
+            "departed",
+            "inactive"
+          ]
+        }
+      ]
+    }
+  ],
+  "evidence_classes": [
+    "deal_data",
+    "methodology"
+  ],
+  "used_by_evaluators": [
+    "champion_continuity:v1"
+  ],
+  "provenance": {
+    "created_from": "seed_history",
+    "source_decision_episode_id": null,
+    "note": "Seeded history for the demo"
+  },
+  "created_at": "2026-08-01T00:00:00Z",
+  "last_validated_at": "2026-09-29T16:30:00Z"
+}

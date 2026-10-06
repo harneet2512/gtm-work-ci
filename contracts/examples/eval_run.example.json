@@ -1,0 +1,108 @@
+{
+  "id": "0f0a0000-0000-4000-8000-000000000601",
+  "account_id": "0a0c0000-0000-4000-8000-000000000001",
+  "account_name": "Acme Corp",
+  "decision_episode_id": "0e9e0000-0000-4000-8000-000000000a01",
+  "run_status": "awaiting_human",
+  "evaluated_at": "2026-09-29T15:21:00Z",
+  "result_count": 2,
+  "counts": {
+    "pass": 1,
+    "warn": 1,
+    "fail": 0,
+    "unknown": 0,
+    "blocking_fail": 0,
+    "total": 2
+  },
+  "areas": [
+    {
+      "area": "intelligence",
+      "label": "Intelligence",
+      "order": 1,
+      "measured": false,
+      "counts": {
+        "pass": 0,
+        "warn": 0,
+        "fail": 0,
+        "unknown": 0,
+        "blocking_fail": 0,
+        "total": 0
+      },
+      "delta": {
+        "pass": 0,
+        "warn": 0,
+        "fail": 0,
+        "unknown": 0,
+        "blocking_fail": 0,
+        "total": 0
+      }
+    },
+    {
+      "area": "decision_learning",
+      "label": "Decision & Learning",
+      "order": 2,
+      "measured": true,
+      "counts": {
+        "pass": 1,
+        "warn": 0,
+        "fail": 0,
+        "unknown": 0,
+        "blocking_fail": 0,
+        "total": 1
+      },
+      "delta": {
+        "pass": 1,
+        "warn": 0,
+        "fail": -1,
+        "unknown": 0,
+        "blocking_fail": 0,
+        "total": 0
+      }
+    },
+    {
+      "area": "cliff_experience",
+      "label": "Cliff / Experience",
+      "order": 3,
+      "measured": true,
+      "counts": {
+        "pass": 0,
+        "warn": 1,
+        "fail": 0,
+        "unknown": 0,
+        "blocking_fail": 0,
+        "total": 1
+      },
+      "delta": {
+        "pass": 0,
+        "warn": 1,
+        "fail": 0,
+        "unknown": 0,
+        "blocking_fail": 0,
+        "total": 1
+      }
+    },
+    {
+      "area": "system",
+      "label": "System",
+      "order": 4,
+      "measured": false,
+      "counts": {
+        "pass": 0,
+        "warn": 0,
+        "fail": 0,
+        "unknown": 0,
+        "blocking_fail": 0,
+        "total": 0
+      },
+      "delta": {
+        "pass": 0,
+        "warn": 0,
+        "fail": 0,
+        "unknown": 0,
+        "blocking_fail": 0,
+        "total": 0
+      }
+    }
+  ],
+  "previous_eval_run_id": "0f0a0000-0000-4000-8000-000000000600"
+}

@@ -1,0 +1,29 @@
+{
+  "id": "0c1a0000-0000-4000-8000-000000000f01",
+  "operation": "STRENGTHEN",
+  "knowledge_id": "0c17c000-0000-4000-8000-000000000017",
+  "knowledge_key": "K17",
+  "title": "Keep the active champion involved when a new stakeholder enters during expansion",
+  "scope": "reusable_candidate",
+  "preconditions": [
+    {
+      "field": "relationship_state",
+      "op": "eq",
+      "value": "EXPANSION"
+    }
+  ],
+  "applicability_conditions": [],
+  "exceptions": [],
+  "evidence_episode_id": "0e9e0000-0000-4000-8000-000000000a01",
+  "evidence": {
+    "kind": "decision_episode",
+    "ref_id": "0e9e0000-0000-4000-8000-000000000a01",
+    "note": null
+  },
+  "human_verdict": "confirmed",
+  "human_confirmed": true,
+  "version": 2,
+  "status": "provisional",
+  "status_before": "provisional",
+  "occurred_at": "2026-09-29T16:11:00Z"
+}
