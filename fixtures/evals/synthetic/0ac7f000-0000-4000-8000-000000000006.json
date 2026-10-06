@@ -1,0 +1,22 @@
+{
+  "source_system": "email",
+  "source_object_id": "<syn-northstar-006@mail.northstar.health>",
+  "source_event_key": "received",
+  "occurred_at": "2026-09-25T13:00:00Z",
+  "connector": "gmail",
+  "connector_version": "0.1.0",
+  "payload": {
+    "kind": "email",
+    "direction": "inbound",
+    "message_id": "<syn-northstar-006@mail.northstar.health>",
+    "thread_id": "thr-northstar-procurement",
+    "in_reply_to": null,
+    "from": {"email": "it.procurement@northstar.health", "name": "it.procurement@northstar.health"},
+    "to": [{"email": "dana@vendor.example", "name": "Dana Kim"}],
+    "cc": [],
+    "date": "2026-09-25T13:00:00Z",
+    "subject": "Relay clinic rollout - order form",
+    "body_text": "Hello, please send the final order form and pricing for the Relay clinic rollout so we can process it. Thanks, IT Procurement",
+    "crm_opportunity_ref": "opp:NS-2-EXP"
+  }
+}

@@ -1,0 +1,332 @@
+{
+ "id": "cr_d8_k101_cost_answered_in_writing_with_slots",
+ "origin": "crmarena",
+ "case_type": "applicable_knowledge",
+ "title": "K101 applies (an open cost question) and the draft follows it: written answer first, call afterwards",
+ "should_pass": true,
+ "difficulty": "medium",
+ "slice_tags": {
+  "account": "001Wt00000PFt7TIAT",
+  "origin": "crmarena",
+  "motion": "unknown",
+  "stage": "unknown",
+  "champion_status": "active",
+  "economic_buyer": "unknown",
+  "risk": "unknown",
+  "candidate": "good",
+  "expected_action": "send_email",
+  "extra": [
+   "knowledge_followed",
+   "open_cost_question",
+   "task_trigger"
+  ]
+ },
+ "based_on": {
+  "kind": "crmarena_moment",
+  "account_id": "001Wt00000PFt7TIAT",
+  "deal_id": "006Wt000007BBDrIAO",
+  "trigger_kind": "task_due",
+  "decision_at": "2023-12-05T09:00:00Z",
+  "cutoff": "2023-11-01",
+  "deal_group": "current",
+  "events_before_decision": 10
+ },
+ "source": {
+  "dataset": "CRMArena-Pro B2B Salesforce org (Salesforce AI Research)",
+  "licence": "CC BY-NC 4.0 (non-commercial use only)",
+  "attribution": "Salesforce AI Research, CRMArena-Pro (https://github.com/SalesforceAIResearch/CRMArena, LICENSE.txt); records selected and excerpted, nothing edited",
+  "snapshot_manifest_sha256": "8fbda45c15d1806dc4c37d5230a20ac24d6619ef36a88c0efddb344792c89f03",
+  "generator": "bench/evals/crmarena_gold v1"
+ },
+ "context": {
+  "now": "2023-12-05T09:00:00Z",
+  "state": {
+   "account_id": "dfca3aae-f428-5841-adb5-c18a03ab9ce7",
+   "account_name": "TerraForm Engineering",
+   "opportunity_id": "92726d95-58af-56dd-9146-1fa3535266a1",
+   "fields": {
+    "stage": "unknown",
+    "health": "unknown",
+    "motion": "unknown",
+    "champion": "4ce8c368-8263-552c-a244-a7c903a7e24e",
+    "champion_status": "active",
+    "economic_buyer": "unknown",
+    "relationship_risk": "unknown",
+    "decision_process": "unknown: no approver, timeline or review step is stated",
+    "objections": [
+     {
+      "text": "Wants to know how frequently AI Cirku-Tech updates occur and whether they come at any additional cost",
+      "status": "open"
+     }
+    ],
+    "current_commitments": [
+     {
+      "text": "Us: answer the update-frequency and additional-cost question (asked 2023-11-29)",
+      "status": "open"
+     },
+     {
+      "text": "Us: send client testimonials (promised 2023-11-29 17:30)",
+      "status": "open"
+     },
+     {
+      "text": "Customer asked to arrange a time 'next week' (2023-11-29)",
+      "status": "open"
+     }
+    ],
+    "next_milestone": "A meeting 'next week', asked for by the customer on 2023-11-29"
+   },
+   "buying_group": [
+    {
+     "person_id": "4ce8c368-8263-552c-a244-a7c903a7e24e",
+     "display_name": "Samuel Okafor",
+     "title": "Security Engineer (champion role inferred, not recorded)",
+     "roles": [
+      "champion"
+     ],
+     "status": "active",
+     "delegated_to_person_id": null,
+     "last_engaged_at": "2023-11-29T16:30:00Z",
+     "evidence_refs": [
+      {
+       "activity_id": "d397c73f-1edb-505c-b3af-1b4d7949ac21",
+       "occurred_at": "2023-11-29T16:30:00Z"
+      }
+     ]
+    }
+   ],
+   "coverage_gaps": [
+    "economic_buyer"
+   ]
+  },
+  "recent_changes": {
+   "summary": "Six days after Samuel's questions the rep's demo task is due.",
+   "material_diff_fields": [
+    "objections",
+    "current_commitments"
+   ],
+   "signals": []
+  },
+  "trigger": {
+   "activity_id": "34d7d260-a533-595b-9b7a-bfcf4f43f2ea",
+   "activity_type": "CRMTaskLogged",
+   "occurred_at": "2023-12-05T00:00:00Z",
+   "actor_person_id": null,
+   "event_file": "crmarena:Task:00TWt000002z44CMAQ",
+   "synthetic": false,
+   "text": "Set up a demonstration of EcoPCB Creator and OptiPower Manager's newest features to showcase value to TerraForm.",
+   "subject": "Organize product demo",
+   "date_semantics": "task due date"
+  },
+  "supporting_activities": [
+   {
+    "activity_id": "f35fac04-ed28-5e50-bd9c-c3a9f7597276",
+    "activity_type": "EmailReply",
+    "occurred_at": "2023-11-29T16:00:00Z",
+    "actor_person_id": "4ce8c368-8263-552c-a244-a7c903a7e24e",
+    "event_file": "crmarena:EmailMessage:02sWt000001zqAuIAI",
+    "synthetic": false,
+    "text": "Hi Jaemin,\n\nThank you for sending over the proposal draft. I appreciate how comprehensive it is.\n\nI see you’ve outlined the product features quite well. Could you confirm if the AI Cirku-Tech solution offers continuous updates, especially concerning feature enhancements? Our team appreciates such enhancements to stay aligned with market trends.",
+    "subject": "Re: Proposal Draft Email",
+    "date_semantics": "sent"
+   },
+   {
+    "activity_id": "d397c73f-1edb-505c-b3af-1b4d7949ac21",
+    "activity_type": "EmailReply",
+    "occurred_at": "2023-11-29T16:30:00Z",
+    "actor_person_id": "4ce8c368-8263-552c-a244-a7c903a7e24e",
+    "event_file": "crmarena:EmailMessage:02sWt00000200VCIAY",
+    "synthetic": false,
+    "text": "Hi Jaemin,\n\nThank you for sending over the draft proposal. I've had a chance to look through it, and I appreciate the customization and the focus on sustainability. It's clear that TechPulse Solutions has put considerable effort into understanding our requirements.\n\nI'm particularly interested in the AI Cirku-Tech and QuantumPCB Modeler, especially given the integration capabilities you mentioned. We'll need to ensure that they can fit smoothly into our current systems using EcoPCB Creator and OptiPower Manager. Also, your mention of a 10% discount is encouraging.\n\nWhile I see the value in your continuous enhancements, it's crucial for us to understand how frequently these updates occur and whether they come at any additional costs.\n\nLet’s arrange a time next week to delve deeper and discuss any adjustments necessary. Looking forward to working through this with you.\n\nBest,\n\nSamuel Okafor\nTerraForm Engineering",
+    "subject": "Re: Proposal Draft Email",
+    "date_semantics": "sent"
+   },
+   {
+    "activity_id": "b14692cc-a1ae-5b34-adc4-be380167980b",
+    "activity_type": "EmailReply",
+    "occurred_at": "2023-11-29T17:30:00Z",
+    "actor_person_id": "43c3a1c5-2e65-5b6c-b50c-acc02bbfed1f",
+    "event_file": "crmarena:EmailMessage:02sWt00000200QUIAY",
+    "synthetic": false,
+    "text": "Hi Samuel,\n\nThank you for your prompt response and the positive feedback on our proposal.\n\nRegarding the AI Cirku-Tech, while our approach differs slightly from competitors that release frequent updates, we prioritize comprehensive feature sets accompanied by thorough training, which many of our clients find more beneficial for on-the-ground implementation. We are committed to making sure the features we roll out are highly impactful and provide substantial value.\n\nI assure you, TechPulse has invested heavily in ensuring seamless integration. Both the SecureFlow Suite and our other solutions are designed to integrate effortlessly with systems like yours. Regarding the security and support of SecureFlow, we provide 24/7 support and a suite of security features that meet industry standards. I will send over some client testimonials that I believe will resonate with your needs and give more perspective on user satisfaction.\n\nLet me know if there's a convenient time for a call to discuss further or any other aspect you’d like us to touches upon.\n\nLooking forward to your feedback.\n\nKind regards,\n\nJaemin Park\nSales Representative, TechPulse Solutions",
+    "subject": "Re: Proposal Draft Email",
+    "date_semantics": "sent"
+   }
+  ],
+  "commitments": [
+   {
+    "text": "Answer the update-frequency and additional-cost question",
+    "owner_person_id": "43c3a1c5-2e65-5b6c-b50c-acc02bbfed1f",
+    "due_at": null,
+    "status": "open"
+   },
+   {
+    "text": "Send client testimonials (promised 2023-11-29)",
+    "owner_person_id": "43c3a1c5-2e65-5b6c-b50c-acc02bbfed1f",
+    "due_at": null,
+    "status": "open"
+   }
+  ],
+  "timeline_facts": {
+   "last_inbound_at": "2023-11-29T16:30:00Z",
+   "last_inbound_from_person_id": "4ce8c368-8263-552c-a244-a7c903a7e24e",
+   "last_outbound_at": "2023-11-29T17:30:00Z",
+   "stated_timing": null
+  },
+  "offered_knowledge": [
+   {
+    "id": "9ee759ec-65f2-58f0-a46c-8fe7bd4e873f",
+    "key": "K101",
+    "title": "Answer a cost question in writing before proposing a call",
+    "situation_signature": [
+     {
+      "field": "objections",
+      "op": "contains",
+      "value": "cost"
+     }
+    ],
+    "guidance": {
+     "summary": "When the buyer asks what something will cost, answer in writing first; a call comes after the answer.",
+     "do": [
+      "state what the quoted price covers and what it does not",
+      "if you cannot give a figure, say what you will confirm and by when"
+     ],
+     "dont": [
+      "propose a negotiation meeting before the cost question is answered",
+      "guess a figure"
+     ]
+    },
+    "status": "provisional",
+    "counts": {
+     "decisions": 42,
+     "positive_reactions": 0,
+     "negative_reactions": 0,
+     "outcomes_advanced": 11,
+     "counterexamples": 0
+    },
+    "supporting_decision_episode_ids": [],
+    "counterexamples": [],
+    "exceptions": [
+     {
+      "description": "The buyer asked explicitly for a call to discuss costs",
+      "conditions": [
+       {
+        "field": "current_commitments",
+        "op": "contains",
+        "value": "call to discuss"
+       }
+      ]
+     }
+    ],
+    "evidence_classes": [
+     "deal_data"
+    ],
+    "used_by_evaluators": [
+     "knowledge_applicability:v1"
+    ],
+    "provenance": {
+     "created_from": "seed_history",
+     "source_decision_episode_id": null,
+     "note": "Seeded from previous CRMArena deals (before 2023-11-01): decisions = previous deals with a matching customer email, outcomes_advanced = those with a signed contract; no reactions are recorded. Not evidence the practice works."
+    },
+    "created_at": "2023-11-01T00:00:00Z",
+    "last_validated_at": null
+   }
+  ],
+  "state_provenance": {
+   "champion": "inferred, not recorded: the only customer correspondent (3 inbound emails); CRMArena has no roles",
+   "stage": "unknown unless a field below says otherwise: the loader dates the stage at the deal's last event",
+   "objections": "02sWt00000200VCIAY",
+   "current_commitments": "02sWt00000200VCIAY, 02sWt00000200QUIAY",
+   "buying_group roles": "inferred from each Contact's Title/Department; the record has no roles"
+  }
+ },
+ "candidate_action": {
+  "proposed_action_type": "send_email",
+  "recipients": [
+   {
+    "person_id": "4ce8c368-8263-552c-a244-a7c903a7e24e",
+    "role": "to"
+   }
+  ],
+  "finished_artifact": {
+   "channel": "email",
+   "subject": "Your question on update costs",
+   "body": "Hi Samuel,\n\nYou asked how often AI Cirku-Tech updates come and whether they cost extra. I do not want to guess, so I am confirming with our product team what the licence includes and will send it to you in writing by Friday, December 8. The client testimonials I promised are attached. After you have the written answer, we can use Tuesday, December 12 at 10:00 or Thursday, December 14 at 14:00 for the demonstration.\n\nKind regards,\nJaemin",
+   "attachments": [
+    "Client_testimonials.pdf"
+   ]
+  },
+  "crm_next_step_intent": {
+   "next_step": "Written cost answer by 2023-12-08, then a demo slot",
+   "due_at": "2023-12-08T17:00:00Z",
+   "stage_change": null
+  },
+  "reason": "K101: answer the cost question in writing before proposing the call.",
+  "evidence_refs": [
+   {
+    "activity_id": "d397c73f-1edb-505c-b3af-1b4d7949ac21",
+    "quote": "it's crucial for us to understand how frequently these updates occur and whether they come at any additional costs.",
+    "occurred_at": "2023-11-29T16:30:00Z",
+    "speaker_person_id": "4ce8c368-8263-552c-a244-a7c903a7e24e"
+   }
+  ],
+  "knowledge_refs_used": [
+   "9ee759ec-65f2-58f0-a46c-8fe7bd4e873f"
+  ],
+  "wait_until": null
+ },
+ "expected": [
+  {
+   "eval_type": "knowledge_applicability",
+   "verdict": "pass",
+   "label": "APPLIES",
+   "diagnostics": [],
+   "blocking": false,
+   "rationale": "K101 applies (open cost question, no exception) and the draft follows it.",
+   "evidence_class": "methodology"
+  },
+  {
+   "eval_type": "commitment_consistency",
+   "verdict": "pass",
+   "label": null,
+   "diagnostics": [],
+   "blocking": false,
+   "rationale": "Testimonials delivered, cost answer dated.",
+   "evidence_class": "methodology"
+  },
+  {
+   "eval_type": "next_action_quality",
+   "verdict": "pass",
+   "label": "GOOD",
+   "diagnostics": [],
+   "blocking": false,
+   "rationale": "Written answer first, call after.",
+   "evidence_class": "methodology"
+  }
+ ],
+ "expected_best_action": {
+  "action": "send_email",
+  "why": "This: the written answer comes before the demo.",
+  "recipients": [
+   {
+    "person_id": "4ce8c368-8263-552c-a244-a7c903a7e24e",
+    "role": "to"
+   }
+  ],
+  "channel": "email"
+ },
+ "labelling": {
+  "label_kind": "model labels, single author, not human labels",
+  "passes": [
+   "pass_1",
+   "pass_2"
+  ],
+  "agreement": {
+   "judgments": 3,
+   "verdict_agree": 3,
+   "fail_agree": 3
+  },
+  "disagreements": []
+ },
+ "notes": ""
+}

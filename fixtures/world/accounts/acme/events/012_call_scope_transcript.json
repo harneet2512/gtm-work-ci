@@ -1,0 +1,89 @@
+{
+  "source_system": "call",
+  "source_object_id": "call-acme-0825",
+  "source_event_key": "transcript_ready",
+  "occurred_at": "2026-08-25T13:46:00Z",
+  "connector": "recorder",
+  "connector_version": "0.1.0",
+  "payload": {
+    "kind": "call",
+    "call_id": "call-acme-0825",
+    "calendar_event_id": "gcal:acme-scope-0825",
+    "started_at": "2026-08-25T13:01:00Z",
+    "ended_at": "2026-08-25T13:46:00Z",
+    "speakers": [
+      {"label": "speaker_01", "email": "dana@vendor.example", "name": "Dana Kim"},
+      {"label": "speaker_02", "email": null, "name": null},
+      {"label": "speaker_03", "email": "tom.becker@acme.com", "name": "Tom Becker"},
+      {"label": "speaker_04", "email": "leo@vendor.example", "name": "Leo Park"}
+    ],
+    "transcript": [
+      {
+        "speaker": "speaker_01",
+        "offset_s": 0,
+        "text": "Thanks for making the time, everyone. Quick round of intros before we dive in?"
+      },
+      {
+        "speaker": "speaker_02",
+        "offset_s": 6,
+        "text": "Sure. Priya here - I run operations for the US sites and I'm sponsoring the EU rollout."
+      },
+      {
+        "speaker": "speaker_03",
+        "offset_s": 14,
+        "text": "Tom Becker, I manage EU operations out of Berlin."
+      },
+      {
+        "speaker": "speaker_04",
+        "offset_s": 19,
+        "text": "Leo Park, solutions engineer on the Vendor Co. side."
+      },
+      {
+        "speaker": "speaker_01",
+        "offset_s": 25,
+        "text": "Great. Priya, what does success look like for the EU rollout?"
+      },
+      {
+        "speaker": "speaker_02",
+        "offset_s": 31,
+        "text": "Berlin and Rotterdam live on Relay before the January peak. What matters most to us is that the EU sites run the same workflows as the US sites."
+      },
+      {
+        "speaker": "speaker_03",
+        "offset_s": 44,
+        "text": "Berlin has about 70 users and Rotterdam about 50, so roughly 120 seats."
+      },
+      {
+        "speaker": "speaker_04",
+        "offset_s": 52,
+        "text": "That fits our multi-site setup. We can clone the US workflow templates and localise the carrier integrations."
+      },
+      {
+        "speaker": "speaker_01",
+        "offset_s": 63,
+        "text": "And on the commercial side, who else needs to be involved?"
+      },
+      {
+        "speaker": "speaker_02",
+        "offset_s": 69,
+        "text": "The one thing I can't promise yet is budget. The EU line item has to be approved by finance in the Q3 planning cycle, and I don't control that."
+      },
+      {
+        "speaker": "speaker_01",
+        "offset_s": 82,
+        "text": "Understood. Who in finance makes that call?"
+      },
+      {
+        "speaker": "speaker_02",
+        "offset_s": 86,
+        "text": "Finance decides as a committee; I'll take the proposal in myself."
+      },
+      {
+        "speaker": "speaker_01",
+        "offset_s": 93,
+        "text": "Then I'll send a proposal for 120 seats by Friday so you have it for the planning cycle."
+      },
+      {"speaker": "speaker_02", "offset_s": 101, "text": "Perfect, thanks Dana."}
+    ]
+  }
+}

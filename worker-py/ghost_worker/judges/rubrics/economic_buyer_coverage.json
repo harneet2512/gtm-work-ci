@@ -1,0 +1,114 @@
+{
+  "eval_type": "economic_buyer_coverage",
+  "version": 1,
+  "title": "Power / economic-buyer coverage",
+  "har97_refs": [
+    {
+      "line": 2280,
+      "text": "## 15.4 Power / economic-buyer coverage"
+    },
+    {
+      "line": 606,
+      "text": "power / economic-buyer coverage"
+    },
+    {
+      "line": 2956,
+      "text": "* economic-buyer / power coverage"
+    }
+  ],
+  "l2_dimension": "economic-buyer / power coverage",
+  "questions": [
+    {
+      "section": "§15(GTM).4",
+      "text": "Do we understand who can actually approve the decision, and is the proposed action helping us reach that person appropriately?"
+    }
+  ],
+  "inputs": [
+    "economic_buyer field and coverage gaps",
+    "decision process",
+    "spend approval evidence",
+    "recipients and ask of the candidate"
+  ],
+  "criteria": [
+    {
+      "id": "eb_known",
+      "kind": "check",
+      "text": "Economic Buyer known / unknown",
+      "guide": "State whether the evidence names who approves the spend; 'unknown' is a finding, not a guess.",
+      "har97": {
+        "line": 2288,
+        "text": "* Economic Buyer known / unknown"
+      },
+      "output": "finding",
+      "before": null,
+      "after": null
+    },
+    {
+      "id": "authority_access",
+      "kind": "evaluate",
+      "text": "access to decision authority",
+      "guide": "Is there a path (champion, process owner) to whoever holds decision authority?",
+      "har97": {
+        "line": 2289,
+        "text": "* access to decision authority"
+      },
+      "output": "finding",
+      "before": null,
+      "after": null
+    },
+    {
+      "id": "helps_path",
+      "kind": "evaluate",
+      "text": "whether the proposed action helps or harms that path",
+      "guide": "Does this action move us toward the approver appropriately, or damage the path (e.g. going around the champion)?",
+      "har97": {
+        "line": 2290,
+        "text": "* whether the proposed action helps or harms that path"
+      },
+      "output": "finding",
+      "before": null,
+      "after": null
+    },
+    {
+      "id": "exec_premature",
+      "kind": "evaluate",
+      "text": "whether executive involvement is premature",
+      "guide": "Executive involvement before the working team asks for it is premature.",
+      "har97": {
+        "line": 2291,
+        "text": "* whether executive involvement is premature"
+      },
+      "output": "finding",
+      "before": null,
+      "after": null
+    }
+  ],
+  "failure_examples": [],
+  "counter_failures": [],
+  "known_exceptions": [],
+  "candidate_choices": [],
+  "principles": [
+    "An unknown economic buyer with spend already approved in writing is a warn; with spend not yet approved it is a fail."
+  ],
+  "labels": [],
+  "pass_label": null,
+  "diagnostics": [
+    {
+      "name": "no_economic_buyer_access",
+      "when": "no known approver or no path to them"
+    }
+  ],
+  "routing": {
+    "actions": [
+      "send_email",
+      "schedule_meeting",
+      "share_document"
+    ],
+    "when_all": [],
+    "when_any": [
+      "commercial_ask",
+      "eb_in_recipients"
+    ]
+  },
+  "uses_rep_profile": false
+}

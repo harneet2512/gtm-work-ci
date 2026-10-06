@@ -1,0 +1,20 @@
+{
+  "source_system": "call",
+  "source_object_id": "call-ns-0827",
+  "source_event_key": "ended",
+  "occurred_at": "2026-08-27T17:46:00Z",
+  "connector": "recorder",
+  "connector_version": "0.1.0",
+  "payload": {
+    "kind": "call",
+    "call_id": "call-ns-0827",
+    "calendar_event_id": "gcal:ns-scope-0827",
+    "started_at": "2026-08-27T17:01:00Z",
+    "ended_at": "2026-08-27T17:46:00Z",
+    "speakers": [
+      {"label": "speaker_01", "email": "dana@vendor.example", "name": "Dana Kim"},
+      {"label": "speaker_02", "email": "elena.vasquez@northstar.health", "name": "Elena Vasquez"},
+      {"label": "speaker_03", "email": "leo@vendor.example", "name": "Leo Park"}
+    ]
+  }
+}

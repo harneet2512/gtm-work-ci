@@ -1,0 +1,252 @@
+{
+ "id": "cr_x_waits_while_the_buyer_reviews_the_offer",
+ "origin": "crmarena",
+ "case_type": "no_action",
+ "title": "Three preparation emails have gone out and Klara is reviewing the offer: wait for her questions",
+ "should_pass": true,
+ "difficulty": "easy",
+ "slice_tags": {
+  "account": "001Wt00000PGoAaIAL",
+  "origin": "crmarena",
+  "motion": "unknown",
+  "stage": "unknown",
+  "champion_status": "active",
+  "economic_buyer": "unknown",
+  "risk": "unknown",
+  "candidate": "good",
+  "expected_action": "wait",
+  "extra": [
+   "buyer_reviewing",
+   "good_draft",
+   "inbound_email"
+  ]
+ },
+ "based_on": {
+  "kind": "crmarena_moment",
+  "account_id": "001Wt00000PGoAaIAL",
+  "deal_id": "006Wt000007BCRfIAO",
+  "trigger_kind": "inbound_email",
+  "decision_at": "2023-11-25T10:00:00Z",
+  "cutoff": "2023-11-01",
+  "deal_group": "current",
+  "events_before_decision": 5
+ },
+ "source": {
+  "dataset": "CRMArena-Pro B2B Salesforce org (Salesforce AI Research)",
+  "licence": "CC BY-NC 4.0 (non-commercial use only)",
+  "attribution": "Salesforce AI Research, CRMArena-Pro (https://github.com/SalesforceAIResearch/CRMArena, LICENSE.txt); records selected and excerpted, nothing edited",
+  "snapshot_manifest_sha256": "8fbda45c15d1806dc4c37d5230a20ac24d6619ef36a88c0efddb344792c89f03",
+  "generator": "bench/evals/crmarena_gold v1"
+ },
+ "context": {
+  "now": "2023-11-25T10:00:00Z",
+  "state": {
+   "account_id": "0a64a0ed-6843-5fea-8052-d3e0c5f1fffa",
+   "account_name": "TrueNorth Technologies",
+   "opportunity_id": "6fd9868f-a177-5985-b35c-1ad4ee279c44",
+   "fields": {
+    "stage": "unknown",
+    "health": "unknown",
+    "motion": "unknown",
+    "champion": "e40f3372-1d82-545c-9d7f-4e81c2246509",
+    "champion_status": "active",
+    "economic_buyer": "unknown",
+    "relationship_risk": "unknown",
+    "decision_process": "Negotiation meeting set for 2023-11-30 10:30 in the rep's emails; Klara is reviewing the DevVision IDE offer",
+    "current_commitments": [
+     {
+      "text": "Customer: review the specifics of the DevVision IDE offer and revert before the meeting",
+      "status": "open"
+     }
+    ],
+    "next_milestone": "Negotiation meeting on 2023-11-30 at 10:30"
+   },
+   "buying_group": [
+    {
+     "person_id": "e40f3372-1d82-545c-9d7f-4e81c2246509",
+     "display_name": "Klára Nováková",
+     "title": "Legal Affairs Manager (champion role inferred, not recorded)",
+     "roles": [
+      "champion"
+     ],
+     "status": "active",
+     "delegated_to_person_id": null,
+     "last_engaged_at": "2023-11-25T10:00:00Z",
+     "evidence_refs": [
+      {
+       "activity_id": "801f2f1b-f2a5-5ca1-b35c-3ca2f53b767f",
+       "occurred_at": "2023-11-25T10:00:00Z"
+      }
+     ]
+    },
+    {
+     "person_id": "a2355454-7266-5987-a2ba-0559d56d14aa",
+     "display_name": "Emily Johnson",
+     "title": "Legal Compliance Specialist (role inferred from department)",
+     "roles": [
+      "legal"
+     ],
+     "status": "unknown",
+     "delegated_to_person_id": null,
+     "last_engaged_at": null,
+     "evidence_refs": []
+    }
+   ],
+   "coverage_gaps": [
+    "economic_buyer"
+   ]
+  },
+  "recent_changes": {
+   "summary": "Klara answered the preparation emails: she will review the DevVision IDE offer and revert before the meeting.",
+   "material_diff_fields": [
+    "decision_process",
+    "current_commitments"
+   ],
+   "signals": [
+    "customer_replied"
+   ]
+  },
+  "trigger": {
+   "activity_id": "801f2f1b-f2a5-5ca1-b35c-3ca2f53b767f",
+   "activity_type": "EmailReceived",
+   "occurred_at": "2023-11-25T10:00:00Z",
+   "actor_person_id": "e40f3372-1d82-545c-9d7f-4e81c2246509",
+   "event_file": "crmarena:EmailMessage:02sWt000001zrJrIAI",
+   "synthetic": false,
+   "text": "Hi Carlos,\n\nThank you for the detailed follow-up email. I appreciate your efforts to address our concerns and align your offerings with our needs at TrueNorth Technologies. The outlined capabilities of your AI Cirku-Tech certainly seem promising in supporting our scalability goals.\n\nYour points about integration stand out, especially considering our past experiences with different solutions. A speedy and smooth setup is a significant advantage for us, and it’s reassuring to know TechPulse Solutions excels in this regard.\n\nI will review the specifics of your offer, particularly around DevVision IDE, and get back to you if we have further questions or require clarifications before the meeting. We're looking forward to working through the final details and moving forward in partnership.\n\nThanks again, and talk soon.\n\nBest,\n\nKlára Nováková\nSenior Consultant, TrueNorth Technologies",
+   "subject": "Negotiation meeting preparation",
+   "date_semantics": "sent"
+  },
+  "supporting_activities": [
+   {
+    "activity_id": "f3c585bc-bbe5-58bc-bf39-71e4443c82ba",
+    "activity_type": "EmailSent",
+    "occurred_at": "2023-11-24T18:00:00Z",
+    "actor_person_id": "9ca99326-dfec-5622-bd38-18cbeb8fb2a2",
+    "event_file": "crmarena:EmailMessage:02sWt000001zx12IAA",
+    "synthetic": false,
+    "text": "Hi Klára,\n\nI hope this message finds you well. Following our recent voice call, I wanted to recap and ensure we’re fully aligned for the upcoming negotiation meeting set for November 30, 2023. We’re excited about the potential to finalize terms and pricing structures, and to solidify a partnership that truly benefits both TechPulse Solutions and TrueNorth Technologies.",
+    "subject": "Negotiation meeting preparation",
+    "date_semantics": "sent"
+   },
+   {
+    "activity_id": "b19e2654-a88f-5567-9916-a3c40c7c3d3b",
+    "activity_type": "EmailSent",
+    "occurred_at": "2023-11-25T09:00:00Z",
+    "actor_person_id": "9ca99326-dfec-5622-bd38-18cbeb8fb2a2",
+    "event_file": "crmarena:EmailMessage:02sWt000001zwMnIAI",
+    "synthetic": false,
+    "text": "Subject: Negotiation Meeting Preparation\n\nHi Klára,\n\nI hope this message finds you well. I wanted to touch base as we prepare for our upcoming negotiation meeting scheduled for November 30th at 10:30 AM. We’re at an exciting stage, finalizing terms and pricing structures for our partnership, and I’m keen to ensure everything aligns perfectly with TrueNorth Technologies' expectations.",
+    "subject": "Negotiation meeting preparation",
+    "date_semantics": "sent"
+   },
+   {
+    "activity_id": "f34ae009-957d-59f7-b648-64ffdd07cb08",
+    "activity_type": "EmailSent",
+    "occurred_at": "2023-11-25T09:15:00Z",
+    "actor_person_id": "9ca99326-dfec-5622-bd38-18cbeb8fb2a2",
+    "event_file": "crmarena:EmailMessage:02sWt000001zuO7IAI",
+    "synthetic": false,
+    "text": "Hi Klára,\n\nI hope this email finds you well. I wanted to follow up on our recent call and discuss our preparations for the upcoming negotiation meeting scheduled for November 30th at 10:30 AM. I'm confident we can finalize the terms and pricing structures in a way that aligns with both TechPulse Solutions’ offerings and TrueNorth's expectations.",
+    "subject": "Negotiation meeting preparation",
+    "date_semantics": "sent"
+   }
+  ],
+  "commitments": [
+   {
+    "text": "Customer reviews the DevVision IDE offer and reverts before the meeting",
+    "owner_person_id": "e40f3372-1d82-545c-9d7f-4e81c2246509",
+    "due_at": null,
+    "status": "open"
+   }
+  ],
+  "timeline_facts": {
+   "last_inbound_at": "2023-11-25T10:00:00Z",
+   "last_inbound_from_person_id": "e40f3372-1d82-545c-9d7f-4e81c2246509",
+   "last_outbound_at": "2023-11-25T09:15:00Z",
+   "stated_timing": null
+  },
+  "offered_knowledge": [],
+  "state_provenance": {
+   "champion": "inferred, not recorded: the only customer correspondent (1 inbound emails); CRMArena has no roles",
+   "stage": "unknown unless a field below says otherwise: the loader dates the stage at the deal's last event",
+   "decision_process": "02sWt000001zwMnIAI, 02sWt000001zrJrIAI",
+   "current_commitments": "02sWt000001zrJrIAI",
+   "buying_group roles": "inferred from each Contact's Title/Department; the record has no roles"
+  }
+ },
+ "candidate_action": {
+  "proposed_action_type": "wait",
+  "recipients": [],
+  "finished_artifact": {
+   "channel": "none",
+   "subject": null,
+   "body": ""
+  },
+  "crm_next_step_intent": {
+   "next_step": "Wait for Klára's questions; the meeting is on 2023-11-30",
+   "due_at": "2023-11-27T09:00:00Z",
+   "stage_change": null
+  },
+  "reason": "Three preparation emails already went out; she is reviewing and will revert.",
+  "evidence_refs": [
+   {
+    "activity_id": "801f2f1b-f2a5-5ca1-b35c-3ca2f53b767f",
+    "quote": "I will review the specifics of your offer, particularly around DevVision IDE, and get back to you if we have further questions or require clarifications before the meeting.",
+    "occurred_at": "2023-11-25T10:00:00Z",
+    "speaker_person_id": "e40f3372-1d82-545c-9d7f-4e81c2246509"
+   }
+  ],
+  "knowledge_refs_used": [],
+  "wait_until": "2023-11-27T09:00:00Z"
+ },
+ "expected": [
+  {
+   "eval_type": "next_action_quality",
+   "verdict": "pass",
+   "label": "WAIT",
+   "diagnostics": [],
+   "blocking": false,
+   "rationale": "Three preparation emails are out and Klara said she will review and revert.",
+   "evidence_class": "methodology"
+  },
+  {
+   "eval_type": "buyer_readiness",
+   "verdict": "pass",
+   "label": "TOO_EARLY",
+   "diagnostics": [],
+   "blocking": false,
+   "rationale": "No buyer-side reason to act yet; the draft recognises that.",
+   "evidence_class": "methodology"
+  },
+  {
+   "eval_type": "relationship_pressure",
+   "verdict": "pass",
+   "label": null,
+   "diagnostics": [],
+   "blocking": false,
+   "rationale": "No repeated nudge.",
+   "evidence_class": "cs_ops"
+  }
+ ],
+ "expected_best_action": {
+  "action": "wait",
+  "why": "This.",
+  "channel": "none",
+  "wait_until": "2023-11-27T09:00:00Z"
+ },
+ "labelling": {
+  "label_kind": "model labels, single author, not human labels",
+  "passes": [
+   "pass_1",
+   "pass_2"
+  ],
+  "agreement": {
+   "judgments": 3,
+   "verdict_agree": 3,
+   "fail_agree": 3
+  },
+  "disagreements": []
+ },
+ "notes": ""
+}

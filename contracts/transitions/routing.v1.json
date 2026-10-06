@@ -1,0 +1,79 @@
+{
+  "routing_version": "transition_routing:v1",
+  "description": "Evals are activated because evidence changed the state (HAR-97 pitch §4-§5), keyed on the transition's (to_state, status): a CONFIRMED REORG never gets the expansion suite. CANDIDATE and CONFIRMED EXPANSION follow pitch §5. CANDIDATE REORG, CONFIRMED REORG, UNRESOLVED and REJECTED are product decisions (ADR-0012).",
+  "routes": [
+    { "status": "CANDIDATE", "to_state": "EXPANSION", "suite": "expansion_candidate", "basis": "HAR-97 pitch §5 candidate list, plus Scene 5 'Expansion readiness NOT YET'." },
+    { "status": "CONFIRMED", "to_state": "EXPANSION", "suite": "expansion_confirmed", "basis": "HAR-97 pitch §5 confirmed list." },
+    { "status": "CANDIDATE", "to_state": "REORG", "suite": "conservative", "basis": "Product decision: a suspected disruption gets the conservative candidate-style suite." },
+    { "status": "CONFIRMED", "to_state": "REORG", "suite": "reorg_disruption", "basis": "Product decision (ADR-0012): after a confirmed reorg the risks are a wrong or bypassed owner, pressure on a disrupted relationship and acting without evidence." },
+    { "status": "UNRESOLVED", "to_state": "*", "suite": "conservative", "basis": "Product decision: UNRESOLVED is less certain than CANDIDATE, so it gets the candidate-style conservative suite." },
+    { "status": "REJECTED", "to_state": "*", "suite_of_state": "from_state", "fallback_suite": "conservative", "basis": "Product decision: a rejected transition leaves the account in from_state, so the from_state's suite applies (state-based fallback); a from_state without a suite (unknown, NEW_LOGO, RENEWAL, RECOVERY) gets the conservative suite." }
+  ],
+  "action_routes": [
+    { "statuses": ["CANDIDATE", "UNRESOLVED"], "action_class": "EXPANSION_MOTION", "suite": "expansion_candidate", "basis": "Product decision (HAR-128): an expansion motion proposed while the transition is not confirmed is the one action that needs the expansion-readiness check (expected: NOT YET), whatever state the account is moving to." }
+  ],
+  "state_suites": {
+    "EXPANSION": "expansion_confirmed",
+    "REORG": "reorg_disruption",
+    "NEW_LOGO": null,
+    "RENEWAL": null,
+    "RECOVERY": null,
+    "unknown": null
+  },
+  "suites": {
+    "conservative": {
+      "har97_sections": ["§5(PITCH)"],
+      "description": "Candidate-style: the agent may research, prepare, ask or draft low-pressure follow-ups; aggressive CTAs, commercial escalation and pricing pushes are restricted.",
+      "evals": [
+        { "har97_eval": "evidence sufficiency / abstention", "eval_types": ["evidence_sufficiency"] },
+        { "har97_eval": "state-transition support", "eval_types": ["state_transition_support"] },
+        { "har97_eval": "buyer readiness", "eval_types": ["buyer_readiness"] },
+        { "har97_eval": "stakeholder correctness", "eval_types": ["stakeholder_selection"] },
+        { "har97_eval": "relationship continuity", "eval_types": ["champion_continuity"] },
+        { "har97_eval": "premature CTA", "eval_types": ["cta_calibration", "buyer_readiness"] },
+        { "har97_eval": "customer-risk sensitivity", "eval_types": ["customer_risk_sensitivity"] }
+      ]
+    },
+    "expansion_candidate": {
+      "har97_sections": ["§5(PITCH)", "§10(PITCH)"],
+      "description": "REORG -> EXPANSION candidate: the conservative suite plus expansion readiness, which is non-blocking and expected to say NOT YET.",
+      "evals": [
+        { "har97_eval": "evidence sufficiency / abstention", "eval_types": ["evidence_sufficiency"] },
+        { "har97_eval": "state-transition support", "eval_types": ["state_transition_support"] },
+        { "har97_eval": "buyer readiness", "eval_types": ["buyer_readiness"] },
+        { "har97_eval": "stakeholder correctness", "eval_types": ["stakeholder_selection"] },
+        { "har97_eval": "relationship continuity", "eval_types": ["champion_continuity"] },
+        { "har97_eval": "premature CTA", "eval_types": ["cta_calibration", "buyer_readiness"] },
+        { "har97_eval": "customer-risk sensitivity", "eval_types": ["customer_risk_sensitivity"] },
+        { "har97_eval": "expansion readiness", "eval_types": ["expansion_readiness"], "note": "Scene 5: 'Expansion readiness NOT YET'. Non-blocking (catalog can_block false); a warn is the expected verdict while the transition is a candidate." }
+      ]
+    },
+    "expansion_confirmed": {
+      "har97_sections": ["§5(PITCH)"],
+      "description": "Confirmed expansion: expansion-oriented decision criteria apply.",
+      "evals": [
+        { "har97_eval": "champion strength / mobilization", "eval_types": ["champion_strength"] },
+        { "har97_eval": "economic-buyer coverage", "eval_types": ["economic_buyer_coverage"] },
+        { "har97_eval": "stakeholder / multithreading coverage", "eval_types": ["stakeholder_coverage"] },
+        { "har97_eval": "business-case strength", "eval_types": ["business_case"] },
+        { "har97_eval": "decision-process coverage", "eval_types": ["decision_process"] },
+        { "har97_eval": "compelling event / reason to act", "eval_types": ["buyer_readiness"] },
+        { "har97_eval": "next-step quality", "eval_types": ["next_step_quality"] },
+        { "har97_eval": "CTA calibration", "eval_types": ["cta_calibration"] },
+        { "har97_eval": "expansion-readiness consistency", "eval_types": ["expansion_readiness"] }
+      ]
+    },
+    "reorg_disruption": {
+      "har97_sections": ["§3(PITCH)", "§5.5", "§5.16"],
+      "description": "Confirmed reorg: rebuild the relationship around the right owner before any commercial ask (HAR-97 pitch §7 example learning).",
+      "evals": [
+        { "har97_eval": "evidence sufficiency / abstention", "eval_types": ["evidence_sufficiency"] },
+        { "har97_eval": "relationship continuity", "eval_types": ["champion_continuity"] },
+        { "har97_eval": "stakeholder correctness", "eval_types": ["stakeholder_selection"] },
+        { "har97_eval": "customer-risk sensitivity", "eval_types": ["customer_risk_sensitivity"] },
+        { "har97_eval": "CTA calibration", "eval_types": ["cta_calibration"] },
+        { "har97_eval": "buyer readiness", "eval_types": ["buyer_readiness"] }
+      ]
+    }
+  }
+}

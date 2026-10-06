@@ -1,0 +1,32 @@
+[
+  {
+    "source_system": "slack",
+    "source_object_id": "#deal-acme:1759329720.000200",
+    "source_event_key": "posted",
+    "connector": "slack",
+    "connector_version": "0.1.0",
+    "payload": {
+      "kind": "slack_message",
+      "channel": "#deal-acme",
+      "ts": "1759329720.000200",
+      "user": "U02DANA",
+      "text": "Marco is asking for SOC2 before the EU rollout."
+    }
+  },
+  {
+    "source_system": "slack",
+    "source_object_id": "#deal-acme:1759333320.000100",
+    "source_event_key": "posted",
+    "connector": "slack",
+    "connector_version": "0.1.0",
+    "payload": {
+      "kind": "slack_message",
+      "channel": "#deal-acme",
+      "ts": "1759333320.000100",
+      "user": "U02DANA",
+      "user_email": "dana@vendor.example",
+      "text": "Decision: send the SOC2 pack and offer a pen-test walkthrough.",
+      "is_decision": true
+    }
+  }
+]

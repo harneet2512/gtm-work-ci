@@ -1,0 +1,22 @@
+{
+  "source_system": "email",
+  "source_object_id": "<BETA-hl-2026-09-16@beta.io>",
+  "source_event_key": "received",
+  "occurred_at": "2026-09-16T09:10:00Z",
+  "connector": "gmail",
+  "connector_version": "0.1.0",
+  "payload": {
+    "kind": "email",
+    "direction": "inbound",
+    "message_id": "<BETA-hl-2026-09-16@beta.io>",
+    "thread_id": "thr-beta-support-rollout",
+    "in_reply_to": "<ghost-dana-2026-09-01@vendor.example>",
+    "from": {"email": "hannah.lee@beta.io", "name": "Hannah Lee"},
+    "to": [{"email": "dana@vendor.example", "name": "Dana Kim"}],
+    "cc": [],
+    "date": "2026-09-16T09:10:00Z",
+    "subject": "Re: Relay for the Beta support org",
+    "body_text": "Hi Dana - a correction after I talked to Ravi last night: SSO is fine with your SAML support, so it's not a blocker. The real blocker is EU data residency for the Dublin team's tickets. Ravi needs to confirm where EU ticket data is stored before we go further.\nHannah",
+    "crm_opportunity_ref": "opp:BE-7-EXP"
+  }
+}

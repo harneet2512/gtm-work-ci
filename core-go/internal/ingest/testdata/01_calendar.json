@@ -1,0 +1,67 @@
+[
+  {
+    "source_system": "calendar",
+    "source_object_id": "ev-acme-1",
+    "source_event_key": "scheduled",
+    "occurred_at": "2026-09-30T09:00:00Z",
+    "connector": "gcal",
+    "connector_version": "0.1.0",
+    "payload": {
+      "kind": "calendar_event",
+      "event_id": "ev-acme-1",
+      "title": "EU rollout security review",
+      "start": "2026-10-01T14:00:00Z",
+      "end": "2026-10-01T14:45:00Z",
+      "status": "scheduled",
+      "organizer": { "email": "dana@vendor.example", "name": "Dana Kim" },
+      "attendees": [
+        { "email": "marco.ruiz@acme.com", "name": "Marco Ruiz", "response": "needs_action" },
+        { "email": "priya.shah@acme.com", "name": "Priya Shah", "response": "accepted" }
+      ],
+      "crm_opportunity_ref": "opp:AC-4-EXP"
+    }
+  },
+  {
+    "source_system": "calendar",
+    "source_object_id": "ev-acme-1",
+    "source_event_key": "response:marco.ruiz@acme.com:accepted",
+    "occurred_at": "2026-09-30T11:30:00Z",
+    "connector": "gcal",
+    "connector_version": "0.1.0",
+    "payload": {
+      "kind": "calendar_event",
+      "event_id": "ev-acme-1",
+      "title": "EU rollout security review",
+      "start": "2026-10-01T14:00:00Z",
+      "end": "2026-10-01T14:45:00Z",
+      "status": "scheduled",
+      "organizer": { "email": "dana@vendor.example", "name": "Dana Kim" },
+      "attendees": [
+        { "email": "marco.ruiz@acme.com", "name": "Marco Ruiz", "response": "accepted" },
+        { "email": "priya.shah@acme.com", "name": "Priya Shah", "response": "accepted" }
+      ],
+      "crm_opportunity_ref": "opp:AC-4-EXP"
+    }
+  },
+  {
+    "source_system": "calendar",
+    "source_object_id": "ev-acme-1",
+    "source_event_key": "completed",
+    "connector": "gcal",
+    "connector_version": "0.1.0",
+    "payload": {
+      "kind": "calendar_event",
+      "event_id": "ev-acme-1",
+      "title": "EU rollout security review",
+      "start": "2026-10-01T14:00:00Z",
+      "end": "2026-10-01T14:45:00Z",
+      "status": "completed",
+      "organizer": { "email": "dana@vendor.example", "name": "Dana Kim" },
+      "attendees": [
+        { "email": "marco.ruiz@acme.com", "name": "Marco Ruiz", "response": "accepted" },
+        { "email": "priya.shah@acme.com", "name": "Priya Shah", "response": "accepted" }
+      ],
+      "crm_opportunity_ref": "opp:AC-4-EXP"
+    }
+  }
+]

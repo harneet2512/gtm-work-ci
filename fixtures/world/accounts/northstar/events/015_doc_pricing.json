@@ -1,0 +1,16 @@
+{
+  "source_system": "docs",
+  "source_object_id": "gdrive:northstar-pricing-v1",
+  "source_event_key": "shared:2026-09-02T16:01:00Z",
+  "occurred_at": "2026-09-02T16:01:00Z",
+  "connector": "google_drive",
+  "connector_version": "0.1.0",
+  "payload": {
+    "kind": "document",
+    "document_id": "gdrive:northstar-pricing-v1",
+    "title": "Northstar Four-Clinic Pricing",
+    "shared_at": "2026-09-02T16:01:00Z",
+    "shared_by": "dana@vendor.example",
+    "shared_with": ["elena.vasquez@northstar.health"]
+  }
+}
