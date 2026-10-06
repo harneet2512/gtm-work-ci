@@ -1,0 +1,221 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://ghost.local/fixtures/gold.schema.json",
+  "title": "GoldCheckpoint",
+  "description": "Expected graph/state truth for one account after ingesting every event up to and including after_event_file (HAR-96 §16 context-layer benchmark). World files are ingested in file-name order; a checkpoint whose after_event_file is under live/ includes the whole account world plus live_files, in that order (live_files ends with after_event_file). Paths are relative to fixtures/. Values use stable entity keys instead of database UUIDs. 'unknown' is a legal value for any state field (HAR-96 §18); null means 'known to be absent' (e.g. no next meeting booked).",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["account", "checkpoint", "after_event_file", "as_of", "expected"],
+  "if": { "properties": { "after_event_file": { "pattern": "^live/" } } },
+  "then": { "required": ["live_files"] },
+  "else": { "not": { "required": ["live_files"] } },
+  "properties": {
+    "account": { "type": "string", "enum": ["acme", "beta", "northstar"] },
+    "checkpoint": { "type": "integer", "minimum": 1, "maximum": 4 },
+    "after_event_file": { "$ref": "#/$defs/eventFile" },
+    "live_files": {
+      "description": "Live (non-world) event files ingested after the whole account world, in ingest order; the last one is after_event_file. Required exactly when after_event_file is under live/.",
+      "type": "array", "minItems": 1, "uniqueItems": true,
+      "items": { "$ref": "#/$defs/eventFile", "pattern": "^live/" }
+    },
+    "as_of": {
+      "description": "Latest occurred_at among the included events (not the ingest time of after_event_file).",
+      "$ref": "https://ghost.local/contracts/common.v1.json#/$defs/timestamp"
+    },
+    "notes": { "type": "string", "maxLength": 1000 },
+    "expected": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "entities", "edges", "state_fields", "buying_group", "coverage_gaps", "material_diff_fields",
+        "signals", "trigger", "critical_facts", "stale_facts"
+      ],
+      "properties": {
+        "distinct_activities": {
+          "description": "Activities after idempotent dedupe on (source_system, source_object_id, source_event_key).",
+          "type": "integer", "minimum": 1
+        },
+        "entities": { "type": "array", "items": { "$ref": "#/$defs/entity" } },
+        "edges": { "type": "array", "items": { "$ref": "#/$defs/edge" } },
+        "state_fields": {
+          "description": "Expected AccountState field values (names from account_state.v1.json#/properties/fields). summary and last_meaningful_change are free-form and may be omitted.",
+          "type": "object",
+          "propertyNames": {
+            "enum": [
+              "stage", "health", "owner", "motion", "champion", "champion_status", "economic_buyer",
+              "blockers", "objections", "decision_criteria", "decision_process", "current_commitments",
+              "next_milestone", "next_meeting", "relationship_risk", "product_use_case", "commercial_issue",
+              "last_customer_interaction", "last_meaningful_change", "summary"
+            ]
+          },
+          "required": [
+            "stage", "health", "owner", "motion", "champion", "champion_status", "economic_buyer",
+            "blockers", "next_milestone", "next_meeting", "last_customer_interaction"
+          ],
+          "additionalProperties": { "$ref": "#/$defs/stateValue" }
+        },
+        "buying_group": { "type": "array", "items": { "$ref": "#/$defs/buyingGroupMember" } },
+        "coverage_gaps": {
+          "type": "array", "uniqueItems": true,
+          "items": { "$ref": "https://ghost.local/contracts/account_state.v1.json#/properties/coverage_gaps/items" }
+        },
+        "material_diff_fields": {
+          "description": "Fields with a material change versus the previous checkpoint (checkpoint 1: versus an empty state). [] means 'no material state change'.",
+          "type": "array", "uniqueItems": true,
+          "items": {
+            "enum": [
+              "stage", "health", "owner", "motion", "champion", "champion_status", "economic_buyer",
+              "blockers", "objections", "decision_criteria", "decision_process", "current_commitments",
+              "next_milestone", "next_meeting", "relationship_risk", "product_use_case", "commercial_issue",
+              "last_customer_interaction", "last_meaningful_change", "summary", "buying_group", "coverage_gaps"
+            ]
+          }
+        },
+        "signals": {
+          "description": "Distinct signal types emitted between the previous checkpoint and this one.",
+          "type": "array", "uniqueItems": true,
+          "items": { "$ref": "https://ghost.local/contracts/signal.v1.json#/properties/signal_type" }
+        },
+        "trigger": { "$ref": "#/$defs/trigger" },
+        "critical_facts": { "type": "array", "items": { "$ref": "#/$defs/criticalFact" } },
+        "stale_facts": { "type": "array", "items": { "$ref": "#/$defs/staleFact" } },
+        "conflicts": {
+          "description": "Fields whose winner is contradicted by a newer lower-standing claim (ADR-0008): the winner stands and the conflict must be surfaced.",
+          "type": "array",
+          "items": { "$ref": "#/$defs/conflict" }
+        }
+      }
+    }
+  },
+  "$defs": {
+    "eventFile": {
+      "type": "string",
+      "pattern": "^(world/accounts/[a-z]+/events/[0-9]{3}_[a-z0-9_]+\\.json|live/[a-z0-9_]+\\.json)$"
+    },
+    "entityKey": { "type": "string", "pattern": "^(account|opportunity|person|document):[a-z0-9_]+$" },
+    "personKey": { "type": "string", "pattern": "^person:[a-z0-9_]+$" },
+    "entity": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["key", "kind", "display_name", "source_identities"],
+      "properties": {
+        "key": { "$ref": "#/$defs/entityKey" },
+        "kind": { "$ref": "https://ghost.local/contracts/common.v1.json#/$defs/entityType" },
+        "display_name": { "type": "string", "minLength": 1 },
+        "source_identities": {
+          "description": "Raw identities that must resolve to this entity: email:<addr>, domain:<domain>, crm:<record_id>, call:<call_id>:<speaker label>, slack:<user id>, docs:<document_id>.",
+          "type": "array", "minItems": 1, "uniqueItems": true,
+          "items": { "type": "string", "pattern": "^(email|domain|crm|call|slack|docs):.+$" }
+        }
+      }
+    },
+    "edge": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["src", "rel_type", "dst"],
+      "properties": {
+        "src": { "$ref": "#/$defs/entityKey" },
+        "rel_type": { "$ref": "https://ghost.local/contracts/common.v1.json#/$defs/relType" },
+        "dst": { "$ref": "#/$defs/entityKey" }
+      }
+    },
+    "listItem": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["text"],
+      "properties": {
+        "text": { "type": "string", "minLength": 1 },
+        "status": { "type": "string", "enum": ["open", "resolved", "overdue", "fulfilled"] },
+        "owner": { "$ref": "#/$defs/personKey" },
+        "due": { "type": "string", "format": "date" }
+      }
+    },
+    "stateValue": {
+      "description": "'unknown', null (known absent), a scalar (entity key for person-valued fields, ISO timestamp for last_customer_interaction), or a list of items for list fields.",
+      "anyOf": [
+        { "type": ["string", "number", "boolean", "null"] },
+        { "type": "array", "items": { "$ref": "#/$defs/listItem" } }
+      ]
+    },
+    "buyingGroupMember": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["person_key", "roles", "status"],
+      "properties": {
+        "person_key": { "$ref": "#/$defs/personKey" },
+        "roles": {
+          "type": "array", "minItems": 1, "uniqueItems": true,
+          "items": { "$ref": "https://ghost.local/contracts/account_state.v1.json#/properties/buying_group/items/properties/roles/items" }
+        },
+        "status": { "$ref": "https://ghost.local/contracts/account_state.v1.json#/properties/buying_group/items/properties/status" },
+        "title": { "type": ["string", "null"] },
+        "delegated_to": { "$ref": "#/$defs/personKey" }
+      }
+    },
+    "trigger": {
+      "description": "Eligibility of the workflow evaluated right after after_event_file is ingested (mirrors trigger_evaluation.v1.json).",
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["workflow", "eligible", "reason_codes"],
+      "properties": {
+        "workflow": { "$ref": "https://ghost.local/contracts/trigger_evaluation.v1.json#/properties/workflow" },
+        "eligible": { "type": "boolean" },
+        "reason_codes": {
+          "type": "array", "minItems": 1, "uniqueItems": true,
+          "items": { "$ref": "https://ghost.local/contracts/trigger_evaluation.v1.json#/properties/reason_codes/items" }
+        }
+      },
+      "if": { "properties": { "eligible": { "const": false } } },
+      "then": { "properties": { "reason_codes": { "items": { "not": { "pattern": "^eligible_" } } } } },
+      "else": { "properties": { "reason_codes": { "items": { "pattern": "^eligible_" } } } }
+    },
+    "criticalFact": {
+      "description": "A fact the state must get right, with its evidence. evidence_quote must be a verbatim substring of the event's body text (contracts/normalization.md); it is null only for structured CRM field evidence (crm_explicit, no body text).",
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["field", "value", "evidence_event_file", "evidence_quote"],
+      "properties": {
+        "field": { "$ref": "https://ghost.local/contracts/claim.v1.json#/$defs/fieldPath" },
+        "subject": { "$ref": "#/$defs/entityKey" },
+        "value": {},
+        "evidence_event_file": { "$ref": "#/$defs/eventFile" },
+        "evidence_quote": { "type": ["string", "null"], "minLength": 1, "maxLength": 2000 }
+      }
+    },
+    "conflict": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "field", "winner_value", "winner_standing", "winner_event_file",
+        "contradicting_value", "contradicting_standing", "contradicting_event_file", "contradicting_quote"
+      ],
+      "properties": {
+        "field": { "type": "string", "minLength": 1 },
+        "winner_value": {},
+        "winner_standing": { "$ref": "https://ghost.local/contracts/common.v1.json#/$defs/standing" },
+        "winner_event_file": { "type": "string", "minLength": 1 },
+        "contradicting_value": {},
+        "contradicting_standing": { "$ref": "https://ghost.local/contracts/common.v1.json#/$defs/standing" },
+        "contradicting_event_file": { "type": "string", "minLength": 1 },
+        "contradicting_quote": { "type": "string", "minLength": 1 }
+      }
+    },
+    "staleFact": {
+      "description": "A value that some evidence supports but that must NOT be current (outranked, superseded, or older than a correction).",
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["field", "stale_value", "source_event_file"],
+      "properties": {
+        "field": {
+          "anyOf": [
+            { "$ref": "https://ghost.local/contracts/claim.v1.json#/$defs/fieldPath" },
+            { "enum": ["person.title", "person.employer"] }
+          ]
+        },
+        "subject": { "$ref": "#/$defs/entityKey" },
+        "stale_value": {},
+        "source_event_file": { "$ref": "#/$defs/eventFile" }
+      }
+    }
+  }
+}

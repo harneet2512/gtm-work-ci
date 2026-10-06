@@ -1,0 +1,73 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://ghost.local/contracts/gate_result.v1.json",
+  "title": "GateResult",
+  "description": "One stored judgment of one object of one episode under one gate of the eval buckets (HAR-97): Bucket 1 B1 to B9, Bucket 2 D1 to D10, Bucket 3 S1 to S5. One shape and one store for every bucket, keyed by episode and gate. It says what was asked, what was observed, the verdict, why, the evidence it rests on, what the gate protects and which grader produced it. Rule R1: a pass, warn or fail needs at least one evidence ref that resolves to a stored object; with none the verdict is unknown. unknown is a legitimate verdict and is never styled as a pass; the older spelling abstain is read as unknown. Calibration is deferred: calibrated is always false and surfaces say not yet calibrated.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["id", "gate", "sub_gate", "label", "judged_object", "span_id", "verdict", "question", "observed", "why", "evidence_refs", "improves", "grader", "calibrated"],
+  "properties": {
+    "id": { "$ref": "common.v1.json#/$defs/uuid" },
+    "gate": { "description": "The gate: B1-B9, D1-D10 or S1-S5.", "type": "string", "pattern": "^(B[1-9]|D([1-9]|10)|S[1-5])$" },
+    "sub_gate": { "description": "The assertion under the gate (empty when the gate has one result per object).", "type": "string", "maxLength": 80 },
+    "label": { "description": "A categorical result where a category is clearer than pass/fail (AGREE, COVERED, ...); empty when none.", "type": "string", "pattern": "^([A-Z][A-Z_]*)?$" },
+    "judged_object": {
+      "type": "object", "additionalProperties": false, "required": ["type", "id"],
+      "properties": {
+        "type": { "type": "string", "pattern": "^[A-Z][A-Za-z]+$" },
+        "id": { "type": "string", "minLength": 1, "maxLength": 200 }
+      }
+    },
+    "span_id": { "description": "The trace span the result attaches to (kind:ref, as in episode_trace.v1.json).", "type": "string", "pattern": "^[a-z_]+:[A-Za-z0-9._-]+$" },
+    "verdict": { "type": "string", "enum": ["pass", "warn", "fail", "unknown"] },
+    "question": { "type": "string", "minLength": 1 },
+    "observed": { "type": "string", "minLength": 1 },
+    "why": { "type": "string", "minLength": 1 },
+    "evidence_refs": {
+      "description": "kind:id refs that resolve to stored rows, for example candidate:UUID, activity:UUID, effect:KEY, gate_result:UUID. Empty only when the verdict is unknown.",
+      "type": "array", "items": { "type": "string", "pattern": "^[a-z_]+:.+$" }
+    },
+    "improves": { "type": "string", "minLength": 1 },
+    "grader": {
+      "type": "object", "additionalProperties": false, "required": ["kind"],
+      "properties": {
+        "kind": { "enum": ["deterministic", "model"] },
+        "model": { "type": "string" },
+        "prompt_version": { "type": "string" }
+      }
+    },
+    "calibrated": { "const": false },
+    "criteria": {
+      "description": "HAR-149: the per-criterion results folded into the verdict, in the order the judge returned them (a model judge's dimensions, a deterministic gate's assertions). Empty when the gate stored only one verdict; nothing is invented to fill it. A criterion that is not pass cites why; pass, warn and fail cite evidence (rule R1 applies per criterion).",
+      "type": "array",
+      "items": {
+        "type": "object", "additionalProperties": false, "required": ["id", "label", "result", "why", "evidence_refs"],
+        "properties": {
+          "id": { "type": "string", "minLength": 1 },
+          "label": { "type": "string" },
+          "result": { "enum": ["pass", "warn", "fail", "unknown", "not_applicable"] },
+          "why": { "type": "string" },
+          "evidence_refs": { "type": "array", "items": { "type": "string", "pattern": "^[a-z_]+:.+$" } }
+        }
+      }
+    },
+    "control_effect": { "description": "HAR-149: what this verdict did in the backend (contracts/evals/eval_registry.json control_effect_rules; most gates only RECORD ONLY).", "enum": ["OBSERVE", "CONTINUE", "RANK", "RECOMPUTE", "RETRY", "BLOCK", "ESCALATE", "MARK UNKNOWN", "RECORD ONLY"] },
+    "evaluator_version": { "description": "HAR-149: the judge that produced the result: a model judge's prompt version, or <gate>:deterministic:v1.", "type": "string" },
+    "lineage": {
+      "description": "HAR-149: set only from a real recompute or retry record, never inferred from a changed verdict. Empty today: the backend records no gate-level recompute. recompute_of is the id of the result that was replaced.",
+      "type": "object", "additionalProperties": false,
+      "properties": { "retry_of": { "type": "string" }, "recompute_of": { "type": "string" }, "previous_verdict": { "enum": ["pass", "warn", "fail", "unknown"] } }
+    },
+    "latency_ms": { "description": "HAR-149: the model time the worker reported for a live call; null when not recorded (replayed calls and deterministic gates are null, never a measured 0).", "type": ["integer", "null"], "minimum": 0 },
+    "model_calls": { "description": "HAR-149: live model calls the worker reported for the result; 0 when the answer was replayed from a recording; null when not recorded.", "type": ["integer", "null"], "minimum": 0 },
+    "tokens": { "description": "HAR-149: tokens the result took; null when the backend does not attribute tokens per result.", "type": ["integer", "null"], "minimum": 0 },
+    "cost_usd": { "description": "HAR-149: cost of the result; null when not attributed per result.", "type": ["number", "null"], "minimum": 0 }
+  },
+  "allOf": [
+    {
+      "description": "Rule R1: no evidence, no verdict other than unknown.",
+      "if": { "properties": { "verdict": { "enum": ["pass", "warn", "fail"] } } },
+      "then": { "properties": { "evidence_refs": { "minItems": 1 } } }
+    }
+  ]
+}

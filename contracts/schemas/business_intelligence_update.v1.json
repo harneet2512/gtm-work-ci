@@ -1,0 +1,102 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://ghost.local/contracts/business_intelligence_update.v1.json",
+  "title": "BusinessIntelligenceUpdate",
+  "description": "Slack Message 1 and its web counterpart (HAR-129 section 5): what changed in the account because Event N arrived, and why it matters. Every change claim carries its own evidence; there is deliberately no confidence field, because a score is not a trace. Slack and web render this object and the AccountChange it points at.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "id", "account_id", "account_change_id", "summary", "claims", "why_it_matters", "knowledge_refs",
+    "account_map_ref", "transition", "created_at"
+  ],
+  "properties": {
+    "id": { "$ref": "common.v1.json#/$defs/uuid" },
+    "account_id": { "$ref": "common.v1.json#/$defs/uuid" },
+    "opportunity_id": { "oneOf": [{ "$ref": "common.v1.json#/$defs/uuid" }, { "type": "null" }] },
+    "account_change_id": { "$ref": "common.v1.json#/$defs/uuid" },
+    "summary": { "type": "string", "minLength": 1, "maxLength": 600 },
+    "claims": {
+      "description": "What changed, one claim per material change, taken from the state diff.",
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["statement", "dimension", "evidence_refs"],
+        "properties": {
+          "statement": { "type": "string", "minLength": 1, "maxLength": 500 },
+          "dimension": { "$ref": "common.v1.json#/$defs/changeDimension" },
+          "state_diff_field": {
+            "description": "The state_diff.changes[].field this claim restates.",
+            "type": ["string", "null"]
+          },
+          "evidence_refs": { "type": "array", "minItems": 1, "items": { "$ref": "common.v1.json#/$defs/evidenceRef" } },
+          "graph_diff_items": {
+            "description": "The elements of the event's graph diff (GET /events/{id}/graph-diff) this claim also rests on: attributed to the event, of a kind that carries the claim's dimension, and evidence-linked to one of the claim's activities. Absent when none qualifies; the claim is still cited through evidence_refs.",
+            "type": "array",
+            "maxItems": 10,
+            "items": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": ["kind", "type", "id"],
+              "properties": {
+                "kind": { "enum": ["node", "edge"] },
+                "type": { "type": "string", "minLength": 1, "maxLength": 80, "description": "Neo4j label or relationship type." },
+                "id": { "type": "string", "minLength": 1, "maxLength": 200 }
+              }
+            }
+          }
+        }
+      }
+    },
+    "why_it_matters": { "type": "string", "minLength": 1, "maxLength": 1500 },
+    "knowledge_refs": {
+      "description": "Previous company knowledge that applies (ids of knowledge objects whose applicability check passed); empty when none does.",
+      "type": "array",
+      "items": { "$ref": "common.v1.json#/$defs/uuid" }
+    },
+    "account_map_ref": {
+      "description": "What 'View account map' opens: the account graph at this state, with the graph diff highlighted.",
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["state_ref", "graph_diff_ref"],
+      "properties": {
+        "state_ref": { "$ref": "common.v1.json#/$defs/stateRef" },
+        "graph_diff_ref": { "$ref": "common.v1.json#/$defs/graphDiffRef" }
+      }
+    },
+    "transition": {
+      "description": "Required, nullable. The relationship-state transition of the account (ADR-0012), restated from its StateTransition: the one this event touched (touched_by_event true), or, when the event touched none, the account's open transition labelled unchanged (touched_by_event false); null when the account has neither (status 'none'). CANDIDATE and UNRESOLVED name the facts still missing; CONFIRMED has none required. Written by the deterministic detector, never by a model.",
+      "oneOf": [
+        { "type": "null" },
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["state_transition_id", "status", "from_state", "to_state_candidate", "missing_facts", "touched_by_event"],
+          "properties": {
+            "state_transition_id": { "$ref": "common.v1.json#/$defs/uuid" },
+            "status": { "$ref": "common.v1.json#/$defs/transitionStatus" },
+            "from_state": { "$ref": "common.v1.json#/$defs/relationshipStateOrUnknown" },
+            "to_state_candidate": { "oneOf": [{ "$ref": "common.v1.json#/$defs/relationshipState" }, { "type": "null" }] },
+            "touched_by_event": { "type": "boolean", "description": "true: this event moved the transition. false: the event did not touch it; it is the account's open transition, shown as unchanged." },
+            "missing_facts": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "additionalProperties": false,
+                "required": ["key", "description", "required"],
+                "properties": {
+                  "key": { "$ref": "common.v1.json#/$defs/factKey" },
+                  "description": { "type": "string", "minLength": 1, "maxLength": 300 },
+                  "required": { "type": "boolean" }
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "model": { "type": ["string", "null"], "description": "The model that wrote the prose; null when the update was built from templates over the cited facts (the Play writer, HAR-124)." },
+    "created_at": { "$ref": "common.v1.json#/$defs/timestamp" }
+  }
+}

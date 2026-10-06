@@ -1,0 +1,48 @@
+{
+  "scope": "manifest",
+  "manifest_id": "0d3a0000-0000-4000-8000-000000000501",
+  "run_id": null,
+  "account_id": "0a0c0000-0000-4000-8000-000000000001",
+  "overall": "running",
+  "stages": [
+    {
+      "stage": "ingest", "status": "completed", "attempt": 1,
+      "started_at": "2026-10-04T15:00:00.120Z", "ended_at": "2026-10-04T15:00:00.410Z", "duration_ms": 290,
+      "refs": { "source_event_id": "05e00000-0000-4000-8000-00000000010d", "activity_id": "0ac70000-0000-4000-8000-000000000101" },
+      "eval_result_ids": [], "failure_kind": null, "detail": "email", "seq": 1, "updated_at": "2026-10-04T15:00:00.410Z"
+    },
+    {
+      "stage": "resolve", "status": "completed", "attempt": 1,
+      "started_at": "2026-10-04T15:00:00.410Z", "ended_at": "2026-10-04T15:00:00.455Z", "duration_ms": 45,
+      "refs": { "activity_id": "0ac70000-0000-4000-8000-000000000101", "opportunity_id": "0b0e0000-0000-4000-8000-0000000000a1" },
+      "eval_result_ids": [], "failure_kind": null, "detail": "attributed to the manifest's account", "seq": 2, "updated_at": "2026-10-04T15:00:00.455Z"
+    },
+    {
+      "stage": "graph", "status": "completed", "attempt": 1,
+      "started_at": "2026-10-04T15:00:01.900Z", "ended_at": "2026-10-04T15:00:02.600Z", "duration_ms": 700,
+      "refs": { "graph_diff_id": 41 },
+      "eval_result_ids": [], "failure_kind": null, "detail": "projected", "seq": 4, "updated_at": "2026-10-04T15:00:02.600Z"
+    },
+    {
+      "stage": "state", "status": "completed", "attempt": 1,
+      "started_at": "2026-10-04T15:00:00.455Z", "ended_at": "2026-10-04T15:00:01.900Z", "duration_ms": 1445,
+      "refs": { "state_diff_id": "0d1f0000-0000-4000-8000-000000000301", "state_version": 7, "trigger_evaluation_id": "07e00000-0000-4000-8000-000000000401" },
+      "eval_result_ids": [], "failure_kind": null, "detail": "state v7; trigger eligible", "seq": 3, "updated_at": "2026-10-04T15:00:01.900Z"
+    },
+    {
+      "stage": "decide", "status": "running", "attempt": 1,
+      "started_at": "2026-10-04T15:00:03.000Z", "ended_at": null, "duration_ms": null,
+      "refs": {},
+      "eval_result_ids": [], "failure_kind": null, "detail": null, "seq": 5, "updated_at": "2026-10-04T15:00:03.000Z"
+    },
+    {
+      "stage": "evals", "status": "waiting", "attempt": 0, "started_at": null, "ended_at": null, "duration_ms": null,
+      "refs": {}, "eval_result_ids": [], "failure_kind": null, "detail": null, "seq": null, "updated_at": null
+    },
+    {
+      "stage": "cliff", "status": "waiting", "attempt": 0, "started_at": null, "ended_at": null, "duration_ms": null,
+      "refs": {}, "eval_result_ids": [], "failure_kind": null, "detail": null, "seq": null, "updated_at": null
+    }
+  ],
+  "generated_at": "2026-10-04T15:00:04Z"
+}

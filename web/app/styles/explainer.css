@@ -1,0 +1,326 @@
+/* Explaining evals (/explaining-evals): a calm reading page for a person who has never seen the registry.
+   One column, large questions, quiet labels; tokens only. */
+.xpage {
+  max-width: 880px;
+  padding-bottom: calc(var(--space-12) * 2);
+}
+
+.xhead {
+  margin-bottom: var(--space-12);
+}
+
+.xtitle {
+  margin: var(--space-1) 0 var(--space-5);
+  font-size: clamp(2rem, 1.5rem + 1.6vw, 2.75rem);
+  line-height: var(--leading-tight);
+  letter-spacing: var(--tracking-tight);
+  font-weight: 650;
+  max-width: 18ch;
+}
+
+.xlead {
+  max-width: 62ch;
+  margin: 0 0 var(--space-8);
+  font-size: var(--text-xl);
+  line-height: var(--leading-snug);
+  color: var(--ink-2);
+  text-wrap: pretty;
+}
+
+.xh2 {
+  margin: var(--space-8) 0 var(--space-3);
+  font-size: var(--text-2xs);
+  font-weight: 600;
+  letter-spacing: var(--tracking-caps);
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+.xbody {
+  max-width: 66ch;
+  margin: 0;
+  font-size: var(--text-md);
+  line-height: var(--leading-normal);
+  color: var(--ink-2);
+}
+
+.xresults {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: var(--space-3);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.xresults li {
+  display: grid;
+  gap: var(--space-1);
+  padding: var(--space-4);
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-md);
+  font-size: var(--text-base);
+  line-height: var(--leading-normal);
+  color: var(--ink-2);
+}
+
+.xresults strong {
+  color: var(--ink);
+  font-size: var(--text-md);
+}
+
+.xnote {
+  max-width: 66ch;
+  margin: var(--space-5) 0 0;
+  padding-left: var(--space-4);
+  border-left: 2px solid var(--brand-line);
+  font-size: var(--text-md);
+  line-height: var(--leading-normal);
+  color: var(--ink-2);
+}
+
+/* The loop, in order */
+.xtoc {
+  margin-top: var(--space-10);
+}
+
+.xtoc ol {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: var(--space-2);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  counter-reset: xtoc;
+}
+
+.xtoc li {
+  counter-increment: xtoc;
+}
+
+.xtoc a {
+  display: grid;
+  gap: var(--space-1);
+  height: 100%;
+  padding: var(--space-3);
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-md);
+  color: var(--ink);
+  font-size: var(--text-sm);
+  line-height: var(--leading-snug);
+  text-decoration: none;
+}
+
+.xtoc a::before {
+  content: counter(xtoc);
+  color: var(--brand-text);
+  font-weight: 650;
+}
+
+.xtoc a:hover {
+  border-color: var(--brand-line);
+  background: var(--brand-tint);
+}
+
+.xtoc-kicker {
+  color: var(--muted);
+  font-size: var(--text-xs);
+}
+
+/* A moment of the loop */
+.xsection {
+  margin-top: calc(var(--space-12) * 1.5);
+  scroll-margin-top: calc(var(--header-h) + var(--space-4));
+}
+
+.xsection-head {
+  margin-bottom: var(--space-8);
+  padding-top: var(--space-6);
+  border-top: 1px solid var(--line-strong);
+}
+
+.xsection-kicker {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  margin: 0 0 var(--space-3);
+  color: var(--brand-text);
+  font-size: var(--text-xs);
+  font-weight: 650;
+  letter-spacing: var(--tracking-caps);
+  text-transform: uppercase;
+}
+
+.xsection-n {
+  display: inline-grid;
+  place-items: center;
+  width: 22px;
+  height: 22px;
+  border-radius: var(--radius-full);
+  background: var(--brand-tint);
+  box-shadow: inset 0 0 0 1px var(--brand-line);
+  font-size: var(--text-xs);
+  letter-spacing: 0;
+}
+
+.xsection-title {
+  margin: 0 0 var(--space-2);
+  color: var(--ink);
+  font-size: var(--text-3xl);
+  font-weight: 650;
+  letter-spacing: var(--tracking-tight);
+  line-height: var(--leading-tight);
+  text-transform: none;
+}
+
+.xsection-q {
+  margin: 0 0 var(--space-3);
+  color: var(--ink-2);
+  font-size: var(--text-lg);
+  line-height: var(--leading-snug);
+}
+
+.xsection-intro {
+  max-width: 66ch;
+  margin: 0;
+  color: var(--muted);
+  font-size: var(--text-md);
+  line-height: var(--leading-normal);
+}
+
+.xcards {
+  display: grid;
+  gap: var(--space-5);
+}
+
+/* One eval */
+.xcard {
+  padding: var(--space-6) var(--space-6) var(--space-5);
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-1);
+}
+
+.xcard[data-soon="true"] {
+  background: var(--surface-subtle);
+  border-style: dashed;
+  border-color: var(--line-strong);
+}
+
+.xcard-badges {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+  margin: 0 0 var(--space-2);
+}
+
+.xbadge {
+  padding: 1px var(--space-2);
+  border-radius: var(--radius-full);
+  background: var(--surface-sunken);
+  color: var(--muted);
+  font-size: var(--text-xs);
+  line-height: var(--leading-normal);
+}
+
+.xbadge.is-soon {
+  background: var(--brand-tint);
+  box-shadow: inset 0 0 0 1px var(--brand-line);
+  color: var(--brand-text);
+}
+
+.xcard-q {
+  margin: 0 0 var(--space-5);
+  font-size: var(--text-2xl);
+  font-weight: 650;
+  line-height: var(--leading-tight);
+  letter-spacing: var(--tracking-tight);
+  text-wrap: balance;
+}
+
+.xcard-rows {
+  display: grid;
+  gap: var(--space-4);
+  margin: 0;
+}
+
+.xcard-row {
+  display: grid;
+  grid-template-columns: 11rem minmax(0, 1fr);
+  gap: var(--space-4);
+  align-items: baseline;
+}
+
+.xcard-row dt {
+  color: var(--muted);
+  font-size: var(--text-sm);
+  font-weight: 600;
+  line-height: var(--leading-normal);
+}
+
+.xcard-row dd {
+  margin: 0;
+  color: var(--ink);
+  font-size: var(--text-md);
+  line-height: var(--leading-normal);
+  text-wrap: pretty;
+}
+
+.xcard-example {
+  padding: var(--space-3) var(--space-4);
+  background: var(--brand-tint);
+  border-left: 2px solid var(--brand);
+  border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+  color: var(--ink-2);
+}
+
+.xcard-row:last-child dd {
+  color: var(--ink-2);
+  font-size: var(--text-base);
+}
+
+.xfoot {
+  margin: calc(var(--space-12) * 1.5) 0 0;
+  color: var(--muted);
+  font-size: var(--text-md);
+}
+
+.xfoot a {
+  color: var(--brand-text);
+}
+
+@media (max-width: 1100px) {
+  .xtoc ol {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 720px) {
+  .xresults {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .xtoc ol {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .xcard {
+    padding: var(--space-5) var(--space-4) var(--space-4);
+  }
+
+  .xcard-row {
+    grid-template-columns: minmax(0, 1fr);
+    gap: var(--space-1);
+  }
+
+  .xsection-title {
+    font-size: var(--text-2xl);
+  }
+
+  .xlead {
+    font-size: var(--text-lg);
+  }
+}

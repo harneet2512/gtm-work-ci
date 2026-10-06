@@ -1,0 +1,172 @@
+{
+  "version": "ghost-known-extraction-misses.v1",
+  "prompt_sha256": "6d61b7e9218db84772ba31416883012f81f1203d697b60cf4f75092ccee86f38",
+  "count": 33,
+  "misses": [
+    {
+      "exact_key": "157fefd7e93bb52deca79d2e48e46972de747fbe8e0670e6409beff2bda12e65",
+      "loose_key": "96ad5f9b6fe4b264778d54d7a64a563c079000f454d0c491cdae5ec8d8e5cbb8",
+      "activity": "Activity: type=EmailSent source=email occurred_at=2024-03-10T09:05:00Z"
+    },
+    {
+      "exact_key": "1af323285f9d0a6bab539b4595ba9401fba193ba6ae2731fc9217621152a48cb",
+      "loose_key": "0c5ac2b5afef8466959a07d8279213de9f81d77b6791ee9a57c59968b58f35ab",
+      "activity": "Activity: type=EmailSent source=email occurred_at=2024-05-23T10:05:00Z"
+    },
+    {
+      "exact_key": "20cc2a10ce4af931dcd9353db9339fa47f503a90abaaf47fcfa54f3041911ed4",
+      "loose_key": "73ff0fc9331267bd336800d4e11c7a63af2ad9a6e48993aef9003c7cb1054a37",
+      "activity": "Activity: type=EmailSent source=email occurred_at=2024-03-10T13:00:00Z"
+    },
+    {
+      "exact_key": "275d6633ca90c0af0b2fda2e1e2a7033ffab480dea733291ed4f70eb43f80066",
+      "loose_key": "4b5ddcdd0a72fea28ef2fc5fd490a663d6c3b0fbe83367b711c01d7442679e84",
+      "activity": "Activity: type=EmailSent source=email occurred_at=2024-05-23T10:05:00Z"
+    },
+    {
+      "exact_key": "2af9cdd359764aa528c34f12c1c71603c8aa2ca5bd739881478d641aa671ff1a",
+      "loose_key": "63bf95692eee05a6246c25b68e90a177aa34d516b4ea15aa34b94599bc37ade0",
+      "activity": "Activity: type=EmailSent source=email occurred_at=2022-01-17T13:30:00Z"
+    },
+    {
+      "exact_key": "3d753ccc4767a5208d82509a1ab405c62bddb80f7e7a8547a5f1240d91a6add5",
+      "loose_key": "6091830e79510fd8204d5348dbf3cef216d770ea135dae57249ef1917a82d65f",
+      "activity": "Activity: type=EmailSent source=email occurred_at=2023-09-15T17:00:00Z"
+    },
+    {
+      "exact_key": "412f686e11a3da55af612e33ec5417d24da1fd5ceb20afba38fa270c3d1d0527",
+      "loose_key": "c5bff8c3da9d552d11ad9653f41a2d548bafa91b85d1142618a3a4c4d69f78fa",
+      "activity": "Activity: type=EmailSent source=email occurred_at=2023-11-13T09:00:00Z"
+    },
+    {
+      "exact_key": "4191088d719c20d5ee4628c4223d8129848ab4fe5f2c7495e2093a7e9bed4678",
+      "loose_key": "dea572b2eddced47ca3c074fa2c4a37bedfcbad849f257f0c0f96c7ce60d5c8a",
+      "activity": "Activity: type=EmailReceived source=email occurred_at=2023-12-01T15:45:00Z"
+    },
+    {
+      "exact_key": "4882b89dbd9ae13a3e4c10305de67705efbfe3f9a9192488ad0e9a74f19f3761",
+      "loose_key": "83f8cb37705720495018326042f46b24597cf8fb63d9a0621f51611d12e468a7",
+      "activity": "Activity: type=EmailSent source=email occurred_at=2023-02-20T16:30:00Z"
+    },
+    {
+      "exact_key": "563f9ee6e2ca95737dcd9d514263d1638140e06e18d5c1df8d2066646ce2cef3",
+      "loose_key": "97651c35f857b82101c631092dde205eb1586152c1a38d60b71de7a43e712bce",
+      "activity": "Activity: type=EmailSent source=email occurred_at=2024-03-10T09:15:00Z"
+    },
+    {
+      "exact_key": "5de7744f98a8776efc843a275e1a85e51b3feb9337b833970e5891ac8bc6c4f4",
+      "loose_key": "8749cde696e53cc35411859b017b9fac3903d3f22f608d49996e880b43df6f50",
+      "activity": "Activity: type=EmailReply source=email occurred_at=2023-09-16T10:45:00Z"
+    },
+    {
+      "exact_key": "5fe758bc70b12a9eea02e1da1fb20026fc4363c86ba4b0cab39331e2fb01bde9",
+      "loose_key": "265abe6cd8c23caa965a6e645f951241481e3df9749f94eda232e1e6d0fe92df",
+      "activity": "Activity: type=EmailSent source=email occurred_at=2023-11-03T14:45:00Z"
+    },
+    {
+      "exact_key": "86b1ca224de06fc396f3d09d8790987951cfc69690b793c74b9c9abb611a0059",
+      "loose_key": "9b4370d08e98ac7fe66afb7489d52b95f7000eee138087c52db90aa1aebb63c9",
+      "activity": "Activity: type=EmailReceived source=email occurred_at=2023-11-03T16:00:00Z"
+    },
+    {
+      "exact_key": "8745be38009129ca6d8ec171315f271e051f642f736bf49bfbf7d1c7d47664fa",
+      "loose_key": "8025b01739f4e4fdca62e20ce3965411ba67df3aab03bae516c3bd51771c0268",
+      "activity": "Activity: type=EmailSent source=email occurred_at=2023-08-09T14:00:00Z"
+    },
+    {
+      "exact_key": "8a0e43e9f77869bb8874b81368b1343194ceff5230a8011e47c3919be9a62127",
+      "loose_key": "dfcc48c25eb792e45a359e8b3a332bfeadc971c5db3e157f08bb7fbd2810067a",
+      "activity": "Activity: type=EmailSent source=email occurred_at=2023-11-06T09:00:00Z"
+    },
+    {
+      "exact_key": "8f79b93352c88e5c7939e33687f489a6910e62181a6d77466b3c4f3a1c430c79",
+      "loose_key": "4121b2632b8f12e8d2051e799e29f96e151adc73477c78c8961e39ad35504f3b",
+      "activity": "Activity: type=EmailSent source=email occurred_at=2023-12-05T16:00:00Z"
+    },
+    {
+      "exact_key": "9598d9308a8740ad99cf47b4554364caca894b7fda91b0902ab9cc9fe554069d",
+      "loose_key": "4aef1c4e5d38091336eb59ee2f69ea341a33409e6c7efa34d280233c87591d8f",
+      "activity": "Activity: type=EmailReceived source=email occurred_at=2023-11-25T10:00:00Z"
+    },
+    {
+      "exact_key": "9a3b38f857861f92ba28f4e793eec1a4516c323fc6e8a8eba37043807b5e2b3e",
+      "loose_key": "745c4852877cc5bb8d094d90436a1acb090e535cc5872687ab137a40c5cce4ca",
+      "activity": "Activity: type=EmailReceived source=email occurred_at=2023-08-09T15:32:00Z"
+    },
+    {
+      "exact_key": "a66883356364a3dc1953c502f02999bdbf1c022a7c8691a43b4862459ed046c4",
+      "loose_key": "6141d28cc7f1ec60d024068bbc86a98e5c4e8c15e64dc9e109c68602ed932168",
+      "activity": "Activity: type=EmailSent source=email occurred_at=2023-10-11T10:00:00Z"
+    },
+    {
+      "exact_key": "ab9a6220291c66113f691d8823b50e4986ea0060a61df5f1b75d0d5a0492a1a8",
+      "loose_key": "6da50dc7e6966d24ae00c34c48db7838e410601f60a85421a4f83f313c2477fd",
+      "activity": "Activity: type=EmailSent source=email occurred_at=2023-12-01T10:30:00Z"
+    },
+    {
+      "exact_key": "aee15107e573575c96fcf2d7746e5364806f5f4ad5a4f4b3e959257baaa419da",
+      "loose_key": "9c31ac35b0b58e60e6606168db7991e837c7f557d1081138b42dc17e7981d845",
+      "activity": "Activity: type=EmailSent source=email occurred_at=2023-12-04T13:15:00Z"
+    },
+    {
+      "exact_key": "b1d3a8d79245be5bd83421fe233b61a885a437c75c9249d7a648cd672cfd2fbb",
+      "loose_key": "1f23e455d797991e7aa1a87c386974382d5ad402b3a256374e39f9806f113edc",
+      "activity": "Activity: type=EmailReceived source=email occurred_at=2024-03-10T10:00:00Z"
+    },
+    {
+      "exact_key": "b85c40e7dcb82b038ae8cff98954e198798dff98dfdb00d2aa8bff37066acbcf",
+      "loose_key": "3b2ef99d9df1c843c8fd9c8451b8f25c2eb3b69d1f0574699b34381105978d46",
+      "activity": "Activity: type=EmailReceived source=email occurred_at=2023-11-28T17:30:00Z"
+    },
+    {
+      "exact_key": "bd5b41d7de7f5b6a17d558775bccd56cbef763ddd6a051e9adac30e1e1c4fdbb",
+      "loose_key": "4253acf5df967f272def989defc58ee3b692fec45a8a2d92eca399ce059309be",
+      "activity": "Activity: type=EmailReceived source=email occurred_at=2023-10-10T16:10:00Z"
+    },
+    {
+      "exact_key": "bf79ef0f09920e3382449fe91b3d7ac8e2cc56b3b0338f58ca3bd76026224066",
+      "loose_key": "29a65e81715c5dadf0e3cc0c2dccf2dea2ebd02b38c08fbab1a83da7c93b5f17",
+      "activity": "Activity: type=EmailReceived source=email occurred_at=2024-05-23T15:20:00Z"
+    },
+    {
+      "exact_key": "c05324b7ffcbf34dc1a9a03df071f7abc375706ac66b3791bf31d5a2eecf1def",
+      "loose_key": "15bca3749a8ceb9fd45fdc206ef158463908226d053ab1fb3ccbe408608504fc",
+      "activity": "Activity: type=EmailReceived source=email occurred_at=2023-11-30T15:36:00Z"
+    },
+    {
+      "exact_key": "c96efb6617ffe7746d8a2283fb980f480799d33200da6631fe26d13a573bbbd5",
+      "loose_key": "d600a388921a72bbc4e350aed5293606aceba1375f366e1dbe376a7f1c953a53",
+      "activity": "Activity: type=EmailSent source=email occurred_at=2024-03-10T09:30:00Z"
+    },
+    {
+      "exact_key": "cb52d689ee704d23b33cb5475adcd80d3cb6ea89b788b142641352f8b2705a8c",
+      "loose_key": "b357d6626542277d31333fd24e6533654d136d96832f43c97fef54b68f9a876c",
+      "activity": "Activity: type=EmailReply source=email occurred_at=2023-11-20T15:30:00Z"
+    },
+    {
+      "exact_key": "cc6592ec01a0aeb7b7f47cb97fa09a74f760f92df2c43eece86a3e4e7ca69d9f",
+      "loose_key": "2e0798125c793228b28849dff105eedc5935d05d93c7c4554194f9d7fdb55aa0",
+      "activity": "Activity: type=EmailReceived source=email occurred_at=2023-12-04T10:30:00Z"
+    },
+    {
+      "exact_key": "dbf0f68c521caac34703223f917d16829ddf5612ef2348f4af74e8a86e853ee7",
+      "loose_key": "15523b5cca24d3df00715d49e97a6e6a5a2352a9d9cc01a620767d3ad6577261",
+      "activity": "Activity: type=EmailReply source=email occurred_at=2024-03-10T10:15:00Z"
+    },
+    {
+      "exact_key": "dc2c3d25f8c0af143657087c9a985e520cf6a231b7473d79942b53fe26acb096",
+      "loose_key": "5d726f53d7b7242d25d4f09f6292929f5fa3f4bb863a9a557d192e0aab2253ad",
+      "activity": "Activity: type=EmailSent source=email occurred_at=2023-02-03T12:00:00Z"
+    },
+    {
+      "exact_key": "fac3f5ebaaf8576390b50330cf786191735971306d5bb747e2eca84ea3bad7ae",
+      "loose_key": "e70750ee81e4a43fe435dbe0807c16595a3e2e88ada51d78ad322f8d6ea13704",
+      "activity": "Activity: type=EmailSent source=email occurred_at=2022-01-17T13:30:00Z"
+    },
+    {
+      "exact_key": "ffec75bcdf1d76e1bcc4c426ec17e672973e657b12ec88a3bbbcadeeef56350d",
+      "loose_key": "39a0b6a55b56a9ab1fc0348a5dcadaf5e1dcf0234aa52fec0541e4eb134a18e4",
+      "activity": "Activity: type=EmailReceived source=email occurred_at=2024-03-10T12:30:00Z"
+    }
+  ]
+}

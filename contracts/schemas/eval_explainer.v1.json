@@ -1,0 +1,105 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://ghost.local/contracts/eval_explainer.v1.json",
+  "title": "EvalExplainer",
+  "description": "The human copy of the Explaining evals page (HAR-97 eval list, HAR-149 control plane): an intro, five moments of the product loop, and one entry per eval keyed by the registry gate id. Ids are keys only and are never rendered. The instance is contracts/evals/explainer.v1.json; parity with eval_registry.json is tested in web/tests/explainer-parity.test.ts.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["explainer_version", "description", "intro", "cadence_labels", "decides_by_labels", "moments", "entries"],
+  "properties": {
+    "explainer_version": { "type": "integer", "minimum": 1 },
+    "description": { "type": "string", "minLength": 1, "maxLength": 2000 },
+    "intro": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["title", "lead", "why_heading", "why", "results_heading", "results", "honesty_note"],
+      "properties": {
+        "title": { "type": "string", "minLength": 1 },
+        "lead": { "type": "string", "minLength": 1 },
+        "why_heading": { "type": "string", "minLength": 1 },
+        "why": { "type": "string", "minLength": 1 },
+        "results_heading": { "type": "string", "minLength": 1 },
+        "results": {
+          "type": "array",
+          "minItems": 6,
+          "maxItems": 6,
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": ["label", "meaning"],
+            "properties": { "label": { "type": "string", "minLength": 1 }, "meaning": { "type": "string", "minLength": 1 } }
+          }
+        },
+        "honesty_note": { "type": "string", "minLength": 1 }
+      }
+    },
+    "cadence_labels": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["every_time", "when_triggered", "offline", "ongoing"],
+      "properties": {
+        "every_time": { "type": "string", "minLength": 1 },
+        "when_triggered": { "type": "string", "minLength": 1 },
+        "offline": { "type": "string", "minLength": 1 },
+        "ongoing": { "type": "string", "minLength": 1 }
+      }
+    },
+    "decides_by_labels": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["rule", "judge", "both", "measurement"],
+      "properties": {
+        "rule": { "$ref": "#/$defs/decidesLabel" },
+        "judge": { "$ref": "#/$defs/decidesLabel" },
+        "both": { "$ref": "#/$defs/decidesLabel" },
+        "measurement": { "$ref": "#/$defs/decidesLabel" }
+      }
+    },
+    "moments": {
+      "type": "array",
+      "minItems": 5,
+      "maxItems": 5,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["id", "kicker", "title", "question", "intro"],
+        "properties": {
+          "id": { "enum": ["m1", "m2", "m3", "next_case", "health"] },
+          "kicker": { "type": "string", "minLength": 1 },
+          "title": { "type": "string", "minLength": 1 },
+          "question": { "type": "string", "minLength": 1 },
+          "intro": { "type": "string", "minLength": 1 }
+        }
+      }
+    },
+    "entries": {
+      "type": "array",
+      "minItems": 29,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["id", "moment", "cadence", "human_name", "what", "why", "example", "when", "result_effect", "decides_by"],
+        "properties": {
+          "id": { "type": "string", "pattern": "^[BDS][0-9]{1,2}$" },
+          "moment": { "enum": ["m1", "m2", "m3", "next_case", "health"] },
+          "cadence": { "enum": ["every_time", "when_triggered", "offline", "ongoing"] },
+          "human_name": { "type": "string", "minLength": 8, "maxLength": 90 },
+          "what": { "type": "string", "minLength": 20 },
+          "why": { "type": "string", "minLength": 20 },
+          "example": { "type": "string", "minLength": 10 },
+          "when": { "type": "string", "minLength": 10 },
+          "result_effect": { "type": "string", "minLength": 10 },
+          "decides_by": { "enum": ["rule", "judge", "both", "measurement"] }
+        }
+      }
+    }
+  },
+  "$defs": {
+    "decidesLabel": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["label", "meaning"],
+      "properties": { "label": { "type": "string", "minLength": 1 }, "meaning": { "type": "string", "minLength": 1 } }
+    }
+  }
+}

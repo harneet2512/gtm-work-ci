@@ -1,0 +1,146 @@
+{
+  "id": "beta_enrichment_headcount_congrats_email",
+  "case_type": "no_action",
+  "title": "Beta 09-09: third-party headcount enrichment; candidate emails Hannah congratulating Beta on growth",
+  "should_pass": false,
+  "difficulty": "easy",
+  "slice_tags": {
+    "account": "beta",
+    "origin": "world_moment",
+    "motion": "expansion",
+    "stage": "commercial_review",
+    "champion_status": "active",
+    "economic_buyer": "known",
+    "risk": "low",
+    "candidate": "flawed",
+    "expected_action": "no_action",
+    "extra": ["enrichment", "non_material"]
+  },
+  "based_on": {
+    "kind": "world_moment",
+    "account": "beta",
+    "after_event_file": "world/accounts/beta/events/023_enrich_beta_domain.json",
+    "checkpoint": 2,
+    "changed_fields": [],
+    "change": null
+  },
+  "context": {
+    "now": "2026-09-09T08:00:00Z",
+    "state": {
+      "account_id": "0a0c0000-0000-4000-8000-000000000002",
+      "account_name": "Beta Inc",
+      "opportunity_id": "0c0f0000-0000-4000-8000-000000000005",
+      "fields": {
+        "stage": "Commercial review",
+        "health": "on_track",
+        "motion": "expansion",
+        "champion": "0b0e0000-0000-4000-8000-000000000031",
+        "champion_status": "active",
+        "economic_buyer": "0b0e0000-0000-4000-8000-000000000032",
+        "relationship_risk": "low",
+        "next_milestone": "Platform team review of the integration"
+      },
+      "buying_group": [
+        {
+          "person_id": "0b0e0000-0000-4000-8000-000000000031",
+          "display_name": "Hannah Lee",
+          "title": "VP Customer Operations",
+          "roles": ["champion"],
+          "status": "active",
+          "delegated_to_person_id": null,
+          "last_engaged_at": null,
+          "evidence_refs": []
+        },
+        {
+          "person_id": "0b0e0000-0000-4000-8000-000000000032",
+          "display_name": "Owen Clarke",
+          "title": "Chief Financial Officer",
+          "roles": ["economic_buyer"],
+          "status": "unknown",
+          "delegated_to_person_id": null,
+          "last_engaged_at": null,
+          "evidence_refs": []
+        },
+        {
+          "person_id": "0b0e0000-0000-4000-8000-000000000033",
+          "display_name": "Jess Patel",
+          "title": "Support Operations Manager",
+          "roles": ["user"],
+          "status": "active",
+          "delegated_to_person_id": null,
+          "last_engaged_at": null,
+          "evidence_refs": []
+        }
+      ],
+      "coverage_gaps": []
+    },
+    "recent_changes": {
+      "summary": "Third-party enrichment: Beta headcount 900, HQ Austin. No first-party change.",
+      "material_diff_fields": [],
+      "signals": []
+    },
+    "trigger": {
+      "activity_id": "0ac70000-0000-4000-8000-0000000b0023",
+      "activity_type": "EnrichmentUpdated",
+      "occurred_at": "2026-09-09T06:00:00Z",
+      "actor_person_id": null,
+      "event_file": "world/accounts/beta/events/023_enrich_beta_domain.json",
+      "synthetic": false,
+      "text": ""
+    },
+    "supporting_activities": [],
+    "commitments": [],
+    "timeline_facts": {
+      "last_inbound_at": "2026-09-08T09:40:00Z",
+      "last_inbound_from_person_id": "0b0e0000-0000-4000-8000-000000000031",
+      "last_outbound_at": "2026-09-01T17:00:00Z",
+      "stated_timing": "Hannah loops in the platform person this week"
+    },
+    "offered_knowledge": []
+  },
+  "candidate_action": {
+    "proposed_action_type": "send_email",
+    "recipients": [{"person_id": "0b0e0000-0000-4000-8000-000000000031", "role": "to", "why": "Champion"}],
+    "finished_artifact": {
+      "channel": "email",
+      "subject": "Congrats on the growth!",
+      "body": "Hi Hannah,\n\nSaw Beta is now 900 people - congrats on the growth! Does that change the seat count for the support rollout?\n\nBest,\nDana"
+    },
+    "crm_next_step_intent": {"next_step": "Re-scope seat count", "due_at": null, "stage_change": null},
+    "reason": "Headcount grew to 900.",
+    "evidence_refs": [{"activity_id": "0ac70000-0000-4000-8000-0000000b0023", "occurred_at": "2026-09-09T06:00:00Z"}],
+    "knowledge_refs_used": [],
+    "wait_until": null
+  },
+  "expected": [
+    {
+      "eval_type": "state_change_relevance",
+      "verdict": "fail",
+      "label": null,
+      "diagnostics": [],
+      "blocking": true,
+      "rationale": "A third-party headcount observation is not a deal change; it does not justify customer contact.",
+      "evidence_class": "methodology"
+    },
+    {
+      "eval_type": "next_action_quality",
+      "verdict": "fail",
+      "label": "NO_ACTION",
+      "diagnostics": [],
+      "blocking": false,
+      "rationale": "No action is needed on this trigger.",
+      "evidence_class": "methodology"
+    },
+    {
+      "eval_type": "grounding",
+      "verdict": "fail",
+      "label": null,
+      "diagnostics": [],
+      "blocking": false,
+      "rationale": "Presents third-party enrichment as fact and implies a seat change nobody asked about.",
+      "evidence_class": "deal_data"
+    }
+  ],
+  "expected_best_action": {"action": "no_action", "why": "Enrichment-only event; nothing for the buyer."},
+  "notes": "Enrichment standing is third_party; it never outranks first-party facts (HAR-96 §18)."
+}

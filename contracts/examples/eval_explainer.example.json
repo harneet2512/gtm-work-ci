@@ -1,0 +1,431 @@
+{
+  "explainer_version": 1,
+  "description": "The human copy of the Explaining evals page (/explaining-evals): one card per HAR-97 eval, keyed by the registry's gate id and written for a reader who has never seen the registry. The ids are keys only and are never shown. Parity with contracts/evals/eval_registry.json is tested in web/tests/explainer-parity.test.ts; evals the registry does not list yet (pending) are shown as coming soon.",
+  "intro": {
+    "title": "Explaining evals",
+    "lead": "gtm_ai reads what happens at a customer account, proposes the next move, and learns from what you do with it. An eval is one question that gtm_ai asks of its own work at a particular moment. This page walks through all of them in the order the product runs, and says for each what it checks, why it exists, when it starts and what happens with its answer.",
+    "why_heading": "Why gtm_ai needs them",
+    "why": "A sales assistant that is wrong in a confident voice does more harm than one that is slow. Every step of the loop can go wrong in its own way: a misread email, a message filed under the wrong customer, a recommendation that sounds reasoned but is not, a one-off edit turned into a company rule. The evals are how each of those failures gets noticed, shown to a person and, in two places, stopped before anything leaves.",
+    "results_heading": "The six answers an eval can give",
+    "results": [
+      { "label": "Passed", "meaning": "The check looked and found nothing wrong." },
+      { "label": "Warning", "meaning": "Something is off, but not enough to fail. It is shown so a person can look." },
+      { "label": "Failed", "meaning": "The check found a real problem, and says what and why." },
+      { "label": "Couldn't tell", "meaning": "The evidence was not enough to settle it. This is never counted as a pass." },
+      { "label": "Didn't run", "meaning": "The check was not run on this case, so there is no answer to read." },
+      { "label": "Doesn't apply", "meaning": "The situation the check is about did not come up, for example when there were no earlier cases to look at." }
+    ],
+    "honesty_note": "Most evals inform: they record an answer and show it next to the decision. Today only two checks can stop a send, and each card says plainly which kind it is."
+  },
+  "cadence_labels": {
+    "every_time": "Every time",
+    "when_triggered": "Only when triggered",
+    "offline": "Offline test suite",
+    "ongoing": "Ongoing health"
+  },
+  "decides_by_labels": {
+    "rule": {
+      "label": "A rule",
+      "meaning": "Plain code checks it, so the same input always gives the same answer."
+    },
+    "judge": {
+      "label": "A model judge",
+      "meaning": "A language model reads the evidence and judges it against written criteria."
+    },
+    "both": {
+      "label": "A rule and a model judge",
+      "meaning": "Code checks what can be checked exactly, and a model judges the rest."
+    },
+    "measurement": {
+      "label": "A measurement",
+      "meaning": "It counts or compares results over time instead of giving a single verdict."
+    }
+  },
+  "moments": [
+    {
+      "id": "m1",
+      "kicker": "Message 1",
+      "title": "What changed in the account",
+      "question": "Before Cliff tells you what changed, did gtm_ai understand it?",
+      "intro": "A new email, call or note arrives. Cliff's first Slack message tells you what changed and why it matters. These checks run before that message, because a wrong understanding here would flow into every later step."
+    },
+    {
+      "id": "m2",
+      "kicker": "Message 2",
+      "title": "What to do about it",
+      "question": "Are the three options and the recommendation any good, and is what you send correct?",
+      "intro": "Cliff's second message offers three options and recommends one. You choose, edit and send. These checks judge the options, the recommendation and the exact message at the moment it leaves."
+    },
+    {
+      "id": "m3",
+      "kicker": "Message 3",
+      "title": "What we learned",
+      "question": "What did your choice and edit teach gtm_ai, and should it change what the company knows?",
+      "intro": "After you act, Cliff's third message says what it learned from you and asks you to confirm or correct it. These checks make sure the lesson is read correctly and stays as narrow as the evidence allows."
+    },
+    {
+      "id": "next_case",
+      "kicker": "The next similar case",
+      "title": "Using what was learned",
+      "question": "When a similar case comes up, is the earlier lesson used where it fits, and only there?",
+      "intro": "What gtm_ai learned from one account is carried into the next similar case, which starts again at Message 1. These checks make sure that knowledge is used where it applies and not where it does not."
+    },
+    {
+      "id": "health",
+      "kicker": "Keeping the evals honest",
+      "title": "Can we trust the checks themselves?",
+      "question": "Who checks the checkers?",
+      "intro": "Everything above is only worth something if the checks are right. This last group watches the evals themselves: whether a decision can be traced, whether the judges can be trusted, whether results hold up, what it all costs and whether the decisions turned out well."
+    }
+  ],
+  "entries": [
+    {
+      "id": "B1",
+      "moment": "m1",
+      "cadence": "every_time",
+      "human_name": "Did we read the email correctly?",
+      "what": "We re-read the new email, call or note and compare it with what gtm_ai wrote down: who said it, when, and the exact words. Anything gtm_ai only guessed has to be marked as a guess.",
+      "why": "If a quote, a speaker or a date is wrong, or a guess is stored as a fact, everything built afterwards rests on a corrupted record. A message that arrives twice must also not be counted twice.",
+      "example": "Fatoumata Touré at MedTech Advances writes that a clear understanding of future financial commitments \"is crucial for us\". If gtm_ai had recorded that she agreed to a price, or credited the sentence to our rep Luis, this check would fail.",
+      "when": "Every time a new email, call or note arrives, as soon as gtm_ai has written down what it says.",
+      "result_effect": "It informs. The answer is recorded and shown next to the decision. It does not stop anything by itself.",
+      "decides_by": "both"
+    },
+    {
+      "id": "B2",
+      "moment": "m1",
+      "cadence": "every_time",
+      "human_name": "Is it filed under the right people and account?",
+      "what": "We check that the new message is attached to the right people, the right customer account and the right deal, and that gtm_ai did not simply guess when a name could belong to two different people.",
+      "why": "An email filed under the wrong account pollutes that account's history, and every later decision draws on that history.",
+      "example": "An email from Fatoumata Touré belongs to the MedTech Advances deal. A different company with a similar name must not collect it.",
+      "when": "Every time a new email arrives, right after gtm_ai works out who is in it.",
+      "result_effect": "It informs. The answer is recorded and shown next to the decision. It does not stop anything by itself.",
+      "decides_by": "rule"
+    },
+    {
+      "id": "B3",
+      "moment": "m1",
+      "cadence": "every_time",
+      "human_name": "Does it fit what we already knew?",
+      "what": "We compare what the new message says with what gtm_ai already believed about the account: what it confirms, what it contradicts and what it replaces.",
+      "why": "Without this, new facts quietly overwrite older ones, contradictions go unnoticed and the account's story stops making sense in time order.",
+      "example": "Earlier, Fatoumata wrote that pricing transparency matters a great deal to her. If a later email pointed the other way, gtm_ai should say that the two disagree, not silently drop the first.",
+      "when": "Every time a new event could change what gtm_ai understands about the account.",
+      "result_effect": "It informs. The answer is recorded and shown next to the decision. It does not stop anything by itself.",
+      "decides_by": "both"
+    },
+    {
+      "id": "B4",
+      "moment": "m1",
+      "cadence": "every_time",
+      "human_name": "Is every change in the account backed by evidence?",
+      "what": "We check that each change in gtm_ai's picture of the account is explained by evidence from this event, and that nothing unrelated changed.",
+      "why": "Decisions are made from the account's picture. A change with no evidence behind it, or an unrelated edit, leaves the decision standing on ground nobody can justify.",
+      "example": "A new person on the deal is backed by the email that introduced them, so it passes. Moving the deal to an expansion stage with no new evidence would fail.",
+      "when": "Every time the account's picture is rebuilt after a new event.",
+      "result_effect": "It informs. The answer is recorded and shown next to the decision. It does not stop anything by itself.",
+      "decides_by": "rule"
+    },
+    {
+      "id": "B10",
+      "moment": "m1",
+      "cadence": "every_time",
+      "human_name": "Should gtm_ai have woken up at all?",
+      "what": "We check that gtm_ai started a full decision when the change mattered, and stayed quiet when it did not, with the reason for staying quiet written down. Later, recorded timelines show whether it ever stayed quiet when it should have acted.",
+      "why": "Without this, either every small email triggers a full strategy run, which is noise and cost, or an important change slips past unnoticed.",
+      "example": "A new stakeholder joining the deal should start a run. An updated email signature should not.",
+      "when": "Every time a new event has been processed, right after the check on what changed.",
+      "result_effect": "Planned, not built yet. Once built, a run started for an unimportant change would be suppressed and the reason recorded. A missed important change could only be found later, against recorded timelines.",
+      "decides_by": "rule"
+    },
+    {
+      "id": "B5",
+      "moment": "m1",
+      "cadence": "when_triggered",
+      "human_name": "Did we find the right earlier cases?",
+      "what": "We look at the earlier cases gtm_ai pulled up as similar and check that they are alike in situation and not just in wording, that none is dated after this event, and that no clearly relevant case was missed.",
+      "why": "A case that only sounds alike can steer the decision the wrong way. A case from the future leaks information gtm_ai could not have had. A missed case means the company's memory was ignored.",
+      "example": "A past reorganisation is the right match for a customer going through one. A case that merely shares a few keywords is not.",
+      "when": "Only when gtm_ai looks up earlier similar cases for the current one.",
+      "result_effect": "It informs. The answer is recorded and shown next to the decision. It does not stop anything by itself.",
+      "decides_by": "both"
+    },
+    {
+      "id": "B6",
+      "moment": "m1",
+      "cadence": "when_triggered",
+      "human_name": "Did we read those earlier cases fairly?",
+      "what": "We check what gtm_ai says the earlier cases showed: whether it states how they differ from this one and what the exceptions are, instead of claiming they are the same.",
+      "why": "Over-claiming similarity turns a past case into imitation. Treating an earlier human choice as proof that it was right teaches gtm_ai the wrong lesson.",
+      "example": "\"A discount won the last deal\" is not the same as \"a discount works\". The check wants gtm_ai to say what was different this time.",
+      "when": "Only when earlier similar cases were found, right after gtm_ai describes what they showed.",
+      "result_effect": "It informs. The answer is recorded and shown next to the decision. It does not stop anything by itself.",
+      "decides_by": "judge"
+    },
+    {
+      "id": "B8",
+      "moment": "m1",
+      "cadence": "every_time",
+      "human_name": "What do we now believe, and is it backed up?",
+      "what": "We read gtm_ai's current summary of the account (blockers, commitments, stakeholders, the next decision) and check that each important belief traces back to evidence and that uncertainty is stated.",
+      "why": "This summary is what the recommendation is based on. An unsupported or over-confident summary, or one that leaves out the evidence against it, poisons everything after it.",
+      "example": "If the summary says the buyer is worried about long-term cost, it must point to Fatoumata's email that says so, and say how sure it is.",
+      "when": "Every time gtm_ai has finished updating its summary of the account.",
+      "result_effect": "It informs. The answer is recorded and shown next to the decision. It does not stop anything by itself.",
+      "decides_by": "judge"
+    },
+    {
+      "id": "D1",
+      "moment": "m2",
+      "cadence": "every_time",
+      "human_name": "Is acting even the right move?",
+      "what": "Before any email is written, we check whether acting is the right move at all: act, wait, ask a question, escalate to a person, or do nothing.",
+      "why": "A system that always acts will push a message even when the account is blocked or the picture is unclear. The kind of move has to be judged before the wording.",
+      "example": "Fatoumata asked for a follow-up call and about long-term costs. A hard expansion pitch would be the wrong kind of move. A reply that offers the call is the right kind.",
+      "when": "Right before gtm_ai writes anything, at the moment it decides what kind of move to make.",
+      "result_effect": "It informs. The answer is recorded and shown next to the decision. If the judge cannot tell, the result says so and is never counted as a pass.",
+      "decides_by": "judge"
+    },
+    {
+      "id": "D2",
+      "moment": "m2",
+      "cadence": "every_time",
+      "human_name": "Are the three options real choices?",
+      "what": "We check each of the three options: it should be defensible, grounded in the account's evidence, addressed to the right people, and genuinely different from the other two.",
+      "why": "If the three options are the same idea in different words, contain an invented fact or go to the wrong person, you are not really choosing.",
+      "example": "\"Book the call and bring the cost model\", \"put the costs in writing first\" and \"match Quantum Circuits on onboarding\" are three different moves. Three phrasings of \"book a call\" would fail.",
+      "when": "Right after Cliff writes the three options.",
+      "result_effect": "It informs. The answer is recorded and shown next to each option. It does not stop anything by itself.",
+      "decides_by": "judge"
+    },
+    {
+      "id": "D3",
+      "moment": "m2",
+      "cadence": "every_time",
+      "human_name": "Did we recommend the best option, for the right reason?",
+      "what": "We take the recommendation gtm_ai stored, which option and why, and check that the reasons match the evidence and that no option the checks had flagged as unacceptable was recommended.",
+      "why": "Writing options and judging which is best are different skills. This catches a recommendation that sounds reasoned but is not supported by the evidence.",
+      "example": "If the top pick won because its wording was polished, while the stated reason is that it best fits where the deal stands, the reason and the reality do not match.",
+      "when": "Right after gtm_ai ranks the three options and picks a recommendation.",
+      "result_effect": "It informs. The answer is recorded and shown next to the recommendation. It does not remove or block an option itself. Options that break a hard rule are held back by other checks.",
+      "decides_by": "judge"
+    },
+    {
+      "id": "D4",
+      "moment": "m2",
+      "cadence": "when_triggered",
+      "human_name": "What did your pick tell us?",
+      "what": "When you choose an option, we sort what the choice says about gtm_ai's recommendation: you agreed, you chose a different but defensible option, you corrected the strategy, or gtm_ai was missing context.",
+      "why": "A click is not proof that you are right or that gtm_ai was wrong. This turns the click into structured feedback, and a disagreement is never ignored.",
+      "example": "You choose the second option when gtm_ai recommended the first. That could be a fair difference in taste, or a sign gtm_ai misread the deal. The two are not recorded as the same thing.",
+      "when": "Only when you choose one of the options.",
+      "result_effect": "It records. The answer becomes feedback for later learning. It does not stop anything.",
+      "decides_by": "both"
+    },
+    {
+      "id": "D7",
+      "moment": "m2",
+      "cadence": "when_triggered",
+      "human_name": "Did the edit update everything that depended on it?",
+      "what": "After an edit, we check that everything that depended on the edited part was recomputed before sending, and that nothing unrelated was touched.",
+      "why": "If a stale part survives, such as the old recipient list or a claim from an option you discarded, your correction changes the text but not the work built on it.",
+      "example": "You swap the person on the email. The claims and checks that were written for the old recipient have to be redone, and the rest should stay as it was.",
+      "when": "After you edit the draft and before it is sent.",
+      "result_effect": "It informs. It checks afterwards that the update happened. The update itself is set off by your edit, and the check at the moment of sending is what can stop a send.",
+      "decides_by": "rule"
+    },
+    {
+      "id": "D8",
+      "moment": "m2",
+      "cadence": "every_time",
+      "human_name": "Is the exact message about to go out correct?",
+      "what": "We check the exact message that will leave, after every edit: its purpose is kept, the recipients are right, the claims are grounded and nothing is left over from another option.",
+      "why": "Otherwise a draft that was checked can turn into an unchecked, edited message the moment it is sent.",
+      "example": "You edit the draft, and an address from an option you discarded is still on the To line. This is where it is caught.",
+      "when": "When you press Send, before anything leaves.",
+      "result_effect": "This is one of only two places gtm_ai can stop a send. If a recipient is not real, not on this account or not safe to email, or if text is left over from another option, the send is refused. Every other finding here is shown for you to review and does not block.",
+      "decides_by": "both"
+    },
+    {
+      "id": "D9",
+      "moment": "m2",
+      "cadence": "every_time",
+      "human_name": "Did it really go out, once, to the right person?",
+      "what": "After sending, we check the outbox: the approved action happened exactly once, to the right target, and is linked to this decision.",
+      "why": "A system can say it sent something that was never delivered, deliver twice, or send something that had been blocked. This checks that the job was done, not just claimed.",
+      "example": "gtm_ai says it emailed Fatoumata. The outbox must show one delivery, to her address, tied to this decision.",
+      "when": "After a send has been attempted.",
+      "result_effect": "It informs. It audits the outbox after the fact. A refusal, when there is one, happens earlier, at the moment of sending.",
+      "decides_by": "rule"
+    },
+    {
+      "id": "D5",
+      "moment": "m3",
+      "cadence": "when_triggered",
+      "human_name": "What did your edit mean?",
+      "what": "When you change the draft, we work out what the edit means: a fact, who it is sent to, the strategy, the timing, the ask, a risk, the tone, or only the wording.",
+      "why": "A copy edit read as a strategy correction, or the reverse, teaches gtm_ai the wrong thing. What kind of edit it was decides what gets learned.",
+      "example": "Changing Thursday to Friday is about timing. Swapping the person on the email corrects who it goes to. Softening the ask is a different lesson again.",
+      "when": "Only when you change Cliff's draft.",
+      "result_effect": "It records what the edit meant, which is what later decides what gtm_ai learns. The recalculation after your edit is set off by the edit itself, not by this answer.",
+      "decides_by": "judge"
+    },
+    {
+      "id": "D6",
+      "moment": "m3",
+      "cadence": "when_triggered",
+      "human_name": "Did our own checks see this coming?",
+      "what": "We check whether one of gtm_ai's own checks had already flagged what you then corrected.",
+      "why": "A correction that no check anticipated is a gap in the evals. This is how real use improves the checks themselves, not only the feedback log.",
+      "example": "You remove an address from the recipients. If the recipient check had already warned about it, the system worked. If not, that is a gap to close.",
+      "when": "Only after you make a meaningful correction.",
+      "result_effect": "It records. The answer is stored and shown. It does not stop anything.",
+      "decides_by": "both"
+    },
+    {
+      "id": "D10",
+      "moment": "m3",
+      "cadence": "when_triggered",
+      "human_name": "Was each piece of feedback kept separate?",
+      "what": "We check that the decision fed each piece of evidence back on its own: your choice, your edit, your explanation and the action taken, and later the customer's reaction and the outcome.",
+      "why": "If those collapse into one label, gtm_ai cannot tell what you preferred from what actually worked, and the loop back to understanding the account is broken.",
+      "example": "You edited the email, and the customer then replied. Those are two records. They are not one \"good\" mark.",
+      "when": "Only when feedback exists: after you choose, edit or confirm, and later when the customer reacts or an outcome arrives.",
+      "result_effect": "It records. The answer is stored and shown. It does not stop anything.",
+      "decides_by": "rule"
+    },
+    {
+      "id": "B9",
+      "moment": "m3",
+      "cadence": "when_triggered",
+      "human_name": "Should this change what the company knows?",
+      "what": "We check whether this case should change company knowledge, and that any change is narrow, with its conditions and exceptions spelled out, and that your edit is kept apart from the customer's own evidence.",
+      "why": "Without this, one edit and one reply can become a rule that applies everywhere, a personal preference is mistaken for a fact, and the history of what was believed is lost.",
+      "example": "If you correct one email for MedTech Advances, that must not become \"always do this\" for every customer. It becomes a narrow candidate note, with its conditions, until it has earned more.",
+      "when": "Only when something new from you, the customer or the world could change what the company knows.",
+      "result_effect": "A lesson that is too broad is held back as a candidate instead of becoming company knowledge. That holding is done by a separate rule. This check grades the same question and records its answer.",
+      "decides_by": "both"
+    },
+    {
+      "id": "B7",
+      "moment": "next_case",
+      "cadence": "when_triggered",
+      "human_name": "Does this company knowledge apply here?",
+      "what": "Of all the company knowledge gtm_ai looked up, we check which pieces actually apply to this exact situation, and that knowledge which does not apply is set aside with a stated reason.",
+      "why": "A broad rule applied in the wrong situation, an ignored exception or stale knowledge all lead to confident but wrong advice.",
+      "example": "What gtm_ai learned from MedTech Advances is carried into EcoLite Innovations. It should be used where EcoLite's situation fits, and set aside, with a reason, where it does not.",
+      "when": "Only when gtm_ai looks up company knowledge for a case. This is where the next similar case picks up what an earlier one taught.",
+      "result_effect": "It informs. The answer is recorded and shown. Whether a piece of knowledge applies is decided when it is looked up. This check grades that decision afterwards and does not change it.",
+      "decides_by": "rule"
+    },
+    {
+      "id": "D11",
+      "moment": "next_case",
+      "cadence": "when_triggered",
+      "human_name": "Was company knowledge actually used, and used correctly?",
+      "what": "We separate the knowledge gtm_ai found from the knowledge it really used and the knowledge it only claims to have used, and check that the use was appropriate and within its scope.",
+      "why": "A recommendation can cite a company rule that the decision never followed. That makes the reasoning look better than it is.",
+      "example": "A reorganisation rule is found, used, and the recommendation changes because of it: pass. The reasoning cites the rule but the ranking ignored it: fail.",
+      "when": "Only when gtm_ai found at least one piece of company knowledge that applies to the case.",
+      "result_effect": "Planned, not built yet. Once built, a recommendation that cites knowledge the decision never used would be sent back to be rewritten, and a misuse would be shown as a warning.",
+      "decides_by": "both"
+    },
+    {
+      "id": "S1",
+      "moment": "health",
+      "cadence": "ongoing",
+      "human_name": "Can we rebuild the story of any decision?",
+      "what": "We check that any decision can be rebuilt end to end, from the first email to the change in company knowledge, with no broken links and nothing hidden.",
+      "why": "If a result cannot be traced back to its inputs, nobody can audit it, and hidden influences go unseen.",
+      "example": "Pick any recommendation and walk backwards: the options, the account summary, the evidence, the original email. Every step has to be there.",
+      "when": "For every decision, as its record is completed.",
+      "result_effect": "No automatic answer exists yet. Today the trace view only shows the steps so a person can follow them.",
+      "decides_by": "rule"
+    },
+    {
+      "id": "S2",
+      "moment": "health",
+      "cadence": "offline",
+      "human_name": "Can we trust the model judges?",
+      "what": "We compare the model judges with reference answers to find out how often they pass something wrong or fail something right. The reference answers come from a different, stronger model, not from people, and every figure says so.",
+      "why": "A judge nobody has tested can be wrong in a consistent way, and everyone would trust it.",
+      "example": "If a judge passes a recommendation that a reference answer says is unsupported, that counts against the judge, and the rate is reported.",
+      "when": "Whenever a judge, its instructions or its model changes, and from time to time as an audit. It is not part of a live decision.",
+      "result_effect": "Until a comparison has been recorded, every model-judged result is labelled as not yet calibrated. It does not change any single verdict.",
+      "decides_by": "measurement"
+    },
+    {
+      "id": "S3",
+      "moment": "health",
+      "cadence": "offline",
+      "human_name": "Does it give the same answer every time?",
+      "what": "We repeat the critical checks several times to see whether the behaviour holds each time and not just once.",
+      "why": "A result that passes once and fails the next time is not something to rely on.",
+      "example": "The same recommendation is judged three times. If the verdict changes between runs, that judge cannot be trusted yet.",
+      "when": "In scheduled test runs, never during a live decision.",
+      "result_effect": "Not built for the demo yet, so nothing reads it today. Once built, it would show which judges are not stable enough.",
+      "decides_by": "measurement"
+    },
+    {
+      "id": "S4",
+      "moment": "health",
+      "cadence": "offline",
+      "human_name": "Can it do the job, and did we break anything?",
+      "what": "We keep two sets of tests: what gtm_ai should be able to do, and the mistakes it must never make again.",
+      "why": "Without regression tests an old mistake can come back after a change and nobody notices.",
+      "example": "A recipient mistake that was once caught becomes a permanent test, so it can never quietly return.",
+      "when": "When someone changes the assistant, the checks or their instructions, and before each release. Never during a live decision.",
+      "result_effect": "Not built for the demo yet, so nothing reads it today. Once built, it would be the gate a change has to pass.",
+      "decides_by": "measurement"
+    },
+    {
+      "id": "S5",
+      "moment": "health",
+      "cadence": "offline",
+      "human_name": "Can it look right without being right?",
+      "what": "We try to fool the judges and the assistant: answers that look correct without being correct, such as a plausible guess, a persuasive but irrelevant earlier case, or a wording written to please the judge.",
+      "why": "A system that learns to please its judge instead of the real goal keeps passing while getting worse.",
+      "example": "A recommendation that always says \"wait\" looks careful and never gets blamed. This test checks that such safe-looking inaction is not rewarded.",
+      "when": "In scheduled test runs, such as nightly or before a release. Never during a live decision.",
+      "result_effect": "Not built for the demo yet, so nothing reads it today. Once built, it would be the gate a change has to pass.",
+      "decides_by": "measurement"
+    },
+    {
+      "id": "S6",
+      "moment": "health",
+      "cadence": "ongoing",
+      "human_name": "What does each decision cost?",
+      "what": "We count what each decision costs: model calls, tokens, time and money, for the assistant and for the checks.",
+      "why": "Cost and speed decide whether the system can run on every event. These are measurements, not judgments, and they never change what gtm_ai knows.",
+      "example": "If the checks cost more than the assistant they watch, or Message 2 takes too long to arrive, it shows up here.",
+      "when": "On every live run, added up over time.",
+      "result_effect": "It measures only. Nothing is decided from it and it never changes company knowledge.",
+      "decides_by": "measurement"
+    },
+    {
+      "id": "S7",
+      "moment": "health",
+      "cadence": "ongoing",
+      "human_name": "Did the decisions lead to good outcomes?",
+      "what": "We follow what happened after an action went out: how often customers replied or the deal moved, by kind of move, and whether the same correction keeps coming back.",
+      "why": "A decision can pass every check and still not work. Only outcomes show whether the whole loop is helping.",
+      "example": "If one kind of move keeps getting replies and another never does, that is evidence the company should learn from.",
+      "when": "Whenever a customer reaction or a later outcome arrives, which can be days after the action.",
+      "result_effect": "Planned, not built yet. Once built, it would observe only and feed what the company learns.",
+      "decides_by": "measurement"
+    },
+    {
+      "id": "S8",
+      "moment": "health",
+      "cadence": "every_time",
+      "human_name": "Did the right checks actually run?",
+      "what": "We check that every check this kind of decision needs was really run, and that what you see on screen is what was stored.",
+      "why": "A missing check looks exactly like a passed one. Without this, a decision could go out having skipped the very check that would have caught it.",
+      "example": "A message that changes the recipients needs the recipient check. If it is missing from the list of results, this check notices.",
+      "when": "Before Message 2 is shown, and again before anything is sent.",
+      "result_effect": "Planned, not built yet. Once built, a send would wait until the missing checks had run.",
+      "decides_by": "rule"
+    }
+  ]
+}
