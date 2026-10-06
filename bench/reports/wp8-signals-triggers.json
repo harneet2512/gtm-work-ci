@@ -1,0 +1,392 @@
+{
+  "benchmark": "wp8_signals_triggers:gold_checkpoints",
+  "gold_source": "fixtures/gold/*/cp*.json (expected.signals, expected.material_diff_fields, expected.trigger)",
+  "caveats": [
+    "Upstream state is the gold state (oracle extraction): these numbers isolate the WP8 rules, not extraction.",
+    "expected.trigger is the evaluation right after the checkpoint's LAST event; the replay has one state per checkpoint, so it evaluates the whole burst since the previous checkpoint (the production semantics: one coalesced burst, one evaluation). Multi-event checkpoints can therefore differ for reasons that are not rule errors.",
+    "field_contradicted needs the adjudication conflicts of a real recompute (ADR-0008); the oracle has none, so it is always missed here.",
+    "product_usage_increased has no rule (the activity carries no direction)."
+  ],
+  "checkpoints": 12,
+  "signals_micro": {
+    "tp": 40,
+    "fp": 0,
+    "fn": 2,
+    "precision": 1,
+    "recall": 0.952,
+    "f1": 0.975
+  },
+  "signals_by_type": {
+    "blocker_resolved": {
+      "tp": 1,
+      "fp": 0,
+      "fn": 0,
+      "precision": 1,
+      "recall": 1,
+      "f1": 1
+    },
+    "champion_delegated": {
+      "tp": 1,
+      "fp": 0,
+      "fn": 0,
+      "precision": 1,
+      "recall": 1,
+      "f1": 1
+    },
+    "customer_replied": {
+      "tp": 10,
+      "fp": 0,
+      "fn": 0,
+      "precision": 1,
+      "recall": 1,
+      "f1": 1
+    },
+    "customer_went_silent": {
+      "tp": 3,
+      "fp": 0,
+      "fn": 0,
+      "precision": 1,
+      "recall": 1,
+      "f1": 1
+    },
+    "expansion_interest": {
+      "tp": 3,
+      "fp": 0,
+      "fn": 0,
+      "precision": 1,
+      "recall": 1,
+      "f1": 1
+    },
+    "field_contradicted": {
+      "tp": 0,
+      "fp": 0,
+      "fn": 1,
+      "precision": null,
+      "recall": 0,
+      "f1": null
+    },
+    "meeting_accepted": {
+      "tp": 7,
+      "fp": 0,
+      "fn": 0,
+      "precision": 1,
+      "recall": 1,
+      "f1": 1
+    },
+    "new_stakeholder_entered": {
+      "tp": 6,
+      "fp": 0,
+      "fn": 0,
+      "precision": 1,
+      "recall": 1,
+      "f1": 1
+    },
+    "security_blocker_appeared": {
+      "tp": 3,
+      "fp": 0,
+      "fn": 0,
+      "precision": 1,
+      "recall": 1,
+      "f1": 1
+    },
+    "stage_advanced": {
+      "tp": 4,
+      "fp": 0,
+      "fn": 1,
+      "precision": 1,
+      "recall": 0.8,
+      "f1": 0.889
+    },
+    "stakeholder_gap": {
+      "tp": 2,
+      "fp": 0,
+      "fn": 0,
+      "precision": 1,
+      "recall": 1,
+      "f1": 1
+    }
+  },
+  "material_diff_fields_micro": {
+    "tp": 91,
+    "fp": 0,
+    "fn": 0,
+    "precision": 1,
+    "recall": 1,
+    "f1": 1
+  },
+  "no_material_change_checkpoints": {
+    "tp": 1,
+    "fp": 0,
+    "fn": 0,
+    "precision": 1,
+    "recall": 1,
+    "f1": 1
+  },
+  "trigger": {
+    "cases": 12,
+    "eligible_accuracy": 0.75,
+    "exact_reason_accuracy": 0.5,
+    "eligible_correct": 9,
+    "exact_reasons_correct": 6
+  },
+  "trigger_short_bursts": {
+    "cases": 3,
+    "eligible_accuracy": 1,
+    "exact_reason_accuracy": 1,
+    "eligible_correct": 3,
+    "exact_reasons_correct": 3
+  },
+  "rows": [
+    {
+      "account": "acme",
+      "checkpoint": 1,
+      "burst_events": 16,
+      "trigger_gold": {
+        "eligible": false,
+        "reasons": [
+          "no_material_change"
+        ]
+      },
+      "trigger_predicted": {
+        "eligible": true,
+        "reasons": [
+          "eligible_customer_replied",
+          "eligible_meeting_completed",
+          "eligible_stakeholder_change"
+        ]
+      },
+      "eligible_correct": false,
+      "reasons_correct": false
+    },
+    {
+      "account": "acme",
+      "checkpoint": 2,
+      "burst_events": 11,
+      "trigger_gold": {
+        "eligible": false,
+        "reasons": [
+          "no_relevant_signal"
+        ]
+      },
+      "trigger_predicted": {
+        "eligible": false,
+        "reasons": [
+          "rep_already_replied"
+        ]
+      },
+      "eligible_correct": true,
+      "reasons_correct": false
+    },
+    {
+      "account": "acme",
+      "checkpoint": 3,
+      "burst_events": 16,
+      "trigger_gold": {
+        "eligible": false,
+        "reasons": [
+          "rep_already_replied"
+        ]
+      },
+      "trigger_predicted": {
+        "eligible": false,
+        "reasons": [
+          "rep_already_replied"
+        ]
+      },
+      "eligible_correct": true,
+      "reasons_correct": true
+    },
+    {
+      "account": "acme",
+      "checkpoint": 4,
+      "burst_events": 2,
+      "trigger_gold": {
+        "eligible": true,
+        "reasons": [
+          "eligible_customer_replied",
+          "eligible_stakeholder_change"
+        ]
+      },
+      "trigger_predicted": {
+        "eligible": true,
+        "reasons": [
+          "eligible_customer_replied",
+          "eligible_stakeholder_change"
+        ]
+      },
+      "eligible_correct": true,
+      "reasons_correct": true
+    },
+    {
+      "account": "beta",
+      "checkpoint": 1,
+      "burst_events": 20,
+      "signals_missing": [
+        "stage_advanced"
+      ],
+      "trigger_gold": {
+        "eligible": false,
+        "reasons": [
+          "no_relevant_signal"
+        ]
+      },
+      "trigger_predicted": {
+        "eligible": true,
+        "reasons": [
+          "eligible_customer_replied",
+          "eligible_meeting_completed",
+          "eligible_stakeholder_change"
+        ]
+      },
+      "eligible_correct": false,
+      "reasons_correct": false
+    },
+    {
+      "account": "beta",
+      "checkpoint": 2,
+      "burst_events": 1,
+      "trigger_gold": {
+        "eligible": true,
+        "reasons": [
+          "eligible_customer_replied"
+        ]
+      },
+      "trigger_predicted": {
+        "eligible": true,
+        "reasons": [
+          "eligible_customer_replied"
+        ]
+      },
+      "eligible_correct": true,
+      "reasons_correct": true
+    },
+    {
+      "account": "beta",
+      "checkpoint": 3,
+      "burst_events": 18,
+      "signals_missing": [
+        "field_contradicted"
+      ],
+      "trigger_gold": {
+        "eligible": true,
+        "reasons": [
+          "eligible_customer_replied",
+          "eligible_stakeholder_change"
+        ]
+      },
+      "trigger_predicted": {
+        "eligible": true,
+        "reasons": [
+          "eligible_blocker_change",
+          "eligible_customer_replied",
+          "eligible_meeting_completed",
+          "eligible_stakeholder_change"
+        ]
+      },
+      "eligible_correct": true,
+      "reasons_correct": false
+    },
+    {
+      "account": "beta",
+      "checkpoint": 4,
+      "burst_events": 1,
+      "trigger_gold": {
+        "eligible": false,
+        "reasons": [
+          "no_material_change"
+        ]
+      },
+      "trigger_predicted": {
+        "eligible": false,
+        "reasons": [
+          "no_material_change"
+        ]
+      },
+      "eligible_correct": true,
+      "reasons_correct": true
+    },
+    {
+      "account": "northstar",
+      "checkpoint": 1,
+      "burst_events": 16,
+      "trigger_gold": {
+        "eligible": true,
+        "reasons": [
+          "eligible_customer_replied"
+        ]
+      },
+      "trigger_predicted": {
+        "eligible": true,
+        "reasons": [
+          "eligible_customer_replied",
+          "eligible_meeting_completed",
+          "eligible_stakeholder_change"
+        ]
+      },
+      "eligible_correct": true,
+      "reasons_correct": false
+    },
+    {
+      "account": "northstar",
+      "checkpoint": 2,
+      "burst_events": 8,
+      "trigger_gold": {
+        "eligible": false,
+        "reasons": [
+          "no_material_change"
+        ]
+      },
+      "trigger_predicted": {
+        "eligible": true,
+        "reasons": [
+          "eligible_blocker_change",
+          "eligible_meeting_completed"
+        ]
+      },
+      "eligible_correct": false,
+      "reasons_correct": false
+    },
+    {
+      "account": "northstar",
+      "checkpoint": 3,
+      "burst_events": 5,
+      "trigger_gold": {
+        "eligible": true,
+        "reasons": [
+          "eligible_customer_replied",
+          "eligible_stakeholder_change"
+        ]
+      },
+      "trigger_predicted": {
+        "eligible": true,
+        "reasons": [
+          "eligible_customer_replied",
+          "eligible_stakeholder_change"
+        ]
+      },
+      "eligible_correct": true,
+      "reasons_correct": true
+    },
+    {
+      "account": "northstar",
+      "checkpoint": 4,
+      "burst_events": 7,
+      "trigger_gold": {
+        "eligible": true,
+        "reasons": [
+          "eligible_customer_replied",
+          "eligible_stakeholder_change"
+        ]
+      },
+      "trigger_predicted": {
+        "eligible": true,
+        "reasons": [
+          "eligible_customer_replied",
+          "eligible_stakeholder_change"
+        ]
+      },
+      "eligible_correct": true,
+      "reasons_correct": true
+    }
+  ]
+}

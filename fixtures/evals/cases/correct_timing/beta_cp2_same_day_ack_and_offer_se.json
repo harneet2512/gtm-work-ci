@@ -1,0 +1,221 @@
+{
+  "id": "beta_cp2_same_day_ack_and_offer_se",
+  "case_type": "correct_timing",
+  "title": "Beta cp2: same-day thanks plus an offer of Leo for the platform conversation Hannah is setting up",
+  "should_pass": true,
+  "difficulty": "medium",
+  "slice_tags": {
+    "account": "beta",
+    "origin": "checkpoint",
+    "motion": "expansion",
+    "stage": "commercial_review",
+    "champion_status": "active",
+    "economic_buyer": "known",
+    "risk": "low",
+    "candidate": "good",
+    "expected_action": "send_email",
+    "extra": ["post_approval"]
+  },
+  "based_on": {
+    "kind": "checkpoint",
+    "account": "beta",
+    "after_event_file": "world/accounts/beta/events/021_email_hannah_owen_approved.json",
+    "checkpoint": 2,
+    "changed_fields": [],
+    "change": null
+  },
+  "context": {
+    "now": "2026-09-08T10:00:00Z",
+    "state": {
+      "account_id": "0a0c0000-0000-4000-8000-000000000002",
+      "account_name": "Beta Inc",
+      "opportunity_id": "0c0f0000-0000-4000-8000-000000000005",
+      "fields": {
+        "stage": "Commercial review",
+        "health": "on_track",
+        "motion": "expansion",
+        "champion": "0b0e0000-0000-4000-8000-000000000031",
+        "champion_status": "active",
+        "economic_buyer": "0b0e0000-0000-4000-8000-000000000032",
+        "relationship_risk": "low",
+        "decision_process": "Owen Clarke approved the business case; the platform team must be comfortable with the integration",
+        "next_milestone": "Platform team review of the integration",
+        "current_commitments": [
+          {
+            "text": "Send business case with the Austin pilot numbers by Tuesday",
+            "status": "fulfilled",
+            "owner_person_id": "0b0e0000-0000-4000-8000-000000000001",
+            "due": "2026-09-01"
+          },
+          {
+            "text": "Take the business case to Owen Clarke on Friday",
+            "status": "fulfilled",
+            "owner_person_id": "0b0e0000-0000-4000-8000-000000000031",
+            "due": "2026-09-04"
+          },
+          {
+            "text": "Loop in the right platform team person this week",
+            "status": "open",
+            "owner_person_id": "0b0e0000-0000-4000-8000-000000000031"
+          }
+        ]
+      },
+      "buying_group": [
+        {
+          "person_id": "0b0e0000-0000-4000-8000-000000000031",
+          "display_name": "Hannah Lee",
+          "title": "VP Customer Operations",
+          "roles": ["champion"],
+          "status": "active",
+          "delegated_to_person_id": null,
+          "last_engaged_at": null,
+          "evidence_refs": []
+        },
+        {
+          "person_id": "0b0e0000-0000-4000-8000-000000000032",
+          "display_name": "Owen Clarke",
+          "title": "Chief Financial Officer",
+          "roles": ["economic_buyer"],
+          "status": "unknown",
+          "delegated_to_person_id": null,
+          "last_engaged_at": null,
+          "evidence_refs": []
+        },
+        {
+          "person_id": "0b0e0000-0000-4000-8000-000000000033",
+          "display_name": "Jess Patel",
+          "title": "Support Operations Manager",
+          "roles": ["user"],
+          "status": "active",
+          "delegated_to_person_id": null,
+          "last_engaged_at": null,
+          "evidence_refs": []
+        }
+      ],
+      "coverage_gaps": []
+    },
+    "recent_changes": {
+      "summary": "Hannah: Owen approved the business case; next step is the platform team's integration comfort.",
+      "material_diff_fields": ["decision_process", "current_commitments", "next_milestone"],
+      "signals": ["customer_replied"]
+    },
+    "trigger": {
+      "activity_id": "0ac70000-0000-4000-8000-0000000b0021",
+      "activity_type": "EmailReply",
+      "occurred_at": "2026-09-08T09:40:00Z",
+      "actor_person_id": "0b0e0000-0000-4000-8000-000000000031",
+      "event_file": "world/accounts/beta/events/021_email_hannah_owen_approved.json",
+      "synthetic": false,
+      "text": "Hi Dana - Owen approved the business case this morning, so the budget is there for the support rollout. Next step is making sure our platform team is comfortable with the integration; I'll loop in the right person this week.\nHannah"
+    },
+    "supporting_activities": [],
+    "commitments": [
+      {
+        "text": "Loop in the right platform team person this week",
+        "owner_person_id": "0b0e0000-0000-4000-8000-000000000031",
+        "due_at": null,
+        "status": "open"
+      }
+    ],
+    "timeline_facts": {
+      "last_inbound_at": "2026-09-08T09:40:00Z",
+      "last_inbound_from_person_id": "0b0e0000-0000-4000-8000-000000000031",
+      "last_outbound_at": "2026-09-01T17:00:00Z",
+      "stated_timing": "Hannah will loop in the platform person this week"
+    },
+    "offered_knowledge": []
+  },
+  "candidate_action": {
+    "proposed_action_type": "send_email",
+    "recipients": [{"person_id": "0b0e0000-0000-4000-8000-000000000031", "role": "to", "why": "Champion"}],
+    "finished_artifact": {
+      "channel": "email",
+      "subject": "Re: Relay for the Beta support org",
+      "body": "Hi Hannah,\n\nThat's great news - thank you for taking it to Owen. For the platform conversation, Leo Park (our solutions engineer) can walk through SSO, provisioning and data flows. Once you know who's joining, I'll send a few times that work for us.\n\nBest,\nDana"
+    },
+    "crm_next_step_intent": {"next_step": "Platform integration review with Beta's platform team", "due_at": null, "stage_change": null},
+    "reason": "Owen approved; Hannah is looping in the platform owner this week.",
+    "evidence_refs": [
+      {
+        "activity_id": "0ac70000-0000-4000-8000-0000000b0021",
+        "quote": "Next step is making sure our platform team is comfortable with the integration; I'll loop in the right person this week.",
+        "speaker_person_id": "0b0e0000-0000-4000-8000-000000000031",
+        "occurred_at": "2026-09-08T09:40:00Z"
+      }
+    ],
+    "knowledge_refs_used": [],
+    "wait_until": null
+  },
+  "expected": [
+    {
+      "eval_type": "timing_cadence",
+      "verdict": "pass",
+      "label": "READY",
+      "diagnostics": [],
+      "blocking": false,
+      "rationale": "Same-day acknowledgement that supports the customer's own next step without chasing.",
+      "evidence_class": "deal_data"
+    },
+    {
+      "eval_type": "next_step_quality",
+      "verdict": "pass",
+      "label": null,
+      "diagnostics": [],
+      "blocking": false,
+      "rationale": "Next step is mutual and owned (Hannah names the person, Dana sends times).",
+      "evidence_class": "deal_data"
+    },
+    {
+      "eval_type": "cta_calibration",
+      "verdict": "pass",
+      "label": "APPROPRIATE",
+      "diagnostics": [],
+      "blocking": false,
+      "rationale": "Offers help without pressure while the champion acts.",
+      "evidence_class": "methodology"
+    },
+    {
+      "eval_type": "momentum",
+      "verdict": "pass",
+      "label": "HEATING_UP",
+      "diagnostics": [],
+      "blocking": false,
+      "rationale": "The CFO approved the business case this morning; a same-day acknowledgement with a concrete offer matches rising momentum.",
+      "evidence_class": "deal_data"
+    },
+    {
+      "eval_type": "economic_buyer_coverage",
+      "verdict": "pass",
+      "label": null,
+      "diagnostics": [],
+      "blocking": false,
+      "rationale": "Owen, the known economic buyer, has approved the spend; the action keeps the process with Hannah, who owns the next step, instead of going around her.",
+      "evidence_class": "methodology"
+    },
+    {
+      "eval_type": "stakeholder_selection",
+      "verdict": "pass",
+      "label": null,
+      "diagnostics": [],
+      "blocking": false,
+      "rationale": "Hannah owns the platform introduction she announced; she is the right person.",
+      "evidence_class": "methodology"
+    },
+    {
+      "eval_type": "champion_strength",
+      "verdict": "pass",
+      "label": null,
+      "diagnostics": [],
+      "blocking": false,
+      "rationale": "Hannah took the business case to the CFO herself and got it approved; the action relies on a champion who has shown she can carry it.",
+      "evidence_class": "methodology"
+    }
+  ],
+  "expected_best_action": {
+    "action": "send_email",
+    "why": "Acknowledge and offer the SE for the platform review; let Hannah name the attendee.",
+    "recipients": [{"person_id": "0b0e0000-0000-4000-8000-000000000031", "role": "to"}],
+    "channel": "email"
+  },
+  "notes": "Should-pass control."
+}

@@ -1,0 +1,11 @@
+{
+  "_note": "Maps the words a model uses for a deal stage onto the five CRMArena stages. Written AFTER reading the first disagreement examples of the extraction run (e.g. 'Contract Signed' for CRM 'Closed'), so it is tuned to that data: the 'after synonyms' stage figure is an upper bound, the 'before' figure is the strict one. Matching is by whole word or phrase ('negotiat*' is a prefix), first canonical stage in 'order' wins.",
+  "order": ["Closed", "Negotiation", "Quote", "Qualification", "Discovery"],
+  "synonyms": {
+    "Closed": ["closed", "won", "lost", "signed", "finalized", "finalised", "finalization", "finalisation", "agreement", "executed", "countersigned", "go live", "golive", "onboarding"],
+    "Negotiation": ["negotiat*", "contract review", "legal review", "terms", "redline", "pricing discussion", "final review"],
+    "Quote": ["quote", "quotation", "proposal", "pricing proposal", "bid"],
+    "Qualification": ["qualif*", "scoping", "requirements gathering", "budget confirmation"],
+    "Discovery": ["discovery", "exploration", "exploring", "evaluat*", "needs analysis", "initial discussion", "demo", "pilot", "intro"]
+  }
+}
