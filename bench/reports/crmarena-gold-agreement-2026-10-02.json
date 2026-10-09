@@ -1,0 +1,230 @@
+{
+ "label_kind": "model labels, single author; consistency of one labeller across two passes, NOT inter-rater and NOT human agreement",
+ "passes": {
+  "pass_1": "written from the cases while designing them",
+  "pass_2": "written from sheets with neutral random ids, shuffled case and eval order and no design intent; the same author (one model), minutes later, in the same session: NOT blind independent labelling"
+ },
+ "kappa_caveat": "Pass 1 was revised in review before pass 2 was redone (4 semantic changes and 2 replaced cases), so the kappa says little about the labelling itself; it mostly shows one author applying one rubric twice.",
+ "caveat": "48 cases come from 11 deals and 21 distinct contexts, so the 154 judgments are not independent; read the cluster-bootstrap interval, not the pooled rate",
+ "judgments": 154,
+ "verdict_agree": 152,
+ "fail_agree": 153,
+ "label_judgments": 91,
+ "label_agree": 91,
+ "blocking_agree": 153,
+ "exact_agree": 151,
+ "fail_kappa_between_passes": 0.987,
+ "deal_clusters": 11,
+ "distinct_contexts": 21,
+ "cluster_bootstrap_95ci": {
+  "exact_agree": [
+   0.959,
+   1.0
+  ],
+  "fail_agree": [
+   0.981,
+   1.0
+  ]
+ },
+ "per_deal": {
+  "006Wt000007B2QgIAK": {
+   "cases": 10,
+   "judgments": 32,
+   "exact_agree": 32,
+   "fail_agree": 32
+  },
+  "006Wt000007BAeOIAW": {
+   "cases": 5,
+   "judgments": 17,
+   "exact_agree": 16,
+   "fail_agree": 17
+  },
+  "006Wt000007BCRfIAO": {
+   "cases": 8,
+   "judgments": 25,
+   "exact_agree": 24,
+   "fail_agree": 24
+  },
+  "006Wt000007B62yIAC": {
+   "cases": 7,
+   "judgments": 22,
+   "exact_agree": 22,
+   "fail_agree": 22
+  },
+  "006Wt000007B1klIAC": {
+   "cases": 4,
+   "judgments": 14,
+   "exact_agree": 14,
+   "fail_agree": 14
+  },
+  "006Wt000007BB0vIAG": {
+   "cases": 3,
+   "judgments": 9,
+   "exact_agree": 8,
+   "fail_agree": 9
+  },
+  "006Wt000007BBDrIAO": {
+   "cases": 4,
+   "judgments": 12,
+   "exact_agree": 12,
+   "fail_agree": 12
+  },
+  "006Wt000007BAT4IAO": {
+   "cases": 3,
+   "judgments": 11,
+   "exact_agree": 11,
+   "fail_agree": 11
+  },
+  "006Wt000007B9YfIAK": {
+   "cases": 2,
+   "judgments": 6,
+   "exact_agree": 6,
+   "fail_agree": 6
+  },
+  "006Wt000007BCl0IAG": {
+   "cases": 1,
+   "judgments": 3,
+   "exact_agree": 3,
+   "fail_agree": 3
+  },
+  "006Wt000007BEq1IAG": {
+   "cases": 1,
+   "judgments": 3,
+   "exact_agree": 3,
+   "fail_agree": 3
+  }
+ },
+ "disagreements": 3,
+ "resolved": 3,
+ "by_case_type": {
+  "too_soon_cta": {
+   "cases": 2,
+   "judgments": 6,
+   "exact_agree": 6
+  },
+  "over_threading": {
+   "cases": 2,
+   "judgments": 6,
+   "exact_agree": 6
+  },
+  "champion_bypass": {
+   "cases": 2,
+   "judgments": 6,
+   "exact_agree": 6
+  },
+  "unresolved_blocker": {
+   "cases": 3,
+   "judgments": 9,
+   "exact_agree": 9
+  },
+  "correct_timing": {
+   "cases": 4,
+   "judgments": 16,
+   "exact_agree": 15
+  },
+  "too_late_follow_up": {
+   "cases": 3,
+   "judgments": 12,
+   "exact_agree": 12
+  },
+  "conflicting_account_state": {
+   "cases": 3,
+   "judgments": 9,
+   "exact_agree": 9
+  },
+  "duplicate_action": {
+   "cases": 2,
+   "judgments": 6,
+   "exact_agree": 5
+  },
+  "wrong_channel": {
+   "cases": 3,
+   "judgments": 9,
+   "exact_agree": 9
+  },
+  "under_threading": {
+   "cases": 4,
+   "judgments": 13,
+   "exact_agree": 12
+  },
+  "stale_commitment": {
+   "cases": 3,
+   "judgments": 9,
+   "exact_agree": 9
+  },
+  "insufficient_evidence": {
+   "cases": 3,
+   "judgments": 9,
+   "exact_agree": 9
+  },
+  "applicable_knowledge": {
+   "cases": 2,
+   "judgments": 6,
+   "exact_agree": 6
+  },
+  "explicit_exception": {
+   "cases": 3,
+   "judgments": 11,
+   "exact_agree": 11
+  },
+  "no_action": {
+   "cases": 3,
+   "judgments": 9,
+   "exact_agree": 9
+  },
+  "misleading_similar_knowledge": {
+   "cases": 2,
+   "judgments": 6,
+   "exact_agree": 6
+  },
+  "valid_champion_handoff": {
+   "cases": 4,
+   "judgments": 12,
+   "exact_agree": 12
+  }
+ },
+ "disagreement_list": [
+  {
+   "case": "cr_d2_books_thursday_and_attaches_the_order_form",
+   "eval_type": "next_step_quality",
+   "pass_1": [
+    "pass",
+    null,
+    false
+   ],
+   "pass_2": [
+    "warn",
+    null,
+    false
+   ]
+  },
+  {
+   "case": "cr_d3_fourth_negotiation_prep_email",
+   "eval_type": "relationship_pressure",
+   "pass_1": [
+    "warn",
+    null,
+    false
+   ],
+   "pass_2": [
+    "fail",
+    null,
+    false
+   ]
+  },
+  {
+   "case": "cr_d7_contract_draft_to_fernando_alone_while_finance_reviews",
+   "eval_type": "stakeholder_coverage",
+   "pass_1": [
+    "fail",
+    "UNDER_THREADED",
+    false
+   ],
+   "pass_2": [
+    "fail",
+    "UNDER_THREADED",
+    true
+   ]
+  }
+ ]
+}

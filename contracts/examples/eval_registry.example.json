@@ -1,0 +1,642 @@
+{
+  "registry_version": 1,
+  "description": "Example excerpt: one implemented, one partial and one planned eval. The full registry is contracts/evals/eval_registry.json.",
+  "source": {
+    "issue": "HAR-97",
+    "section": "CANONICAL EVAL STRATEGY (sections 1, 4-8, 12, 13; E1-E22, M1-M5)",
+    "fetched_on": "2026-10-03"
+  },
+  "gold_source": {
+    "kind": "model_reference",
+    "model": "openai/gpt-5.6-sol-pro"
+  },
+  "families": [
+    {
+      "id": "E7",
+      "name": "Knowledge influence attribution",
+      "section": "§4 E7",
+      "class": "behavioral",
+      "job": "decision_loop",
+      "surfaces": [
+        8
+      ],
+      "owner": "HAR-128",
+      "invariant": "Retrieval is not influence: retrieved, applicable, used and changed-the-decision are traced separately."
+    },
+    {
+      "id": "E12",
+      "name": "Action / output generation",
+      "section": "§4 E12",
+      "class": "behavioral",
+      "job": "decision_loop",
+      "surfaces": [
+        13
+      ],
+      "owner": "HAR-116",
+      "invariant": "Decision quality and artifact quality are graded separately."
+    }
+  ],
+  "evals": [
+    {
+      "id": "E12.4",
+      "family": "E12",
+      "name": "stakeholder / recipient correctness",
+      "section": "§4 E12",
+      "surfaces": [
+        13
+      ],
+      "dimensions": [
+        "BOUNDARIES"
+      ],
+      "class": "behavioral",
+      "status": "implemented",
+      "owner": "HAR-116",
+      "grader": "deterministic",
+      "mode": "blocking",
+      "invariant": "Decision quality and artifact quality are graded separately.",
+      "knowledge_mutation_allowed": true,
+      "repeated_trials_required": false,
+      "version": 1,
+      "implemented_by": [
+        "core-go/internal/evals/deterministic/recipients.go",
+        "metric l3.correct_recipients"
+      ],
+      "contract_status": "pending",
+      "definitions_ref": {
+        "catalog_types": [
+          "recipient_correctness"
+        ],
+        "gold": [
+          "fixtures/evals/cases"
+        ]
+      },
+      "job": "decision_loop",
+      "area": "decision_learning",
+      "span_kind": "candidates",
+      "judged_object": {
+        "type": "StrategyCandidate",
+        "id_field": "candidate_id"
+      },
+      "demo_moment": [
+        "M2",
+        "CES"
+      ],
+      "also_span_kinds": [
+        "recomputed_action"
+      ],
+      "bucket": "decision_action",
+      "gate": "D8",
+      "question": "Is the exact message about to be sent correct after all edits?",
+      "improves": "Prevents an evaluated draft from becoming an unevaluated edited send.",
+      "legacy_id": "E12.4",
+      "also_gates": [
+        "D2"
+      ]
+    },
+    {
+      "id": "E12.1",
+      "family": "E12",
+      "name": "intent adherence",
+      "section": "§4 E12",
+      "surfaces": [
+        13
+      ],
+      "dimensions": [
+        "INTENDED_BEHAVIOR"
+      ],
+      "class": "behavioral",
+      "status": "partial",
+      "owner": "HAR-116",
+      "grader": "deterministic",
+      "mode": "shadow",
+      "invariant": "Decision quality and artifact quality are graded separately.",
+      "knowledge_mutation_allowed": true,
+      "repeated_trials_required": false,
+      "version": 1,
+      "implemented_by": [
+        "worker rejects inconsistent drafts (502 inconsistent_draft)",
+        "metric l3.action_matches_decision (computable)"
+      ],
+      "contract_status": "pending",
+      "job": "decision_loop",
+      "area": "decision_learning",
+      "span_kind": "candidates",
+      "judged_object": {
+        "type": "StrategyCandidate",
+        "id_field": "candidate_id"
+      },
+      "demo_moment": [
+        "M2",
+        "CES"
+      ],
+      "also_span_kinds": [
+        "recomputed_action"
+      ],
+      "bucket": "decision_action",
+      "gate": "D8",
+      "question": "Is the exact message about to be sent correct after all edits?",
+      "improves": "Prevents an evaluated draft from becoming an unevaluated edited send.",
+      "legacy_id": "E12.1",
+      "also_gates": [
+        "D2"
+      ]
+    },
+    {
+      "id": "E7.3",
+      "family": "E7",
+      "name": "knowledge-to-ranking attribution",
+      "section": "§4 E7",
+      "surfaces": [
+        8
+      ],
+      "dimensions": [
+        "CAUSAL_TRACE_ATTRIBUTION"
+      ],
+      "class": "behavioral",
+      "status": "implemented",
+      "owner": "HAR-128",
+      "grader": "deterministic",
+      "mode": "shadow",
+      "invariant": "Retrieval is not influence: retrieved, applicable, used and changed-the-decision are traced separately.",
+      "knowledge_mutation_allowed": true,
+      "repeated_trials_required": false,
+      "version": 1,
+      "implemented_by": [
+        "core-go/internal/knowledgeinfluence/grade.go",
+        "core-go/internal/orchestrator/influence.go"
+      ],
+      "contract_status": "pending",
+      "definitions_ref": {
+        "catalog_types": [],
+        "gold": [
+          "fixtures/orchestrator/e7_gold.json"
+        ]
+      },
+      "job": "intelligence",
+      "area": "decision_learning",
+      "span_kind": "knowledge_used",
+      "bucket": "decision_action",
+      "gate": "D3",
+      "question": "Did gtm_ai prefer the most defensible option for this state?",
+      "improves": "Separates generating options from having good judgment about which to recommend.",
+      "legacy_id": "E7.3"
+    }
+  ],
+  "metrics": [
+    {
+      "id": "M1",
+      "family": "M1",
+      "name": "model / token efficiency",
+      "section": "§8 M1",
+      "surfaces": [
+        20
+      ],
+      "dimensions": [
+        "INTENDED_BEHAVIOR",
+        "INVARIANTS",
+        "OBSERVABILITY",
+        "BOUNDARIES"
+      ],
+      "class": "operational",
+      "status": "planned",
+      "owner": "HAR-132",
+      "grader": null,
+      "mode": null,
+      "invariant": "Operational metrics never mutate GTM company knowledge.",
+      "knowledge_mutation_allowed": false,
+      "repeated_trials_required": false,
+      "version": 1,
+      "implemented_by": [],
+      "contract_status": "pending",
+      "job": "system",
+      "bucket": "system_health",
+      "gate": "S6",
+      "question": "What does an episode cost in tokens, calls, time and money?",
+      "improves": "Lets the system be optimized under quality floors. These are metrics, never evals, and they never change company knowledge.",
+      "legacy_id": "M1"
+    },
+    {
+      "id": "M2",
+      "family": "M2",
+      "name": "tool efficiency",
+      "section": "§8 M2",
+      "surfaces": [
+        20
+      ],
+      "dimensions": [
+        "INTENDED_BEHAVIOR",
+        "INVARIANTS",
+        "OBSERVABILITY",
+        "BOUNDARIES",
+        "FAILURE_MODES"
+      ],
+      "class": "operational",
+      "status": "planned",
+      "owner": "HAR-132",
+      "grader": null,
+      "mode": null,
+      "invariant": "Operational metrics never mutate GTM company knowledge.",
+      "knowledge_mutation_allowed": false,
+      "repeated_trials_required": false,
+      "version": 1,
+      "implemented_by": [],
+      "contract_status": "pending",
+      "job": "system",
+      "bucket": "system_health",
+      "gate": "S6",
+      "question": "What does an episode cost in tokens, calls, time and money?",
+      "improves": "Lets the system be optimized under quality floors. These are metrics, never evals, and they never change company knowledge.",
+      "legacy_id": "M2"
+    },
+    {
+      "id": "M3",
+      "family": "M3",
+      "name": "eval overhead",
+      "section": "§8 M3",
+      "surfaces": [
+        20
+      ],
+      "dimensions": [
+        "INTENDED_BEHAVIOR",
+        "INVARIANTS",
+        "OBSERVABILITY",
+        "BOUNDARIES",
+        "FAILURE_MODES"
+      ],
+      "class": "operational",
+      "status": "planned",
+      "owner": "HAR-132",
+      "grader": null,
+      "mode": null,
+      "invariant": "Operational metrics never mutate GTM company knowledge.",
+      "knowledge_mutation_allowed": false,
+      "repeated_trials_required": false,
+      "version": 1,
+      "implemented_by": [],
+      "contract_status": "pending",
+      "job": "system",
+      "bucket": "system_health",
+      "gate": "S6",
+      "question": "What does an episode cost in tokens, calls, time and money?",
+      "improves": "Lets the system be optimized under quality floors. These are metrics, never evals, and they never change company knowledge.",
+      "legacy_id": "M3"
+    },
+    {
+      "id": "M4",
+      "family": "M4",
+      "name": "latency",
+      "section": "§8 M4",
+      "surfaces": [
+        20
+      ],
+      "dimensions": [
+        "INTENDED_BEHAVIOR",
+        "INVARIANTS",
+        "OBSERVABILITY",
+        "BOUNDARIES"
+      ],
+      "class": "operational",
+      "status": "planned",
+      "owner": "HAR-132",
+      "grader": null,
+      "mode": null,
+      "invariant": "Operational metrics never mutate GTM company knowledge.",
+      "knowledge_mutation_allowed": false,
+      "repeated_trials_required": false,
+      "version": 1,
+      "implemented_by": [],
+      "contract_status": "pending",
+      "reclassified_from": [
+        "E11.9"
+      ],
+      "job": "system",
+      "bucket": "system_health",
+      "gate": "S6",
+      "question": "What does an episode cost in tokens, calls, time and money?",
+      "improves": "Lets the system be optimized under quality floors. These are metrics, never evals, and they never change company knowledge.",
+      "legacy_id": "M4"
+    },
+    {
+      "id": "M5",
+      "family": "M5",
+      "name": "cost",
+      "section": "§8 M5",
+      "surfaces": [
+        20
+      ],
+      "dimensions": [
+        "INTENDED_BEHAVIOR",
+        "INVARIANTS",
+        "OBSERVABILITY",
+        "BOUNDARIES"
+      ],
+      "class": "operational",
+      "status": "planned",
+      "owner": "HAR-132",
+      "grader": null,
+      "mode": null,
+      "invariant": "Operational metrics never mutate GTM company knowledge.",
+      "knowledge_mutation_allowed": false,
+      "repeated_trials_required": false,
+      "version": 1,
+      "implemented_by": [],
+      "contract_status": "pending",
+      "job": "system",
+      "bucket": "system_health",
+      "gate": "S6",
+      "question": "What does an episode cost in tokens, calls, time and money?",
+      "improves": "Lets the system be optimized under quality floors. These are metrics, never evals, and they never change company knowledge.",
+      "legacy_id": "M5"
+    }
+  ],
+  "buckets": [
+    {
+      "id": "context_intelligence",
+      "order": 1,
+      "name": "Context and organizational intelligence",
+      "question": "What does the organization know now, and how did new context change that understanding?"
+    },
+    {
+      "id": "decision_action",
+      "order": 2,
+      "name": "Decision, human judgment and action",
+      "question": "Given that understanding, what should gtm_ai do, how did the person change it, and was the final intent carried out correctly?"
+    },
+    {
+      "id": "system_health",
+      "order": 3,
+      "name": "System and eval health",
+      "question": "Can we trust the machinery, graders, traces, reliability and efficiency of the first two?"
+    }
+  ],
+  "gates": [
+    {
+      "id": "B1",
+      "bucket": "context_intelligence",
+      "order": 1,
+      "name": "Evidence fidelity and inference boundary",
+      "question": "Did gtm_ai understand the new event correctly?",
+      "improves": "Stops corrupted raw context from becoming company knowledge or account state.",
+      "plain_what": "We re-read the new email, call or note and check that what gtm_ai wrote down matches it: who said it, when, and the exact words. Anything gtm_ai only inferred has to be labelled as an inference.",
+      "plain_why": "If a quote, speaker or date is wrong, or a guess is stored as a fact, every later step builds on a corrupted record. A replayed event must also not be counted twice."
+    },
+    {
+      "id": "B2",
+      "bucket": "context_intelligence",
+      "order": 2,
+      "name": "Identity and context linkage",
+      "question": "Did gtm_ai attach the event to the correct people, account, opportunity and relationships?",
+      "improves": "Makes sure the organizational world is about the right entities before any reasoning happens.",
+      "plain_what": "We check that the event is attached to the right people, the right account and the right opportunity, and that gtm_ai did not guess when an identity was ambiguous.",
+      "plain_why": "Attaching an email to the wrong account contaminates that account's history and every decision made from it."
+    },
+    {
+      "id": "B3",
+      "bucket": "context_intelligence",
+      "order": 3,
+      "name": "Prior-context integration",
+      "question": "How does the new event relate to what gtm_ai already believed?",
+      "improves": "Turns isolated messages into a coherent, evolving account history instead of a pile of facts.",
+      "plain_what": "We compare what the new event says with what gtm_ai already believed about the account: what it confirms, what it contradicts and what it replaces.",
+      "plain_why": "Without this, new facts silently overwrite older ones, contradictions go unnoticed and the account history stops making sense in time order."
+    },
+    {
+      "id": "B4",
+      "bucket": "context_intelligence",
+      "order": 4,
+      "name": "State mutation and change interpretation",
+      "question": "What actually changed in the business or account because of this event?",
+      "improves": "Produces the current account state that decisions are allowed to act on.",
+      "plain_what": "We check that every change in the account's state is explained by evidence from this event, and that nothing unrelated changed.",
+      "plain_why": "Decisions are made from the account state. A change with no evidence behind it, or an unrelated edit, makes the decision rest on something nobody can justify."
+    },
+    {
+      "id": "B5",
+      "bucket": "context_intelligence",
+      "order": 5,
+      "name": "Precedent retrieval",
+      "question": "Has a materially similar situation happened before inside this organization?",
+      "improves": "Gives gtm_ai institutional memory instead of generic model instinct.",
+      "plain_what": "We look at the earlier cases gtm_ai pulled up as similar to this one and check that they really are similar in the situation (not just in wording), that none of them is dated after this event, and that no clearly relevant case was missed.",
+      "plain_why": "A case that only sounds alike can steer the decision the wrong way, a case from the future leaks information gtm_ai could not have had, and a missed precedent means institutional memory was ignored."
+    },
+    {
+      "id": "B6",
+      "bucket": "context_intelligence",
+      "order": 6,
+      "name": "Precedent interpretation",
+      "question": "What actually happened in those earlier cases, and what lesson, if any, is supported?",
+      "improves": "Makes \"this happened before\" useful evidence rather than imitation.",
+      "plain_what": "We check what gtm_ai says the earlier cases showed: whether it states how they differ from this one and what the exceptions are, rather than claiming they are the same.",
+      "plain_why": "Over-claiming similarity turns a past case into imitation, and treating an earlier human choice as proof that it was right teaches gtm_ai the wrong lesson."
+    },
+    {
+      "id": "B7",
+      "bucket": "context_intelligence",
+      "order": 7,
+      "name": "Organizational-knowledge applicability",
+      "question": "Which existing company knowledge applies to this exact state?",
+      "improves": "Keeps company knowledge contextual so broad rules do not leak into the wrong situations.",
+      "plain_what": "Of all the company knowledge gtm_ai retrieved, we check which pieces actually apply to this exact situation, and that knowledge which does not apply is set aside with a stated reason.",
+      "plain_why": "A broad rule applied in the wrong situation, an ignored exception or stale knowledge all lead to confident but wrong advice."
+    },
+    {
+      "id": "B8",
+      "bucket": "context_intelligence",
+      "order": 8,
+      "name": "Current-intelligence synthesis",
+      "question": "Given the event, prior context, precedents and applicable knowledge, what does gtm_ai now believe about the account?",
+      "improves": "Gives decisions a trustworthy basis.",
+      "plain_what": "We read gtm_ai's current summary of the account (blockers, commitments, stakeholders, next decision) and check that each important belief traces back to evidence and that uncertainty is stated.",
+      "plain_why": "This summary is what the decision is based on. An unsupported or overconfident summary, or one that leaves out counter-evidence, poisons the recommendation."
+    },
+    {
+      "id": "B9",
+      "bucket": "context_intelligence",
+      "order": 9,
+      "name": "Knowledge revision from new evidence",
+      "question": "Should this new episode change company knowledge?",
+      "improves": "Makes organizational intelligence compound over time without turning one observation into a universal rule.",
+      "plain_what": "We check whether this episode should change company knowledge, and that any change is scoped with explicit conditions and exceptions, with the human's edit kept apart from customer evidence.",
+      "plain_why": "Without this, one edit and one reply can become a rule that applies everywhere, a human preference is mistaken for a fact, and the history of what was believed is lost."
+    },
+    {
+      "id": "D1",
+      "bucket": "decision_action",
+      "order": 1,
+      "name": "Intent and action-policy fit",
+      "question": "Given the current state, what class of reaction is appropriate: act, wait, ask, escalate or do nothing?",
+      "improves": "Evaluates the decision before the wording of an email.",
+      "plain_what": "Before any email is written, we check whether acting is the right move at all: act, wait, ask, escalate or do nothing.",
+      "plain_why": "A system that always acts will push a message even when the account is blocked or the state is unclear. The decision has to be judged before the wording."
+    },
+    {
+      "id": "D2",
+      "bucket": "decision_action",
+      "order": 2,
+      "name": "Three-candidate action quality",
+      "question": "Are the three complete actions each a plausible execution of a defensible strategy, and do they differ in substance?",
+      "improves": "Makes the person's choice a real judgment among meaningful options.",
+      "plain_what": "We check the three candidate actions: each one should be defensible, grounded in the account's evidence, addressed to the right people, and genuinely different from the other two.",
+      "plain_why": "If the three options are paraphrases of one idea, contain an invented fact or go to the wrong stakeholder, the human is not really choosing."
+    },
+    {
+      "id": "D3",
+      "bucket": "decision_action",
+      "order": 3,
+      "name": "Ranking and recommendation quality",
+      "question": "Did gtm_ai prefer the most defensible option for this state?",
+      "improves": "Separates generating options from having good judgment about which to recommend.",
+      "plain_what": "We take the ranking gtm_ai stored (which option it recommended and why) and check that the reasons match the evidence and that no blocked or restricted option was recommended.",
+      "plain_why": "Generating options and judging which one is best are different skills. This catches a recommendation that sounds reasoned but is not supported by the evidence, or that picked an option the checks had blocked."
+    },
+    {
+      "id": "D4",
+      "bucket": "decision_action",
+      "order": 4,
+      "name": "Human selection interpretation",
+      "question": "What does the person's choice tell us about gtm_ai's decision?",
+      "improves": "Turns a click into structured supervision without treating the person as automatically right.",
+      "plain_what": "When the human picks an option, we classify what the pick says about gtm_ai's recommendation: agreement, a different but defensible choice, a correction of the strategy, or missing context.",
+      "plain_why": "A click is not proof that the human is right or that gtm_ai was wrong. This turns the click into structured feedback and does not ignore a disagreement."
+    },
+    {
+      "id": "D5",
+      "bucket": "decision_action",
+      "order": 5,
+      "name": "Human edit interpretation",
+      "question": "What meaning is contained in the person's edit of the chosen action?",
+      "improves": "Turns text differences into semantic evidence, so a copy edit is not read as a strategic correction.",
+      "plain_what": "When the human edits the draft, we work out what the edit means: a fact, the recipients, the strategy, the timing, the call to action, a risk, the tone or only the wording.",
+      "plain_why": "A copy edit read as a strategy correction (or the reverse) teaches gtm_ai the wrong thing. The class of the edit decides what gets learned."
+    },
+    {
+      "id": "D6",
+      "bucket": "decision_action",
+      "order": 6,
+      "name": "Eval-gap detection",
+      "question": "Did the existing checks already identify the reason for the person's correction?",
+      "improves": "Lets real use improve the eval system itself, not only produce another feedback row.",
+      "plain_what": "We check whether one of gtm_ai's own checks had already flagged what the human then corrected.",
+      "plain_why": "A correction that no check anticipated is a gap in the evals. This is how real use improves the eval system itself and not only the feedback log."
+    },
+    {
+      "id": "D7",
+      "bucket": "decision_action",
+      "order": 7,
+      "name": "Override propagation and selective re-evaluation",
+      "question": "After the person changed something, did everything that depends on it recompute correctly?",
+      "improves": "Makes a correction change the current workflow, not only future memory.",
+      "plain_what": "After an edit we check that everything that depended on the edited part was recomputed before sending, and that nothing unrelated was touched.",
+      "plain_why": "If a stale part survives (for example the old recipient list or a claim from a discarded option), the human's correction changes the text but not the work built on it."
+    },
+    {
+      "id": "D8",
+      "bucket": "decision_action",
+      "order": 8,
+      "name": "Final-artifact correctness",
+      "question": "Is the exact message about to be sent correct after all edits?",
+      "improves": "Prevents an evaluated draft from becoming an unevaluated edited send.",
+      "plain_what": "Right before sending, we check the exact message that will go out, after every edit: the intent is kept, the recipients are right, the claims are grounded and nothing is left over from another option.",
+      "plain_why": "Otherwise a draft that was evaluated can become an unevaluated edited message the moment it is sent."
+    },
+    {
+      "id": "D9",
+      "bucket": "decision_action",
+      "order": 9,
+      "name": "Execution and workflow completion",
+      "question": "Did gtm_ai carry out the final approved intent correctly in the real environment?",
+      "improves": "Verifies the job was done, not merely that gtm_ai said it was.",
+      "plain_what": "After sending, we check the outbox: the approved action happened exactly once, to the right target, and is linked to this episode.",
+      "plain_why": "A system can say it sent something that was never delivered, deliver twice, or send something that was blocked. This checks the job was done, not just claimed."
+    },
+    {
+      "id": "D10",
+      "bucket": "decision_action",
+      "order": 10,
+      "name": "Feedback emission back to Bucket 1",
+      "question": "What new evidence did this decision and action produce for organizational intelligence?",
+      "improves": "Closes the loop: what the person and the customer do becomes the next context.",
+      "plain_what": "We check that the decision fed the evidence back separately: the choice, the edit, the explanation and the action taken, and later the customer's reaction and the outcome.",
+      "plain_why": "If those collapse into a single label, gtm_ai cannot tell what the human preferred from what actually worked, and the loop back to understanding the account is broken."
+    },
+    {
+      "id": "S1",
+      "bucket": "system_health",
+      "order": 1,
+      "name": "Trace integrity and inspectability",
+      "question": "Can we reconstruct the episode end to end?",
+      "improves": "Keeps every material influence inspectable.",
+      "plain_what": "We check that any episode can be rebuilt end to end, from the source event to the knowledge change, with no broken links.",
+      "plain_why": "If a result cannot be traced to its inputs, nobody can audit it and hidden influences go unseen."
+    },
+    {
+      "id": "S2",
+      "bucket": "system_health",
+      "order": 2,
+      "name": "Grader validity and calibration",
+      "question": "Can we trust the evals themselves?",
+      "improves": "Shows how often a judge passes what it should not or stops what it should not.",
+      "plain_what": "We compare the model graders with reference answers to find how often they pass something wrong or fail something right.",
+      "plain_why": "A grader nobody has tested can be wrong in a consistent way. Until this is run, every model-graded result says it is not yet calibrated."
+    },
+    {
+      "id": "S3",
+      "bucket": "system_health",
+      "order": 3,
+      "name": "Stochastic reliability",
+      "question": "Does critical behavior stay correct across repeated runs?",
+      "improves": "Shows reliability, not one lucky run.",
+      "plain_what": "We repeat the critical checks several times to see whether the behaviour holds every time and not just once.",
+      "plain_why": "A result that passes once and fails the next time is not something to rely on."
+    },
+    {
+      "id": "S4",
+      "bucket": "system_health",
+      "order": 4,
+      "name": "Capability and regression coverage",
+      "question": "Are we testing both what gtm_ai can do and what it must never break?",
+      "improves": "Keeps capability and regression coverage separate and balanced.",
+      "plain_what": "We keep two sets of tests: what gtm_ai should be able to do, and what it must never break again.",
+      "plain_why": "Without regression tests an old mistake can come back after a change and nobody notices."
+    },
+    {
+      "id": "S5",
+      "bucket": "system_health",
+      "order": 5,
+      "name": "Adversarial and proxy-gaming robustness",
+      "question": "Can gtm_ai or a judge look correct without satisfying the product invariant?",
+      "improves": "Catches proxy gaming and grader-targeted behavior.",
+      "plain_what": "We try to fool the graders and the agent: look correct without being correct.",
+      "plain_why": "A system that learns to satisfy its judge, rather than the real goal, passes while getting worse."
+    },
+    {
+      "id": "S6",
+      "bucket": "system_health",
+      "order": 6,
+      "name": "Operational efficiency metrics",
+      "question": "What does an episode cost in tokens, calls, time and money?",
+      "improves": "Lets the system be optimized under quality floors. These are metrics, never evals, and they never change company knowledge.",
+      "plain_what": "We count what each episode costs: model calls, tokens, time and money, for the agent and for the checks.",
+      "plain_why": "Cost and speed decide whether the system can run on every event. These are measurements, not judgments, and they never change what gtm_ai knows."
+    }
+  ],
+  "known_deviations": [
+    {
+      "id": "gold_model_reference",
+      "canonical": "S2: model graders are calibrated against human labels.",
+      "decision": "Reference answers come from a different, stronger model (openai/gpt-5.6-sol-pro), blind to the judge under test. They are reference answers by a stronger model, not human labels, and every agreement figure says so.",
+      "applies_to": [
+        "S2"
+      ]
+    },
+    {
+      "id": "single_trial",
+      "canonical": "S3: repeated trials and pass^k where consistency matters.",
+      "decision": "One trial per measurement for now; no repeated-trial requirement is set.",
+      "applies_to": [
+        "S3"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,664 @@
+{
+ "base": "stand_in",
+ "description": "Power simulation of the synthetic layer kernel on the stand-in base (world.py, WP31 profile mixes). Not generated data. clean: features at close, no error (gated). noisy: extraction error per observation class and current deals seen at a decision time (reported).",
+ "rules_sha256": "f7d8778b69df548693d88376a4e5e64bf75b3405f4cd2ded39bab15a82c259fd",
+ "generation_seed": 20261002,
+ "sweep_seeds": 40,
+ "clean": {
+  "metrics": {
+   "win_rate": {
+    "mean": 0.498,
+    "p5": 0.468,
+    "p95": 0.529
+   },
+   "oracle_auc": {
+    "mean": 0.706,
+    "p5": 0.654,
+    "p95": 0.751
+   },
+   "learner_auc": {
+    "mean": 0.686,
+    "p5": 0.627,
+    "p95": 0.724
+   },
+   "hidden_learner_auc": {
+    "mean": 0.661,
+    "p5": 0.607,
+    "p95": 0.702
+   },
+   "null_only_auc": {
+    "mean": 0.511,
+    "p5": 0.447,
+    "p95": 0.566
+   },
+   "null_incremental_auc": {
+    "mean": 0.001,
+    "p5": -0.018,
+    "p95": 0.015
+   },
+   "cc_share": {
+    "mean": 0.421,
+    "p5": 0.384,
+    "p95": 0.444
+   },
+   "cc_only_auc": {
+    "mean": 0.559,
+    "p5": 0.5,
+    "p95": 0.604
+   },
+   "cc_incremental_auc": {
+    "mean": 0.013,
+    "p5": -0.005,
+    "p95": 0.023
+   }
+  },
+  "seed_pass_rate": 0.0,
+  "failing_seeds": {
+   "20261002": [
+    "win_rate 0.515 outside [0.28, 0.4]"
+   ],
+   "20261003": [
+    "win_rate 0.500 outside [0.28, 0.4]"
+   ],
+   "20261004": [
+    "win_rate 0.504 outside [0.28, 0.4]"
+   ],
+   "20261005": [
+    "win_rate 0.515 outside [0.28, 0.4]"
+   ],
+   "20261006": [
+    "win_rate 0.542 outside [0.28, 0.4]"
+   ],
+   "20261007": [
+    "win_rate 0.506 outside [0.28, 0.4]"
+   ],
+   "20261008": [
+    "win_rate 0.527 outside [0.28, 0.4]"
+   ],
+   "20261009": [
+    "win_rate 0.510 outside [0.28, 0.4]"
+   ],
+   "20261010": [
+    "win_rate 0.504 outside [0.28, 0.4]"
+   ],
+   "20261011": [
+    "win_rate 0.497 outside [0.28, 0.4]"
+   ],
+   "20261012": [
+    "win_rate 0.468 outside [0.28, 0.4]"
+   ],
+   "20261013": [
+    "win_rate 0.495 outside [0.28, 0.4]"
+   ],
+   "20261014": [
+    "win_rate 0.518 outside [0.28, 0.4]"
+   ],
+   "20261015": [
+    "win_rate 0.491 outside [0.28, 0.4]"
+   ],
+   "20261016": [
+    "win_rate 0.470 outside [0.28, 0.4]"
+   ],
+   "20261017": [
+    "win_rate 0.495 outside [0.28, 0.4]"
+   ],
+   "20261018": [
+    "win_rate 0.471 outside [0.28, 0.4]"
+   ],
+   "20261019": [
+    "win_rate 0.504 outside [0.28, 0.4]"
+   ],
+   "20261020": [
+    "win_rate 0.509 outside [0.28, 0.4]"
+   ],
+   "20261021": [
+    "win_rate 0.483 outside [0.28, 0.4]"
+   ],
+   "20261022": [
+    "win_rate 0.467 outside [0.28, 0.4]"
+   ],
+   "20261023": [
+    "win_rate 0.529 outside [0.28, 0.4]",
+    "cc_incremental_auc 0.033 > 0.03 ('has a cc' predicts)"
+   ],
+   "20261024": [
+    "win_rate 0.483 outside [0.28, 0.4]"
+   ],
+   "20261025": [
+    "win_rate 0.492 outside [0.28, 0.4]"
+   ],
+   "20261026": [
+    "win_rate 0.506 outside [0.28, 0.4]"
+   ],
+   "20261027": [
+    "win_rate 0.484 outside [0.28, 0.4]"
+   ],
+   "20261028": [
+    "win_rate 0.523 outside [0.28, 0.4]"
+   ],
+   "20261029": [
+    "win_rate 0.497 outside [0.28, 0.4]"
+   ],
+   "20261030": [
+    "win_rate 0.533 outside [0.28, 0.4]",
+    "null_incremental_auc 0.053 > 0.03"
+   ],
+   "20261031": [
+    "win_rate 0.468 outside [0.28, 0.4]"
+   ],
+   "20261032": [
+    "win_rate 0.513 outside [0.28, 0.4]"
+   ],
+   "20261033": [
+    "win_rate 0.492 outside [0.28, 0.4]"
+   ],
+   "20261034": [
+    "win_rate 0.509 outside [0.28, 0.4]"
+   ],
+   "20261035": [
+    "win_rate 0.480 outside [0.28, 0.4]",
+    "oracle_auc 0.648 outside [0.65, 0.8]"
+   ],
+   "20261036": [
+    "win_rate 0.514 outside [0.28, 0.4]"
+   ],
+   "20261037": [
+    "win_rate 0.476 outside [0.28, 0.4]"
+   ],
+   "20261038": [
+    "win_rate 0.475 outside [0.28, 0.4]"
+   ],
+   "20261039": [
+    "win_rate 0.485 outside [0.28, 0.4]"
+   ],
+   "20261040": [
+    "win_rate 0.499 outside [0.28, 0.4]"
+   ],
+   "20261041": [
+    "win_rate 0.488 outside [0.28, 0.4]"
+   ]
+  },
+  "sign_recovery": {
+   "syn1_push_while_owner_unstable": 1.0,
+   "syn1_champion_gone_unreplaced": 1.0,
+   "syn1_entrant_with_champion": 0.975,
+   "syn1_entrant_without_champion": 0.975,
+   "syn1_written_handover_exempts": 0.825,
+   "syn1_quote_before_economic_buyer": 0.65,
+   "syn1_three_engaged_before_quote": 1.0,
+   "syn1_requested_pause_ignored": 0.7,
+   "syn1_ops_contact_before_quote": 1.0,
+   "syn1_reprice_after_quote_pushback": 1.0,
+   "syn1_cc_colleague_on_technical_reply": 1.0,
+   "syn1_second_quote_within_30d": 1.0
+  },
+  "prevalence": {
+   "syn1_push_while_owner_unstable": 0.028,
+   "syn1_champion_gone_unreplaced": 0.038,
+   "syn1_entrant_with_champion": 0.215,
+   "syn1_entrant_without_champion": 0.176,
+   "syn1_written_handover_exempts": 0.045,
+   "syn1_quote_before_economic_buyer": 0.743,
+   "syn1_three_engaged_before_quote": 0.049,
+   "syn1_requested_pause_ignored": 0.05,
+   "syn1_ops_contact_before_quote": 0.216,
+   "syn1_reprice_after_quote_pushback": 0.138,
+   "syn1_cc_colleague_on_technical_reply": 0.133,
+   "syn1_second_quote_within_30d": 0.115
+  },
+  "sweep_failures": [
+   "seed pass rate 0.00 < 0.9",
+   "syn1_quote_before_economic_buyer sign recovered in 0.65 of seeds < 0.8",
+   "syn1_requested_pause_ignored sign recovered in 0.70 of seeds < 0.8"
+  ],
+  "frozen_seed": {
+   "seed": 20261002,
+   "win_rate": 0.5147058823529411,
+   "oracle_auc": 0.6685294117647059,
+   "learner_auc": 0.6490196078431373,
+   "hidden_learner_auc": 0.661156862745098,
+   "null_only_auc": 0.49976470588235294,
+   "null_incremental_auc": -0.003647058823529392,
+   "prevalence": [
+    [
+     "syn1_push_while_owner_unstable",
+     0.026292725679228746
+    ],
+    [
+     "syn1_champion_gone_unreplaced",
+     0.040315512708150744
+    ],
+    [
+     "syn1_entrant_with_champion",
+     0.2147239263803681
+    ],
+    [
+     "syn1_entrant_without_champion",
+     0.16126205083260298
+    ],
+    [
+     "syn1_written_handover_exempts",
+     0.044697633654688866
+    ],
+    [
+     "syn1_quote_before_economic_buyer",
+     0.7090271691498685
+    ],
+    [
+     "syn1_three_engaged_before_quote",
+     0.04732690622261174
+    ],
+    [
+     "syn1_requested_pause_ignored",
+     0.05433829973707274
+    ],
+    [
+     "syn1_ops_contact_before_quote",
+     0.18755477651183172
+    ],
+    [
+     "syn1_reprice_after_quote_pushback",
+     0.12532865907099036
+    ],
+    [
+     "syn1_cc_colleague_on_technical_reply",
+     0.13234005258545137
+    ],
+    [
+     "syn1_second_quote_within_30d",
+     0.11130587204206836
+    ]
+   ],
+   "coef": [
+    [
+     "syn1_push_while_owner_unstable",
+     -0.5274817062518705
+    ],
+    [
+     "syn1_champion_gone_unreplaced",
+     -1.6960079511588724
+    ],
+    [
+     "syn1_entrant_with_champion",
+     0.3526267676474966
+    ],
+    [
+     "syn1_entrant_without_champion",
+     -0.6812565288638539
+    ],
+    [
+     "syn1_written_handover_exempts",
+     0.6790407173451812
+    ],
+    [
+     "syn1_quote_before_economic_buyer",
+     0.21695933778739054
+    ],
+    [
+     "syn1_three_engaged_before_quote",
+     0.939220147325116
+    ],
+    [
+     "syn1_requested_pause_ignored",
+     -0.6445747145646299
+    ],
+    [
+     "syn1_ops_contact_before_quote",
+     0.6674059886881222
+    ],
+    [
+     "syn1_reprice_after_quote_pushback",
+     -0.6784222268395932
+    ],
+    [
+     "syn1_cc_colleague_on_technical_reply",
+     1.009249018919963
+    ],
+    [
+     "syn1_second_quote_within_30d",
+     -0.872239917087385
+    ]
+   ],
+   "cc_share": 0.4014022787028922,
+   "cc_only_auc": 0.5392156862745098,
+   "cc_incremental_auc": 0.005607843137254875
+  }
+ },
+ "noisy": {
+  "metrics": {
+   "win_rate": {
+    "mean": 0.498,
+    "p5": 0.468,
+    "p95": 0.529
+   },
+   "oracle_auc": {
+    "mean": 0.706,
+    "p5": 0.654,
+    "p95": 0.751
+   },
+   "learner_auc": {
+    "mean": 0.616,
+    "p5": 0.569,
+    "p95": 0.661
+   },
+   "hidden_learner_auc": {
+    "mean": 0.626,
+    "p5": 0.576,
+    "p95": 0.671
+   },
+   "null_only_auc": {
+    "mean": 0.511,
+    "p5": 0.447,
+    "p95": 0.566
+   },
+   "null_incremental_auc": {
+    "mean": 0.001,
+    "p5": -0.018,
+    "p95": 0.015
+   },
+   "cc_share": {
+    "mean": 0.421,
+    "p5": 0.384,
+    "p95": 0.444
+   },
+   "cc_only_auc": {
+    "mean": 0.559,
+    "p5": 0.5,
+    "p95": 0.604
+   },
+   "cc_incremental_auc": {
+    "mean": 0.013,
+    "p5": -0.005,
+    "p95": 0.023
+   }
+  },
+  "seed_pass_rate": 0.0,
+  "failing_seeds": {
+   "20261002": [
+    "win_rate 0.515 outside [0.28, 0.4]",
+    "learner_auc 0.594 outside [0.6, 0.78]"
+   ],
+   "20261003": [
+    "win_rate 0.500 outside [0.28, 0.4]"
+   ],
+   "20261004": [
+    "win_rate 0.504 outside [0.28, 0.4]"
+   ],
+   "20261005": [
+    "win_rate 0.515 outside [0.28, 0.4]"
+   ],
+   "20261006": [
+    "win_rate 0.542 outside [0.28, 0.4]"
+   ],
+   "20261007": [
+    "win_rate 0.506 outside [0.28, 0.4]",
+    "learner_auc 0.594 outside [0.6, 0.78]"
+   ],
+   "20261008": [
+    "win_rate 0.527 outside [0.28, 0.4]",
+    "learner_auc 0.588 outside [0.6, 0.78]"
+   ],
+   "20261009": [
+    "win_rate 0.510 outside [0.28, 0.4]"
+   ],
+   "20261010": [
+    "win_rate 0.504 outside [0.28, 0.4]",
+    "learner_auc 0.599 outside [0.6, 0.78]"
+   ],
+   "20261011": [
+    "win_rate 0.497 outside [0.28, 0.4]"
+   ],
+   "20261012": [
+    "win_rate 0.468 outside [0.28, 0.4]"
+   ],
+   "20261013": [
+    "win_rate 0.495 outside [0.28, 0.4]",
+    "learner_auc 0.596 outside [0.6, 0.78]",
+    "hidden rule syn1_reprice_after_quote_pushback recovered with the wrong sign (+0.01)"
+   ],
+   "20261014": [
+    "win_rate 0.518 outside [0.28, 0.4]"
+   ],
+   "20261015": [
+    "win_rate 0.491 outside [0.28, 0.4]"
+   ],
+   "20261016": [
+    "win_rate 0.470 outside [0.28, 0.4]"
+   ],
+   "20261017": [
+    "win_rate 0.495 outside [0.28, 0.4]"
+   ],
+   "20261018": [
+    "win_rate 0.471 outside [0.28, 0.4]"
+   ],
+   "20261019": [
+    "win_rate 0.504 outside [0.28, 0.4]"
+   ],
+   "20261020": [
+    "win_rate 0.509 outside [0.28, 0.4]"
+   ],
+   "20261021": [
+    "win_rate 0.483 outside [0.28, 0.4]",
+    "learner_auc 0.592 outside [0.6, 0.78]"
+   ],
+   "20261022": [
+    "win_rate 0.467 outside [0.28, 0.4]"
+   ],
+   "20261023": [
+    "win_rate 0.529 outside [0.28, 0.4]",
+    "learner_auc 0.573 outside [0.6, 0.78]",
+    "cc_incremental_auc 0.033 > 0.03 ('has a cc' predicts)"
+   ],
+   "20261024": [
+    "win_rate 0.483 outside [0.28, 0.4]"
+   ],
+   "20261025": [
+    "win_rate 0.492 outside [0.28, 0.4]"
+   ],
+   "20261026": [
+    "win_rate 0.506 outside [0.28, 0.4]"
+   ],
+   "20261027": [
+    "win_rate 0.484 outside [0.28, 0.4]"
+   ],
+   "20261028": [
+    "win_rate 0.523 outside [0.28, 0.4]",
+    "learner_auc 0.592 outside [0.6, 0.78]"
+   ],
+   "20261029": [
+    "win_rate 0.497 outside [0.28, 0.4]"
+   ],
+   "20261030": [
+    "win_rate 0.533 outside [0.28, 0.4]",
+    "null_incremental_auc 0.053 > 0.03"
+   ],
+   "20261031": [
+    "win_rate 0.468 outside [0.28, 0.4]"
+   ],
+   "20261032": [
+    "win_rate 0.513 outside [0.28, 0.4]",
+    "learner_auc 0.564 outside [0.6, 0.78]"
+   ],
+   "20261033": [
+    "win_rate 0.492 outside [0.28, 0.4]"
+   ],
+   "20261034": [
+    "win_rate 0.509 outside [0.28, 0.4]",
+    "learner_auc 0.598 outside [0.6, 0.78]"
+   ],
+   "20261035": [
+    "win_rate 0.480 outside [0.28, 0.4]",
+    "oracle_auc 0.648 outside [0.65, 0.8]",
+    "learner_auc 0.580 outside [0.6, 0.78]"
+   ],
+   "20261036": [
+    "win_rate 0.514 outside [0.28, 0.4]",
+    "learner_auc 0.579 outside [0.6, 0.78]"
+   ],
+   "20261037": [
+    "win_rate 0.476 outside [0.28, 0.4]",
+    "learner_auc 0.592 outside [0.6, 0.78]"
+   ],
+   "20261038": [
+    "win_rate 0.475 outside [0.28, 0.4]"
+   ],
+   "20261039": [
+    "win_rate 0.485 outside [0.28, 0.4]"
+   ],
+   "20261040": [
+    "win_rate 0.499 outside [0.28, 0.4]",
+    "learner_auc 0.588 outside [0.6, 0.78]"
+   ],
+   "20261041": [
+    "win_rate 0.488 outside [0.28, 0.4]",
+    "learner_auc 0.569 outside [0.6, 0.78]"
+   ]
+  },
+  "sign_recovery": {
+   "syn1_push_while_owner_unstable": 0.9,
+   "syn1_champion_gone_unreplaced": 0.975,
+   "syn1_entrant_with_champion": 0.975,
+   "syn1_entrant_without_champion": 0.85,
+   "syn1_written_handover_exempts": 0.55,
+   "syn1_quote_before_economic_buyer": 0.675,
+   "syn1_three_engaged_before_quote": 0.925,
+   "syn1_requested_pause_ignored": 0.725,
+   "syn1_ops_contact_before_quote": 1.0,
+   "syn1_reprice_after_quote_pushback": 0.975,
+   "syn1_cc_colleague_on_technical_reply": 1.0,
+   "syn1_second_quote_within_30d": 1.0
+  },
+  "prevalence": {
+   "syn1_push_while_owner_unstable": 0.028,
+   "syn1_champion_gone_unreplaced": 0.038,
+   "syn1_entrant_with_champion": 0.215,
+   "syn1_entrant_without_champion": 0.176,
+   "syn1_written_handover_exempts": 0.045,
+   "syn1_quote_before_economic_buyer": 0.743,
+   "syn1_three_engaged_before_quote": 0.049,
+   "syn1_requested_pause_ignored": 0.05,
+   "syn1_ops_contact_before_quote": 0.216,
+   "syn1_reprice_after_quote_pushback": 0.138,
+   "syn1_cc_colleague_on_technical_reply": 0.133,
+   "syn1_second_quote_within_30d": 0.115
+  },
+  "sweep_failures": [
+   "seed pass rate 0.00 < 0.9",
+   "syn1_written_handover_exempts sign recovered in 0.55 of seeds < 0.8",
+   "syn1_quote_before_economic_buyer sign recovered in 0.68 of seeds < 0.8",
+   "syn1_requested_pause_ignored sign recovered in 0.72 of seeds < 0.8"
+  ],
+  "frozen_seed": {
+   "seed": 20261002,
+   "win_rate": 0.5147058823529411,
+   "oracle_auc": 0.6685294117647059,
+   "learner_auc": 0.5942352941176471,
+   "hidden_learner_auc": 0.6057254901960785,
+   "null_only_auc": 0.49976470588235294,
+   "null_incremental_auc": -0.003647058823529392,
+   "prevalence": [
+    [
+     "syn1_push_while_owner_unstable",
+     0.026292725679228746
+    ],
+    [
+     "syn1_champion_gone_unreplaced",
+     0.040315512708150744
+    ],
+    [
+     "syn1_entrant_with_champion",
+     0.2147239263803681
+    ],
+    [
+     "syn1_entrant_without_champion",
+     0.16126205083260298
+    ],
+    [
+     "syn1_written_handover_exempts",
+     0.044697633654688866
+    ],
+    [
+     "syn1_quote_before_economic_buyer",
+     0.7090271691498685
+    ],
+    [
+     "syn1_three_engaged_before_quote",
+     0.04732690622261174
+    ],
+    [
+     "syn1_requested_pause_ignored",
+     0.05433829973707274
+    ],
+    [
+     "syn1_ops_contact_before_quote",
+     0.18755477651183172
+    ],
+    [
+     "syn1_reprice_after_quote_pushback",
+     0.12532865907099036
+    ],
+    [
+     "syn1_cc_colleague_on_technical_reply",
+     0.13234005258545137
+    ],
+    [
+     "syn1_second_quote_within_30d",
+     0.11130587204206836
+    ]
+   ],
+   "coef": [
+    [
+     "syn1_push_while_owner_unstable",
+     -0.10222691503547156
+    ],
+    [
+     "syn1_champion_gone_unreplaced",
+     -0.7296785279742305
+    ],
+    [
+     "syn1_entrant_with_champion",
+     0.10381438139141176
+    ],
+    [
+     "syn1_entrant_without_champion",
+     -0.4596892524829919
+    ],
+    [
+     "syn1_written_handover_exempts",
+     0.5191428135822289
+    ],
+    [
+     "syn1_quote_before_economic_buyer",
+     0.2694243486584767
+    ],
+    [
+     "syn1_three_engaged_before_quote",
+     0.751515532411274
+    ],
+    [
+     "syn1_requested_pause_ignored",
+     -0.1888229311382448
+    ],
+    [
+     "syn1_ops_contact_before_quote",
+     0.5862454883319176
+    ],
+    [
+     "syn1_reprice_after_quote_pushback",
+     -0.5112836732232837
+    ],
+    [
+     "syn1_cc_colleague_on_technical_reply",
+     0.894490333946677
+    ],
+    [
+     "syn1_second_quote_within_30d",
+     -0.9070807405911434
+    ]
+   ],
+   "cc_share": 0.4014022787028922,
+   "cc_only_auc": 0.5392156862745098,
+   "cc_incremental_auc": 0.005607843137254875
+  }
+ }
+}

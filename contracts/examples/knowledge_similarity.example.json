@@ -1,0 +1,19 @@
+{
+  "version": "knowledge_similarity:v1",
+  "description": "Closest-match reuse of learned knowledge (ADR-0013 amendment 2, owner decision 2026-10-06): a lesson learned from one case is offered to a later case when the two are similar enough, not only when every scope condition holds. Deterministic and explainable: no embeddings, no model. The score is the weighted share of agreement over the features known on BOTH sides; a feature unknown on either side contributes nothing (neither a match nor a mismatch), and a lesson is only scored when at least min_comparable_features features are comparable AND their weights add up to at least min_comparable_weight (one heavy and one medium feature, never three weak ones), so it cannot score high on weak evidence. At or above threshold the lesson is applicable (offered to the agent, labelled with its status and score); below it the lesson is not offered and the product says so, naming the closest lesson. Lifecycle gates (lifecycle.v1.json) still decide which lessons are retrievable at all; similarity is an additional threshold, never a bypass.",
+  "applies_to_created_from": ["manual", "human_delta"],
+  "threshold": 0.6,
+  "min_comparable_features": 2,
+  "min_comparable_weight": 5,
+  "features": [
+    { "id": "transition", "weight": 3, "rationale": "The detected state transition (from state to state) is the clearest statement of what kind of moment this is; a lesson about a reorganisation does not carry over to a renewal." },
+    { "id": "signals", "weight": 3, "rationale": "The signals that triggered the case say what happened. Agreement is the share of the lesson's trigger signals that are also open in the current case (coverage of the lesson's trigger)." },
+    { "id": "topic", "weight": 3, "rationale": "What the interpretation is about: the change dimensions (stakeholder structure, relationship ownership, buyer intent, blockers and risk, next-step commitment, recommended action) of the state diff that triggered the case, read from structured fields only, never from prose. A correction about what a buyer's objections mean does not carry over to a case about who the champion is, however similar the stage. Agreement is the share of the lesson's topics that the case's diff also touches." },
+    { "id": "stage", "weight": 2, "rationale": "The opportunity stage bounds which moves make sense (a close-out ask in discovery is a different lesson)." },
+    { "id": "motion", "weight": 2, "rationale": "New business, expansion and renewal motions are played differently." },
+    { "id": "relationship_state", "weight": 2, "rationale": "The earned relationship state (ADR-0012) says how much trust the next ask can spend." },
+    { "id": "transition_status", "weight": 1, "rationale": "Whether the transition is still a candidate or confirmed changes how hard the move may be, but is weaker than the transition itself." },
+    { "id": "champion_status", "weight": 1, "rationale": "Champion health shapes who to involve; weaker than the deal's own shape." },
+    { "id": "health", "weight": 1, "rationale": "Deal health is a coarse summary of other features, so it carries the least weight." }
+  ]
+}

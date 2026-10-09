@@ -1,0 +1,13 @@
+{
+  "version": "knowledge_lifecycle:v1",
+  "description": "Our thresholds (ADR-0013), not taken from any vendor. One supporting decision episode (e.g. the human-edited episode the candidate was learned from, recorded as decision_episode evidence; a bare human_decision moves no count) plus one positive customer reaction makes a narrow candidate provisional and therefore applicable. The one exception is a candidate minted from a human's explicit correction of a judgment verdict (created_from manual): once it is seeded from its own corrected, sent episode (no independent support yet), nothing contradicts it and its scope is narrow, it is offered to the next similar case while still a candidate (narrow_candidate, ADR-0013 amendment); whether a learned lesson is similar enough is decided by similarity.v1.json (ADR-0013 amendment 2), which replaces the exact-scope breadth check for it; K17's 8 decisions, 6 positive reactions and 1 counterexample (share 0.11) make it supported, and confirmation also needs 3 advanced outcomes.",
+  "applicable_statuses": ["provisional", "supported", "confirmed"],
+  "rungs": [
+    { "status": "provisional", "min_decisions": 1, "min_positive_reactions": 1, "min_outcomes_advanced": 0, "max_counterexample_share": 0.5 },
+    { "status": "supported", "min_decisions": 5, "min_positive_reactions": 3, "min_outcomes_advanced": 0, "max_counterexample_share": 0.2 },
+    { "status": "confirmed", "min_decisions": 10, "min_positive_reactions": 6, "min_outcomes_advanced": 3, "max_counterexample_share": 0.1 }
+  ],
+  "dispute": { "min_counterexamples": 2, "min_counterexample_share": 0.3, "min_negative_reactions": 3 },
+  "narrow_candidate": { "created_from": ["manual"], "min_decisions": 1 },
+  "stale": { "after_days": 180 }
+}

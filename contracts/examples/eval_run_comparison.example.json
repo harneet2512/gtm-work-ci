@@ -1,0 +1,84 @@
+{
+  "a": {
+    "eval_run_id": "0f0a0000-0000-4000-8000-000000000600",
+    "decision_episode_id": "0e9e0000-0000-4000-8000-000000000a00",
+    "account_id": "0a0c0000-0000-4000-8000-000000000001",
+    "account_name": "Acme Corp",
+    "evaluated_at": "2026-09-22T15:21:00Z",
+    "counts": {
+      "pass": 0,
+      "warn": 1,
+      "fail": 1,
+      "unknown": 0,
+      "blocking_fail": 1,
+      "total": 2
+    }
+  },
+  "b": {
+    "eval_run_id": "0f0a0000-0000-4000-8000-000000000601",
+    "decision_episode_id": "0e9e0000-0000-4000-8000-000000000a01",
+    "account_id": "0a0c0000-0000-4000-8000-000000000001",
+    "account_name": "Acme Corp",
+    "evaluated_at": "2026-09-29T15:21:00Z",
+    "counts": {
+      "pass": 1,
+      "warn": 1,
+      "fail": 0,
+      "unknown": 0,
+      "blocking_fail": 0,
+      "total": 2
+    }
+  },
+  "rows": [
+    {
+      "eval_type": "champion_continuity",
+      "family_id": "E8",
+      "area": "decision_learning",
+      "a": "fail",
+      "b": "pass",
+      "a_blocking": true,
+      "b_blocking": false,
+      "change": "improved",
+      "a_result_ids": [
+        "0e1a0000-0000-4000-8000-000000000901"
+      ],
+      "b_result_ids": [
+        "0e1a0000-0000-4000-8000-000000000911"
+      ]
+    },
+    {
+      "eval_type": "cta_calibration",
+      "family_id": "E12",
+      "area": "cliff_experience",
+      "a": "warn",
+      "b": "warn",
+      "a_blocking": false,
+      "b_blocking": false,
+      "change": "unchanged",
+      "a_result_ids": [
+        "0e1a0000-0000-4000-8000-000000000902"
+      ],
+      "b_result_ids": [
+        "0e1a0000-0000-4000-8000-000000000912"
+      ]
+    }
+  ],
+  "overall": {
+    "change": "improved",
+    "improved": 1,
+    "regressed": 0,
+    "unchanged": 1,
+    "added": 0,
+    "removed": 0,
+    "inconclusive": 0,
+    "added_fail": 0,
+    "delta": {
+      "pass": 1,
+      "warn": 0,
+      "fail": -1,
+      "unknown": 0,
+      "blocking_fail": -1,
+      "total": 0
+    }
+  }
+}

@@ -1,0 +1,471 @@
+{
+  "account_id": "0a0cad00-0000-4000-8000-00000000ad01",
+  "account_name": "MedTech Advances",
+  "opportunity_id": "0c0fad00-0000-4000-8000-00000000ad01",
+  "opportunities": [
+    {
+      "opportunity_id": "0c0fad00-0000-4000-8000-00000000ad01",
+      "is_open": true,
+      "is_primary": true,
+      "stage": "unknown",
+      "owner": "0b0ead00-0000-4000-8000-00000000ad21",
+      "amount": null,
+      "health": "unknown",
+      "as_of": "2023-11-09T09:30:00Z",
+      "last_activity_id": "0ac7ad00-0000-4000-8000-00000000ad0d"
+    }
+  ],
+  "version": 108,
+  "as_of": "2023-11-09T09:30:00Z",
+  "computed_at": "2023-11-09T09:30:09Z",
+  "last_activity_id": "0ac7ad00-0000-4000-8000-00000000ad0d",
+  "fields": {
+    "stage": {
+      "value": "unknown",
+      "known": false,
+      "winning_claim_id": null,
+      "standing": null,
+      "confidence": null,
+      "as_of": null,
+      "evidence_refs": [],
+      "competing_claim_ids": [],
+      "suggested_claim_ids": []
+    },
+    "health": {
+      "value": "unknown",
+      "known": false,
+      "winning_claim_id": null,
+      "standing": null,
+      "confidence": null,
+      "as_of": null,
+      "evidence_refs": [],
+      "competing_claim_ids": [],
+      "suggested_claim_ids": []
+    },
+    "owner": {
+      "value": "0b0ead00-0000-4000-8000-00000000ad21",
+      "known": true,
+      "winning_claim_id": "0c1aad00-0000-4000-8000-00000000ad21",
+      "standing": "crm_explicit",
+      "confidence": 1,
+      "as_of": "2023-05-25T11:23:41Z",
+      "evidence_refs": [
+        {
+          "activity_id": "0ac7ad00-0000-4000-8000-00000000ad01",
+          "claim_id": "0c1aad00-0000-4000-8000-00000000ad21",
+          "occurred_at": "2023-05-25T11:23:41Z"
+        }
+      ],
+      "competing_claim_ids": [],
+      "suggested_claim_ids": [],
+      "opportunity_id": "0c0fad00-0000-4000-8000-00000000ad01"
+    },
+    "motion": {
+      "value": "unknown",
+      "known": false,
+      "winning_claim_id": null,
+      "standing": null,
+      "confidence": null,
+      "as_of": null,
+      "evidence_refs": [],
+      "competing_claim_ids": [],
+      "suggested_claim_ids": []
+    },
+    "champion": {
+      "value": "unknown",
+      "known": false,
+      "winning_claim_id": null,
+      "standing": null,
+      "confidence": null,
+      "as_of": null,
+      "evidence_refs": [],
+      "competing_claim_ids": [],
+      "suggested_claim_ids": []
+    },
+    "champion_status": {
+      "value": "unknown",
+      "known": false,
+      "winning_claim_id": null,
+      "standing": null,
+      "confidence": null,
+      "as_of": null,
+      "evidence_refs": [],
+      "competing_claim_ids": [],
+      "suggested_claim_ids": []
+    },
+    "economic_buyer": {
+      "value": "unknown",
+      "known": false,
+      "winning_claim_id": null,
+      "standing": null,
+      "confidence": null,
+      "as_of": null,
+      "evidence_refs": [],
+      "competing_claim_ids": [],
+      "suggested_claim_ids": []
+    },
+    "blockers": {
+      "value": [],
+      "known": false,
+      "winning_claim_id": null,
+      "standing": null,
+      "confidence": null,
+      "as_of": null,
+      "evidence_refs": [],
+      "competing_claim_ids": [],
+      "suggested_claim_ids": []
+    },
+    "objections": {
+      "value": [
+        {
+          "text": "Reservations about EduTech Lab's early usability",
+          "claim_id": "0c1aad00-0000-4000-8000-00000000ad23",
+          "status": "open",
+          "evidence_refs": [
+            {
+              "activity_id": "0ac7ad00-0000-4000-8000-00000000ad0b",
+              "claim_id": "0c1aad00-0000-4000-8000-00000000ad23",
+              "quote": "We've also noted the positive feedback about EduTech Lab, although we do have some reservations based on initial usability with other solutions.",
+              "speaker_person_id": "0b0ead00-0000-4000-8000-00000000ad11",
+              "occurred_at": "2023-11-08T16:00:00Z"
+            }
+          ]
+        },
+        {
+          "text": "Long-term cost of integrating EduTech Lab and SecureData Nexus",
+          "claim_id": "0c1aad00-0000-4000-8000-00000000ad27",
+          "status": "open",
+          "evidence_refs": [
+            {
+              "activity_id": "0ac7ad00-0000-4000-8000-00000000ad0d",
+              "claim_id": "0c1aad00-0000-4000-8000-00000000ad27",
+              "quote": "That said, I have some questions regarding the long-term cost implications of integrating both the EduTech Lab and the SecureData Nexus into our existing systems.",
+              "speaker_person_id": "0b0ead00-0000-4000-8000-00000000ad11",
+              "occurred_at": "2023-11-09T09:30:00Z"
+            }
+          ]
+        }
+      ],
+      "known": true,
+      "winning_claim_id": null,
+      "standing": null,
+      "confidence": null,
+      "as_of": "2023-11-09T09:30:00Z",
+      "evidence_refs": [
+        {
+          "activity_id": "0ac7ad00-0000-4000-8000-00000000ad0b",
+          "claim_id": "0c1aad00-0000-4000-8000-00000000ad23",
+          "quote": "We've also noted the positive feedback about EduTech Lab, although we do have some reservations based on initial usability with other solutions.",
+          "speaker_person_id": "0b0ead00-0000-4000-8000-00000000ad11",
+          "occurred_at": "2023-11-08T16:00:00Z"
+        },
+        {
+          "activity_id": "0ac7ad00-0000-4000-8000-00000000ad0d",
+          "claim_id": "0c1aad00-0000-4000-8000-00000000ad27",
+          "quote": "That said, I have some questions regarding the long-term cost implications of integrating both the EduTech Lab and the SecureData Nexus into our existing systems.",
+          "speaker_person_id": "0b0ead00-0000-4000-8000-00000000ad11",
+          "occurred_at": "2023-11-09T09:30:00Z"
+        }
+      ],
+      "competing_claim_ids": [],
+      "suggested_claim_ids": []
+    },
+    "decision_criteria": {
+      "value": [
+        {
+          "text": "Transparent pricing",
+          "claim_id": "0c1aad00-0000-4000-8000-00000000ad22",
+          "status": "open",
+          "evidence_refs": [
+            {
+              "activity_id": "0ac7ad00-0000-4000-8000-00000000ad0b",
+              "claim_id": "0c1aad00-0000-4000-8000-00000000ad22",
+              "quote": "Transparency in terms of pricing is indeed something we value highly.",
+              "speaker_person_id": "0b0ead00-0000-4000-8000-00000000ad11",
+              "occurred_at": "2023-11-08T16:00:00Z"
+            }
+          ]
+        },
+        {
+          "text": "Support during the initial implementation",
+          "claim_id": "0c1aad00-0000-4000-8000-00000000ad26",
+          "status": "open",
+          "evidence_refs": [
+            {
+              "activity_id": "0ac7ad00-0000-4000-8000-00000000ad0c",
+              "claim_id": "0c1aad00-0000-4000-8000-00000000ad26",
+              "quote": "Our team would also like to discuss the potential for additional support during the initial implementation phase, to streamline the transition effectively.",
+              "speaker_person_id": "0b0ead00-0000-4000-8000-00000000ad11",
+              "occurred_at": "2023-11-08T17:30:00Z"
+            }
+          ]
+        },
+        {
+          "text": "A clear view of future financial commitments",
+          "claim_id": "0c1aad00-0000-4000-8000-00000000ad2a",
+          "status": "open",
+          "evidence_refs": [
+            {
+              "activity_id": "0ac7ad00-0000-4000-8000-00000000ad0d",
+              "claim_id": "0c1aad00-0000-4000-8000-00000000ad2a",
+              "quote": "Ensuring that we have a clear understanding of future financial commitments is crucial for us.",
+              "speaker_person_id": "0b0ead00-0000-4000-8000-00000000ad11",
+              "occurred_at": "2023-11-09T09:30:00Z"
+            }
+          ]
+        }
+      ],
+      "known": true,
+      "winning_claim_id": null,
+      "standing": null,
+      "confidence": null,
+      "as_of": "2023-11-09T09:30:00Z",
+      "evidence_refs": [
+        {
+          "activity_id": "0ac7ad00-0000-4000-8000-00000000ad0b",
+          "claim_id": "0c1aad00-0000-4000-8000-00000000ad22",
+          "quote": "Transparency in terms of pricing is indeed something we value highly.",
+          "speaker_person_id": "0b0ead00-0000-4000-8000-00000000ad11",
+          "occurred_at": "2023-11-08T16:00:00Z"
+        },
+        {
+          "activity_id": "0ac7ad00-0000-4000-8000-00000000ad0c",
+          "claim_id": "0c1aad00-0000-4000-8000-00000000ad26",
+          "quote": "Our team would also like to discuss the potential for additional support during the initial implementation phase, to streamline the transition effectively.",
+          "speaker_person_id": "0b0ead00-0000-4000-8000-00000000ad11",
+          "occurred_at": "2023-11-08T17:30:00Z"
+        },
+        {
+          "activity_id": "0ac7ad00-0000-4000-8000-00000000ad0d",
+          "claim_id": "0c1aad00-0000-4000-8000-00000000ad2a",
+          "quote": "Ensuring that we have a clear understanding of future financial commitments is crucial for us.",
+          "speaker_person_id": "0b0ead00-0000-4000-8000-00000000ad11",
+          "occurred_at": "2023-11-09T09:30:00Z"
+        }
+      ],
+      "competing_claim_ids": [],
+      "suggested_claim_ids": []
+    },
+    "decision_process": {
+      "value": "unknown",
+      "known": false,
+      "winning_claim_id": null,
+      "standing": null,
+      "confidence": null,
+      "as_of": null,
+      "evidence_refs": [],
+      "competing_claim_ids": [],
+      "suggested_claim_ids": []
+    },
+    "current_commitments": {
+      "value": [
+        {
+          "text": "Fatoumata to gather her team's feature requests",
+          "claim_id": "0c1aad00-0000-4000-8000-00000000ad24",
+          "status": "open",
+          "evidence_refs": [
+            {
+              "activity_id": "0ac7ad00-0000-4000-8000-00000000ad0b",
+              "claim_id": "0c1aad00-0000-4000-8000-00000000ad24",
+              "quote": "I’ll coordinate internally to gather any additional feedback from my team regarding specific feature requests or adjustments.",
+              "speaker_person_id": "0b0ead00-0000-4000-8000-00000000ad11",
+              "occurred_at": "2023-11-08T16:00:00Z"
+            }
+          ]
+        }
+      ],
+      "known": true,
+      "winning_claim_id": null,
+      "standing": null,
+      "confidence": null,
+      "as_of": "2023-11-08T16:00:00Z",
+      "evidence_refs": [
+        {
+          "activity_id": "0ac7ad00-0000-4000-8000-00000000ad0b",
+          "claim_id": "0c1aad00-0000-4000-8000-00000000ad24",
+          "quote": "I’ll coordinate internally to gather any additional feedback from my team regarding specific feature requests or adjustments.",
+          "speaker_person_id": "0b0ead00-0000-4000-8000-00000000ad11",
+          "occurred_at": "2023-11-08T16:00:00Z"
+        }
+      ],
+      "competing_claim_ids": [],
+      "suggested_claim_ids": []
+    },
+    "next_milestone": {
+      "value": "Follow-up call on long-term costs",
+      "known": true,
+      "winning_claim_id": "0c1aad00-0000-4000-8000-00000000ad28",
+      "standing": "first_party_ai",
+      "confidence": 0.9,
+      "as_of": "2023-11-09T09:30:00Z",
+      "evidence_refs": [
+        {
+          "activity_id": "0ac7ad00-0000-4000-8000-00000000ad0d",
+          "claim_id": "0c1aad00-0000-4000-8000-00000000ad28",
+          "quote": "Could we schedule a follow-up call to discuss these points in more detail?",
+          "speaker_person_id": "0b0ead00-0000-4000-8000-00000000ad11",
+          "occurred_at": "2023-11-09T09:30:00Z"
+        }
+      ],
+      "competing_claim_ids": [],
+      "suggested_claim_ids": []
+    },
+    "next_meeting": {
+      "value": "Follow-up call requested; no time agreed",
+      "known": true,
+      "winning_claim_id": "0c1aad00-0000-4000-8000-00000000ad28",
+      "standing": "first_party_ai",
+      "confidence": 0.9,
+      "as_of": "2023-11-09T09:30:00Z",
+      "evidence_refs": [
+        {
+          "activity_id": "0ac7ad00-0000-4000-8000-00000000ad0d",
+          "claim_id": "0c1aad00-0000-4000-8000-00000000ad28",
+          "quote": "Could we schedule a follow-up call to discuss these points in more detail?",
+          "speaker_person_id": "0b0ead00-0000-4000-8000-00000000ad11",
+          "occurred_at": "2023-11-09T09:30:00Z"
+        }
+      ],
+      "competing_claim_ids": [],
+      "suggested_claim_ids": []
+    },
+    "relationship_risk": {
+      "value": "medium",
+      "known": true,
+      "winning_claim_id": "0c1aad00-0000-4000-8000-00000000ad25",
+      "standing": "first_party_ai",
+      "confidence": 0.7,
+      "as_of": "2023-11-08T17:30:00Z",
+      "evidence_refs": [
+        {
+          "activity_id": "0ac7ad00-0000-4000-8000-00000000ad0c",
+          "claim_id": "0c1aad00-0000-4000-8000-00000000ad25",
+          "quote": "Quantum Circuits Inc. offers competitive initial pricing with comprehensive onboarding, and we are considering all options that maximize our long-term value.",
+          "speaker_person_id": "0b0ead00-0000-4000-8000-00000000ad11",
+          "occurred_at": "2023-11-08T17:30:00Z"
+        }
+      ],
+      "competing_claim_ids": [],
+      "suggested_claim_ids": []
+    },
+    "product_use_case": {
+      "value": "CryptGuard Module for data protection; integrating EduTech Lab and SecureData Nexus",
+      "known": true,
+      "winning_claim_id": "0c1aad00-0000-4000-8000-00000000ad29",
+      "standing": "first_party_ai",
+      "confidence": 0.85,
+      "as_of": "2023-11-09T09:30:00Z",
+      "evidence_refs": [
+        {
+          "activity_id": "0ac7ad00-0000-4000-8000-00000000ad0d",
+          "claim_id": "0c1aad00-0000-4000-8000-00000000ad29",
+          "quote": "I am particularly interested in the CryptGuard Module due to its adaptability and potential for enhancing our data protection efforts.",
+          "speaker_person_id": "0b0ead00-0000-4000-8000-00000000ad11",
+          "occurred_at": "2023-11-09T09:30:00Z"
+        }
+      ],
+      "competing_claim_ids": [],
+      "suggested_claim_ids": []
+    },
+    "commercial_issue": {
+      "value": "Weighing Quantum Circuits Inc.'s initial pricing and onboarding",
+      "known": true,
+      "winning_claim_id": "0c1aad00-0000-4000-8000-00000000ad25",
+      "standing": "first_party_ai",
+      "confidence": 0.8,
+      "as_of": "2023-11-08T17:30:00Z",
+      "evidence_refs": [
+        {
+          "activity_id": "0ac7ad00-0000-4000-8000-00000000ad0c",
+          "claim_id": "0c1aad00-0000-4000-8000-00000000ad25",
+          "quote": "Quantum Circuits Inc. offers competitive initial pricing with comprehensive onboarding, and we are considering all options that maximize our long-term value.",
+          "speaker_person_id": "0b0ead00-0000-4000-8000-00000000ad11",
+          "occurred_at": "2023-11-08T17:30:00Z"
+        }
+      ],
+      "competing_claim_ids": [],
+      "suggested_claim_ids": []
+    },
+    "last_customer_interaction": {
+      "value": "2023-11-09T09:30:00Z",
+      "known": true,
+      "winning_claim_id": null,
+      "standing": null,
+      "confidence": null,
+      "as_of": "2023-11-09T09:30:00Z",
+      "evidence_refs": [
+        {
+          "activity_id": "0ac7ad00-0000-4000-8000-00000000ad0d",
+          "occurred_at": "2023-11-09T09:30:00Z"
+        }
+      ],
+      "competing_claim_ids": [],
+      "suggested_claim_ids": [],
+      "derived": true
+    },
+    "last_meaningful_change": {
+      "value": "Fatoumata asked about long-term integration costs and for a follow-up call",
+      "known": true,
+      "winning_claim_id": null,
+      "standing": null,
+      "confidence": null,
+      "as_of": "2023-11-09T09:30:00Z",
+      "evidence_refs": [
+        {
+          "activity_id": "0ac7ad00-0000-4000-8000-00000000ad0d",
+          "occurred_at": "2023-11-09T09:30:00Z"
+        }
+      ],
+      "competing_claim_ids": [],
+      "suggested_claim_ids": [],
+      "derived": true
+    },
+    "summary": {
+      "value": "Fatoumata likes the proposal's flexibility, values pricing transparency and is weighing Quantum Circuits' onboarding offer.",
+      "known": true,
+      "winning_claim_id": "0c1aad00-0000-4000-8000-00000000ad25",
+      "standing": "first_party_ai",
+      "confidence": 0.8,
+      "as_of": "2023-11-08T17:30:00Z",
+      "evidence_refs": [
+        {
+          "activity_id": "0ac7ad00-0000-4000-8000-00000000ad0c",
+          "claim_id": "0c1aad00-0000-4000-8000-00000000ad25",
+          "quote": "Quantum Circuits Inc. offers competitive initial pricing with comprehensive onboarding, and we are considering all options that maximize our long-term value.",
+          "speaker_person_id": "0b0ead00-0000-4000-8000-00000000ad11",
+          "occurred_at": "2023-11-08T17:30:00Z"
+        }
+      ],
+      "competing_claim_ids": [],
+      "suggested_claim_ids": []
+    }
+  },
+  "buying_group": [
+    {
+      "person_id": "0b0ead00-0000-4000-8000-00000000ad11",
+      "display_name": "Fatoumata Touré",
+      "title": "Supply Chain Coordinator",
+      "roles": [
+        "unknown"
+      ],
+      "role_source": null,
+      "role_basis": null,
+      "role_provenance": [],
+      "status": "active",
+      "delegated_to_person_id": null,
+      "last_engaged_at": "2023-11-09T09:30:00Z",
+      "evidence_refs": [
+        {
+          "activity_id": "0ac7ad00-0000-4000-8000-00000000ad0d",
+          "quote": "Could we schedule a follow-up call to discuss these points in more detail?",
+          "speaker_person_id": "0b0ead00-0000-4000-8000-00000000ad11",
+          "occurred_at": "2023-11-09T09:30:00Z"
+        }
+      ]
+    }
+  ],
+  "open_transition": null,
+  "coverage_gaps": [
+    "economic_buyer"
+  ]
+}

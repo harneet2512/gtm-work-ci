@@ -1,0 +1,22 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://ghost.local/contracts/worker_usage.v1.json",
+  "title": "WorkerUsage",
+  "description": "HAR-145: what the model worker spent answering ONE request, returned as `usage` on the response of /v1/draft, /v1/strategies, /v1/judge, /v1/revise and /v1/human-delta. Core stores it per call (run_model_usage) and sums it into OperationalMetrics (operational_metrics.v1.json): a METRIC (HAR-97 M1-M5), never an eval. Every number is an exact sum over the provider completions the request made; a count the provider did not report is null (cached and reasoning tokens, cost) and is never estimated or taken as 0. A request answered from recorded cassettes (replay mode) spent nothing: its usage_source is replay and every count is 0 or null, whatever the cassette recorded. Tokens of a model answer that was discarded and retried (an unusable first answer) are not returned: the attempt is counted in retries only, so tokens are a lower bound when retries > 0. Usage is reported on successful responses only: a failed request's cost is not returned.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["model_calls", "input_tokens", "output_tokens", "tool_calls", "retries", "model_ms", "models", "usage_source"],
+  "properties": {
+    "model_calls": { "type": "integer", "minimum": 0, "description": "Provider completions whose answer the request used; a discarded and retried attempt is counted in retries, not here. 0 in replay." },
+    "input_tokens": { "type": "integer", "minimum": 0, "description": "Prompt tokens, cached ones included." },
+    "output_tokens": { "type": "integer", "minimum": 0, "description": "Completion tokens, reasoning ones included." },
+    "cached_input_tokens": { "type": ["integer", "null"], "minimum": 0, "description": "The part of input_tokens served from the provider's prompt cache; null, or absent (the draft route omits nulls), unless every model call reported it." },
+    "reasoning_tokens": { "type": ["integer", "null"], "minimum": 0, "description": "The part of output_tokens spent on hidden reasoning; null, or absent (the draft route omits nulls), unless every model call reported it." },
+    "tool_calls": { "type": "integer", "minimum": 0, "description": "Tool calls the model asked for during the request." },
+    "retries": { "type": "integer", "minimum": 0, "description": "Extra provider attempts: a rate-limit backoff, a hung-call retry, an invalid-output retry, a fallback-model switch." },
+    "model_ms": { "type": "integer", "minimum": 0, "description": "Time spent inside the provider layer (pacing, backoff and the completions), summed over its calls; concurrent calls add up, so it can exceed the request's wall time." },
+    "cost_usd": { "type": ["number", "null"], "minimum": 0, "description": "Sum of the provider-reported cost; null, or absent (the draft route omits nulls), unless every model call reported one." },
+    "usage_source": { "enum": ["live", "replay"], "description": "live: a real provider answered and the figures are what it reported. replay: recorded cassettes answered (tests, demos); nothing was spent and no figure is reported." },
+    "models": { "type": "array", "uniqueItems": true, "items": { "type": "string" }, "description": "The models that answered, in first-use order." }
+  }
+}

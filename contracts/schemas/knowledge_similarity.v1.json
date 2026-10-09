@@ -1,0 +1,74 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://ghost.local/contracts/knowledge_similarity.v1.json",
+  "title": "KnowledgeSimilarityRules",
+  "description": "Weights, minimum comparable features and threshold of the closest-match retrieval of learned knowledge (ADR-0013 amendment 2). Data, not code: core-go/internal/knowledge loads contracts/knowledge/similarity.v1.json next to lifecycle.v1.json. Score = sum of weight x agreement over the features known on both sides / sum of weight over those features; unknown on either side contributes nothing. $defs/retrieval is the record a run persists on its build_context step (detail.knowledge_retrieval).",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["version", "applies_to_created_from", "threshold", "min_comparable_features", "min_comparable_weight", "features"],
+  "properties": {
+    "version": { "type": "string", "pattern": "^knowledge_similarity:v[0-9]+$" },
+    "description": { "type": "string" },
+    "applies_to_created_from": {
+      "description": "Knowledge minted from these sources is matched by similarity; authored knowledge keeps the exact condition matcher.",
+      "type": "array", "minItems": 1, "uniqueItems": true, "items": { "enum": ["manual", "human_delta"] }
+    },
+    "threshold": { "description": "At or above: applicable.", "type": "number", "exclusiveMinimum": 0, "maximum": 1 },
+    "min_comparable_features": { "type": "integer", "minimum": 1 },
+    "min_comparable_weight": { "description": "The comparable features' weights must add up to at least this, so three weight-1 features cannot carry a lesson; it must not exceed the total weight.", "type": "number", "exclusiveMinimum": 0 },
+    "features": {
+      "type": "array", "minItems": 1,
+      "items": {
+        "type": "object", "additionalProperties": false, "required": ["id", "weight", "rationale"],
+        "properties": {
+          "id": { "enum": ["transition", "signals", "topic", "stage", "motion", "relationship_state", "transition_status", "champion_status", "health"] },
+          "weight": { "type": "number", "exclusiveMinimum": 0 },
+          "rationale": { "type": "string", "minLength": 1 }
+        }
+      }
+    }
+  },
+  "$defs": {
+    "feature": {
+      "type": "object", "additionalProperties": false, "required": ["id", "weight", "agreement", "lesson", "case"],
+      "properties": {
+        "id": { "type": "string" },
+        "weight": { "type": "number" },
+        "agreement": { "description": "1 equal, 0 different; for signals the share of the lesson's signals open in the case.", "type": "number", "minimum": 0, "maximum": 1 },
+        "lesson": { "type": "string" },
+        "case": { "type": "string" }
+      }
+    },
+    "retrieval": {
+      "description": "The closest lessons of one run, ranked by score (ties by title then id), and the decision. decision applicable: offered to the agent. below_threshold: not offered. insufficient_features: fewer than min_comparable_features comparable features, or their weights below min_comparable_weight. exception_blocked: above threshold but an exception fires.",
+      "type": "object", "additionalProperties": false,
+      "required": ["rules_version", "threshold", "min_comparable_features", "candidates", "message"],
+      "properties": {
+        "rules_version": { "type": "string" },
+        "threshold": { "type": "number" },
+        "min_comparable_features": { "type": "integer" },
+        "min_comparable_weight": { "type": "number" },
+        "candidates": {
+          "type": "array",
+          "items": {
+            "type": "object", "additionalProperties": false,
+            "required": ["knowledge_id", "title", "status", "score", "comparable", "matched", "differs", "decision"],
+            "properties": {
+              "knowledge_id": { "$ref": "common.v1.json#/$defs/uuid" },
+              "title": { "type": "string" },
+              "status": { "$ref": "knowledge.v1.json#/properties/status" },
+              "score": { "type": "number", "minimum": 0, "maximum": 1 },
+              "comparable": { "type": "integer", "minimum": 0 },
+              "comparable_weight": { "description": "Sum of the weights of the comparable features.", "type": "number", "minimum": 0 },
+              "ignored_conditions": { "description": "Scope conditions of the lesson outside the eight features (neq, in, not_exists, other fields): not scored, reported so they are not silently dropped.", "type": "array", "items": { "type": "string" } },
+              "matched": { "type": "array", "items": { "$ref": "#/$defs/feature" } },
+              "differs": { "type": "array", "items": { "$ref": "#/$defs/feature" } },
+              "decision": { "enum": ["applicable", "below_threshold", "insufficient_features", "exception_blocked"] }
+            }
+          }
+        },
+        "message": { "description": "The plain statement the product shows: the closest lesson and its score, or that the knowledge base holds no lesson to compare.", "type": "string", "minLength": 1 }
+      }
+    }
+  }
+}
